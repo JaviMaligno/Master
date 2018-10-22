@@ -1,0 +1,82 @@
+\documentclass[twoside,11pt]{report}
+\usepackage{titlesec}
+\usepackage{multirow}
+\usepackage{subfig}
+%\usepackage{wasysym}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows}
+\usetikzlibrary{cd}
+\usepackage{rotating}
+\usetikzlibrary{automata,positioning}
+\newcommand{\mychapter}[2]{
+    \setcounter{chapter}{#1}
+    \setcounter{section}{0}
+    \chapter*{#2}
+    \addcontentsline{toc}{chapter}{#2}
+}
+
+\usepackage{estilo-apuntes}
+%\usepackage{braids}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.13}
+\usetikzlibrary{decorations.shapes}
+\pgfkeyssetvalue{/tikz/braid height}{1cm} %no parece hacer nada
+\pgfkeyssetvalue{/tikz/braid width}{1cm}
+\pgfkeyssetvalue{/tikz/braid start}{(0,0)}
+\pgfkeyssetvalue{/tikz/braid colour}{black}
+\begin{document}
+\begin{titlepage}
+	\centering
+		\includegraphics[width=8cm]{Imagenes/sello.jpeg}
+		
+	{\Large\bfseries UNIVERSIDAD DE SEVILLA\par}
+	{\Large\bfseries FACULTAD DE MATEMÁTICAS\par}
+	\vspace{0.5cm}
+	{\large\bfseries Trabajo de Fin de Máster \par}
+	\vspace{1cm}
+	{\Huge\bfseries La conjetura de Deligne\par}
+	\vspace{1cm}
+	{\large Por:\par}
+	{\large Javier Aguilar Martín\par}
+	\vspace{0.5cm}
+	{\large Dirigido por:\par}
+	{\large Fernando Muro Jiménez\par}
+	\vspace{1cm}
+	{\large Máster Universitario en Matemáticas\par}
+	\vspace{0.5cm}
+	{\large  de Juio de 2019\par}
+	\vspace{1cm}
+
+
+
+
+
+	
+\end{titlepage}
+
+
+
+\tableofcontents
+
+\subfile{Abstract}
+%\subfile{Resumen}
+\subfile{Gerstenhaber}
+%\subfile{AutomorfismosDelGrupoLibre}
+%\subfile{PeinadoDeTrenzas}
+%\subfile{FormasNormales}
+%\subfile{RepresentacionesLineales}
+\subfile{Bibliografia}
+
+%¿AÑADO ALGUNA COSA MÁS DE ESTILO?
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

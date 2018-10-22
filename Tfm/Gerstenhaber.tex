@@ -1,0 +1,67 @@
+\documentclass[TFM.tex]{subfiles}
+
+\begin{document}
+
+%\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
+\chapter{Hochschild cohomology of a ring}
+
+In this chapter we're introducing the cohomology of a ring and showing that it has a \emph{Gerstenhaber algebra} structure, which we shall first define. The reader is referred to \cite{Gerstenhaber} for more details.  
+
+
+\section{Gerstenhaber algebras}
+
+We begin reminding that a \emph{graded algebra} is a graded $S$-module (for some ring $S$) which is also a graded ring with the same gradation. We shall denote a graded algebra $A=\sum_\lambda A_\lambda$, indexed by some additive group, generally the integers. We denote the degree of an element $a\in A$ by $|a|$. By $A[1]$ we will denote the shift of gradation, i.e., the graded algebra where $A[1]_\lambda=A_{\lambda+1}$. 
+
+
+\begin{defi}
+A graded algebra $A$ is a \emph{Gerstenhaber algebra} if one has:
+\begin{enumerate}
+\item[(1)] An associative, graded commutative multiplication:
+\[
+\cdot: A\times A\to A.
+\]
+For every $a,b\in A$ one has $a\cdot b=(-1)^{|a||b|}b\cdot a$.
+
+\item[(2)] A graded Lie bracket PREGUNTAR AQUÍ PORQUE ALGUNAS PROPIEDADES LA COHOMOLOGÍA LA CUMPLE CON EL GRADO Y OTRAS CON LA DIMENSIÓN ENTONCES NO SÉ QUÉ SHIFT HACER, SI LO DEJO TAL COMO ESTÁ AHORA FUNCIONA BIEN QUE $[H^{m}, H^{n}]\subset H^{m+n-1}$ PERO ENTONCES EN EL CORCHETE ESTARÍA REDUCIENDO EL GRADO
+\[
+[,]:A\times A\to A[1].
+\]
+So one has, for every $a,b,c\in A$:
+\begin{itemize}
+\item $[b,a]=(-1)^{(|a|-1)(|b|-1)}[a,b]$ (graded antisymmetry)
+\item $(-1)^{(|a|-1)(|c|-1)}[[a,b],c]+(-1)^{(|b|-1)(|a|-1)}[[b,c],a]+(-1)^{(|c|-1)(|b|-1)}[[c,a],b]=0$ (graded Jacobi identity). 
+\end{itemize}
+\item[(3)]  $[a,−]$ is a left derivation of $\cdot$ of degree $|a|-1$: LO QUE PRUEBA GERSTENHABER ES CON EL PRODUCTO EN EL LADO IZQUIERDO PERO SUPONGO QUE POR LA CONMUTATIVIDAD Y ANTISIMETRÍA
+\[
+[a,b\cdot c]=[a,b]\cdot c+(-1)^{(|a|-1)(|b|-1}b\cdot [a,c]
+\]
+\end{enumerate}
+\end{defi}
+
+
+\section{Cohomology of a ring and commutativity of cup product}
+
+\begin{defi}Let $A$ a graded algebra and $P$ a two-sided $A$-module. We define a \emph{Hochschild $m$-cochain} $f^m$ of $A$ with coefficients in $P$ to be an $S$-module homormorphism $f^m: A^{\otimes m}\to P$. The module $\Hom_S(A^{\otimes m}, P)$ or all such $f^m$ will be denoted by $C^m(A,P)$, $S$ being understood. We indetify $C^0(A,P)$ with $P$.
+\end{defi}
+
+For every $m$ there is defined a homomorphism $\delta_m: C^m(A,P)\to C^{m+1}(A,P)$ defined by setting
+\begin{align*}
+\delta_m f(a_1\otimes\cdots\otimes a_{m+1})&=a_1f(a_2\otimes\cdots\otimes a_{m+1})\\
+& +\sum_{i=1}^m(-1)^if(a_1\otimes\cdots\oplus a_{i-1}\otimes a_ia_{i+1}\oplus a_{i+1}\otimes\cdots a_{m+1})\\
+& +(-1)^{m+1}f(a_1\otimes\cdots\otimes a_m)a_{m+1},
+\end{align*}
+and extending this definition linearly. It is the case that $\delta_{m+1}\delta_m=0$; $Z^m(A,P)$ is defined to be the kernel of $\delta_m$, $B^m(A,P)$ the image of $\delta_{m-1}$ for $m\geq 1$ and 0 for $m=0$. One has $B^m(A,P)\subseteq Z^m(A,P)$ and the $m$-th \emph{Hochschild cohomology module} $H^m(A,P)$ is defined to be $Z^m(A,P)/B^m(A,P)$. We will denote $C^*(A,P)$, $Z^*(A,P)$ and $H^*(A,P)$, respectively, the direct sums of the modules $C^m(A,P)$, $Z^m(A,P)$ and $H^m(A,P)$ for $m=0,1,2,\dots$. 
+
+If $P$ is further an associative ring, then the multiplication in $P$ induces, for every $m$ and $n$, a homomorphism denoted $\smile$ and called the \emph{cup product} of $C^m(A,P)\otimes C^n(A,P)$ into $C^{m+n}(A,P)$ defined by setting for $f\in C^m(A,P)$ and $g\in C^n(A,P)$
+\[
+f\smile g(a_1\otimes\cdots\otimes a_m\otimes b_1\otimes\cdots\otimes b_n)=f(a_1\otimes\cdots\otimes a_m)g(b_1\otimes\cdots\otimes b_n).
+\]
+
+
+
+
+\end{document}
+
+%isotopía \url{https://link.springer.com/chapter/10.1007%2F978-94-015-9319-9_6}
+%Orientation preserving (que las cartas conservan la orientación) https://math.stackexchange.com/questions/1319234/meaning-of-the-expression-orientation-preserving-homeomorphism 
+%O sea, conserva la orientación como superficie
