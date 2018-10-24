@@ -10,10 +10,10 @@ In this chapter we're introducing the cohomology of a ring and showing that it h
 
 \section{Gerstenhaber algebras}
 
-We begin reminding that a \emph{graded algebra} is a graded $S$-module (for some ring $S$) which is also a graded ring with the same gradation. We shall denote a graded algebra $A=\sum_\lambda A_\lambda$, indexed by some additive group, generally the integers. We denote the degree of an element $a\in A$ by $|a|$. By $A[1]$ we will denote the shift of gradation, i.e., the graded algebra where $A[1]_\lambda=A_{\lambda+1}$. 
+We begin reminding that a \emph{graded algebra} is a graded $S$-module (for some ring $S$) which is also a graded ring with the same gradation. We shall denote a graded algebra $A=\sum_\lambda A_\lambda$, indexed by some additive group, generally the integers. We denote the degree of an element $a\in A$ by $|a|$. %By $A[1]$ we will denote the shift of gradation, i.e., the graded algebra where $A[1]_\lambda=A_{\lambda+1}$. 
 
 
-\begin{defi}
+\begin{defi}\label{defi1}
 A graded algebra $A$ is a \emph{Gerstenhaber algebra} if one has:
 \begin{enumerate}
 \item[(1)] An associative, graded commutative multiplication:
@@ -22,26 +22,28 @@ A graded algebra $A$ is a \emph{Gerstenhaber algebra} if one has:
 \]
 For every $a,b\in A$ one has $a\cdot b=(-1)^{|a||b|}b\cdot a$.
 
-\item[(2)] A graded Lie bracket PREGUNTAR AQUÍ PORQUE ALGUNAS PROPIEDADES LA COHOMOLOGÍA LA CUMPLE CON EL GRADO Y OTRAS CON LA DIMENSIÓN ENTONCES NO SÉ QUÉ SHIFT HACER, SI LO DEJO TAL COMO ESTÁ AHORA FUNCIONA BIEN QUE $[H^{m}, H^{n}]\subset H^{m+n-1}$ PERO ENTONCES EN EL CORCHETE ESTARÍA REDUCIENDO EL GRADO
+\item[(2)] A graded Lie bracket 
 \[
-[,]:A\times A\to A[1].
+[,]:A\times A\to A.
 \]
 So one has, for every $a,b,c\in A$:
 \begin{itemize}
-\item $[b,a]=(-1)^{(|a|-1)(|b|-1)}[a,b]$ (graded antisymmetry)
+\item $|[a,b]|=|a|+|b|-1$
+\item $[b,a]=-(-1)^{(|a|-1)(|b|-1)}[a,b]$ (graded antisymmetry)
 \item $(-1)^{(|a|-1)(|c|-1)}[[a,b],c]+(-1)^{(|b|-1)(|a|-1)}[[b,c],a]+(-1)^{(|c|-1)(|b|-1)}[[c,a],b]=0$ (graded Jacobi identity). 
 \end{itemize}
-\item[(3)]  $[a,−]$ is a left derivation of $\cdot$ of degree $|a|-1$: LO QUE PRUEBA GERSTENHABER ES CON EL PRODUCTO EN EL LADO IZQUIERDO PERO SUPONGO QUE POR LA CONMUTATIVIDAD Y ANTISIMETRÍA
+\item[(3)]  $[,c]$ is a left derivation of $\cdot$ of degree $|c|-1$: %LO QUE PRUEBA GERSTENHABER ES CON EL PRODUCTO EN EL LADO IZQUIERDO PERO SUPONGO QUE POR LA CONMUTATIVIDAD Y ANTISIMETRÍA
 \[
-[a,b\cdot c]=[a,b]\cdot c+(-1)^{(|a|-1)(|b|-1}b\cdot [a,c]
+[a\cdot b,c]=[a,c]\cdot b+(-1)^{|a|(|c|-1)}a\cdot [b,c]
 \]
+¿ES ESTO EQUIVALENTE A SI LO QUE FIJO ES EL PRIMER ARGUMENTO?
 \end{enumerate}
 \end{defi}
 
 
 \section{Cohomology of a ring and commutativity of cup product}
 
-\begin{defi}Let $A$ a graded algebra and $P$ a two-sided $A$-module. We define a \emph{Hochschild $m$-cochain} $f^m$ of $A$ with coefficients in $P$ to be an $S$-module homormorphism $f^m: A^{\otimes m}\to P$. The module $\Hom_S(A^{\otimes m}, P)$ or all such $f^m$ will be denoted by $C^m(A,P)$, $S$ being understood. We indetify $C^0(A,P)$ with $P$.
+\begin{defi}Let $A$ be a ring and $P$ a two-sided $A$-module. We define a \emph{Hochschild $m$-cochain} $f^m$ of $A$ with coefficients in $P$ to be an $S$-module homormorphism $f^m: A^{\otimes m}\to P$. The module $\Hom_S(A^{\otimes m}, P)$ or all such $f^m$ will be denoted by $C^m(A,P)$, $S$ being understood. We indetify $C^0(A,P)$ with $P$.
 \end{defi}
 
 For every $m$ there is defined a homomorphism $\delta_m: C^m(A,P)\to C^{m+1}(A,P)$ defined by setting
@@ -57,9 +59,32 @@ If $P$ is further an associative ring, then the multiplication in $P$ induces, f
 f\smile g(a_1\otimes\cdots\otimes a_m\otimes b_1\otimes\cdots\otimes b_n)=f(a_1\otimes\cdots\otimes a_m)g(b_1\otimes\cdots\otimes b_n).
 \]
 
-Under this multiplication $C^*(A,P)$ becomes an associative ring graded by the integers. 
+Under this multiplication $C^*(A,P)$ becomes an associative ring graded by the integers.
 
-RELATION ENTRE CUP PRODUCT Y DIFERENCIAL. DEFINIR EL CORCHETE. RELACION ENTRE CORCHETE Y CUP PRODUCTO. CITAR A GERSTENHABER PARA LAS PRUEBAS.
+\begin{thm}(\cite[Corollary 1 of \textsection 7]{Gerstenhaber})
+If $A$ is a ring, then the ring $\{H^*(A,A),\smile\}$ is a graded commutative ring, with grading given by dimension, i.e., if $[f]\in H^m(A,A)$ and $[g]\in H^n(A,A)$, then $[f]\smile [g] =(-1)^{mn}[g]\smile [f]$.
+\end{thm} 
+
+The cup product induces a module structure on $C^*(A,P)$ over $C^*(A,A)$ that induces a module structre on $H^*(A,P)$ over $H^*(A,A)$. Using Theorem 3 of \cite{Gerstenhaber} we get the following result.
+
+\begin{thm}(\cite[Corollary 2 of \textsection 7]{Gerstenhaber})
+Let $A$ a ring and $P$ a two-sided $A$-module. If either $[f]\in H^n(A,A)$ and $[g]\in H^m(A,P)$ or $[f]\in H^n(A,P)$ and $[g]\in H^m(A,A)$, then
+\[
+[f]\smile[g]=(-1)^{mn}[g]\smile [f].
+\]
+\end{thm}
+
+According to \cite[Theorem 4 of \textsection 8]{Gerstenhaber} we can define a Lie bracket on $C^*(A,A)$ in such a way that $H^*(A,P)$ becomes a two sided module over $\{H^*(A,A),[,]\}$. Finally, we have
+
+\begin{thm}(\cite[Corollary 2 of \textsection 8]{Gerstenhaber}
+Let $A$ be a ring and $[f]$, $[g]$ and $[h]$ elements of $H^m(A,A)$, $H^n(A,A)$ and $H^p(A,A)$, respectively. Then
+\[
+[[f]\smile[g], [h]]=[[f],[h]]\smile [g]+(-1)^{m(p-1)}[f]\smile[[g],[h]].
+\]
+\end{thm}
+
+
+According to \ref{defi1}, we now have that the Hochschild cohomology $H^*(A,A)$ is a Gerstenhaber algebra. 
 
 
 

@@ -11,7 +11,7 @@ En inglés sheaf (sheaves), en francés faisceau (faisceaux).
 \section{Introducción}
 
 \begin{ej}
-Sea $\R^n$ con la topología euclídea $\Tau$. Consideremos el aniñño de funciones continuas en un abierto $U$ de $\R^n$ en $\R$, $C^0(U,\R)$. Recordemos que $C^0(\emptyset)$ tiene un elemento, que denotaremos como $0$, por el hecho de que los conjuntos de aplicaciones continuas forman un grupo abeliano. 
+Sea $\R^n$ con la topología euclídea $\Tau$. Consideremos el anillo de funciones continuas en un abierto $U$ de $\R^n$ en $\R$, $C^0(U,\R)$. Recordemos que $C^0(\emptyset)$ tiene un elemento, que denotaremos como $0$, por el hecho de que los conjuntos de aplicaciones continuas forman un grupo abeliano. 
 
 Si tenemos una inclusión de abiertos $V\subseteq U$, podemos considerar la restricción $C^0(U,\R)\overset{\rho_{UV}}{\longrightarrow} C^0(V,\R)$, definida como $\rho_{UV}(f)=f|_V$. Además, la restricción de la suma es la suma de restricciones, por lo que $\rho_{UV}$ es un homomorfismo de grupos abelianos. 
 
@@ -34,14 +34,14 @@ Estos ejemplos nos dan la noción de prehaz (que no verifica necesariamente la c
 \begin{defi}
 Sea $X$ un espacio topológico. Un \emph{prehaz de grupos abelianos} $\mathcal{F}$ en $X$ consiste en los siguientes datos:
 \begin{enumerate}
-\item A cada abierto $U\subseteq X$ un grupo abeliano $\mathcal{F}(U)$ asociado
-\item Si $V\subseteq U$, entonces se le asocia $\rho_{UV}:\mathcal{F}(U)\to\mathcal{F}(V)$ homomorfismo de grupos abelianos
+\item Para cada abierto $U\subseteq X$ un grupo abeliano $\mathcal{F}(U)$ asociado
+\item Para todo inclusión $V\subseteq U$ de abiertos de $X$, un homomorfismo de grupos abelianos $\rho_{UV}:\mathcal{F}(U)\to\mathcal{F}(V)$
 \end{enumerate}
 sujeto a las condiciones:
 \begin{enumerate}
 \item $\mathcal{F}(\emptyset)=0$
 \item $\rho_{UU}=Id_{\mathcal{F}(U)}$
-\item Si $W\subseteq V\subseteq U$, entonces $\rho_{UW}=\rho{VW}\circ \rho{UV}$.
+\item Si $W\subseteq V\subseteq U$ son tres abiertos, entonces $\rho_{UW}=\rho{VW}\circ \rho{UV}$.
 \end{enumerate}
 
 \end{defi}
@@ -50,8 +50,19 @@ sujeto a las condiciones:
 Si $G$  es un grupo abeliano fijo, entonces $\mathcal{F}(U)=G$ si $U\neq\emptyset$, $\mathcal{F}(\emptyset)=\{0\}$ y $\rho_{UV}=Id_G$ si $V\neq \emptyset$ es un prehaz.
 \end{ej}
 
+Esta definición se puede reescribir en lenguaje de categorías. Dado un espacio topológico $X$, se define la categoría $\mathfrak{Top}(X)$ cuyos objetos son los abiertos de $X$ y donde los únicos morfismos son las inclusiones. Así, un prehaz de grupos abelianos no es más que que un functor contravariante entre la categoría $\mathfrak{Top}(X)$ y la categoría $\mathfrak{Ab}$ de grupos abelianos. De igual manera se puede definir un prehaz de anillos, de conjuntos o con valores en cualquier categoría fijada.
 
-HACER LOS PRIMEROS EJERCICIOS DE LA SECCIÓN
+En adelante, si $\calF$ es un prehaz sobre $X$, nos referiremos a $\calF(U)$ como las \emph{secciones} del prehaz $\calF$ sobre el conjunto $U$ y algunas veces usaremos la notación $\Gamma(U,\calF)$ para denotar al grupo $\calF(U)$. Llamaremos a las aplicaciones $\rho_{UV}$ \emph{restricciones}, y a menudo escribiremos $s|_V$ en lugar de $\rho_{UV}(s)$ para $s\in\calF(U)$. 
+
+\begin{defi}
+Un prehaz en un espacio topológico $X$ es un \emph{haz} si satisface las siguientes condiciones:
+\begin{enumerate}
+\item Si $U$ es un abierto, si $\{V_i\}$ es un recubrimiento abierto de $U$, y si $s\in\calF(U)$ es un elemento tal que $s|_{V_i}=0$ para todo $i$, entonces $s=0$. 
+\item Si $U$ es abierto, si $\{V_i\}$ es un recubrimiento abierto de $U$, y si tenemos elementos $s_i\in\calF(U)$ para cada $i$ con la propiedad de que para cada $i,j$, $s_i|_{U_i\cap U_j}=s_j|_{U_i\cap U_j}$, entonces existe un elemento $s\in\calF(U)$ tal que $s|_{V_i}=s_i$ para todo $i$ (obsérveseque la condición anterior implica que este $s$ es único). 
+\end{enumerate}
+\end{defi}
+
+
 
 
 
