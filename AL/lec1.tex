@@ -1,0 +1,41 @@
+\documentclass[AL.tex]{subfiles}
+
+\begin{document}
+
+
+%\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
+
+\chapter{Introducción, ejemplos.}
+
+Un algoritmo es una lista finita de instrucciones que resuelven una tarea. De un algoritmo se espera que sea correcto (que resuelva el problema), eficiente (que lo resuelva rápido) y que sea fácil de implementar. Las ideas que se ocurren para resolver el problema se llaman heurísticas. 
+\section{Búsqueda binaria}
+
+Para decidir si un elemento $x$ está en una lista ordenada $L=\{a_1,\dots, a_n\}$ la mayoría de algoritmos que se nos ocurren tiene complejidad $0(n)$, pero la búsqueda binaria tiene orden $O(\log n)$. Consiste comparar $x$ con el elemento $\lfloor \frac{n+1}{2}\rfloor$. Si es igual, hemos acabado, si no, podemos buscar en una de las mitades de la lista, repitiendo el proceso. La longitud de la lista se va reduciendo tras cada operación de la forma $n, \frac{n}{2}, \dots, \frac{n}{2^k}$. El algoritmo acaba cuando nos queda una lista unitaria, que se da para $k=\log n$. Así que se realizan $\log n$ operaciones. 
+
+\section{Calcular el mínimo (o máximo) de un conjunto de puntos}
+Sea $\{x_1,\dots, x_n\}$. Basta elegir un primer elemento, compararlo con el siguiente, y quedarse con el más pequeño en cada comparación. El número de operaciones es $O(n)$. Además este algoritmo es óptimo porque no hay ningún otro que lo mejore en complejidad (eficiencia). Esto se debe a que todo algoritmo debe acceder a los $n$ valores. 
+
+Análogamente se calcula el máximo. 
+
+
+
+\section{Encontrar el par de puntos más cercano}
+
+En una dimensión basta calcular las distancias entre puntos consecutivos y encontrar el mínimo.
+
+En dimensión dos habría que calcular las $\binom{n}{2}$ distancias. Este algoritmo es de $O(n^2)$ operaciones. Existen algoritmos que lo resuelvenen $O(n\log n)$. 
+
+
+\section{TSP: Travelling Salesman Problem}
+Dado un conjunto de puntos, encontrar el tour de longitud mínima. Como primera idea, en cada caso, iríamos al punto más cercano. Se trataría de calcular la mínima distancia $n$ veces. El cálculo del mínimo se consigue en tiempo lineal. Sin embargo, este algoritmo no es correcto. Podemos pensar en una línea recta, en la que partimos del origen. Si el más cercano en cada caso nos hace ir al lado contrario del punto inicial, entonces este camino puede ser más largo que empezar en un extremo y recorrerlos todos. 
+
+
+Un algoritmo correcto pero muy poco eficiente consiste en calcular todos los tours posibles y calcular el de mínima distancia. Un tour viene dado por una permutación de los puntos, por lo que hay $n!$ posibles soluciones. 
+
+Durante el curso veremos algoritmos mejores.
+
+
+
+
+
+\end{document}

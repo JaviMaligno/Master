@@ -47,7 +47,7 @@ sujeto a las condiciones:
 \end{defi}
 
 \begin{ej}
-Si $G$  es un grupo abeliano fijo, entonces $\mathcal{F}(U)=G$ si $U\neq\emptyset$, $\mathcal{F}(\emptyset)=\{0\}$ y $\rho_{UV}=Id_G$ si $V\neq \emptyset$ es un prehaz.
+Si $G$  es un grupo abeliano fijo, entonces $\mathcal{F}(U)=G$ si $U\neq\emptyset$, $\mathcal{F}(\emptyset)=\{0\}$ y $\rho_{UV}=Id_G$ si $V\neq \emptyset$ es un prehaz. En este caso podríamos interpretar $G$ como las funciones constantes de $U$ en $G$, en cuyo caso las restricciones son auténticas restricciones.
 \end{ej}
 
 Esta definición se puede reescribir en lenguaje de categorías. Dado un espacio topológico $X$, se define la categoría $\mathfrak{Top}(X)$ cuyos objetos son los abiertos de $X$ y donde los únicos morfismos son las inclusiones. Así, un prehaz de grupos abelianos no es más que que un functor contravariante entre la categoría $\mathfrak{Top}(X)$ y la categoría $\mathfrak{Ab}$ de grupos abelianos. De igual manera se puede definir un prehaz de anillos, de conjuntos o con valores en cualquier categoría fijada.
@@ -62,11 +62,102 @@ Un prehaz en un espacio topológico $X$ es un \emph{haz} si satisface las siguie
 \end{enumerate}
 \end{defi}
 
+ENTREGAR EJERCICIOS 1.5 Y 1.6
 
 
+\begin{ej}
+Sea $X$ un espacio topológico y $A$ un grupo abeliano. Definimos el \emph{haz constante} $\calA$ en $X$ determinado por $A$ como sigue. Dotamos a $A$ de la topología discreta, y para un abierto $U\subseteq X$, sea $\calA(U)$ el grupo de funciones continuas de $U$ en $A$ (que son localmente constantes). Entonces, con las restricciones de funciones usuales, obtenemos un haz. Nótese que para todo abierto conexo $U$, $\calA(U)\cong A$, de ahí que se llame constante. Si $U$ es un abierto cuyas componentes conexas sean abiertas (siempre en un espacio topológico localmente conexo), entonces $\calA(U)$ es isomorfo a una suma directa de tantas copias de $A$ como componentes conexas tenga $U$. 
+\end{ej}
+
+Sea $(I,\prec)$ un orden parcial dirigido, es decir $\forall i,j\in I$, $\exists k\in I$ tal que $i,j\prec k$ (todo par de elementos tiene una cota superior). En un espacio topológico $X$, dado $p\in X$, definimos el conjunto $I=\{U\subseteq X\mid p\in U\}$ dirigido por la relación de la inclusión.
+
+Sea $(I,\prec)$ un conjunto dirigido, y para cada $i\in I$ asociamos un grupo abeliano $M_i$, de modo que para $i\prec j$ se tenga un homomorfismo $\rho_{ij}:M_i\to M_j$ verificando para $i\prec j\prec k$, $\rho_{ik}=\rho_{jk}\circ\rho_{ij}$. A esto lo llamaremos sistema inductivo de grupos abelianos. Por ejemplo, consideremos $(\N,\leq)$. Entonces un sistema inductivo de grupos abelianos sería simplemente una cadena
+\[
+M_1\to M_2\to M_3\to\cdots
+\]
+
+Si $(M_i)_{i\in I}$ es un sistema inductivo de grupos abelianos, su límite inductivo o directo, $\underset{i\in I}{\underset{\rightarrow}{\lim}}M_i$ es otro grupo $M$ junto con una sucesión de homomorfismos de grupso $\alpha_i:M_i\to M$ tales que:
+\begin{enumerate}
+\item El siguiente diagramma conmuta para todo $i,j$
+\[
+\begin{tikzcd}
+M_i\arrow[r, "\alpha_i"]\arrow[d, "\rho_{ij}"'] & M\\
+M_j\arrow[ur, "\alpha_j"'] &
+\end{tikzcd}
+\]
+\item $M$ es ``lo más pequeño posible'', es deicr, para cualquier otro grupo abeliano $N$ que verifique la conmutatividad anterior para morfismos $\beta_i$ y $\beta_j$, entonces existe un único homomorfismo $\Gamma:M\to N$ a través del cual factorizan los anteriores, es decir, $\beta_i=\gamma\circ\alpha_i$. 
+\end{enumerate} 
+
+Estas definiciones son válidas para cualquier categoría, obviamente. Podemos ver un ejemplo en el caso de conjuntos. 
+
+\begin{ej}
+Sea $I=(\N, \leq)$ y sea $M_n=(-n,n)\subseteq\R$. Tenemos un sistema inductivo dado por las inclusiones obvias. El límite inductivo es claramente la unión de todos ellos, es decir $\R$. 
+\end{ej}
+
+Para probar que el límite directo existe en el caso de grupos abelianos, dados $(M_i,\rho_{ij})$, consideramos $\bigoplus_{k\in I}M_k$ cocientado por las relaciones que nos dan la conmutatividad del diagrama, $\sigma_i=\sigma_j\circ rho_{ij}$. Esto nos da el límite directo.
 
 
+\begin{defi}
+\emph{Fibra (Stalk) de un prehaz}. Sea $X$ un espacio topológico, $\calF$ un prehaz de grupos abelianos en $X$, $p\in X$. Definimos el stalk de $\calF$ como
+\[
+\calF_p=\underset{p\in U}{\underset{\rightarrow}{\lim}} \calF(U).
+\]
+\end{defi}
+
+Podemos pensar de otra forma el límite directo además de la que hemos definido antes. Consideremos $\{(U,s)\mid U$ es entorno abierto de $p$ y $s\in\calF(U)\}$. Definismo sobre este conjunto la relación de equivalencia $(U,s)\sim (V,t)$ si $\exists w\in U\cap V$ entorno abierto de $p$ tal que $s|_W=t|_W$. Este conjunto tiene además de estructura de grupo abeliano haciendo suma donde dos funciones estén definidas. 
+
+\begin{ejs}
+\begin{enumerate}
+\item Une jemplo sencillo es considerar funciones que vayan a $\R$. En ese caso las clases de equivalencia serían los gérmenes de funciones en $p$. 
+
+\item Sea $X=\C$ y $\calF(U)$ el grupo de funciones holomorfas (o analíticas) $f:U\to\C$. Claramente las funciones de una clase tendrían el mismo valor en $p$, pero no solo eso, sino también la misma serie de Taylor porque también coincidirían sus derivadas. Por tanto, el límite directo aquí serían los posibles desarrollos de Taylor en $p$. En el caso analítico, por el principio de extensión analítica, las funciones de una clase deben ser iguales en la componente conexa de $p$ en la intersección de los dominios. La misma definición es válida para morfismo de haces. 
+\end{enumerate}
+\end{ejs}
 
 
+\begin{defi}
+\emph{Morfismo de prehaces}. Sea $X$ un espacio topológico, $\calF$ y $\mathcal{G}$ prehaces de grupos abelianos. Entonces $\varphi:\calF\to\mathcal{G}$ es un morfismo de prehaces si para cada $U\subseteq X$, existe un homorfismo de grupos abelianos $\varphi(U):\calF(U)\to\mathcal{G}(U)$ que haga conmutar el diagrama con los morfismos restricción al considerar $\varphi(V)$ en otro abierto $V$.
+HACER EL DIAGRAMA
+\end{defi}
+
+\begin{ej}
+Sea $X=\R$ y el haz $\mathcal{E}=\{f:U\to \R\mid f\in C^{\infty}\}$. La derivada es un morfismo de este haz en sí mismo. Lo que la condición de ser morfismo representa es que da lo mismo derivar y restringuir que hacerlo en orden contrario.
+\end{ej}
+
+
+\begin{prop}[Prop 1.1 Hartshorne]
+
+\end{prop}
+
+Elmorfimo inducido $\varphi_p:\calF_p\to \mathcal{G}_p$ viene definido por $\varphi_p(\overline{(U,s)})=\overline{(U, \varphi(U)(s))}$. Además se verifica $(\varphi\circ\psi)_p=\varphi_p\circ \psi_p$. 
+
+
+\begin{defi}[Proposición]
+\emph{Haz asociado a un prehaz}. Sea $X$ un espacio topológico y $\calF$ un prehaz de grupos abelianos a $X$. Existe un haz $\calF^+$ dotado de un morfismo de prehaces $\theta:\calF\to\calF^+$ con la siguiente propiedad universal:
+
+Para todo haz $\mathcal{G}$ y para todo homomorfismo de prehaces $\varphi:\calF\to\mathcal{G}$ el siguiente diagrama conmuta
+\[
+\begin{tikzcd}
+\calF\arrow[r,"\theta"] \arrow[dr, "\varphi"]& \calF^+\arrow[d, "\exists!\psi"]\\
+& \mathcal{G}
+\end{tikzcd}
+\]
+
+\end{defi}
+
+Si $\calF$ ya es un haz, entonces claramente $\calF^+=\calF$.
+
+\begin{defi}
+\emph{Núcleo ($\ker$) y conúcleo ($\coker$)}. Dado un morfismo de prehaces $\varphi:\calF\to \mathcal{G}$,  $(\ker\varphi)(U)=\ker\varphi(U)$. Se tiene que $\ker\varphi\subseteq \calF$. Además, si $\calF$ es un haz, su núcleo también lo es.  
+\end{defi}
+
+\begin{ej}
+$X=\C\setminus\{0\}$ y $\OO_X$ el haz de las funciones holomorfas en $X$. Consideramos el morfismo de haces $\frac{d}{dz}$. El $\ker$ es el haz constante, es decir, el haz de las funciones localmente constantes. 
+
+Consideremos ahora una bola abierta $U$ situada en el primer cuadrante y el haz anterior de $\OO_U$ en sí mismo. Para cualquier función holomorfa $f$ en $U$ podemos encontrar una preimagen fijando $p\in U$ y haciendo una integral definida $g(z)=\int_p^zf(\chi)d\chi$. 
+
+Si ahora tomáramos un abierto que rodee al origen, por ejemplo $\OO_X$, entonces ya no podemos hacer esto, pues hay funciones como $\frac{1}{z}$ que no tienen primitiva (habría que eliminar una semirrecta para poder elegir una rama del logaritmo).  
+\end{ej}
 
 \end{document}
+
