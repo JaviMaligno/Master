@@ -21,7 +21,13 @@ Probar que si un espacio $X$ retrae con deformación a un punto $x\in X$, entonc
 \end{ejercicio}
 
 \begin{solucion}
+El hecho de que $x$ sea retracto de deformación de $X$ nos da una homotopía $f_t:X\to X$ tal que $f_0=Id_X$, $f_1=x$ y $f_t(x)=x$ para todo $t\in[0,1]$. Si dado un entorno $V\subseteq U$ de $x$, restringimos $f_t$ a $V$ esto nos da una homotopía $f_t|_V: V\to X$. Por tanto, si encontramos un $V$ los bastante pequeño como para que $f_t(V)\subseteq U$ para todo $t\in [0,1]$ tendremos la homotopía deseada entre $V\hookrightarrow U$ y la constante $x$. . 
 
+Consideremos el conjunto $f^{-1}(U)=\{(y,t)\in X\times I, f_s(y)\in U\}$, que es abierto de $X\times I$, que tiene la topología producto. Por tanto, para todo $t\in [0,1]$ existen abiertos $U_t\subseteq X$ conteniendo a $x$ y $G_t\subseteq I$ conteniendo a $t$ tales que $U_t\times G_t\subseteq f^{-1}(U)$. Es claro que $\{x\}\times I\subseteq f^{-1}(U)$ y que variando $t$ podemos recubrir todo $\{x\}\times I$ por conjuntos de la forma $U_t\times G_t$. Al ser $\{x_0\}\times I$, podemos conseguir un recubrimiento finito $\bigcup_k U_{t_k}\times G_{t_k}$ de $\{x_0\}\times I$. Definimos entonces $V=\bigcap_k U_{t_k}$ , que por definición es abierto y verifica $f_t(V)\subseteq U$ para todo $t\in [0,1]$. 
+
+HACER DIBUJO
+%https://www3.nd.edu/~lnicolae/ProblemsHatcher.pdf
+ 
 \end{solucion}
 
 
@@ -45,7 +51,23 @@ Probar que si un espacio $X$ retrae con deformación a un punto $x\in X$, entonc
 \item[(c)] Sea $Z$ el subespacio zigzag de $Y$ homeomorfo a $\R$ indicado por la línea más gruesa. Probar que hay un retracto con deformación en el sentido débil de $Y$ sobre $Z$, pero no un verdadero retracto con deformación. 
 \end{enumerate}
 \end{ejercicio}
-\begin{solucion}
+\begin{solucion}\
+\begin{enumerate}
+\item[(a)] Para probar que $X$ retrae sobre cualquier punto del segmento $[0,1]\times\{0\}$ basta tomar la siguiente homotopía $f_t:X\to X$, siendo $x_0\in [0,1]$ fijo:
+
+\[
+f_t((x,y))=\begin{cases}
+(1-2t)(x,y)+2t(x,0) & 0\leq t\leq \frac{1}{2}\\
+(2-2t)(x,0)+(2t-1)(x_0,0) & \frac{1}{2}\leq t\leq 1
+\end{cases}
+\]
+
+Para ver que $X$ no se retrae con deformación a ningún otro punto usamos el ejercicio \ref{ejer:0.5}. Sea $x\in X\setminus([0,1)\times\{0\})$. Sea entonces un entorno $U$ de $x$ que no corte a $[0,1]\times\{0\}$. Cualquier entorno $V\subseteq U$ de $x$ tampoco corta a $[0,1]\times\{0\}$, y podemos garantizar que tanto $U$ como $V$ son disconexos por densidad de los racionales. Si $X$ retrae con deformación a $x$, entonces la inclusión $V\hookrightarrow U$ es nulhomotópica, es decir homotópicamente equivalente a una constante, lo cual implicaría que $V$ es contráctil en $U$, y esto no es posible porque $V$ es disconexo. 
+
+\item[(b)]
+
+\item[(c)]
+\end{enumerate}
 
 \end{solucion}
 
