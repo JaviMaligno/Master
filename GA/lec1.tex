@@ -62,7 +62,6 @@ Un prehaz en un espacio topológico $X$ es un \emph{haz} si satisface las siguie
 \end{enumerate}
 \end{defi}
 
-ENTREGAR EJERCICIOS 1.5 Y 1.6
 
 
 \begin{ej}
@@ -94,7 +93,7 @@ Estas definiciones son válidas para cualquier categoría, obviamente. Podemos v
 Sea $I=(\N, \leq)$ y sea $M_n=(-n,n)\subseteq\R$. Tenemos un sistema inductivo dado por las inclusiones obvias. El límite inductivo es claramente la unión de todos ellos, es decir $\R$. 
 \end{ej}
 
-Para probar que el límite directo existe en el caso de grupos abelianos, dados $(M_i,\rho_{ij})$, consideramos $\bigoplus_{k\in I}M_k$ cocientado por las relaciones que nos dan la conmutatividad del diagrama, $\sigma_i=\sigma_j\circ rho_{ij}$. Esto nos da el límite directo.
+Para probar que el límite directo existe en el caso de grupos abelianos, dados $(M_i,\rho_{ij})$, consideramos $\bigoplus_{k\in I}M_k$ cocientado por las relaciones que nos dan la conmutatividad del diagrama, $\sigma_i=\sigma_j\circ \rho_{ij}$. Esto nos da el límite directo.
 
 
 \begin{defi}
@@ -116,8 +115,13 @@ Podemos pensar de otra forma el límite directo además de la que hemos definido
 
 
 \begin{defi}
-\emph{Morfismo de prehaces}. Sea $X$ un espacio topológico, $\calF$ y $\mathcal{G}$ prehaces de grupos abelianos. Entonces $\varphi:\calF\to\mathcal{G}$ es un morfismo de prehaces si para cada $U\subseteq X$, existe un homorfismo de grupos abelianos $\varphi(U):\calF(U)\to\mathcal{G}(U)$ que haga conmutar el diagrama con los morfismos restricción al considerar $\varphi(V)$ en otro abierto $V$.
-HACER EL DIAGRAMA
+\emph{Morfismo de prehaces}. Sea $X$ un espacio topológico, $\calF$ y $\mathcal{G}$ prehaces de grupos abelianos. Entonces $\varphi:\calF\to\mathcal{G}$ es un morfismo de prehaces si para cada $U\subseteq X$, existe un homorfismo de grupos abelianos $\varphi(U):\calF(U)\to\mathcal{G}(U)$ que haga conmutar el diagrama siguiente, donde $V\subseteq U$:
+\[
+\begin{tikzcd}
+\calF(U)\arrow[r, "\varphi(U)"]\arrow[d, "\rho_{UV}"'] & \calG(U)\arrow[d, "\rho'_{UV}"]\\
+\calF(V)\arrow[r, "\varphi(V)"] & \calG(V)
+\end{tikzcd}
+\]
 \end{defi}
 
 \begin{ej}
@@ -125,11 +129,11 @@ Sea $X=\R$ y el haz $\mathcal{E}=\{f:U\to \R\mid f\in C^{\infty}\}$. La derivada
 \end{ej}
 
 
-\begin{prop}[Prop 1.1 Hartshorne]
-
+\begin{prop}
+Sea $\varphi:\calF\to\calG$ un morfismo de haces en un espacio topológico $X$. Entonces $\varphi$ es un isomorfismo si y solo si la aplicación inducida en la fibra $\varphi_p:\calF_p\to\calG_p$ es un isomorfismo para todo $p\in X$.
 \end{prop}
 
-Elmorfimo inducido $\varphi_p:\calF_p\to \mathcal{G}_p$ viene definido por $\varphi_p(\overline{(U,s)})=\overline{(U, \varphi(U)(s))}$. Además se verifica $(\varphi\circ\psi)_p=\varphi_p\circ \psi_p$. 
+El morfismo inducido $\varphi_p:\calF_p\to \mathcal{G}_p$ viene definido por $\varphi_p(\overline{(U,s)})=\overline{(U, \varphi(U)(s))}$. Además se verifica $(\varphi\circ\psi)_p=\varphi_p\circ \psi_p$. 
 
 
 \begin{defi}[Proposición]
@@ -148,7 +152,7 @@ Para todo haz $\mathcal{G}$ y para todo homomorfismo de prehaces $\varphi:\calF\
 Si $\calF$ ya es un haz, entonces claramente $\calF^+=\calF$.
 
 \begin{defi}
-\emph{Núcleo ($\ker$) y conúcleo ($\coker$)}. Dado un morfismo de prehaces $\varphi:\calF\to \mathcal{G}$,  $(\ker\varphi)(U)=\ker\varphi(U)$. Se tiene que $\ker\varphi\subseteq \calF$. Además, si $\calF$ es un haz, su núcleo también lo es.  
+\emph{Núcleo ($\ker$), conúcleo ($\coker$) e imagen}. Dado un morfismo de prehaces $\varphi:\calF\to \mathcal{G}$,  $(\ker\varphi)(U)=\ker\varphi(U)$. Se tiene que $\ker\varphi\subseteq \calF$. Además, si $\calF$ es un haz, su núcleo también lo es.  De la misma forma se definen el conúcleo y la imagen, pero estos no son en general haces. 
 \end{defi}
 
 \begin{ej}
@@ -158,6 +162,26 @@ Consideremos ahora una bola abierta $U$ situada en el primer cuadrante y el haz 
 
 Si ahora tomáramos un abierto que rodee al origen, por ejemplo $\OO_X$, entonces ya no podemos hacer esto, pues hay funciones como $\frac{1}{z}$ que no tienen primitiva (habría que eliminar una semirrecta para poder elegir una rama del logaritmo).  
 \end{ej}
+
+\begin{defi}
+Un \emph{subhaz} de un haz $\calF$ es un haz $\calF'$ tal que para todo abierto $U\subseteq X$, $\calF'(U)$ es un subgrupo de $\calF(U)$, y las restricciones de $\calF'$ son las inducidas por las de $\calF$. 
+
+Decimos que un morfismo de haces $\varphi:\calF\to\calG$ es inyectivo si $\ker\varphi=0$. Por tanto, $\varphi$ es inyectivo si y solo si la aplicación inducida $\varphi(U):\calF(U)\to\calG(U)$ es inyectiva para todo abierto de $X$.
+
+Definimos la imagen de un morfismo de haces $\Ima\varphi$ como el haz asociado al prehaz imagen. Por la propiedad universal del haz asociado, existe una aplicación natural $\Ima\varphi\to\calG$ que es de hecho inyectivo, y por tanto podemos identificar la imagen con un subhaz de $\calG$. 
+
+Decimos que un morfismo de haces es sobreyectivo si $\Ima\varphi=\calG$.
+
+Decimos que una sucesión $\cdots\to\calF^{i-1}\xrightarrow{\varphi^{i-1}}\calF^i\xrightarrow{\varphi^i}\calF^{i+1}\to\cdots$ es exacta si para todo $i$ se tiene $\ker\varphi^i=\Ima\varphi^{i-1}$. Por tanto, una sucesión $0\to\calF\xrightarrow{\varphi}\calG$ es exacta si y solo si $\varphi$ es inyectivo y $\calF\xrightarrow{\varphi}\calG\to 0$ es exacta si y solo si $\varphi$ es sobreyectivo. 
+
+Sea ahora $\calF'$ un subhaz de $\calF$. Definimos el \emph{haz cociente} $\calF/\calF'$ como el haz asociado al prehaz $U\mapsto \calF(U)/\calF'(U)$. Se sigue que para todo punto $p$, la fibra $(\calF/\calF')_p$ es el cociente $\calF_p/\calF'_p$.
+
+Se define el haz $\coker\varphi$ como el haz asociado al prehaz conúcleo de $\varphi$. 
+\end{defi}
+
+\begin{nota}
+Hemos visto que un morfismo de haces es inyectivo si y solo si lo son las aplicaciones en las secciones para todo abierto. Esto no es válido para la sobrectividad, pero sí podemos afirmarlo para la aplicación en las fibras para todo punto. En general, una sucesión de haces y morfismos es exacta si y solo si lo es en las fibras. 
+\end{nota}
 
 \end{document}
 
