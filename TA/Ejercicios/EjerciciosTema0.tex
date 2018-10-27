@@ -8,6 +8,8 @@
 \author{Javier Aguilar Martín}
 \maketitle
 
+En estos ejercicios uso la terminología y notación de Hatcher por consistencia. Así, escribo las homotopías como $f_t:X\to X$ y hablo de retracto de deformación para referirme a lo que usualmente se denomina retracto de deformación fuerte. 
+
 \begin{lemma}[Ejercicio 0.4]
 Un \textbf{retracto de deformación en el sentido débil} de un espacio $X$ sobre un subespacio $A$ es una homotopía $f_t:X\to X$ tal que $f_0=Id$, $f_1(X)\subseteq A$ y $f_t(A)\subseteq A$. Si $X$ retrae con deformación sobre $A$ en el sentido débil, entonces la inclusión $A\hookrightarrow X$ es una equivalencia de homotopía. 
 
@@ -25,12 +27,63 @@ El hecho de que $x$ sea retracto de deformación de $X$ nos da una homotopía $f
 
 Consideremos el conjunto $f^{-1}(U)=\{(y,t)\in X\times I, f_s(y)\in U\}$, que es abierto de $X\times I$, que tiene la topología producto. Por tanto, para todo $t\in [0,1]$ existen abiertos $U_t\subseteq X$ conteniendo a $x$ y $G_t\subseteq I$ conteniendo a $t$ tales que $U_t\times G_t\subseteq f^{-1}(U)$. Es claro que $\{x\}\times I\subseteq f^{-1}(U)$ y que variando $t$ podemos recubrir todo $\{x\}\times I$ por conjuntos de la forma $U_t\times G_t$. Al ser $\{x_0\}\times I$, podemos conseguir un recubrimiento finito $\bigcup_k U_{t_k}\times G_{t_k}$ de $\{x_0\}\times I$. Definimos entonces $V=\bigcap_k U_{t_k}$ , que por definición es abierto y verifica $f_t(V)\subseteq U$ para todo $t\in [0,1]$. 
 
-HACER DIBUJO
+\definecolor{qqqqff}{rgb}{0.,0.,1.}
+\definecolor{ffqqqq}{rgb}{1.,0.,0.}
+\begin{figure}[h!]
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-3.8066666666666675,-0.1666666666666647) rectangle (11.526666666666669,4.1);
+\draw [line width=3.6pt] (0.,4.)-- (0.,0.);
+\draw [line width=3.6pt] (0.,0.)-- (6.,0.);
+\draw [line width=2.pt] (6.,4.)-- (6.,0.);
+\draw [line width=2.pt,dash pattern=on 3pt off 3pt] (0.,3.)-- (1.,3.);
+\draw [line width=2.pt,dash pattern=on 3pt off 3pt] (1.,3.)-- (1.98,2.7);
+\draw [line width=2.pt,dash pattern=on 3pt off 3pt] (1.98,2.7)-- (2.9666666666666672,2.82);
+\draw [line width=2.pt,dash pattern=on 3pt off 3pt] (6.,4.)-- (4.66,2.98);
+\draw [line width=2.pt,dash pattern=on 3pt off 3pt] (4.66,2.98)-- (2.9666666666666672,2.82);
+\draw [line width=2.pt,dash pattern=on 3pt off 3pt] (0.,1.)-- (1.0066666666666668,1.1533333333333347);
+\draw [line width=2.pt,dash pattern=on 3pt off 3pt] (1.0066666666666668,1.1533333333333347)-- (2.0066666666666673,1.2333333333333345);
+\draw [line width=2.pt,dash pattern=on 3pt off 3pt] (2.0066666666666673,1.2333333333333345)-- (2.9666666666666672,1.22);
+\draw [line width=2.pt,dash pattern=on 3pt off 3pt] (2.9666666666666672,1.22)-- (3.98,0.8733333333333346);
+\draw [line width=2.pt,dash pattern=on 3pt off 3pt] (3.98,0.8733333333333346)-- (6.,0.);
+\draw [line width=2.pt] (0.,2.)-- (6.,2.);
+\draw [line width=2.pt,color=qqqqff] (0.,2.5666666666666678)-- (0.78,2.58);
+\draw [line width=2.pt,color=qqqqff] (0.78,2.58)-- (0.78,1.58);
+\draw [line width=2.pt,color=qqqqff] (0.78,1.58)-- (0.,1.58);
+\draw [line width=2.pt,color=qqqqff] (0.78,1.58)-- (0.78,1.3533333333333346);
+\draw [line width=2.pt,color=qqqqff] (0.78,1.3533333333333346)-- (1.58,1.3666666666666678);
+\draw [line width=2.pt,color=qqqqff] (0.78,2.58)-- (1.606666666666667,2.593333333333334);
+\draw [line width=2.pt,color=qqqqff] (1.606666666666667,2.593333333333334)-- (1.58,1.3666666666666678);
+\draw [line width=2.pt,color=qqqqff] (1.606666666666667,2.593333333333334)-- (3.3,2.5666666666666678);
+\draw [line width=2.pt,color=qqqqff] (1.58,1.3666666666666678)-- (3.2866666666666675,1.38);
+\draw [line width=2.pt,color=qqqqff] (3.3,2.5666666666666678)-- (3.2866666666666675,1.38);
+\draw [line width=2.pt,color=qqqqff] (3.326666666666667,2.78)-- (3.3,2.5666666666666678);
+\draw [line width=2.pt,color=qqqqff] (3.326666666666667,2.78)-- (4.66,2.7666666666666675);
+\draw [line width=2.pt,color=qqqqff] (3.2866666666666675,1.38)-- (4.7,1.3533333333333346);
+\draw [line width=2.pt,color=qqqqff] (4.66,2.7666666666666675)-- (4.7,1.3533333333333346);
+\draw [line width=2.pt,color=qqqqff] (4.7,1.3533333333333346)-- (4.713333333333334,0.7133333333333347);
+\draw [line width=2.pt,color=qqqqff] (4.713333333333334,0.7133333333333347)-- (5.993333333333334,0.6733333333333347);
+\draw [line width=2.pt,color=qqqqff] (4.66,2.7666666666666675)-- (6.02,2.7533333333333343);
+\draw [line width=2.pt,,color=qqqqff] (5.993333333333334,0.6733333333333347)-- (6.02,2.7533333333333343);
+\draw [line width=2.pt,,color=ffqqqq] (0.,3.)-- (0.,1.);
+\draw (-0.7,4) node[anchor=north west] {\Large{$X$}};
+\draw (5.6,-0.18) node[anchor=north west] {\Large{$I$}};
+\draw [color=ffqqqq](-0.5,1.8) node[anchor=north west] {$U$};
+\draw [color=qqqqff](1.8,2.593333333333334) node[anchor=north west] {$U_t\times G_t$};
+\draw (-0.45,2.2) node[anchor=north west] {$x$};
+\draw (1.8,3.5) node[anchor=north west] {$f^{-1}(U)$};
+\begin{scriptsize}
+\draw [fill=ffqqqq] (0.,3.) circle (2.5pt);
+\draw [fill=ffqqqq] (0.,1.) circle (2.5pt);
+\draw [fill=black] (0.,2.) circle (2.5pt);
+\end{scriptsize}
+\end{tikzpicture}
+\caption{Explicación gráfica de la solución.}
+\end{figure}\
 %https://www3.nd.edu/~lnicolae/ProblemsHatcher.pdf
  
 \end{solucion}
 
-
+\newpage
 
 \begin{ejercicio}{0.6}\
 \begin{enumerate}
@@ -42,7 +95,7 @@ HACER DIBUJO
 \includegraphics[scale=0.7]{peine}
 \end{figure}
 
-\item[(b)] Sea $Y$ el subespacio de $\R^2$ que es la unión de una cantidad infinita de copias de $X$ tal como aparece enla figura más abajo. Probar que $Y$ es contráctil, pero que no retrae con deformación sobre ningún punto.
+\item[(b)] Sea $Y$ el subespacio de $\R^2$ que es la unión de una cantidad infinita de copias de $X$ tal como aparece en la figura más abajo. Probar que $Y$ es contráctil, pero que no retrae con deformación sobre ningún punto.
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.7]{peines}
@@ -64,7 +117,19 @@ f_t((x,y))=\begin{cases}
 
 Para ver que $X$ no se retrae con deformación a ningún otro punto usamos el ejercicio \ref{ejer:0.5}. Sea $x\in X\setminus([0,1)\times\{0\})$. Sea entonces un entorno $U$ de $x$ que no corte a $[0,1]\times\{0\}$. Cualquier entorno $V\subseteq U$ de $x$ tampoco corta a $[0,1]\times\{0\}$, y podemos garantizar que tanto $U$ como $V$ son disconexos por densidad de los racionales. Si $X$ retrae con deformación a $x$, entonces la inclusión $V\hookrightarrow U$ es nulhomotópica, es decir homotópicamente equivalente a una constante, lo cual implicaría que $V$ es contráctil en $U$, y esto no es posible porque $V$ es disconexo. 
 
-\item[(b)]
+\item[(b)] 
+
+\underline{$Y$ es contráctil}:
+
+Usamos la notación del apartado (c). Para mostrar que el espacio es contráctil nos inspiramos en la homotopía del apartado (a) para cada copia de $X$, pero tenemos que modificarla para que al aplicarla globalmente se mantenga la continuidad, y es que a la vez que los filamentos se aplastan sobre el segmento base, este segmento se tiene que ir encogiendo. Dado $x\in Z$, llamamos $Z_x$ al segmento en el que se encuentra. Podemos considerar el camino $p_x:[0,1]\to Z_x\cong[0,1]$ definido como $p_x(t)=(1-t)x+t$. Esto es, el camino que empieza en $x$ y termina en la esquina derecha de $Z_x$. La homotopía que buscamos realizará precisamente ese camino para cada $x\in Z$. Si $x=(r,y)\in Y\setminus Z$, entonces seguirá un movimiento que combine el movimiento de los puntos de su segmento base con el movimiento de acercarse a este. Esto es, por un lado tenemos el camino $p_x(t)=(1-t)(r,0)+t(1,0)$ (movimiento del punto base del filamento) y por otro $q_r(t)=(1-t)(r,y)+t(r,0)$ (movimiento del punto $x$). El primer segmento tiene como vector director $(1-r,0)$ y el segundo tiene a $(0,-y)$. Al sumarlos obtenemos el vector $(1-r,-y)$, así que para un punto de los filamentos elegimos el camino $\gamma_x(t)=(r,y)+t(1-r,-y)$. Para $y=0$ obtenemos precisamente el camino $p_x(t)$, de modo que está definido de forma continua en toda la copia de $X$. Definiendo la homotopía $f_t(x)=\gamma_x(t)$ obtenemos la equivalencia entre la identidad y una aplicación constante, pues este movimiento se sigue en todas las copias de $X$ hasta conseguir la contracción. 
+
+Obsérvese que esto no nos proporciona un retracto de deformación, ya que aunque al definirlo en cada copia de $X$ quede fijo el punto $(1,0)$, al realizarla en todo $Y$, la copia del $(1,0)$ no está fija, ya que coincide con la copia del punto $(0,0)$ del siguiente segmento. Así que en realidad la homotopía tiene una expresión más compleja, pero fijando un triángulo como referencia está descrita tal como lo hemos hecho. 
+
+\vspace{1cm}
+
+\underline{$Y$ no retrae con deformación sobre ningún punto}:
+
+Para ver que $Y$ no retrae con deformación sobre ningún punto que no esté en $Z$ sirve el mismo argumento del apartado (a). 
 
 \item[(c)]
 \end{enumerate}
