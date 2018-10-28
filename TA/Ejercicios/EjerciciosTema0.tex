@@ -10,7 +10,7 @@
 
 En estos ejercicios uso la terminología y notación de Hatcher por consistencia. Así, escribo las homotopías como $f_t:X\to X$ y hablo de retracto de deformación para referirme a lo que usualmente se denomina retracto de deformación fuerte. 
 
-\begin{lemma}[Ejercicio 0.4]
+\begin{lemma}[Ejercicio 0.4]\label{1}
 Un \textbf{retracto de deformación en el sentido débil} de un espacio $X$ sobre un subespacio $A$ es una homotopía $f_t:X\to X$ tal que $f_0=Id$, $f_1(X)\subseteq A$ y $f_t(A)\subseteq A$. Si $X$ retrae con deformación sobre $A$ en el sentido débil, entonces la inclusión $A\hookrightarrow X$ es una equivalencia de homotopía. 
 
 \end{lemma}
@@ -25,13 +25,13 @@ Probar que si un espacio $X$ retrae con deformación a un punto $x\in X$, entonc
 \begin{solucion}
 El hecho de que $x$ sea retracto de deformación de $X$ nos da una homotopía $f_t:X\to X$ tal que $f_0=Id_X$, $f_1=x$ y $f_t(x)=x$ para todo $t\in[0,1]$. Si dado un entorno $V\subseteq U$ de $x$, restringimos $f_t$ a $V$ esto nos da una homotopía $f_t|_V: V\to X$. Por tanto, si encontramos un $V$ los bastante pequeño como para que $f_t(V)\subseteq U$ para todo $t\in [0,1]$ tendremos la homotopía deseada entre $V\hookrightarrow U$ y la constante $x$. . 
 
-Consideremos el conjunto $f^{-1}(U)=\{(y,t)\in X\times I, f_s(y)\in U\}$, que es abierto de $X\times I$, que tiene la topología producto. Por tanto, para todo $t\in [0,1]$ existen abiertos $U_t\subseteq X$ conteniendo a $x$ y $G_t\subseteq I$ conteniendo a $t$ tales que $U_t\times G_t\subseteq f^{-1}(U)$. Es claro que $\{x\}\times I\subseteq f^{-1}(U)$ y que variando $t$ podemos recubrir todo $\{x\}\times I$ por conjuntos de la forma $U_t\times G_t$. Al ser $\{x_0\}\times I$, podemos conseguir un recubrimiento finito $\bigcup_k U_{t_k}\times G_{t_k}$ de $\{x_0\}\times I$. Definimos entonces $V=\bigcap_k U_{t_k}$ , que por definición es abierto y verifica $f_t(V)\subseteq U$ para todo $t\in [0,1]$. 
+Consideremos el conjunto $f^{-1}(U)=\{(y,t)\in X\times I, f_s(y)\in U\}$, que contiene un abierto abierto de $X\times I$ (el propio conjunto si $U$ es entorno abierto), que tiene la topología producto. Por tanto, para todo $t\in [0,1]$ existen abiertos $U_t\subseteq X$ conteniendo a $x$ y $G_t\subseteq I$ conteniendo a $t$ tales que $U_t\times G_t\subseteq f^{-1}(U)$. Es claro que $\{x\}\times I\subseteq f^{-1}(U)$ y que variando $t$ podemos recubrir todo $\{x\}\times I$ por conjuntos de la forma $U_t\times G_t$. Al ser $\{x_0\}\times I$, podemos conseguir un recubrimiento finito $\bigcup_k U_{t_k}\times G_{t_k}$ de $\{x_0\}\times I$. Definimos entonces $V=\bigcap_k U_{t_k}$, que por definición es abierto y verifica $f_t(V)\subseteq U$ para todo $t\in [0,1]$. 
 
 \definecolor{qqqqff}{rgb}{0.,0.,1.}
 \definecolor{ffqqqq}{rgb}{1.,0.,0.}
 \begin{figure}[h!]
 \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
-\clip(-3.8066666666666675,-0.1666666666666647) rectangle (11.526666666666669,4.1);
+\clip(-3.8066666666666675,-0.666666666666647) rectangle (11.526666666666669,4.1);
 \draw [line width=3.6pt] (0.,4.)-- (0.,0.);
 \draw [line width=3.6pt] (0.,0.)-- (6.,0.);
 \draw [line width=2.pt] (6.,4.)-- (6.,0.);
@@ -92,18 +92,20 @@ Consideremos el conjunto $f^{-1}(U)=\{(y,t)\in X\times I, f_s(y)\in U\}$, que es
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.7]{peine}
+\includegraphics[scale=0.9]{peine}
 \end{figure}
 
 \item[(b)] Sea $Y$ el subespacio de $\R^2$ que es la unión de una cantidad infinita de copias de $X$ tal como aparece en la figura más abajo. Probar que $Y$ es contráctil, pero que no retrae con deformación sobre ningún punto.
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.7]{peines}
+\includegraphics[scale=0.8]{peines}
 \end{figure}
 
 \item[(c)] Sea $Z$ el subespacio zigzag de $Y$ homeomorfo a $\R$ indicado por la línea más gruesa. Probar que hay un retracto con deformación en el sentido débil de $Y$ sobre $Z$, pero no un verdadero retracto con deformación. 
 \end{enumerate}
 \end{ejercicio}
+
+
 \begin{solucion}\
 \begin{enumerate}
 \item[(a)] Para probar que $X$ retrae sobre cualquier punto del segmento $[0,1]\times\{0\}$ basta tomar la siguiente homotopía $f_t:X\to X$, siendo $x_0\in [0,1]$ fijo:
@@ -115,23 +117,34 @@ f_t((x,y))=\begin{cases}
 \end{cases}
 \]
 
-Para ver que $X$ no se retrae con deformación a ningún otro punto usamos el ejercicio \ref{ejer:0.5}. Sea $x\in X\setminus([0,1)\times\{0\})$. Sea entonces un entorno $U$ de $x$ que no corte a $[0,1]\times\{0\}$. Cualquier entorno $V\subseteq U$ de $x$ tampoco corta a $[0,1]\times\{0\}$, y podemos garantizar que tanto $U$ como $V$ son disconexos por densidad de los racionales. Si $X$ retrae con deformación a $x$, entonces la inclusión $V\hookrightarrow U$ es nulhomotópica, es decir homotópicamente equivalente a una constante, lo cual implicaría que $V$ es contráctil en $U$, y esto no es posible porque $V$ es disconexo. 
+Para ver que $X$ no se retrae con deformación a ningún otro punto usamos el ejercicio \ref{ejer:0.5}, ya que un retracto con deformación lo es en particular en el sentido débil. Sea $x\in X\setminus([0,1]\times\{0\})$. Sea entonces un entorno $U$ de $x$ que no corte a $[0,1]\times\{0\}$. Cualquier entorno $V\subseteq U$ de $x$ tampoco corta a $[0,1]\times\{0\}$, y podemos garantizar que tanto $U$ como $V$ son disconexos por densidad de los racionales. Si $X$ retrae con deformación a $x$, entonces la inclusión $V\hookrightarrow U$ es nulhomotópica, es decir homotópicamente equivalente a una constante, lo cual implicaría que $V$ es contráctil en $U$, y esto no es posible porque $V$ es disconexo. 
 
 \item[(b)] 
 
 \underline{$Y$ es contráctil}:
 
-Usamos la notación del apartado (c). Para mostrar que el espacio es contráctil nos inspiramos en la homotopía del apartado (a) para cada copia de $X$, pero tenemos que modificarla para que al aplicarla globalmente se mantenga la continuidad, y es que a la vez que los filamentos se aplastan sobre el segmento base, este segmento se tiene que ir encogiendo. Dado $x\in Z$, llamamos $Z_x$ al segmento en el que se encuentra. Podemos considerar el camino $p_x:[0,1]\to Z_x\cong[0,1]$ definido como $p_x(t)=(1-t)x+t$. Esto es, el camino que empieza en $x$ y termina en la esquina derecha de $Z_x$. La homotopía que buscamos realizará precisamente ese camino para cada $x\in Z$. Si $x=(r,y)\in Y\setminus Z$, entonces seguirá un movimiento que combine el movimiento de los puntos de su segmento base con el movimiento de acercarse a este. Esto es, por un lado tenemos el camino $p_x(t)=(1-t)(r,0)+t(1,0)$ (movimiento del punto base del filamento) y por otro $q_r(t)=(1-t)(r,y)+t(r,0)$ (movimiento del punto $x$). El primer segmento tiene como vector director $(1-r,0)$ y el segundo tiene a $(0,-y)$. Al sumarlos obtenemos el vector $(1-r,-y)$, así que para un punto de los filamentos elegimos el camino $\gamma_x(t)=(r,y)+t(1-r,-y)$. Para $y=0$ obtenemos precisamente el camino $p_x(t)$, de modo que está definido de forma continua en toda la copia de $X$. Definiendo la homotopía $f_t(x)=\gamma_x(t)$ obtenemos la equivalencia entre la identidad y una aplicación constante, pues este movimiento se sigue en todas las copias de $X$ hasta conseguir la contracción. 
+%PREGUNTARLE POR ESTA SOLUCIÓN
 
-Obsérvese que esto no nos proporciona un retracto de deformación, ya que aunque al definirlo en cada copia de $X$ quede fijo el punto $(1,0)$, al realizarla en todo $Y$, la copia del $(1,0)$ no está fija, ya que coincide con la copia del punto $(0,0)$ del siguiente segmento. Así que en realidad la homotopía tiene una expresión más compleja, pero fijando un triángulo como referencia está descrita tal como lo hemos hecho. 
+%Usamos la notación del apartado (c). Para mostrar que el espacio es contráctil nos inspiramos en la homotopía del apartado (a) para cada copia de $X$, pero tenemos que modificarla para que al aplicarla globalmente se mantenga la continuidad, y es que a la vez que los filamentos se aplastan sobre el segmento base, este segmento se tiene que ir encogiendo. Dado $x\in Z$, llamamos $Z_x$ al segmento en el que se encuentra. Podemos considerar el camino $p_x:[0,1]\to Z_x\cong[0,1]$ definido como $p_x(t)=(1-t)x+t$. Esto es, el camino que empieza en $x$ y termina en la esquina derecha de $Z_x$. La homotopía que buscamos realizará precisamente ese camino para cada $x\in Z$. Si $x=(r,y)\in Y\setminus Z$, entonces seguirá un movimiento que combine el movimiento de los puntos de su segmento base con el movimiento de acercarse a este. Esto es, por un lado tenemos el camino $p_x(t)=(1-t)(r,0)+t(1,0)$ (movimiento del punto base del filamento) y por otro $q_r(t)=(1-t)(r,y)+t(r,0)$ (movimiento del punto $x$). El primer segmento tiene como vector director $(1-r,0)$ y el segundo tiene a $(0,-y)$. Al sumarlos obtenemos el vector $(1-r,-y)$, así que para un punto de los filamentos elegimos el camino $\gamma_x(t)=(r,y)+t(1-r,-y)$. Para $y=0$ obtenemos precisamente el camino $p_x(t)$, de modo que está definido de forma continua en toda la copia de $X$. Definiendo la homotopía $f_t(x)=\gamma_x(t)$ obtenemos la equivalencia entre la identidad y una aplicación constante, pues este movimiento se sigue en todas las copias de $X$ hasta conseguir la contracción. 
+%
+%Obsérvese que esto no nos proporciona un retracto de deformación, ya que aunque al definirlo en cada copia de $X$ quede fijo el punto $(1,0)$, al realizarla en todo $Y$, la copia del $(1,0)$ no está fija, ya que coincide con la copia del punto $(0,0)$ del siguiente segmento. Así que en realidad la homotopía tiene una expresión más compleja, pero fijando un triángulo como referencia está descrita tal como lo hemos hecho. 
 
-\vspace{1cm}
+Podemos probar este resultado como corolario del apartado (c), pues como $Z$ es retracto con deformación en sentido débil de $Y$, en virtud del lema \ref{1}, concluimos que $Y$ tiene el mismo tipo de homotopía que $Z$, que es contráctil. 
+
 
 \underline{$Y$ no retrae con deformación sobre ningún punto}:
 
-Para ver que $Y$ no retrae con deformación sobre ningún punto que no esté en $Z$ sirve el mismo argumento del apartado (a). 
+Para ver que $Y$ no retrae con deformación sobre ningún punto sirve el mismo argumento del apartado (a), aunque podemos distinguir varios casos. Si consideramos un punto $x\in Y\setminus Z$, entonces podemos tomar entornos exactamente iguales a los del apartado (a). Si $x\in Z$ entonces cualquier entorno lo bastante pequeño contiene siempre una parte disconexa en su lado derecho, por lo que el mismo razonamiento que en (a) vuelve a ser válido. En la siguiente figura se observan las dos posibilidades de este último caso
 
-\item[(c)]
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=1.2]{peinesentornos}
+\end{figure}
+
+
+\item[(c)] Si existiera tal retracción con deformación, como $Z$ retrae con deformación sobre un punto, concatenando ambas retracciones conseguiríamos que $Y$ tuviera un punto como retracto con deformación, lo cual hemos probado en el apartado anterior que no es posible. 
+
+Probamos ahora que sí existe un retracto con deformación en el sentido débil. Para los puntos de $Z$ consideramos un camino $p_x:[0,1]\to Y$ consistente en recorrer $Z$ con velocidad constante mayor o igual que 1 hacia la derecha. Si $x\in Y\setminus Z$, entonces $p_x$ consiste primero recorrer el filamento hasta $Z$ y después realizar el mismo camino que su proyección, ambos recorridos a velocidad constante igual a la del caso $x\in Z$. Basta definir entonces $f_t(x)=p_x(t)$. La continuidad es clara y se verifican las propiedades de retracto con deformación débil de $Y$ sobre $Z$. 
 \end{enumerate}
 
 \end{solucion}
