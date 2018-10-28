@@ -1,17 +1,17 @@
-\documentclass[twoside]{article}
+\documentclass[twoside, 11pt]{article}
 \usepackage{titlesec}
 
-\setcounter{secnumdepth}{0}
-\titleformat{\section}[block]{\Large\bfseries\filcenter}{}{1em}{}
-\titleformat{\subsection}[hang]{\large\bfseries}{}{1em}{}
-%\usepackage{../estilo-apuntes}
-\AtBeginDocument{%
-  \renewcommand\tablename{Tabla}
-}
-\newcommand{\yields}{\overset{\Pi,I^*}{\rightarrow}}
-\newcommand{\yieldsone}{\overset{\Pi,I}{\rightarrow}}
-\newcommand{\yieldsn}{\overset{\Pi,I^n}{\rightarrow}}
-
+%\setcounter{secnumdepth}{0}
+%\titleformat{\section}[block]{\Large\bfseries\filcenter}{}{1em}{}
+%\titleformat{\subsection}[hang]{\large\bfseries}{}{1em}{}
+%%\usepackage{../estilo-apuntes}
+%\AtBeginDocument{%
+%  \renewcommand\tablename{Tabla}
+%}
+%\newcommand{\yields}{\overset{\Pi,I^*}{\rightarrow}}
+%\newcommand{\yieldsone}{\overset{\Pi,I}{\rightarrow}}
+%\newcommand{\yieldsn}{\overset{\Pi,I^n}{\rightarrow}}
+%
 
 
 %------------------------------------------------------------------------
@@ -39,7 +39,7 @@
 \usetikzlibrary{arrows}
 \usetikzlibrary{cd}
 
-\renewcommand{\baselinestretch}{1,4}
+\renewcommand{\baselinestretch}{1,1}
 \setlength{\oddsidemargin}{0.25in}
 \setlength{\evensidemargin}{0.25in}
 \setlength{\textwidth}{6in}
@@ -142,7 +142,7 @@
 
 \begin{abstract}
 \normalsize
-Este trabajo consiste en desarrollar un ejemplo en el que se repasan los principales conceptos sobre Variedades Diferenciables y Geometría Giemanniana, concretamente el cilindro. 
+Este trabajo consiste en desarrollar un ejemplo en el que se repasan los principales conceptos sobre Variedades Diferenciables y Geometría Riemanniana, concretamente el cilindro. 
 \end{abstract}
 
 	\vfill
@@ -175,7 +175,7 @@ Bajo las condiciones siguientes:
 Definimos el cilindro de radio $r$ como el subespacio euclídeo $C=\{(x,y,z)\in\R^3\mid x^2+y^2=r^2\}$. En este trabajo nos vamos a quedar en el caso $r=1$ por sencillez, pero todos los resultados son análogos para cualquier $r>0$. Vamos a ver que podemos dotar al cilindro de al menos dos estructuras diferenciables compatibles. 
 
 \subsection{Primera estructura}
-Como sabemos por los cursos del Grado y además es fácil comprobar, el cilindro $C$ está parametrizado por $\varphi:(-\pi,\pi)\times\R\to \R^3$, donde $\varphi(\theta,t)=(\cos\theta,\sin\theta, t)$. Para cubrir todo el cilindro necesitamos otra carta más, $\psi:(0,2\pi)\times\R\to\R^3$ definida de la misma forma que $\varphi$. TENGO QUE COGER AHORA LAS INVERSAS, FIJANDO EL ARCOSENO Y ARCOCOSENO EN UNO DE LOS DOS INTERVALOS, COMPROBAR QUE ESTÁN RELACIONADAS, DECIR QUE ESTA ES JUSTAMENTE LA ESTRUCTURA DE VARIEDAD PRODUCTO
+Como sabemos por los cursos del Grado y además es fácil comprobar, el cilindro $C$ está parametrizado por $\varphi:(-\pi,\pi)\times\R\to \R^3$, donde $\varphi(\theta,t)=(\cos\theta,\sin\theta, t)$. Para cubrir todo el cilindro necesitamos otra parametrización más, $\psi:(0,2\pi)\times\R\to\R^3$ definida de la misma forma que $\varphi$. Por tanto, para dotar al cilindro de estructura de variedad diferenciable basta tomar las inversas de estas parametrizaciones, $\varphi^{-1}:C\to(-\pi,\pi)\times\R$ dada por $\varphi^{-1}(x,y,z)=(\arccos x-\pi, z)$ y $\psi^{-1}:C\to(0,2\pi)\times\R$ dada por $\psi^{-1}(x,y,z)=(\arccos x, z)$. Las cartas están claramente relacionadas, ya que el cambio de cartas es simplemente el desfase de ángulo entre una y otra. Obsérvese que esta es la estructura de variedad diferenciable que tiene el cilindro como variedad producto $S^1\times \R$. 
 
 \subsection{Segunda estructura}
 PROBAR CON MERCATOR, SI NO COMPONER CON OTRA ESTRUCTURA DE R Y YA ESTÁ
@@ -185,9 +185,31 @@ PROBAR CON MERCATOR, SI NO COMPONER CON OTRA ESTRUCTURA DE R Y YA ESTÁ
 
 \section{Ejemplos de aplicaciones y funciones diferenciables}
 
+\subsection{Aplicaciones diferenciables}
+Damos dos ejemplos de aplicaciones diferenciables del cilindro en sí mismo. Para una vamos a utilizar las coordenadas implícitas del cilindro y para otra la parametrización vista en la primera sección. 
+
+La primera es la que ``le da la vuelta'' al cilindro, es decir, $f:C\to C$ descrita como $f(x,y,z)=(x,y,-z)$ PROBAR QUE ES DIFERENCIABLE, QUIZÁ BASTE DECIR QUE POR SER VARIEDAD PRODUCTO ES SUFICIENTE DECIR QUE LA IDENTIDAD ES SIEMPRE DIFERENCIABLE Y -Z ES DIFERENCIABLE EN R
+
+El segundo ejemplo será una rotación de ángulo $\alpha$, la cual viene dada por la aplicación $g:C\to C$, $g(\cos\theta,\sin\theta, t)=(\cos(\theta+\alpha), \sin(\theta+\alpha), t)$. PROBAR QUE ES DIFERENCIABLE 
+
+\subsection{Funciones diferenciables}
+
+Damos ahora también dos ejemplos de funciones diferenciables. La primera será la proyección sobre la tercera coordenada, es decir, $f:C\to\R$ definida como $f(x,y,z)=z$. PROBAR QUE ES DIFERENCIABLE
+
+El siguiente ejemplo será $g:C\to\R$ dada por $g(x,y,z)=x+y+z$ PROBAR QUE ES DIFERENCIABLE
+
+
 
 
 \section{Ejemplos de curvas diferenciables y vectores tangentes}
+
+Vamos a dar dos ejemplos de curvas que luego veremos que son geodésicas y uno que se verá que no es geodésica, y calcularemos vectores tangentes a estas curvas. 
+
+La curva $\gamma(t)=(\cos t, \sin t, t)$ es una curva diferenciable sobre el cilindro NO SÉ SI TENGO QUE PROBARLO O POR ESTAR COGIDA DE LA PARAMETRIZACIÓN YA VALE, BUSCAR DEFINICIÓN EN LOS APUNTES 
+
+La curva $\beta(t)=(1, 0, t)$ es una curva diferenciable sobre el cilindro.
+
+La curva $\sigma(t)=(\cos t, \sin t, t^2)$ es una curva diferenciable sobre el cilindro. 
 
 
 
