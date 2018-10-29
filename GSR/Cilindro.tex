@@ -175,10 +175,12 @@ Bajo las condiciones siguientes:
 Definimos el cilindro de radio $r$ como el subespacio euclídeo $C=\{(x,y,z)\in\R^3\mid x^2+y^2=r^2\}$. En este trabajo nos vamos a quedar en el caso $r=1$ por sencillez, pero todos los resultados son análogos para cualquier $r>0$. Vamos a ver que podemos dotar al cilindro de al menos dos estructuras diferenciables compatibles. 
 
 \subsection{Primera estructura}
-Como sabemos por los cursos del Grado y además es fácil comprobar, el cilindro $C$ está parametrizado por $\varphi:(-\pi,\pi)\times\R\to \R^3$, donde $\varphi(\theta,t)=(\cos\theta,\sin\theta, t)$. Para cubrir todo el cilindro necesitamos otra parametrización más, $\psi:(0,2\pi)\times\R\to\R^3$ definida de la misma forma que $\varphi$. Por tanto, para dotar al cilindro de estructura de variedad diferenciable basta tomar las inversas de estas parametrizaciones, $\varphi^{-1}:C\to(-\pi,\pi)\times\R$ dada por $\varphi^{-1}(x,y,z)=(\arccos x-\pi, z)$ y $\psi^{-1}:C\to(0,2\pi)\times\R$ dada por $\psi^{-1}(x,y,z)=(\arccos x, z)$. Las cartas están claramente relacionadas, ya que el cambio de cartas es simplemente el desfase de ángulo entre una y otra. Obsérvese que esta es la estructura de variedad diferenciable que tiene el cilindro como variedad producto $S^1\times \R$. 
+Como sabemos por los cursos del Grado y además es fácil comprobar, el cilindro $C$ está parametrizado por $\varphi:(-\pi,\pi)\times\R\to \R^3$, donde $\varphi(\theta,t)=(\cos\theta,\sin\theta, t)$. Para cubrir todo el cilindro necesitamos otra parametrización más, $\psi:(0,2\pi)\times\R\to\R^3$ definida de la misma forma que $\varphi$. Por tanto, para dotar al cilindro de estructura de variedad diferenciable basta tomar las inversas de estas parametrizaciones, $\varphi^{-1}:C\to(-\pi,\pi)\times\R$ dada por $\varphi^{-1}(x,y,z)=(\arccos x-\pi, z)$ y $\psi^{-1}:C\to(0,2\pi)\times\R$ dada por $\psi^{-1}(x,y,z)=(\arccos x, z)$. Las cartas están claramente relacionadas, ya que el cambio de cartas es simplemente el desfase de ángulo entre una y otra. 
 
 \subsection{Segunda estructura}
-PROBAR CON MERCATOR, SI NO COMPONER CON OTRA ESTRUCTURA DE R Y YA ESTÁ
+PROBAR COMO SUPERFICIE REGLADA, O CON MERCATOR, SI NO COMPONER CON OTRA ESTRUCTURA DE R Y YA ESTÁ
+
+Obsérvese que la estructura de variedad diferenciable anterior que le hemos dado al cilindro coincide salvo elección de dominio con las estructuras que tiene como variedad producto $S^1\times \R$, como superficie de revolución generada por la recta $\alpha(t)=(1,0,t)$ y como superficie reglada generada por la curva $\alpha(\theta)=(\cos\theta,\sin\theta, 0)$ y el vector $(0,0,1)$. Así que podríamos dar cualquiera de estas estructuras y sería trivialmente compatible con la anterior. 
 
 \subsection{Compatibilidad}
 %quizá como subsecciones 1º estructura 2º estructura compatibilidad
@@ -186,30 +188,52 @@ PROBAR CON MERCATOR, SI NO COMPONER CON OTRA ESTRUCTURA DE R Y YA ESTÁ
 \section{Ejemplos de aplicaciones y funciones diferenciables}
 
 \subsection{Aplicaciones diferenciables}
-Damos dos ejemplos de aplicaciones diferenciables del cilindro en sí mismo. Para una vamos a utilizar las coordenadas implícitas del cilindro y para otra la parametrización vista en la primera sección. 
+Damos dos ejemplos de aplicaciones diferenciables del cilindro en sí mismo y otra que vaya de otra variedad en el cilindro. Para una vamos a utilizar las coordenadas implícitas del cilindro y para otra la parametrización vista en la primera sección. 
 
-La primera es la que ``le da la vuelta'' al cilindro, es decir, $f:C\to C$ descrita como $f(x,y,z)=(x,y,-z)$ PROBAR QUE ES DIFERENCIABLE, QUIZÁ BASTE DECIR QUE POR SER VARIEDAD PRODUCTO ES SUFICIENTE DECIR QUE LA IDENTIDAD ES SIEMPRE DIFERENCIABLE Y -Z ES DIFERENCIABLE EN R
 
-El segundo ejemplo será una rotación de ángulo $\alpha$, la cual viene dada por la aplicación $g:C\to C$, $g(\cos\theta,\sin\theta, t)=(\cos(\theta+\alpha), \sin(\theta+\alpha), t)$. PROBAR QUE ES DIFERENCIABLE 
+\begin{enumerate}
+
+
+\item La primera es la que ``le da la vuelta'' al cilindro, es decir, $f:C\to C$ descrita como $f(x,y,z)=(x,y,-z)$ PROBAR QUE ES DIFERENCIABLE, QUIZÁ BASTE DECIR QUE POR SER VARIEDAD PRODUCTO ES SUFICIENTE DECIR QUE LA IDENTIDAD ES SIEMPRE DIFERENCIABLE Y -Z ES DIFERENCIABLE EN R
+
+\item El segundo ejemplo será una rotación de ángulo $\alpha$, la cual viene dada por la aplicación $g:C\to C$, $g(\cos\theta,\sin\theta, t)=(\cos(\theta+\alpha), \sin(\theta+\alpha), t)$. PROBAR QUE ES DIFERENCIABLE 
+
+\item Para esta última aplicación sea $K$ el cono (sin vértice) cuya ecuación implícita es $x^2+y^2=z^2$ para $z\neq 0$. Damos la aplicación $f:K\to C$ definida por $x\mapsto \frac{x}{z}, y\mapsto \frac{y}{z}, z\mapsto z$. Es claro que la aplicación está bien dedinida y la imagen está contenida en el cilindro.
+PROBAR DIFERENCIABILIDAD 
+Esta aplicación es la proyección del cono sobre el cilindro. 
+
+\end{enumerate}
 
 \subsection{Funciones diferenciables}
 
-Damos ahora también dos ejemplos de funciones diferenciables. La primera será la proyección sobre la tercera coordenada, es decir, $f:C\to\R$ definida como $f(x,y,z)=z$. PROBAR QUE ES DIFERENCIABLE
+Damos ahora también dos ejemplos de funciones diferenciables. 
 
-El siguiente ejemplo será $g:C\to\R$ dada por $g(x,y,z)=x+y+z$ PROBAR QUE ES DIFERENCIABLE
+\begin{enumerate}
 
 
+\item
+ La primera será la proyección sobre la tercera coordenada, es decir, $f:C\to\R$ definida como $f(x,y,z)=z$. PROBAR QUE ES DIFERENCIABLE
+
+\item
+ El siguiente ejemplo será $g:C\to\R$ dada por $g(x,y,z)=x+y+z$ PROBAR QUE ES DIFERENCIABLE
+
+\end{enumerate}
 
 
 \section{Ejemplos de curvas diferenciables y vectores tangentes}
 
-Vamos a dar dos ejemplos de curvas que luego veremos que son geodésicas y uno que se verá que no es geodésica, y calcularemos vectores tangentes a estas curvas. 
+Vamos a dar dos ejemplos de curvas que luego veremos que son geodésicas y uno que se verá que no es geodésica, y calcularemos vectores tangentes a estas curvas.  QUIZÁ DIBUJARLOS
 
-La curva $\gamma(t)=(\cos t, \sin t, t)$ es una curva diferenciable sobre el cilindro NO SÉ SI TENGO QUE PROBARLO O POR ESTAR COGIDA DE LA PARAMETRIZACIÓN YA VALE, BUSCAR DEFINICIÓN EN LOS APUNTES 
+\begin{enumerate}
 
-La curva $\beta(t)=(1, 0, t)$ es una curva diferenciable sobre el cilindro.
+\item
+ La curva $\gamma(t)=(\cos t, \sin t, t)$ es una curva diferenciable sobre el cilindro  NO SÉ SI TENGO QUE PROBARLO O POR ESTAR COGIDA DE LA PARAMETRIZACIÓN YA VALE, BUSCAR DEFINICIÓN EN LOS APUNTES Esta curva tiene el vector tangente en cada punto $(-\sin t,\cos t, 1)$. Por ejemplo, para $t=0$, es decir, en el punto $(1,0,0)$, obtenemos el vector $(0,1,1)$. 
 
-La curva $\sigma(t)=(\cos t, \sin t, t^2)$ es una curva diferenciable sobre el cilindro. 
+\item
+ La curva $\beta(t)=(1, 0, t)$ es una curva diferenciable sobre el cilindro. Esta curva tiene como vector tangente el vector $(1,0,1)$ en todo punto.
+
+\item La curva $\sigma(t)=(\cos t, \sin t, t^2)$ es una curva diferenciable sobre el cilindro. En este caso la curva tiene el vector tangente asociado $(-\sin t, \cos t, 2t)$, que para $t=\pi$, esto es, en el punto $(1,0,\pi^2)$, nos da el vector $(0, 1, 2\pi)$. 
+\end{enumerate}
 
 
 
