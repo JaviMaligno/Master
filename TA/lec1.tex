@@ -8,9 +8,77 @@
 \chapter{Homología}
 
 Para nociones de homología simplicial, consultar los apuntes de Homología Simplicial. Atención: en homología ordenada no existen los símplices en orden distinto al prefijado, no se toma cociente. 
-\section{}
+\section{Homología singular}
+
+Dado un espacio topológico $X$, definimos un $n$-\emph{símplice singular} como una aplicación continua $\sigma_n:\Delta^n\to X$, donde $\Delta^n$ es el $n$-símplice estándar. Denotamos $C_n(X)$ al grupo abeliano libre de todos los $n$-símplices singulares. A las combinaciones de la forma $\sum_{i=1}^n\lambda_i\sigma_n^i$ con $\lambda_i\in\Z$ se las llama $n$-\emph{cadenas} (estos son de hecho todos los elementos de $C_n(X)$. Tenemos definido también el operador borde $d_n:C_n(X)\to C_{n-1}(X)$, que es un homomorfismo de grupos abelianos definido como $d_n(\sigma_n)=\sum_{i=0}^n \sigma_n|_{[v_0,\dots, \hat{v_i},\dots, v_n]}$. Este operador verifica las mismas propiedades que el operador borde entre complejos simpliciales, con idéntica demostración. Así que hemos construido un complejo de cadenas singulares $\{C_n(X), d_n\}_{n\geq 1}=C_*(X)$. En caso de usar coeficientes en un grupo $G$ se indicará como $C_*(X,G)$. Análogamente a la homología simplicial, si $z\in C_n(X)$ y $d(z)=0$, decimos que $z$ es un $n$-ciclo. Si $z=d_{n+1}(z')$ para algún $z'\in C_{n+1}(X)$, decimos que $z$ es un $n$-borde. Como tenemos $B_n(X)=\Ima d_{n+1}\subseteq \ker d_n=Z_n(X)$, definimos el $n$-ésimo grupo de homología singular $H_n(X)=Z_n(X)/B_n(X)$. 
 
 
+\begin{prop}
+Si $X=\sqcup X_i$ (cantidad finita) es una descomposición de $X$ en sus componentes conexas por caminos, entonces $H_n(X)\cong \oplus_i H_n(X_i)$. 
+\end{prop}
+\begin{dem}
+Como un símplice singular siempre tiene imagen conexa por caminos, $C_n(X)$ se escribe como suma directa de $C_n(X_i)$. Como $d_n$ respeta esta descomposición, $\ker d$ e $\Ima d$ se descomponen de la misma forma, por lo que $H_n(X)\cong \oplus_i H_n(X_i)$. \QED
+\end{dem}
 
+\begin{prop}\label{2.7}
+Si $X\neq\emptyset$ es arco-conexo, entonces $H_0(X)\cong\Z$. 
+\end{prop}
+\begin{dem}
+Por definición $H_0(X)=Z_0(X)/B_0(X)=C_0(X)/Ima d_1$. Definimos una aumentación $\varepsilon:C_0(X)\to\Z$ como $\varepsilon(\sigma_0)=1$ para todo 0-símplice singular. Como $X\neq\emptyset$, $\varepsilon$ es sobreyectivo, porque podemos un el 0-símplice. Vamos a probar que $\ker\varepsilon=\Ima d_1$, con lo que usando el primer teorema de isomorfía tendremos que $H_0(X)\cong \Ima\varepsilon=\Z$. 
+
+Veamos primero $\Ima d_1\subseteq\ker\varepsilon$. Sea $\sigma_1:\Delta^1\to X$, entonces $\varepsilon(d_1(\sigma_1))=\varepsilon(\sigma_1|_{v_1})-\varepsilon(\sigma_1|_{v_0})=0$.
+
+Ahora la inclusión contraria, $\ker\varepsilon\subseteq\Ima d_1$. Sea $z\in C_0(X)$ tl que $\varepsilon(z)=0$. Por definición $z=\sum_{i=1}^k \lambda_i\sigma^i$, donde $\sigma_i$ son aplicaciones constantes $x_i$. Entonces $\varepsilon(z)=\sum_{i=1}^k\lambda_i$. Consideramos los 1-símplices singulares $\tau_i$ que son un camino entre $x_0$ y $x_i$ y definimos $\tau=\sum_{i=1}^k\lambda_i\tau_i\in C_1(X)$. Entonces
+\[
+d_1(\tau)=\sum_{i=1}^k \lambda_id(\tau_i)=\sum_{i=1}^k \lambda_i(x_i-x_0)=\sum_{i=1}^k\lambda_i\sigma_i-(\sum_{i=1}^k\lambda_i)x_0
+\]
+Como $\sum_{i=1}^k\lambda_i=0$ por ser $\varepsilon(z)=0$,  $d_1(\tau)=z$. \QED
+\end{dem}
+
+\begin{prop}
+Si $X$ es un punto, entonces $H_n(X)=0$ para $n>0$ y $H_0(X)=\Z$.
+\end{prop}
+
+\begin{dem}[Prop 2.8] ESCRIBIR BIEN
+$H_0(X)=\Z$ se tiene por ser $X$ arco-conexo. En el resto de casos se deduce por inspección, ya que todos los $C_n(X)$ son $\Z$ generado por un $n$-símplice singular constante.  
+
+\QED
+\end{dem}
+
+Una variación del complejo de cadenas singulares es el complejo de cadenas singulares aumentado, definiendo $\varepsilon:C_0(X)\to \Z$ como $\varepsilon(\sigma_0)=1$ para todo 0-símplice singular. Denotamos como $\widetilde{C}_n$ a los grupos de este complejo, que en realidad coinciden en todos los niveles salvo en -1, que es $\Z$. Hemos visto en la demostración de la proposición \ref{2.7} que $\varepsilon d_1=0$, así que podemos definir la homología reducida con valor
+\[
+\widetilde{H}_n(X)=\begin{cases}
+H_n(X) & n>0\\
+H_0(X)/\Z & n=0
+\end{cases}
+\]
+El primer caso es trivial, vamos a probar el segundo.  Tenemos el diagrama LUEGO LO DIBUJO Y PASO LO DEMÁS QUE HE ESCRITO, MIRAR LO DE HATCHER POR SI ESTÁ MEJOR
+
+$\twoheadleftarrow \twoheadrightarrow \rightarrowtail \leftarrowtail$
+
+\subsection{Invariancia homotópica}
+
+%f_\sharp
+
+Si tenemos una aplicación continua $X\to Y$, se induce una aplicación $f_*: C_n(X)\to C_n(Y)$ definido como $\sigma\mapsto f\circ\sigma$, que conmuta con el operador borde (es un morfismo de complejos de cadenas), como vamos a comprobar.  Si $\sigma\in C_n(X)$, 
+\[
+f_*(d_n(\sigma))=\sum_{i=0}^n (-1)^i (f\circ\sigma)|_{[v_0,\dots, \hat{v_i}, \dots, v_n]}=d_n(f\circ\sigma)
+\]
+
+Esto implica que si $z\in C_n(X)$ con $d(z)=0$, entonces $d_n(f_*(z))=f_*(d_n(z))=0$, por lo que $f_*$ envía ciclos en ciclos. De igual manera, envía bordes en bordes. De este modo, se induce un homomorfismo dentado igual, $f_*:H_n(X)\to H_n(Y)$. 
+
+Además $(g\circ f)_*=g_*\circ f_*$ y $(Id_X)_*=Id_*$ tanto en complejos de cadenas como en homología.
+
+
+\begin{teorema}
+Si $f,g:X\to Y$ son continuas con $f\simeq g$, entonces $f_*=g_*:H_n(X)\to H_n(Y)$ para todo $n\geq 0$. 
+\end{teorema}
+\begin{dem}
+
+\end{dem}
+
+\begin{coro}
+Si $f:X\to Y$ es equivalencia homotópica, entonces $f_*$ es isomorfismo.
+\end{coro}
 
 \end{document}

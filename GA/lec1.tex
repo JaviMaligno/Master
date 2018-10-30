@@ -150,26 +150,26 @@ Para todo haz $\mathcal{G}$ y para todo homomorfismo de prehaces $\varphi:\calF\
 
 \end{defi}
 
-Si $\calF$ ya es un haz, entonces claramente $\calF^+=\calF$.
+Si $\calF$ ya es un haz, entonces claramente $\calF^+=\calF$. Se tiene además para todo $p\in X$, que $\theta_p:\calF_p\to\calF^+_p$ es un isomorfismo. 
 
 \begin{defi}
-\emph{Núcleo ($\ker$), conúcleo ($\coker$) e imagen}. Dado un morfismo de prehaces $\varphi:\calF\to \mathcal{G}$,  $(\ker\varphi)(U)=\ker\varphi(U)$. Se tiene que $\ker\varphi\subseteq \calF$. Además, si $\calF$ es un haz, su núcleo también lo es.  De la misma forma se definen el conúcleo y la imagen, pero estos no son en general haces. 
+\emph{Núcleo ($\ker$), conúcleo ($\coker$) e imagen}. Dado un morfismo de prehaces $\varphi:\calF\to \mathcal{G}$,  $(\ker\varphi)(U)=\ker\varphi(U)$. Se tiene que $\ker\varphi\subseteq \calF$. Además, si $\calF$ es un haz, su núcleo también lo es.  De la misma forma se definen el conúcleo y la imagen, pero estos no son en general haces. Por ello los denotamos $\Ima^0$ y $\coker^0$ hasta que podamos hacer una definición mejor.
 \end{defi}
 
-\begin{ej}
-$X=\C\setminus\{0\}$ y $\OO_X$ el haz de las funciones holomorfas en $X$. Consideramos el morfismo de haces $\frac{d}{dz}$. El $\ker$ es el haz constante, es decir, el haz de las funciones localmente constantes. 
+\begin{ej}\label{ej1}
+$X=\C\setminus\{0\}$ y $\OO_X$ el haz de las funciones holomorfas en $X$. Consideramos el morfismo de haces $\frac{d}{dz}:\OO_X\to\OO_X$. El $\ker$ es el haz constante, es decir, el haz de las funciones localmente constantes. 
 
-Consideremos ahora una bola abierta $U$ situada en el primer cuadrante y el haz anterior de $\OO_U$ en sí mismo. Para cualquier función holomorfa $f$ en $U$ podemos encontrar una preimagen fijando $p\in U$ y haciendo una integral definida $g(z)=\int_p^zf(\chi)d\chi$. 
+Consideremos ahora una bola abierta $U$ situada en el primer cuadrante y el haz anterior de $\OO_X(U)$ en sí mismo. Para cualquier función holomorfa $f$ en $U$ podemos encontrar una preimagen fijando $p\in U$ y haciendo una integral definida $g(z)=\int_p^zf(\chi)d\chi$. Esto implica que $\Ima^0\frac{d}{dz}(U)=\Ima(\frac{d}{dz}:\OO_X(U)\to\OO_X(U))=\OO_X(U)$. 
 
-Si ahora tomáramos un abierto que rodee al origen, por ejemplo $\OO_X$, entonces ya no podemos hacer esto, pues hay funciones como $\frac{1}{z}$ que no tienen primitiva (habría que eliminar una semirrecta para poder elegir una rama del logaritmo).  
+Si ahora tomáramos un abierto que rodee al origen (una corona circular), por ejemplo $\OO_X$, entonces ya no podemos hacer esto, pues hay funciones como $\frac{1}{z}$ que no tienen primitiva (habría que eliminar una semirrecta para poder elegir una rama del logaritmo). Sin embargo, podemos elegir subconjuntos contráctiles que cubran la corona, de modo que en todos ellos existiría primitiva, pero no se tiene en la unión. Este es un caso en el que la imagen no es un haz. 
 \end{ej}
 
 \begin{defi}
 Un \emph{subhaz} de un haz $\calF$ es un haz $\calF'$ tal que para todo abierto $U\subseteq X$, $\calF'(U)$ es un subgrupo de $\calF(U)$, y las restricciones de $\calF'$ son las inducidas por las de $\calF$. 
 
-Decimos que un morfismo de haces $\varphi:\calF\to\calG$ es inyectivo si $\ker\varphi=0$. Por tanto, $\varphi$ es inyectivo si y solo si la aplicación inducida $\varphi(U):\calF(U)\to\calG(U)$ es inyectiva para todo abierto de $X$.
+Decimos que un morfismo de haces $\varphi:\calF\to\calG$ es inyectivo si $\ker\varphi=0$. Por tanto, $\varphi$ es inyectivo si y solo si la aplicación inducida $\varphi(U):\calF(U)\to\calG(U)$ es inyectiva para todo abierto de $X$. Esto es equivalente a que $\varphi_p:\calF_p\to \calG_p$ es inyectiva (la implicación directa se cumple para prehaces, la inversa requiere que sean haces). 
 
-Definimos la imagen de un morfismo de haces $\Ima\varphi$ como el haz asociado al prehaz imagen. Por la propiedad universal del haz asociado, existe una aplicación natural $\Ima\varphi\to\calG$ que es de hecho inyectivo, y por tanto podemos identificar la imagen con un subhaz de $\calG$. 
+Definimos la imagen de un morfismo de haces $\Ima\varphi$ como el haz asociado al prehaz imagen, es decir, $(\Ima^0\varphi)^+$. Por la propiedad universal del haz asociado, existe una aplicación natural $\Ima\varphi\to\calG$ que es de hecho inyectivo, y por tanto podemos identificar la imagen con un subhaz de $\calG$. 
 
 Decimos que un morfismo de haces es sobreyectivo si $\Ima\varphi=\calG$.
 
@@ -177,12 +177,61 @@ Decimos que una sucesión $\cdots\to\calF^{i-1}\xrightarrow{\varphi^{i-1}}\calF^
 
 Sea ahora $\calF'$ un subhaz de $\calF$. Definimos el \emph{haz cociente} $\calF/\calF'$ como el haz asociado al prehaz $U\mapsto \calF(U)/\calF'(U)$. Se sigue que para todo punto $p$, la fibra $(\calF/\calF')_p$ es el cociente $\calF_p/\calF'_p$.
 
-Se define el haz $\coker\varphi$ como el haz asociado al prehaz conúcleo de $\varphi$. 
+Se define el haz $\coker\varphi$ como el haz asociado al prehaz conúcleo de $\varphi$, esto es $(\coker^0\varphi)^+$. 
 \end{defi}
 
 \begin{nota}
 Hemos visto que un morfismo de haces es inyectivo si y solo si lo son las aplicaciones en las secciones para todo abierto. Esto no es válido para la sobrectividad, pero sí podemos afirmarlo para la aplicación en las fibras para todo punto. En general, una sucesión de haces y morfismos es exacta si y solo si lo es en las fibras. 
 \end{nota}
+
+\begin{ej}
+Volviendo al ejemplo \ref{ej1}, la imagen es localmente el prehaz imagen, ya que las clases son gérmenes, así que tendríamos que $\Ima \frac{d}{dz}=\OO_X(U)$. 
+\end{ej}
+
+
+\subsection{Operaciones entre haces}
+Dados dos (pre)haces $\calF$ y $\calG$, consideramos el conjunto $\Hom(\calF,\calG)$, que es un grupo abeliano con la suma $(\varphi+\psi)(U)=\varphi(U)+\psi(U)$. 
+
+\begin{defi}
+Sea $f:X\to Y$ una aplicación continua. Si $\calF$ es un prehaz en $X$, definimos la \emph{imagen directa} de $f$, $f_*\calF$, como $(f_*\calF)(V)=\calF(f^{-1}(U))$ para todo abierto $V\subseteq Y$. Con las restricciones usuales la imagen directa es un prehaz. Si $\calF$ es un haz, entonces $f_*\calF$ es un haz. 
+
+Sea $\calG$ un prehaz en $Y$. Definimos el prehaz $f^{-1}_0(\calG)(U)$. Para ello tomamos todos los abiertos $V$ de $Y$ que contengan a $f(U)$ y consideramos el límite inductivo en estos abiertos $\underset{\rightarrow}{\lim}\calG(V)$ (si $f$ es abierta, sería simplemente $\calG(f(U))$). Las restricciones son las usuales. Definimos el haz \emph{imagen inversa} de $f$ como $f^{-1}\calG=(f^{-1}_0(\calG))^+$. 
+\end{defi}
+
+\begin{prop}
+Se verifica $(f^{-1}\calG)_p\cong \calG_p$ para todo $p\in X$. No así para la imagen directa.
+\end{prop}
+
+Tanto $f_*$ como $f^{-1}$ definen funtores, el primero entre la categoría $\mathfrak{Ab}(X)$ de haces sobre $X$ en $\mathfrak{Ab}(Y)$ y el segundo a la inversa. 
+
+
+\begin{ej}
+Tenemos una sucesión exacta de haces 
+\[
+0\to \C_X \hookrightarrow \OO_X\xrightarrow{\frac{d}{dz}}\OO_X\to 0
+\]
+donde $\C_X$ denota las funciones localmente constantes en $X$. Para $U=\C-\{0\}$ tenemos
+\[
+0\to \C \hookrightarrow \OO_X(\C-\{0\})\xrightarrow{\frac{d}{dz}}\OO_X(\C-\{0\})\to H^1(\C-\{0\})
+\]
+donde $H^1(\C-\{0\})$ es la cohomología que estudiaremos en el capítulo siguiente y coincide con la cohomología singular del espacio. En este caso es un espacio vectorial de dimensión 1 generado por $\frac{1}{z}$. 
+\end{ej}
+
+
+\subsection{Ejercicios}
+
+
+\begin{ejer}
+El prehaz núcleo de un morfismo haces es un haz.
+\end{ejer}
+
+\begin{ejer}
+$\Ima\varphi=\ker (\calG\to \coker\varphi)$. 
+\end{ejer}
+
+\begin{ejer}
+Si $\calF$ es un haz, entonces $f_*\calF$ es un haz. 
+\end{ejer}
 
 \end{document}
 
