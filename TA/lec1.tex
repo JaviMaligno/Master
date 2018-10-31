@@ -52,9 +52,25 @@ H_n(X) & n>0\\
 H_0(X)/\Z & n=0
 \end{cases}
 \]
-El primer caso es trivial, vamos a probar el segundo.  Tenemos el diagrama LUEGO LO DIBUJO Y PASO LO DEMÁS QUE HE ESCRITO, MIRAR LO DE HATCHER POR SI ESTÁ MEJOR
+El primer caso es trivial, vamos a probar el segundo, aunque usaremos algunas nociones de álgebra que veremos más adelante.  Tenemos el diagrama conmutativo
+\[
+\begin{tikzcd}
+\ker\varepsilon\arrow[rd,twoheadrightarrow]\arrow[r,twoheadrightarrow] & \ker\overline{\varepsilon}\arrow[r, rightarrowtail]& H_0(X)\arrow[d, twoheadrightarrow, "\overline{\varepsilon}"]\\
+C_1(X)\arrow[r, "d_1"]\arrow[d, twoheadrightarrow] & C_0(X)\arrow[r, twoheadrightarrow, "\varepsilon"]\arrow[ur,twoheadrightarrow]  & \Z\\
+\Ima{d_1}\arrow[ur, rightarrowtail]
+\end{tikzcd}
+\]
+donde $\overline{\varepsilon}$ es la aplicación inducida en $H_0(X)$ por $\varepsilon$ (es fácil comprobar que está bien definida). El hecho de que $\varepsilon\circ d_1=0$ nos proporciona además $\Ima d_1 \rightarrowtail\ker\varepsilon$. Esto nos da la sucesión exacta corta
+\[
+\Ima d_1 \rightarrowtail\ker\varepsilon\twoheadrightarrow\ker\overline{\varepsilon}
+\]
+El primer teorema de isomorfía nos da además $\ker\overline{\varepsilon}\cong \ker\varepsilon/\Ima d_1=\widetilde{H}_0(X)$. Así sustituyendo en el diagrama anterior obtenemos la sucesión exacta corta
+\[
+\widetilde{H}_0(X)\rightarrowtail H_0(X)\overset{\overline{\varepsilon}}{\twoheadrightarrow}\Z
+\]
+Como el grupo de la derecha es abeliano libre, la sucesión escinde, con lo que $H_0(X)=\Z\oplus \widetilde{H}_0(X)$.
 
-$\twoheadleftarrow \twoheadrightarrow \rightarrowtail \leftarrowtail$
+%$\twoheadleftarrow \twoheadrightarrow \rightarrowtail \leftarrowtail$
 
 \subsection{Invariancia homotópica}
 
