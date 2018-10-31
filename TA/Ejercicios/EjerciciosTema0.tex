@@ -4,43 +4,220 @@
 %--------------------------------------------------------
 \begin{document}
 
-\title{Ejercicios de Topología Algebraica}
+\title{Ejercicios de Algebraic Topology, Capítulo 0}
 \author{Javier Aguilar Martín}
 \maketitle
 
-\begin{ejercicio}{1}
-Probar que para todo $p\geq 0$ se tiene 
-\[
-C_p(K;\Z)\cong Z_p(K;\Z)\bigoplus B_{p-1}(K;\Z)
-\]
-y deducir 
-\[
-C_p(K;\Z)/B_p(K;\Z)\cong H_p(K;\Z)\bigoplus B_{p-1}(K;\Z)
-\]
-\end{ejercicio}
-\begin{solucion}
-Tenemos la sucesión exacta corta
-\[
-0\to Z_p(K;\Z)\hookrightarrow C_p(K;\Z)\xrightarrow{d_p} B_{p-1}(K;\Z)\to 0.
-\]
-Todos los grupos que aparecen son libres abelianos, bien por definición en el caso de $C_p(K;\Z)$, bien por ser subgrupos de un grupo libre abeliano en los otros dos casos. Por tanto, esta sucesión exacta corta escinde (para grupos libres abelianos se demuestra de forma idéntica al caso de espacios vectoriales). Así que concluimos que 
-\[
-C_p(K;\Z)\cong Z_p(K;\Z)\bigoplus B_{p-1}(K;\Z).
-\]
-PREGUNTAR SI TENGO QUE DEMOSTRAR LO DE QUE SUBGRUPO DE LIBRE ABELIANO ES LIBRE ABELIANO
+En estos ejercicios uso la terminología y notación de Hatcher por consistencia. Así, escribo las homotopías como $f_t:X\to X$ y hablo de retracto de deformación para referirme a lo que usualmente se denomina retracto de deformación fuerte. 
 
-Ahora, como $B_p(K;\Z)$ es un subgrupo de $Z_p(K;\Z)$, al hacer el cociente deducimos
-\[
-C_p(K;\Z)/B_p(K;\Z)\cong Z_p(K;\Z)/B_p(K;\Z)\bigoplus B_{p-1}(K;\Z)=H_p(K;\Z)\bigoplus B_{p-1}(K;\Z).
-\]
+\begin{lemma}[Ejercicio 0.4]\label{1}
+Un \textbf{retracto de deformación en el sentido débil} de un espacio $X$ sobre un subespacio $A$ es una homotopía $f_t:X\to X$ tal que $f_0=Id$, $f_1(X)\subseteq A$ y $f_t(A)\subseteq A$. Si $X$ retrae con deformación sobre $A$ en el sentido débil, entonces la inclusión $A\hookrightarrow X$ es una equivalencia de homotopía. 
+
+\end{lemma}
+
+
+%Pongo también el 4 porque hace falta para el 6
+
+\begin{ejercicio}{0.5}
+Probar que si un espacio $X$ retrae con deformación a un punto $x\in X$, entonces para cada entorno $U$ de $x$ existe un entorno $V\subseteq U$ tal que la inclusión $V\hookrightarrow U$ es nulhomotópica.
+\end{ejercicio}
+
+\begin{solucion}
+El hecho de que $x$ sea retracto de deformación de $X$ nos da una homotopía $f_t:X\to X$ tal que $f_0=Id_X$, $f_1=x$ y $f_t(x)=x$ para todo $t\in[0,1]$. Si dado un entorno $V\subseteq U$ de $x$, restringimos $f_t$ a $V$ esto nos da una homotopía $f_t|_V: V\to X$. Por tanto, si encontramos un $V$ los bastante pequeño como para que $f_t(V)\subseteq U$ para todo $t\in [0,1]$ tendremos la homotopía deseada entre $V\hookrightarrow U$ y la constante $x$. . 
+
+Consideremos el conjunto $f^{-1}(U)=\{(y,t)\in X\times I, f_t(y)\in U\}$, que contiene un abierto abierto de $X\times I$ (el propio conjunto si $U$ es entorno abierto), que tiene la topología producto. Por tanto, para todo $t\in [0,1]$ existen abiertos $U_t\subseteq X$ conteniendo a $x$ y $G_t\subseteq I$ conteniendo a $t$ tales que $U_t\times G_t\subseteq f^{-1}(U)$. Es claro que $\{x\}\times I\subseteq f^{-1}(U)$ y que variando $t$ podemos recubrir todo $\{x\}\times I$ por conjuntos de la forma $U_t\times G_t$. Al ser $\{x_0\}\times I$ compacto podemos conseguir un recubrimiento finito $\bigcup_k U_{t_k}\times G_{t_k}$ de $\{x_0\}\times I$. Definimos entonces $V=\bigcap_k U_{t_k}$, que por definición es abierto y verifica $f_t(V)\subseteq U$ para todo $t\in [0,1]$. 
+
+\definecolor{qqqqff}{rgb}{0.,0.,1.}
+\definecolor{ffqqqq}{rgb}{1.,0.,0.}
+\begin{figure}[h!]
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-3.8066666666666675,-0.666666666666647) rectangle (11.526666666666669,4.1);
+\draw [line width=3.6pt] (0.,4.)-- (0.,0.);
+\draw [line width=3.6pt] (0.,0.)-- (6.,0.);
+\draw [line width=2.pt] (6.,4.)-- (6.,0.);
+\draw [line width=2.pt,dash pattern=on 3pt off 3pt] (0.,3.)-- (1.,3.);
+\draw [line width=2.pt,dash pattern=on 3pt off 3pt] (1.,3.)-- (1.98,2.7);
+\draw [line width=2.pt,dash pattern=on 3pt off 3pt] (1.98,2.7)-- (2.9666666666666672,2.82);
+\draw [line width=2.pt,dash pattern=on 3pt off 3pt] (6.,4.)-- (4.66,2.98);
+\draw [line width=2.pt,dash pattern=on 3pt off 3pt] (4.66,2.98)-- (2.9666666666666672,2.82);
+\draw [line width=2.pt,dash pattern=on 3pt off 3pt] (0.,1.)-- (1.0066666666666668,1.1533333333333347);
+\draw [line width=2.pt,dash pattern=on 3pt off 3pt] (1.0066666666666668,1.1533333333333347)-- (2.0066666666666673,1.2333333333333345);
+\draw [line width=2.pt,dash pattern=on 3pt off 3pt] (2.0066666666666673,1.2333333333333345)-- (2.9666666666666672,1.22);
+\draw [line width=2.pt,dash pattern=on 3pt off 3pt] (2.9666666666666672,1.22)-- (3.98,0.8733333333333346);
+\draw [line width=2.pt,dash pattern=on 3pt off 3pt] (3.98,0.8733333333333346)-- (6.,0.);
+\draw [line width=2.pt] (0.,2.)-- (6.,2.);
+\draw [line width=2.pt,color=qqqqff] (0.,2.5666666666666678)-- (0.78,2.58);
+\draw [line width=2.pt,color=qqqqff] (0.78,2.58)-- (0.78,1.58);
+\draw [line width=2.pt,color=qqqqff] (0.78,1.58)-- (0.,1.58);
+\draw [line width=2.pt,color=qqqqff] (0.78,1.58)-- (0.78,1.3533333333333346);
+\draw [line width=2.pt,color=qqqqff] (0.78,1.3533333333333346)-- (1.58,1.3666666666666678);
+\draw [line width=2.pt,color=qqqqff] (0.78,2.58)-- (1.606666666666667,2.593333333333334);
+\draw [line width=2.pt,color=qqqqff] (1.606666666666667,2.593333333333334)-- (1.58,1.3666666666666678);
+\draw [line width=2.pt,color=qqqqff] (1.606666666666667,2.593333333333334)-- (3.3,2.5666666666666678);
+\draw [line width=2.pt,color=qqqqff] (1.58,1.3666666666666678)-- (3.2866666666666675,1.38);
+\draw [line width=2.pt,color=qqqqff] (3.3,2.5666666666666678)-- (3.2866666666666675,1.38);
+\draw [line width=2.pt,color=qqqqff] (3.326666666666667,2.78)-- (3.3,2.5666666666666678);
+\draw [line width=2.pt,color=qqqqff] (3.326666666666667,2.78)-- (4.66,2.7666666666666675);
+\draw [line width=2.pt,color=qqqqff] (3.2866666666666675,1.38)-- (4.7,1.3533333333333346);
+\draw [line width=2.pt,color=qqqqff] (4.66,2.7666666666666675)-- (4.7,1.3533333333333346);
+\draw [line width=2.pt,color=qqqqff] (4.7,1.3533333333333346)-- (4.713333333333334,0.7133333333333347);
+\draw [line width=2.pt,color=qqqqff] (4.713333333333334,0.7133333333333347)-- (5.993333333333334,0.6733333333333347);
+\draw [line width=2.pt,color=qqqqff] (4.66,2.7666666666666675)-- (6.02,2.7533333333333343);
+\draw [line width=2.pt,,color=qqqqff] (5.993333333333334,0.6733333333333347)-- (6.02,2.7533333333333343);
+\draw [line width=2.pt,,color=ffqqqq] (0.,3.)-- (0.,1.);
+\draw (-0.7,4) node[anchor=north west] {\Large{$X$}};
+\draw (5.6,-0.18) node[anchor=north west] {\Large{$I$}};
+\draw [color=ffqqqq](-0.5,1.8) node[anchor=north west] {$U$};
+\draw [color=qqqqff](1.8,2.593333333333334) node[anchor=north west] {$U_t\times G_t$};
+\draw (-0.45,2.2) node[anchor=north west] {$x$};
+\draw (1.8,3.5) node[anchor=north west] {$f^{-1}(U)$};
+\begin{scriptsize}
+\draw [fill=ffqqqq] (0.,3.) circle (2.5pt);
+\draw [fill=ffqqqq] (0.,1.) circle (2.5pt);
+\draw [fill=black] (0.,2.) circle (2.5pt);
+\end{scriptsize}
+\end{tikzpicture}
+\caption{Explicación gráfica de la solución.}
+\end{figure}\
+%https://www3.nd.edu/~lnicolae/ProblemsHatcher.pdf
+ 
 \end{solucion}
 
 \newpage
 
-\begin{ejercicio}{2}
-Calcula los grupos de homología simplicial del complejo siguiente
+\begin{ejercicio}{0.6}\
+\begin{enumerate}
+
+\item[(a)] Sea $X$ el subespacio de $\R^2$ consistente en el segmento horizontal $[0,1]\times\{0\}$ junto con todos los segmentos verticales $\{r\}\times[0,1-r]$ para $r$ racional en $[0,1]$. Probar que $X$ retrae con deformación a cualquier punto del segmento $[0,1]\times\{0\}$, pero no a ningún otro punto. [Ver el problema anterior.]
+
 \begin{figure}[h!]
-\includegraphics[scale=0.8]{K}
+\centering
+\includegraphics[scale=0.9]{peine}
 \end{figure}
+
+\item[(b)] Sea $Y$ el subespacio de $\R^2$ que es la unión de una cantidad infinita de copias de $X$ tal como aparece en la figura más abajo. Probar que $Y$ es contráctil, pero que no retrae con deformación sobre ningún punto.
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.8]{peines}
+\end{figure}
+
+\item[(c)] Sea $Z$ el subespacio zigzag de $Y$ homeomorfo a $\R$ indicado por la línea más gruesa. Probar que hay un retracto con deformación en el sentido débil de $Y$ sobre $Z$, pero no un verdadero retracto con deformación. 
+\end{enumerate}
 \end{ejercicio}
+
+
+\begin{solucion}\
+\begin{enumerate}
+\item[(a)] Para probar que $X$ retrae sobre cualquier punto del segmento $[0,1]\times\{0\}$ basta tomar la siguiente homotopía $f_t:X\to X$, siendo $x_0\in [0,1]$ fijo:
+
+\[
+f_t((x,y))=\begin{cases}
+(1-2t)(x,y)+2t(x,0) & 0\leq t\leq \frac{1}{2}\\
+(2-2t)(x,0)+(2t-1)(x_0,0) & \frac{1}{2}\leq t\leq 1
+\end{cases}
+\]
+
+Para ver que $X$ no se retrae con deformación a ningún otro punto usamos el ejercicio \ref{ejer:0.5}, ya que un retracto con deformación lo es en particular en el sentido débil. Sea $x\in X\setminus([0,1]\times\{0\})$. Sea entonces un entorno $U$ de $x$ que no corte a $[0,1]\times\{0\}$. Cualquier entorno $V\subseteq U$ de $x$ tampoco corta a $[0,1]\times\{0\}$, y podemos garantizar que tanto $U$ como $V$ son disconexos por densidad de los racionales. Si $X$ retrae con deformación a $x$, entonces la inclusión $V\hookrightarrow U$ es nulhomotópica, es decir homotópicamente equivalente a una constante, lo cual implicaría que $V$ es contráctil en $U$, y esto no es posible porque $V$ es disconexo. 
+
+\item[(b)] 
+
+\underline{$Y$ es contráctil}:
+
+%PREGUNTARLE POR ESTA SOLUCIÓN
+
+%Usamos la notación del apartado (c). Para mostrar que el espacio es contráctil nos inspiramos en la homotopía del apartado (a) para cada copia de $X$, pero tenemos que modificarla para que al aplicarla globalmente se mantenga la continuidad, y es que a la vez que los filamentos se aplastan sobre el segmento base, este segmento se tiene que ir encogiendo. Dado $x\in Z$, llamamos $Z_x$ al segmento en el que se encuentra. Podemos considerar el camino $p_x:[0,1]\to Z_x\cong[0,1]$ definido como $p_x(t)=(1-t)x+t$. Esto es, el camino que empieza en $x$ y termina en la esquina derecha de $Z_x$. La homotopía que buscamos realizará precisamente ese camino para cada $x\in Z$. Si $x=(r,y)\in Y\setminus Z$, entonces seguirá un movimiento que combine el movimiento de los puntos de su segmento base con el movimiento de acercarse a este. Esto es, por un lado tenemos el camino $p_x(t)=(1-t)(r,0)+t(1,0)$ (movimiento del punto base del filamento) y por otro $q_r(t)=(1-t)(r,y)+t(r,0)$ (movimiento del punto $x$). El primer segmento tiene como vector director $(1-r,0)$ y el segundo tiene a $(0,-y)$. Al sumarlos obtenemos el vector $(1-r,-y)$, así que para un punto de los filamentos elegimos el camino $\gamma_x(t)=(r,y)+t(1-r,-y)$. Para $y=0$ obtenemos precisamente el camino $p_x(t)$, de modo que está definido de forma continua en toda la copia de $X$. Definiendo la homotopía $f_t(x)=\gamma_x(t)$ obtenemos la equivalencia entre la identidad y una aplicación constante, pues este movimiento se sigue en todas las copias de $X$ hasta conseguir la contracción. 
+%
+%Obsérvese que esto no nos proporciona un retracto de deformación, ya que aunque al definirlo en cada copia de $X$ quede fijo el punto $(1,0)$, al realizarla en todo $Y$, la copia del $(1,0)$ no está fija, ya que coincide con la copia del punto $(0,0)$ del siguiente segmento. Así que en realidad la homotopía tiene una expresión más compleja, pero fijando un triángulo como referencia está descrita tal como lo hemos hecho. 
+
+Podemos probar este resultado como corolario del apartado (c), pues como $Z$ es retracto con deformación en sentido débil de $Y$, en virtud del lema \ref{1}, concluimos que $Y$ tiene el mismo tipo de homotopía que $Z$, que es contráctil. 
+
+
+\underline{$Y$ no retrae con deformación sobre ningún punto}:
+
+Para ver que $Y$ no retrae con deformación sobre ningún punto sirve el mismo argumento del apartado (a), aunque podemos distinguir varios casos. Si consideramos un punto $x\in Y\setminus Z$, entonces podemos tomar entornos exactamente iguales a los del apartado (a). Si $x\in Z$ entonces cualquier entorno lo bastante pequeño contiene siempre una parte disconexa en su lado derecho, por lo que el mismo razonamiento que en (a) vuelve a ser válido. En la siguiente figura se observan las dos posibilidades de este último caso
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=1.2]{peinesentornos}
+\end{figure}
+
+
+\item[(c)] Si existiera tal retracción con deformación, como $Z$ retrae con deformación sobre un punto, concatenando ambas retracciones conseguiríamos que $Y$ tuviera un punto como retracto con deformación, lo cual hemos probado en el apartado anterior que no es posible. 
+
+Probamos ahora que sí existe un retracto con deformación en el sentido débil. Para los puntos de $Z$ consideramos un camino $p_x:[0,1]\to Y$ consistente en recorrer $Z$ con velocidad constante mayor o igual que 1 hacia la derecha. Si $x\in Y\setminus Z$, entonces $p_x$ consiste primero recorrer el filamento hasta $Z$ y después realizar el mismo camino que su proyección, ambos recorridos a velocidad constante igual a la del caso $x\in Z$. Basta definir entonces $f_t(x)=p_x(t)$. La continuidad es clara al moverse todos los puntos a la misma velocidad y se verifican las propiedades de retracto con deformación débil de $Y$ sobre $Z$. 
+\end{enumerate}
+
+\end{solucion}
+
+\newpage
+
+\textbf{Alternativa 0.6(b) primera parte}
+Usamos la notación del apartado (c). Para mostrar que el espacio es contráctil nos inspiramos en la homotopía del apartado (a) para cada copia de $X$, pero tenemos que modificarla para que al aplicarla globalmente se mantenga la continuidad, y es que a la vez que los filamentos se aplastan sobre el segmento base, este segmento se tiene que ir encogiendo. Dado $x\in Z$, llamamos $Z_x$ al segmento en el que se encuentra. Podemos considerar el camino $p_x:[0,1]\to Z_x\cong[0,1]$ definido como $p_x(t)=(1-t)x+t$. Esto es, el camino que empieza en $x$ y termina en la esquina derecha de $Z_x$. La homotopía que buscamos realizará precisamente ese camino para cada $x\in Z$. Si $x=(r,y)\in Y\setminus Z$, entonces seguirá un movimiento que combine el movimiento de los puntos de su segmento base con el movimiento de acercarse a este. Esto es, por un lado tenemos el camino $p_x(t)=(1-t)(r,0)+t(1,0)$ (movimiento del punto base del filamento) y por otro $q_r(t)=(1-t)(r,y)+t(r,0)$ (movimiento del punto $x$). El primer segmento tiene como vector director $(1-r,0)$ y el segundo tiene a $(0,-y)$. Al sumarlos obtenemos el vector $(1-r,-y)$, así que para un punto de los filamentos elegimos el camino $\gamma_x(t)=(r,y)+t(1-r,-y)$. Para $y=0$ obtenemos precisamente el camino $p_x(t)$, de modo que está definido de forma continua en toda la copia de $X$. Definiendo la homotopía $f_t(x)=\gamma_x(t)$ obtenemos la equivalencia entre la identidad y una aplicación constante, pues este movimiento se sigue en todas las copias de $X$ hasta conseguir la contracción. 
+
+Obsérvese que esto no nos proporciona un retracto de deformación, ya que aunque al definirlo en cada copia de $X$ quede fijo el punto $(1,0)$, al realizarla en todo $Y$, la copia del $(1,0)$ no está fija, ya que coincide con la copia del punto $(0,0)$ del siguiente segmento. Así que en realidad la homotopía tiene una expresión más compleja, pero fijando un triángulo como referencia está descrita tal como lo hemos hecho. 
+
+
+
+%\end{solucion}
+%
+%\newpage
+%
+%\begin{ejercicio}{1.6}
+%
+%\end{ejercicio}
+%\begin{solucion}
+%
+%\end{solucion}
+%
+%\newpage
+%
+%\begin{ejercicio}{1.7}
+%
+%\end{ejercicio}
+%\begin{solucion}
+%
+%\end{solucion}
+%
+%\newpage
+%
+%\begin{ejercicio}{1.9}
+%
+%\end{ejercicio}
+%\begin{solucion}
+%
+%
+%
+%
+%
+%\end{solucion}
+%
+%\newpage
+%
+%\begin{ejercicio}{1.10}
+%
+%\end{ejercicio}
+%\begin{solucion}
+%
+%\end{solucion}
+%
+%\newpage
+%
+%\begin{ejercicio}{1.11}
+%
+%\end{ejercicio}
+%\begin{solucion}
+%
+%
+%
+%\end{solucion}
+%
+%\newpage
+%
+%\begin{ejercicio}{1.12}
+%
+%\end{ejercicio}
+%\begin{solucion}
+%
+%\end{solucion}
+
 \end{document}
