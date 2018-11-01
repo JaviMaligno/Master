@@ -175,15 +175,29 @@ Bajo las condiciones siguientes:
 Definimos el cilindro de radio $r$ como el subespacio euclídeo $C=\{(x,y,z)\in\R^3\mid x^2+y^2=r^2\}$. En este trabajo nos vamos a quedar en el caso $r=1$ por sencillez, pero todos los resultados son análogos para cualquier $r>0$. Vamos a ver que podemos dotar al cilindro de al menos dos estructuras diferenciables compatibles. 
 
 \subsection{Primera estructura}
-Como sabemos por los cursos del Grado y además es fácil comprobar, el cilindro $C$ está parametrizado por $\varphi:(-\pi,\pi)\times\R\to \R^3$, donde $\varphi(\theta,t)=(\cos\theta,\sin\theta, t)$. Para cubrir todo el cilindro necesitamos otra parametrización más, $\psi:(0,2\pi)\times\R\to\R^3$ definida de la misma forma que $\varphi$. Por tanto, para dotar al cilindro de estructura de variedad diferenciable basta tomar las inversas de estas parametrizaciones, $\varphi^{-1}:C\to(-\pi,\pi)\times\R$ dada por $\varphi^{-1}(x,y,z)=(\arccos x-\pi, z)$ y $\psi^{-1}:C\to(0,2\pi)\times\R$ dada por $\psi^{-1}(x,y,z)=(\arccos x, z)$. Las cartas están claramente relacionadas, ya que el cambio de cartas es simplemente el desfase de ángulo entre una y otra. 
+Como sabemos por los cursos del Grado y además es fácil comprobar, el cilindro $C$ está parametrizado por $\varphi:(-\pi,\pi)\times\R\to C$, donde $\varphi(\theta,t)=(\cos\theta,\sin\theta, t)$. Para cubrir todo el cilindro necesitamos otra parametrización más, $\psi:(0,2\pi)\times\R\to C$ definida de la misma forma que $\varphi$. Por tanto, para dotar al cilindro de estructura de variedad diferenciable basta tomar las inversas de estas parametrizaciones. Denotamos $r_\varphi$ y $r_\psi$ respectivamente a las rectas verticales que dejan sin cubrir las parametrizaciones $\varphi$ y $\psi$. Sea entonces $\varphi^{-1}:C\setminus r_\varphi\to(-\pi,\pi)\times\R$ dada por $\varphi^{-1}(x,y,z)=(\arccos x-\pi, z)$ y $\psi^{-1}:C\setminus r_\psi\to(0,2\pi)\times\R$ dada por $\psi^{-1}(x,y,z)=(\arccos x, z)$. Las cartas están claramente relacionadas, ya que el cambio de cartas es simplemente el desfase de ángulo entre una y otra. 
 
 \subsection{Segunda estructura}
-PROBAR COMO SUPERFICIE REGLADA, O CON MERCATOR, SI NO COMPONER CON OTRA ESTRUCTURA DE R Y YA ESTÁ
 
-Obsérvese que la estructura de variedad diferenciable anterior que le hemos dado al cilindro coincide salvo elección de dominio con las estructuras que tiene como variedad producto $S^1\times \R$, como superficie de revolución generada por la recta $\alpha(t)=(1,0,t)$ y como superficie reglada generada por la curva $\alpha(\theta)=(\cos\theta,\sin\theta, 0)$ y el vector $(0,0,1)$. Así que podríamos dar cualquiera de estas estructuras y sería trivialmente compatible con la anterior. 
+
+Obsérvese que la estructura de variedad diferenciable anterior que le hemos dado al cilindro coincide salvo elección de dominio con las estructuras que tiene como variedad producto $S^1\times \R$, como superficie de revolución generada por la recta $\alpha(t)=(1,0,t)$ y como superficie reglada generada por la curva $\alpha(\theta)=(\cos\theta,\sin\theta, 0)$ y el vector $(0,0,1)$. Así que podríamos dar cualquiera de estas estructuras y sería trivialmente compatible con la anterior. De modo que vamos a dar otra diferente que no sea tan trivial.
+
+Consideremos la aplicación $\overline{\varphi}:\R^2 \setminus\{0\}\to C$ dada por $\overline{\varphi}(x,y)=\left(\frac{x}{\sqrt{x^2+y^2}},\frac{y}{\sqrt{x^2+y^2}}, \log\sqrt{x^2+y^2} \right)$, consistente en transformar las semirrectas que parten del origen de $\R^2$ en las líneas verticales del cilindro. Esta aplicación es claramente diferenciable como aplicación $\R^2\to\R^3$, y vamos a ver que tiene una inversa diferenciable, que será la carta que formará el nuevo atlas diferenciable. Basta tomar $\overline{\varphi}^{-1}:C\to\R^2\setminus\{0\}$ definida como $\overline{\varphi}^{-1}(x,y,z)=(xe^z,ye^z,e^z)$. 
 
 \subsection{Compatibilidad}
-%quizá como subsecciones 1º estructura 2º estructura compatibilidad
+
+Comprobamos que las cartas $(C, \overline{\varphi}^{-1})$ y $(C\setminus r_\psi, \psi^{-1})$ están relacionadas. Con $(C\setminus r_\varphi, \varphi^{-1})$ será análogo y con eso tendremos la compatibilidad de los atlas. Los cambios de cartas
+
+\[
+\psi^{-1}\circ \overline{\varphi}: \overline{\varphi}^{-1}(C\setminus r_\varphi)\to \psi^{-1}(C\setminus r_\varphi)
+\]
+y 
+\[
+\overline{\varphi}^{-1}\circ\psi : \psi^{-1}(C\setminus r_\varphi)\to \overline{\varphi}^{-1}(C\setminus r_\varphi)
+\]
+tienen coordenadas definidas como composicion de funciones diferenciables en los dominiso correspondientes, por lo que son diferenciables. 
+está definida como 
+
 
 \section{Ejemplos de aplicaciones y funciones diferenciables}
 
@@ -194,7 +208,7 @@ Damos dos ejemplos de aplicaciones diferenciables del cilindro en sí mismo y ot
 \begin{enumerate}
 
 
-\item La primera es la que ``le da la vuelta'' al cilindro, es decir, $f:C\to C$ descrita como $f(x,y,z)=(x,y,-z)$ PROBAR QUE ES DIFERENCIABLE, QUIZÁ BASTE DECIR QUE POR SER VARIEDAD PRODUCTO ES SUFICIENTE DECIR QUE LA IDENTIDAD ES SIEMPRE DIFERENCIABLE Y -Z ES DIFERENCIABLE EN R
+\item La primera es la que ``le da la vuelta'' al cilindro, es decir, $f:C\to C$ descrita como $f(x,y,z)=(x,y,-z)$. Esta aplicación se puede describir como $Id_{S^1}\times -Id_{\R}:S^1\times\R\to S^1\times\R$. Como cada componente es claramente diferenciable, $f$ es diferenciable. 
 
 \item El segundo ejemplo será una rotación de ángulo $\alpha$, la cual viene dada por la aplicación $g:C\to C$, $g(\cos\theta,\sin\theta, t)=(\cos(\theta+\alpha), \sin(\theta+\alpha), t)$. PROBAR QUE ES DIFERENCIABLE 
 
@@ -212,7 +226,7 @@ Damos ahora también dos ejemplos de funciones diferenciables.
 
 
 \item
- La primera será la proyección sobre la tercera coordenada, es decir, $f:C\to\R$ definida como $f(x,y,z)=z$. PROBAR QUE ES DIFERENCIABLE
+ La primera será la proyección sobre la tercera coordenada, es decir, $f:C\to\R$ definida como $f(x,y,z)=z$, que es trivialmente diferenciable. 
 
 \item
  El siguiente ejemplo será $g:C\to\R$ dada por $g(x,y,z)=x+y+z$ PROBAR QUE ES DIFERENCIABLE
