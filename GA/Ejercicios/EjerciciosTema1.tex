@@ -64,6 +64,10 @@ Sea $\calF'$ un subhaz del haz $\calF$. Probar que la aplicación natural de $\c
 \begin{enumerate}[(a)]
 \item Probamos la sobreyectividad viendo que la aplicación inducida en las fibras es sobreyectiva. Tenemos que en cada punto $P\in X$, la fibra del cociente $\calF/\calF'$ es $(\calF/\calF')_P=\calF_P/\calF'_P$, por tanto, a nivel de fibras tenemos la aplicación cociente $\calF_P\to \calF_P/\calF'_P$ que sabemos que es sobreyectiva para todo $P$ por ser las aplicaciones cociente de grupos abelianos. Así que $\varphi$ es sobreyectiva.
 
+Veamos ahora que la aplicación cociente tiene como núcleo a $\calF'$. Primero vamos a definirla explícitamente. Denotamos $\calG$ al prehaz cociente $U\mapsto \calF(U)/\calF'(U)$. La aplicación cociente $\varphi:\calF\to\calF/\calF'$ será la composición $\varphi=\theta\circ q$, donde $q:\calF\to \calG$ está definida como la aplicación cociente en cada sección, es decir, $q(U): \calF\to \calF(U)/\calF'(U)$, y $\theta:\calG\to\calF/\calF'$ es la aplicación natural del haz asociado. Esta aplicación $\theta$ está definida de la siguiente forma: $\theta(U):\calG(U)\to\left(\calF/\calF'\right)(U)$, $\overline{s}\mapsto\theta(U)(\overline{s}):U\to\bigcup_{P\in U} \calG_P$, $p\mapsto\overline{s}_P$, siendo $\overline{s}_P$ el germen de $\overline{s}$ en $P$.
+
+Sea $U\subseteq X$ abierto. Es claro que si $s\in\calF'(U)$, entonces $\varphi(U)(s)=0$, luego $\calF'\subseteq\ker\varphi$. Recíprocamente, sea $s\in \ker\varphi(U)$, esto es, $\theta(U)(\overline{s})$ es la aplicación constantemente nula. Esto signfica que $\overline{s}_P=0$ para todo $P\in U$, lo cual implica que para cualquier recubrimiento abierto $\{V_i\}$ de $U$, $\overline{s}|_{V_i}=0$ para todo $i$ (tiene el mismo germen que la sección nula). Por ser el haz cociente un haz, esto implica que $\overline{s}=0$, o lo que es lo mismo, $s\in \calF'(U)$. 
+
 
 \item
 \end{enumerate}
