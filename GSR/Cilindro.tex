@@ -254,6 +254,15 @@ Vamos a dar dos ejemplos de curvas que luego veremos que son geodésicas y uno q
 
 \section{El cilindro es subvariedad regular de $\R^3$ con la inclusión}
 
+Sea $i:C\hookrightarrow \R^3$ la inclusión. Tal como hemos definido $C$, tiene la topología relativa de $\R^3$, por lo que en virtud de la proposición 4.2.2 de la asignatura Variedades Diferenciables, es suficiente probar que $(C,i)$ es subvariedad de $\R^3$. Para ello probaremos que $i$ es una inmersión inyectiva. Que es inyectiva es evidente, y para que sea inmersión necesitamos que su diferencial lo sea, así que calculamos la matriz de la aplicación $i_{*p}$ para un punto $p\in C$ genérico, que coincide con la matriz jacobiana de la aplicación $i\circ \varphi^{-1}$. Por tanto, obtenemos la matriz
+\[
+\begin{pmatrix}
+-\sin\theta & 0 \\
+\cos\theta & 0\\
+0 & 1
+\end{pmatrix}
+\]
+Esta matriz representa una aplicación lineal $\R^2\to\R^3$ y tiene rango máximo, por lo que efectivamente es inyectiva, con lo que tenemos el resultado. 
 
 
 \section{Métrica Riemanniana sobre el cilindro}
