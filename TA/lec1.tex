@@ -90,11 +90,45 @@ Además $(g\circ f)_*=g_*\circ f_*$ y $(Id_X)_*=Id_*$ tanto en complejos de cade
 Si $f,g:X\to Y$ son continuas con $f\simeq g$, entonces $f_*=g_*:H_n(X)\to H_n(Y)$ para todo $n\geq 0$. 
 \end{teorema}
 \begin{dem}
+COPIAR DE HATCHER
 
+Para el caso aumentado creo que P=0 (comprobar).
 \end{dem}
+
+En la prueba hemos usado la relación $dP-Pd=f_*-g_*$, que es la que define una \emph{homotopía de complejos de cadenas}. Hemos probado además que una homotopía de complejos de cadenas induce isomorfismo en la homología.
 
 \begin{coro}
 Si $f:X\to Y$ es equivalencia homotópica, entonces $f_*$ es isomorfismo.
 \end{coro}
+
+\section{Álgebra Homológica}
+
+Asumimos conocidas las definiciones y propiedades básicas de las sucesiones exactas. 
+
+\begin{lemma}[Splitting lemma]
+Dada una sucesión exacta $0\to A\xrightarrow{f}B\xrightarrow{C}\to 0$ son equivalentes:
+\begin{enumerate}[a)]
+\item Hay un morfismo $p:B\to A$ tal que $pf=Id:A\to A$.
+\item Hay un morfismo $s:C\to B$ tal que $gs=Id:C\to C$. 
+\item Existe un isomorfismo $B=A\oplus C$ compatible con la sucesión exacta corta. 
+\end{enumerate}
+\end{lemma}
+CÁRDENAS MANDARÁ LA PRUEBA
+
+Cuando $C$ es un objeto proyectivo se verifica la escisión. En particular, cuando sea un objeto libre. Se recuerda que una sucesión de complejos  de cadenas $0\to A^*\to B^*\to C^*\to 0$ se dice exacta si lo es en cada nivel. Se advierte que el hecho de que se tenga escisión en cada nivel no implica que $B^*\cong A^*\oplus C^*$ pues los isomorfismos de cada nivel no tienen por qué ser compatibles con el operador borde. 
+
+\begin{teorema}
+Toda sucesión exacta corta $0\to A\xrightarrow{f} B\xrightarrow{g} C\to 0$ induce una sucesión exacta larga
+\[
+\cdots \to H_n(A)\xrightarrow{f_*}H_n(B)\xrightarrow{g_*}H_n(C)\xrightarrow{\partial}H_{n-1}(A)\to\cdots
+\] 
+%\xrightarrow[g] pone la g debajo
+\end{teorema}
+SI TIENES GANAS COPIA LA PRUEBA DE HATCHER PAG 116 (125 PDF)
+\section{Homología relativa}
+
+Dado un subespacio $A\subseteq X$, vamos a construir el complejo de cadenas relativo $C_*(X,A)$ asociado al par $(X,A)$, lo que nos dará la homología relativa $H_*(X,A)$. Esto se consigue definiendo $C_n(X,A)=C_n(X)/C_n(A)$. Como $d$ lleva $C_n(A)$ en $C_{n-1}(A)$, podemos definir $d:C_n(X,A)\to C_{n-1}(X,A)$. 
+
+
 
 \end{document}
