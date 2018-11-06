@@ -1,14 +1,37 @@
-\documentclass[TGyCG.tex]{subfiles}
+\documentclass[TGyGC.tex]{subfiles}
 
 \begin{document}
 
 
 %\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
+\chapter{Teoría extremal de grafos}
 
-\chapter{Haces}
+\begin{teorema}
+Sea $G$ conexo con $|G|=n\geq 3$ tal que $\forall x, y\in V(G)$ con $xy\notin E(G)$ se verifica $\delta(x)+\delta(y)\geq k$. Entonces 
+
+\begin{enumerate}
+\item $k=n\Rightarrow$ que $G$ es hamiltoniano.
+\item $k<n\Rightarrow$ $G$ contiene un path $P_k$ de longitud $k$ y un ciclo de longitud mayor o igual que $\frac{k+2}{2}$. 
+\end{enumerate}
+\end{teorema}
+
+\begin{teorema}
+$ex(n,P_k)=||G||\leq\frac{k-1}{2}n$. $G$ es extremal (se da la igualdad) si y solo si sus componentes conexas son $K_k$. 
+\end{teorema}
+
+\begin{dem}
+Probamos solo el segundo resultado. Supongamos $n\leq k$, entonces $G=K_n$, por lo que tenemos $||G||=\frac{n(n-1)}{2}\leq\frac{k-1}{2}n$.
+
+Para $n\geq k+1$ y $G$ no conexo, sea $G=G_1\cup\cdots \cup G_h$ su descomposición en componentes conexas que verifican la hipótesis de inducción. Entonces $||G||=\sum||G_i||\leq\frac{k-1}{2}\sum n_i=\frac{k-1}{2}n_i$.
+
+Para $n\geq k+1$ y $G$ conexo sin contener $P_k$, entonces existen $x,y\in V(G)$ tales que $xy\notin E(G)$ y $\delta(x)+\delta(y)\leq k-1$ por contrarrecíproco del teorema anterior. Supongamos por ejemplo que $\delta(x)\leq\frac{k-1}{2}$. Si consideramos $G-x$ estaremos en la hipótesis de inducción. Basta contar las aristas. $||G||=||G-x||+\delta(x)\leq\frac{k-1}{2}(n-1)+\frac{k-1}{2}=\frac{k-1}{2}n$.
+
+HACER LA SEGUNDA PARTE
 
 
-\section{Introducción}
+\end{dem}
+
+
 
 
 
