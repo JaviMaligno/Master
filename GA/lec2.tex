@@ -1,0 +1,68 @@
+\documentclass[GA.tex]{subfiles}
+
+\begin{document}
+
+
+%\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
+
+\chapter{Esquemas}
+
+\section{Espectro y espacios localmente anillados}
+
+\begin{defi}
+Sea $A$ un anillo no trivial, es decir, que tiene ideales primos. Definimos $\mathrm{Spec}(A)$ como el conjunto de los ideales primos de $A$. 
+\end{defi}
+
+Por ejemplo, para $A=\Z$, $\mathrm{Spec}(\Z)=\{\{0\}\}\cup\{\Z_p\mid p$ primo$\}$. En este caso vemos que $\{0\}\subseteq\Z_p$ para todo $p$. 
+
+Veamos ahora como ejemplo el caso $A=\C[x]$. En este caso, los ideales primos no nulos son los generados por polinomios irreducibles. Como $\C$ es algebraicamennte cerrado, son los de la forma $\gene{x-\alpha}$ con $\alpha\in\C$, así que podemos asociar este espectro a la recta afín compleja. De nuevo $\{0\}$ es primo y está contenido en todos los demás. 
+
+Nótese que el ideal trivial solo es primo en dominios de integridad.
+
+Dotamos a $\mathrm{Spec}(A)$ de una topología. Dado un ideal $I\subseteq A$, definimos $V(I)=\{\p\in\spec(A)\mid I\subseteq\p\}$. Se puede probar que $V(\sum_i I_i)=\bigcap_i V(I_i)$ y $V(I\cap J)=V(I)\cup V(J)$, $V(\{0\})=\spec(A)$ y $V(A)=\emptyset$, con lo que podemos definir la topología de Zariski sobre $\spec(A)$, que tiene como cerrados los conjuntos de la forma $V(I)$. Además se verifica que si $I\subseteq J$, entonces $V(J)\subseteq V(I)$. 
+
+Si $f:A\to B$ es un homomorfismo de anillos, se define el funtor contravariante $f^*:\spec(B)\to\spec(A)$ como $f^*(\p)=f^{-1}(\p)$ (el ideal contraído también denotado $\p^c$). Se comprueba fácilmente que $f^*$ es continua para la topología de Zariski y que cumple las propiedades para ser un funtor contravariante. 
+
+Vamos a definir \emph{el haz estructural en $\spec(A)$.} Para ello daremos varios pasos previos.
+
+Denotamos $X=\spec(A)$ por simplicidad. Sea $f\in A$. Definismo $X_f=X\setminus V(\gene{f})=\{\p\in X\mid f\notin\p\}$. Sea $U\subseteq X$ un abierto, que por definición será de la forma $X\setminus V(I)$. Dado $\p\in U$, por definición $I\not\subseteq\p$, luego existe $f\in I$ con $f\notin\p$, así que $\p\in X_f\subseteq U$. Esto demuestra que los conjuntos $X_f$ forman una base de abiertos para $\spec(A)$. 
+
+Recordemos que para $\p\in\spec(A)$, $S=A\setminus\p$ es un conjunto multiplicativamente cerrado (para más referencias consultar Atiyah-MacDonald, capítulo 3). Otro ejemplo importante de conjunto multiplicativamente cerrado es, para $f\in A$, el conjunto de las potencias de $f$, $\{1,f,f^2,\dots\}$. Es conveniente recordar también la definición del anillo localizado $S^{-1}A$ ESCRIBIR LA DEFINICIÓN. Hay un homomorfismo evidente $h:A\to S^{-1}A$ dado por $h(a)=\frac{a}{1}$, que no es necesariamente inyectivo, pero verifica la siguiente propiedad universal: para todo anillo $B$ y para todo $\varphi:A\to B$ homomorfismo de anillos tal que $\varphi(s)$ es invertible para todo $s\in S$, existe un único homomorfismo $\psi$ que hace conmutar el siguiente diagrama
+\[
+\begin{tikzcd}
+A\arrow[r, "h"]\arrow[dr, "\varphi"'] & S^{-1}A\arrow[d, dashed, "\exists!\psi"]\\
+& B
+\end{tikzcd}
+\]
+
+Se denota $A_\p$ al localizado de $A$ en $\p$, definido como $S^{-1}A$ para $S=A\setminus\p$. Se cumple que el ideal $\p A_\p$ es el ideal extendido de $\p$ por $h$. Este ideal está formado por las fracciones de la forma $\frac{a}{s}$ con $a\in\p$ y $s\notin\p$. Además este es el único ideal maximal, lo que convierte a $A_\p$ en un anillo local. 
+
+\begin{ej}
+En el anillo $\Z$ y con el ideal $\p=\Z_p$, $\Z_\p=\{\frac{a}{s}\mid a\in\Z, p\not\mid s\}\subset\Q$. Se denota también $\Z_p$. Sea $p\Z_p=\gene{\frac{p}{1}}$. Sea $\frac{a}{s}\in\Z_p$ que no esté en el ideal. Entonces $s$ no es divisible por $p$, así que el inverso $\frac{s}{a}$ está bien definido. Entonces, todo elemento que no esté en el ideal es unidad, con lo que el ideal es maximal. 
+\end{ej}
+
+Ahora podemos definir el haz que pretendíamos, $$\OO_X(U):=\{s\in\prod_{\p\in U}A_\p\mid\forall\p\in U\exists a,f\in A: \p\in X_f\subseteq U\land s_\q=\frac{a}{f}\in A_\q \}.$$ Aquí $\prod$ denota el producto cartesiano y $s_\p$ denota los elementos de este producto cartesiano. La segunda propiedad de la definición nos garantizará que el haz está definido localmente y por lo tanto será realmente un haz. Concretamente, se están tomando fracciones que localmente tienen una expresión común. Se demuestra además que $\OO_X(U)$ es un subanillo de $\prod_{\p\in U}A_\p$. Las restricciones tienen la siguiente forma: dados $V\subseteq U$ podemos utilizar la proyección $\prod_{\p\in U}A_\p\to\prod_{\p\in V}A_\p$ (que es homomorfismo de anillos) para generar un homomorfismo de anillos $\OO_X(U)\to\OO_X(V)$. 
+
+\begin{nota}
+Si $X$ es un espacio topológico y tenemos definido para cada $x\in X$ un anillo o grupo abeliano (etc) $A_x$, se puede definir el prehaz $\calF(U)=\prod_{x\in U} A_x$ con las proyecciones como restricciones (que son todas sobreyectivas). Este prehaz es un haz. Obsérvese que la topología en particular que tenga $X$ no juega un papel relevante, así que se puede tomar la topología discreta. Una vez que tenemos definido este haz para la topología discreta podemos llevarlo a cualquier topología. Tenemos que la identidad $X^{dis}\to X$ es continua, donde $X^{dis}$ es $X$ con la topología discreta. Entonces, $Id_*\calF(U)=\calF(U)$ por definición. 
+\end{nota}
+
+Dado un anillo $A$, hemos construido un espacio topológico $\spec(A)$ al que le hemos asociado un haz de anillos $\OO_{\spec(A)}$. Al par $(\spec{A}, \OO_{\spec(A)})$ se le llama \emph{espectro} de $A$. 
+
+
+
+
+\section{Esquemas afines}
+
+En geometría diferencial se suelen definir las variedades diferenciables a partir de cartas en un atlas. Se pueden definir también de otro modo más próximo al que nos interesa en nuestro estudio. Dado $U\subseteq\R^n$ abierto, definimos el haz $E_U$ de funciones $C^{\infty}$, de modo que $E_U(V)$ son las funciones $f:V\to\R$ de clase $C^{\infty}$ para $V\subseteq U$.
+
+ Así que podríamos definir variedad diferenciable como un espacio topológico expresado como unión de abiertos $X=\cup X_i$ y un haz $E_X$ de modo que $(X_i,E_X|_{X_i})\cong (U_i,E_{U_i})$ con $U_i\subseteq\R^n$. Este isomorfismo es en el sentido de que hay un homeomorfismo entre los espacios topológicos y un isomorfismo de haces en el segundo elemento del par. Este enfoque será el que usemos para definir los esquemas. 
+\section{Ejercicios}
+\begin{ejer}
+Probar que el haz $\OO_X(U)$ es realmente un haz, describiendo las restricciones. 
+\end{ejer}
+\begin{ejer}
+Probar que el prehaz $\calF(U)=\prod_{x\in U} A_x$ es un haz para $X$ con la topología discreta. 
+\end{ejer}
+\end{document}
+
