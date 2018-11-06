@@ -1,0 +1,53 @@
+	\documentclass[twoside]{article}
+\usepackage{../../estilo-ejercicios}
+
+%--------------------------------------------------------
+\begin{document}
+
+\title{Ejercicios de Topología Algebraica}
+\author{Javier Aguilar Martín}
+\maketitle
+
+\begin{ejercicio}{2.1.16}\
+\begin{enumerate}[(a)]
+\item Show that $H_0(X,A) = 0$ iff $A$ meets each path-component of $X$.
+\item Show that $H_1(X,A) = 0$ iff $H_1(A)→H_1(X)$ is surjective and each path-component
+of $X$ contains at most one path-component of $A$.
+\end{enumerate}
+ 
+
+\end{ejercicio}
+\begin{solucion}\
+\begin{enumerate}[(a)]
+\item En la sucesión exacta larga de homología relativa, que $H_0(X,A)=0$ nos da
+\[
+\cdots\to H_0(A)\to H_0(X)\to 0
+\]
+de donde deducimos que la aplicación es sobreyectiva. Es decir, para cada generador $[\alpha]\in H_0(X)$, que representa una componente conexa por caminos de $X$, existe un elemento $[\beta]\in H_0(A)$ (representando una componente conexa por caminos de $A$) con $i_*[\beta]=[i\circ \beta]=[\alpha]$, donde $i_*:H_0(A)\to H_0(X)$ es la aplicación inducida por la inclusión. Con lo cual la imagen de $\beta$ está contenida en la misma componente conexa por caminos que la de $\alpha$. Así que necesariamente hay al menos una componente conexa por caminos de $A$ contenida en la componente conexa por caminos que representa $[\alpha]$. Como esto se cumple para todos los generadores de $H_0(X)$ tenemos una de las implicaciones.
+
+Recíprocamente, si $A$ interseca cada componente conexa por caminos de $X$, entonces $H_0\to H_0(X)$ es sobreyectiva, pues un generador $[\alpha]\in H_0(A)$ de una componente conexa por caminos de $A$, lo será también de la componente conexa de $X$ en la que se encuentra, esto es $i_*[\alpha]$ es generador de $H_0(X)$, y como esto ocurre en todas las componentes, tenemos que $i_*(H_0(A))=H_0(X)$. Así, la sucesión exacta larga de homología relativa nos da 
+\[
+\cdots\to H_0(A)\to H_0(X)\to H_0(X,A)\to 0
+\]
+Por el primer teorema de isomorfía, denotando $j_*:H_0(X)\to H_0(X,A)$,  $H_0(X)/\ker j_*\cong \Ima j_*$, que con los obtenido anteriormente y la exactitud resulta en $0=H_0(X)/H_0(X)\cong H_0(X,A)$, con lo que hemos probado el resultado. 
+
+
+
+\item Usando la sucesión exacta larga de homología relativa, si $H_1(X,A)=0$ tenemos entonces
+\[
+\cdots\to H_1(A)\to H_1(X)\to 0
+\]
+que por exactitud nos da que la aplicación es sobreyectiva. Si nos fijamos en lo que viene después del 0 tenemos
+\[
+0\to H_0(A)\to H_0(X)\to\cdots
+\]
+de donde se tiene que $i_*:H_0(A)\to H_0(X)$ es inyectiva. Como los generadores de $H_0(A)$ representan las componentes conexas por caminos de $A$ y los generadores de $H_0(X)$ representan las componentes conexas por caminos, el hecho de que la aplicación inducida por la inclusión sea inyectiva implica que cada componente conexa por caminos de $X$ contiene como mucho una componente conexa por caminos de $A$, ya que si tenemos dos elementos distintos $[\alpha],[\beta]\in H_0(A)$, $i\circ\alpha$ e $i\circ\beta$ tienen imagen en la componente conexa de $X$ donde estuvieran las imágenes de $\alpha$ y $\beta$ respectivamente, que no puede ser la misma para ambas por hipótesis. 
+
+Recíprocamente, si cada componente conexa por caminos de $X$ contiene a lo sumo una componente conexa por caminos de $A$, la aplicación $H_0(A)\to H_0(X)$ debe ser inyectiva, de lo contrario habría dos ciclos $\alpha,\beta\in Z_0(A)$ tales que $i_*([\alpha])=i_*([\beta])=[\gamma]$ para $\gamma\in Z_0(X)$. Pero $i_*([\alpha])=[i\circ\alpha]$ e $i_*([\beta])=[i\circ\beta]$. Entonces $i\circ\alpha$ e $i\circ\beta$ representarían ciclos homólogos, para lo cual su imagen tendría que estar en la misma componente conexa de $X$. 
+
+Si denotamos $\partial:H_1(X,A)\to H_0(A)$, por exactitud tenemos que $\Ima\partial=\ker i_*=0$. Por otro lado tenemos la hipótesis de que $i_*:H_1(A)\to H_1(X)$ es sobreyectiva, luego denotando $j_*:H_1(X)\to H_1(X,A)$ tenemos que $\ker j_*=\Ima i_*=H_1(X)$, lo cual implica que $j_*$ es la aplicación nula y por tanto $0=\Ima j_*=\ker\partial$. Ya no queda más que usar el primer teorema de isomorfía para obtener $$H_1(A,X)\cong H_1(A,X)/\ker\partial\cong \Ima\partial=0.$$
+\end{enumerate}
+\end{solucion}
+
+
+\end{document}

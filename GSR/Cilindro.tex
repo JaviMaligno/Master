@@ -193,6 +193,21 @@ Vamos a darle primero la estructura de variedad diferenciable como variedad prod
 
 donde $C_1$ es la semicircunferencia abierta superior, $C_2$ la derecha, $C_3$ la inferior y $C_4$ la izquierda. Es sencillo probar que las cartas efectivamente están relacionadas.
 
+\begin{figure}[h!]
+\definecolor{ffdxqq}{rgb}{1.,0.8431372549019608,0.}
+\definecolor{qqqqff}{rgb}{0.,0.,1.}
+\definecolor{ffqqqq}{rgb}{1.,0.,0.}
+\definecolor{qqffqq}{rgb}{0.,1.,0.}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-2.5,-2.7925) rectangle (2.8175,2.545);
+\draw [line width=2.pt] (0.,0.) circle (2.cm);
+\draw [shift={(0.005,0.015)},line width=4.4pt,color=qqffqq]  plot[domain=-0.006896442388348412:3.1346962112014447,variable=\t]({1.*2.1750517235229143*cos(\t r)+0.*2.1750517235229143*sin(\t r)},{0.*2.1750517235229143*cos(\t r)+1.*2.1750517235229143*sin(\t r)});
+\draw [shift={(0.005,0.015)},line width=4.pt,color=ffqqqq]  plot[domain=3.1346962112014447:6.276288864791238,variable=\t]({1.*2.1750517235229143*cos(\t r)+0.*2.1750517235229143*sin(\t r)},{0.*2.1750517235229143*cos(\t r)+1.*2.1750517235229143*sin(\t r)});
+\draw [shift={(0.,0.03)},line width=4.4pt,color=qqqqff]  plot[domain=-1.5707963267948966:1.5707963267948966,variable=\t]({1.*2.34*cos(\t r)+0.*2.34*sin(\t r)},{0.*2.34*cos(\t r)+1.*2.34*sin(\t r)});
+\draw [shift={(0.,0.03)},line width=4.4pt,color=ffdxqq]  plot[domain=1.5707963267948966:4.71238898038469,variable=\t]({1.*2.34*cos(\t r)+0.*2.34*sin(\t r)},{0.*2.34*cos(\t r)+1.*2.34*sin(\t r)});
+\end{tikzpicture}
+\caption{En {\color{green}verde} el dominio de {\color{green}$\varphi_1$}, en {\color{blue}azul} el de {\color{blue}$\varphi_2$}, en {\color{red}rojo} el de  {\color{red}$\varphi_3$} y en {\color{yellow}amarillo} el de {\color{yellow}$\varphi_4$}.}
+\end{figure}
 %HACER DIBUJO
 
 \subsection{Segunda estructura}
