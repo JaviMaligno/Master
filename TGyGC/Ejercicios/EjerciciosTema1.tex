@@ -27,12 +27,20 @@ Sea $T$ un árbol de orden $p$ que contiene $p_i$ vértices de grado $i$, para c
 \sum^{p-1}_{i=3} (i - 2)p_i + 2$.
 \end{ejercicio}
 \begin{solucion}
-Como $T$ tiene orden $p$, $p_{p-1}\in \{0,1\}$. Si $p_{p-1}=1$ entonces todos los demás vértices son hojas conectadas al vértice de grado $p-1$, es decir, $p_1=p-1$ y $p_i=0$ para $1<i<p-1$. Así, la ecuación resultante sería
+%Como $T$ tiene orden $p$, $p_{p-1}\in \{0,1\}$. Si $p_{p-1}=1$ entonces todos los demás vértices son hojas conectadas al vértice de grado $p-1$, es decir, $p_1=p-1$ y $p_i=0$ para $1<i<p-1$. Así, la ecuación resultante sería
+%\[
+%p-1=p-3+2
+%\]
+%que es trivialmente cierta. Supongamos entonces que $p_{p-1}=0$. 
+La ecuación del enunciado se puede reescribir como $\sum_{i=1}^{p-1}(i-2)p_i+2=0$ ya que $p_1$ pasaría a tener coeficiente $-1=1-2$ y $p_2$ tendría coeficiente 0. Ahora la escribimos como
 \[
-p-1=p-3+2
+\sum_{i=1}^{p-1} i p_i + 2 = \sum_{i=1}^{p-1}2p_i.
 \]
-que es trivialmente cierta. Supongamos entonces que $p_{p-1}=0$. 
-
+O lo que es lo mismo
+\[
+\sum_{v\in V(G)}\delta(v)+2=2|V(G)|
+\]
+Por un lado tenemos que al ser un árbol $|V(G)|=|E(G)|+1$ y por otro tenemos que $\sum_{v\in V(G)}\delta(v)=|E(G)|$ por el lema del apretón de manos, de modo que la igualdad es cierta. 
 \end{solucion}
 
 \newpage
@@ -43,6 +51,7 @@ Sea $T$ un árbol de orden $p$ tal que todos sus vértices son de grado 1 o de g
 que $T$ contiene exactamente $(p - 2)/2$ vértices de grado 3.
 \end{ejercicio}
 \begin{solucion}
+Basta sustituir en la ecuación del ejercicio anterior, que nos daría $-p_1+p_3+2=0$ junto con la condición $p_1+p_3=p$. 
 \end{solucion}
 
 \newpage
@@ -88,7 +97,7 @@ de sus árboles ``spanning'' son isomorfos, entonces $G$ es un árbol o un ciclo
 \newpage
 
 \begin{ejercicio}{1.8}
-Obtén un árbol spanning por el algoritmo DFS del grafo de Grotzsch de la figura adjunta.
+Obtén un árbol spanning por el algoritmo DFS del grafo de Grotzsch de la figura adjunta.
 \end{ejercicio}
 \begin{solucion}
 
@@ -100,7 +109,7 @@ Obtén un árbol spanning por el algoritmo DFS del grafo de Grotzsch de la figu
 \newpage
 
 \begin{ejercicio}{1.9}
-Obtén un árbol spanning por el algoritmo DFS del grafo de Petersen de la figura adjunta.
+Obtén un árbol spanning por el algoritmo DFS del grafo de Petersen de la figura adjunta.
 \end{ejercicio}
 \begin{solucion}
 
@@ -108,7 +117,7 @@ Obtén un árbol spanning por el algoritmo DFS del grafo de Petersen de la figu
 \newpage
 
 \begin{ejercicio}{1.10}
-Obtén un árbol spanning por el algoritmo DFS del grafo de Grotzsch de la figura adjunta.
+Obtén un árbol spanning por el algoritmo DFS del grafo de Grotzsch de la figura adjunta.
 \end{ejercicio}
 \begin{solucion}
 
@@ -117,7 +126,7 @@ Obtén un árbol spanning por el algoritmo DFS del grafo de Grotzsch de la figu
 \newpage
 
 \begin{ejercicio}{1.11}
-Obtén un árbol spanning por el algoritmo BFS del grafo de Petersen de la figura adjunta.
+Obtén un árbol spanning por el algoritmo BFS del grafo de Petersen de la figura adjunta.
 \end{ejercicio}
 \begin{solucion}
 
