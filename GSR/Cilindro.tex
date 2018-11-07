@@ -215,7 +215,7 @@ donde $C_1$ es la semicircunferencia abierta superior, $C_2$ la derecha, $C_3$ l
 
 %Obsérvese que la estructura de variedad diferenciable anterior que le hemos dado al cilindro coincide salvo elección de dominio con las estructuras que tiene como variedad producto $S^1\times \R$, como superficie de revolución generada por la recta $\alpha(t)=(1,0,t)$ y como superficie reglada generada por la curva $\alpha(\theta)=(\cos\theta,\sin\theta, 0)$ y el vector $(0,0,1)$. Así que podríamos dar cualquiera de estas estructuras y sería trivialmente compatible con la anterior. De modo que vamos a dar otra diferente que no sea tan trivial.
 
-Consideremos la aplicación $\psi^{-1}:\R^2 \setminus\{0\}\to C$ dada por $\psi^{-1}(x,y)=\left(\frac{x}{\sqrt{x^2+y^2}},\frac{y}{\sqrt{x^2+y^2}}, \log\sqrt{x^2+y^2} \right)$, consistente en transformar las semirrectas que parten del origen de $\R^2$ en las líneas verticales del cilindro. Esta aplicación es claramente diferenciable como aplicación $\R^2\to\R^3$, y vamos a ver que tiene una inversa diferenciable, que será la carta que formará el nuevo atlas diferenciable. Basta tomar $\psi:C\to\R^2\setminus\{0\}$ definida como $\psi(x,y,z)=(xe^z,ye^z,e^z)$. 
+Consideremos la aplicación $\psi^{-1}:\R^2 \setminus\{0\}\to C$ dada por $\psi^{-1}(x,y)=\left(\frac{x}{\sqrt{x^2+y^2}},\frac{y}{\sqrt{x^2+y^2}}, \log\sqrt{x^2+y^2} \right)$, consistente en transformar las semirrectas que parten del origen de $\R^2$ en las líneas verticales del cilindro. Esta aplicación es claramente diferenciable como aplicación $\R^2\to\R^3$, y vamos a ver que tiene una inversa diferenciable, que será la carta que formará el nuevo atlas diferenciable. Basta tomar $\psi:C\to\R^2\setminus\{0\}$ definida como $\psi(x,y,z)=(xe^z,ye^z)$. 
 
 \subsection{Compatibilidad}
 
@@ -270,19 +270,48 @@ Damos ahora también dos ejemplos de funciones diferenciables.
 
 \section{Ejemplos de curvas diferenciables y vectores tangentes}
 
-Vamos a dar dos ejemplos de curvas que luego veremos que son geodésicas y uno que se verá que no es geodésica, y calcularemos vectores tangentes a estas curvas.  QUIZÁ DIBUJARLOS
+Vamos a dar dos ejemplos de curvas que luego veremos que son geodésicas y uno que se verá que no es geodésica, y calcularemos vectores tangentes a la variedad en puntos por los que pasan estas curvas. Usaremos el sistema de coordenadas de una sola carta $(U, \psi=(x_1,x_2))$ para calcular las coordenadas de los vectores tangentes mediante su expresión local.
+
+%\begin{enumerate}
+%
+%\item
+% La curva $\gamma(t)=(\cos t, \sin t, t)$ con $t\in\R$ es una curva diferenciable sobre el cilindro. Esta curva tiene el vector tangente en cada punto $(-\sin t,\cos t, 1)$. Por ejemplo, para $t=0$, es decir, en el punto $(1,0,0)$, obtenemos el vector $(0,1,1)$. 
+%
+%\item
+% La curva $\beta(t)=(1, 0, t)$ para $t\in\R$ es una curva diferenciable sobre el cilindro. Esta curva tiene como vector tangente el vector $(1,0,1)$ en todo punto.
+%
+%\item La curva $\sigma(t)=(\cos t, \sin t, t^2)$, $t\in\R$, es una curva diferenciable sobre el cilindro. En este caso la curva tiene el vector tangente asociado $(-\sin t, \cos t, 2t)$, que para $t=\pi$, esto es, en el punto $(1,0,\pi^2)$, nos da el vector $(0, 1, 2\pi)$. 
+%\end{enumerate}
+
 
 \begin{enumerate}
+\item La curva $\gamma(t)=(\cos t, \sin t, t)$ con $t\in\R$ es una curva diferenciable sobre el cilindro. Sea $p=(1,0,0) =\gamma(0)$. Entonces el campo $\gamma'(0)$ tiene coordenadas $\gamma'(0)(x_1)$ y $\gamma'(0)(x_2)$. Vamos a calcularlas. 
+\[
+\gamma'(0)(x_1)=\left.\frac{d(x_1\circ\gamma)}{dt}\right|_{t=0}=\left.\frac{d(\cos(t)e^t)}{dt}\right|_{t=0}=(-\sin(t)e^t+\cos(t)e^t)_{t=0}=1
+\]
+\[
+\gamma'(0)(x_2)=\left.\frac{d(x_2\circ\gamma)}{dt}\right|_{t=0}=\left.\frac{d(\sin(t)e^t)}{dt}\right|_{t=0}=(\cos(t)e^t+\sin(t)e^t)_{t=0}=1
+\]
+Luego tenemos el vector tangente $u=\left(\parcial{}{x_1}\right)_p+\left(\parcial{}{x_2}\right)_p$
 
-\item
- La curva $\gamma(t)=(\cos t, \sin t, t)$ con $t\in\R$ es una curva diferenciable sobre el cilindro. Esta curva tiene el vector tangente en cada punto $(-\sin t,\cos t, 1)$. Por ejemplo, para $t=0$, es decir, en el punto $(1,0,0)$, obtenemos el vector $(0,1,1)$. 
+\item  La curva $\beta(t)=(1, 0, t)$ para $t\in\R$ es una curva diferenciable sobre el cilindro. Sea $p=(1,0,1)=\beta(1)$. Calculamos las coordenadas del vector $\beta'(1)$.
+\[
+\beta'(0)(x_1)=\left.\frac{d(1\cdot e^t)}{dt}\right|_{t=1}=e
+\]
+\[
+\beta'(0)(x_2)=\left.\frac{d(0\cdot e^t)}{dt}\right|_{t=0}=0
+\]
+Entonces el vector es $\beta'(1)=e\left(\parcial{}{x_1}\right)_p$. 
 
-\item
- La curva $\beta(t)=(1, 0, t)$ para $t\in\R$ es una curva diferenciable sobre el cilindro. Esta curva tiene como vector tangente el vector $(1,0,1)$ en todo punto.
+\item La curva $\sigma(t)=(\cos t, \sin t, t^2)$, $t\in\R$, es una curva diferenciable sobre el cilindro. Sea $p=(-1,0,\pi^2)=\sigma(\pi)$. Las coordenadas del vector $\sigma'(\pi)$ son
+\[
+\sigma'(0)(x_1)=\left.\frac{d(\cos(t) e^{t^2})}{dt}\right|_{t=\pi}=(-\sin(t)e^{t^2}+2t\cos(t)e^{t^2})|_{t=\pi}=-2\pi e^{\pi^2}
+\]
+\[
+\sigma'(0)(x_2)=\left.\frac{d(\sin(t) e^{t^2})}{dt}\right|_{t=\pi}=(\cos(t)e^{t^2}+2t\sin(t)e^{t^2})|_{t=\pi}=-e^{\pi^2}
+\]
 
-\item La curva $\sigma(t)=(\cos t, \sin t, t^2)$, $t\in\R$, es una curva diferenciable sobre el cilindro. En este caso la curva tiene el vector tangente asociado $(-\sin t, \cos t, 2t)$, que para $t=\pi$, esto es, en el punto $(1,0,\pi^2)$, nos da el vector $(0, 1, 2\pi)$. 
 \end{enumerate}
-
 
 
 \section{El cilindro es subvariedad regular de $\R^3$ con la inclusión}
@@ -297,6 +326,17 @@ Sea $i:C\hookrightarrow \R^3$ la inclusión. Tal como hemos definido $C$, tiene 
 \]
 Esta matriz representa una aplicación lineal $\R^2\to\R^3$ y tiene rango máximo, por lo que efectivamente es inyectiva, con lo que tenemos el resultado. 
 
+\section{Campos diferenciables sobre el cilindro}
+
+Damos dos ejemplos de campos de vectores diferenciables sobre el cilindro. Para ambos usaremos la estrategia de cubrir el cilindro por una familia de curvas diferenciables disjuntas, de modo que en cada punto podemos asociar el vector tangente a ese punto obtenido a partir de la curva que pasa por él. Igual que para los vectores tangentes, usamos el sistema de coordenadas $(C,\psi=(x_1,x_2))$. 
+
+\begin{enumerate}
+\item
+ Recordemos la curva $\beta(t)=(1,0,t)$, que es una recta vertical con $t\in\R$. Podemos cubrir el cilindro si hacemos girar esta recta mediante un parámetro $\theta\in[0,2\pi)$, de modo que obtenemos la familia $\beta_\theta(t)=(\cos\theta,\sin\theta, t)$. Para cada punto $p\in C$, existe un único par  $(\theta_0,t_0)$ tal que $p=\beta_{\theta_0}(t_0)$, por lo que definimos el campo $X:C\to TC$ como $X_p=\beta'_{\theta_0}(t_0)$.
+ 
+\item Hacemos ahora lo propio con la familia de circunferencias $\gamma_h(t)=(\cos t,\sin t, h)$ para $t\in (0,2\pi)$ y $h$ variando en $\R$. La diferencia ahora es que esta familia no cubre por completo el cilindro, pero podemos definir el campo de vectores sobre la recta que queda sin cubrir simplemente tomando límite. Es decir, como tenemos que $\lim_{t\to 0^+}\gamma'_h(t)=\lim_{t\to 2\pi^-}\gamma'_h(t)=-e^h\left(\parcial{}{x_2}\right)_p$, donde $p=(1,0,h)$, tenemos un vector tangente para cada punto de dicha recta, al que denotaremos $\gamma'_h(0)$. Así, definimos el campo $Y:C\to TM$ como $Y_p=\gamma'_{h_0}(t_0)$, donde $(h_0, t_0)$ es el único par tal que o bien $\gamma_{h_0}(t_0)=p$ o bien $t=0$ y $p=(1,0,h_0)$. 
+
+\end{enumerate}
 
 \section{Métrica Riemanniana sobre el cilindro}
 
