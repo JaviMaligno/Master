@@ -4,17 +4,19 @@
 %--------------------------------------------------------
 \begin{document}
 
-\title{Relatión 1}
+\title{Relación 1}
 \author{Javier Aguilar Martín}
 \maketitle
 
 
 \begin{ejercicio}{1.1}
-
-\end{ejercicio}
-\begin{solucion}
 Prueba que todo grafo bipartito de orden $n \geq 3$ es también $r$-partito para $3\leq r \leq n$. ¿Es
 cierto el recíproco?
+\end{ejercicio}
+\begin{solucion}
+Sea $G$ un grafo en las condiciones del enunciado. Si $V=V_1\cup V_2$ es la descomposición de $V=V(G)$ como grafo bipartito, basta subdividir $V_1$ y $V_2$ en un total de $r$ subconjuntos disjuntos. Como $n\geq 3$, alguno de los subconjuntos tiene al menos 2 vértices, digamos $V_1$, por lo que podemos subdividirlo en $V_1^1$ y $V_2^1$. Si $n=3$ ya habríamos terminado. Si $n>3$, entonces un subconjunto de entre $V_1^1, V_2^1$ y $V_2$ tiene al menos dos elementos y podemos reiterar el proceso. De este modo, conseguimos que en cada paso sea $r$-partito para un $r$ cada vez mayor, y siempre acotado por $n$, lo cual prueba el resultado. 
+
+El recíproco es cierto, porque si tenemos $V=V_1\cup\cdots\cup V_r$, podemos elegir $1\leq i< r$ de modo que $V'_1=V_1\cup\cdots\cup V_i$ y $V'_2=V_{i+1}\cup\cdots\cup V_r$, que cumplen las condiciones para dar lugar a un grafo bipartito. 
 \end{solucion}
 
 \newpage
@@ -25,6 +27,11 @@ Sea $T$ un árbol de orden $p$ que contiene $p_i$ vértices de grado $i$, para c
 \sum^{p-1}_{i=3} (i - 2)p_i + 2$.
 \end{ejercicio}
 \begin{solucion}
+Como $T$ tiene orden $p$, $p_{p-1}\in \{0,1\}$. Si $p_{p-1}=1$ entonces todos los demás vértices son hojas conectadas al vértice de grado $p-1$, es decir, $p_1=p-1$ y $p_i=0$ para $1<i<p-1$. Así, la ecuación resultante sería
+\[
+p-1=p-3+2
+\]
+que es trivialmente cierta. Supongamos entonces que $p_{p-1}=0$. 
 
 \end{solucion}
 
