@@ -39,9 +39,12 @@ Como $\sum_{i=1}^k\lambda_i=0$ por ser $\varepsilon(z)=0$,  $d_1(\tau)=z$. \QED
 Si $X$ es un punto, entonces $H_n(X)=0$ para $n>0$ y $H_0(X)=\Z$.
 \end{prop}
 
-\begin{dem}[Prop 2.8] ESCRIBIR BIEN
-$H_0(X)=\Z$ se tiene por ser $X$ arco-conexo. En el resto de casos se deduce por inspección, ya que todos los $C_n(X)$ son $\Z$ generado por un $n$-símplice singular constante.  
-
+\begin{dem}
+$H_0(X)=\Z$ se tiene por ser $X$ arco-conexo. Para el resto de caso miramos directamente el complejo de cadenas. $C_n(X,\Z)$ tiene solamente un $n$-símplice singular $\sigma_n$, y el operador borde $d(\sigma_n)=\sum_i (-1)^i\sigma_{n-1}$, que es 0 para $n$ impar y $\sigma_{n-1}$ para $n$ par. Entonces tenemos el complejo de cadenas
+\[
+\cdots\Z\xrightarrow{\cong}\Z\xrightarrow{0}\Z\xrightarrow{\cong}\Z\xrightarrow{0}\Z\to 0
+\]
+cuya homología es trvial para $n>0$. 
 \QED
 \end{dem}
 
@@ -88,14 +91,57 @@ Además $(g\circ f)_*=g_*\circ f_*$ y $(Id_X)_*=Id_*$ tanto en complejos de cade
 
 \begin{teorema}
 Si $f,g:X\to Y$ son continuas con $f\simeq g$, entonces $f_*=g_*:H_n(X)\to H_n(Y)$ para todo $n\geq 0$. 
-\end{teorema}
+\end{teorema}\
+ \opencutright
 \begin{dem}
-COPIAR DE HATCHER
+%This is where the table goes with text wrapping around it. You may 
+%embed tabular environment inside wraptable environment and customize as you like.
 
-Para el caso aumentado creo que P=0 (comprobar).
+%------------------------------------------
+%\begin{wrapfigure}{r}{4cm}
+%\caption{A wrapped figure going nicely inside the text.}\label{wrap-fig:1}
+%\includegraphics[width=4cm]{cilindrosimplice}
+%\end{wrapfigure} 
+%------------------------------------------
+\def\windowpagestuff{\flushright 
+   \includegraphics[width=2.8cm,height=4.5cm]{cilindrosimplice}}
+   
+  
+   \begin{cutout}{1}{0.75\textwidth}{0pt}{6}
+     \noindent
+El primer paso será subdividir $\Delta^n\times I$ en simplices. Sea $\Delta^n\times\{0\}=[v_0,\dots, v_n]$ y $\Delta^n\times\{1\}=[w_0,\dots, w_n]$, donde $v_i$ tiene la misma imagen que $w_i$ mediante la proyección $\Delta^n\times I\to \Delta$. Para cada $0\leq i\leq n$ consideramos el $(n-1)$-símplice $[v_0,\dots, v_i, w_i,\dots, w_n]$. Este símplice se ha conseguido simplemente recorriendo $\Delta^n\times\{0\}$ hasta el vértice $v_i$ y después saltando a $w_i$ para recorrer el resto de $\Delta^n\times\{1\}$, para luego volver a $v_0$. La figura muestra los casos $n=1,2$.
+\end{cutout}\
+%INTENTAR CON CUTWIN \url{https://tex.stackexchange.com/questions/40806/how-to-wrap-text-around-a-figure-revised}
+%\begin{figure}[h!]
+%\includegraphics[scale=0.7]{cilindrosimplice}
+%\end{figure}
+
+Dada una homotopía $F:X\times I\to Y$ y un símplice singular $\sigma:\Delta^n\to X$, podemos formar la composición $F\circ(\sigma\times Id):\Delta^n\times I\to X\times I\to Y$. Usando esto podemos definir el \emph{operador prisa} $P:C_n(X)\to C_{n+1}(Y)$ como sigue
+\[
+P(\sigma)=\sum_i(-1)^iF\circ(\sigma\times I)|_{[v_0,\dots, v_i, w_i,\dots, w_n]}
+\]
+Vamos a demostrar que el operador prisma satisface la relación
+\[
+dP=g_*-f_*-Pd
+\]
+Para probarlo calculamos
+\[
+dP(\sigma)=\sum_{j≤i}
+(−1)^i(−1)^jF\circ(σ \times Id)|_{ 
+[v_0, \dots, \hat{v}_j , \dots ,v_i,w_i, \dots ,w_n]}
++\sum_{j≥i}
+(−1)^i(−1)^{j+1}F\circ(σ\times Id)|_{
+[v_0, \dots ,v_i,w_i, \dots ,\hat{w}_j , \dots ,w_n]}
+\]
+Los términos para $i=j$ se cancelan excepto para $F\circ(σ \times Id)|_{ 
+[\hat{v}_0,w_0,\dots ,w_n]}$, que es $g\circ\sigma=g_*(\sigma)$; y $-F\circ(σ \times Id)|_{ 
+[v_0,,\dots ,v_n,\hat{w}_n]}$, que es $-f\circ \sigma=-f_*(\sigma)$. Los términos para $i\neq j$ son exactamente $-Pd(\sigma)$. 
+
+Así, si $\alpha\in Z_n(X)$, entonces $g_*(\alpha)-f_*(\alpha)=Pd(\alpha)+dP(\alpha)=dP(\alpha)$ por ser $d\alpha=0$. Entonces $g_*(\alpha)$ y $f_*(\alpha)$ determinan la misma clase de homología al ser su diferencia un borde. 
+%Para el caso aumentado creo que P=0 (comprobar).
 \end{dem}
 
-En la prueba hemos usado la relación $dP-Pd=f_*-g_*$, que es la que define una \emph{homotopía de complejos de cadenas}. Hemos probado además que una homotopía de complejos de cadenas induce isomorfismo en la homología.
+En la prueba hemos usado la relación $dP-Pd=f_*-g_*$, que es la que define una \emph{homotopía de complejos de cadenas}. Hemos probado además que una homotopía de complejos de cadenas induce isomorfismo en la homología. Para el caso de homología reducida también es válido este resultado definiendo $f_*:\Z\to\Z$ como 0 y $P:\Z\to C_0(Y)$ como la aplicación nula.
 
 \begin{coro}
 Si $f:X\to Y$ es equivalencia homotópica, entonces $f_*$ es isomorfismo.
@@ -106,28 +152,45 @@ Si $f:X\to Y$ es equivalencia homotópica, entonces $f_*$ es isomorfismo.
 Asumimos conocidas las definiciones y propiedades básicas de las sucesiones exactas. 
 
 \begin{lemma}[Splitting lemma]
-Dada una sucesión exacta $0\to A\xrightarrow{f}B\xrightarrow{C}\to 0$ son equivalentes:
+Dada una sucesión exacta de módulos $0\to A\xrightarrow{f}B\xrightarrow{g}C\to 0$ son equivalentes:
 \begin{enumerate}[a)]
 \item Hay un morfismo $p:B\to A$ tal que $pf=Id:A\to A$.
 \item Hay un morfismo $s:C\to B$ tal que $gs=Id:C\to C$. 
-\item Existe un isomorfismo $B=A\oplus C$ compatible con la sucesión exacta corta. 
+\item Existe un isomorfismo $B\cong A\oplus C$ compatible con la sucesión exacta corta, es decir, que hace conmutar el siguiente diagrama
+\[
+\begin{tikzcd}
+A\arrow[r, rightarrowtail, "f"]\arrow[d, equals] & B\arrow[r, twoheadrightarrow, "g"]\arrow[d, "u"] & C\arrow[d, equals] \\
+A\arrow[r, "i"] & A\oplus C\arrow[r, "\pi"]& C
+\end{tikzcd}
+\]
 \end{enumerate}
 \end{lemma}
-CÁRDENAS MANDARÁ LA PRUEBA
+\begin{proof}
+Que c) implica a) y b) es trivial.
+
+Para ver que a) implica c), sea $p:B\to A$ un homomorfismo que verifique $pf=Id$. En este caso, afirmamos que $B=f(A)\oplus\ker p$. Si $b\in B$, entonces $b=fp(b)+(m-fp(b))$. Es claro que $fp(b)\in f(A)$ y además $p(b-fp(b)=p(b)-pfp(b)=p(b)-p(b)=0$, luego $b-fp(b)\in\ker p$. Se tiene también que si $b\in f(A)\cap\ker p$, entonces $b=f(a)$ y $0=p(b)=pf(a)=a$, por lo que $b=0$, con lo que la afirmación es cierta. Una vez que tenemos $b=f(a)+b'$, definimos el homomorfismo $u(b)=a+g(b')$. Se tiene de hecho que $u(b)=a+g(b)$, pues si $b-b'=f(a)$ y por exactitud $g(b-b')=0$. Esta definición no es ambigua por ser $f$ inyectiva. Por la definición que se ha hecho, el diagrama es conmutativo y el lema de los 5 implica que $u$ es isomorfismo.
+
+Por último veamos que b) implica c). Sea $s:C\to B$ tal que $gs=Id$. Afirmamos que $B=\ker g\oplus s(C)$. Sea $b\in B$, lo escribimos como $b=(b-sg(b))+sg(b)$. Es claro que $sg(b)\in s(C)$ y además $g(b-sg(b))=g(b)-gsg(b)=g(b)-g(b)=0$, por lo que $b-sg(b)\in\ker g$. Si $b\in\ker g\cap s(C)$, entonces $b=s(c)$ y $0=g(b)=gs(c)=c$, por lo que $b=0$, lo que prueba la afirmación. Ahora, como $\ker g=\Ima f$, podemos expresar $b=f(a)+s(c)$. Definimos entonces $u(b)=a+c$, lo cual tiene sentido porque tanto $f$ como $s$ son inyectivas y además $\Ima s\cap\Ima f=\Ima s\cap\ker g=0$. La definición que hemos hecho hace conmutar el diagrama y esto hace que $u$ sea isomorfismo por el lema de los cinco. 
+\end{proof}
 
 Cuando $C$ es un objeto proyectivo se verifica la escisión. En particular, cuando sea un objeto libre. Se recuerda que una sucesión de complejos  de cadenas $0\to A^*\to B^*\to C^*\to 0$ se dice exacta si lo es en cada nivel. Se advierte que el hecho de que se tenga escisión en cada nivel no implica que $B^*\cong A^*\oplus C^*$ pues los isomorfismos de cada nivel no tienen por qué ser compatibles con el operador borde. 
 
 \begin{teorema}
-Toda sucesión exacta corta $0\to A\xrightarrow{f} B\xrightarrow{g} C\to 0$ induce una sucesión exacta larga
+Toda sucesión exacta corta de complejos de cadenas $0\to A\xrightarrow{f} B\xrightarrow{g} C\to 0$ induce una sucesión exacta larga
 \[
 \cdots \to H_n(A)\xrightarrow{f_*}H_n(B)\xrightarrow{g_*}H_n(C)\xrightarrow{\partial}H_{n-1}(A)\to\cdots
 \] 
 %\xrightarrow[g] pone la g debajo
 \end{teorema}
-SI TIENES GANAS COPIA LA PRUEBA DE HATCHER PAG 116 (125 PDF)
+La prueba sigue la clásica estrategia de \emph{diagram chasing} y se puede encontrar a partir de la página 116 de \emph{Algebraic Topology} de Allen Hatcher. 
 \section{Homología relativa}
 
 Dado un subespacio $A\subseteq X$, vamos a construir el complejo de cadenas relativo $C_*(X,A)$ asociado al par $(X,A)$, lo que nos dará la homología relativa $H_*(X,A)$. Esto se consigue definiendo $C_n(X,A)=C_n(X)/C_n(A)$. Como $d$ lleva $C_n(A)$ en $C_{n-1}(A)$, podemos definir $d:C_n(X,A)\to C_{n-1}(X,A)$. 
+
+A partir de las sucesión exacta corta evidente $0\to C_*(A)\to C_*(X)\to C_(X,A)\to 0$ surge la sucesión exacta larga de homología relativa
+\[
+\cdots \to H_n(A)\xrightarrow{f_*}H_n(X)\xrightarrow{g_*}H_n(X,A)\xrightarrow{\partial}H_{n-1}(A)\to\cdots
+\]
 
 
 
