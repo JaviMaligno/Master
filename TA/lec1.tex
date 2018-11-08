@@ -141,7 +141,7 @@ Así, si $\alpha\in Z_n(X)$, entonces $g_*(\alpha)-f_*(\alpha)=Pd(\alpha)+dP(\al
 %Para el caso aumentado creo que P=0 (comprobar).
 \end{dem}
 
-En la prueba hemos usado la relación $dP-Pd=f_*-g_*$, que es la que define una \emph{homotopía de complejos de cadenas}. Hemos probado además que una homotopía de complejos de cadenas induce isomorfismo en la homología. Para el caso de homología reducida también es válido este resultado definiendo $f_*:\Z\to\Z$ como 0 y $P:\Z\to C_0(Y)$ como la aplicación nula.
+En la prueba hemos usado la relación $dP-Pd=f_*-g_*$, que es la que define una \emph{homotopía de complejos de cadenas} entre $f_*$ y $g_*$ (se denota en ese caso $f_*\simeq g_*$). Una \emph{equivalencia de homotopía} enre complejos de cadenas $f:C_*\to D_*$ es un morfismo de complejos de cadenas tal que existe $g:D_*\to C_*$ de modo que $g\circ f\simeq Id_{C_*}$ y $f\circ g\simeq Id_{D_*}$.  Hemos probado además que una equivalencia de homotopía de complejos de cadenas induce isomorfismo en la homología. Para el caso de homología reducida también es válido este resultado definiendo $f_*:\Z\to\Z$ como 0 y $P:\Z\to C_0(Y)$ como la aplicación nula.
 
 \begin{coro}
 Si $f:X\to Y$ es equivalencia homotópica, entonces $f_*$ es isomorfismo.
@@ -185,13 +185,57 @@ Toda sucesión exacta corta de complejos de cadenas $0\to A\xrightarrow{f} B\xri
 La prueba sigue la clásica estrategia de \emph{diagram chasing} y se puede encontrar a partir de la página 116 de \emph{Algebraic Topology} de Allen Hatcher. 
 \section{Homología relativa}
 
-Dado un subespacio $A\subseteq X$, vamos a construir el complejo de cadenas relativo $C_*(X,A)$ asociado al par $(X,A)$, lo que nos dará la homología relativa $H_*(X,A)$. Esto se consigue definiendo $C_n(X,A)=C_n(X)/C_n(A)$. Como $d$ lleva $C_n(A)$ en $C_{n-1}(A)$, podemos definir $d:C_n(X,A)\to C_{n-1}(X,A)$. 
+Dado un subespacio $A\subseteq X$, vamos a construir el complejo de cadenas relativo $C_*(X,A)$ asociado al par $(X,A)$, lo que nos dará la homología relativa $H_*(X,A)$. Esto se consigue definiendo $C_n(X,A)=C_n(X)/C_n(A)$. Este cociente tiene sentido porque $A\subseteq X$ y entonces el complejo está contenido mediante la aplicación inducido por la inclusión. Como $d$ lleva $C_n(A)$ en $C_{n-1}(A)$, podemos definir $d:C_n(X,A)\to C_{n-1}(X,A)$ como $d([x])=[d(x)]$. Así, la homología relativa es la homología del complejo de cadenas $H_n(X,A)=H_n(C_*(X,A))$. 
 
-A partir de las sucesión exacta corta evidente $0\to C_*(A)\to C_*(X)\to C_(X,A)\to 0$ surge la sucesión exacta larga de homología relativa
+A partir de las sucesión exacta corta evidente $0\to C_*(A)\to C_*(X)\to C_*(X,A)\to 0$ surge la sucesión exacta larga de homología relativa
 \[
 \cdots \to H_n(A)\xrightarrow{f_*}H_n(X)\xrightarrow{g_*}H_n(X,A)\xrightarrow{\partial}H_{n-1}(A)\to\cdots
 \]
 
+\begin{defi}
+Una aplicación de pares $f:(X,A)\to (Y,B)$ es una aplicación $f:X\to Y$ tal que $f(A)\subseteq B$. 
+\end{defi}
 
+Una aplicación de pares induce una aplicación $f!_A:A\to B$, así que se puede definir un morfismo de complejos de cadenas inducido por $f$, $f_*:C_*(X,A)\to C_*(Y,B)$ como $[c]\mapsto [f_*(c)]$ que cumple las propiedades de funtorialiad. Por tanto da lugar también a un homomorfismo en homología $f_*:H_*(X,A)\to H_*(Y,B)$, que es natural con respecto a la sucesión exacta larga de homología relativa, es decir, conmuta el diagrama HACER DIAGRAMA, DE H(A) A H(B) VA LA RESTRICCIÓN ESTRELLA
+
+ya que la conmutatividad se tiene ya a nivel de complejos de cadenas, y la conmutatividad con $\partial$ se puede probar (HACERLO COMO EJERCICIO EN GENERAL, NO NECESARIAMENTE EL COMPLEJO RELATIVO). 
+ 
+
+\begin{teorema}[de excisión]\label{excision}
+Sean subespacios $Z\subseteq A\subseteq X$ tal que la clausura de $Z$ está en el interior de $A$. Entonces la inclusión $i:(X-Z,A-Z)\hookrightarrow (X,A)$ induce isomorfismos $i_*:H_n(X-Z,A-Z)\to H_n(X,A)$ para todo $n$. Equivalentemente, para subespacios $A,B\subseteq X$ cuyos interiores cubren $X$, la inclusión $(B,A\cap B)\hookrightarrow (X,B)$ induce isomorfismos $H_n(B,A\cap B)\to H_n(X,B)$ para todo $n$. 
+\end{teorema}
+
+Para un espacio $X$, consideremos una familia de subconjuntos $\mathcal{U}=\{U_i\}_{i\in I}$ tales que $X=\cup_i int(U_i)$. Decimos que un símplice singular en $X$, $\sigma:\Delta^n\to X$ está \emph{subordinado} a $\mathcal{U}$ si existe $I\in I$ con $\delta(\Delta^n)\subseteq U_i$. Denotamos $C^{\mathcal{U}}_*$ al complejo de cadenas de símplices de $X$ subordinados a $\mathcal{U}$, que está contenido en $C_*(X)$.  El operador borde está bien definido, puesto que si $\sigma:\Delta^n\to X$ es tal que $\sigma(\Delta^n)\subseteq U_i$ y si $\Delta^n_i$ es la $i$-ésima cara de $\Delta^n$, entonces $d(\sigma)=\sum_{i=0}^n(-1)^i\sigma|_{\Delta^n_i}$. Como $\sigma(\delta^n)\subseteq U_i$, también lo está la restricción a cada una de las caras.
+
+\begin{teorema}[de las cadenas pequeñas]\label{peque}
+La inclusión $C^{\U}_*(X)\hookrightarrow C_*(X)$ es una equivalencia homotópica de complejos de cadenas. 
+\end{teorema}
+
+\begin{defi}
+El \emph{baricentro} de un símplice $\sigma=[v_0,\dots, v_n]$ es $b(\sigma)=\sum_{i=0}^n\frac{1}{n+1}v_i\in \sigma$. La \emph{subdivisión baricéntrica} es el complejo simplicial formado por los baricentros de las caras de $\sigma$. La $k$-ésima subdivisión baricéntrica es la división baricéntrica de la $k-1$-ésima subvidisión baricéntrica.
+\end{defi}
+
+En general, si $\sigma$ es un símplice y dados $\sigma_0\leq\cdots\sigma_t\leq\sigma$, se tiene que $[b(\sigma_0),\dots, b(\sigma_t)]$ forma un símplice contenido en $\sigma$. 
+
+Se define el \emph{diámetro} de $\sigma\subseteq \R^N$ como $dia(\sigma)=\max_{x,y\in\sigma} d(x,y)$. Denotamos $d(x,y)$ como $|x-y|$. Dados $x,y\in\sigma$, con $y=\sum_{i=0}^n t_iv_i$ y $\sum_{i=0}^nt_i=1$, 
+\[
+|x-y|=\left|\sum_{i=0}^nt_ix-\sum_{i=0}^nt_iv_i\right|=\left|\sum_{i=0}^nt_i(x-v_i)\right|\leq \sum_{i=0}^n t_i|x-v_i|\leq \sum_{i=0}^nt_i\max_{j=0,\dots, n}|x-v_j|=\max|x-v_j|\leq \max|v_k-v_j|
+\]
+
+\begin{lemma}
+ Si $\tau$ es un símplice de la subdivisión baricéntrica de $\sigma$, $\dim(\sigma)=n$, 
+\[
+dia(\tau)\leq\frac{n}{n+1}dia(\sigma)
+\]
+\end{lemma}
+
+La demostración se puede encontrar en los apuntes de Homología Simplicial o alternativamente en Hatcher página 120. 
+
+\begin{coro}
+Si $\tau$ es un símplice de la $k$-ésima subdivisión baricéntrica de $\sigma$, $\dim(\sigma)=n$, 
+\[
+dia(\tau)\leq \left(\frac{n}{n+1}\right)^k dia(\sigma)
+\]
+\end{coro}
 
 \end{document}
