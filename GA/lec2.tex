@@ -50,13 +50,87 @@ Si $X$ es un espacio topológico y tenemos definido para cada $x\in X$ un anillo
 Dado un anillo $A$, hemos construido un espacio topológico $\spec(A)$ al que le hemos asociado un haz de anillos $\OO_{\spec(A)}$. Al par $(\spec{A}, \OO_{\spec(A)})$ se le llama \emph{espectro} de $A$. 
 
 
+\begin{ej}
+Vimos que $X=\spec(\Z)$ se puede identificar con el conjunto de primos naturales unión el 0. Los cerrados de la topología de Zariski son, además del total (obtenido como $V(0)$) y del vacío, los de la forma $V(n\Z)$. Los ideales que contienen a $n\Z$ son los ideales generados por los divisores de $n$, luego los cerrados propios son los conjuntos finitos de primos. Como hemos visto, $\overline{0}=\spec(\Z)$. A esto lo llamaremos punto genérico. Los abiertos no triviales serían entonces el 0 y los conjuntos de primos con complementario finito. Denotamos $U_{p_1,\dots, p_r}$ al abierto que tiene como complementario el conjuto de primos indicado.  $U_\emptyset=X$. 
 
+Vamos a calcuclar $\OO_X(U_{p})$. Tenemos que calcular $\Z_{\gene{p}}=\{\frac{a}{s}\mid a\in\Z, p\not| s\}$ y $\Z_{\gene{0}}=\Q$.  $U_{p}=X\setminus V(p\Z)=\{0\}\cup\{p_i\mid p\neq p_i\}$. Entonces $\OO_X(U_p)=\{(s_q)_{q\in U_p}\mid s_q\in\Z_{\gene{p}}\}=\Z_p=\{\frac{a}{p^r}\mid a\in\Z\}$ (esto habría que demostrarlo). 
 
-\section{Esquemas afines}
+Si cogemos un abierto genérico $U=U_{p_1,\dots, p_r}$, el resultado es $\OO_X(U)=\Z_{p_1\cdots p_r}$. En el caso del total, no ponemos ningún primo en el denominador, así que saldría simplemente $\Z$. La restricción $\OO_X(X)=\Z\to \OO_X(U)=\Z_{p_1\cdots p_r}$ es simplemente el homomorfismo usual de un anillo en el localizado. 
+\end{ej}
+
+\begin{ej}
+Sea $k$ un cuerpo algebraicamente cerrado. $\spec(k[x])=k\cup\{\gene{0}\}$. La topología de zariski es análoga a la del anterior ejemplo, los abiertos no triviales son subconjuntos de $k$ con complementario finito en $k\cup\{0\}$. Si se hace el cálculo, se obtiene $\OO_{\spec(k[x)]}(k[x])=k[x]$. Si se toma un abierto que no sea el total, $\OO_{\spec(k[x])}(\{\alpha_1,\dots,\alpha_r\}^c)=k[x]_{(x-\alpha_1)\cdots(x-\alpha_r)}$. 
+\end{ej}
+
+\begin{prop}
+Sea $A$ un anillo y $(\spec(A),\OO)$ su espectro.
+\begin{enumerate}[(a)]
+\item Para todo $\p\in\spec(A)$, la fibra $\OO_\p$ es isomorfa al anillo local $A_\p$.
+\item Para todo elemento $f\in A$, si denotamos $X_f=\spec(A)\setminus V(\gene{f})$, entonces $\OO(X_f)$ es isomorfo al anillo localizado $A_f$.
+\item En particular, $\OO(\spec(A)\cong A$. 
+\end{enumerate} 
+\end{prop}
+
+\section{Esquemas}
 
 En geometría diferencial se suelen definir las variedades diferenciables a partir de cartas en un atlas. Se pueden definir también de otro modo más próximo al que nos interesa en nuestro estudio. Dado $U\subseteq\R^n$ abierto, definimos el haz $E_U$ de funciones $C^{\infty}$, de modo que $E_U(V)$ son las funciones $f:V\to\R$ de clase $C^{\infty}$ para $V\subseteq U$.
 
  Así que podríamos definir variedad diferenciable como un espacio topológico expresado como unión de abiertos $X=\cup X_i$ y un haz $E_X$ de modo que $(X_i,E_X|_{X_i})\cong (U_i,E_{U_i})$ con $U_i\subseteq\R^n$. Este isomorfismo es en el sentido de que hay un homeomorfismo entre los espacios topológicos y un isomorfismo de haces en el segundo elemento del par. Este enfoque será el que usemos para definir los esquemas. 
+ 
+ 
+ \begin{defi}
+ Un \emph{espacio anillado} es un par $(X,\calA)$ donde $X$ es un espacio topológico y $\calA$ es un haz de anillos (comutativos con unidad) en $X$.
+ \end{defi}
+ 
+ \begin{ejs}\
+ \begin{enumerate}
+ \item Sea $A$ un anillo fijo y $\calA$ el haz de todas las funciones con valor en $A$. 
+ \item Dado un anillo topológico $A$ (por ejemplo $\R$ o $\C$), definimos $\calA$ como el haz de las funciones continuas con valores en $A$.
+ \item Sea $X$ una variedad diferenciable (real) y $\calA$ el haz de las funciones $C^{\infty}$ con valores en $\R$.
+ \item $(\spec(A), \OO_{\spec(A)})$. 
+ \end{enumerate}
+ 
+ \end{ejs}
+ 
+ \begin{defi}
+ Sean $(X,\calA)$, $(Y,\mathcal{B})$ espacios anillados. Un morfimo entre ellos es un par $(f, f^{\sharp})$ donde $f:X\to Y$ es continua y $f^{\sharp}:\mathcal{B}\to f_*\calA$ es un morfismo de haces de anillos en $Y$. 
+ 
+\end{defi} 
+
+
+\begin{ej}
+Sean $X,Y$ variedades diferenciables y $f:X\to Y$ una aplicación diferenciable. Consideramos el haz de las funciones diferenciables $\mathcal{E}_X$ tal que $\mathcal{E}(U)$ es el anillo de funciones diferenciables de $U$ en $\R$, y hacemos lo mismo para $Y$. Recordemos que $(f_*\mathcal{E}_X)(V)=\mathcal{E}_X(f^{-1}(V))$. Por otro lado tenemos $\mathcal{E}_Y(V)$, pero dada $\varphi\in \mathcal{E}_Y(V)$, podemos asociarle $\varphi\circ f|_{f^{-1}(V)}\in\mathcal{E}_X(f^{-1}(V))$. Esta es la definición de $f^{\sharp}$. 
+\end{ej}
+
+Si tenemos tres haces $(X,\calA)\xrightarrow{(f,f^{\sharp})}(Y,\mathcal{B})\xrightarrow{(g,g^{\sharp})}(Z,\mathcal{C})$, tendríamos una composición $(g,g^{\sharp})\circ(f, f^{\sharp})$. La primera coordenada de la composición es simplemente $g\circ f$, pero en la segunda tenemos que hacerlo con más cuidado. Tenemos $f^{\sharp}:\mathcal{B}\to f_*\calA$, $g^{\sharp}:\mathcal{C}\to g_*\mathcal{B}$. Podemos considerar $g_*(f^{\sharp}):g_*\mathcal{B}\to g_*(f_*\mathcal{A})=(g\circ f)_*(\calA)$. Así que la segunda componente de la composición es $g_*(f^\sharp)\circ g^{\sharp}$. 
+
+
+
+\begin{defi}
+Un espacio anillado $(X,\calA)$ se dice \emph{localmente anillado} si para todo $x\in X$, la fibra $\calA_x$ es un anillo local.
+\end{defi}
+
+
+\begin{ej}
+Sea $(X,\mathcal{E}_X))$ una variedad diferenciable, $x\in X$. Entonces $\mathcal{E}_{X.x}$ consideramos los gérmenes que se anulan en el punto $x$, que forman claramente un ideal. Si un germen no se anula en $x$, entonces tampoco se anula en un entorno, por lo que es invertible multiplicativamente, o sea, es una unidad en el anillo. Así que las variedades diferenciables son espacios localmente anillados.
+
+Tenemos además un homomorfismo de anillos $v_x:\mathcal{E}_{X,x}\to \R$, que es la evaluación del gérmen en $x$. Se tiene que $\ker v_x=m$, ideal maximal por el primer teorema de isomorfía (el homomorfismo es sobreyectivo porque se puede tomar el gérmen constante). Este ideal es justamente el que hemos mencionado antes. Se demuestra que $m/m^2$ tiene la misma dimensión que la variedad diferenciable, y es lo que se llama espacio cotangente (el dual de él es el tangente). 
+\end{ej}
+
+\begin{defi}
+Si $(A, \m)$ y $(B,\mathfrak{n})$ son anillos locales. Un homomorfismo $\varphi:A\to B$ se dice \emph{local} si $\varphi^{-1}(\mathfrak{n})=\m$. 
+\end{defi}
+
+\begin{defi}
+Sean $(X,\calA), (Y,\mathcal{B})$ espacios localmente anillados. Diremos que un morfismo $(f,f^{\sharp}):(X,\calA)\to (Y,\mathcal{B})$ de espacios anillados es local cuando para cada punto $x\in X$, $f^{\sharp}_x:\mathcal{B}_{f(x)}\to\calA_x$ sea un homomorfismo local. 
+\end{defi}
+
+\begin{defi}
+Un \emph{esquema afín} es un espacio localmente anillado $(X,\OO_X)$ que es isomorfo (como espacio localmente anillado) al espectro de algún anillo. Un \emph{esquema} es un espacio localmente anillado $(X,\OO_X)$ tal que $X$ se puede recubrir por abiertos $\{U_i\}_{i\in I}$ tales que $(U_i,\OO_X|_{U_i})$ es un esquema afín. 
+\end{defi}
+
+
+
 \section{Ejercicios}
 \begin{ejer}
 Probar que el haz $\OO_X(U)$ es realmente un haz, describiendo las restricciones. 

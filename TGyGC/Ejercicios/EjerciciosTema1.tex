@@ -61,7 +61,8 @@ Basta sustituir en la ecuación del ejercicio anterior, que nos daría $-p_1+p_3
 Encuentra todos los árboles $T$ tales que su complementario $\overline{T}$ es también un árbol.
 \end{ejercicio}
 \begin{solucion}
-\url{https://math.stackexchange.com/questions/369225/trees-whose-complement-is-also-a-tree}
+Un árbol de $n$ vértices tiene $n-1$ aristas. Además, para un conjunto de $n$ vértices hay $\binom{n}{2}$ posibles aristas. Para que el complementario de un árbol sea también un árbol debería darse $\binom{n}{2}-(n-1)=(n-1)$, lo que nos da $n(n-1)=4(n-1)$. Esto se cumple para $n=1$ y $n=4$, luego tenemos el árbol trivial y los árboles de 4 vértices. DIBUJAR LOS POSIBLES ÁRBOLES DE 4 VÉRTICES
+
 \end{solucion}
 
 \newpage
@@ -72,7 +73,7 @@ Demuestra que todo árbol $T$ tiene un número de hojas mayor o igual que el gra
 de $T$.
 \end{ejercicio}
 \begin{solucion}
-
+Trivial: considerar el vértice de grado máximo, en el peor de los casos todas las hojas están conectadas a este vértice, en otros casos de los vértices adyacentes saldrán más hojas. 
 \end{solucion}
 
 \newpage

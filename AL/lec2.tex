@@ -1,0 +1,87 @@
+\documentclass[AL.tex]{subfiles}
+
+\begin{document}
+
+
+%\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
+
+\chapter{Análisis asintótico}
+
+\section{Complejidad}
+
+El análisis asintótico consiste en el estudio de la eficiencia de un algoritmo en el \emph{peor caso}. 
+
+\begin{ej}
+Supongamos que tenemos un inventario, que para poder leerlo necesitamso 10000 milisegundos (ms) y 10 ms en procesar una transacción (por ejemplo clasificar un libro). Entonces, el tiempo de $n$ transacciones será $T(n)=10000+10n$. Cuando $n>>0$, el término que domina es $10n$. 
+\end{ej}
+
+La notación que usamos es la llamada Big-o (o grande): si $n$ es el tamaño de la entrada, $T(n)$ es una función de complejidad temporal (running time) y supongamos que existe una función conocida $f(n)$, decimos que $T(n)\in O(f(n))$ si $T(n)\leq c f(n)$ para alguna constante $c$ a partir de un $n$ suficientemente grande (se dice que $T$ es de orden $f(n)$). $O(f(n))$ es el conjunto de funciones que cumplen la propiedad que acabamos de definir.
+
+\begin{ej}
+$T(n)=10^6n\in O(n)$. Podemos tomar $C=10^6$ y $n_0=1$, de modo que para todo $n\geq n_0$ se cumple la definición. Se observa con este ejemplo que la notación $O(\cdot)$ prescinde de las constantes. Se tiene además que, por ejemplo.
+\end{ej}
+\begin{ej}
+$T(n)=n\in O(n^k)$ para todo $k\geq 1$. $T(n)=n^3+n^2+n\in O(n^3)$, por ejemplo con $c=3$ y $n_0=1$.
+\end{ej}
+
+\begin{ej}
+$n^2\notin O(n)$. 
+\end{ej}
+
+\begin{ej}
+$O(\cdot)$ no da toda la información. El algoritmo de búsqueda binaria tiene una función de complejidad temporal $T(n)=\log n\in O(\log n)$. Pero este es el peor caso. En el mejor caso podría encontrar el elemento al primer paso, es decir, sería $O(1)$. Exite también el estudio del caso promedio, aunque no lo estudiaremos. 
+\end{ej}
+
+\begin{ej}
+$e^{3}\notin O (e^n)$ pues $e^{3n}=e^{2n}e^n$, luego no se puede minorar por una constante (se puede probar usando límites). $10^n\notin O(2^n)$ por una razón similar. 
+\end{ej}
+
+\begin{ej}
+Consideremos $T(n)=n\log n$ y $U(n)=100n$. Asintóticamente $U(n)$ es más rápido, pero el $n_0$ a partir del cual se cumple esto es muy grande para la mayoría de los casos prácticos, en los que $\log n\sim 50$. Así que en la práctica es preferible $T(n)$.
+\end{ej}
+
+Introducimos la notación $\Omega(f(n))$ para referirnos al conjunto de las funciones $T(n)$ tales que $T(n)\geq Df(n)$ para todo $n\geq n_0$, $D\in\N$. Es claro que $\Omega$ es inverso de $O$, es decir, $T(n)\in O(f(n))\Leftrightarrow f(n)\in\Omega(T(n))$.
+
+\begin{ej}
+$2n\in\Omega(n)$. Se puede ver por la definición o por la equivalencia con $O$. De la misma forma, $n^2\in\Omega(3n^2+n\log n)$. 
+\end{ej}
+
+La notación $\Theta(f(n))$ se refiere al conjunto $O(f(n))\cap\Omega(f(n))$. En cierto sentido, $\Theta$ representa la complejidad ``óptima''.
+
+\begin{ej}
+$n^3\in\Theta(3n^3-n^2)$. 
+\end{ej}
+
+\begin{ej}
+El algoritmo para calcular el máximo de $n$ valores tiene $T(n)=\Theta(n)$. De hecho es lineal siempre, puesto que siempre hay que comprobar todos los elementos. 
+\end{ej}
+
+\begin{ej}
+$T(n)=n(1+\sin n)\in O(n)$ y $T(n)\in\Omega(0)$ ya que $\sin n\in [-1,1]$. No puede estar en $\Theta(f(n))$, porque la gráfica de la función oscila entre $2n$ y 0. Y no puede ser otra función porque tiene que estar entre esas 2. 
+\end{ej}
+
+\begin{nota}
+Asumimos el modelo de computación RAM, donde hay operaciones de coste constante $O(1)$: $+,-,\times, \div, \leq$, if... llamadas funciones primitivas. Hay también operaciones más complejas como bucles, subrutinas, etc. que sí dependerán de $n$. En la práctica esto no es exactamente así, pues no se tarda lo mismo en sumar dos números pequeños que dos números muy grandes. 
+\end{nota}
+
+\subsection{Complejidades habituales}
+
+$O(1)\subset O(\log n)\subset O(n)\subset O(n\log n)\subset O(n^2)\subset O(2^n)\subset O(n!)\subset O(n^n)$
+
+Normalmente se considerar que un algoritmo es eficiente cuando a lo sumo está en $O(n\log n)$. Si está en $O(n^k)$ para $k\geq 2$ se llama polinomial. A partir de $O(2^n)$ se considera inútil.
+
+
+\begin{ejer}[La menor caja contenedora]\
+
+Input: $n$ puntos en $\R^p$. 
+
+Output: la caja $p$-dimensional de mínimo volumen que contiene a todos los puntos. 
+
+Una caja es hipercubo que tiene lados paralelos a los ejes (isotéticos). 
+
+El ejercicio consiste en dar un algoritmo (preferiblemente no inútil) y su complejidad.
+
+%dbanez@us.es
+\end{ejer}
+
+\end{document}
