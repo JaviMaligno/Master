@@ -29,17 +29,63 @@ Para $n\geq k+1$ y $G$ conexo sin contener $P_k$, entonces existen $x,y\in V(G)$
 HACER LA SEGUNDA PARTE
 
 
+
+\end{dem}
+
+\begin{prop}
+Si $G$ es maximal para $K_r\not\subset K$, entonces $G$ es $(r-1)$-partito completo.
+\end{prop}
+\begin{dem}
+Consideramos los $r-1$ vértices de $K_{r-1}$, que necesariamente está contenido en $G$ y hacemos la partición $V(G)=V_1\cup\cdots V_r$, donde $V_i$ contiene a $x_i\in K_{r-1}$ y todos los demás $v\in G$ tales que $vx_i\notin E(G)$. Es claro que $V_i\neq\emptyset$. Además $V_i\subset V(G-K)\cup\{x_i\}$. Veamos que esta es una partición adecuada. En primer lugar, si $v\notin V_i$ para ningún $i$, entonces $vx_i\in E(G)$ para todo $i$, luego tendríamos un $K_r$, así que estos subconjuntos recubren el grafo. Si $v\in V_i\cap V_j$, entonces $v\in V_i$ luego $vx_i\in E(G)$ y análogamente $vx_j\in E(G)$, luego $i=j$. Así que $V_i\cap V_j=\emptyset$ para $i\neq j$. Nos falta ver qué pasa con las aristas que no contienen a un $x_i$. Sean $u,v\in V_i$. Como $G$ es extremal, $ux_j\in E(G)$ para $j\neq i$. Estas aristas nos dan $K_{r-2}+u=K_{r-1}$. Lo mismo para $v$.  Si la arista $uv\in E(G)$, se formaría un $K_r$ con el $K_{r-1}$ anterior. 
+\end{dem}
+
+
+$||K_{n1,\dots, n_k}||=\sum_{1\leq i<j\leq k}n_in_j$
+
+
+\begin{prop}[diapo 22]
+Si $G$ es extremal, sus clases son lo más iguales posibles. 
+\end{prop}
+\begin{dem}
+Sea $G$ extremal $(r-1)$-partito tal que $K_r\not\subset G$. Si denotamos $|V_i|=n_i$, vamos a probar que $|n_i-n_j|\leq 1$ para todo $1\leq i<j\leq r-1$. Supongaos que existen $i,j$ con $|n_i-n_j|\geq 2$. Sin pérdida de generalidad ponemos $i=1, j=2$. Entonces $n_1\geq n_2+2$. Sea $G'$ $(r-1)$-partito completo con $V'(G)=V(G)$ con las siguientes clases: $V'_1=V_1-\{x\}$, $V_2'=V_2\cup\{x\}$, $V'_i=V_i$ para $3\leq i\leq r-1$. 
+Tenemos $||G'||=\sum_{1\leq i<j\leq k}n'_in'_j$, que vamos a ver que es estrictamente mayor que $||G||$, contradiciendo el hecho de que $G$ sea extremal. Así,
+\[
+\sum n'_in'_j=n'_1n'_2+\sum_{j\geq 3}n'_1n_j+\sum_{j\geq 3}n'_2n_j+\sum_{3\leq i<j\leq r-1}n_in_j=
+\]
+\[
+(n_1-1)(n_2+1)+\sum_{j\geq 3}(n_1+n_2)n_j+\sum_{3\leq i<j\leq r-1}n_in_j=
+\]
+\[
+n_1n_2-n_2+n_1-1+\sum_{1\leq i<j\leq r-1} n_in_j=-n_2+n_1-1+||G||.
+\]
+
+Por hipótesis $n_1-n_2-1\geq 1$, de donde se deduce el resultado. 
+\end{dem}
+
+\begin{teorema}
+Si $G\in Ex(n,K_r)$ entonces $G\cong T_{r-1}(n)$.
+\end{teorema}
+\begin{dem}
+Lo hacemos por inducción en $n$. Si $|G|=n\leq r-1$ entonces $G\cong K_n=T_{r-1}(n)$ por definición. Supongamos que el resultado es cierto para $m<n$, esto es, $G\cong T_{r-1}(m)$, siendo $n\geq r$. 
+
+Si $K_r\not\subset G$ extremal, entonces $K=K_{r-1}\subset G$ (si no lo contuviera no sería extremal porque podríamos añadir aristas). $|G-K|=n-(r-1)<n$, así que $G-K$ verifica la hipótesis de inducción. Vamos ver que $||G||$ es el mismo que el de la condición de extremalidad de los grafos de Turán, es decir, $t_{r-1}(n)=\frac{1}{2}n^2\frac{r-2}{r-1}$. Demostramos que es menor o igual, y por extremalidad se dará la igualdad.
+
+Como $G-K$ está en la hipótesis de inducción, $||G-K||=t_{r-1}(n-r+1)$. Dado un vértice $v\in K-G$ podemos añadir a lo sumo $r-2$ aristas de $v$ a $K$ sin que se forme $K_r$. Esto añade un total de como mucho $(r-2)(n-r+1)$ aristas. A este conjunto de aristas lo llamamos $A$. Entonces, como $K$ tiene $\binom{r-1}{2}$ aristas
+\[
+||G||\leq ||G-K||+\binom{r-1}{2}+|A|=||G-K||+\binom{r-1}{2}+(r-2)(n-r+1)=t_{r-1}(n).
+\] 
+Efectivamente, 
+\[
+t_{r-1}(n)=\binom{r-1}{2}+t_{r-1}(n-r+1)+|B|
+\]
+donde $B$ es el conjunto de aristas que van de un vértice de $K_{r-1}$ (hay uno en cada componente del grafo $(r-1)$-partito) a un vértice que no esté en $K_{r-1}$. Entonces $|B|=(r-2)(n-r+1)$ por ser $G$ completo $(r-1)$-partito. Además el término $\binom{r-1}{2}$ proviene de las aristas del $K_{r-1}$ y el resto son aristas que no pasan por este grafo, que serían justamente las de un grafo de Turán de $n-r+1$ vértices. Se tiene entonces la igualdad que queríamos.
 \end{dem}
 
 
 
-
-
-
-
-
-
-
+\begin{ejer}
+Encontrar, para algún $r$ un grafo que no contenga a $K_r$ y que tenga número cromático $r$. Pista: no puede ser $r-1$ partito. 
+\end{ejer}
 
 
 \end{document}
