@@ -81,12 +81,18 @@
 Un haz $\calF$ en un espacio topológico $X$ es \emph{flasque} si para toda inclusión $V\subseteq U$ de abiertos, la restricción $\calF(U)\to\calF(V)$ es sobreyectiva.
 \begin{enumerate}[(a)]
 \item Probar que el haz constante en un espacio topológico irreducible es flasque.
-\item Si $0\to\calF'\to\calF\to\calF''$ es una sucesión exacta de haces, y si $\calF'$ es flasque, entonces para cualquier abierto $U$, la sucesión $0\to\calF'(U)\to\calF(U)\to\calF''(U)\to 0$ es exacta. 
-\item Si $0\to\calF'\to\calF\to\calF''$ es exacta, y si $\calF'$ y $\calF$ son flasque, entonces $\calF''$ es flasque. 
+\item Si $0\to\calF'\to\calF\to\calF''\to 0$ es una sucesión exacta de haces, y si $\calF'$ es flasque, entonces para cualquier abierto $U$, la sucesión $0\to\calF'(U)\to\calF(U)\to\calF''(U)\to 0$ es exacta. 
+\item Si $0\to\calF'\to\calF\to\calF''\to 0$ es exacta, y si $\calF'$ y $\calF$ son flasque, entonces $\calF''$ es flasque. 
 \item Sea $\calF$ un haz cualquiera en $X$. Definimos un nuevo haz $\calG$, llamado haz de \emph{secciones discontinuas} de $\calF$ como sigue. Para cada abierto $U\subseteq X$, $\calG(U)$ es el conjunto de aplicaciones $s:U\to \bigcup_{P\in U}\calF_p$ tales que para cada $P\in U$, $s(P)\in \calF_p$. Probar que $\calG$ es flasque, y que hay un morfismo inyectivo natural de $\calF$ a $\calG$. 
 \end{enumerate} 
 \end{ejercicio}
-\begin{solucion}
+\begin{solucion}\
+\begin{enumerate}[(a)]
+\item Recordamos que un espacio topológico $X$ se dice irreducible si no puede ser expresado como unión $X=X_1\cup X_2$ de subconjuntos propios cerrados no vacíos. Sea $A$ un grupo abeliano con la topología discreta y consideremos el haz constante $\calA$ en $X$ determinado por $A$. Sean $V\subseteq X$ abierto no vacío, $a\in A$ y $f\in\calA(V)$ tal que $a\in f(V)$. Se tiene que $H=f^{-1}(a)$ es un abierto y cerrado de $V$, con lo que $V\setminus H$ también lo es. En particular, son de la forma $V\cap F_1$ y $V\cap F_2$, respectivamente, para ciertos cerrados $F_1$ y $F_2$ de $X$. Además, $X=F_1\cup F_2\cup (X\setminus V)$. Como $X$ es irreducible, alguno de estos conjuntos tiene que ser igual a $X$, y claramente no puede ser ni $F_2$ ni $X\setminus V$, por lo que tiene que ser $F_1$. Esto implica que $H=V$, es decir, $f$ es constante en todo $V$. Por tanto, para todo $U$ que contenga a $V$, $f$ es la restricción de la aplicación constante $c_a:U\to A$ a $V$. Esto demuestra que la restricción $\calA(U)\to\calA(V)$ es sobreyectiva para todo $V\subseteq U$.
+\item
+\item
+\item
+\end{enumerate}
 
 \end{solucion}
 %
