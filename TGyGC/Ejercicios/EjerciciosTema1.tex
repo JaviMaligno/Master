@@ -61,7 +61,24 @@ Basta sustituir en la ecuación del ejercicio anterior, que nos daría $-p_1+p_3
 Encuentra todos los árboles $T$ tales que su complementario $\overline{T}$ es también un árbol.
 \end{ejercicio}
 \begin{solucion}
-Un árbol de $n$ vértices tiene $n-1$ aristas. Además, para un conjunto de $n$ vértices hay $\binom{n}{2}$ posibles aristas. Para que el complementario de un árbol sea también un árbol debería darse $\binom{n}{2}-(n-1)=(n-1)$, lo que nos da $n(n-1)=4(n-1)$. Esto se cumple para $n=1$ y $n=4$, luego tenemos el árbol trivial y los árboles de 4 vértices. DIBUJAR LOS POSIBLES ÁRBOLES DE 4 VÉRTICES
+Un árbol de $n$ vértices tiene $n-1$ aristas. Además, para un conjunto de $n$ vértices hay $\binom{n}{2}$ posibles aristas. Para que el complementario de un árbol sea también un árbol debería darse $\binom{n}{2}-(n-1)=(n-1)$, lo que nos da $n(n-1)=4(n-1)$. Esto se cumple para $n=1$ y $n=4$, luego tenemos el árbol trivial y los árboles de 4 vértices, que salvo isomorfismo son los dos que aparecen dibujados.
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-3.2672,3.8856) rectangle (11.4528,5.592);
+\draw [line width=2.pt] (0.,5.)-- (3.,5.);
+\draw [line width=2.pt] (4.,5.)-- (6.,5.);
+\draw [line width=2.pt] (5.,5.)-- (5.,4.);
+\begin{scriptsize}
+\draw [fill=black] (0.,5.) circle (2.5pt);
+\draw [fill=black] (1.,5.) circle (2.5pt);
+\draw [fill=black] (2.,5.) circle (2.5pt);
+\draw [fill=black] (3.,5.) circle (2.5pt);
+\draw [fill=black] (4.,5.) circle (2.5pt);
+\draw [fill=black] (6.,5.) circle (2.5pt);
+\draw [fill=black] (5.,5.) circle (2.5pt);
+\draw [fill=black] (5.,4.) circle (2.5pt);
+\end{scriptsize}
+\end{tikzpicture}
 
 \end{solucion}
 
@@ -83,6 +100,7 @@ Prueba que si $G$ es un grafo conexo de orden $p$ tal que todo subgrafo suyo de 
 $p -1$ es un árbol ``spanning'', entonces $G$ es un árbol o un ciclo.
 \end{ejercicio}
 \begin{solucion}
+Si $G$ no es un árbol ni un ciclo, entonces contiene un grafo formado por un ciclo y una arista  con un vértice de grado 1. A este tipo de grafo lo vamos a llamar $J_n$, con $n$ dependiendo el orden del ciclo. En el caso de que este sea todo el grado, podemos conseguir un subgrafo de tamaño $p-1$ que no es un árbol spanning, esto es, el ciclo que contiene. Si el grafo es mayor, basta aislar partes del grafo que sean $J_n$ hasta que quede como unión de un árbol o un ciclo y grafos $J_n$.
 \end{solucion}
 
 \newpage
@@ -92,7 +110,7 @@ Prueba o refuta el siguiente enunciado: Si $G$ es un grafo conexo tal que dos cu
 de sus árboles ``spanning'' son isomorfos, entonces $G$ es un árbol o un ciclo.
 \end{ejercicio}
 \begin{solucion}
-
+Razonamos de igual manera que en el ejercicio anterior. Es claro que $J_n$ tiene siempre dos árboles spanning no isomorfos, uno en el que tomamos la arista suelta y vamos rodeando el ciclo hasta dejar solo una arista fuera, y otra en la que empezando por la arista suelta añadimos aristas del ciclo a izquierda y derecha hasta que solo falte una por añadir. Cualquier grafo que lo contenga tendrá más de una clase de isomorfismo de árbol maximal, por lo que para que solo tenga un árbol spanning salvo isomorfismo tendrá que ser un árbol o un ciclo. 
 \end{solucion}
 
 \newpage
