@@ -1,6 +1,6 @@
 	\documentclass[twoside]{article}
 \usepackage{../../estilo-ejercicios}
-
+%\renewcommand{\baselinestretch}{1,3}
 %--------------------------------------------------------
 \begin{document}
 
@@ -37,46 +37,46 @@
 %
 %\newpage
 
-%\begin{ejercicio}{1.5}
-%Probar que un morfismo de haces es un isomorfismo si y solo si es inyectivo y sobreyectivo.
-%
-%\end{ejercicio}
-%\begin{solucion}
-%Sea $\varphi:\calF\to\calG$ un isomorfismo de haces sobre un espacio topológico $X$ con inverso $\psi:\calG\to\calF$. Esto significa que los homomorfismos inducidos para cualquier abierto $U\subseteq X$, $\psi(U)\circ\varphi(U)=(\psi\circ\varphi)(U):\calF(U)\to\calF(U)$ y $\varphi(U)\circ\psi(U)=(\varphi\circ\psi)(U):\calG(U)\to\calG(U)$ son las correspondientes identidades. Con lo cual, tanto $\varphi(U)$ y $\psi(U)$ son isomorfismos de grupos abelianos, implicando como sabemos, que son inyectivos. Esto ya implica por definición que $\varphi$ es inyectivo, puesto que $\ker\varphi(U)=0$ para todo $U$. 
-%
-%Para probar la sobreyectividad usamos que $\varphi$ es isomorfismo si y solo si $\varphi_p:\calF_p\to\calG_p$ es isomorfismo para todo $P\in X$. Como $\varphi_P$ es un isomorfismo de grupos abelianos, podemos decir que en particular es sobreyectivo para todo $P$. Esto es equivalente a afirmar que $\varphi$ es un morfismo de haces sobreyectivo gracias a la segunda parte de la demostración de la proposición 1.1. 
-%\end{solucion}
-%
-%%\newpage
-%
-%\begin{ejercicio}{1.6}\
-%\begin{enumerate}
-%\item[(a)]
-%Sea $\calF'$ un subhaz del haz $\calF$. Probar que la aplicación natural de $\calF$ al haz cociente $\calF/\calF'$ es sobreyectiva y tiene núcleo $\calF'$. Por tanto, hay una sucesión exacta 
-%\[
-%0\to \calF'\to\calF\to \calF/\calF'\to 0.
-%\]
-%
-%\item[(b)] Recíprocamente, si $0\to \calF'\to\calF\to \calF''\to 0$ es una sucesión exacta, probar que $\calF'$ es isomorfo a un subhaz de $\calF$, y que $\calF''$ es isomorfo al cociente de $\calF$ por este subhaz.
-%\end{enumerate}
-%\end{ejercicio}
-%\begin{solucion}\
-%\begin{enumerate}[(a)]
-%\item Probamos la sobreyectividad viendo que la aplicación inducida en las fibras es sobreyectiva. Tenemos que en cada punto $P\in X$, la fibra del cociente $\calF/\calF'$ es $(\calF/\calF')_P=\calF_P/\calF'_P$, por tanto, a nivel de fibras tenemos la aplicación cociente $\calF_P\to \calF_P/\calF'_P$, que sabemos que es sobreyectiva para todo $P$ por ser las aplicaciones cociente de grupos abelianos. Así que $\varphi$ es sobreyectiva.
-%
-%Veamos ahora que la aplicación cociente tiene como núcleo a $\calF'$. Primero vamos a definirla explícitamente. Denotamos $\calG$ al prehaz cociente $U\mapsto \calF(U)/\calF'(U)$. La aplicación cociente $\varphi:\calF\to\calF/\calF'$ será la composición $\varphi=\theta\circ q$, donde $q:\calF\to \calG$ está definida como la aplicación cociente en cada sección, es decir, $q(U): \calF(U)\to \calF(U)/\calF'(U)$, y $\theta:\calG\to\calF/\calF'$ es la aplicación natural del haz asociado. Esta aplicación $\theta$ está definida de la siguiente forma: $\theta(U):\calG(U)\to\left(\calF/\calF'\right)(U)$, $\overline{s}\mapsto\theta(U)(\overline{s}):U\to\bigcup_{P\in U} \calG_P$, $p\mapsto\overline{s}_P$, siendo $\overline{s}_P$ el germen de $\overline{s}$ en $P$.
-%
-%Sea $U\subseteq X$ abierto. Es claro que si $s\in\calF'(U)$, entonces $\varphi(U)(s)=0$, luego $\calF'\subseteq\ker\varphi$. Recíprocamente, sea $s\in \ker\varphi(U)$, esto es, $\theta(U)(\overline{s})$ es la aplicación constantemente nula. Esto signfica que $\overline{s}_P=0$ para todo $P\in U$, lo cual implica que para cualquier recubrimiento abierto $\{V_i\}$ de $U$, $\overline{s}|_{V_i}=0$ para todo $i$ (tiene el mismo germen que la sección nula). Por ser el haz cociente un haz, esto implica que $\overline{s}=0$, o lo que es lo mismo, $s\in \calF'(U)$. 
-%
-%
-%\item Veamos primero que $\calF'$ es isomorfo a un subhaz de $\calF$. Sea $\varphi:\calF'\to\calF$ la aplicación inyectiva de la sucesión exacta. Por el ejercicio 1.4 basta probar que $\varphi:\calF'\to\Ima\varphi$ es sobreyectiva. Para ello consideramos la aplicación inducida en las fibras, que por el ejercicio 1.2 es $\varphi_P:\calF'_p\to\Ima(\varphi_P)$, la cual es evidentemente sobreyectiva. 
-%
-%Sea ahora $\psi:\calF\to\calF''$ la aplicación sobreyectiva de la sucesión exacta, que induce un homomorfismo sobreyectivo $\psi_P:\calF_P\to\calF''_P$ y cuyo núcleo tiene como fibra $(\ker\psi)_P=\ker\psi_P$ por el ejercicio 1.2. Basta aplicar el primer teorema de isomorfía para obtener (haciendo abuso de notación al ser $\ker\psi_P\cong\calF'_P$) $\calF_P/\calF'_P \cong \calF''_P$. Este isomorfismo en las fibras tiene como consecuencia un isomorfismo de haces. 
-%\end{enumerate}
-%\end{solucion}
+\begin{ejercicio}{1.5}
+Probar que un morfismo de haces es un isomorfismo si y solo si es inyectivo y sobreyectivo.
 
-%\newpage
-%
+\end{ejercicio}
+\begin{solucion}
+Sea $\varphi:\calF\to\calG$ un isomorfismo de haces sobre un espacio topológico $X$ con inverso $\psi:\calG\to\calF$. Esto significa que los homomorfismos inducidos para cualquier abierto $U\subseteq X$, $\psi(U)\circ\varphi(U)=(\psi\circ\varphi)(U):\calF(U)\to\calF(U)$ y $\varphi(U)\circ\psi(U)=(\varphi\circ\psi)(U):\calG(U)\to\calG(U)$ son las correspondientes identidades. Con lo cual, tanto $\varphi(U)$ y $\psi(U)$ son isomorfismos de grupos abelianos, implicando como sabemos, que son inyectivos. Esto ya implica por definición que $\varphi$ es inyectivo, puesto que $\ker\varphi(U)=0$ para todo $U$. 
+
+Para probar la sobreyectividad usamos que $\varphi$ es isomorfismo si y solo si $\varphi_p:\calF_p\to\calG_p$ es isomorfismo para todo $P\in X$. Como $\varphi_P$ es un isomorfismo de grupos abelianos, podemos decir que en particular es sobreyectivo para todo $P$. Esto es equivalente a afirmar que $\varphi$ es un morfismo de haces sobreyectivo gracias a la segunda parte de la demostración de la proposición 1.1. 
+\end{solucion}
+
+\newpage
+
+\begin{ejercicio}{1.6}\
+\begin{enumerate}
+\item[(a)]
+Sea $\calF'$ un subhaz del haz $\calF$. Probar que la aplicación natural de $\calF$ al haz cociente $\calF/\calF'$ es sobreyectiva y tiene núcleo $\calF'$. Por tanto, hay una sucesión exacta 
+\[
+0\to \calF'\to\calF\to \calF/\calF'\to 0.
+\]
+
+\item[(b)] Recíprocamente, si $0\to \calF'\to\calF\to \calF''\to 0$ es una sucesión exacta, probar que $\calF'$ es isomorfo a un subhaz de $\calF$, y que $\calF''$ es isomorfo al cociente de $\calF$ por este subhaz.
+\end{enumerate}
+\end{ejercicio}
+\begin{solucion}\
+\begin{enumerate}[(a)]
+\item Probamos la sobreyectividad viendo que la aplicación inducida en las fibras es sobreyectiva. Tenemos que en cada punto $P\in X$, la fibra del cociente $\calF/\calF'$ es $(\calF/\calF')_P=\calF_P/\calF'_P$, por tanto, a nivel de fibras tenemos la aplicación cociente $\calF_P\to \calF_P/\calF'_P$, que sabemos que es sobreyectiva para todo $P$ por ser las aplicaciones cociente de grupos abelianos. Así que $\varphi$ es sobreyectiva.
+
+Veamos ahora que la aplicación cociente tiene como núcleo a $\calF'$. Primero vamos a definirla explícitamente. Denotamos $\calG$ al prehaz cociente $U\mapsto \calF(U)/\calF'(U)$. La aplicación cociente $\varphi:\calF\to\calF/\calF'$ será la composición $\varphi=\theta\circ q$, donde $q:\calF\to \calG$ está definida como la aplicación cociente en cada sección, es decir, $q(U): \calF(U)\to \calF(U)/\calF'(U)$, y $\theta:\calG\to\calF/\calF'$ es la aplicación natural del haz asociado. Esta aplicación $\theta$ está definida de la siguiente forma: $\theta(U):\calG(U)\to\left(\calF/\calF'\right)(U)$, $\overline{s}\mapsto\theta(U)(\overline{s}):U\to\bigcup_{P\in U} \calG_P$, $p\mapsto\overline{s}_P$, siendo $\overline{s}_P$ el germen de $\overline{s}$ en $P$.
+
+Sea $U\subseteq X$ abierto. Es claro que si $s\in\calF'(U)$, entonces $\varphi(U)(s)=0$, luego $\calF'\subseteq\ker\varphi$. Recíprocamente, sea $s\in \ker\varphi(U)$, esto es, $\theta(U)(\overline{s})$ es la aplicación constantemente nula. Esto signfica que $\overline{s}_P=0$ para todo $P\in U$, lo cual implica que para cualquier recubrimiento abierto $\{V_i\}$ de $U$, $\overline{s}|_{V_i}=0$ para todo $i$ (tiene el mismo germen que la sección nula). Por ser el haz cociente un haz, esto implica que $\overline{s}=0$, o lo que es lo mismo, $s\in \calF'(U)$. 
+
+
+\item Veamos primero que $\calF'$ es isomorfo a un subhaz de $\calF$. Sea $\varphi:\calF'\to\calF$ la aplicación inyectiva de la sucesión exacta. Por el ejercicio 1.4 basta probar que $\varphi:\calF'\to\Ima\varphi$ es sobreyectiva. Para ello consideramos la aplicación inducida en las fibras, que por el ejercicio 1.2 es $\varphi_P:\calF'_p\to\Ima(\varphi_P)$, la cual es evidentemente sobreyectiva. 
+
+Sea ahora $\psi:\calF\to\calF''$ la aplicación sobreyectiva de la sucesión exacta, que induce un homomorfismo sobreyectivo $\psi_P:\calF_P\to\calF''_P$ y cuyo núcleo tiene como fibra $(\ker\psi)_P=\ker\psi_P$ por el ejercicio 1.2. Basta aplicar el primer teorema de isomorfía para obtener (haciendo abuso de notación al ser $\ker\psi_P\cong\calF'_P$) $\calF_P/\calF'_P \cong \calF''_P$. Este isomorfismo en las fibras tiene como consecuencia un isomorfismo de haces. 
+\end{enumerate}
+\end{solucion}
+
+\newpage
+
 \begin{ejercicio}{1.16}[\emph{Haces flasque}]
 Un haz $\calF$ en un espacio topológico $X$ es \emph{flasque} si para toda inclusión $V\subseteq U$ de abiertos, la restricción $\calF(U)\to\calF(V)$ es sobreyectiva.
 \begin{enumerate}[(a)]
@@ -88,7 +88,7 @@ Un haz $\calF$ en un espacio topológico $X$ es \emph{flasque} si para toda incl
 \end{ejercicio}
 \begin{solucion}\
 \begin{enumerate}[(a)]
-\item Recordamos que un espacio topológico $X$ se dice irreducible si no puede ser expresado como unión $X=X_1\cup X_2$ de subconjuntos propios cerrados no vacíos. Sea $A$ un grupo abeliano con la topología discreta y consideremos el haz constante $\calA$ en $X$ determinado por $A$. Sean $V\subseteq X$ abierto no vacío, $a\in A$ y $f\in\calA(V)$ tal que $a\in f(V)$. Se tiene que $H=f^{-1}(a)$ es un abierto y cerrado de $V$, con lo que $V\setminus H$ también lo es. En particular, son de la forma $V\cap F_1$ y $V\cap F_2$, respectivamente, para ciertos cerrados $F_1$ y $F_2$ de $X$. Además, $X=F_1\cup F_2\cup (X\setminus V)$. Como $X$ es irreducible, alguno de estos conjuntos tiene que ser igual a $X$, y claramente no puede ser ni $F_2$ ni $X\setminus V$, por lo que tiene que ser $F_1$. Esto implica que $H=V$, es decir, $f$ es constante en todo $V$. Por tanto, para todo $U$ que contenga a $V$, $f$ es la restricción de la aplicación constante $c_a:U\to A$ a $V$. Esto demuestra que la restricción $\calA(U)\to\calA(V)$ es sobreyectiva para todo $V\subseteq U$.
+\item Recordamos que un espacio topológico $X$ se dice irreducible si no puede ser expresado como unión $X=X_1\cup X_2$ de subconjuntos propios cerrados no vacíos. Sea $A$ un grupo abeliano con la topología discreta y consideremos el haz constante $\calA$ en $X$ determinado por $A$. Sean $V\subseteq X$ abierto no vacío, $a\in A$ y $f\in\calA(V)$ tal que $a\in f(V)$. Se tiene que $H=f^{-1}(a)$ es un abierto y cerrado de $V$, con lo que $V\setminus H$ también lo es. En particular, son de la forma $V\cap F_1$ y $V\cap F_2$, respectivamente, para ciertos cerrados $F_1$ y $F_2$ de $X$. Además, $X=F_1\cup F_2\cup (X\setminus V)$. Como $X$ es irreducible, alguno de estos conjuntos tiene que ser igual a $X$, y claramente no puede ser ni $F_2$ ni $X\setminus V$ porque ni $V$ ni $H$ son vacíos, por lo que tiene que ser $F_1$. Esto implica que $H=V$, es decir, $f$ es constante en todo $V$. Por tanto, para todo $U$ que contenga a $V$, $f$ es la restricción de la aplicación constante $c_a:U\to A$ a $V$. Esto demuestra que la restricción $\calA(U)\to\calA(V)$ es sobreyectiva para todo $V\subseteq U$.
 
 \item Por el ejercicio 1.8, tenemos exactitud en $0\to\calF'(U)\to\calF(U)\to\calF''(U)$, luego solo hay que probar que $\varphi(U):\calF(U)\to\calF''(U)$ es sobreyectivo. Probamos primero el siguiente resultado previo:
 \begin{lemma}
