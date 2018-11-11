@@ -90,18 +90,25 @@ Un haz $\calF$ en un espacio topológico $X$ es \emph{flasque} si para toda incl
 \begin{enumerate}[(a)]
 \item Recordamos que un espacio topológico $X$ se dice irreducible si no puede ser expresado como unión $X=X_1\cup X_2$ de subconjuntos propios cerrados no vacíos. Sea $A$ un grupo abeliano con la topología discreta y consideremos el haz constante $\calA$ en $X$ determinado por $A$. Sean $V\subseteq X$ abierto no vacío, $a\in A$ y $f\in\calA(V)$ tal que $a\in f(V)$. Se tiene que $H=f^{-1}(a)$ es un abierto y cerrado de $V$, con lo que $V\setminus H$ también lo es. En particular, son de la forma $V\cap F_1$ y $V\cap F_2$, respectivamente, para ciertos cerrados $F_1$ y $F_2$ de $X$. Además, $X=F_1\cup F_2\cup (X\setminus V)$. Como $X$ es irreducible, alguno de estos conjuntos tiene que ser igual a $X$, y claramente no puede ser ni $F_2$ ni $X\setminus V$, por lo que tiene que ser $F_1$. Esto implica que $H=V$, es decir, $f$ es constante en todo $V$. Por tanto, para todo $U$ que contenga a $V$, $f$ es la restricción de la aplicación constante $c_a:U\to A$ a $V$. Esto demuestra que la restricción $\calA(U)\to\calA(V)$ es sobreyectiva para todo $V\subseteq U$.
 
-\item Por el problema 1.8, tenemos exactitud en $0\to\calF'(U)\to\calF(U)\to\calF''(U)$, luego solo hay que probar que $\calF(U)\to\calF''(U)$ es sobreyectivo. Probamos primero el siguiente resultado previo
+\item Por el ejercicio 1.8, tenemos exactitud en $0\to\calF'(U)\to\calF(U)\to\calF''(U)$, luego solo hay que probar que $\varphi(U):\calF(U)\to\calF''(U)$ es sobreyectivo. Probamos primero el siguiente resultado previo:
 \begin{lemma}
 Sea $U=U_1\cup U_2$, donde $U_1$ y $U_2$ son abiertos. Entonces, dados $s_1\in\calF(U_1)$ y $s_2\in\calF(U_2)$ tales que $\varphi(U_1\cap U_2)(s_1|_{U_1\cap U_2})=\varphi(U_1\cap U_2)(s_2|_{U_1\cap U_2})$, entonces existe $s\in\calF(U)$ tal que $\varphi(U_i)(s|_{U_i})=\varphi(U_i)(s_i)$. 
 \end{lemma}
+\begin{proof}
+Por hipótesis, $s_1|_{U_1\cap U_2}-s_2|_{U_1\cap U_2}\in\ker\varphi(U_1\cap U_2)$. Por exactitud, denotando $\psi:\calF'\to\calF$, existe $t\in\calF'(U_1\cap U_2)$ tal que $\psi(U_1\cap U_2)(t)=s_1|_{U_1\cap U_2}-s_2|_{U_1\cap U_2}$. Por ser $\calF'$ flasque, existe $\tilde{t}\in\calF'(U_1)$ con $\tilde{t}|_{U_1\cap U_2}=t$. Sea $t'=\psi(U_1)(\tilde{t})$, que verifica $t'|_{U_1\cap U_2}=\psi(U_1\cap U_2)(t)=s_1|_{U_1\cap U_2}-s_2|_{U_1\cap U_2}$. Consideramos ahora $s_1-t'\in\calF(U_1)$ y $s_2\in\calF(U_2)$. Por lo observado antes, $(s_1-t')|_{U_1\cap U_2}=s_2|_{U_1\cap U_2}$, así que por los axiomas de haz existe $s\in\calF(U)$ verificando $s|_{U_1}=s_1-t'$ y $s|_{U_2}=s_2$. Como $\varphi(U_i)(t')=0$ por exactitud, hemos encontrado $s\in\calF(U)$ verificando el lema. 
+\end{proof}
 %$\cal BLABLA$ pone en mathcal las mayúsculas 
-\url{https://math.berkeley.edu/~ceur/notes_pdf/Eur_HartshorneNotes.pdf}
-\url{https://www.math.utah.edu/~zwick/Classes/Hartshorne/Section2_1.pdf}
-\url{https://math.stackexchange.com/questions/2376628/a-sheaf-is-flasque-if-all-restriction-maps-are-surjective}
+%\url{https://math.berkeley.edu/~ceur/notes_pdf/Eur_HartshorneNotes.pdf}
+%\url{https://www.math.utah.edu/~zwick/Classes/Hartshorne/Section2_1.pdf}
+%\url{https://math.stackexchange.com/questions/2376628/a-sheaf-is-flasque-if-all-restriction-maps-are-surjective}
+
+Para $s\in\calF''(U)$, consideremos ahora el conjunto de tuplas $(V,t)$ donde $t\in\calF(V)$ tal que $\varphi(V)(t)=s|_V$, y definimos un orden en este conjunto como $(V,t)\leq (V',t')$ si $V\subseteq V'$ y $t'|_V=t$. Este conjunto es no vacío porque el par $(\emptyset, 0)$ está en él. Cualquier cadena creciente $\{(V_i,t_i)\}$ tiene una cota superior, pues podemos construir $V=\bigcup_i V_i$ y por los axiomas de haz existe $t\in\calF(V)$ con $t|_{V_i}=t_i$. Por el lema de Zorn existe un elemento maximal en el conjunto de tuplas, $(V_m,t_m)$. Basta probar entonces que $V_m=U$. 
+
+Supongamos que $x\in U\setminus V_m$. Por el ejercicio 1.3, existen un entorno $V_x$ de $x$ y $t_x\in\calF(V_x)$ con $\varphi(V_x)(t_x)=s|_{V_x}$. Usamos el lema aplicado a $V_m$ y $V_x$, de lo que deducimos que existe una sección $t\in\calF(V_m\cup V_x)$ tal que $\varphi(V_x)(t|_{V_x})=\varphi(V_x)(t_x)=s|_{V_x}$. Por maximalidad, debe ser $V_m=V_m\cup V_x$, lo cual contradice el hecho de que $x\notin V_m$. 
 
 \item Por el apartado anterior sabemos que la sucesión $0\to\calF'(U)\to\calF(U)\to\calF''(U)\to 0$ es exacta. Sean $V\subseteq U$ abiertos. Dado $s\in\calF''(V)$, por exactitud existe $t\in\calF(V)$ tal que $t\mapsto s$. Como $\calF$ es flasque, existe $r\in\calF(U)$ tal que $r|_V=t$. Basta ahora tomar $\varphi(U)(r)$, pues por conmmutatividad, $\varphi(U)(r)|_V=\varphi(V)(r|_V)=s$. 
 
-\item Dada $s\in\calG(V)$, para cualquier abierto $U$ que contenta a $V$ definimos $\tilde{s}:U\to \bigcup_{P\in U}\calF_p$ como $\tilde{s}=s$ en $V$ y $\tilde{s}=0$ en $U\setminus V$. Es claro que $\tilde{s}\in\calG(U)$ y verifica $\tilde{s}|_V=s$. Esto prueba que $\calG$ es flasque. Definimos ahora $\iota(U):\calF(U)\to\calG(U)$ como $s\mapsto s(P)=s_P$ (el germen de $s$ en $P$). Esta aplicación es inyectiva, puesto que $s_P=0$ para todo $P\in U$, la condición de haz implica que $s=0$. 
+\item Dada $s\in\calG(V)$, para cualquier abierto $U$ que contenga a $V$ definimos $\tilde{s}:U\to \bigcup_{P\in U}\calF_p$ como $\tilde{s}=s$ en $V$ y $\tilde{s}=0$ en $U\setminus V$. Es claro que $\tilde{s}\in\calG(U)$ y verifica $\tilde{s}|_V=s$. Esto prueba que $\calG$ es flasque. Definimos ahora $\iota(U):\calF(U)\to\calG(U)$ como $s\mapsto s(P)=s_P$ (el germen de $s$ en $P$). Esta aplicación es inyectiva, puesto que si $s_P=0$ para todo $P\in U$, la condición de haz implica que $s=0$. 
 \end{enumerate}
 
 \end{solucion}
