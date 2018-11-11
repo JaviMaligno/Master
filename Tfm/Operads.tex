@@ -1,0 +1,47 @@
+\documentclass[TFM.tex]{subfiles}
+
+\begin{document}
+
+%\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
+\chapter{Little disks operad}
+
+ESCRIBIR ALGO AQUÍ, INCLUYENDO ALGO DE QUE ALL MAPS ARE REQUIRED TO BE CONTINUOUS
+
+
+\section{Operads}
+First we give the general notion of operad and some properties of this object. EN PRINCIPIO LO DEFINO EN TOP Y YA PREGUNTO SI HACE FALTA QUE SEA EN UNA MONOIDAL SIMÉTRICA. SI HACE FALTA, HACER UNA SECCIÓN DE CATEGORÍAS SIMÉTRICAS MONOIDALES. SI NO, CITAR A DONALD YAU CON QUE SE PUEDE DEFINIR CON MÁS GENERALIDAD
+
+
+NO PARECE QUE ESTA DEFINICIÓN CAPTURE LA COMPOSICIÓN DEL LITTLE DISKS OPERAD
+\begin{defi}
+A (non-symmetric) \emph{operad} is a tuple $(O, \circ, \mathbbm{1})$ consisting of the following data:
+\begin{enumerate}[(1)]
+\item a sequence of topological spaces $O=\{O(n)\}_{n\geq 0}$, whose elements are called \emph{$n$-ary operations}.
+\item an element $\mathbbm{1}\in P(1)$ is called the \emph{identity},
+\item for all positive integers $n,k_1,\dots, k_n$, a \emph{composition} map
+\begin{align*}
+\circ:P(n)\times P(k_1)\times\cdots\times P(k_n)&\to P(k_1+\cdots+k_n)\\
+(\theta, \theta_1,\dots, \theta_n)&\to \theta\circ(\theta_1,\dots, \theta_n),
+\end{align*}
+satisfying the following axioms:
+\begin{itemize}
+\item \emph{indentity}: $\theta(1,\dots, 1)=1\circ\theta$,
+\item \emph{associativiy}:
+\end{itemize}
+\end{enumerate}
+\end{defi}
+
+\url{https://en.wikipedia.org/wiki/Operad_theory}
+
+We're treating operads only in the category of topological spaces, but they can be defined in a more general setting, namely, in any \emph{symmetric monoidal category} \cite{Yau}.
+
+\section{Little disks operad}
+
+
+
+
+\end{document}
+
+%isotopía \url{https://link.springer.com/chapter/10.1007%2F978-94-015-9319-9_6}
+%Orientation preserving (que las cartas conservan la orientación) https://math.stackexchange.com/questions/1319234/meaning-of-the-expression-orientation-preserving-homeomorphism 
+%O sea, conserva la orientación como superficie
