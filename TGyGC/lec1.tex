@@ -5,7 +5,7 @@
 
 %\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
 \chapter{Teoría extremal de grafos}
-
+\section{Subgrafos prohibidos}
 \begin{teorema}
 Sea $G$ conexo con $|G|=n\geq 3$ tal que $\forall x, y\in V(G)$ con $xy\notin E(G)$ se verifica $\delta(x)+\delta(y)\geq k$. Entonces 
 
@@ -81,7 +81,21 @@ t_{r-1}(n)=\binom{r-1}{2}+t_{r-1}(n-r+1)+|B|
 donde $B$ es el conjunto de aristas que van de un vértice de $K_{r-1}$ (hay uno en cada componente del grafo $(r-1)$-partito) a un vértice que no esté en $K_{r-1}$. Entonces $|B|=(r-2)(n-r+1)$ por ser $G$ completo $(r-1)$-partito. Además el término $\binom{r-1}{2}$ proviene de las aristas del $K_{r-1}$ y el resto son aristas que no pasan por este grafo, que serían justamente las de un grafo de Turán de $n-r+1$ vértices. Se tiene entonces la igualdad que queríamos.
 \end{dem}
 
+$K_s^r=K_{s,\dots, s}$, $t_{r-1}(n)=\frac{1}{2}n^2\frac{r-2}{r-1}$ cuando $r-1|n$.
 
+Un grafo se dice denso si el cociente $\frac{2|E|}{|V|(|V|-1}$ tiende a una constante. En el caso de los grafos de Turan, como el número de aristas es del orden de $|V|^2$, se verifica esta propiedad. Se cumple que $\lim_{n\to\infty} ex(n;H)\binom{n}{2}^{-1}=\frac{\chi(H)-2}{\chi(H)-1}$. En particular para $t_{r-1}(n)$ este cociente vale $\frac{r-2}{r-1}=\frac{\chi(K_r)-2}{\chi(K_r)-1}$. 
+
+\section{Coloración de aristas}
+
+\begin{ej}[el problema de la fiesta]
+Sea $K_6$ con una 2-coloración de aristas (rojo y azul). Entonces existe un $K_3$ monocromático. Se tiene que $\delta(v)=5$ $\forall v\in V(K_6)$. Sea $v$ cualquiera, existen 3 aristas incidentes en $v$ del mismo color. Supongamos $vv_i$, $i=1,2,3$ de color rojo. Sea $\gene{v_1,v_2,v_3}=K_3$. Si existe $v_1v_2$ es roja, entonces $\gene{v,v_1, v_2}=K_3$, y lo mismo con cualqueir caso en el que haya una roja. Si toda son azules, entonces tenemos que $\gene{v_1,v_2,v_3}=K_3$ es azul.  
+\end{ej}
+
+\begin{teorema}
+$R(r,s)\leq R(r-1,s)+R(r,s-1)$. Si $R(r-1,s)$ y $R(r,s-1)$ son pares, la desigualdad es estricta. 
+\end{teorema}
+
+Por ejemplo, $R(3,4)\leq R(3,3)+R(2,4)$, pero sabemos que $R(3,3)=6$ y $R(2,4)=4$, luego $R(3,4)<10$. Además en las diapositivas hay un ejemplo que nos da $R(3,4)\geq 7$, y otro ejemplo que es $K_8$ 2-coloreado que no tiene $K_4$ azul ni $K_3$ rojo, con lo que $R(3,4)=R(4,3)>8$. Concluimos que necesariamente $R(3,4)=9$. 
 
 \begin{ejer}
 Encontrar, para algún $r$ un grafo que no contenga a $K_r$ y que tenga número cromático $r$. Pista: no puede ser $r-1$ partito. 
