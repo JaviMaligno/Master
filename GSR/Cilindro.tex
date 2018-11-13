@@ -215,7 +215,7 @@ donde $C_1$ es la semicircunferencia abierta superior, $C_2$ la derecha, $C_3$ l
 
 %Obsérvese que la estructura de variedad diferenciable anterior que le hemos dado al cilindro coincide salvo elección de dominio con las estructuras que tiene como variedad producto $S^1\times \R$, como superficie de revolución generada por la recta $\alpha(t)=(1,0,t)$ y como superficie reglada generada por la curva $\alpha(\theta)=(\cos\theta,\sin\theta, 0)$ y el vector $(0,0,1)$. Así que podríamos dar cualquiera de estas estructuras y sería trivialmente compatible con la anterior. De modo que vamos a dar otra diferente que no sea tan trivial.
 
-Consideremos la aplicación $\psi^{-1}:\R^2 \setminus\{0\}\to C$ dada por $\psi^{-1}(x,y)=\left(\frac{x}{\sqrt{x^2+y^2}},\frac{y}{\sqrt{x^2+y^2}}, \log\sqrt{x^2+y^2} \right)$, consistente en transformar las semirrectas que parten del origen de $\R^2$ en las líneas verticales del cilindro. Esta aplicación es claramente diferenciable como aplicación $\R^2\to\R^3$, y vamos a ver que tiene una inversa diferenciable, que será la carta que formará el nuevo atlas diferenciable. Basta tomar $\psi:C\to\R^2\setminus\{0\}$ definida como $\psi(x,y,z)=(xe^z,ye^z)$. 
+Consideremos la aplicación $\psi^{-1}:\R^2 \setminus\{0\}\to C$ dada por $$\psi^{-1}(x,y)=\left(\frac{x}{\sqrt{x^2+y^2}},\frac{y}{\sqrt{x^2+y^2}}, \log\sqrt{x^2+y^2} \right),$$ consistente en transformar las semirrectas que parten del origen de $\R^2$ en las líneas verticales del cilindro. Esta aplicación es claramente diferenciable como aplicación $\R^2\to\R^3$, y vamos a ver que tiene una inversa diferenciable, que será la carta que formará el nuevo atlas diferenciable. Basta tomar $\psi:C\to\R^2\setminus\{0\}$ definida como $$\psi(x,y,z)=(xe^z,ye^z).$$ 
 
 \subsection{Compatibilidad}
 
@@ -228,8 +228,14 @@ y
 \[
 \psi\circ\varphi_1^{-1} : \varphi_1(C_1\times\R)\to \psi(C_1\times\R)
 \]
-tienen coordenadas definidas como composicion de funciones diferenciables en los dominios correspondientes, por lo que son diferenciables. 
+tienen coordenadas definidas como composición de funciones diferenciables en los dominios correspondientes como vamos a ver. Por lo que son diferenciables. 
 %Notar que x/raiz <= 1
+\[
+\varphi_1\circ \psi^{-1}(x,y)=\varphi_1\left(\frac{x}{\sqrt{x^2+y^2}},\frac{y}{\sqrt{x^2+y^2}}, \log\sqrt{x^2+y^2} \right)=\left(\arccos\left(\frac{x}{\sqrt{x^2+y^2}}\right),  \log\sqrt{x^2+y^2} \right)
+\]
+\[
+\psi\circ\varphi_1^{-1}(x,y)=\psi(\cos(x),\sin(x),z)=(\cos(x)e^z,\sin(x)e^z)
+\]
 
 \section{Ejemplos de aplicaciones y funciones diferenciables}
 
