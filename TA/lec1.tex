@@ -196,9 +196,15 @@ A partir de las sucesión exacta corta evidente $0\to C_*(A)\to C_*(X)\to C_*(X,
 Una aplicación de pares $f:(X,A)\to (Y,B)$ es una aplicación $f:X\to Y$ tal que $f(A)\subseteq B$. 
 \end{defi}
 
-Una aplicación de pares induce una aplicación $f!_A:A\to B$, así que se puede definir un morfismo de complejos de cadenas inducido por $f$, $f_*:C_*(X,A)\to C_*(Y,B)$ como $[c]\mapsto [f_*(c)]$ que cumple las propiedades de funtorialiad. Por tanto da lugar también a un homomorfismo en homología $f_*:H_*(X,A)\to H_*(Y,B)$, que es natural con respecto a la sucesión exacta larga de homología relativa, es decir, conmuta el diagrama HACER DIAGRAMA, DE H(A) A H(B) VA LA RESTRICCIÓN ESTRELLA
+Una aplicación de pares induce una aplicación $f|_A:A\to B$, así que se puede definir un morfismo de complejos de cadenas inducido por $f$, $f_*:C_*(X,A)\to C_*(Y,B)$ como $[c]\mapsto [f_*(c)]$ que cumple las propiedades de funtorialiad. Por tanto da lugar también a un homomorfismo en homología $f_*:H_*(X,A)\to H_*(Y,B)$, que es natural con respecto a la sucesión exacta larga de homología relativa, es decir, conmuta el diagrama 
+\[
+\begin{tikzcd}
+\cdots \to H_n(A)\arrow[r]\arrow[d, "f|_{A*}"] & H_n(X)\arrow[r]\arrow[d, "f_*"] & H_n(X,A)\arrow[d, "f_*"]\arrow[r] &H_{n-1}(A)\arrow[d]\to\cdots\\
+\cdots \to H_n(B)\arrow[r] & H_n(Y)\arrow[r] & H_n(X,B)\arrow[r]& H_{n-1}(B)\to\cdots
+\end{tikzcd}
+\]
 
-ya que la conmutatividad se tiene ya a nivel de complejos de cadenas, y la conmutatividad con $\partial$ se puede probar (HACERLO COMO EJERCICIO EN GENERAL, NO NECESARIAMENTE EL COMPLEJO RELATIVO). 
+ya que la conmutatividad se tiene ya a nivel de complejos de cadenas, y la conmutatividad con $\partial$ se puede probar. 
  
 
 \begin{teorema}[de excisión]\label{excision}
@@ -255,7 +261,39 @@ C_q(X)\arrow[r, "S_q"] & C_q(X)
 \] 
 Si consideramos la identidad $\delta:\Delta^q\to\Delta^q\in C_q(\Delta^q)$, $\sigma=\sigma_*(\delta)\in C_q(X)$, entonces $S_q(\sigma)=\sigma_*(S_q(\delta))$. 
 
-Tendremos luego un cubo como el siguiente COPIAR EL CUBO O LAS CARAS POR SEPARADO, BUSCAR TIKZ COMMUTATIVE CUBE
+Tendremos luego un cubo como el siguiente 
+\[
+\begin{tikzcd}
+&
+C_q(\Delta^q)
+\ar{dl}[swap, sloped, near start]{\sigma_*}
+\ar{rr}{S_q}
+\ar[]{dd}[near start]{d}
+& & C_q(\Delta^q)
+\ar{dd}{d}
+\ar{dl}[swap, sloped, near start]{\sigma_*}
+\\
+C_q(X)
+\ar[crossing over]{rr}[near end]{S_q}
+\ar{dd}[swap]{d}
+& & C_{q}(X)
+\ar[crossing over]{dd}[]{d}
+\\
+&
+C_{q-1}(\Delta^q)
+\ar[near start]{rr}{S_{q-1}}
+\ar[sloped, swap]{dl}{\sigma_*}
+& & C_{q-1}(\Delta^q)
+\ar[sloped, swap]{dl}{\sigma_*}
+\ar{dl}
+\\
+C_{q-1}(X)
+\ar{rr}{S_{q-1}}
+& & C_{q-1}(X)
+\ar[crossing over, leftarrow, near start]{uu}{}
+\end{tikzcd}
+\]
+en el que todas las caras salvo la frontal habrán sido probadas conmutativas, pero la conmutatividad de esta cara se deduce de la del resto.
 
 Vamos a definir entonces $S$ y $T$ inductivamente. $S(\delta_0)=\delta_0=T(\delta_0)$. $S_q(\delta_q)=B_q(S_{q-1}d\delta_q)$, donde $B_q$ es el cono sobre la subdivisión baricéntrica de $d(\delta_q)$ (recordemos que $\Delta_q$ es el cono de $\Delta_{q-1}$, que podemos tomar con vértice extra un punto que tiene como proyección el baricentro de $\Delta_{q-1}$, y sobre una cadena no es más que una cadena de conos). Aunque no se vea muy intuitivo, a cada símplice le asocia la suma de los símplices de su subdivisión baricéntrica. $T_q(\delta_q)=B_q(\delta_q-S\delta_q-T_{q-1}(d\delta_q))$.
 
@@ -287,14 +325,14 @@ Sea $X$ un espacio topológico y $\mathcal{P}$ un recubrimiento por abiertos de 
 Dado $[z]\in H_q(X,A)$, $z$ es un ciclo relativo, luego $d(z)$ es un borde relativo, así que es una cadena en $A$. Además $z-S(z)=dT(z)+Td(z)$. Se tiene que $Td(z)$ tiene imagen en $A$, luego $z\equiv S(z)+dT(z)\mod A$. Así que $[z]=[S(z)]\in H_q(X,A)$. Inductivamente obtenemos $[z]=S^r(z)]\in H_q(X,A)$, luego basta tomar $r>0$ como en el corolario \ref{r}. 
 \end{proof}
 
-Finalmente podemos probar que $i_*:H_q(X-Z,A-Z)\to H_q(X,A)$ es isomorfismo. Primero vemos que es sobreyectiva. Sea $[z]\in H_q(X,A)$, $z=\sum\lambda_i\sigma_i$ subordinado a $\{int A, X-\overline{Z}\}$, esto es, cualquier $\sigma_i$ cuya imagen caiga en $X-Z\supseteq X-\overline{Z}$. Entonces la imagen cae en $int(A)\subseteq A$, luego los podemos eliminar. Podemos suponer entonces que $X$ cae $X-Z$, luego $[z]$ define una clase  en $H_q(X-Z,A-Z)$. 
+Finalmente podemos probar que $i_*:H_q(X-Z,A-Z)\to H_q(X,A)$ es isomorfismo. Primero vemos que es sobreyectiva. Sea $[z]\in H_q(X,A)$, $z=\sum\lambda_i\sigma_i$ subordinado a $\{int A, X-\overline{Z}\}$, esto es, cualquier $\sigma_i$ cuya imagen no caiga en $X-Z\supseteq X-\overline{Z}$, verifica que su imagen cae en $int(A)\subseteq A$, luego los podemos eliminar. Podemos suponer entonces que $X$ cae $X-Z$, luego $[z]$ define una clase  en $H_q(X-Z,A-Z)$. 
 
 Ahora probamos que $i_*$ es inyectiva. Si $[z]\in H_q(X-Z,A-Z)$ es tal que $i_*[z]=0\in H_q(X,A)$, esto quiere decir que $z=z'+dw$ para $w\in C_{q-1}(X,A)$ y $z'\in C_q(A)$. Elegimos $r>0$ de modo que $S^r(z)$ esté subordinado a $\{intA, X-\overline{Z}\}$. Así $S^r(z)=S^r(z')+d(S^r(w))$. Por un lado, $S^r(w)=w_q+w_2$, donde $w_1$ tiene símplices singulares en $X-\overline{Z}$ y $w_2$ en $int(A)$. De modo que $S^r(z)-dw_1=S^r(z')+dw_2$, donde el término de la izquierda está en $X-Z$ y el de la derecha en $A$, luego tienen que caer en $A-Z$. Así que $S^r(z)\simeq 0$ en $X-Z\mod A-Z$, es decir $[z]=[S^r(z)]=0\in H_q(X-Z,A-Z)$.  
 \end{dem}
 
 \section{Ejercicios}
 \begin{ejer}
-EL QUE TENGO POR ARRIBA PUESTO PARA HACER COMO EJERCICIO
+Dadas dos sucesies exactas cortas de complejos de cadenas $0\to \CC_1\to \CC_2\to\CC_3\to 0$ y $0\to \mathcal{D}_1\to \mathcal{D}_2\to\mathcal{D}_3\to 0$ un morfismo de complejos de cadenas $f:\CC_2\to\mathcal{D_2}$, probar que el homomorfismo inducido por $f$ en homología es natural en la sucesión exacta larga, tal como ocurre en la homología relativa. 
 \end{ejer}
 
 \begin{ejer}
