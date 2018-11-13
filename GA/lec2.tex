@@ -21,7 +21,7 @@ Nótese que el ideal trivial solo es primo en dominios de integridad.
 
 Dotamos a $\mathrm{Spec}(A)$ de una topología. Dado un ideal $I\subseteq A$, definimos $V(I)=\{\p\in\spec(A)\mid I\subseteq\p\}$. Se puede probar que $V(\sum_i I_i)=\bigcap_i V(I_i)$ y $V(I\cap J)=V(I)\cup V(J)$, $V(\{0\})=\spec(A)$ y $V(A)=\emptyset$, con lo que podemos definir la topología de Zariski sobre $\spec(A)$, que tiene como cerrados los conjuntos de la forma $V(I)$. Además se verifica que si $I\subseteq J$, entonces $V(J)\subseteq V(I)$. 
 
-Si $f:A\to B$ es un homomorfismo de anillos, se define el funtor contravariante $f^*:\spec(B)\to\spec(A)$ como $f^*(\p)=f^{-1}(\p)$ (el ideal contraído también denotado $\p^c$). Se comprueba fácilmente que $f^*$ es continua para la topología de Zariski y que cumple las propiedades para ser un funtor contravariante. 
+Si $f:A\to B$ es un homomorfismo de anillos, se define el functor contravariante $f^*:\spec(B)\to\spec(A)$ como $f^*(\p)=f^{-1}(\p)$ (el ideal contraído también denotado $\p^c$). Se comprueba fácilmente que $f^*$ es continua para la topología de Zariski y que cumple las propiedades para ser un functor contravariante. 
 
 Vamos a definir \emph{el haz estructural en $\spec(A)$.} Para ello daremos varios pasos previos.
 
@@ -67,7 +67,7 @@ Sea $A$ un anillo y $(\spec(A),\OO)$ su espectro.
 \begin{enumerate}[(a)]
 \item Para todo $\p\in\spec(A)$, la fibra $\OO_\p$ es isomorfa al anillo local $A_\p$.
 \item Para todo elemento $f\in A$, si denotamos $X_f=\spec(A)\setminus V(\gene{f})$, entonces $\OO(X_f)$ es isomorfo al anillo localizado $A_f$.
-\item En particular, $\OO(\spec(A)\cong A$. 
+\item En particular, $\OO(\spec(A))\cong A$. 
 \end{enumerate} 
 \end{prop}
 
@@ -129,6 +129,55 @@ Sean $(X,\calA), (Y,\mathcal{B})$ espacios localmente anillados. Diremos que un 
 Un \emph{esquema afín} es un espacio localmente anillado $(X,\OO_X)$ que es isomorfo (como espacio localmente anillado) al espectro de algún anillo. Un \emph{esquema} es un espacio localmente anillado $(X,\OO_X)$ tal que $X$ se puede recubrir por abiertos $\{U_i\}_{i\in I}$ tales que $(U_i,\OO_X|_{U_i})$ es un esquema afín. 
 \end{defi}
 
+
+Vamos a ver que la correspondencia $A\to\spec(A)$ es functorial, y que además este functor es plenamente fiel. De hecho es equivalencia de categorías si nos restringimos a los esquemas afines, que son la imagen de este functor. 
+\begin{prop}
+\begin{enumerate}[(a)]
+\item Si $A$ es un anillo, $(\spec(A), \OO)$ es un espacio localmente anillado.
+\item Si $\varphi:A\to B$ es un homomorfismo de anillos, $\varphi$ induce un morfismo natural de espacios localmente anillados
+\[
+\varphi^*=(f,f^\sharp):\spec(B)\to\spec(A)
+\]
+\item Si $A$ y $B$ son anillos, entonces cualquier morfismo de espacios localmente anillados $\spec(B)\to\spec(B)$ está inducido por un homomorfismo de anillos $A\to B$. 
+\end{enumerate}
+\end{prop}
+\begin{dem}
+Vamos a describir el morfismo $\varphi^*$. 
+
+La aplicación $f:\spec(B)\to\spec(B)$ está definidad como $f(\p)=\varphi^{-1}(\p)$. Tenemos que probar que es continua, para lo cual, probaremos que $f^{-1}(V(I))=V(I^e)$, donde $I^e$ denota el ideal extendido. Si $\p\in f^{-1}(V(I))\Rightarrow f(\p)\in V(I)\Rightarrow \varphi^{-1}(\p)\supseteq I\Rightarrow \varphi^{-1}(\p)^e\supseteq I^e$. Como además $\p\in\varphi^{-1}(\p)^e$ (aunque no fuera primo), $\p\in V(I^e)$. Si ahora $\p\in V(I^e)$, $I^e\subseteq\p\Rightarrow I\subseteq \varphi^{-1}(I^e)\subseteq \varphi^{-1}(\p)$, luego $f(\p)=\varphi^{-1}(\p)\in V(I)$. Probar que $f$ es functorial para la composición es muy sencillo.
+
+Definimos ahora $f^\sharp:\OO_{\spec(A)}\to f_*\OO_{\spec(B)}$. Consideramos la fibra $\OO_{\spec(A),\p}\cong A_{\p}$. Recordamos el ejercicio 1.8, que dice que $\Hom_X(f^{-1}\calF,\calG)\cong\Hom_Y(\calF, f_*\calG)$. Por esta propiedad podemos definir con más comodidad un morfismo $\tilde{f}^\sharp:f^{-1}\OO_{\spec(A)}\to \OO_{\spec(B)}$. Ahora las fibras que cogemos son, dado $\q\in\spec(B)$, $(f^{-1}\OO_{\spec(A)})_{\q}=\OO_{\spec(A), f(\q)}=\OO_{\spec(A), \varphi^{-1}(\q)}=A_{\varphi^{-1}(\q)}$. Por otro lado, $\OO_{\spec(B),\q}=B_{\q}$, por lo que basta definir un homomorfismo $A_{\varphi^{-1}(\q)}\to B_{\q}$ a partir de $\varphi:A\to B$. Por la propiedad universal de los anillos de fracciones, basta tomar la composición $A\to B\to B_{\q}$, tal que $a\in A\setminus\varphi^{-1}(\q)\mapsto\varphi(a)\in B\setminus\q\mapsto \frac{\varphi(a)}{1}$, que es una unidad. La propiedad universal nos que esta aplicación es única, y al precomponer con $A\to A_{\varphi^{-1}(\q)}$ el diagrama resultante es conmutativo. 
+\[
+\begin{tikzcd}
+A\arrow[r,"\varphi"] \arrow[dr]\arrow[d] & B\arrow[d]\\
+A_{\varphi^{-1}(\q)}\arrow[r, dashed, "\exists!"] & B_{\q}
+\end{tikzcd}
+\]
+Faltaría probar que efectivamente el resultado es un morfimo de haces, lo cual se deja como ejercicio para el lector. 
+
+
+\end{dem}
+
+\begin{ej}[Fancy example of category equivalence]
+Construimos la categoría $\CC'$ cuyos objetos son los números naturales y las flechas de $n\to m$ como las matrices $n\times m$ con coeficientes en $k$ (entendemos la matrices $n\times 0$ y $0\times m$ como un espacio de un punto. Hay una equivalencia de categorías evidente entre esta categoría y la de los $k$-espacios vectoriales de dimensión finito $\mathrm{Vec}_k$. Esto es, tenemos un functor $F:\CC\to\CC'$ que es esencialmente sobreyectivo: para todo $X\in Ob(\CC)$ existe $X'\in Ob(\CC)$ con $X\cong F(x')$; y además tiene que ser completamente fiel (fully faithful): esto es, que la aplicación $F_{X,Y}:Hom(X,Y)\to Hom(FX,FY)$ entre los conjuntos de homomorfismos es biyectiva para cada par de objetos $X$ e $Y$. Si el functor fuera contravariante, se ajustaría de manera evidente la definición.
+
+También se puede definir en términos de la existencia un functor ``inverso''. 
+\end{ej}
+
+\begin{ejs}[Ejemplos de $\spec$]\
+\begin{enumerate}
+\item Sea $k$ un cuerpo.  $\spec(k)=(\{\{0\}\}, k)$. 
+\item \emph{Anillos de valuación discreta (DVR)}.  Antes de dar la definición damos un ejemplo. Consideramos $\Z_p$, de modo que $\spec(\Z_p)=\{\{0\}, p\Z_p\}$, con $p\Z_p$ como único punto cerrado. Un anillo de valoración discreto es un dominio de integridad local que es dominio de ideales principales. $\Z_p\setminus\{0\}=\{\frac{m}{n}\mid m,n\in\Z, p\not| n\}$. Definimos $v_p:\Z_p\setminus\{0\}\to\N$ como $v_p(\frac{m}{n})=\max\{e\geq 0\mid p^e|m\}$, que es lo que se llama una valuación discreta. En todo anillo de evaluación discreta $A$, $\spec(A)$ es homeomorfo al caso $\Z_p$, es decir, de la forma $\{\{0\},\m\}$. En este caso
+\[
+\OO_{\spec(A)}(U)=\begin{cases}
+\{0\} & U=\emptyset\\
+Q(A) & U=\{\{0\}\}\\
+A & U=\spec(A)
+\end{cases}
+\]
+donde $Q(A)$ es el cuerpo de fracciones. 
+\end{enumerate}
+\end{ejs}
 
 
 \section{Ejercicios}

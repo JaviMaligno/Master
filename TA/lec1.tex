@@ -205,7 +205,7 @@ ya que la conmutatividad se tiene ya a nivel de complejos de cadenas, y la conmu
 Sean subespacios $Z\subseteq A\subseteq X$ tal que la clausura de $Z$ está en el interior de $A$. Entonces la inclusión $i:(X-Z,A-Z)\hookrightarrow (X,A)$ induce isomorfismos $i_*:H_n(X-Z,A-Z)\to H_n(X,A)$ para todo $n$. Equivalentemente, para subespacios $A,B\subseteq X$ cuyos interiores cubren $X$, la inclusión $(B,A\cap B)\hookrightarrow (X,B)$ induce isomorfismos $H_n(B,A\cap B)\to H_n(X,B)$ para todo $n$. 
 \end{teorema}
 
-Para un espacio $X$, consideremos una familia de subconjuntos $\mathcal{U}=\{U_i\}_{i\in I}$ tales que $X=\cup_i int(U_i)$. Decimos que un símplice singular en $X$, $\sigma:\Delta^n\to X$ está \emph{subordinado} a $\mathcal{U}$ si existe $I\in I$ con $\delta(\Delta^n)\subseteq U_i$. Denotamos $C^{\mathcal{U}}_*$ al complejo de cadenas de símplices de $X$ subordinados a $\mathcal{U}$, que está contenido en $C_*(X)$.  El operador borde está bien definido, puesto que si $\sigma:\Delta^n\to X$ es tal que $\sigma(\Delta^n)\subseteq U_i$ y si $\Delta^n_i$ es la $i$-ésima cara de $\Delta^n$, entonces $d(\sigma)=\sum_{i=0}^n(-1)^i\sigma|_{\Delta^n_i}$. Como $\sigma(\delta^n)\subseteq U_i$, también lo está la restricción a cada una de las caras.
+Para un espacio $X$, consideremos una familia de subconjuntos $\mathcal{U}=\{U_i\}_{i\in I}$ tales que $X=\cup_i int(U_i)$. Decimos que un símplice singular en $X$, $\sigma:\Delta^n\to X$ está \emph{subordinado} a $\mathcal{U}$ si existe $I\in I$ con $\delta(\Delta^n)\subseteq U_i$. Denotamos $C^{\mathcal{U}}_*$ al complejo de cadenas de símplices de $X$ subordinados a $\mathcal{U}$, que está contenido en $C_*(X)$.  El operador borde está bien definido, puesto que si $\sigma:\Delta^n\to X$ es tal que $\sigma(\Delta^n)\subseteq U_i$ y si $\Delta^n_i$ es la $i$-ésima cara de $\Delta^n$, entonces $d(\sigma)=\sum_{i=0}^n(-1)^i\sigma|_{\Delta^n_i}$. Como $\sigma(\Delta^n)\subseteq U_i$, también lo está la restricción a cada una de las caras.
 
 \begin{teorema}[de las cadenas pequeñas]\label{peque}
 La inclusión $C^{\U}_*(X)\hookrightarrow C_*(X)$ es una equivalencia homotópica de complejos de cadenas. 
@@ -237,5 +237,74 @@ Si $\tau$ es un símplice de la $k$-ésima subdivisión baricéntrica de $\sigma
 dia(\tau)\leq \left(\frac{n}{n+1}\right)^k dia(\sigma)
 \]
 \end{coro}
+
+\begin{coro}\label{r}
+Sea $\sigma$ un $q$-símplice sobre $X$ y $\mathcal{P}$ un recubrimiento por abiertos de $X$. Entonces $\exists r>0$ tal que $S^r(\sigma)$ es combinación lineal de símplices subordinados a $\mathcal{P}$, esto es, si $\mathbb{P}=\{V_i\}_{i\in I}$, existe $i\in I$ con $\Ima\sigma\in V_i$. 
+\end{coro}
+\begin{dem}
+$\sigma$ es una aplicación continua que parte de un espacio métrico compacto, luego $\{\sigma^{-1}(V_i)\}$ es recubrimiento de $\Delta^q$. Tomamos $\varepsilon>0$ el número de Lebesgue de $\Delta_q$ respecto de $\sigma^{-1}(\mathcal{P})$. Entones existe $r>0$ tal que el diámetro de $S^r(\Delta_q))$ es menor que $\varepsilon$, por lo que $S^r(\sigma)$ está subordinado a $\mathcal{P}$. 
+\end{dem}
+
+\begin{dem}[del teorema de Excisión]
+No usamos la estrategia de Hatcher sino de Greenberg, usando que $C_*^{\UU}(X,A)\to C_*(X,A)$ induce isomorfismo en homología. Definimos un morfismo de complejos de cadenas $S:C_q(X)\to C_q(X)$ llamado \emph{subdivisión} y una homotopía de complejos de cadenas $T:C_*(X)\to C_{*+1}(X)$ entre la identidad y $S$, es decir $dT+Td=Id-S$, que funcionarán de forma natural (como functores). En particular, si $\sigma:\Delta^q\to X$, tenemos el diagrama conmutativo
+\[
+\begin{tikzcd}
+C_q(\Delta^q)\arrow[r, "S_q"]\arrow[d, "\sigma_*"] & C_q(\Delta^q)\arrow[d, "\sigma_*"]\\
+C_q(X)\arrow[r, "S_q"] & C_q(X)
+\end{tikzcd}
+\] 
+Si consideramos la identidad $\delta:\Delta^q\to\Delta^q\in C_q(\Delta^q)$, $\sigma=\sigma_*(\delta)\in C_q(X)$, entonces $S_q(\sigma)=\sigma_*(S_q(\delta))$. 
+
+Tendremos luego un cubo como el siguiente COPIAR EL CUBO O LAS CARAS POR SEPARADO, BUSCAR TIKZ COMMUTATIVE CUBE
+
+Vamos a definir entonces $S$ y $T$ inductivamente. $S(\delta_0)=\delta_0=T(\delta_0)$. $S_q(\delta_q)=B_q(S_{q-1}d\delta_q)$, donde $B_q$ es el cono sobre la subdivisión baricéntrica de $d(\delta_q)$ (recordemos que $\Delta_q$ es el cono de $\Delta_{q-1}$, que podemos tomar con vértice extra un punto que tiene como proyección el baricentro de $\Delta_{q-1}$, y sobre una cadena no es más que una cadena de conos). Aunque no se vea muy intuitivo, a cada símplice le asocia la suma de los símplices de su subdivisión baricéntrica. $T_q(\delta_q)=B_q(\delta_q-S\delta_q-T_{q-1}(d\delta_q))$.
+
+Veamos que $dS=Sd$. Si $q=0$, $dS=Sd=0$. Para $q>0$, 
+\[
+dS(\delta_q)=dS(\delta_q)=d(B_q(S_{q-1} d\delta_q))
+\]
+Ahora, $d(B\sigma)=\sigma-Bd\sigma$, pues $d([B,v_0,\dots, v_q])=[v_0,\dots, v_q]-Bd[v_0,\dots, v_q]$. Luego, aplicando hipótesis de inducción
+\[
+d(B_q(S_{q-1} d\delta_q))=S_{q-1}dS_q-B_q(dS_{q-1}d\delta_q)=S_{q-1}d\delta_q-B_qS_{q-1}ddS_q=S_{q-1}D(\delta_q)
+\]
+
+Ahora vemos que $dT+Td=Id-S$. 
+\[
+dT\delta_q=d(B_q(\delta_q-S\delta_q-TdS_q)=(\delta_q-S\delta_q+TdS_q)-B_q(d\delta_q-dS\delta_q-dTd\delta_q)=
+\]
+\[
+(\delta_q-S\delta_q-Td\delta_q)-B_q(d\delta_q-Sd\delta_q-(d\delta_q-Sd\delta_q-Td(d\delta_q)))=
+\]
+\[
+\delta_q-S\delta_q+Td\delta_q
+\]
+
+Tenemos ya entonces que $S_*=Id_*:H_q(X)\to H_q(X)$. Probamos ahora el siguiente resultado
+\begin{lemma}
+Sea $X$ un espacio topológico y $\mathcal{P}$ un recubrimiento por abiertos de $X$. Entonces, todo ciclo de $H_q(X,A)$ puede ser representado por un ciclo subordinado a $\mathcal{P}$.
+\end{lemma}
+\begin{proof}
+Dado $[z]\in H_q(X,A)$, $z$ es un ciclo relativo, luego $d(z)$ es un borde relativo, así que es una cadena en $A$. Además $z-S(z)=dT(z)+Td(z)$. Se tiene que $Td(z)$ tiene imagen en $A$, luego $z\equiv S(z)+dT(z)\mod A$. Así que $[z]=[S(z)]\in H_q(X,A)$. Inductivamente obtenemos $[z]=S^r(z)]\in H_q(X,A)$, luego basta tomar $r>0$ como en el corolario \ref{r}. 
+\end{proof}
+
+Finalmente podemos probar que $i_*:H_q(X-Z,A-Z)\to H_q(X,A)$ es isomorfismo. Primero vemos que es sobreyectiva. Sea $[z]\in H_q(X,A)$, $z=\sum\lambda_i\sigma_i$ subordinado a $\{int A, X-\overline{Z}\}$, esto es, cualquier $\sigma_i$ cuya imagen caiga en $X-Z\supseteq X-\overline{Z}$. Entonces la imagen cae en $int(A)\subseteq A$, luego los podemos eliminar. Podemos suponer entonces que $X$ cae $X-Z$, luego $[z]$ define una clase  en $H_q(X-Z,A-Z)$. 
+
+Ahora probamos que $i_*$ es inyectiva. Si $[z]\in H_q(X-Z,A-Z)$ es tal que $i_*[z]=0\in H_q(X,A)$, esto quiere decir que $z=z'+dw$ para $w\in C_{q-1}(X,A)$ y $z'\in C_q(A)$. Elegimos $r>0$ de modo que $S^r(z)$ esté subordinado a $\{intA, X-\overline{Z}\}$. Así $S^r(z)=S^r(z')+d(S^r(w))$. Por un lado, $S^r(w)=w_q+w_2$, donde $w_1$ tiene símplices singulares en $X-\overline{Z}$ y $w_2$ en $int(A)$. De modo que $S^r(z)-dw_1=S^r(z')+dw_2$, donde el término de la izquierda está en $X-Z$ y el de la derecha en $A$, luego tienen que caer en $A-Z$. Así que $S^r(z)\simeq 0$ en $X-Z\mod A-Z$, es decir $[z]=[S^r(z)]=0\in H_q(X-Z,A-Z)$.  
+\end{dem}
+
+\section{Ejercicios}
+\begin{ejer}
+EL QUE TENGO POR ARRIBA PUESTO PARA HACER COMO EJERCICIO
+\end{ejer}
+
+\begin{ejer}
+Dados $\CC$ y $\CC'$ complejos de cadenas positivos y $f_*:\CC\to\CC'$, se define el complejo cono de $f$ como $Cf_q=C'_q\oplus C_{q-1}$ y con borde $Cd=(d',d)$. Probar que existe una sucesión exacta corta
+\[
+0\to \CC'\to Cf\to \CC[1]\to 0
+\]
+Asociada a esta sucesión exacta corta tenemos la sucesión exacta larga de homología. Donde $H_q(\CC[1])=H_{q-1}(\CC)$. Probar que $\partial=f_*$. En particular, $H_q(Cf)=0$ si y solo si $f_*$ es isomorfismo. 
+
+Si $\CC$ y $\CC'$ son complejos de cadenas libres (todos los elementos son grupos abelianos libres), probar que entonces se verifica que $f_*$ es isomorfismo si y solo si $f$ es equivalencia de homotopía de complejos de cadenas.  Pista: para encontrar la homotopía, descomponer $D_q=\ker d\oplus D_{q-1}$ que se puede hacer porque las sucesiones exactas cortas escinden. 
+\end{ejer}
 
 \end{document}
