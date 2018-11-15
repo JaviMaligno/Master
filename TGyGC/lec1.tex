@@ -102,5 +102,30 @@ Encontrar, para algún $r$ un grafo que no contenga a $K_r$ y que tenga número 
 \end{ejer}
 Un pentágono con un vértice en el interior unido a todos los demás tiene número cromático 4 pero no contiene $K_4$. De hecho sirve cualquier grafo rueda.
 
+\begin{teorema}[Reinterpretación del teorema de Ramsey]
+$E=V^2=E_1\cup\cdots\cup E_t$. Un $K_{p_i}$ es una $p_i$-combinación de $V$, esto es subconjuntos de dos elementos de $\{x_1,\dots, x_{p_i}\}$, que hay $\binom{p_i}{2}$. El teorema dice que dado $t$, para un cierto $n$, existe $i\in\{1,\dots, t\}$ tal que existen $p_i$-combinaciones con todos sus subconjuntos en $E_i$.
+\end{teorema}
 
+
+Sea $N$ tal que $K_N$ 3-coloreado por aristas y sin $K_3$ monocromático, entonces $N\leq 16$, como vamos a ver ahora. Por contrarrecíproco, podemos afirmar que en $K_{17}$ 3-coloreado por aristas existe un $K_3$ monocromático. Consideramos un vértice $v\in K_N$, y separamos en grupos los vértices a los que está unido $v$ en función del color de la arista que lo une. Cada uno de estos grupos está 2-coloreado con los colores que no los unen a $v$, pues al añadir el tercero se formaría un $K_3$ monocromático con $v$. Llamos $V_a$, $V_r$, $V_v$ a estos conjuntos de vértices (azul, rojo y verde), con cardinal $n_a$, $n_r$ y $n_v$ respectivamente. Entonces $\gene{V_a}=K_{n_a}$ y lo mismo con los otros. Como $R(3,3)=6$, ninguno puede ser $K_6$, porque $K_6$ verifica que al ser 2-coloreado por aristas contiene un $K_3$ monocromático. Así que $n_a,n_r,n_v\leq 5$. Añadiendo el vértice $v$, el total de vértices es como mucho 16. (También se puede razonar como en el problema de la fiesta empezando por $K_{17}$)
+
+Como $K_{17}$ tiene un $K_3$ monocromático, $R(3,3,3)\leq 17$. Existen ejemplos de $K_16$ 3-coloreado por aristas sin $K_3$ monocromático, así que $R(3,3,3)=17$.
+
+Denotamos $[X]^r$ al conjunto de $r$-subconjuntos de $X$. El teorema de Ramsey-Erdös se reinterpreta como el de Ramsey pero tomando subconjuntos de cardinal $r$ en $\{x_1,\dots, x_{p_1}\}$, que hay $\binom{p_i}{r}$. Para $t=2$ y $r=1$, $R(p_1,p_2;1)=p_1+p_2-1$. Son dos colores $p_1,p_2$ y $N$ objetos $p_1+p_2-1$, por lo que existen $p_1$ objetos del color 1 o $p_2$ del color 2, porque si hubiera como mucho $p_1-1$ y $p_1-2$, entonces $N\leq p_1+p_2-2$.  
+
+Esther Szekeres. 
+
+$r$-combinación $=$ $r$-conjunto
+
+
+(Diapositiva 45): Dados $N$ puntos $\{x_1,\dots, x_N\}$, consideramos las 4-combinaciones posibes $\{x_{i_1},\dots, x_{i_4}\}$ y hacemos una 2-coloración, en la que coloreamos una 4-combinación de color 1 si no es convexa y de color 2 si es convexa. El número $R(5,n;4)$ donde $n$ son los 4-subconjuntos de color 2 y 5 los 5-conjuntos con todas sus 4-combinaciones de color 1. Como 5-combinaciones con 4-sombinaciones del color 1 no es posible, existe $n$-combinación con sus 4-combinaciones convexas. Entonces, para $N\geq R(5,n;4)$, existe una $n$-combinación con sus $4$-combinaciones convexas. Por reducción al absurdo probamos que eso implica que la $n$-combinación es convexa. Supongamos que existe un punto $P$ interior al cierre convexo de los $N$ puntos. Al triangular el cierre convexo existe un triángulo con $P$ en su interior, lo cual es una contradicción porque entonces podríamos elegir 4-vértices en posición no convexa. 
+
+\begin{teorema}
+$R(m,n:2)\leq R(m-1,n;2)+R(m,n-1;2)$. $R(m,n;2)\leq\binom{m+n-2}{m-1}$. 
+\end{teorema}
+
+
+Dado un conjunto $A=\{1,\dots, N\}$ y una coloración $\varphi(x)\in\{1,\dots, n\}$, podemos 2-colorar las aristas de $K_n$ mediante $c(\{i,j\})=\varphi(|i-j|)$. ¿Cuál es la relación entre $n$ y $N$?
+
+Si $K_3$ monocromático está contenido en $K_n$, con vértices digamos $i<j<k$, entonces $\varphi(|i-j|)=\varphi(|j-k|)\varphi(|k-i|)$, llamándolos $x=j-i$, $y=k-j$ y $z=k-i$, tenemos solución monocromática a la ecuación $x+y=z$. 
 \end{document}
