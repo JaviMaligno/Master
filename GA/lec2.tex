@@ -179,6 +179,36 @@ donde $Q(A)$ es el cuerpo de fracciones.
 \end{enumerate}
 \end{ejs}
 
+\begin{ej}
+Para el cuerpo $\R$, se puede definir el espacio afín $\R^n$ con la topología de Zariski. Para $n=1$, el anillo de funciones regulares sería $k[x]$. Desde el punto de vista de teoría de esquemas, se define el espacio afín de dimensión uno como $\A_{\R}^1=\spec(\R[x])$, que vamos a ver que contiene mucha más información. Para comprobarlo, vemos los ideales primos de $\R[x]$, que son $\{0\}$ (punto denso), los ideales de la forma $\gene{x-\alpha}$ (que son los que están en correspondencia biunívoca con $\R$), y todos los demás ideales generados por un polinomio mónico irreducible (que son de la forma $x^2-2\alpha x+(\alpha^2+\beta^2)$ con $\alpha,\beta\in\R$, $\beta\neq 0$, es decir, que tenga como raíces $\alpha\pm\beta i$). Como conjunto, tenemos un punto especial, el conjunto $\R$ y los números complejos cocientados por la relación del conjugado. Los abiertos serían simplemente el complementario de un conjunto finito de puntos elegidos de $\R$ y el conjunto cociente de $\C$. 
+\end{ej}
+
+\begin{ej}[Pegamiento de esquemas]
+Para pegar esquemas primero tenemos que saber cómo se pegan haces (se puede ver también en el ejercicio 1.22). Sea $X$ un espacio topológico y $\bigcup_{i\in I}U_i$ un recubrimiento abierto. Sea $\calF_i$ un haz en $U_i$ con las siguientes propiedades:
+\begin{enumerate}
+ \item
+  Para cada para $(i,j)$, tenemos que imponer que exista un isomorfismo $\varphi_{ij}:\calF_i|_{U_i\cap U_j}\to\calF_j|_{U_i\cap U_j}$. 
+ \item $\varphi_{ii}=Id_{\calF_i}$.
+ \item Denotando $U_{ijk}=U_i\cap U_j\cap U_k$, $\varphi_{jk}|_{U_{ijk}}\circ\varphi_{ij}|_{U_{ijk}}=\varphi_{ik}|_{U_{ikj}}$
+ \end{enumerate}
+ Entonces existe un haz $\calF$ en $X$ y existe un isomorfismo $\psi_i:\calF|_{U_i}\to\calF_i$ tal que conmuta
+ \[
+ \begin{tikzcd}
+ \calF|_{U_{ij}}\arrow[r, "\psi_i|_{U_{ij}}"]\arrow[d, "\psi_j|_{U_{ij}}" & \calF_i|_{U_{ij}}\arrow[dl, "\varphi_{ij}"]\\
+ \calF_j|_{U_{ij}} &
+ \end{tikzcd}
+ \]
+ este par es único salvo isomorfismo único.
+ 
+ Vamos ahora al pegamiento de esquemas. Sean $X_1, X_2$ esquemas. Sean $U_i\subseteq X_i$ abiertos y sea $\varphi:(U_1,\OO_{X_1}|_{U_1})\to(U_2,\OO_{X_2}|_{U_2})$ un isomorfismo. 
+ 
+\begin{lemma}
+Si $X=\spec(A)$, todo abierto de $X$ es un esquema.
+\end{lemma}
+\begin{proof}
+Sea $U\subseteq X$ abiertos. Dado $f\in A$, sabemos que los abiertos $X_f$ son una base de abiertos, luego $U=\cup X_{f_i}$. Tenemos $(U,\OO_X|_U)$, que a su vez restringe a $(X_{f_i}, \OO_X|_{X_{f_i}})$, que se puede ver que es isomorfo a $\spec(A_{f_i})$ usando resultados de álgebra conmutativa y la construcción hecha hasta ahora. Gracias a esto $\varphi$ es un isomorfismo de esquemas.
+\end{proof}
+\end{ej}
 
 \section{Ejercicios}
 \begin{ejer}
