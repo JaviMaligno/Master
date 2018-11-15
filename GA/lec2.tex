@@ -194,7 +194,7 @@ Para pegar esquemas primero tenemos que saber cómo se pegan haces (se puede ver
  Entonces existe un haz $\calF$ en $X$ y existe un isomorfismo $\psi_i:\calF|_{U_i}\to\calF_i$ tal que conmuta
  \[
  \begin{tikzcd}
- \calF|_{U_{ij}}\arrow[r, "\psi_i|_{U_{ij}}"]\arrow[d, "\psi_j|_{U_{ij}}" & \calF_i|_{U_{ij}}\arrow[dl, "\varphi_{ij}"]\\
+ \calF|_{U_{ij}}\arrow[r, "\psi_i|_{U_{ij}}"]\arrow[d, "\psi_j|_{U_{ij}}"'] &\calF_i|_{U_{ij}}\arrow[dl, "\varphi_{ij}"] \\
  \calF_j|_{U_{ij}} &
  \end{tikzcd}
  \]
@@ -206,8 +206,34 @@ Para pegar esquemas primero tenemos que saber cómo se pegan haces (se puede ver
 Si $X=\spec(A)$, todo abierto de $X$ es un esquema.
 \end{lemma}
 \begin{proof}
-Sea $U\subseteq X$ abiertos. Dado $f\in A$, sabemos que los abiertos $X_f$ son una base de abiertos, luego $U=\cup X_{f_i}$. Tenemos $(U,\OO_X|_U)$, que a su vez restringe a $(X_{f_i}, \OO_X|_{X_{f_i}})$, que se puede ver que es isomorfo a $\spec(A_{f_i})$ usando resultados de álgebra conmutativa y la construcción hecha hasta ahora. Gracias a esto $\varphi$ es un isomorfismo de esquemas.
+Sea $U\subseteq X$ abiertos. Dado $f\in A$, sabemos que los abiertos $X_f$ son una base de abiertos, luego $U=\cup X_{f_i}$. Tenemos $(U,\OO_X|_U)$, que a su vez restringe a $(X_{f_i}, \OO_X|_{X_{f_i}})$, que se puede ver que es isomorfo a $\spec(A_{f_i})$ usando resultados de álgebra conmutativa y la construcción hecha hasta ahora. Gracias a esto $\varphi$ es un isomorfismo de esquemas. Entonces existe un esquema $\widetilde{X}=\widetilde{X}_1\cup\widetilde{X}_2$, donde los subespacios escritos son abiertos del total, tal que $(\widetilde{X}_i,\OO_{\widetilde{X}_i}\cong(X_i,\OO_{X_i})$ mediante $\psi_i$. Este espacio cumple que $\psi_1^{-1}(U_1)=\psi^{-1}_2(U_2)$ en $X$ y además $\varphi\circ\psi_1|_V=\psi_2|_V$. Este espacio es el espacio de pegamiento usual en topología. 
 \end{proof}
+\end{ej}
+
+\begin{ej}
+$\spec(k[x]/\gene{x^2})=\{\gene{\overline{x}}\}$, ya que los primos de este anillo son los primos de $k[x]$ que contienen a $\gene{x^2}$, que solo hay uno.  Como espacio anillado tiene el haz que a cualquier abierto no vacío le asigna $k[x]/\gene{x^2}$, lo cual se puede ver notando que este anillo es de la forma $k[\varepsilon]=\{a+b\varepsilon\mid a,b\in k, \varepsilon^2=0\}$.
+\end{ej}
+
+\begin{ej}
+Sea $(X,\mathcal{E})$ una variedad diferenciable y $\alpha:\spec(\R)=(\{*\},\R)\to (X,\mathcal{E})$ morfismo de espacios localmente anillados sobre $\R$ (es decir, de $\R$-álgebras). Necesariamente $\alpha(*)=p\in X$. $\alpha^{\sharp}:\mathcal{E}\to\alpha_*\R$, donde $\alpha_*\R(U)=\R(\alpha^{-1}(U))=0$ si $p\notin U$ y $\R$ en caso contrario. Para $p\in U$ tenemos
+\[
+\begin{tikzcd}
+\mathcal{E}(U)\arrow[r, "\alpha^{\sharp}(U)"]\arrow[r, "\alpha^{\sharp}(U)"]\arrow[d]& \R\arrow[d, equals]\\
+\mathcal{E}_p\arrow[r, "\alpha^{\sharp}_p"]\arrow[r] & \R
+\end{tikzcd}
+\]
+Dado $\zeta\in \mathcal{E}(U)$ y su germen $\zeta(p)=c$, $\zeta=(\zeta-c)+c$, luego $\zeta_p=(\zeta_p-c)+c$, estando el término entre paréntesis en el ideal maxima $\m_p$ (los gérmenes que se anulan en $p$), luego $\alpha^{\sharp}(\zeta_p)=c$ porque tiene que ser homomorfismo de $\R$-álgebras. 
+\end{ej}
+
+\begin{ej}
+Siguiento el ejemplo anterior, tomamos ahora $\spec(\R[\varepsilon])\to (X,\mathcal{E})$. De nuevo $\alpha:\{*\}\to X$ y $\alpha_*(\R[\varepsilon])$ es $\R[\varepsilon]$ si $p\in U$ y 0 en otro caso. También $\alpha^{\sharp}(U)$ será un homomorfismo de $\R$-álgebras local. 
+\[
+\begin{tikzcd}
+\mathcal{E}(U)\arrow[r] \arrow[d] &\R[\varepsilon]\\
+\mathcal{E}(U)\arrow[ur, "\alpha^{\sharp}_p=\beta"]&
+\end{tikzcd}
+\]
+Como $\beta$ es local, $\beta(\m_p)\subseteq\gene{\varepsilon}$ y $\beta(\m^2_p)\subseteq\gene{\varepsilon}^2=\{0\}$. Por otra parte tenemos la evaluación $ev_P:\mathcal{E}\to \R$ y $\pi:\R[\varepsilon]\to \R=\R[\varepsilon]/\gene{\varepsilon}$. Así que $\beta(\m_p)\subseteq\ker\pi$. Se tiene en realidad que $\ker\pi=\R\varepsilon$, puesto que $\R[\varepsilon]=\R\oplus\R\varepsilon$. Podemos definir entonces $\overline{\beta}:\m_p/\m^2_p\to\R\varepsilon$ que es $\R$ lineal, es decir, es un vector tangente. 
 \end{ej}
 
 \section{Ejercicios}

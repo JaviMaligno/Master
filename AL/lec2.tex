@@ -86,4 +86,41 @@ El ejercicio consiste en dar un algoritmo (preferiblemente no inútil) y su comp
 %dbanez@us.es
 \end{ejer}
 
+\section{Análisis de algoritmos}
+
+\subsection{Problema 1}
+Dado un conjunto de items, decidir si hay o no dos iguales. Existe un algoritmo sencillo que es cuadrático, ya que hay $\binom{n}{2}$ pares, y se trata de comparar los elementos de los pares. Otra posibilidad es ordenar la lista, lo cual ya nos detectaría si hay dos iguales ya sea en el propio ordenamiento o bien luego mirando dos seguidos. Así que podemos mejorar la eficiencia si encontrar una forma de ordenar de complejidad menor que cuadrática, el cual existe (en concreto $O(n\log n)$).
+
+\subsection{Problema 2}
+Dados $m$ hombres y $w$ mujeres, ver qué pareja $(w,m)$ es compatible, suponiendo que comprobar la compatibilidad es de complejidad constante. Podría darse una descripción menos sexista, pero esta es la que ha dado el profesor. El algoritmo exhaustivo consistiría en realizar todas las parejas posibles y comprobar si son compatibles, que tiene orden $O(wm)$. Obsérvese que $w$ y $m$ son variables independientes, por lo que $O(wm)\neq O(w^2)$. 
+
+
+A propósito de este último comentario, nos preguntamos si $\Theta(w^6+wm+m^3)=\Theta(w^6+m^3)$. Si $w>>m$, entonces $w^6+wm+m^3$ estará en la misma clase que $w^6+m^3$, que es $\in\Theta(w^6)$. Si $w<<m$ podemos hacer el razonamiento análogo, con lo que pertenecería a $\Theta(m^3)$. Así que la respuesta es afirmativa. Se puede probar haciendo el cociente y tomando límtie, que da 1 y por tanto efectivamente son del mismo orden. 
+
+Sin embargo $\Theta(w^6+wm)\neq\Theta(w^6)$, porque si domina $m$ no se tiene la igualdad. 
+
+\subsection{Problema 3}
+Hay un arreglo ordenado por título de $n$ CD's. Existe $k$ que comienzan por ``The best of...''. Se trata de obtener todos los de este tipo. Hacemos búsqueda binaria. En el mejor caso llegas a un disco de ellos y avanzas y retrocedes para coger los todos, con lo que sería $O(k)$. En el peor caso hay $O(\log n)$ pasos y luego $O(k)$, o sea, $O(\log n +k)$. Este es un algoritmo \emph{output sensitive}, porque dependiendo del tamaño de la salida tiene una complejidad. 
+
+
+\subsection{Problema 4}
+Ordenar un conjunto $L$ de items. Vamos a ver el algoritmo Merge-Sort. 
+\begin{enumerate}
+\item Se divide $L$ en dos sublistas $L_1$ y $L_2$ de igual (lo más igual posible) tamaño. $T(n)=O(1)$
+\item Se ordena cada sublista con llamadas recursivas. $T(n)=2T(\frac{n}{2})$
+\item Se mezclan $L_1$ y $L_2$.  Para ello se comparan los mínimos y se elimina el que se ha elegido. $T(n)=O(n)$
+\end{enumerate}
+
+Algoritmo recursivo con 
+\[
+T(n)=\begin{cases}
+O(1) & n\leq 2\\
+2T(\frac{n}{2})+\Theta(n) & n>2
+\end{cases}
+\]
+Tenemos que resolver la ecuación de recursión $T(n)=2T(\frac{n}{2})+\Theta(n)$. Para ello hacemos lo siguiente
+\[
+2T(\frac{n}{2})+\Theta(n)=2(2T(\frac{n}{2^2}+\Theta(\frac{n}{2}))+\Theta(n)=2^2T(\frac{n}{2^2})+2\Theta(n)
+\]
+Seguimos aplicando esta estrategia y obtenemos $T(n)=2^kT(\frac{n}{2^k})+k\Theta(n)$. Cuando $n=2^k\Rightarrow k\in O(\log n)$ se termina, obteniendo $T(n)=nT(1)+O(\log n)\Theta(n)=O(n)+O(n\log n)=O(n\log n)$. 
 \end{document}

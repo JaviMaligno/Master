@@ -330,6 +330,89 @@ Finalmente podemos probar que $i_*:H_q(X-Z,A-Z)\to H_q(X,A)$ es isomorfismo. Pri
 Ahora probamos que $i_*$ es inyectiva. Si $[z]\in H_q(X-Z,A-Z)$ es tal que $i_*[z]=0\in H_q(X,A)$, esto quiere decir que $z=z'+dw$ para $w\in C_{q-1}(X,A)$ y $z'\in C_q(A)$. Elegimos $r>0$ de modo que $S^r(z)$ esté subordinado a $\{intA, X-\overline{Z}\}$. Así $S^r(z)=S^r(z')+d(S^r(w))$. Por un lado, $S^r(w)=w_q+w_2$, donde $w_1$ tiene símplices singulares en $X-\overline{Z}$ y $w_2$ en $int(A)$. De modo que $S^r(z)-dw_1=S^r(z')+dw_2$, donde el término de la izquierda está en $X-Z$ y el de la derecha en $A$, luego tienen que caer en $A-Z$. Así que $S^r(z)\simeq 0$ en $X-Z\mod A-Z$, es decir $[z]=[S^r(z)]=0\in H_q(X-Z,A-Z)$.  
 \end{dem}
 
+
+\begin{prop}
+Si $f:(X,A)\to (Y,B)$ es una aplicación de pares tal que tanto $f:X\to Y$ como $f|_A:A\to B$ son equivalencias de homotopía, entonces $f$ como aplicación depares induce isomorfismos en homología relativa $f_*:H_n(X,A)\to H_n(Y,B)$ para todo $n\in\Z$.
+\end{prop}
+\begin{dem}
+Es trivial a partir de las sucesiones largas de homología relativa respectiva, que equivalencias de homotopía inducen isomorfismos y el lema de los cinco.
+\end{dem}
+
+\begin{defi}
+Un \emph{buen par} $(X,A)$ es un par tal que $A\subseteq X$ es cerrado y existe un abierto $U$ con $A\subseteq U\subseteq X$ tal que $A$ es retracto de deformación fuerte de $U$.
+\end{defi}
+
+\begin{prop}
+Sea $X$ un espacio y $x_0\in X$. Entonces $\widetilde{H}_n(X)\to \widetilde{H}(X,x_0)=H_n(X,x_0)$.
+\end{prop}
+\begin{dem}
+Como $\widetilde{H}_*(x_0)=0$, al sustituir en la sucesión exacta larga de homología relativa tenemos los isomorfismos buscados.
+\end{dem}
+
+\begin{prop}
+Si $(X,A)$ es un buen par, entonces $(X,A)\to (X/A,A/A)$ induce isomorfismos $H_n(X,A)\cong H_n(X/A,A/A)\cong\widetilde{H}_n(X/A)$ para todo $n\in\Z$. 
+\end{prop}
+\begin{dem}
+Consideremos el diagrama conmutativo siguiente.
+\[
+\begin{tikzcd}
+H_n(X,A)\arrow[d,"p_*"]\arrow[r,"i_*"] & H_n(X,U)\arrow[r]\arrow[d]&H_n(X-A,U-A)\arrow[l]\arrow[d]\\
+H_n(X/A,A/A)\arrow[r, "i_*"]& H_n(X/A, U/A) &H_n((X/A)-[A], (U/A)-[A])
+\end{tikzcd}
+\]
+Se tiene que $i_*:H_n(X,A)\to H_n(X,U) $ es isomorfismo porque está inducido por la inclusión y $A$ es retracto de deformación fuerte de $U$. Esta retracción pasa al cociente y $[A]$ es retracto fuerte de $U/A$. Las flechas horizontales de arriba a la derecha son isomorfismos por excisión. Como la aplicación cociente es homeomorfismo fuera de $A$, la flecha vertical de la derecha es isomorfismo, al estar inducida por un homeomorfismo de pares. Por conmutatividad también es isomorfismo la flecha central. De nuevo por conmutatividad es isomorfismo $p_*$, que era lo que queríamos probar. 
+\end{dem}
+
+\begin{teorema}
+Si $(X,A)$ es un buen par, entonces tenemos una sucesión exacta larga
+\[
+\cdots\to \widetilde{H}_n(A)\xrightarrow{i_*}\widetilde{H}_n(X)\xrightarrow{p_*}\widetilde{H}_n(X/A)\to\widetilde{H}_{n-1}(A)\to\cdots
+\]
+donde $i:A\to X$ es la inclusión y $p:X\to X/A$ es la proyección.
+\end{teorema}
+
+\begin{ej}
+$$\widetilde{H}_*(S^n)=\begin{cases}
+\Z & *=n\\
+0 & *\neq n
+\end{cases}$$
+
+Lo hacemos por inducción. Para $n=0$, $S^0$ es un espacio discreto formado por dos puntos, de donde se deduce el resultado. Para $n>0$ usamos que $S^n=D^n/S^{n-1}$ y usamos la sucesión exacta larga de homología reducida con el cociente. Como $D^n$ es contráctil, tenemos isomorfismos $\widetilde{H}_k(S^n)\cong\widetilde{H}_{k-1}(S^{n-1})$ de donde se deduce el resultado. 
+\end{ej}
+
+\begin{teorema}[del punto fijo de Brouwer]
+Toda apliación continua $f:D^n\to D^n$ tiene al menos un punto fijo.
+\end{teorema}
+\begin{dem}
+Si $f$ no tiene puntos fijos, $x-f(x)\neq 0$, luego $g(x)$ definida como el punto de corte de la semirrecta que va de $f(x)$ a $x$ con $S^{n-1}$  es una aplicación continua $g:D^n\to S^{n-1}$ que restringe a la identidad en $S^{n-1}$. Tenemos entonces la descomposición de la identidad
+\[
+S^{n-1}\hookrightarrow D^n\xrightarrow{g}S^{n-1}
+\] 
+Esto induce por functorialidad una descomposición de la identidad
+\[
+\Z=H_{n-1}(S^{n-1})\xrightarrow{i_*}H_{n-1}(D^n)=0\xrightarrow{g_*}H_{n-1}(S^{n-1})=\Z
+\]
+Esto implicaría que $Id:\Z\to\Z$ es la aplicación nula, contradicción.
+
+\end{dem}
+
+\begin{ej}
+Consideramos el par $(D^n,S^{n-1})$. La homología de este par es $$H_*(D^n,S^{n-1})=\begin{cases}
+\Z & *=n\\
+0 & *\neq n
+\end{cases}$$
+
+Esto se puede probar a partir de la sucesión exacta larga de homología reducida usando que para $k>0$, la reducida es igual que la no reducida. Tenemos el homeomorfismo $D^n\cong\Delta^n$ y $S^{n-1}\cong\partial\Delta^n$. Así que $(D^n,S^{n-1})\cong (\Delta^n, \partial\Delta^n)$. Vamos a buscar un generador de la homología no trivial. $H_n(\Delta^n,\partial\Delta^n)\cong\Z$. La identidad $Id:\Delta^n\to\Delta^n$ es un ciclo relativo porque el borde es una suma de símplices singulares que caen en $\partial\Delta^n$. Vamos a ver que $[Id]$ es un generador. Lo hacemos por inducción. En $n=0$, como $\partial\Delta^0=\emptyset$, $H_0(\Delta^0,\emptyset)=H_0(*)\cong\Z$ generado por la única aplicación posible, que es la identidad. Para $n>0$, suponiendo que es cierto para $n-1$, tenemos un isomorfismo $H_n(\Delta^n,\partial\Delta^n)\cong \widetilde{H}_{n-1}(\partial\Delta^n)$ en la sucesión exacta larga del par, dado por la aplicación que conecta las dimensiones. A su vez, $\widetilde{H}_{n-1}(\partial\Delta^n)\cong \widetilde{H}_{n-1}(\partial\Delta^n,v_n)$ para $v_n$ un vértice del símplice. Este isomorfismo proviene de la sucesión exacta larga del par $(\partial\Delta^n,v_n)$ usando que la homología reducida del vértice es trivial. Además, la homología reducida es igual a la no reducida en pares donde el segundo elemento no sea vacío. Consideramos la cara $\Delta^{n-1}=[v_0,\dots, v_{n-1}]$ y denotamos $\Lambda=\partial\Delta^n-int(\Delta^{n-1})$, que es contráctil por ser el cono el borde de $\Delta^{n-1}$. Así que tenemos un isomorfismo $H_{n-1}(\partial\Delta^n,v_n)\cong H_n(\partial\Delta^n,\Lambda)$. Ahora consideramos $H_{n-1}(\Delta^{n-1},\partial\Delta^{n-1})\to H_{n-1}(\partial\Delta^n,\Lambda)$ inducido por la inclusión. Vamos a ver que es un isomorfismo. Es claro que estos pares son buenos. Por lo que $H_{n-1}(\Delta^{n-1},\partial\Delta^{n-1})\cong \widetilde{H}_{n-1}(\Delta^{n-1}/\partial\Delta^{n-1})$ y  $H_{n-1}(\partial\Delta^n,\Lambda)\cong\widetilde{\partial\Delta^n/\Lambda}$. Como estas homologías reducidas son isomorfas al ser la aplicación inclusión un homeomorfismo, la naturalidad nos da el isomorfismo que buscábamos. 
+
+Nuestra hipótesis de inducción nos da que $[Id_{\Delta^{n-1}}]$ genera $H_{n-1}(\Delta^{n-1},\partial\Delta^{n-1})$. Si consideramos $Id_{\Delta^n}\in C_n(\Delta^n)$, $d(Id_{\Delta^n})\in C_{n-1}(\Delta^n)$ y además $d(Id_{\Delta^n})\in C_{n-1}(\partial\Delta^n)$. Ahora, salvo signo, $[Id_{\Delta^{n-1}}]\mapsto [d(Id_{\Delta^n}]\in H_{n-1}(\partial\Delta^n,\Lambda)$, que es también ciclo en $H_{n-1}(\partial\Delta^n,v_n)$. Con el isomorfismo que teníamos previamente, tenemos también que es generador de $\widetilde{H}_{n-1}(\partial\Delta^n)$, y atendiendo a la definición de la aplicación que conecta dimensiones, $[Id_{\Delta^n}]\mapsto [d(Id_{\Delta^n}]$, con lo que hemos encontrado el generador. 
+
+
+Ahora bien, como $\widetilde{H}_n(S^n)\to H_n(D^n,S^{n-1})$ es isomorfismo, siendo $(D^n,S^{n-1})$ un buen par tal que $D^n\xrightarrow{p}D^n/S^{n-1}\cong S^n$, tenemos $[\Delta^n\xrightarrow{Id}\Delta^n\xrightarrow{p}S^n]\mapsto [\Delta^n\xrightarrow{Id}\Delta^n\cong D^n]$. 
+
+Otra forma de hacerlo es la siguiente: podemos expresar $S^n$ como $\Delta^n_1\bigcup_{\partial\Delta^n}\Delta^n_2$, de modo que ambos símplices están incluidos en $S^n$ por $i_1$ e $i_2$. Tendríamos $d(i_1)=d(i_2)$, por lo que $[i_1-i_2]$, que se mapea al generador $[i_1-i_2]=[i_1]\in \widetilde{H}_n(S^n,\Delta^n_2)$, que a su vez es la imagen de $[Id_{\Delta^n}]$ mediante el isomorfismo que viene de $\widetilde{H}_n(\Delta^n_1,\partial\Delta^N)$ (es isomorfismo porque está inducido por un homeomorfismo). 
+\end{ej}
+
+
 \section{Ejercicios}
 \begin{ejer}
 Dadas dos sucesiones exactas cortas de complejos de cadenas $0\to \CC_1\to \CC_2\to\CC_3\to 0$ y $0\to \mathcal{D}_1\to \mathcal{D}_2\to\mathcal{D}_3\to 0$ un morfismo de complejos de cadenas $f:\CC_2\to\mathcal{D_2}$, probar que el homomorfismo inducido por $f$ en homología es natural en la sucesión exacta larga, tal como ocurre en la homología relativa. 
