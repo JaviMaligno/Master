@@ -73,9 +73,9 @@ Sea $A$ un anillo y $(\spec(A),\OO)$ su espectro.
 
 \section{Esquemas}
 
-En geometría diferencial se suelen definir las variedades diferenciables a partir de cartas en un atlas. Se pueden definir también de otro modo más próximo al que nos interesa en nuestro estudio. Dado $U\subseteq\R^n$ abierto, definimos el haz $E_U$ de funciones $C^{\infty}$, de modo que $E_U(V)$ son las funciones $f:V\to\R$ de clase $C^{\infty}$ para $V\subseteq U$.
+En geometría diferencial se suelen definir las variedades diferenciables a partir de cartas en un atlas. Se pueden definir también de otro modo más próximo al que nos interesa en nuestro estudio. Dado $U\subseteq\R^n$ abierto, definimos el haz $E_U$ de funciones $C^{\infty}$, de modo que $\mathcal{E}_U(V)$ son las funciones $f:V\to\R$ de clase $C^{\infty}$ para $V\subseteq U$.
 
- Así que podríamos definir variedad diferenciable como un espacio topológico expresado como unión de abiertos $X=\cup X_i$ y un haz $E_X$ de modo que $(X_i,E_X|_{X_i})\cong (U_i,E_{U_i})$ con $U_i\subseteq\R^n$. Este isomorfismo es en el sentido de que hay un homeomorfismo entre los espacios topológicos y un isomorfismo de haces en el segundo elemento del par. Este enfoque será el que usemos para definir los esquemas. 
+ Así que podríamos definir variedad diferenciable como un espacio topológico expresado como unión de abiertos $X=\cup X_i$ y un haz $E_X$ de modo que $(X_i,\mathcal{E}_X|_{X_i})\cong (U_i,\mathcal{E}_{U_i})$ con $U_i\subseteq\R^n$. Este isomorfismo es en el sentido de que hay un homeomorfismo entre los espacios topológicos y un isomorfismo de haces en el segundo elemento del par. Este enfoque será el que usemos para definir los esquemas. 
  
  
  \begin{defi}
@@ -159,7 +159,7 @@ Faltaría probar que efectivamente el resultado es un morfimo de haces, lo cual 
 \end{dem}
 
 \begin{ej}[Fancy example of category equivalence]
-Construimos la categoría $\CC'$ cuyos objetos son los números naturales y las flechas de $n\to m$ como las matrices $n\times m$ con coeficientes en $k$ (entendemos la matrices $n\times 0$ y $0\times m$ como un espacio de un punto. Hay una equivalencia de categorías evidente entre esta categoría y la de los $k$-espacios vectoriales de dimensión finito $\mathrm{Vec}_k$. Esto es, tenemos un functor $F:\CC\to\CC'$ que es esencialmente sobreyectivo: para todo $X\in Ob(\CC)$ existe $X'\in Ob(\CC)$ con $X\cong F(x')$; y además tiene que ser completamente fiel (fully faithful): esto es, que la aplicación $F_{X,Y}:Hom(X,Y)\to Hom(FX,FY)$ entre los conjuntos de homomorfismos es biyectiva para cada par de objetos $X$ e $Y$. Si el functor fuera contravariante, se ajustaría de manera evidente la definición.
+Construimos la categoría $\CC'$ cuyos objetos son los números naturales y las flechas de $n\to m$ como las matrices $n\times m$ con coeficientes en $k$ (entendemos la matrices $n\times 0$ y $0\times m$ como un espacio de un punto. Hay una equivalencia de categorías evidente entre esta categoría y la de los $k$-espacios vectoriales de dimensión finito $\mathrm{Vec}_k$. Esto es, tenemos un functor $F:\CC\to\CC'$ que es esencialmente sobreyectivo: para todo $X\in Ob(\CC)$ existe $X'\in Ob(\CC)$ con $X\cong F(x')$; y además tiene que ser completamente fiel (fully faithful): esto es, que la aplicación $F_{X,Y}: \Hom(X,Y)\to \Hom(FX,FY)$ entre los conjuntos de homomorfismos es biyectiva para cada par de objetos $X$ e $Y$. Si el functor fuera contravariante, se ajustaría de manera evidente la definición.
 
 También se puede definir en términos de la existencia un functor ``inverso''. 
 \end{ej}
@@ -187,7 +187,7 @@ Para el cuerpo $\R$, se puede definir el espacio afín $\R^n$ con la topología 
 Para pegar esquemas primero tenemos que saber cómo se pegan haces (se puede ver también en el ejercicio 1.22). Sea $X$ un espacio topológico y $\bigcup_{i\in I}U_i$ un recubrimiento abierto. Sea $\calF_i$ un haz en $U_i$ con las siguientes propiedades:
 \begin{enumerate}
  \item
-  Para cada para $(i,j)$, tenemos que imponer que exista un isomorfismo $\varphi_{ij}:\calF_i|_{U_i\cap U_j}\to\calF_j|_{U_i\cap U_j}$. 
+  Para cada para $(i,j)$, existe un isomorfismo $\varphi_{ij}:\calF_i|_{U_i\cap U_j}\to\calF_j|_{U_i\cap U_j}$. 
  \item $\varphi_{ii}=Id_{\calF_i}$.
  \item Denotando $U_{ijk}=U_i\cap U_j\cap U_k$, $\varphi_{jk}|_{U_{ijk}}\circ\varphi_{ij}|_{U_{ijk}}=\varphi_{ik}|_{U_{ikj}}$
  \end{enumerate}
@@ -198,7 +198,7 @@ Para pegar esquemas primero tenemos que saber cómo se pegan haces (se puede ver
  \calF_j|_{U_{ij}} &
  \end{tikzcd}
  \]
- este par es único salvo isomorfismo único.
+ Este par es único salvo isomorfismo único.
  
  Vamos ahora al pegamiento de esquemas. Sean $X_1, X_2$ esquemas. Sean $U_i\subseteq X_i$ abiertos y sea $\varphi:(U_1,\OO_{X_1}|_{U_1})\to(U_2,\OO_{X_2}|_{U_2})$ un isomorfismo. 
  
@@ -222,18 +222,18 @@ Sea $(X,\mathcal{E})$ una variedad diferenciable y $\alpha:\spec(\R)=(\{*\},\R)\
 \mathcal{E}_p\arrow[r, "\alpha^{\sharp}_p"]\arrow[r] & \R
 \end{tikzcd}
 \]
-Dado $\zeta\in \mathcal{E}(U)$ y su germen $\zeta(p)=c$, $\zeta=(\zeta-c)+c$, luego $\zeta_p=(\zeta_p-c)+c$, estando el término entre paréntesis en el ideal maxima $\m_p$ (los gérmenes que se anulan en $p$), luego $\alpha^{\sharp}(\zeta_p)=c$ porque tiene que ser homomorfismo de $\R$-álgebras. 
+Dado $\zeta\in \mathcal{E}(U)$ y su germen $\zeta(p)=c$, $\zeta=(\zeta-c)+c$, luego $\zeta_p=(\zeta_p-c)+c$, estando el término entre paréntesis en el ideal maximal $\m_p$ (los gérmenes que se anulan en $p$), luego $\alpha^{\sharp}(\zeta_p)=c$ por ser homomorfismo de $\R$-álgebras. 
 \end{ej}
 
 \begin{ej}
-Siguiento el ejemplo anterior, tomamos ahora $\spec(\R[\varepsilon])\to (X,\mathcal{E})$. De nuevo $\alpha:\{*\}\to X$ y $\alpha_*(\R[\varepsilon])$ es $\R[\varepsilon]$ si $p\in U$ y 0 en otro caso. También $\alpha^{\sharp}(U)$ será un homomorfismo de $\R$-álgebras local. 
+Siguiendo el ejemplo anterior, tomamos ahora $\alpha:\spec(\R[\varepsilon])\to (X,\mathcal{E})$. De nuevo $\alpha:\{*\}\to X$ tiene imagen $p\in X$ y $\alpha_*(\R[\varepsilon])$ es $\R[\varepsilon]$ si $p\in U$ y 0 en otro caso. También $\alpha^{\sharp}(U)$ será un homomorfismo de $\R$-álgebras local. 
 \[
 \begin{tikzcd}
 \mathcal{E}(U)\arrow[r] \arrow[d] &\R[\varepsilon]\\
-\mathcal{E}(U)\arrow[ur, "\alpha^{\sharp}_p=\beta"]&
+\R[\varepsilon]\arrow[ur, "\alpha^{\sharp}_p=\beta"]&
 \end{tikzcd}
 \]
-Como $\beta$ es local, $\beta(\m_p)\subseteq\gene{\varepsilon}$ y $\beta(\m^2_p)\subseteq\gene{\varepsilon}^2=\{0\}$. Por otra parte tenemos la evaluación $ev_P:\mathcal{E}\to \R$ y $\pi:\R[\varepsilon]\to \R=\R[\varepsilon]/\gene{\varepsilon}$. Así que $\beta(\m_p)\subseteq\ker\pi$. Se tiene en realidad que $\ker\pi=\R\varepsilon$, puesto que $\R[\varepsilon]=\R\oplus\R\varepsilon$. Podemos definir entonces $\overline{\beta}:\m_p/\m^2_p\to\R\varepsilon$ que es $\R$ lineal, es decir, es un vector tangente. 
+Como $\beta$ es local, $\beta(\m_p)\subseteq\gene{\varepsilon}$ y $\beta(\m^2_p)\subseteq\gene{\varepsilon}^2=\{0\}$. Por otra parte tenemos la evaluación $ev_p:\mathcal{E}\to \R$ y $\pi:\R[\varepsilon]\to \R=\R[\varepsilon]/\gene{\varepsilon}$. Así que $\beta(\m_p)\subseteq\ker\pi$. Se tiene en realidad que $\ker\pi=\R\varepsilon$, puesto que $\R[\varepsilon]=\R\oplus\R\varepsilon$. Podemos definir entonces $\overline{\beta}:\m_p/\m^2_p\to\R\varepsilon$ que es $\R$ lineal, es decir, es un vector tangente. 
 \end{ej}
 
 \section{Ejercicios}

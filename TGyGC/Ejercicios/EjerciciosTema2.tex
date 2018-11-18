@@ -1,0 +1,117 @@
+	\documentclass[twoside]{article}
+\usepackage{../../estilo-ejercicios}
+
+%--------------------------------------------------------
+\begin{document}
+
+\title{Relación 1}
+\author{Javier Aguilar Martín}
+\maketitle
+
+
+\begin{ejercicio}{2.1}
+Sea $P_4$ el grafo camino de 5 vértices y 4 aristas. Calcula $ex(5, P_4)$ y obtén la familia de
+grafos $Ex(5, P_4)$.
+\end{ejercicio}
+\begin{solucion}
+Tenemos que $ex(5,P_4)\leq \frac{3}{2}5<8$. Se puede encontrar un grafo de 5 vértices y 6 aristas que no contiene a $P_4$, luego $ex(5,P_4)\geq 6$. Si empezamos asignando a un vértice todas las aristas posibles, veremos que no podemos llegar a 7, así que $ex(5, P_4)=6$. 
+\end{solucion}
+
+\newpage
+
+
+\begin{ejercicio}{2.2}
+Sea $K_{1,4}$ el grafo estrella de 5 vértices y 4 aristas. Calcula $ex(5, K_{1,4})$ y obtén la familia
+de grafos $Ex(5, K_{1,4})$.
+\end{ejercicio}
+\begin{solucion}
+El grafo extremal deberá tener la mayor cantidad posible de vértices de grado 3 sin tener ninguno de grado 4. Se comprueba que podemos conseguir 4 vértices de grado 3 y uno de grado 2, a partir de lo cual no podemos añadir más. Así que $ex(5, K_{1,4})=7$, y el grafo resultante $Ex(5, K_{1,4})$ es un $K_{2,3}$ con una arista extra. 
+\end{solucion}
+
+\newpage
+
+\begin{ejercicio}{2.3}
+
+Sea $K_{1,r}$ el grafo estrella de $r + 1$ vértices y $r$ aristas. Calcula $ex(n, K_{1,r})$ para todo
+$r, n ∈ \N$.
+\end{ejercicio}
+\begin{solucion}
+Si $n\leq r$, entonces el grafo extremal es $K_n$, puesto que los vértices tienen grado $n-1<r$. Para $n\geq r+1$ podemos seguir la estrategia del ejercicio anterior, asignando a cada vértices $r-1$ aristas mientras sea posible. CONTINUAR
+\end{solucion}
+
+\newpage
+
+\begin{ejercicio}{2.4}
+
+Dados $n$ y $r$ números naturales con $n ≥ r − 1$, demuestra que el grafo de Turán $T_{r−1}(n)$
+verifica:
+\[
+∆(T_{r−1}(n)) = n − \left\lfloor\frac{ n}
+{r − 1}
+\right\rfloor \text{ y } δ(T_{r−1}(n)) = n − \left\lfloor \frac{n}
+{r − 1}\right\rfloor
+\]
+
+\end{ejercicio}
+\begin{solucion}
+Por definición de grafo de Turán, los vértices tendrán grado $n$-(número de vértices de su clase), que es justamente $\left\lfloor\frac{n}{r − 1}\right\rfloor$, con lo que se tiene el resultado. 
+
+
+\end{solucion}
+
+\newpage
+
+\begin{ejercicio}{2.5}
+
+Considera $K_6$ y una 2-coloración cualquiera de sus aristas con rojo y azul. Demuestra que
+existe un ciclo $C_4$ monocromático en dicha coloración de $K_6$.
+\end{ejercicio}
+\begin{solucion}
+ 
+\end{solucion}
+
+\newpage
+
+\begin{ejercicio}{2.6}
+Considera $K_6$ y una 2-coloración cualquiera de sus aristas con rojo y azul. Demuestra que
+existen dos triángulos monocromáticos en dicha coloración de $K_6$
+\end{ejercicio}
+\begin{solucion}
+
+\end{solucion}
+
+\newpage
+
+\begin{ejercicio}{2.7}
+Demuestra que $R(m, n) = R(n, m)$.
+\end{ejercicio}
+\begin{solucion}
+Basta intercambiar los papeles de $n$ y $m$ en la definición de $R(n,m)$. 
+\end{solucion}
+
+\newpage
+
+\begin{ejercicio}{2.8}
+Encuentra $R(2, n)$ para $n ≥ 2$.
+\end{ejercicio}
+\begin{solucion}
+
+
+$R(2,n)=n$. Efectivamente, $K_n$ está coloreado de un solo color, entonces obtenemos un $K_n$ monocromático. Si hay alguna arista del segundo color, entonces tenemos un $K_2$ monocromático. Con $n-1$ es claro que ya no se consigue, por lo que $n$ el mínimo.
+
+
+\end{solucion}
+\newpage
+
+\begin{ejercicio}{2.9}
+Demuestra que $R(m, n) ≤ R(m − 1, n) + R(m, n − 1)$ para $m, n ≥ 2$.
+\end{ejercicio}
+\begin{solucion}
+Sea $G=K_n$ con $n=R(m − 1, n) + R(m, n − 1)$ sea $v\in V(G)$ y consideremos los conjuntos $V_m$ (conjunto de vértices adyacentes a $v$ con una arista de color $m$) y $V_n$ (análogo para $n$). Como $G$ es completo, tenemos que 
+\[
+|V_m|+|V_n|+1=R(m-1,n)+R(m,n-1)
+\] 
+Si $|V_m|\leq R(m-1,n)-1$, entonces $|V_n|\geq R(m,n-1)$. Del mismo modo si $|V_n|\leq R(m,n-1)-1$ entonces $|V_m|\geq R(m-1,n)$. Tratamos el primer caso y el segundo será análogo. En ese caso, $V_n$ induce o bien un $K_m$ de color $m$, en cuyo caso ya habríamos terminado, o bien un $K_{n-1}$ de color $n$. En este último caso basta agregar $v$ para producir un $K_n$ de color $n$, por lo que hemos probado el resultado. 
+\end{solucion}
+
+\end{document}

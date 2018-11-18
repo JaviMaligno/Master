@@ -11,29 +11,56 @@ ESCRIBIR ALGO AQUÍ, INCLUYENDO ALGO DE QUE ALL MAPS ARE REQUIRED TO BE CONTINUO
 \section{Operads}
 First we give the general notion of operad and some properties of this object. EN PRINCIPIO LO DEFINO EN TOP Y YA PREGUNTO SI HACE FALTA QUE SEA EN UNA MONOIDAL SIMÉTRICA. SI HACE FALTA, HACER UNA SECCIÓN DE CATEGORÍAS SIMÉTRICAS MONOIDALES. SI NO, CITAR A DONALD YAU CON QUE SE PUEDE DEFINIR CON MÁS GENERALIDAD
 
-
-NO PARECE QUE ESTA DEFINICIÓN CAPTURE LA COMPOSICIÓN DEL LITTLE DISKS OPERAD, PERO EN VERDAD SÍ, LO QUE FALTA ES RELLENA CON LA IDENTIDAD HASTA COMPLETAR LA ARIDAD DEL PRIMERO
+%
+%NO PARECE QUE ESTA DEFINICIÓN CAPTURE LA COMPOSICIÓN DEL LITTLE DISKS OPERAD, PERO EN VERDAD SÍ, LO QUE FALTA ES RELLENA CON LA IDENTIDAD HASTA COMPLETAR LA ARIDAD DEL PRIMERO
 \begin{defi}
-A (non-symmetric) \emph{operad} is a tuple $(O, \circ, \mathbbm{1})$ consisting of the following data:
+An \emph{operad} is a tuple $(O, \circ, \mathbbm{1})$ consisting of the following data:
 \begin{enumerate}[(1)]
 \item a sequence of topological spaces $O=\{O(n)\}_{n\geq 0}$, whose elements are called \emph{$n$-ary operations}.
-\item an element $\mathbbm{1}\in P(1)$ is called the \emph{identity},
+\item an element $\mathbbm{1}\in O(1)$ is called the \emph{identity},
 \item for all positive integers $n,k_1,\dots, k_n$, a \emph{composition} map
 \begin{align*}
-\circ:P(n)\times P(k_1)\times\cdots\times P(k_n)&\to P(k_1+\cdots+k_n)\\
+\circ:P(n)\times O(k_1)\times\cdots\times O(k_n)&\to O(k_1+\cdots+k_n)\\
 (\theta, \theta_1,\dots, \theta_n)&\to \theta\circ(\theta_1,\dots, \theta_n),
 \end{align*}
 satisfying the following axioms:
 \begin{itemize}
-\item \emph{indentity}: $\theta(1,\dots, 1)=1\circ\theta$,
+\item \emph{indentity}: $\theta(\mathbbm{1},\dots, \mathbbm{1})=\mathbbm{1}\circ\theta$,
 \item \emph{associativiy}:
+\begin{align*}
+& \theta \circ (\theta_1 \circ (\theta_{1,1}, \ldots, \theta_{1,k_1}), \ldots, \theta_n \circ (\theta_{n,1}, \ldots,\theta_{n,k_n}))= \\
+ {} & (\theta \circ (\theta_1, \ldots, \theta_n)) \circ (\theta_{1,1}, \ldots, \theta_{1,k_1}, \ldots, \theta_{n,1}, \ldots, \theta_{n,k_n})
+\end{align*}
+
+\item \emph{equivariance}: given permutations $s_i\in\Sigma_{k_i}$, $t\in\Sigma_n$,
+\begin{align*}
+& (\theta\cdot t)\circ(\theta_{t_1},\ldots,\theta_{t_n}) = (\theta\circ(\theta_1,\ldots,\theta_n))\cdot t \\[2pt]
+& \theta\circ(\theta_1\cdot s_1,\ldots,\theta_n\cdot s_n) = (\theta\circ(\theta_1,\ldots,\theta_n))\cdot (s_1,\ldots,s_n)
+\end{align*}
+where $\cdot$ is the natural right action of the symmetric group $\Sigma_n$ on $P(n)$ by rearranging the $n$ arguments of the $n$-ary operations. AQUÍ SEGÚN WIKIPEDIA HAY UN ABUSO DE NOTACIÓN EN LA T DE LA PRIMERA ECUACIÓN, PENSAR SI EXPLICARLO O SI PONERLO CON DIAGRAMA COMO YAU (EN ESE CASO QUIZÁ SEA MÁS COHERENTE HACERLO TODO CON DIAGRAMAS)
 \end{itemize}
 \end{enumerate}
 \end{defi}
 
-\url{https://en.wikipedia.org/wiki/Operad_theory}
+%\url{https://en.wikipedia.org/wiki/Operad_theory}
+
+\begin{defi}
+Given two operads $O$ and $P$, a \emph{map} or \emph{morphism} of operads $f:O\to P$ consists of a sequence of maps $f_n:O(n)\to P(n)$, $n\in\N$ which
+\begin{enumerate}
+\item preserves identity: $f_1(\mathbbm{1}_O)=\mathbbm{1}_P$,
+\item preserves composition: for every $n$-ary operation $\theta$ and operations $\theta_1,\dots, \theta_n$,
+\[
+f(\theta\circ(\theta_1,\ldots,\theta_n))
+= f(\theta)\circ(f(\theta_1),\ldots,f(\theta_n))
+\]
+\item  preserves the permutation actions: $f(x\cdot s)=f(x)\cdot s$.
+\end{enumerate}
+\end{defi}
 
 We're treating operads only in the category of topological spaces, but they can be defined in a more general setting, namely, in any \emph{symmetric monoidal category} \cite{Yau}.
+
+ALOMEJOR HACER DIBUJITOS DE LOS AXIOMAS
+
 
 \section{Little disks operad}
 

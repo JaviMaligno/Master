@@ -1,0 +1,3621 @@
+\documentclass[12pt]{book}
+%\usepackage[left=1.5cm,top=2cm,right=1.5cm,bottom=2cm]{geometry}
+\usepackage[spanish]{babel}
+%\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{amsthm}
+%\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{color}
+
+\usepackage{theorem}
+
+%\usepackage{hyperref} no va
+
+\newtheorem{teo}{Teorema}[section]
+\newtheorem{coro}[teo]{Corolario}
+\newtheorem{lema}[teo]{Lema}
+\newtheorem{propo}[teo]{Proposición}
+
+\theorembodyfont{\rmfamily}
+\newtheorem{defi}[teo]{Definición}
+\newtheorem{rem}[teo]{Observación}
+\newtheorem{rem2}[teo]{Notación}
+\newtheorem{nota}[teo]{Nota}
+\newtheorem{eje}[teo]{Ejemplo}
+\newtheorem{ejes}[teo]{Ejemplos}
+%\theoremstyle{theorem}
+
+\newtheorem{ejer}[teo]{Problema}
+
+
+
+%--------------------------------------------------------------------------
+%\def\MM{\widetilde{M}}
+%\def\RR{\widetilde{R}}
+%\def\XX{\widetilde{X}}
+%\def\YY{\widetilde{Y}}
+%\def\NN{\widetilde{N}}
+%\def\Nabla{\widetilde{\nabla}}
+
+
+\def\sen{\,{\rm sen}\,}
+\def\a{\alpha}
+\def\b{\beta}
+\def\om{\omega}
+\def\n{\nabla}
+\def\w{\widetilde}
+\def\fl{\longrightarrow}
+\def\lm{\longmapsto}
+\def\vp{\varphi}
+\def\hs{\hspace*{1.5 em}}
+\def\dif{{\rm d}}
+\def\R{{\bf R}}
+\def\N{{\bf N}}
+\def\Z{{\bf Z}}
+\def\C{{\bf C}}
+\def\S{{\bf S}}
+\def\H{{\bf H}}
+\def\B{{\bf B}}
+\def\U{{\bf U}}
+\newcommand{\de}[1]{{\rm d} #1}
+\newcommand{\dep}[1]{\displaystyle{\frac{\partial}{\partial #1}}}
+\newcommand{\deri}[1]{\displaystyle{\frac{{\rm d}}{{\rm d} #1}}}
+\newcommand{\dderi}[2]{\displaystyle{\frac{{\rm d} #1}{{\rm d} #2}}}
+\newcommand{\cova}[2]{\displaystyle{\frac{{\rm D} #1}{{\rm d} #2}}}
+\newcommand{\esp}[1]{{\cal #1}}
+\newcommand{\ddep}[2]{\displaystyle{\frac{\partial #1}{\partial #2}}}
+
+\setcounter{section}{-1}
+
+
+%-------------------------------------------------------------------------
+
+\begin{document}
+%PORTADA:
+
+\numberwithin{equation}{section}
+
+\begin{titlepage}
+
+\begin{center}
+%\vspace*{-1in}
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=6cm]{sellouniversidad}
+\end{center}
+\end{figure}
+FACULTAD DE MATEMÁTICAS\\
+\vspace*{0.15in}
+DEPARTAMENTO DE GEOMETRÍA Y TOPOLOGÍA \\
+\vspace*{0.6in}
+\begin{Large}
+\textbf{Los modelos de la Geometría Riemanniana:} \\  \textbf{Cálculo de sus geodésicas} \\
+\end{Large}
+\vspace {1cm}
+\begin{large}
+Memoria realizada por Manuel Sígler Vilches \\
+\end{large}
+\vspace{2cm}
+\rule{80mm}{0.1mm}\\
+\vspace*{0.1in}
+\begin{large}
+Dirigido por: \\
+VºBº \hspace*{4.5cm}
+\vskip 2cm
+Dr. Alfonso Carriazo Rubio \\
+\end{large}
+\end{center}
+
+\end{titlepage}
+
+%Página en blanco:
+\newpage
+\mbox{}
+\thispagestyle{empty} % para que no se numere esta página
+
+\chapter*{Abstract}
+\thispagestyle{empty}
+
+In this work we present an introduction to Riemannian Geometry, with an specific goal: to determine the geodesics of the so-called model spaces (i.e., those with constant curvature). Therefore, we introduce the notions of affine connection on a differentiable manifold (which allows us to consider parallelism, geodesics, torsion and curvature), Riemannian metric and Riemann curvature, and develop all them. Finally, we completely calculate the geodesics of the Euclidean space (zero curvature), the Sphere (positive curvature) and the Hyperbolic spaces (negative curvature). Our approach can be seen as an introductory course in this theory.
+
+%Página en blanco:
+\newpage
+\mbox{}
+\thispagestyle{empty} % para que no se numere esta página
+
+
+\tableofcontents
+\newpage
+
+\chapter*{Introducción}
+
+\addcontentsline{toc}{chapter}{Introducción}
+
+\markboth{INTRODUCCIÓN}{INTRODUCCIÓN}
+
+Una de las maneras más sencillas, y quizás la más natural, de introducirse en el campo de la Geometría Diferencial es comenzar con el estudio de la teoría de curvas y superficies. Se trata ésta de una teoría clásica, cuyos elementos están perfectamente descritos, tanto analítica como visualmente, resultando extraordinariamente intuitivos y cercanos a nuestra experiencia diaria. Esto no es, ni mucho menos, óbice para que dicha teoría alcance resultados de gran valor geométrico, como pudieran ser los teoremas fundamentales de curvas, los Teoremas de Minding, Hopf-Rinow o Gauss-Bonnet, o, por citar uno de los ejemplos más clásicos, el Teorema Egregio de Gauss (para una información detallada al respecto, nos remitimos al clásico manual de M. P. do Carmo \cite{docar}).
+
+Sin embargo, en esta teoría nos encontramos con una limitación evidente: la dimensión de los espacios considerados. Las curvas tienen dimensión 1, pues se describen localmente con un solo parámetro, mientras que para parametrizar localmente una superficie hacen falta 2, por lo que ésta será su dimensión. Pero son numerosos los casos en que necesitamos trabajar con espacios descritos localmente por un mayor número de parámetros, es decir, con dimensiones mayores que 2. Para formalizarlos, apareció la noción de \textit{variedad diferenciable} como aquel espacio tal que cada punto tiene un entorno abierto que es homeomorfo a un abierto de $\R^n$, de modo que donde dos de dichos entornos se solapen, los cambios de parámetros sean diferenciables. Estos espacios tendrán, entonces, dimensión arbitraria $n$.
+
+Pero, para poder recuperar toda la riqueza geométrica de las curvas y superficies en espacios de dimensiones superiores, es necesario poder medir longitudes, ángulos y áreas. Y lo que nos permitirá hacerlo es la consideración de un tensor métrico en una variedad diferenciable, dando lugar a la idea de \textit{variedad Riemanniana}. La Geometría Riemanniana toma su nombre del matemático alemán Georg Friedrich Bernhard Riemann (1826-1866), quien, en su Tesis de Habilitación (Habilitationsvortrag) titulada ``Ueber die Hypothesen, welche der Geometrie zu Grunde liegen" (Sobre las hipótesis que están en los fundamentos de la Geometría; puede consultarse una traducción al inglés en \cite{mccleary}) sentó las bases de la teoría, si bien fue gracias a matemáticos posteriores como Tullio Levi-Civita (1873-1941) o su maestro Gregorio Ricci-Curbastro (1853-1925) que adoptó su formalismo actual.
+
+El objetivo de nuestro trabajo es plantear una introducción a la Geometría Riemanniana, con una meta concreta: calcular las geodésicas de los espacios modelos (es decir, aquellos que tienen curvatura constante). Este planteamiento puede seguirse como un curso introductorio a esta materia. Así, tras unos preliminares en los que se recogen las definiciones y propiedades esenciales de la teoría de Variedades Diferenciables, en un segundo capítulo desarrollamos el concepto de \textit{conexión afín}, noción previa a la métrica (pero que en última instancia se derivará de ella en el caso destacado de la conexión de Levi-Civita) que nos permitirá generalizar las ideas de derivación covariante, paralelismo, geodésica, torsión y curvatura. En el tercer capítulo introducimos ya la noción de \textit{métrica Riemanniana} y los conceptos que dependen de ella, como el de isometría. Completamos este recorrido con el estudio de la \textit{curvatura de Riemann} en el cuarto capítulo, mientras que el quinto está dedicado al cálculo explícito de las geodésicas de los espacios modelos: el espacio Euclídeo (curvatura nula), la esfera (curvatura positiva) y los espacios hiperbólicos (curvatura negativa).
+
+Se completa la memoria con una lista de las referencias bibliográficas que se han consultado para su elaboración.
+
+
+No quisiera acabar esta Introducción sin expresar mi agradecimiento
+a varias personas que me han ayudado, en mayor o menor medida, a la
+realización de este trabajo. En primer lugar, y quizás por orden de
+relevancia, debo y quiero agradecer todo su empeño y dedicación
+hacia mi persona en general, y hacia este trabajo en particular, a
+mi tutor, Prof. Dr. D. Alfonso Carriazo Rubio. Sin él, la concepción de
+esta memoria habría sido una quimera imposible de realizar,
+teniendo en cuenta que gracias a su consejo, paciencia, trabajo y
+esfuerzo, hemos conseguido tener una relación tutor-pupilo que se
+asemeja más a una amistad.
+
+Es costumbre en todos los trabajos de este tipo, agradecer a la
+familia por siempre haber estado ahí, por el apoyo incondicional...
+Pero mi familia no es así. Mis padres y mi hermana no sólo estaban
+ahí; no sólo me han apoyado incondicionalmente. Gracias a mis padres
+soy todo lo que soy ahora. Han tenido que soportar todo tipo de
+despistes por mi parte, de una dejadez extrema motivo de mi
+personalidad, y en ningún momento han tirado la toalla, al revés,
+siempre me han empujado a continuar, cuando ni yo mismo creía en mí.
+Espero que este trabajo, por lo que representa, el final de una
+etapa importante, les haga estar orgullosos de mí.
+
+Ya por último, no quisiera pasar por alto esta ocasión para hacer
+una mención especial a mis amigos y amigas, con los que he
+compartido tanto y tan bueno; a mi abuela Juana, que siempre se
+preocupa mucho por mis estudios; y a esa persona especial con la que
+comparto mucho tiempo últimamente y que es la principal culpable de
+mi alegría. A todos muchas gracias.
+
+\
+
+
+
+\newpage
+
+\chapter{Preliminares}
+
+En este capítulo vamos a recordar algunos conceptos y propiedades de la teoría de Variedades Diferenciables, tal y como se estudian en la asignatura del mismo nombre de 4º curso del Grado en Matemáticas de la Universidad de Sevilla. Para un mayor detalle sobre esta teoría, nos remitimos, por ejemplo, a \cite{boothby}.
+
+
+\section{Variedades Diferenciables.}
+
+En todo lo que sigue y salvo menci\'{o}n expl\'{\i}cita en
+contra, se supondr\'{a} que $M$ es un espacio topol\'{o}g\'{\i}co
+$T_2$ y $2^{\underline{o}}N$.
+\begin{defi}
+Una {\bf Carta Local de dimensi\'{o}n $m$} en $M$ es un par $(U,\vp)$ tal que:
+\begin{enumerate}
+\item $U$ es un abierto de $M$, denominado {\bf Dominio} de la carta.
+\item $\vp$ es un homeomorfismo de $U$ en un abierto $\vp(U)$ de $\R^m$, llamado {\bf Aplicaci\'{o}n Coordenada} de la
+carta.
+\end{enumerate}
+\end{defi}
+\begin{defi}
+Dada una carta local $(U,\vp)$ de $M$ de dimensi\'{o}n $m$ y dado $p\in U$, a las coordenadas $(\lambda_1,\dots
+,\lambda_m)$ de $\vp(p)\in\vp(U)\subseteq\R^m$ se les llama {\bf Coordenadas Locales} de $p$ respecto de la carta
+$(U,\vp)$. Por esta raz\'{o}n, tambi\'{e}n se denomina a las cartas {\bf Sistemas Locales de Coordenadas} (s.l.c.).
+\end{defi}
+Considerando las proyecciones can\'{o}nicas $u_i:\R^m\fl\R$,
+$i=1,\dots ,m$ (en particular, se pueden pensar con dominio en
+$\vp(U)$) y denotando por $x_i$ a la funci\'{o}n
+$x_i=u_i\circ\vp:U\fl\R$, se tiene que $\vp(p)=(\lambda_1,\dots
+,\lambda_m)=(x_1(p),\dots ,x_m(p))$, pues, para cualquier
+$i=1,\dots ,m$, $\lambda_i=u_i(\lambda_1,\dots
+,\lambda_m)=u_i(\vp(p))=x_i(p)$.
+\begin{defi}
+Dada una carta local $(U,\vp)$ de $M$, las funciones $x_i$,
+$i=1,\dots m$, se llaman {\bf Funciones Componentes} (o {\bf
+Funciones Coordenadas}) de la carta y se escribe $\vp=(x_1,\dots
+,x_m)$.
+\end{defi}
+\begin{defi} Se dice que dos cartas locales de dimensi\'{o}n $m$ sobre $M$, $(U,\vp)$ y $(V,\psi)$ est\'{a}n {\bf
+Relacionadas} si se verifica una de las dos condiciones siguientes:
+\begin{enumerate}
+\item $U\cap V=\emptyset$, \'{o}
+\item Si $U\cap V\neq\emptyset$, entonces las aplicaciones (llamadas {\bf Aplicaciones de Transici\'{o}n} o {\bf Aplicaciones
+de Cambio} de las cartas),
+$$\psi\circ\vp^{-1}:\vp(U\cap V)\fl\psi(U\cap V)$$
+y
+$$\vp\circ\psi^{-1}:\psi(U\cap V)\fl\vp(U\cap V)$$
+son de clase $\esp{C}^{\infty}$.
+\end{enumerate}
+\hs Obs\'{e}rvese que tanto $\vp(U\cap V)$ como $\psi(U\cap V)$ son abiertos de $\R^m$.
+\end{defi}
+\begin{defi}
+Un {\bf Atlas} (de dimensi\'{o}n $m$) en $M$ es una familia de cartas locales (de dimensi\'{o}n $m$) sobre $M$ tales que
+sus dominios recubren a $M$ y que dos a dos est\'{a}n relacionadas. Un atlas se dice {\bf Maximal} si no est\'{a}
+propiamente contenido en otro atlas.
+\end{defi}
+\begin{defi}
+Una carta local (de dimensi\'{o}n $m$) se dice {\bf Admisible} en un atlas (de dimensi\'{o}n $m$) si est\'{a} relacionada con
+todas las cartas de dicho atlas.
+\end{defi}
+%En particular, todas las cartas de un atlas son admisibles en \'{e}l. Adem\'{a}s, si $(U,\vp)$ es una carta admisible en
+%un atlas $\esp{A}$, entonces $\esp{A}\cup\{(U,\vp)\}$ es otro atlas.
+\begin{propo}
+Todo atlas est\'{a} contenido en un \'{u}nico atlas maximal.
+\end{propo}
+\begin{defi}
+Dos atlas de la misma dimensi\'{o}n sobre $M$ se dicen {\bf Compatibles} o {\bf Equivalentes} si su uni\'{o}n es otro
+atlas.
+\end{defi}
+%Como consecuencia de esta definici\'{o}n se tiene que dos atlas
+%son compatibles si y s\'olo si est\'{a}n contenidos en un mismo
+%atlas maximal. Adem\'{a}s, las cartas de dos atlas compatibles
+%est\'{a}n relacionadas todas entre s\'{\i}.
+\begin{propo}
+La relaci\'{o}n de compatibilidad entre atlas de la misma dimensi\'{o}n es una relaci\'{o}n de equivalencia.
+\end{propo}
+\begin{defi} Una {\bf Variedad Diferenciable} de dimensi\'{o}n $m$ es un par $(M,\esp{A})$ donde $M$ es un espacio
+topol\'{o}gico $T_2$ y $2^{\underline{o}}N$ y $\esp{A}$ un atlas de dimensi\'{o}n $m$ sobre $M$. A la clase de
+equivalencia por la relaci\'{o}n anterior del atlas $\esp{A}$ (o, por abuso del lenguaje, al propio atlas $\esp{A}$)
+se le llama {\bf Estructura Diferenciable} de la variedad.
+\end{defi}
+Cuando no haya lugar a confusi\'{o}n, se dir\'{a} que $M$ es la variedad diferenciable, omitiendo nombrar expl\'{\i}citamente
+el atlas.
+\par
+Por otra parte y en virtud de la definici\'{o}n de atlas, dado un punto $p$ de una variedad diferenciable $M$, siempre
+existe una carta local $(U,\vp)$ de la estructura diferenciable tal que $p\in U$. Esta carta se denomina {\bf
+Carta Entorno de $p$}.
+
+\section{Aplicaciones Diferenciables.}
+\begin{defi}
+Sean $M$ y $N$ dos variedades diferenciables y $G\subseteq M$ un abierto. Una aplicaci\'{o}n continua $f:G\fl N$ , se
+dice {\bf Diferenciable en un punto} $p\in G$ si existe una carta local $(U,\vp)$ en $M$ entorno de $p$ y existe
+una carta local $(V,\psi)$ en $N$ entorno de $f(p)$ tales que
+$$\psi\circ f\circ\vp^{-1}:\vp(G\cap U\cap f^{-1}(V))\fl\psi f(G\cap U\cap f^{-1}(V))$$
+es diferenciable en un entorno de $\vp(p)$ contenido en $\vp(G\cap U\cap f^{-1}(V))$. La aplicaci\'{o}n $f$ se dice
+diferenciable en $G$ si es diferenciable en todos los puntos de $G$.
+\end{defi}
+\begin{propo}
+La definici\'{o}n anterior no depende de las cartas elegidas entornos de $p$ y $f(p)$, respectivamente.
+\end{propo}
+Obs\'{e}rvese que, por definici\'{o}n, toda aplicaci\'{o}n
+diferenciable es continua. Al conjunto de las aplicaciones
+continuas de $G$ en $N$ y diferenciables en $G$ se denota por
+$\esp{F}(G,N)$. En particular, si $G=M$, se tiene el conjunto
+$\esp{F}(M,N)$ de las aplicaciones diferenciables de todo $M$ en
+$N$.
+\begin{propo}
+Una aplicaci\'{o}n continua $f:M\fl N$ pertenece a $\esp{F}(M,N)$ si y s\'{o}lo si para cualesquiera cartas locales
+$(U,\vp)$ en $M$ y $(V,\psi)$ en $N$ tales que $U\cap f^{-1}(V)\neq\emptyset$ se tiene que:
+$$\psi\circ f\circ\vp^{-1}:\vp(U\cap f^{-1}(V))\fl\psi f(U\cap f^{-1}(V))$$
+es diferenciable.
+\end{propo}
+\begin{defi} Una aplicaci\'{o}n biyectiva $f\in\esp{F}(M,N)$ se dice que es un {\bf Difeomorfismo} si
+$f^{-1}\in\esp{F}(N,M)$. Dos variedades diferenciables se dicen
+{\bf Difeomorfas} si existe un difeomorfismo entre ambas.
+\end{defi}
+Cuando la variedad $N$ es $\R$ con su estructura eucl\'{\i}dea, las aplicaciones de $M$ en $\R$ se suelen llamar
+funciones. As\'{\i}, a una funci\'{o}n continua $f:G\fl\R$, si es diferenciable (en el sentido de la Definici\'{o}n 2.1.1) en
+un punto $p\in M$, se llama {\bf Funci\'{o}n Diferenciable en $p$} y al conjunto de tales funciones se denota por
+$\esp{F}(p)$ y si es diferenciable en todo $G$ (que podr\'{\i}a ser el propio $M$), se llama {\bf Funci\'{o}n Diferenciable
+en $G$} y el conjunto de tales funciones se denota por $\esp{F}(G)$, verific\'{a}ndose que:
+$$\esp{F}(G)=\bigcap_{p\in G}\esp{F}(p).$$
+\begin{propo}
+Dado un abierto $G\subseteq M$, una aplicaci\'{o}n continua $f:G\fl\R$ es diferenciable en $G$ si y s\'{o}lo si para toda
+carta local $(U,\vp)$ de $M$, tal que $U\cap G\neq\emptyset$, $f\circ\vp^{-1}:\vp(U\cap G)\fl\R$ es diferenciable.
+\end{propo}
+\begin{propo}
+Dado $G\subseteq M$ abierto, $\esp{F}(G)$ es un \'{a}lgebra asociativa, conmutativa y con elemento unidad para las
+operaciones suma y producto de funciones y producto por n\'{u}meros reales.
+\end{propo}
+
+\begin{ejes}
+{\rm Sea $(U,\vp=(x_1,\dots ,x_m))$ un s.l.c. Entonces:
+\begin{enumerate}
+\item $x_i\in\esp{F}(U)$, para todo $i=1,\dots ,m$.
+\item Sea $f\in\esp{F}(U)$. Dado cualquier $i=1,\dots ,m$ se define:
+$$\ddep{f}{x_i}:p\in U\longmapsto \left(\ddep{f}{x_i}\right)_p=\left(\ddep{(f\circ\vp^{-1})}{u_i}\right)_{\vp(p)}\in\R.$$
+\hs Se cumple que $\displaystyle{\ddep{f}{x_i}}\in\esp{F}(U)$, $i=1,\dots ,m$.
+\end{enumerate}}
+\end{ejes}
+%\begin{propo}
+%{\bf (Lema de Extensi\'{o}n de Funciones Diferenciables).} Sea $h\in\esp{F}(G)$, donde $G$ es un abierto conteniendo a
+%$p\in M$. Entonces, existen un entorno abierto $V$ de $p$, con $\overline{V}\subseteq G$ y una funci\'{o}n
+%$f\in\esp{F}(M)$ tales que $f\equiv h$ en $V$ y $f\equiv 0$ en $M-G$.
+%\end{propo}
+\begin{teo}
+Una aplicaci\'{o}n continua $f\in\esp{F}(M,N)$ si y s\'{o}lo si
+para toda funci\'{o}n $g\in\esp{F}(N)$, $g\circ f\in\esp{F}(M)$.
+\end{teo}
+\section{Vectores Tangentes.}
+\begin{defi}
+Una {\bf Curva Diferenciable} en una variedad diferenciable $M$ es una aplicaci\'{o}n diferenciable
+$\a\in\mathcal{F}((a,b),M)$, donde $(a,b)$ es un intervalo abierto (degenerado o no) de la recta real.
+\end{defi}
+%Recu\'{e}rdese que $\a\in\mathcal{F}((a,b),M)$ quiere decir que para toda carta $(U,\vp)$ en $M$, tal que
+%$\a^{-1}(U)\neq\emptyset$, se verifica que la aplicaci\'{o}n $\vp\circ\a:\a^{-1}(U)\fl\R^m$ es diferenciable.
+\begin{defi}
+Sea $\a\in\mathcal{F}((a,b),M)$ una curva diferenciable en $M$ y $t_0\in (a,b)$. Se llama {\bf Vector Tangente} a
+la curva $\a$ en $\a(t_0)$ a la aplicaci\'{o}n
+$$\a'(t_0):\mathcal{F}(\a(t_0))\fl\R:f\mapsto\a'(t_0)f=\left.\dderi{(f\circ\a)}{t}\right|_{t_0}.$$
+\hs Una curva diferenciable $\a:(a,b)\fl M$ en una variedad diferenciable $M$ se dice {\bf Regular} si $\a'(t)\neq
+0$, para cualquier $t\in (a,b)$.
+\end{defi}
+%Debe observarse que, si $f\in\mathcal{F}(\a(t_0))$, entonces $f$ est\'{a} definida en un abierto $U\subseteq M$ tal
+%que $\a(t_0)\in U$. Por tanto, $f\circ\a$ est\'{a} definida en $\a^{-1}(U)$, que es abierto de $(a,b)$ (por la
+%continuidad de $\a$). Adem\'{a}s, como
+%$$\a'(t_0)f=\left.\dderi{(f\circ\a)}{t}\right|_{t_0}=\lim_{t\rightarrow t_0}\frac{f(\a(t))-f(\a(t_0))}{t-t_0},$$
+%el vector tangente mide la variaci\'{o}n de la velocidad sobre la curva mediante la funci\'{o}n $f$.
+%\par
+%La siguiente proposici\'{o}n, cuya demostraci\'{o}n se sigue inmediatamente de la definici\'{o}n y de las propiedades de la
+%derivada usual, permite interpretar, por similitud con lo que ocurre en $\R^m$, el vector tangente a una curva en
+%un punto como una derivaci\'{o}n (direccional) en dicho punto.
+\begin{propo}
+Sean $\a\in\esp{F}((a,b),M)$ una curva diferenciable en $M$,
+$t_0\in (a,b)$, $f,g\in\mathcal{F}(\a(t_0))$ y $\lambda,\mu\in\R$.
+Entonces, el vector tangente a $\a$ en $\a(t_0)$ verifica las
+siguientes propiedades:
+\begin{enumerate}
+\item $\a'(t_0)(\lambda f+\mu g)=\lambda\a'(t_0)f+\mu\a'(t_0)g$.
+\item $\a'(t_0)(fg)=f(\a(t_0))\a'(t_0)g+g(\a(t_0))\a'(t_0)f$.
+\end{enumerate}
+\end{propo}
+\begin{propo}
+Sean $\a\in\esp{F}((a,b),M)$ una curva diferenciable en $M$, $t_0\in (a,b)$ y $f,g\in\mathcal{F}(\a(t_0))$ tales
+que coinciden en un entorno de $\a(t_0)$. Entonces $\a'(t_0)f=\a'(t_0)g$.
+\end{propo}
+\begin{defi}
+Sea $p\in M$. Se llama {\bf Vector Tangente} a $M$ en $p$ al vector tangente en $p$ a cualquier curva
+diferenciable en $M$ que pase por $p$. Al conjunto de los vectores tangentes a $M$ en $p$ se le llama {\bf Espacio
+Tangente} a $M$ en $p$.
+\end{defi}
+%Siempre existen curvas diferenciables en $M$ que pasan por $p$. Por ejemplo, la curva constante $\a:\R\fl
+%M:t\mapsto\a(t)=p$, cuyo vector tangente es $\a'(t)=0$, para todo $t\in\R$.
+%\par
+
+\
+
+Si $(U,\vp=(x_1,\dots ,x_m))$ es un s.l.c. entorno de $p$, entonces $$\vp(p)=(p_1,\dots
+,p_m)\in\vp(U)\subseteq\R^m.$$ Para cada $i=1,\dots ,m$, sea $\epsilon>0$ tal que
+$$(p_1,\dots ,p_{i-1},p_i+t,p_{i+1},\dots ,p_m)\in\vp(U),$$
+con $\vert t\vert <\epsilon$, que existe ya que $\vp(U)$ es abierto. Entonces
+$$\a_i:(-\epsilon,\epsilon)\fl M:t\mapsto\vp^{-1}((p_1,\dots ,p_{i-1},p_i+t,p_{i+1},\dots ,p_m))$$
+es una curva diferenciable en $M$, con $\a_i(0)=p$ y $\a_i'(0)$ es, por tanto, un vector tangente a $M$ en $p$,
+que se denotar\'{a} por:
+$$\left(\dep{x_i}\right)_p.$$
+%\hs Esta notaci\'{o}n est\'{a} justificada porque si $f\in\mathcal{F}(p)$, se tiene que
+%$$(f\circ\a_i)(t)=(f\circ\vp^{-1})((p_1,\dots ,p_{i-1},p_i+t,p_{i+1},\dots ,p_m))=(f\circ\vp^{-1}\circ h_i)(t),$$
+%donde $h_i:(-\epsilon,\epsilon)\fl\vp(U):t\mapsto h_i(t)=(p_1,\dots ,p_{i-1},p_i+t,p_{i+1},\dots ,p_m)$. Ahora
+%bien, $h_i(0)=\vp(p)$ y, por la Regla de la Cadena en espacios eucl\'{\i}deos:
+%$$\a_i'(0)f=\left.\dderi{(f\circ\a_i)}{t}\right|_{t=0}=(\nabla(f\circ\vp^{-1}))_{h_i(0)}.h'_i(0)=$$
+%$$=\left(\ddep{(f\circ\vp^{-1})}{u_i}\right)_{\vp(p)}= \left(\ddep{f}{x_i}\right)_p.$$
+\hs A partir de ahora, se denotar\'{a}:
+$$\left(\dep{x_i}\right)_pf=\left(\ddep{f}{x_i}\right)_p,\mbox{ }i=1,\dots ,m.$$
+\hs Por las propiedades de los vectores tangentes a curvas, se deduce que todo vector tangente a $M$ en $p$ es una
+aplicaci\'{o}n $u:\mathcal{F}(p)\fl\R$, verificando:
+\begin{enumerate}
+\item $u(\lambda f+\mu g)=\lambda u(f)+\mu u(g)$, $f,g\in\esp{F}(p)$, $\lambda,\mu\in\R$ (condici\'{o}n de
+$\R$--linealidad);
+\item $u(fg)=f(p)u(g)+g(p)u(f)$, $f,g\in\esp{F}(p)$ (Condici\'{o}n de Leibnitz);
+\item $u(f)=u(g)$, si $f,g\in\mathcal{F}(p)$ coinciden en un entorno de $p$.
+\end{enumerate}
+\hs Si se denota por $T_p(M)$ al conjunto de las aplicaciones $u:\mathcal{F}(p)\fl\R$ que son $\R$--lineales y que
+satisfacen la Condici\'{o}n de Leibnitz, se puede probar que dicho conjunto es, realmente, el espacio tangente a $M$
+en $p$.
+\begin{lema}
+Sean $M$ una variedad diferenciable, $p\in M$, $f\in\esp{F}(p)$ y $(U,\vp=(x_1,\dots ,x_m))$ un s.l.c. entorno de
+$p$. Entonces, en un cierto entorno de $p$ se verifica que
+$$f=f(p)+\sum_{i=1}^mf_i.(x_i-x_i(p)),$$
+donde $f_i\in\esp{F}(p)$ y $f_i(p)=\left(\ddep{f}{x_i}\right)_p$.
+\end{lema}
+\newpage
+\begin{lema} Sean $M$ una variedad diferenciable, $p\in M$ y $u\in T_p(M)$.
+\begin{enumerate}
+\item Si ${\bf c}\in\esp{F}(M)$ es la funci\'{o}n constante dada por ${\bf c}(q)=c$ para todo $q\in M$ y $c\in\R$,
+entonces, se verifica que $u({\bf c})=0$.
+\item Si $f\in\mathcal{F}(p)$ se anula en un entorno de $p$, entonces $u(f)=0$.
+\item Si $f,g\in\mathcal{F}(p)$ coinciden en un entorno de $p$, entonces $u(f)=u(g)$.
+\end{enumerate}
+\end{lema}
+Sea ahora un s.l.c. $(U,\vp=(x_1,\dots ,x_m))$ entorno de $p$. Dados $u\in T_p(M)$ y cualquier funci\'{o}n
+$f\in\mathcal{F}(p)$, en virtud de los lemas anteriores se tiene que:
+$$u=\sum_{i=1}^mu(x_i)\left(\dep{x_i}\right)_p.$$
+\hs En particular, si $\a:(a,b)\fl M$ es una curva sobre $M$ con $\a(t_0)=p$, como $\a'(t_0)\in T_p(M)$:
+$$\a'(t_0)=\sum_{i=1}^m\a'(t_0)x_i\left(\dep{x_i}\right)_p=
+\left.\sum_{i=1}^m\dderi{(x_i\circ\a)}{t}\right|_{t_0}\left(\dep{x_i}\right)_p.$$ \hs Usando esta expresi\'{o}n, puede
+deducirse que, dado $u\in T_p(M)$ y considerando la curva diferenciable en $M$,
+$$\a:(-\epsilon,\epsilon)\fl M:t\mapsto \vp^{-1}((p_1+tu(x_1),\dots ,p_m+tu(x_m))),$$
+para cierto $\epsilon>0$ que existe por la continuidad de $\vp$, donde $(p_1,\dots ,p_m)=\vp(p)$, se verifica que
+$\a(0)=p$ y $\a'(0)=u$.
+\begin{teo}
+El conjunto de los vectores tangentes a una variedad diferenciable $M$ en un punto $p$ es $T_p(M)$, es decir, los
+vectores tangentes a $M$ en $p$ son las aplicaciones $\R$-lineales de dominio $\mathcal{F}(p)$ con valores reales
+que verifican la Condici\'{o}n de Leibnitz.
+\end{teo}
+%Ahora, en el conjunto de las curvas diferenciables en $M$ que pasan por $p$ y que se denota por $\esp{C}(p)$, se
+%puede definir una relaci\'{o}n de equivalencia $\esp{R}$ por: $\a\esp{R}\b$ si y s\'{o}lo si $\a$ y $\b$ tienen el mismo
+%vector tangente en $p$.
+%\begin{propo}
+%Los conjuntos $\esp{C}(p)/\esp{R}$ y $T_p(M)$ est\'{a}n en correspondencia biyectiva.
+%\end{propo}
+%De forma natural se definen en $T_p(M)$ la suma y producto por
+%n\'{u}meros reales que lo convierten en un espacio vectorial real.
+%A continuaci\'{o}n se va a encontrar una base (y, por tanto, a
+%saber la dimensi\'{o}n) de este espacio vectorial. Para ello, la
+%expresi\'{o}n anterior de $\a'(t_0)$ indica el camino a seguir.
+\begin{teo}
+Dado un punto $p$ de una variedad diferenciable $M$ y una carta local $(U,\vp=(x_1,\dots ,x_m))$ entorno de $p$,
+los vectores tangentes
+$$\left(\dep{x_i}\right)_p,\mbox{ }i=1,\dots ,m,$$
+forman una base de $T_p(M)$, con lo que ${\rm dim}(T_p(M))=m$.
+\end{teo}
+%Como consecuencia, se obtiene que hay tantas bases de $T_p(M)$ como cartas locales entorno de $p$. Adem\'{a}s, si
+%$(U,\vp=(x_1,\dots ,x_m))$ y $(V,\psi=(y_1,\dots ,y_m))$ son dos de tales cartas, entonces el cambio de bases
+%viene dado por:
+%$$\left( \dep{y_j}\right)_p=\sum_{i=1}^m\left(\ddep{x_i}{y_j}\right)_p\left( \dep{x_i}\right)_p.$$
+%\hs Debe observarse que la matriz de cambio de bases es, realmente, la matriz jacobiana de la aplicaci\'{o}n de
+%transici\'{o}n $\vp\circ\psi^{-1}$ en $\psi(p)$, pues:
+%$$\left(\ddep{x_i}{y_j}\right)_p=\left(\ddep{(u_i\circ\vp\circ\psi^{-1})}{u_j}\right)_{\psi(p)}.$$
+%\section{Espacio Cotangente.}
+\begin{defi}
+Dado un punto $p$ de una variedad diferenciable $M$, se llama {\bf Espacio Cotangente} a $M$ en $p$ al espacio
+vectorial dual del espacio tangente a $M$ en $p$, que se denota por $T_p^*(M)$ y a cuyos elementos se llaman {\bf
+Covectores} en $p$.
+\end{defi}
+Recu\'{e}rdese que $T_p^*(M)=\{u^*:T_p(M)\fl\R /u^* {\rm es}\mbox{ }{\rm lineal}\}$.
+\begin{defi}
+Sea $f\in\esp{F}(p)$. Se llama {\bf Diferencial} de $f$ en $p$ a la funci\'{o}n $(\dif f)_p:T_p(M)\fl\R$ tal que
+$(\dif f)_pu=u(f)$, para cualquier vector $u\in T_p(M)$.
+\end{defi}
+\begin{propo}
+Dada $f\in\esp{F}(p)$, entonces $(\dif f)_p\in T_p^*(M)$.
+\end{propo}
+Dado $(U,\vp=(x_1,\dots ,x_m))$ un s.l.c. entorno de $p$, en virtud de la proposici\'{o}n anterior se tiene que
+$(\de{x_i})_p\in T_p^*(M)$, para cualquier $i=1,\dots ,m$. Adem\'{a}s, se puede comprobar f\'{a}cilmente que
+$\{(\de{x_i})_p\}_{i=1,\dots ,m}$ es una base de $T_p^*(M)$, dual de la base
+$\{\left(\dep{x_i}\right)_p\}_{i=1,\dots ,m}$ de $T_p(M)$.
+\begin{propo}
+Todo covector en $p$ es la diferencial de alguna funci\'{o}n diferenciable en $p$.
+\end{propo}
+
+\section{Aplicaci\'{o}n Diferencial y Aplicaci\'{o}n Co\-di\-fe\-ren\-cial.}
+\begin{defi}
+Sean $M$ y $N$ dos variedades diferenciables, $f\in\mathcal{F}(M,N)$ y $p\in M$. Se llama {\bf Diferencial} de $f$
+en $p$ a la aplicaci\'{o}n $f_{*p}:T_p(M)\fl T_{f(p)}(N)$ definida de la siguiente forma: si $u\in T_p(M)$ es
+cualquier vector tangente a $M$ en $p$ y $\a:(a,b)\fl M$ es una curva diferenciable que pasa por $p$ y cuyo vector
+tangente en $p$ es $u$ (es decir, si existe $t_0\in (a,b)$ con $\a(t_0)=p$ y $\a'(t_0)=u$), entonces
+$f_{*p}u=(f\circ\a)'(t_0)$.
+\end{defi}
+%Obs\'{e}rvese que, desde luego, $f_{*p}u$ es un vector tangente a $N$ en $f(p)$, pues $f\circ\a:(a,b)\fl N$ es una
+%curva diferenciable en $N$, que pasa por $f(p)$, ya que $f(\a(t_0))=f(p)$ y, por tanto, $(f\circ\a)'(t_0)\in
+%T_{f(p)}(N)$. Adem\'{a}s, la definici\'{o}n anterior no depende de la curva $\a$ elegida pasando por $p$ y con vector
+%tangente en $p$ igual a $u$. En efecto, si $\b:(c,d)\fl M$ es otra curva en las mismas condiciones, entonces
+%existe $\tau_0\in(c,d)$ tal que $\b(\tau_0)=p$ y $\b'(\tau_0)=u$. Es claro que $f\circ\b:(c,d)\fl N$ es una curva
+%diferenciable que pasa por $f(p)$, ya que $(f\circ\b)(\tau_0)=f(p)$ y su vector tangente en $f(p)$ es $f_{*p}u$,
+%pues dada cualquier $g\in\mathcal{F}(f(p))$, se tiene que:
+%$$(f\circ\b)'(\tau_0)g=\left.\dderi{(g\circ(f\circ\b))}{\tau}\right|_{\tau=\tau_0}=
+%\left.\dderi{((g\circ f)\circ\b)}{\tau}\right|_{\tau=\tau_0}=$$
+%$$=\b'(\tau_0)(g\circ f)=u(g\circ f)=\a'(t_0)(g\circ f)=$$
+%$$=\left.\dderi{((g\circ f)\circ\a)}{t}\right|_{t=t_0}=\left.\dderi{(g\circ(f\circ\a))}{t}\right|_{t=t_0}=
+%(f\circ\a)'(t_0)g=(f_{*p}u)g.$$
+\begin{propo}
+Si $f\in\mathcal{F}(M,N)$, $p\in M$, $u\in T_p(M)$ y $g\in\mathcal{F}(f(p))$, entonces se verifica:
+$$(f_{*p}u)g=u(g\circ f).$$
+\end{propo}
+\newpage
+\begin{propo}
+{\bf (Propiedades de la Diferencial).}
+\begin{enumerate}
+\item {\bf (Regla de la Cadena).} Sean $f\in\mathcal{F}(M,N)$ y $g\in\mathcal{F}(N,P)$. Entonces, para
+cualquier $p\in M$ se verifica que $(g\circ f)_{*p}=g_{*f(p)}\circ f_{*p}$.
+\item Dado $p\in M$, entonces $({\rm Id}_M)_{*p}={\rm Id}_{T_p(M)}$.
+\item Si $f,g\in\mathcal{F}(M,N)$ y $f\equiv g$ en un entorno de $p\in M$, entonces $f_{*p}=g_{*p}$.
+\end{enumerate}
+\end{propo}
+\begin{propo}
+La diferencial en cada punto de una aplicaci\'{o}n diferenciable es una aplicaci\'{o}n lineal.
+\end{propo}
+%En consecuencia, cada diferencial tiene asociada una matriz. Para calcularla, sean $(U,\vp=(x_1,\dots ,x_m))$ un
+%s.l.c. de $M$ entorno de $p$ y $(V,\psi=(y_1,\dots ,y_n))$ un s.l.c. de $N$ entorno de $f(p)$. Para estas cartas
+%locales, las bases de $T_p(M)$ y $T_{f(p)}(N)$ son
+%$$\left\{\left(\dep{x_1}\right)_p,\dots ,\left(\dep{x_m}\right)_p\right\}\mbox{ }{\rm y}\mbox{
+%}\left\{\left(\dep{y_1}\right)_{f(p)},\dots ,\left(\dep{y_n}\right)_{f(p)}\right\},$$ respectivamente. Entonces,
+%como
+%$$f_{*p}\left(\dep{x_i}\right)_p=\sum_{j=1}^n\left[f_{*p}\left(\dep{x_i}\right)_p(y_j)\right]\left(\dep{y_j}
+%\right)_{f(p)}=$$ $$=\sum_{j=1}^n\left[\left(\ddep{(y_j\circ f)}{x_i}\right)_p\right]\left(\dep{y_j}
+%\right)_{f(p)},$$ la matriz de $f_{*p}$ respecto de estas bases viene dada por
+%$$f_{*p}=\left[\left(\ddep{y_j\circ f}{x_i}\right)_p\right],$$
+%que es la matriz jacobiana de la aplicaci\'{o}n $\psi\circ f\circ\vp^{-1}:\vp(U\cap f^{-1}(V))\fl\psi(f(U\cap
+%f^{-1}(V)))$.
+\begin{defi}
+La matriz jacobiana de la aplicación $\psi\circ f\circ\vp^{-1}$ se denomina {\bf Matriz Jacobiana} de $f$ en $p$ respecto de las cartas dadas. En el caso en
+que ${\rm dim}(M)={\rm dim}(N)$, el determinante de esta matriz se llama {\bf Jacobiano} de $f$ en $p$ y se denota
+por $J_p(f)$.
+\end{defi}
+\begin{propo} Si $f\in\mathcal{F}(M,N)$, siendo $M$ conexa y $f_{*p}=0$, para cual\-quier $p\in M$, entonces $f$
+es constante.
+\end{propo}
+\begin{defi}
+Una aplicaci\'{o}n $f\in\mathcal{F}(M,N)$ se dice que es {\bf No Singular} en $p\in M$ si $f_{*p}$ es inyectiva, es
+decir, si $\ker f_{*p}=0$. Al rango (dimensi\'{o}n de la imagen) de $f_{*p}$ se le denomina {\bf Rango} de $f$ en $p$.
+El punto $p$ se dice {\bf Regular} para $f$ si $f_{*p}$ es sobreyectiva. En caso contrario, $p$ se dice {\bf
+Cr\'{\i}tico}. Si $p$ es cr\'{\i}tico para $f$, el punto $q=f(p)$ se denomina {\bf Valor Cr\'{\i}tico}. De lo contrario se llama
+{\bf Valor Regular}.
+\end{defi}
+Obs\'{e}rvese que si ${\rm dim}(M)={\rm dim}(N)$, entonces $p\in M$ es regular para $f$ si y s\'{o}lo si $f_{*p}$ es un
+isomorfismo, es decir, si y s\'{o}lo si $J_p(f)\neq 0$.
+\begin{defi}
+Una aplicaci\'{o}n $f\in\mathcal{F}(M,N)$ se dice que es una {\bf Inmersi\'{o}n} si es no singular en todos los puntos de
+$M$, es decir, si su diferencial en cada punto es una aplicaci\'{o}n inyectiva y se dice que es una {\bf Sumersi\'{o}n} si
+todos los puntos de $M$ son regulares para $f$, es decir, si su diferencial en cada punto es una aplicaci\'{o}n
+sobreyectiva.
+\end{defi}
+\begin{defi}
+Sea $f\in\mathcal{F}(M,N)$ y $p\in M$. Se llama {\bf Aplicaci\'{o}n Co\-di\-fe\-ren\-cial} de $f$ en $p$ a la
+aplicaci\'{o}n dual de $f_{*p}$, denotada por $f_p^*$ y dada por
+$$f_p^*:T_{f(p)}^*(N)\fl T_p^*(M):\om\mapsto f_p^*\om$$
+tal que, para cualquier $u\in T_p(M)$, $(f_p^*\om)u=\om(f_{*p}u)$.
+\end{defi}
+\begin{propo}
+{\bf (Regla de la Cadena de la Codiferencial).} Sean $f\in\mathcal{F}(M,N)$, $g\in\mathcal{F}(N,P)$ y $p\in M$.
+Entonces, se verifica que $(g\circ f)_p^*=f_p^*\circ g_{f(p)}^*$.
+\end{propo}
+\begin{propo}
+Sean $f\in\mathcal{F}(M,N)$ y $p\in M$. Entonces, se verifican:
+\begin{enumerate}
+\item $f_{*p}$ es inyectiva si y s\'{o}lo si $f_p^*$ es sobreyectiva.
+\item $f_{*p}$ es sobreyectiva si y s\'{o}lo si $f_p^*$ es inyectiva.
+\end{enumerate}
+\end{propo}
+\section{Noci\'{o}n de Subvariedad.}
+%\hs La mayor\'{\i}a de los ejemplos familiares de variedades
+%diferenciables son subconjuntos de otras variedades (puede
+%pensarse en los abiertos de una variedad diferenciable, las
+%superficies re\-gu\-la\-res en $\R^3$ o la figura ocho en $\R^2$).
+%Cabe preguntarse cu\'{a}ndo la estructura diferenciable del
+%subconjunto viene ``inducida" de alguna manera por la de la
+%variedad ambiente y cu\'{a}l es la relaci\'{o}n entre ambas
+%estructuras. Esta relaci\'{o}n tiene que ver con el hecho de que
+%el espacio tangente a la variedad subconjunto sea subespacio del
+%espacio tangente de la variedad ambiente en cada punto. Aparece
+%as\'{\i} la noci\'{o}n de subvariedad.
+\begin{defi}
+Una {\bf Subvariedad} de una variedad diferenciable $N$ es un par $(M,f)$, donde $M$ es otra variedad
+diferenciable y $f\in\mathcal{F}(M,N)$ es una inmersi\'{o}n inyectiva.
+\end{defi}
+%En los ejemplos antes mencionados (subvariedades abiertas,
+%superficies re\-gu\-la\-res o la figura ocho con cualquiera de las
+%dos estructuras conocidas), la inmersi\'{o}n inyectiva que las
+%convierte en subvariedad es la inclusi\'{o}n. Sin embargo, esto no
+%siempre ocurre. Por ejemplo, consid\'{e}rese el intervalo abierto
+%$(-1,1)$ dotado de la estructura diferenciable dada por la carta
+%global $\vp(t)=t^3$. Se tiene que $(-1,1)$ es un subconjunto de
+%$\R$ con la estructura eucl\'{\i}dea y la inclusi\'{o}n
+%$i:(-1,1)\hookrightarrow\R$ no es una inmersi\'{o}n, pues ni
+%siquiera es diferenciable. Con todo, el par $((-1,1),f)$, con
+%$f:(-1,1)\fl\R$ la inmersi\'{o}n $f(x)=x^3$ s\'{\i} es una
+%subvariedad de $\R$.
+%\begin{propo}
+%Sea $(M,f)$ una subvariedad de la variedad diferenciable $N$.
+%Entonces, puede dotarse a $f(M)$ de una estructura de variedad
+%diferenciable tal que $(f(M),i)$, con $i:f(M)\hookrightarrow N$ la
+%inclusi\'{o}n, es una subvariedad de $N$.
+%\end{propo}
+%Obs\'{e}rvese que, en el resultado anterior, la topolog\'{\i}a de $f(M)$ es, en general, m\'{a}s fina que la topolog\'{\i}a relativa
+%inducida por la de $N$, pues la inclusi\'{o}n, al ser diferenciable, es continua. Esto lleva a pensar que la noci\'{o}n de
+%subvariedad es m\'{a}s sutil que la an\'{a}loga para espacios topol\'{o}gicos. En efecto, como ya se ha dicho, el ocho con
+%cualquiera de las dos estructuras conocidas es subvariedad de $\R^2$ con la inclusi\'{o}n como inmersi\'{o}n inyectiva y,
+%sin embargo, no es subespacio topol\'{o}gico de $\R^2$ en ninguno de los dos casos.
+\begin{defi}
+Se dice que una aplicaci\'{o}n $f\in\mathcal{F}(M,N)$ es una {\bf In\-crus\-ta\-ci\'{o}n} si es un homeomorfismo sobre su
+imagen, dotada \'{e}sta de la topolog\'{\i}a relativa de $N$, es decir, si $f:M\fl f(M)\subseteq N$ (dando a $f(M)$ la
+topolog\'{\i}a relativa de $N$) es una aplicaci\'{o}n biyectiva, continua y abierta o cerrada. \end{defi}
+\begin{defi}
+Una subvariedad $(M,f)$ de una variedad diferenciable $N$ se dice que es una {\bf Subvariedad Regular} si $f$ es,
+adem\'{a}s, una incrustaci\'{o}n.
+\end{defi}
+%Por tanto, para subvariedades regulares, las im\'{a}genes de \'{e}stas por la inmersi\'{o}n, dotadas de la estructura dada por
+%la Proposici\'{o}n 4.2.1, son tambi\'{e}n subespacios topol\'{o}gicos de la variedad ambiente. En el caso particular de
+%considerar subvariedades que sean subconjuntos con la inclusi\'{o}n, se obtiene:
+\begin{propo}
+Sean $M\subseteq N$ dos variedades diferenciables tales que, si $i:M\hookrightarrow N$ es la inclusi\'{o}n, $(M,i)$ es
+subvariedad de $N$. Entonces, $(M,i)$ es subvariedad regular de $N$ si y s\'{o}lo si $M$ tiene la topolog\'{\i}a relativa
+de $N$.
+\end{propo}
+%\section{El Teorema de la Funci\'{o}n Inversa.}
+%\hs Dada una subvariedad $(M,f)$ de una variedad diferenciable
+%$N$, si ${\rm dim}(M)={\rm dim}(N)$, la diferencial de $f$ en cada
+%punto de $M$ es un isomorfismo de espacios vectoriales. Este hecho
+%ocurre, en particular, si $f$ es un difeomorfismo,
+%verific\'{a}ndose que dos variedades diferenciables difeomorfas
+%son, cada una de ellas, subvariedad de la otra con inmersi\'{o}n
+%el difeomorfismo o su inverso, seg\'{u}n el caso.
+%\par Cabe preguntarse, entonces, por el rec\'{\i}proco de este resultado: Dada una subvariedad de una variedad
+%diferenciable, ambas de la misma dimensi\'{o}n, ?`son difeomorfas
+%a trav\'{e}s de la inmersi\'{o}n? M\'{a}s en general, si una
+%aplicaci\'{o}n diferenciable entre variedades diferenciables
+%cumple que su diferencial en cada punto es un isomorfismo, ?`es un
+%difeomorfismo? La respuesta es negativa, pues basta considerar una
+%subvariedad abierta de una variedad diferenciable (aqu\'{\i} la
+%inmersi\'{o}n es la inclusi\'{o}n, que no es un difeomorfismo, al
+%no ser sobreyectiva).
+%\par Sin embargo, s\'{\i} puede probarse, mediante el Teorema de la Funci\'{o}n Inversa en Variedades, que una tal aplicaci\'{o}n
+%es un difeomorfismo local. De este teorema se deducen importantes
+%colorarios sobre las carta locales de ambas variedades. Por otra
+%parte, la condici\'{o}n adicional que debe impornerse a la
+%aplicaci\'{o}n para que s\'{\i} sea un difeomorfismo es la
+%biyectividad.
+%\begin{teo}
+%{\bf (Teorema de la Funci\'{o}n Inversa en $\R^m$).} Sean
+%$G\subseteq\R^m$ un abierto, $f:G\fl\R^m$ una aplicaci\'{o}n
+%diferenciable y $p\in G$ tal que
+%$$\left|\left(\ddep{(u_i\circ f)}{u_j}\right)_{p}\right|\neq 0.$$
+%Entonces, existe un abierto $U$, con $p\in U\subseteq G$, tal que
+%$f(U)$ es abierto de $\R^m$ y $f|_U:U\fl f(U)$ es un
+%difeomorfismo.
+%\end{teo}
+%\begin{teo}
+%{\bf (Teorema de la Funci\'{o}n Inversa en Variedades).} Sean
+%$f\in\mathcal{F}(M,N)$ y $p\in M$ tal que $f_{*p}$ es un
+%isomorfismo. Entonces, existe un abierto $U$, con $p\in U\subseteq
+%M$, tal que $f(U)$ es abierto de $N$ y $f|_U:U\fl f(U)$ es un
+%difeomorfismo.
+%\end{teo}
+%\begin{coro}
+%Si $f\in\mathcal{F}(M,N)$ verifica que $f_{*p}$ es un isomorfismo
+%para todo $p\in M$, entonces $f$ es un difeomorfismo local.
+%\end{coro}
+%\begin{defi}
+%Un conjunto de funciones $\{f_1,\dots ,f_k\}$ diferenciables en
+%$p\in M$ se dice que es {\bf Independiente} en $p$ si sus
+%diferenciales $(\de{f_1})_p,\dots, (\de{f_k})_p$ son linealmente
+%independientes en $T_p^*(M)$.
+%\end{defi}
+%\begin{coro}
+%Sea $\{f_1,\dots ,f_m\}$ un conjunto de funciones independiente en
+%$p\in M$, con ${\rm dim}(M)=m$. Entonces, las funciones $f_1,\dots
+%,f_m$ son las funciones coordenadas de un s.l.c. en un entorno de
+%$p$.
+%\end{coro}
+%\begin{coro}
+%Sea $\{f_1,\dots ,f_k\}$ un conjunto de funciones independiente en
+%$p\in M$, con ${\rm dim}(M)=m>k$. Entonces, las funciones
+%$f_1,\dots ,f_k$ forman parte de un s.l.c. en un entorno de $p$.
+%\end{coro}
+%\begin{coro}
+%Sea $\{f_1,\dots ,f_k\}$ un conjunto de funciones diferenciables
+%en $p\in M$, $k>{\rm dim}(M)$, tales que $(\de{f_1})_p,\dots
+%,(\de{f_k})_p$ generen $T_p^*(M)$. Entonces, un subconjunto de
+%tales funciones forman un s.l.c. en un entorno de $p$.
+%\end{coro}
+%\begin{coro}
+%Sea $f\in\mathcal{F}(M,N)$ tal que $f_{*p}$ es sobreyectiva, para
+%cierto $p\in M$. Sea $(y_1,\dots ,y_n)$ un s.l.c. en un entorno de
+%$f(p)$. Entonces, las funciones \ $y_1\circ f,\dots ,y_n\circ f$
+%forman parte de un s.l.c. en un entorno de $p$. Si $f$ es una
+%sumersi\'{o}n, las parejas de cartas as\'{\i} obtenidas para cada
+%punto de $M$ se denominan {\bf Cartas Adaptadas a la
+%Sumersi\'{o}n}.
+%\end{coro}
+%\begin{coro}
+%Sea $f\in\mathcal{F}(M,N)$ tal que $f_{*p}$ es inyectiva, para
+%cierto $p\in M$. Sea $(y_1,\dots ,y_n)$ un s.l.c. en un entorno de
+%$f(p)$. Entonces, un subconjunto de las funciones $y_1\circ
+%f,\dots ,y_n\circ f$ forman un s.l.c. en un entorno de $p$, siendo
+%$f$ inyectiva en este entorno. Si $f$ es una inmersi\'{o}n, las
+%parejas de cartas as\'{\i} obtenidas para cada punto de $M$ se
+%denominan {\bf Cartas Adaptadas a la Inmersi\'{o}n}.
+%\end{coro}
+%Una cuesti\'{o}n que surge de manera natural es averiguar qu\'{e}
+%condiciones debe cumplir una aplicaci\'{o}n $f$ tal que su
+%diferencial en cada punto es un isomorfismo para ser un
+%difeomorfismo. Dicha condici\'{o}n es la biyectividad, ya que, al
+%ser la diferencial de $f$ un isomorfismo en cada punto, $f$ es un
+%difeomorfismo local. Como es biyectiva, $f^{-1}$ es diferenciable
+%en cada punto de $N$, es decir, $f$ es un difeomorfismo. Sin
+%embargo, para variedades $2^{\underline{o}}N$, la condici\'{o}n se
+%puede debilitar algo. Para ello, ser\'{a}n necesarios algunos
+%resultados de Teor\'{\i}a de la Medida en variedades.
+%\par
+%Recu\'{e}rdese que un subconjunto $A\subseteq\R^m$ se dice que
+%tiene {\it Medida (de Lebesgue) Nula} si dado $\epsilon>0$, existe
+%$\{Q_n\}_{n\in\N}$, familia numerable de cubos, tal que:
+%$$A\subseteq\bigcup_{n\in\N}Q_i\mbox{ }y\mbox{ }\sum_{n\in\N}{\rm vol}(Q_n)<\epsilon.$$
+%\hs En estas condiciones se verifican las siguientes propiedades:
+%\begin{enumerate}
+%\item Cualquier subconjunto de un conjunto de medida nula es, a su
+%vez, de medida nula. \item La uni\'{o}n numerable de conjuntos de
+%medida nula en $\R^m$ es un conjunto de medida nula. \item La
+%imagen por una aplicaci\'{o}n de clase $\mathcal{C}^1$ de $\R^m$
+%en $\R^m$ de un conjunto de medida nula es un conjunto de medidad
+%nula. \item $\R^n\times\{x_0\}$, con $x_0\in\R^{m-n}$, es de
+%medida nula en $\R^m$.
+%\end{enumerate}
+%\begin{defi}
+%Sea $M$ una variedad diferenciable y $A\subseteq M$. Se dice que
+%$A$ tiene {\bf Medida (de Lebesgue) Nula} si para toda familia de
+%cartas locales $\{(U_i,\vp_i)\}_{i\in I}$ cuyos dominios recubran
+%a $A$, se cumple que $\vp_i(A\cap U_i)$ es de medida nula en
+%$\R^m$, para todo $i\in I$.
+%\end{defi}
+%\begin{propo}
+%Sean $M$ y $N$ dos variedades diferenciables y
+%$f\in\mathcal{F}(M,N)$. Entonces:
+%\begin{enumerate}
+%\item Si $A\subseteq M$ es un conjunto de medida nula en $M$, se
+%cumple que $f(A)$ es un conjunto de medida nula en $N$. \item Si
+%$m<n$, se cumple que $f(M)$ es un conjunto de medida nula en $N$.
+%\end{enumerate}
+%\end{propo}
+%\hs Se puede ahora probar el resultado buscado. Debe resaltarse
+%que en todo el desarrollo anterior se ha usado que $M$ verifica el
+%axioma $2^{\underline{o}}N$, por lo que la si\-guien\-te
+%proposici\'{o}n y su corolario s\'{o}lo son v\'{a}lidos para
+%variedades diferenciables $2^{\underline{o}}N$.
+%\begin{propo}
+%Sea $f\in\mathcal{F}(M,N)$ una aplicaci\'{o}n sobreyectiva y sea
+%$p\in M$ tal que $f_{*p}$ es inyectiva. Entonces, $f_{*p}$ es un
+%isomorfismo.
+%\end{propo}
+%\begin{coro}
+%Sea $f\in\mathcal{F}(M,N)$ una inmersi\'{o}n biyectiva. Entonces,
+%$f$ es un difeomorfismo
+%\end{coro}
+%\section{Factorizaci\'{o}n de Aplicaciones. Unicidad de Subvariedades.}
+%\hs Dada una variedad diferenciable $N$, una subvariedad de $N$ es un par $(M,f)$ donde $M$ es otra variedad
+%diferenciable y $f\in\esp{F}(M,N)$ es una inmersi\'{o}n inyectiva, es decir, es una aplicaci\'{o}n diferenciable,
+%inyectiva y tal que su diferencial es inyectiva en cada punto de $M$. Esto quiere decir que una misma variedad
+%diferenciable tiene tantas subvariedades como inmersiones puedan establecerse a ella desde otras variedades
+%diferenciables. En particular, todas las variedades difeomorfas a una dada son subvariedades de ella y debe
+%recordarse que cualquier conjunto biyectivo con una variedad diferenciable puede dotarse de una estructura de
+%variedad diferenciable que convierte a la biyecci\'{o}n en un difeomorfismo. Por tanto, se hace necesario ``controlar"
+%de alguna forma la famila de las subvariedades de una variedad diferenciable.
+%\begin{defi}
+%Dos subvariedades $(M_1,f_1)$ y $(M_2,f_2)$ de una variedad $N$ se
+%dice que son {\bf Equivalentes} si existe un difeomorfismo
+%$f:M_1\fl M_2$ tal que $f_1=f_2\circ f$.
+%\end{defi}
+%%$$\begin{diagram}
+%%\node{M_1} \arrow{e,t}{f_1} \arrow{se,b}{f} \node{N} \\
+%%\node[2]{M_2} \arrow{n,r}{f_2}
+%%\end{diagram}$$
+%\hs Puede comprobarse sin dificultad que \'{e}sta es una
+%relaci\'{o}n de equivalencia en la clase de todas las
+%subvariedades de $N$, que permite trabajar con m\'{a}s comodidad
+%con dicha clase. Por tanto, es conveniente dar condiciones para la
+%existencia de tal difeomorfismo. Para ello, se plantear\'{a} un
+%problema m\'{a}s general.
+%\newpage
+%Sea $f\in\mathcal{F}(M,N)$ una aplicaci\'{o}n diferenciable entre
+%dos variedades diferenciables y sea $(P,g)$ una subvariedad de
+%$N$. Como $g$ es inyectiva, si $f$ {\it factoriza a trav\'{e}s de}
+%$g$, es decir si $f(M)\subseteq g(P)$, entonces se puede definir
+%una \'{u}nica aplicaci\'{o}n $f_0:M\fl P$ tal que $g\circ f_0=f$.
+%No siempre esta aplicaci\'{o}n es diferenciable.
+%%$$\begin{diagram}
+%%\node{M} \arrow{e,t}{f} \arrow{se,b,..}{f_0} \node{N} \\
+%%\node[2]{P} \arrow{n,r}{g}
+%%\end{diagram}$$
+%\begin{teo}
+%{\bf (Lema de Factorizaci\'{o}n).} Sea $f\in\mathcal{F}(M,N)$ una
+%aplicaci\'{o}n diferenciable entre dos variedades diferenciables y
+%sea $(P,g)$ una subvariedad de $N$ tal que $f$ factoriza a
+%trav\'{e}s de $g$. Entonces:
+%\begin{enumerate}
+%\item Si $f_0$ es continua, entonces es diferenciable. \item Si
+%$(P,g)$ es una subvariedad regular de $N$, entonces $f_0$ es
+%continua.
+%\end{enumerate}
+%\end{teo}
+%\begin{propo}
+%Cada clase de equivalencia de subvariedades de una variedad
+%diferenciable $N$ tiene un \'{u}nico representante de la forma
+%$(A,i)$ donde $A$ es un subconjunto de $N$ con estructura de
+%variedad diferenciable y la inclusi\'{o}n $i:A\hookrightarrow N$
+%es una inmersi\'{o}n.
+%\end{propo}
+%%\hs Es posible completar a\'{u}n m\'{a}s la proposici\'{o}n
+%%anterior, pues tambi\'{e}n se tiene que la estructura de la que se
+%%ha dotado a $f(N)$ es la \'{u}nica posible con la propiedad de que
+%%la subvariedad $(f(N),i)$ sea equivalente a $(N,f)$. De hecho, si
+%%existiesen en $f(N)$ dos estructuras diferenciables
+%%$\mathcal{A}_1$ y $\mathcal{A}_2$ tales que, con ambas, $(f(N),i)$
+%%es una subvariedad de $M$ equivalente a $(N,f)$, esto es, si
+%%existiesen dos difeomorfismos $g_1:N\fl(f(N),\mathcal{A}_1)$ y
+%%$g_2:N\fl(f(N),\mathcal{A}_2)$ tales que $f=i\circ g_1=i\circ
+%%g_2$, entonces $g_2\circ
+%%g_1^{-1}:(f(N),\mathcal{A}_1)\fl(f(N),\mathcal{A}_2)$ es un
+%%difeomorfismo, por composici\'{o}n de difeomorfismos y,
+%%adem\'{a}s, es la identidad, por su construcci\'{o}n. De aqu\'{\i}
+%%se deduce que las dos estructuras dadas en $f(N)$ son compatibles
+%%y, por tanto, la unicidad buscada.
+%%\par
+%\hs Es habitual afirmar que existe una \'{u}nica subvariedad de
+%una variedad diferenciable $N$ cumpliendo cierta propiedad. Esta
+%unicidad se entender\'{a} salvo la equivalencia definida
+%anteriormente. En particular, si las subvariedades de $N$ se
+%consideran como subconjuntos con estructura de variedad
+%diferenciable tal que la inclusi\'{o}n correspondiente es una
+%inmersi\'{o}n, la unicidad significa \'{u}nico subconjunto con
+%\'{u}nica topolog\'{\i}a 2$^{\underline{o}}N$ y \'{u}nica
+%estructura diferenciable. En general, dado un subconjunto
+%$A\subseteq N$, no existe una \'{u}nica estructura diferenciable
+%sobre $A$ tal que $(A,i)$ sea una subvariedad de $N$, si es que
+%existe alguna. No obstante, se tienen dos teoremas de unicidad que
+%imponen condiciones a la topolog\'{\i}a de $A$ para tal
+%situaci\'{o}n
+%\begin{teo}
+%{\bf (Primer Teorema de Unicidad).} Sean $N$ una variedad
+%diferenciable y $A\subseteq N$ un subconjunto. Fijada una
+%topolog\'{\i}a sobre $A$, existe, a lo m\'{a}s, una estructura
+%diferenciable en $A$ tal que $(A,i)$ es una subvariedad de $N$.
+%\end{teo}
+%\begin{teo}
+%{\bf (Segundo Teorema de Unicidad).} Sean $N$ una variedad
+%diferenciable y $A\subseteq N$ un subconjunto. Si con la
+%topolog\'{\i}a relativa $A$ tiene una estructura diferenciable tal
+%que $(A,i)$ es una subvariedad de $N$, entonces $A$ tiene
+%estructura de variedad diferenciable \'{u}nica, es decir, que para
+%que $A$ sea subvariedad de $N$ tiene que ser, precisamente, con la
+%topolog\'{\i}a relativa y con la misma estructura diferenciable.
+%\end{teo}
+%\section{Teorema de la Funci\'{o}n Impl\'{\i}cita. Teorema de Whitney.}
+\begin{teo}
+{\bf (Teorema de la Funci\'{o}n Impl\'{\i}cita).} Sean
+$f\in\mathcal{F}(M,N)$ una aplicaci\'{o}n diferenciable entre dos
+variedades diferenciables, $q\in N$ y
+$P=f^{-1}(\{q\})\neq\emptyset$. Si $f_{*p}$ es sobreyectiva, para
+cualquier $p\in P$, entonces $P$ tiene una \'{u}nica estructura de
+variedad diferenciable tal que $(P,i)$ es una subvariedad regular
+de $M$ de dimensi\'{o}n ${\rm dim}(M)-{\rm dim}(N)$.
+\end{teo}
+
+\
+
+Como consecuencia del Teorema de la Función Implícita, es fácil probar que los conjuntos
+$$\S^n_R=\{(x_1,\dots,x_{n+1})\in\R^{n+1}/\sum_{i=1}^{n+1}x_i^2=R^2\}$$
+y
+$$\H^n_R=\{(x_1,\dots,x_{n+1})\in\R^{n+1}/\sum_{i=1}^nx_i^2-x_{n+1}^2=-R^2, x_{n+1}>0\}$$
+(a los que nos referiremos en la Sección \ref{sec52}) pueden dotarse de estructura de variedad diferenciable de dimensión $n$, siendo subvariedades regulares de $\R^{n+1}$.
+
+
+
+%\begin{coro} Sea $f:\R^m\fl\R^n$ una aplicaci\'{o}n
+%diferenciable. Si el conjunto $P=\{p\in\R^m/f(p)=0\}$ es no
+%vac\'{\i}o y el rango de la matriz jacobiana de $f$ vale $n$ en
+%todos los puntos de $P$, entonces $P$ es una subvariedad regular
+%de $\R^m$ de dimensi\'{o}n $m-n$.
+%\end{coro}
+%
+%El Teorema de la Funci\'on Impl\'{\i}cita puede generalizarse.
+%Recordemos que, dados $f\in \mathcal{F}(M,N)$ y $p \in M$, se
+%llama {\it rango} de $f$ en $p$ al rango (dimensi\'on de la
+%imagen) de $f_{*p}$. As\'{\i}, se tiene:
+%
+%\begin{teo}
+%{\bf (Teorema del Rango o de la Subvariedad de Nivel).} Sean
+%$f\in\mathcal{F}(M,N)$ una aplicaci\'{o}n diferenciable entre dos
+%variedades diferenciables, $q\in N$ y
+%$P=f^{-1}(\{q\})\neq\emptyset$. Si $f$ tiene rango constante $k$
+%en un entorno abierto de cada $p\in P$, entonces $P$ tiene una
+%\'{u}nica estructura de variedad diferenciable tal que $(P,i)$ es
+%una subvariedad regular cerrada de $M$ de codimensi\'{o}n $k$.
+%\end{teo}
+%
+%\begin{teo}
+%Toda variedad diferenciable compacta es difeomorfa a una subvariedad cerrada de un espacio eucl\'{\i}deo de dimensi\'{o}n
+%suficientemente grande, es decir, puede ser incrustada en un espacio eucl\'{\i}deo.
+%\end{teo}
+%\begin{teo}
+%{\bf (Teorema de Whitney).} Toda variedad diferenciable paracompacta $m$--dimensional es difeomorfa a una
+%subvariedad cerrada de un espacio af\'{\i}n $(2m+1)$--dimensional.
+%\end{teo}
+
+\section{Campos de Vectores Diferenciables.}
+\begin{defi}
+Un {\bf Campo de Vectores} $X$ en un abierto $U\subseteq M$ de una variedad diferenciables es una ley que a cada
+punto $p\in U$ le asigna un vector tangente $X_p\in T_p(M)$.
+\end{defi}
+\begin{eje}
+{\rm Sea $(U,\vp=(x_1,\dots ,x_m))$ un s.l.c. en $M$. Entonces, para cualquier $i=1,\dots ,m$,
+$$\dep{x_i}:p\in U\mapsto\left(\dep{x_i}\right)_p$$
+es un campo de vectores en $U$.}
+\end{eje}
+Un campo de vectores $X$ en $U$ tambi\'{e}n puede interpretarse como una aplicaci\'{o}n que env\'{\i}a funciones diferenciables
+en $U$ en funciones de $U$, de la siguiente forma: si $f\in\mathcal{F}(U)$, se define $Xf:U\fl\R$ por
+$(Xf)(p)=X_pf$.
+\begin{defi}
+Un campo de vectores en $U$ se dice {\bf Diferenciable} si para toda funci\'{o}n $f\in\mathcal{F}(U)$ se tiene que
+$Xf\in\mathcal{F}(U)$. Al conjunto de campos diferenciables en $U$ se denota por $\mathcal{X}(U)$.
+\end{defi}
+Por tanto, un campo diferenciable en $U$ puede interpretarse como una aplicaci\'{o}n
+$X:\mathcal{F}(U)\fl\mathcal{F}(U)$. Esta aplicaci\'{o}n verifica las dos siguientes propiedades:
+\begin{enumerate}
+\item $X(\lambda f+\mu g)=\lambda Xf+\mu Xg$, para cualesquiera $f,g\in\mathcal{F}(U)$ y $\lambda,\mu\in\R$
+($\R$--linealidad).
+\item $X(fg)=gXf+fXg$, para cualesquiera $f,g\in\mathcal{F}(U)$.
+\end{enumerate}
+%\hs Por esta raz\'{o}n, se dice que los campos diferenciables de vectores son derivaciones sobre el conjunto de las
+%funciones diferenciables.
+\par
+Por otra parte, si $(U,\vp=(x_1,\dots ,x_m))$ es un s.l.c. en $M$, entonces, dado un campo de vectores $X$ en $U$,
+para cualquier $p\in U$ se puede escribir
+$$X_p=\sum_{i=1}^m(X_p(x_i))\left(\dep{x_i}\right)_p,$$
+es decir,
+$$X=\sum_{i=1}^mf_i\dep{x_i},$$
+para cierta funciones $f_i:U\fl\R$, donde $f_i=Xx_i$, para todo
+$i=1,\dots ,m$.
+\begin{propo}
+Sea $X$ un campo de vectores en $U$. Las condiciones siguientes son equivalentes:
+\begin{enumerate}
+\item $X\in\mathcal{X}(U)$. \item Si $(V,\vp=(x_1,\dots ,x_m))$ es
+un s.l.c. con $V\subseteq U$, entonces
+$$X|_V=\sum_{i=1}^m(X|_Vx_i)\left.\dep{x_i}\right\vert_V,$$
+donde $X|_Vx_i\in\mathcal{F}(V)$, para todo $i=1,\dots ,m$. \item
+Para todo $p\in U$, existe $(V,\vp=(x_1,\dots ,x_m))$, s.l.c.
+entorno de $p$, con $V\subseteq U$, tal que
+$$X|_V=\sum_{i=1}^m(X|_Vx_i)\left.\dep{x_i}\right\vert_V,$$
+donde $X|_Vx_i\in\mathcal{F}(V)$, para todo $i=1,\dots ,m$.
+\end{enumerate}
+\end{propo}
+
+\
+
+En $\mathcal{X}(U)$ se pueden definir las siguientes operaciones:
+\begin{enumerate}
+\item Suma: si $X,Y\in\mathcal{X}(U)$, $(X+Y)_p=X_p+Y_p$, para todo $p\in U$. Se tiene que $X+Y\in\mathcal{X}(U)$.
+\item Producto por n\'{u}meros reales: si $X\in\mathcal{X}(U)$ y $\lambda\in\R$, $(\lambda X)_p=\lambda X_p$, para todo
+$p\in U$. Se tiene que $\lambda X\in\mathcal{X}(U)$.
+\item Producto por funciones diferenciables: si $X\in\mathcal{X}(U)$ y $f\in\mathcal{F}(U)$, $(fX)_p=f(p)X_p$, para todo
+$p\in U$. Se tiene que $fX\in\mathcal{X}(U)$.
+\end{enumerate}
+\begin{propo} $\mathcal{X}(U)$ es un espacio vectorial real con la suma y el producto de n\'{u}meros reales y un
+$\mathcal{F}(U)$--m\'{o}dulo con la suma y el producto por funciones diferenciables.
+\end{propo}
+\begin{propo}
+Si $(U,\vp=(x_1,\dots ,x_m))$ es un s.l.c. en $M$, entonces el $\mathcal{F}(U)$--m\'{o}dulo $\mathcal{X}(U)$ est\'{a}
+finitamente generado y tiene como base:
+$$\left\{\dep{x_1},\dots ,\dep{x_m}\right\}.$$
+\end{propo}
+En $\mathcal{X}(U)$ puede definirse otra operaci\'{o}n interna, llamada {\it Producto Corchete}, mediante
+$[X,Y]f=X(Yf)-Y(Xf)$, para todos $X,Y\in\mathcal{X}(U)$ y $f\in\mathcal{F}(U)$. Esta operaci\'{o}n tiene las
+siguientes propiedades:
+\begin{propo}
+Dados $X,Y,Z\in\mathcal{X}(U)$ y $f,g\in\mathcal{F}(U)$, se verifica que:
+\begin{enumerate}
+\item $[X+Y,Z]=[X,Z]+[Y,Z]$; $[X,Y+Z]=[X,Y]+[X,Z]$.
+\item $[X,Y]=-[Y,X]$ (anticonmutatividad).
+\item $[X,[Y,Z]]+[Y,[Z,X]]+[Z,[X,Y]]=0$ (Identidad de Jacobi).
+\item $[fX,gY]=fg[X,Y]+f(Xg)Y-g(Yf)X$.
+\end{enumerate}
+\end{propo}
+\begin{coro}
+$\mathcal{X}(U)$ con las operaciones suma, producto por escalares (n\'{u}\-me\-ros reales, que realmente son casos
+particulares de funciones diferenciables, las funciones constantes) y producto corchete es un \'{A}lgebra de Lie real.
+\end{coro}
+%\begin{teo} {\bf (Lema de Extensi\'{o}n de Campos Diferenciables).} Sea $X\in\mathcal{X}(U)$ y $V\supseteq U$ otro abierto.
+%Entonces, dado cualquier $p\in U$, existen $\overline{X}\in\mathcal{X}(V)$ y $W$ abierto con $p\in W\subseteq U$
+%tales que $\overline{X}_q=X_q$, para todo $q\in W$ y $\overline{X}=0$ en $V-U$.
+%\end{teo}
+%\section{Campos $f$--relacionados}
+%\hs Sean $M$ y $N$ dos variedades diferenciables, $f\in\mathcal{F}(M,N)$ y $U\subseteq M$ un abierto. Se podr\'{\i}a
+%pensar en definir un campo de vectores $Y$, imagen de $X$ por $f$, escribiendo $Y_{f(p)}=f_{*p}X_p\in
+%T_{f(p)}(N)$. Esto no es siempre posible por diferentes razones. En primer lugar, $f(U)$ no tiene por qu\'{e} ser
+%abierto. Adem\'{a}s, si $f$ no es inyectiva, puede haber puntos de $N$ que tengan asignados m\'{a}s de un vector. En
+%efecto, si $f(p)=f(q)$, siendo $p\neq q$, entonces, en general, $Y_{f(p)}=f_{*p}X_p\neq
+%f_{*q}X_q=Y_{f(q)}=Y_{f(p)}$. En todo caso, aunque $f(U)$ sea abierto y $f$ sea inyectiva, puede suceder que el
+%campo de vectores $Y$ no sea diferenciable.
+%\par
+%Lo que se va a hacer es considerar campos de vectores en $N$ que sean ``imagen" de un campo diferenciable en $M$ y
+%a ambos se llamar\'{a}n $f$--relacionados.
+%\begin{defi}
+%Sean $M$ y $N$ dos variedades diferenciables, $f\in\mathcal{F}(M,N)$ y $X\in\mathcal{X}(M)$ e $Y\in\mathcal{X}(N)$
+%dos campos. Se dice que $X$ e $Y$ est\'{a}n $f$--relacionados si $f_{*p}X_p=Y_{f(p)}$, para cualquier $p\in M$ y se
+%escribe $X\stackrel{f}\sim Y$.
+%\end{defi}
+%\begin{propo}
+%Dados $X_1,X_2\in\mathcal{X}(M)$, $Y_1,Y_2\in\mathcal{X}(N)$, $f\in\mathcal{F}(M,N)$ y $g\in\mathcal{F}(N)$, se
+%verifican las siguientes propiedades:
+%\begin{enumerate}
+%\item Si $X_1\stackrel{f}\sim Y_1$ y $X_2\stackrel{f}\sim Y_2$, entonces, para cualesquiera $\lambda,\mu\in\R$,
+%$\lambda X_1+\mu X_2\stackrel{f}\sim \lambda Y_1+\mu Y_2$.
+%\item Si $X_1\stackrel{f}\sim Y_1$ y $X_2\stackrel{f}\sim Y_2$, entonces $[X_1,X_2]\stackrel{f}\sim [Y_1,Y_2]$.
+%\item Si $X_1\stackrel{f}\sim Y_1$, entonces $(g\circ f)X_1\stackrel{f}\sim gY_1$.
+%\end{enumerate}
+%\end{propo}
+%\begin{coro}
+%Dada $f\in\mathcal{F}(M,N)$, el conjunto de los campos diferenciables en $N$ que est\'{a}n $f$--relacionados con alg\'{u}n
+%campo diferenciable de $M$ es un sub\'{a}lgebra de Lie de $\mathcal{X}(N)$.
+%\end{coro}
+
+\
+
+En el caso de que $f\in\mathcal{F}(M,N)$ sea un difeomorfismo, se
+puede definir una aplicaci\'{o}n
+$f_*:\mathcal{X}(M)\fl\mathcal{X}(N)$, mediante
+$(f_*X)_q=f_{*f^{-1}(q)}X_{f^{-1}(q)}$, para todo $q\in N$. Puede
+comprobarse que $f_*$ est\'{a} bien definida, es decir, que $f_*X$
+es un campo diferenciable en $N$ si $X$ es un campo diferenciable
+en $M$.
+%De hecho, $(f_*X)g=X(g\circ f)\circ f^{-1}$, para toda
+%$g\in \mathcal{F}(N)$. Adem\'{a}s, $f_*X$ es el \'unico campo de
+%$N$ que est\'a $f$--relacionado con el campo $X$ de $M$.
+\begin{propo}
+Si $f\in\mathcal{F}(M,N)$ es un difeomorfismo, entonces $f_*$ es un isomorfismo de \'{a}lgebras de Lie.
+\end{propo}
+
+\section{Campos de Tensores Covariantes Diferenciables.}
+\begin{defi}
+Dada una variedad diferenciable $M$ y un abierto $U\subseteq M$, un {\bf Campo de Tensores $r$--Covariantes
+Diferenciable} sobre $U$ es una aplicaci\'{o}n $r$--lineal del $\esp{F}(U)$--m\'{o}dulo $\esp{X}(U)$ en $\esp{F}(U)$, es
+decir, una aplicaci\'{o}n
+$$T:\esp{X}(U)\times\stackrel{r)}\cdots\times\mathcal{X}(U)\fl\mathcal{F}(U)$$
+$r$--lineal (con escalares las funciones diferenciables sobre $U$). Al conjunto de los campos de tensores
+$r$--covariantes diferenciables sobre $U$ se denota por $T_r(U)$. Se conviene que $T_0(U)=\mathcal{F}(U)$.
+\end{defi}
+%\begin{propo}
+%Sean $T\in T_r(U)$ y $X_1,\dots ,X_r\in\mathcal{X}(U)$. Se verifican:
+%\begin{enumerate}
+%\item Si $V\subseteq U$ es un abierto e $i\in\{1,\dots ,r\}$ es tal que $X_i|_V=0$, entonces $T(X_1,\dots ,X_r)=0$
+%en $V$.
+%\item Si $p\in U$ e $i\in\{1,\dots ,r\}$ es tal que $X_i(p)=0$, entonces $T(X_1,\dots ,X_r)(p)=0$.
+%\item Si $Y_1,\dots ,Y_r\in\mathcal{X}(U)$ verifican que $Y_i(p)=X_i(p)$, para cierto $p\in U$ y para cualquier
+%$i\in\{1,\dots ,r\}$, entonces $T(X_1,\dots ,X_r)(p)=T(Y_1,\dots ,Y_r)(p)$.
+%\end{enumerate}
+%\end{propo}
+\begin{nota}
+{\rm El nombre de campo de tensores $r$--covariantes proviene del
+hecho de que un tal objeto puede tambi\'{e}n interpretarse como
+una aplicaci\'{o}n $T$ que a cada punto $p\in U$ le hace
+corresponder un tensor $r$ veces covariante sobre $T_p(M)$, es decir, una
+aplicaci\'{o}n
+$$T_p:T_p(M)\times\stackrel{r)}\cdots\times T_p(M)\fl\R$$
+$r$ veces lineal (con escalares los n\'{u}meros reales), definida por
+$$T_p(u_1,\dots ,u_r)=T(X_1,\dots ,X_r)(p),\mbox{ }u_1,\dots u_r\in T_p(M),$$
+donde $X_1,\dots ,X_r$ son campos de vectores diferenciables sobre $U$ tales que $X_i(p)=u_i$, $i=1,\dots ,r$ (se sabe que el valor de $T(X_1,\dots ,X_r)(p)$ no depende de la elecci\'{o}n de los campos
+$X_1,\dots ,X_r$ en las condiciones requeridas). En este sentido, puede hablarse de restricciones de campos de
+tensores covariantes diferenciables a  abiertos. En efecto, sea $T\in T_r(U)$ y $V\subseteq U$ un abierto. Se
+define $T|_V$ por
+$$T|_V(X_1,\dots X_r)(p)=T_p(X_1(p),\dots, X_r(p))=T(\overline{X}_1,\dots ,\overline{X}_r)(p),$$
+para cualquier $p\in V$ y $X_1,\dots X_r\in\mathcal{X}(V)$, siendo
+$\overline{X}_1,\dots ,\overline{X}_r$ campos de vectores
+diferenciables en $U$, tales que $\overline{X}_i=X_i$ en un cierto
+entorno de $p$ contenido en $V$, $i=1,\dots ,r$. Por otra parte,
+es inmediato observar que, dados $T,S\in T_r(U)$, $T=S$ si y
+s\'olo si $T_p=S_p$ para todo $p \in U$.}
+\end{nota}
+\newpage
+\begin{propo}Sea $M$ una variedad diferenciable y $U\subseteq M$ un abierto. Se verifican:
+\begin{enumerate}
+\item Si $T\in T_r(U)$ y $V\subseteq U$ es un abierto, entonces $T|_V\in T_r(V)$.
+\item Si
+$$U=\bigcup_{i\in I}U_i,$$
+con $U_i$ abierto para todo $i\in I$ y $T$ es una aplicaci\'{o}n $r$--lineal de
+$\esp{X}(U)\times\stackrel{r)}\cdots\times\mathcal{X}(U)$ en el conjunto de las funciones de $U$ en $\R$, tal que
+$T|_{U_i}\in T_r(U_i)$, para cualquier $i\in I$, entonces $T\in T_r(U)$.
+\end{enumerate}
+\end{propo}
+\begin{eje}
+{\rm Sea $f\in\mathcal{F}(U)$. Se define $\de{f}:\mathcal{X}(U)\fl\mathcal{F}(U)$ por $(\de{f})X=Xf$. Es f\'{a}cil
+comprobar que $\de{f}\in T_1(U)$ y se lee {\it diferencial de $f$}. El nombre y la notaci\'{o}n se justifican en el
+hecho de que, seg\'{u}n la nota anterior, si $p\in U$, se tiene que $(\de{f})_p$ coincide con la diferencial de la
+funci\'{o}n $f$ en $p$.}
+\end{eje}
+En $T_r(U)$ se pueden definir las siguientes operaciones de modo natural: suma, producto por n\'{u}meros reales y
+producto por funciones diferenciables. Se prueba sin dificultad que, dados $T,S\in T_r(U)$, $\lambda\in\R$ y
+$f\in\mathcal{F}(U)$, se tiene que $T+S,\lambda T,fT\in T_r(U)$. Adem\'{a}s, dados $T\in T_r(U)$ y $S\in T_s(U)$, se
+define la operaci\'{o}n {\it Producto Tensorial} de $T$ y $S$, denotada por $T\otimes S$, mediante:
+$$T\otimes S:\esp{X}(U)\times\stackrel{r+s)}\cdots\times\mathcal{X}(U)\fl\mathcal{F}(U):$$
+$$(X_1,\dots ,X_{r+s})\mapsto(T\otimes S)(X_1,\dots ,X_{r+s})=T(X_1,\dots ,X_r)S(X_{r+1},\dots ,X_{r+s}).$$
+\hs Se tiene que $T\otimes S\in T_{r+s}(U)$.
+\par
+En estas condiciones, se verifica que, si $r>0$, $T_r(U)$ con la suma y el producto por n\'{u}meros reales es un
+espacio vectorial real, con la suma y el producto por funciones diferenciables es un $\mathcal{F}(U)$--m\'{o}dulo y
+que
+$$T(U)=\bigoplus_{r=0}^{\infty}T_r(U)$$
+es un \'{a}lgebra asociativa, no conmutativa y con elemento unidad, llamada {\it \'{A}lgebra Tensorial} de $U$.
+\begin{propo}
+Sea $(U,\vp=(x_1,\dots ,x_m))$ un s.l.c. en $M$. Entonces, la familia
+$$\{\de{x_{i_1}}\otimes\cdots\otimes\de{x_{i_r}}/i_1,\dots ,i_r=1,\dots ,m\}$$
+es una base de $T_r(U)$ como $\mathcal{F}(U)$--m\'{o}dulo. Adem\'{a}s, si $T\in T_r(U)$, en funci\'{o}n de esa base se tiene
+que:
+$$T=\sum_{i_1,\dots ,i_r=1}^mT\left(\dep{x_{i_1}},\dots
+,\dep{x_{i_r}}\right)\de{x_{i_1}}\otimes\cdots\otimes\de{x_{i_r}}.$$
+\end{propo}
+\begin{defi}
+Dada una variedad diferenciable $M$ y un abierto $U\subseteq M$, un {\bf Campo de Tensores $r$--Covariantes y
+1--Contravariantes Diferenciable} sobre $U$ es una aplicaci\'{o}n $r$--lineal del $\esp{F}(U)$--m\'{o}dulo $\esp{X}(U)$ en
+$\mathcal{X}(U)$, es decir, una aplicaci\'{o}n
+$$T:\esp{X}(U)\times\stackrel{r)}\cdots\times\mathcal{X}(U)\fl\mathcal{X}(U)$$
+$r$--lineal (con escalares las funciones diferenciables sobre $U$). Al conjunto de los campos de tensores
+$r$--covariantes y 1--contravariantes diferenciables sobre $U$ se denota por $T_r^1(U)$.
+\end{defi}
+%\section{Formas Diferenciales.}
+\begin{defi}
+Dada una variedad diferenciable $M$ y un abierto $U\subseteq M$, una {\bf $r$--Forma Diferencial} sobre $U$ es un
+campo de tensores $r$--covariantes diferenciable y alternado sobre $U$, es decir, una aplicaci\'{o}n
+$$\om:\esp{X}(U)\times\stackrel{r)}\cdots\times\mathcal{X}(U)\fl\mathcal{F}(U)$$
+$r$--lineal (con escalares las funciones diferenciables sobre $U$) alternada, esto es, verificando que
+$$\om(X_1,\dots ,X_r)=\varepsilon(\sigma)\om(X_{\sigma(1)},\dots ,X_{\sigma(r)}),$$
+para cualquier $\sigma\in S_r$ y $X_1,\dots ,X_r\in\mathcal{X}(U)$. Al conjunto de las $r$-formas diferenciales
+sobre $U$ se denota por $\Lambda_r(U)$. Se conviene que $\Lambda_0(U)=\mathcal{F}(U)$.
+\end{defi}
+\begin{nota}
+{\rm Es f\'{a}cil comprobar que $\Lambda_r(U)$ es un subespacio vectorial y un sub\-m\'{o}\-du\-lo de $T_r(U)$. Adem\'{a}s,
+$\Lambda_1(U)=T_1(U)$. }
+\end{nota}
+\begin{defi}
+Dado $T\in T_r(U)$, se llama {\bf Alternado} de $T$ a la $r$--forma diferencial $Alt(T)$ definida mediante
+$$Alt(T)(X_1,\dots ,X_r)=\frac{1}{r!}\sum_{\sigma\in S_r}\varepsilon(\sigma)T(X_{\sigma(1)},\dots
+,X_{\sigma(r)}),$$ para cualesquiera $X_1,\dots ,X_r\in\mathcal{X}(U)$.
+\end{defi}
+\begin{ejer}
+{\rm Probar que, efectivamente, $Alt(T)\in\Lambda_r(U)$, para cualquier $T\in T_r(U)$. Probar, adem\'{a}s, que
+la aplicaci\'{o}n $Alt:T_r(U)\fl\Lambda_r(U)$ es lineal (con escalares las funciones diferenciables sobre $U$) y que
+restringido a $\Lambda_r(U)$ es la identidad.}
+\end{ejer}
+Dadas $\om\in\Lambda_r(U)$ y $\theta\in\Lambda_s(U)$, se define la operaci\'{o}n {\it Producto Exterior} de $\om$ y
+$\theta$, denotada por $\om\wedge\theta$, mediante
+$$\om\wedge\theta=\frac{(r+s)!}{r!s!}Alt(\om\otimes\theta).$$
+%es decir, si $X_1,\dots ,X_{r+s}\in\mathcal{X}(U)$:
+%$$(\om\wedge\theta)(X_1,\dots ,X_{r+s})=$$
+%$$=\frac{1}{r!s!}\sum_{\sigma\in S_{r+s}}\varepsilon(\sigma)\om(X_{\sigma(1)},\dots
+%,X_{\sigma(r)})\theta(X_{\sigma(r+1)},\dots ,X_{\sigma(r+s)}).$$
+\hs Claramente,
+$\om\wedge\theta\in\Lambda_{r+s}(U)$. Adem\'{a}s, razonando por inducci\'{o}n, se tiene que si $\om_i\in\Lambda_{r_i}(U)$,
+$i=1,\dots ,k$, entonces:
+$$\om_1\wedge\cdots\wedge\om_k=\frac{(r_1+\cdots +r_k)|}{r_1!\dots r_k!}Alt(\om_1\otimes\cdots\otimes\om_k).$$
+\begin{propo}
+Sean $\om\in\Lambda_r(U)$ y $\theta\in\Lambda_s(U)$. Entonces $\om\wedge\theta=(-1)^{rs}\theta\wedge\om$. En
+consecuencia, si $r$ es impar, $\om\wedge\om=0$.
+\end{propo}
+\begin{propo}
+Sean $\om_1,\dots ,\om_r\in\Lambda_1(U)$. Entonces:
+\begin{enumerate}
+\item Para cualquier $\sigma\in S_r$, $\om_1\wedge\cdots\wedge\om_r=\varepsilon(\sigma)\om_{\sigma(1)}\wedge\cdots
+\wedge\om_{\sigma(r)}$.
+\item Dados cualesquiera $X_1,\dots ,X_r\in\mathcal{X}(U)$:
+$$(\om_1\wedge\cdots\wedge\om_r)(X_1,\dots ,X_r)={\rm det}(\om_i(X_j)).$$
+\end{enumerate}
+\end{propo}
+\begin{propo}
+Sea $(U,\vp=(x_1,\dots ,x_m))$ un s.l.c. en $M$. Entonces, la familia
+$$\{\de{x_{i_1}}\wedge\cdots\wedge\de{x_{i_r}}/1\leq i_1<\cdots <i_r\leq m\}$$
+es una base de $\Lambda_r(U)$ como $\mathcal{F}(U)$--m\'{o}dulo. Adem\'{a}s, si $\om\in\Lambda_r(U)$, en funci\'{o}n de esa
+base se tiene que:
+$$\om=\sum_{1\leq i_1 <\cdots <i_r\leq m}\om\left(\dep{x_{i_1}},\dots
+,\dep{x_{i_r}}\right)\de{x_{i_1}}\wedge\cdots\wedge\de{x_{i_r}}.$$
+\end{propo}
+\begin{coro}
+Si $r>m$, entonces $\Lambda_r(U)=\{0\}$.
+\end{coro}
+\begin{propo}
+Se verifica que
+$$\Lambda(U)=\bigoplus_{r=0}^m\Lambda_r(U)$$
+con el producto exterior es un \'{a}lgebra asociativa, no conmutativa y con elemento unidad.
+\end{propo}
+%\section{Acci\'{o}n de Aplicaciones sobre los Campos de Tensores.}
+\begin{defi}
+Sean $M$ y $N$ dos variedades diferenciables y
+$f\in\mathcal{F}(M,N)$. Dado $T\in T_r(N)$, se define $f^*T\in
+T_r(M)$ por $f^*T=T\circ f$, si $r=0$ y $f^*T(X_1,\dots ,X_r)(p)=
+T(\overline{X}_1,\dots ,\overline{X}_r)(f(p))$, si $r>0$, donde
+$p$ es un punto de $M$, $X_1,\dots ,X_r\in\mathcal{X}(M)$ y
+$\overline{X}_1,\dots ,\overline{X}_r\in\mathcal{X}(N)$ son tales
+que $f_{*p}X_i(p)=\overline{X}_i(f(p))$, para todo $i=1,\dots ,r$.
+De manera equivalente, se puede definir
+$$(f^*T)_p(u_1,\dots,u_r)=T_{f(p)}(f_{*p}u_1,\dots,f_{*p}u_r),$$
+para todo $p\in M$ y todos $u_1,\dots,u_r \in T_p(M)$.
+\end{defi}
+Esta definici\'{o}n permite, al ser extendida por linealidad, obtener una aplicaci\'{o}n $f^*:T(N)\fl T(M)$, asociada a
+$f$.
+\begin{propo}
+Dada $f\in\mathcal{F}(M,N)$, se verifican las siguientes
+propiedades:
+\begin{enumerate}
+\item $f^*:T_r(N)\fl T_r(M)$ es $\R$--lineal, para todo $r\geq 0$.
+\item $f^*(gT)=(g\circ f)f^*T$, para cualquier $T\in T(N)$ y
+cualquier $g\in \mathcal{F}(N)$. \item $f^*(T\otimes
+S)=f^*T\otimes f^*S$, para cualesquiera $T,S\in T(N)$. \item
+$f^*(Alt(T))=Alt(f^*T)$, para cualquier $T\in T(N)$. \item
+$f^*(\om\wedge\theta)=f^*\om\wedge f^*\theta$, para cualesquiera
+$\om,\theta\in\Lambda(N)$. \item $f^*(\de{g})=\de{(f^*g)}$, para
+cualquier $g\in\mathcal{F}(N)$.
+\end{enumerate}
+\end{propo}
+
+
+
+%\newpage
+
+\chapter{Conexiones Afines.}
+
+\
+
+\hs En este primer capítulo vamos a introducir algunas definiciones
+y algunos resultados básicos que nos serán necesarios más adelante.
+Así, conceptos como el transporte paralelo, la torsión asociada a
+una conexión afín y su curvatura, serán expuestos en esta primera
+parte.
+
+\
+
+
+
+
+\section{Conexiones Afines en una Variedad Diferenciable.}
+%%\hs Un hecho fundamental en el desarrollo de la Geometr\'{\i}a
+%%Diferencial fue la introducci\'{o}n en 1917 del paralelismo de
+%%Levi-Civita. En el caso de superficies regulares de $\R^3$, para
+%%definir y estudiar el concepto de paralelismo, era de gran
+%%importancia el saber c\'{o}mo derivar un campo de vectores tangentes
+%%a la superficie a lo largo de una curva, es decir, en la
+%%direcci\'{o}n de la tangente a la curva. En una variedad
+%%diferenciable cualquiera, la posibilidad de derivar un campo de
+%%vectores respecto a otro viene dada por la noci\'{o}n de {\it
+%%Conexi\'{o}n Af\'{\i}n}, de la que se obtiene la de {\it Derivada
+%%Covariante}.
+
+\hs En esta sección empezaremos viendo qué es una conexión afín,
+para luego demostrar y obtener algunas conclusiones del Lema de
+Localización. Más adelante trataremos con el concepto de derivada
+covariante y el transporte paralelo, para terminar con la definición
+de geodésica respecto a una conexión.
+
+
+
+
+
+
+
+\begin{defi}
+Una {\bf Conexi\'{o}n Af\'{\i}n} en una variedad diferenciable $M$
+es una aplicaci\'{o}n
+$$\nabla:\mathcal{X}(M)\times\mathcal{X}(M)\fl\mathcal{X}(M):(X,Y)\mapsto\nabla_XY$$
+que satisface las siguientes propiedades:
+\begin{enumerate}
+\item $\nabla_{fX+gY}Z=f\nabla_XZ+g\nabla_YZ$;
+\item $\nabla_X(Y+Z)=\nabla_XY+\nabla_XZ$;
+\item $\nabla_X(fY)=f\nabla_XY+(Xf)Y$,
+\end{enumerate}
+para cualesquiera $X,Y,Z\in\mathcal{X}(M)$ y $f,g\in\mathcal{F}(M)$.
+\end{defi}
+
+
+
+\hs La primera propiedad de la definici\'{o}n muestra que el
+operador $\nabla$ es lineal en la primera componente respecto a las
+funciones diferenciables, mientras que la tercera muestra que no lo
+es en la segunda componente aunque s\'{\i} lo es respecto a los
+n\'{u}meros reales.
+%%Adem\'{a}s, se obtiene que el concepto de
+%%conexi\'{o}n af\'{\i}n es local.
+
+\
+
+\hs A continuación, enunciaremos y demostraremos el Lema de
+Localización, el cual nos hará falta más adelante.
+
+
+
+\begin{propo}
+{\bf (Lema de Localizaci\'{o}n).} Sea $M$ una variedad diferenciable
+con una conexi\'{o}n af\'{\i}n $\nabla$ y sean $p\in M$ y
+$X,X',Y,Y'\in\mathcal{X}(M)$ tales que $X=X'$ e $Y=Y'$ en un entorno
+$V$ de $p$. Entonces $(\n_XY)_p=(\n_{X'}Y')_p$.
+\end{propo}
+
+
+\noindent {\it Demostración.-}
+Vamos a dividir la demostracion en dos pasos.
+
+\
+
+\underline{Paso 1}: Veamos que
+$(\n_XY)_p=(\n_XY')_p$.
+
+\
+
+
+Como $Y=Y'$ en el entorno $V(p)$, se tiene que $Y-Y'=0$ en dicho
+entorno. Entonces, por el Lema de Extensión de Funciones
+Diferenciables, existen $f\in\mathcal{F}(M)$ y un abierto $W$ con
+$p\in W\subseteq V$, tales que:
+$$f=\left\{\begin{array}{ccl}
+1 & \mbox{en} & M\setminus V, \\
+0 & \mbox{en} & W(p).
+\end{array}\right.$$
+Así,
+\begin{equation} \label{lemaext}
+Y-Y'=f(Y-Y'),
+\end{equation}
+ya que en $V$
+tenemos que $0=f\cdot 0$ y en $M\setminus V$ es $f=1$, lo que implica que $Y-Y'=1(Y-Y')$.
+
+Si aplicamos la conexión afín $\nabla$ a (\ref{lemaext}), obtenemos:
+\begin{equation*}
+\begin{split}
+\n_X(Y-Y')=&\n_Xf(Y-Y')=\n_XfY-\n_XfY'\\
+=&(Xf)Y-(Xf)Y'+f\n_XY-f\n_XY'.
+\end{split}
+\end{equation*}
+Por tanto,
+$$(\n_XY)_p-(\n_XY')_p=(Xf)_pY_p-(Xf)_pY'_p+f(p)(\n_XY-\n_XY')_p=0,$$
+ya que $(Xf)_p=X_pf$ y $f=0$ en $W$ entorno de $p$ (en particular, $f(p)=0$). Luego tenemos que
+$(\n_XY)_p=(\n_XY')_p$.
+
+\
+
+\underline{Paso 2}: Veamos que
+$(\n_XY')_p=(\n_{X'}Y')_p$.
+
+\
+
+
+Se procedería de manera análoga al Paso 1, pero tomando
+$X-X'=0$ con un nuevo entorno $V'$ y una nueva función $f'$.
+\hfill $\Box$
+
+\
+
+Este Lema nos sirve para poder hacer los cálculos locales con la
+conexión.
+
+
+Ahora, si $p$ es un punto cualquiera de $M$ y $(U,\vp=(x_1,\dots
+,x_m))$ es un s.l.c.(sistema local de coordenadas) entorno de $p$, en $U$ se puede escribir
+$$\nabla_{X_i}X_j=\sum_{k=1}^m\Gamma_{ij}^kX_k,\mbox{ }i,j=1,\dots ,m,$$
+donde
+$$X_i=\dep{x_i},\mbox{ }i=1,\dots ,m$$
+y $\Gamma_{ij}^k$ son funciones diferenciables en $U$ llamadas {\it
+S\'{\i}mbolos de Christoffel} de la conexi\'{o}n respecto a la carta
+$(U,\vp)$. Obs\'{e}rvese que nada en esta definici\'{o}n lleva a
+deducir que $\Gamma_{ij}^k=\Gamma_{ji}^k$. Por otra parte, dados dos
+campos $X,Y\in\mathcal{X}(M)$, en $U$ dichos campos se pueden
+expresar como
+$$X=\sum_{i=1}^m(Xx_i)X_i,\mbox{ }Y=\sum_{j=1}^m(Yx_j)X_j,$$
+donde las funciones $Xx_i$ e $Yx_j$ son diferenciables en $U$, para
+todos $i$ y $j$. Entonces, en virtud de la definici\'{o}n, se tiene
+que, en $U$,
+$$\nabla_XY=\sum_{k=1}^m\left( \sum_{i,j=1}^m(Xx_i)(Yx_j)\Gamma_{ij}^k+X(Yx_k)\right) X_k,$$
+lo que prueba que $(\nabla_XY)_p$ depende de $(Xx_i)(p)$,
+$(Yx_j)(p)$ y de las derivadas $X(Yx_k)(p)$ de las funciones $Yx_k$
+en la direcci\'{o}n de $X_p$. Esto permite, dada una curva
+diferenciable sobre $M$, $\a:(a,b)\fl M$, definir, para
+$Y\in\mathcal{X}(M)$, la aplicaci\'{o}n a lo largo de $\a$
+$$\nabla_{\a'}Y:t\in (a,b)\mapsto (\nabla_{\a'}Y)(t)=(\nabla_XY)_{\a(t)},$$
+siendo $X\in\mathcal{X}(M)$ cualquier campo tal que
+$X_{\a(t)}=\a'(t)$. Se prueba a partir de la observación anterior
+que $\nabla_{\a'}Y$ no depende del campo $X$ que se escoja. \
+
+\
+
+Veamos ahora la definición de Campo Vectorial Tangente:
+
+
+\begin{defi}
+Un {\bf Campo Vectorial Tangente} o {\bf Campo de Vectores
+Tangentes} $V$ a lo largo de una curva diferenciable $\a:(a,b)\fl M$
+en una variedad diferenciable $M$ es una aplicaci\'{o}n que a cada
+$t\in (a,b)$ le asigna un vector tangente $V(t)\in T_{\a(t)}(M)$. Un
+campo vectorial tangente a lo largo de $\a$ se dice {\bf
+diferenciable} si para toda funci\'{o}n diferenciable
+$f\in\mathcal{F}(M)$ la funci\'{o}n $t\mapsto V(t)f$ es
+diferenciable en $(a,b)$.
+\end{defi}
+
+En la siguiente proposición se verá el concepto de Derivada
+Covariante, y se probará su unicidad (con unas condiciones dadas).
+
+
+\begin{propo}
+Sea $M$ una variedad diferenciable con una conexi\'{o}n af\'{\i}n
+$\nabla$ y sea $\a:(a,b)\fl M$ una curva diferenciable sobre $M$.
+Entonces, existe una \'{u}nica ley que asocia a cada campo vectorial
+tangente $V$ a lo largo de $\a$ y diferenciable otro campo vectorial
+tangente a lo largo de $\a$ y diferenciable, denotado por
+$$\cova{V}{t}$$
+y llamado {\bf Derivada Covariante} de $V$ a lo largo de $\a$, tal
+que:
+\begin{enumerate}
+\item $$\cova{(V+W)}{t}=\cova{V}{t}+\cova{W}{t},$$
+donde $W$ es otro campo de vectores tangentes a lo largo de $\a$
+diferenciable.
+\item $$\cova{(fV)}{t}=\dderi{f}{t}V+f\cova{V}{t},$$
+donde $f\in\mathcal{F}(M)$.
+\item Si $V$ est\'{a} inducido por un campo $Y\in\mathcal{X}(M)$, es decir, si $V(t)=Y_{\a(t)}$, para todo $t\in
+(a,b)$, entonces:
+$$\cova{V}{t}=\nabla_{\a'}Y.$$
+\end{enumerate}
+\end{propo}
+
+
+\noindent {\it Demostración.-} Supongamos que existe $\cova{V}{t}$ y
+la determinamos en cada carta:
+
+\
+
+Sean $(U,\vp=(x_1,...,x_m))$ una carta tal que $\alpha^{-1}(U)$ es
+no vacío y $V$ un campo vectorial tangente y diferenciable a lo
+largo de $\a:(a,b)\fl M$.
+
+\
+
+Tenemos que $V(t)\in T_{\alpha(t)}(M)$. Luego, para todo $t\in
+\alpha^{-1}(U)$, resulta:
+
+\begin{equation*}
+V(t)=\sum_{i=1}^mv_i(t)\left(\dep{x_i}\right)_{\alpha(t)}=\sum_{i=1}^mv_i(t)X_i(\alpha
+(t)).
+\end{equation*}
+
+\
+
+Por simplicidad, notaremos $X_i(\alpha (t))=X_i(t)$.
+
+\
+
+Por tanto, en virtud de las propiedades 1, 2 y 3 y de la definición
+de los símbolos de Christoffel, podemos escribir:
+
+\begin{equation*}
+\cova{V}{t}=\sum_{i}^{}\left(\dderi{v_i}{t}X_i+v_i\cova{(X_i)}{t}\right).
+\end{equation*}
+
+\
+
+Teniendo en cuenta que
+
+$$\alpha^{'}(t)=\sum_{j=1}^{m}\alpha^{'}(t)x_jX_j(\alpha(t))=\sum_{j}^{}\dderi{\alpha_j}{t}X_j(\alpha(t)),$$
+aplicamos la propiedad 3 para obtener que
+$$\cova{(X_i)}{t}=\n_{\a^{'}}X_i=\n_{\sum_{j}^{}\dderi{\alpha_j}{t}X_j}X_i=\sum_{j}^{}\dderi{\alpha_j}{t}\n_{X_j}X_i=\sum_{j}^{}\dderi{\alpha_j}{t}\sum_{k}^{}\Gamma_{ji}^kX_k,$$
+y así podemos decir que
+\begin{equation*}
+\cova{V}{t}=\sum_{i}^{}\dderi{v_i}{t}X_i
+(t)+\sum_{i}^{}v_i\sum_{j}^{}\dderi{\alpha_j}{t}\sum_{k}^{}\Gamma_{ji}^kX_k
+(t),
+\end{equation*}
+de donde obtenemos que:
+\begin{equation} \label{propo1}
+\cova{V}{t}=\sum_{k}^{}\left(\dderi{v_k}{t}+\sum_{i,j}^{}\dderi{\alpha_i}{t}v_j\Gamma_{ij}^k\right)X_k
+(t).
+\end{equation}
+
+\
+
+\hs Una vez obtenida esta expresión, $\cova{V}{t}$ se define igual
+en cada carta, y es directo ver que se cumplen las tres propiedades.
+ \hfill $\Box$
+
+\
+
+
+
+
+%% \hs La proposici\'{o}n anterior nos
+%%muestra que la elecci\'{o}n de una conexi\'{o}n af\'{\i}n da origen
+%%a una derivada de campos de vectores a lo largo de curvas, esto es,
+%%la noci\'{o}n de conexi\'{o}n af\'{\i}n provee de una manera de
+%%derivar vectores a lo largo de curvas. En particular, ser\'{a}
+%%posible hablar, por ejemplo, de aceleraci\'{o}n de una curva en $M$
+%%o de transporte paralelo de vectores. Recu\'{e}rdese que, en el caso
+%%de superficies regulares, un campo de vectores tangentes a lo largo
+%%de una curva se dice paralelo si su derivada es normal a la
+%%superficie en cada punto de la curva o, equivalentemente, si su
+%%derivada covariante (en el sentido definido en la Teor\'{\i}a de
+%%Superficies Regulares) es nula. Esto justifica la siguiente
+%%definici\'{o}n:
+
+\
+
+
+
+
+
+Cuando la derivada covariante de un campo se anula, tenemos un caso
+particular conocido como campo paralelo respecto a una conexión a lo
+largo de una curva:
+
+\begin{defi}
+Sea $M$ una variedad diferenciable con una conexi\'{o}n af\'{\i}n
+$\nabla$. Un campo vectorial tangente a lo largo de una curva
+diferenciable $\a:(a,b)\fl M$ y diferenciable se dice {\bf Paralelo
+respecto de la Conexi\'{o}n $\nabla$ a lo largo de $\a$} si, para
+todo $t\in (a,b)$:
+$$\cova{V}{t}=0.$$
+\end{defi}
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=10cm]{campveccurv.jpg}
+\end{center}
+\vspace*{-1cm} \caption{Campo vectorial paralelo a lo largo de una
+curva.}\label{campveccurv}
+\end{figure}
+\
+
+Una vez visto esto, sigamos con el teorema de Levi-Civita, que nos
+introduce una nueva idea: el Transporte Paralelo.
+
+
+
+
+
+\begin{teo}
+{\bf (Teorema de Levi-Civita).} Sean $M$ una variedad diferenciable
+con una conexi\'{o}n af\'{\i}n, $\a:(a,b)\fl M$ una curva
+diferenciable en $M$, $t_0\in (a,b)$ y $v_0\in T_{\a(t_0)}(M)$.
+Entonces, existe un \'{u}nico campo de vectores tangentes a lo largo
+de $\a$, $V$, diferenciable y paralelo respecto a la conexi\'{o}n,
+tal que $V(t_0)=v_0$. Dicho campo se llama el {\bf Transportado
+Paralelo} de $v_0$ a lo largo de $\a$.
+\end{teo}
+
+
+\noindent {\it Demostración.-} En cada carta,
+$V=\sum_{i=1}^{m}v_iX_i(\alpha (t))$ y
+$v=\sum_{i=1}^{m}\lambda_iX_i(\alpha (t_0))$, donde  $\lambda_i$ son
+escalares y $v_i$ funciones, para todo $i=1,...,m$.
+
+\
+
+Teniendo en cuenta (\ref{propo1}), podemos plantear el siguiente
+Problema de Cauchy (que se obtiene imponiendo que $\cova{V}{t}=0$ y
+$V(t_0)=v_0$):
+
+\
+
+$$(PC)=\left\{\begin{array}{ll}
+\dderi{v_k}{t}+\sum_{i,j}^{}\dderi{\alpha_i}{t}v_j\Gamma_{ij}^k=0  & \mbox{para todo $k$}, \\
+v_i(t_0)=\lambda_i  & \mbox{para todo $i$}.
+\end{array}\right.$$
+
+\
+
+Luego basta aplicar el Teorema de Picard que nos asegura la
+existencia de una solución única. \hfill $\Box$
+
+\
+
+\hs Continuamos reforzando la idea de Transporte Paralelo con la
+siguiente definición:
+
+\
+
+
+\begin{defi}
+Sean $M$ una variedad diferenciable con una conexi\'{o}n af\'{\i}n,
+$\a:(a,b)\fl M$ una curva diferenciable en $M$ y $[t_1,t_2]\subseteq
+(a,b)$. Se llama {\bf Transporte Paralelo} a lo largo de $\a$ en el
+intervalo $\a([t_1,t_2])$ a la aplicaci\'{o}n
+$$P_{t_1,t_2}^{\a}:T_{\a(t_1)}(M)\fl T_{\a(t_2)}(M)$$
+dada por $P_{t_1,t_2}^{\a}(u)=V(t_2)$, donde $V$ es el \'{u}nico
+campo de vectores tangentes a lo largo de $\a$, diferenciable y
+paralelo respecto a la conexi\'{o}n, tal que $V(t_1)=u$.
+\end{defi}
+
+Es inmediato ver que $P_{t_1,t_2}^{\a}$ es lineal y un isomorfismo
+(cuya inversa sería $P_{t_2,t_1}^{\a}$.)
+
+\
+
+\hs Y llegamos a un punto importante del trabajo, con la definición
+de geodésica respecto a una conexión dada:
+
+
+%% A partir de este concepto montaremos toda una teoría que nos
+%%llevará a los ejemplos finales en los espacios modelo de la
+%%geometría riemanniana.  ------- FRASE PARA LA INTRODUCCION ------
+
+
+
+\begin{defi} Sean $M$ una variedad diferenciable con una conexi\'{o}n af\'{\i}n $\nabla$ y $\a$ una curva diferenciable en $M$.
+Se dice que $\a$ es una {\bf geod\'{e}sica respecto de la
+conexi\'{o}n} si
+$$\cova{\a'}{t}=0,$$
+es decir, si el campo de vectores tangentes a $\a$ es un campo
+paralelo a lo largo de $\a$.
+\end{defi}
+
+\
+
+\hs Comprobemos, mediante el siguiente teorema, la existencia y
+unicidad (local) de una geodésica:
+
+\
+
+
+
+\begin{teo} \label{119}
+Sea $M$ una variedad diferenciable con una conexi\'{o}n af\'{\i}n y
+sean $p\in M$ y $u\in T_p(M)$. Entonces, existen $\varepsilon>0$ y
+una \'{u}nica geod\'{e}sica respecto de la conexi\'{o}n,
+$\a:(-\varepsilon,\varepsilon)\fl M$, tal que $\a(0)=p$ y
+$\a'(0)=u$.
+\end{teo}
+
+\
+
+\noindent {\it Demostración.-} Sea $(V,\varphi=(x_1,...,x_m))$, una
+carta tal que $p\in M$.
+
+\
+
+Imponemos $\alpha(0)=p$, de donde obtenemos
+$\varphi(\alpha(0))=\varphi(p)$, y por tanto sería
+$\alpha_i(0)=x_i(p)$. Y por otra parte, $\alpha^{'}(0)=v$, lo que
+nos da en cada caso $\alpha^{'}_i(0)=v(x_i).$ Además, de (1.1.2),
+imponiendo que $\cova{\alpha'}{t}=0$, al ser $\alpha$ geodésica, se
+sigue que
+
+
+\begin{equation} \label{teo1}
+\alpha_k^{''}+\sum_{i,j}^{}\alpha_i^{'}\alpha_j^{'}\Gamma_{ij}^k=0.
+\end{equation}
+
+
+
+
+\
+
+Con estas condiciones, podemos obtener el siguiente problema de
+Cauchy:
+
+\
+
+$$(PC)=\left\{\begin{array}{ll}
+\alpha_k^{''}+\sum_{i,j}^{}\alpha_i^{'}\alpha_j^{'}\Gamma_{ij}^k=0  & \mbox{para todo $k=1,...,m$}, \\
+\alpha_i(0)=x_i(p)  & \mbox{para todo $i=1,...,m$}, \\
+\alpha_i^{'}(0)=v(x_i) & \mbox{para todo $i=1,...,m$}.
+\end{array}\right.$$
+
+\
+
+De nuevo, aplicando el Teorema de Picard, tenemos existencia y
+unicidad de solución. \hfill $\Box$
+
+\
+
+\hs Terminaremos esta primera sección viendo qué es un difeomorfismo
+afín, lo cual nos será útil más adelante.
+
+
+\
+
+\begin{defi}
+Sean $M$ y $\widetilde{M}$ dos variedades diferenciables con
+conexiones afines $\nabla$ y $\widetilde{\nabla}$, respectivamente.
+Un difeomorfismo
+$f:(M,\nabla)\longrightarrow(\widetilde{M},\widetilde{\nabla})$ se
+dice {\bf af\'{\i}n} si $f_*\nabla_XY=\widetilde{\nabla}_{f_*X}f_*Y$
+para todos $X,Y\in\mathcal{X}(M)$.
+\end{defi}
+
+
+
+
+\section{Torsi\'{o}n asociada a una conexi\'{o}n af\'{\i}n.}
+
+\
+
+\hs En esta nueva sección hablaremos de la torsión de una conexión
+afín, dando su definición, y algunas propiedades importantes.
+Comenzamos dando a conocer este nuevo concepto:
+
+
+
+\
+\begin{defi}
+Sea $M$ una variedad diferenciable con una conexi\'{o}n af\'{\i}n
+$\nabla$. Se llama {\bf Torsi\'{o}n} de $M$ respecto de la
+conexi\'{o}n a la aplicaci\'on
+$T:\mathcal{X}(M)\times\mathcal{X}(M)\fl\mathcal{X}(M)$ dada por:
+$$T(X,Y)=\nabla_X Y - \nabla_Y X -[X,Y].$$
+
+
+
+
+Una conexi\'{o}n af\'{\i}n $\nabla$ se dice {\bf sim\'{e}trica} o
+{\bf libre de torsi\'{o}n} si $T\equiv0.$
+\end{defi}
+
+\
+
+Con estos datos, se prueba de forma directa la siguiente
+proposición: %%mejorar esto Manue
+
+
+
+\begin{propo}
+Sea $M$ una variedad diferenciable y $\nabla$ una conexi\'{o}n
+af\'{\i}n. Entonces la torsi\'{o}n de $M$ respecto a $\nabla$ es una
+aplicaci\'{o}n bilineal, con escalares las funciones diferenciables.
+\end{propo}
+
+
+
+
+
+
+
+
+
+
+\hs Este resultado quiere decir que $T$ es un campo de tensores
+diferenciable dos veces covariante y una vez contravariante. Por
+otra parte, permite encontrar con facilidad una expresi\'{o}n local
+de la torsi\'{o}n. En efecto, sea $(U,\vp=(x_1,\dots ,x_m))$ un
+s.l.c. de $M$. Denotando por
+$$X_i=\dep{x_i},\mbox{ }i=1,\dots ,m,$$
+si se escribe
+$$T(X_i,X_j)=\sum_{k=1}^mT_{ij}^kX_k,$$
+con $T_{ij}^k$ funciones diferenciables en $U$, entonces dados
+$X,Y\in\mathcal{X}(M)$ tales que, en $U$,
+$$X=\sum_{i=1}^m(Xx_i)X_i,\mbox{ }Y=\sum_{j=1}^m(Yx_j)X_j,\mbox{ }$$
+se tiene que, en $U$:
+$$T(X,Y)=\sum_{i,j,k=1}^mT_{ij}^k(Xx_i)(Yx_j)X_k.$$
+\hs Esta ecuaci\'{o}n prueba que el valor de $T(X,Y)$ en un punto
+$p\in M$ depende s\'{o}lo de los valores de $X$ e $Y$ y de las
+funciones $T_{ij}^k$ en $p$. Adem\'{a}s, como
+$$[X_i,X_j]=0,\mbox{ }i,j=1,\dots ,m,$$
+se obtiene que:
+$$T(X_i,X_j)=\nabla_{X_i} X_j - \nabla_{X_j} X_i -[X_i,X_j]= \sum_{k=1}^m\Gamma_{ij}^kX_k - \sum_{k=1}^k\Gamma_{ji}^kX_k =$$
+$$ =\sum_{k=1}^m(\Gamma_{ij}^k - \Gamma_{ji}^k)X_k.$$
+Luego:
+
+\begin{equation} \label{propo2}
+T_{ij}^k=\Gamma_{ij}^k-\Gamma_{ji}^k.
+\end{equation}
+\
+
+\hs Para finalizar esta sección, incluimos una propiedad de la
+Torsión:
+
+
+\begin{propo}
+Sea $M$ una variedad diferenciable con una conexi\'{o}n af\'{\i}n
+$\nabla$. Entonces $T(X,Y)= -T(Y,X)$ para todos $X,Y \in
+\mathcal{X}(M)$.
+\end{propo}
+
+\
+
+\noindent {\it Demostración.-} Tenemos que:
+
+$$T(X,Y)=\nabla_X Y - \nabla_Y X -[X,Y].$$
+
+
+Y también que:
+
+$$T(X,Y)=\nabla_Y X - \nabla_X Y -[Y,X].$$
+
+
+Así, teniendo en cuenta $[X,Y]=-[Y,X]$, es directo ver que se
+verifica el resultado. \hfill $\Box$
+
+
+\section{Curvatura asociada a una conexi\'{o}n af\'{\i}n.}
+
+\
+
+\hs Este apartado está dedicado a la curvatura de una conexion afín.
+Hablaremos de sus propiedades y utilidades.
+
+\
+
+\begin{defi}
+Sea $M$ una variedad diferenciable con $\nabla$ una conexi\'{o}n
+af\'{\i}n. Se llama {\bf Curvatura} de $M$ respecto de la
+conexi\'{o}n a la aplicaci\'{o}n
+$R:\mathcal{X}(M)\times\mathcal{X}(M)\times\mathcal{X}(M)\fl\mathcal{X}(M)$
+dada por:
+$$R(X,Y,Z)=\nabla_X\nabla_YZ-\nabla_Y\nabla_XZ-\nabla_{[X,Y]}Z.$$
+\end{defi}
+
+
+
+
+
+{\rm Usualmente se escribe $R(X,Y)Z$ en vez de $R(X,Y,Z)$.}
+
+\
+
+
+
+
+
+
+
+En el caso de que una conexi\'{o}n af\'{\i}n cumpla que $T\equiv0$ y
+$R\equiv0$, la llamaremos conexión afín {\bf llana}.
+
+\
+
+
+Se prueba de forma sencilla y directa la siguiente proposición:
+
+
+\begin{propo}
+Sea $M$ una variedad diferenciable con una conexi\'{o}n af\'{\i}n
+$\nabla$. Entonces la curvatura de $M$ respecto a $\nabla$ es una
+aplicaci\'{o}n trilineal, con escalares las funciones
+diferenciables.
+\end{propo}
+
+
+
+
+
+\hs Este resultado quiere realmente decir que $R$ es un campo de
+tensores diferenciable tres veces covariante y una vez
+contravariante. Por otra parte, permite encontrar con facilidad una
+expresi\'{o}n local de la curvatura. En efecto, sea
+$(U,\vp=(x_1,\dots ,x_m))$ un s.l.c. de $M$. Denotando por
+$$X_i=\dep{x_i},\mbox{ }i=1,\dots ,m,$$
+si se escribe
+$$R(X_i,X_j)X_k=\sum_{l=1}^mR_{ijk}^lX_l,$$
+con $R_{ijk}^l$ funciones diferenciables en $U$, entonces dados
+$X,Y,Z\in\mathcal{X}(M)$ tales que, en $U$,
+$$X=\sum_{i=1}^m(Xx_i)X_i,\mbox{ }Y=\sum_{j=1}^m(Yx_j)X_j,\mbox{ }Z=\sum_{k=1}^m(Zx_k)X_k,$$
+se tiene que, en $U$:
+$$R(X,Y)Z=\sum_{i,j,k,l=1}^mR_{ijk}^l(Xx_i)(Yx_j)(Zx_k)X_l.$$
+\hs Esta ecuaci\'{o}n prueba que el valor de $R(X,Y)Z$ en un punto
+$p\in M$ depende s\'{o}lo de los valores de $X$, $Y$, $Z$ y de las
+funciones $R_{ijk}^l$ en $p$. Adem\'{a}s, como
+$$[X_i,X_j]=0,\mbox{ }i,j=1,\dots ,m,$$
+se obtiene que
+$$R(X_i,X_j)X_k=\nabla_{X_i}\nabla_{X_j}X_k-\nabla_{X_j}\nabla_{X_i}X_k$$
+(es decir, la curvatura mide la no conmutatividad de la derivada
+covariante) y, por tanto, si $\Gamma_{ij}^k$ son los s\'{\i}mbolos
+de Christoffel de $\nabla$ respecto a $(U,\vp)$,
+
+\begin{equation} \label{propo3}
+R_{ijk}^l=\sum_{s=1}^m(\Gamma_{jk}^s\Gamma_{is}^l-\Gamma_{ik}^s\Gamma_{js}^l)+\ddep{\Gamma_{jk}^l}{x_i}-
+\ddep{\Gamma_{ik}^l}{x_j},
+\end{equation}
+con $i,j,k,l=1,\dots ,m$.
+
+
+
+
+
+
+\begin{propo}
+Sea $M$ una variedad diferenciable con una conexi\'{o}n af\'{\i}n
+$\nabla$. Entonces $R(X,Y)Z=-R(Y,X)Z$ para todos
+$X,Y,Z\in\mathcal{X}(M)$.
+\end{propo}
+
+\
+
+\noindent {\it Demostración.-} Tenemos que:
+$$R(X,Y)Z=\nabla_X\nabla_YZ-\nabla_Y\nabla_XZ-\nabla_{[X,Y]}Z,\mbox{ }X,Y,Z\in\mathcal{X}(M).$$
+Y por otro lado:
+$$R(Y,X)Z=\nabla_Y\nabla_XZ-\nabla_X\nabla_YZ-\nabla_{[Y,X]}Z,\mbox{ }X,Y,Z\in\mathcal{X}(M).$$
+
+
+Así que es directo ver que se cumple el resultado, teniendo en
+cuenta que $[X,Y]=-[Y,X].$ \hfill $\Box$
+
+
+\
+
+
+\hs Otro resultado importante, y que nos servirá más adelante, es la
+primera identidad de Bianchi, cuya demostración excede del objetivo
+de este trabajo:
+
+\begin{propo}
+Sea $M$ una variedad diferenciable con una conexi\'{o}n af\'{\i}n
+$\nabla$. Entonces, para todos $X,Y,Z\in\mathcal{X}(M)$, se tiene:
+$$R(X,Y)Z+R(Y,Z)X+R(Z,X)Y=0.$$
+\end{propo}
+
+%\begin{defi} Sea $M$ una variedad diferenciable con una
+%%conexi\'{o}n af\'{\i}n $\nabla$.
+%\begin{enumerate}
+%\item Dados $f\in \mathcal{F}(M)$ y $X\in\mathcal{X}(M)$, se define $\nabla_Xf=Xf$.
+%\item Dados $K$ un campo tensorial de tipo (s,r) sobre $M$ con $s=0,1$ y dados $X,X_1,\dots,X_r\in\mathcal{X}(M)$, se define:
+%\begin{equation*}
+%\begin{split}
+%(\nabla_XK)(X_1,\ldots,X_r)=&\nabla_X(K(X_1,\ldots,X_r))\\-&\sum_{i=1}^rK(X_1,\dots,X_{i-1},\nabla_XX_i,X_{i+1},\dots,X_r).
+%\end{split}
+%\end{equation*}
+%\end{enumerate}
+%\end{defi}
+%\begin{propo}
+%%Sea $M$ una variedad diferenciable con una conexi\'{o}n af\'{\i}n
+%%$\nabla$ sim\'etrica. Entonces, dados $X,Y,Z,W\in\mathcal{X}(M)$, se
+%%cumplem:
+%\begin{enumerate}
+%\item $R(X,Y)Z + R(Y,Z)X + R(Z,X)Y = 0$ ($1^a$ identidad de Bianchi).
+%\item $(\nabla_XR)(Y,Z)W+(\nabla_ZR)(X,Y)W+(\nabla_YR)(Z,X)W=0$ ($2^a$ identidad de Bianchi).
+%\end{enumerate}
+%\end{propo}
+
+
+
+
+
+
+
+\section{Ejemplo de una conexi\'on af\'{\i}n: la conexi\'on eucl\'{\i}dea.}
+
+\
+
+
+\hs En esta sección vamos a desarrollar un ejemplo con el que
+ilustraremos los distintos conceptos vistos hasta ahora.
+
+
+\
+
+
+Sea la variedad diferenciable $(\R^m,Id=(x_1,\dots,x_m))$ y
+consideremos la siguiente aplicaci\'on:
+$$\begin{array}{cccl}
+\nabla: & \mathcal{X}(\R^m) \times \mathcal{X}(
+\R^m) & \longrightarrow & \mathcal{X}(\R^m) \\
+& (X,Y) & \longrightarrow & \nabla_{X}Y =
+\displaystyle{\sum_{i=1}^{m} X(Yx_{i})\dep{x_i}}.
+\end{array}$$
+
+Se verifica que $\nabla$ es una conexi\'on af\'{\i}n, llamada {\bf
+conexi\'on eucl\'{\i}dea} de $\R^m$.
+
+
+
+
+
+\begin{propo}
+Sea $\R^m$ con la conexi\'on eucl\'{\i}dea. Entonces:
+\begin{enumerate}
+\item $\Gamma^k_{ij}=0$, para todos $i,j,k=1,\dots,m$. \item Los
+campos paralelos son aquellos que tienen todas las coordenadas
+cons\-tan\-tes. \item Las geod\'esicas son las rectas. \item La
+conexi\'on eucl\'{\i}dea es llana.
+\end{enumerate}
+\end{propo}
+
+\noindent {\it Demostración.-} Veamos cada uno de los apartados
+anteriores:
+
+\
+
+ 1. Denotando, como habitualmente, $X_i=\dep{x_i}$, se sigue
+ directamente de la definición de los símbolos de Christoffel que:
+ $$\Gamma^k_{ij}=(\nabla_{X_i}X_j)x_k=X_i(X_jx_k)=X_i\left(\dep{x_k}{x_j}\right)=X_i(\delta_{jk})=0.$$
+
+\
+
+ 2. Dado un campo de vectores $V$, para que sea paralelo imponemos $\cova{V}{t}=0$. Por tanto:
+$$\dderi{v_k}{t}+\sum_{i,j}^{}\dderi{\alpha_i}{t}v_j\Gamma^k_{ij}=0,$$
+para todo $k=1,...,m.$ Como hemos visto en el primer apartado, los
+símbolos de Christoffel son nulos, luego ha de ser
+$\dderi{v_k}{t}=0,$ lo que implica que $v_k$ es constante para todo
+$k$.
+
+
+\
+
+ 3. Imponemos que una curva sea una geodésica mediante el cumplimiento de la ecuación (1.1.3). Ahora bien, como los símbolos de Chirstoffel son nulos, esta ecuación se reduce a $\a_k^{''}=0$, para todo $k$. Luego debe ser $\alpha^{'}_k=C^{k}_1$, y por consiguiente
+$\alpha_k=C^{k}_1t+C^{k}_2$,donde $C^{k}_1$ y $C^{k}_2$ son
+constantes, por lo que $\a$ es una recta.
+
+\
+
+ 4. Es inmediato ver que la conexión euclídea es llana en $\R^m$, teniendo en cuenta (1.2.1.) y (1.3.1.), ya
+que los símbolos de Christoffel son nulos. \hfill $\Box$
+
+
+\
+
+
+
+
+\chapter{Variedades Riemannianas.}
+
+\hs Continuamos en este capítulo con nuevos conceptos como la
+métrica y conexión Riemanniana, así como las isometrías. Todo esto
+nos ayudará más adelante a comprender nuevas nociones necesarias
+para el objetivo final de este trabajo.
+
+\section{M\'etricas Riemannianas.}
+
+
+
+Sea $M$ una variedad diferenciable y sea $g$ un campo de tensores
+diferenciables de tipo (0,2) en $M$:
+$$g: \mathcal{X}(M)\times\mathcal{X}(M)\fl\mathcal{F}(M).$$
+
+Entonces, para cada punto $p\in M$, se tiene la aplicaci\'on
+bilineal
+$$g_p:T_p(M)\times T_p(M) \fl \R,$$
+dada por $g_p(X_p,Y_p)=(g(X,Y))_p$, para todos
+$X,Y\in\mathcal{X}(M)$.
+
+
+
+
+\begin{defi}
+Sea $M$ una variedad diferenciable y sea $g$ un campo de tensores
+diferenciable de tipo (0,2) en $M$. Se dice que $g$ es {\bf
+sim\'etrico} si $g_p(u,v)=g_p(v,u)$ para todos $u,v \in T_p(M)$ y
+para todo $p\in M$. Por otro lado, se dice $g$ es {\bf definido
+positivo} si cumple las dos siguientes propiedades para todo $u\in
+T_p(M)$ y para todo $p\in M$:
+\begin{enumerate}
+\item $g_p(u,u)\ge 0$,
+\item $g_p(u,u)=0$ si y sólo si $u=0$.
+\end{enumerate}
+\end{defi}
+
+
+\hs Teniendo en cuenta estas definiciones, veamos qué es una
+variedad Riemanniana y su correspondiente métrica:
+
+
+
+\begin{defi}
+Una {\bf variedad Riemanniana} es un par $(M,g)$ donde $M$ es una
+variedad diferenciable y $g$ es un campo de tensores diferenciable
+de tipo (0,2), sim\'etrico y definido positivo. A $g$ se le llama
+{\bf m\'etrica Riemanniana} sobre $M$.
+\end{defi}
+
+
+
+Sea $(U,\vp=(x_1,\dots,x_m))$ un sistema local de coordenadas de una
+variedad Riemanniana $(M,g)$. Entonces,
+$$g|_U = \sum_{i,j=1}^mg_{ij}dx_i\otimes dx_j, \quad g_{ij}\in \mathcal{F}(U),$$
+donde las funciones $g_{ij}$ vienen dadas por
+$$g_{ij}=g|_U\left( \frac{\partial}{\partial x_i},\frac{\partial}{\partial x_j}\right)$$
+y se llaman {\bf coeficientes m\'{e}tricos} o {\bf coeficientes de
+la m\'{e}trica Riemanniana} en la carta $(U,\vp)$. Se tiene que:
+\begin{itemize}
+\item $g_{ij}=g_{ji}$, para todos $i,j=1,\dots,m$ (sim\'etrico).
+\item $g_{ii}>0$, para todo $i=1,\dots,m$ y $det(g_{ij})>0$ (definido positivo).
+\item $g_p$ en cada punto es un producto escalar.
+\end{itemize}
+
+
+\hs Aclaremos estas nueva definiciones con unos ejemplos:
+
+
+
+\begin{eje}
+
+\
+
+{\rm \begin{enumerate}
+\item El producto escalar es una m\'etrica Riemanniana sobre $\R^m$. A $\R^m$ con esta m\'etrica se le llama {\bf espacio eucl\'{\i}deo}. En esta m\'etrica,
+$g_{ij}=\delta_{ij}$, para todos $i,j=1,\dots,m$.
+\item Sean $M$ una superficie simple en $\R^3$. La primera forma fundamental es una m\'etrica Riemanniana sobre $M$.
+\item Sea $(N,g)$ una variedad Riemanniana, $M$ una variedad diferenciable y $f:M \fl (N,g)$ una inmersi\'on. Entonces, el pull-back $f^*g$
+es una m\'etrica Riemanniana sobre $M$ que se llama {\bf m\'etrica
+inducida por $f$}. A $f$ se le llama {\bf inmersi\'on isom\'etrica}.
+En efecto, se tiene que
+$$(f^{*}g)_p(u,v)=g_{f(p)}(f_{*p}u,f_{*p}v),$$
+para todos $u,v\in T_p(M)$ y resulta inmediato ver que es un tensor
+simétrico y definido positivo.
+\item Toda subvariedad de una variedad Riemanniana es, a su vez, una variedad
+Riemanniana, con la métrica inducida por la inmersión.
+\item Toda superficie regular es una variedad Riemanniana, al ser
+subvariedad de ${\bf R}^3$.
+\item Toda variedad diferenciable difeomorfa a una variedad Riemanniana es una variedad
+Riemanniana, con la métrica inducida por el difeomorfismo.
+\end{enumerate}}
+\end{eje}
+
+\hs En los casos más frecuentes de variedades diferenciables
+(aquellas que son 2ºN), se puede definir siempre una métrica
+Riemanniana.
+
+\begin{teo}
+Toda variedad diferenciable $M$ admite una m\'etrica Riemanniana.
+\end{teo}
+
+
+\noindent {\it Demostración.-} Podemos considerar un recubrimiento
+mediante cartas del tipo $(U_{\alpha},\varphi_{\alpha})$ localmente
+finito, o sea, tal que para cada $p\in M$, existe un abierto $U(p)$
+que corta a una cantidad finita de $U_{\alpha}$. De hecho, como toda
+variedad diferenciable $2^{\underline{o}}N$ es paracompacta, si
+fuera necesario refinamos el recubrimiento de las cartas para que
+sea localmente finito.
+
+Entonces, existe una partición de la unidad asociada al
+recubrimiento, $(f_{\alpha})$. En cada carta
+$(U_{\alpha},\varphi_{\alpha}=(X^{\alpha}_1,...,X^{\alpha}_m))$
+definimos una métrica como
+$g_{\alpha}=\varphi^{*}_{\alpha}\widetilde{g}_{\alpha}$, con
+$\widetilde{g}_{\alpha}$ la métrica euclídea definida en
+$\varphi_{\alpha}(U_{\alpha})$ dentro de $R^{m}$.
+
+Finalmente, definimos la métrica
+$g=\sum_{\alpha}^{}f_{\alpha}g_{\alpha}$, que es trivial probar que
+es métrica Riemanniana. \hfill $\Box$
+
+
+
+
+\
+
+\
+
+
+\hs A continuación, utilizamos las métricas Riemanianas para dar
+significado a los conceptos de norma y longitud de arco de una
+curva:
+
+
+\begin{defi}
+Sea $(M,g)$ una variedad Riemanniana y sean $p\in M$ y $u\in
+T_p(M)$. Se define la {\bf norma} (o el {\bf m\'{o}dulo}) de $u$
+como:
+$$\Vert u\Vert=\sqrt{g_p(u,u)}.$$
+
+De la misma forma, dado $X\in\mathcal{X}(M)$, se define la {\bf
+norma} (o el {\bf m\'{o}dulo}) de $X$ por:
+$$\Vert X\Vert=\sqrt{g(X,X)}.$$
+\end{defi}
+
+
+
+
+
+
+\begin{defi}
+Sean $(M,g)$ una variedad Riemanniana y $\alpha$ una curva
+diferenciable en $M$ con dominio un intervalo abierto $I$. Dados
+$a,b \in I$, $a<b$, se llama {\bf longitud del arco de curva} desde
+$\alpha(a)$ hasta $\alpha(b)$ a:
+$$\mathcal{L}(\alpha)_{\alpha(a)}^{\alpha(b)}=\int_a^b\Vert\alpha'(t)\Vert dt=\int_a^b\sqrt{g_{\alpha(t)}(\alpha'(t),\alpha'(t))}dt.$$
+\end{defi}
+
+
+
+
+
+
+
+%%\begin{teo} {\bf (Teorema de Whitney).} Toda variedad diferenciable
+%%$M$ es subvariedad de una variedad diferenciable eucl\'{\i}dea.
+%%\end{teo}
+\section{La Conexi\'on Riemanniana.}
+
+\hs Comenzamos esta sección viendo lo que significa que una conexión
+afín sea compatible:
+
+
+\begin{defi}
+Sea $(M,g)$ una variedad Riemanniana. Se dice que una co\-ne\-xi\'on
+af\'{\i}n $\nabla$ es {\bf compatible} con $g$ (o que es una
+conexi\'{o}n {\bf m\'{e}trica} con respecto a $g$) si para toda
+$\alpha:I \fl M$ curva diferenciable y para todos $V, W$ campos
+diferenciables de vectores tangentes a $M$ a lo largo de $\a$, se
+cumple que si $V$ y $W$ son paralelos, entonces
+$g_{\a(t)}(V(t),W(t))=cte.$, para todo $t\in I$.
+\end{defi}
+
+
+
+\hs Y ahora veamos una caracterización de este nuevo concepto:
+
+
+
+\begin{propo}
+Sean $(M,g)$ una variedad Riemanniana y $\nabla$ una conexi\'on
+af\'{\i}n en $M$. Entonces, $\nabla$ es compatible con $g$ si y
+s\'{o}lo si para toda $\a:I \fl M$ curva diferenciable en $M$ y todo
+par de campos diferenciables de vectores, $V$ y $W$, tangentes a $M$
+a lo largo de $\a$, se verifica que:
+$$\deri{t}g_{\a(t)}(V(t),W(t))=g_{\a(t)}\left(\cova{V}{t},W(t)\right)+g_{\a(t)}\left(V(t),\cova{W}{t}\right).$$
+\end{propo}
+
+
+
+\noindent {\it Demostración.-} La implicación recíproca es trivial;
+basta tomar $V$ y $W$ paralelos, con lo que $DV/dt=DW/dt=0$. Veamos
+entonces la implicación directa.
+
+
+
+Sean $\alpha$ una curva diferenciable en $M$ y $V$,$W$ dos campos
+diferenciables de vectores a lo largo de $\alpha$. Sean
+también $t_0\in(a,b)$ y $p=\alpha(t_0)$, $(e_1,...,e_m)$ una base
+ortonormal de $T_p(M)$. Transportamos paralelamente esa base,
+obteniendo $(e_1(t),...,e_m(t))$ que sabemos que será una base
+ortogonal para todo $t$ y que cumplirá que $||e_i||$ será constante
+(en particular, si antes teníamos que $||e_i||=1$, ahora también).
+Luego la base será ortonormal para cualquier $t$.
+
+
+
+Entonces tenemos $V(t)=\sum_{i=1}^{m}v_i(t)e_i(t)$ y
+$W(t)=\sum_{i=1}^{m}w_i(t)e_i(t)$.
+
+
+Por tanto:
+$$g_{\alpha(t)}(V(t),W(t))=\sum_{i,j=1}^{m}v_i(t)w_j(t)g(e_i(t),e_j(t))=\sum_{i=1}^{m}v_i(t)w_i(t),$$
+y derivando:
+$$\deri{t}g_{\a(t)}(V(t),W(t))=\sum_i^{}\left(\dderi{v_i}{t}w_i(t)+v_i(t)\dderi{w_i}{t}\right).$$
+Ahora, sabiendo que
+$\cova{V}{t}=\sum_i^{}\left(\dderi{v_i}{t}e_i(t)\right)$ y que
+$\cova{W}{t}=\sum_j^{}\left(\dderi{w_j}{t}e_j(t)\right),$ hacemos
+$$g_{\alpha(t)}\left(\cova{V}{t},W(t)\right)=\sum_i^{}\dderi{v_i}{t}w_i,$$
+y por otro lado,
+$$g_{\alpha(t)}\left(V(t),\cova{W}{t}\right)=\sum_i^{}\dderi{w_i}{t}v_i,$$
+y ya se obtiene el resultado deseado. \hfill $\Box$
+
+
+\
+
+\hs Ofrecemos otra caracterización que nos convedrá en algunos casos
+utilizar, ya que simplifica los cálculos para ver si una conexión
+afín es compatible con una métrica dada:
+
+\newpage
+
+\begin{teo}
+Sea $(M,g)$ una variedad Riemanniana. Una conexi\'on af\'{\i}n $\n$
+es compatible con $g$ si y s\'olo si $\nabla g=0$, es decir, si y
+s\'olo si
+
+\begin{equation} \label{teo2}
+Xg(Y,Z)=g(\nabla_XY,Z)+g(Y,\nabla_XZ)
+\end{equation}
+para todos $X,Y,Z\in \mathcal{X}(M)$.
+\end{teo}
+
+
+
+\noindent {\it Demostración.-} Veamos la implicación directa.
+Supongamos que $g$ es compatible con $\nabla$. Demostremos la
+ecuación (\ref{teo2}) en cada punto $p\in M$. Sea $\alpha:(a,b)\fl
+M$ tal que $\a(t_0)=p$, $\a^{'}(t_0)=X_p$. Entonces:
+$$X_pg(Y,Z)=\a^{'}(t_0)g(Y,Z)=\left.\dderi{(g(Y,Z)\circ\a(t))}{t}\right\vert_{t_0}=\left.\deri{t}g_{\a(t)}(Y(t),Z(t))\right\vert_{t_0},$$
+y por consiguiente, usando la Proposición 2.2.2., obtenemos
+\begin{equation*}
+\begin{split}
+X_pg(Y,Z)=&g_p\left(\left.\cova{Y}{t}\right\vert_{p},Z_p\right)+g_p\left(Y_p,\left.\cova{Z}{t}\right\vert_{p}\right)\\
+=&g_p((\nabla_XY)_p,Z_p)+g_p(Y_p,(\nabla_XZ)_p),
+\end{split}
+\end{equation*}
+que es lo que queríamos ver.
+
+
+Ahora el recíproco. Sean $\alpha$ una curva, $V$ y $W$ campos y
+$(e_1(t),...,e_m(t))$ una base de campos paralelos a lo largo de
+$\a$. Entonces, teniendo en cuenta los resultados obtenidos en la
+demostración de la Proposición 2.2.2., y usando (\ref{teo2}),
+bastaría ver que $\deri{t}g_{\a(t)}(e_i(t),e_j(t))=0$:
+
+\begin{equation*}
+\begin{split}
+\deri{t}g_{\a(t)}(e_i(t),e_j(t))=&\a^{'}(t)g(e_i,e_j)=X_pg(e_i,e_j)\\
+=&g_p((\nabla_X{e_i})_p,e_j(p))+g_p(e_i(p),(\nabla_X{e_j})_p)=0.
+\end{split}
+\end{equation*}
+Y esto finaliza la demostración. \hfill $\Box$
+
+\
+
+\hs Sigamos con el Teorema de Levi-Civita, que nos asegura la
+unicidad de una conexión afín con unas condiciones predeterminadas:
+
+\newpage
+
+\begin{teo} {\bf (Teorema de Levi-Civita).} En una variedad Riemanniana $(M,g)$ existe una \'unica conexi\'on af\'{\i}n $\nabla$ sobre $M$ tal que:
+\begin{enumerate}
+\item Es compatible con $g$:
+$$Xg(Y,Z)=g(\nabla_XY,Z)+g(Y,\nabla_XZ),$$
+para todos $X,Y,Z \in \mathcal{X}(M)$.
+\item Es sim\'etrica: $$[X,Y]=\nabla_XY-\nabla_YX,$$ para todos $X,Y
+\in \mathcal{X}(M)$.
+\end{enumerate}
+
+Entonces, $\nabla$ se llama la {\bf conexi\'on Riemanniana} o {\bf
+conexi\'on de Levi-Civita} y viene dada por la siguiente
+expresi\'on, conocida como {\bf F\'{o}rmula de Koszul}:
+$$g(\nabla_XY,Z)={\frac{1}{2}}\{Xg(Y,Z)+Yg(X,Z)-Zg(X,Y)-$$
+$$-g([X,Z],Y)-g([Y,Z],X)+g([X,Y],Z)\},$$
+para todos $X,Y,Z\in\mathcal{X}(M)$.
+\end{teo}
+
+\noindent {\it Demostración.-} Suponemos la existencia de $\nabla.$
+Entonces se cumplen, para todos $X,Y,Z\in\mathcal{X}(M)$, las
+siguientes tres propiedades:
+\begin{equation}\label{teo3}
+Xg(Y,Z)=g(\nabla_XY,Z)+g(Y,\nabla_XZ),
+\end{equation}
+
+\begin{equation}\label{teo4}
+Yg(Z,X)=g(\nabla_YZ,X)+g(Z,\nabla_YX),
+\end{equation}
+
+\begin{equation}\label{teo5}
+Zg(X,Y)=g(\nabla_ZX,Y)+g(X,\nabla_ZY).
+\end{equation}
+
+Sumando (\ref{teo3}) y (\ref{teo4}) obtenemos, usando que $\nabla$
+es simétrica, que:
+\begin{equation}
+\begin{split}
+Xg(Y,Z)+Yg(Z,X)-Zg(X,Y)=&g([X,Z],Y)+g([Y,Z],X)\\
++&g([X,Y],Z)+2g(Z,\nabla_YX).
+\end{split}
+\end{equation}
+
+Por lo tanto
+
+\begin{equation}\label{teo6}
+\begin{split}
+g(Z,\nabla_YX)=&1/2\{Xg(Y,Z)+Yg(Z,X)-Zg(X,Y)\\
+-&g([X,Z],Y)-g([Y,Z],X)-g([X,Y],Z)\}.
+\end{split}
+\end{equation}
+
+Esta última expresión nos muestra que $\nabla$ está determinada de
+manera única por la métrica $g$, y por tanto, si existe, será única.
+Para probar la existencia, se define $\nabla$ de la expresión
+(\ref{teo6}). Es fácil ver que esta $\nabla$ está bien definida y
+que cumple las condiciones requeridas. \hfill $\Box$
+
+
+\
+
+ \hs De esta expresi\'on, si $(U,x_1,\dots,x_m)$ es un sistema
+local de coordenadas en $M$, se deduce que $$
+\sum_{l=1}^m\Gamma_{ij}^lg_{lh}=\displaystyle{\frac{1}{2} \left\{
+\ddep{g_{jh}}{x_i}+\ddep{g_{ih}}{x_j}-\ddep{g_{ij}}{x_h}  \right\}}
+$$
+y, de aqu\'{\i}:
+$$\Gamma_{ij}^k=\displaystyle{\frac{1}{2}\sum_{h=1}^m \left\{
+\ddep{g_{jh}}{x_i}+\ddep{g_{ih}}{x_j}-\ddep{g_{ij}}{x_h} \right\}
+}g^{hk}.$$
+
+
+
+
+
+
+
+\section{Isometr\'{\i}as.}
+
+
+
+\hs Introducimos brevemente la noción de isometría, que relaciona
+dos variedades Riemaniannas.
+
+
+\begin{defi}
+Una {\bf isometr\'{\i}a} entre dos variedades Riemannianas $(M,g)$ y
+$(N,\bar{g})$ es un difeomorfismo $f:M \fl N$ tal que
+$f^*\bar{g}=g$. Cuando entre dos variedades Riemannianas existe una
+iso\-me\-tr\'{\i}a se dice que son {\bf isom\'etricas}.
+\end{defi}
+
+
+\hs Y ahora, cuando no se puede asegurar una isometría global,
+podemos comprobar si existe la isometría local.
+
+
+
+\begin{defi}
+Dos variedades Riemannianas $(M,g)$ y $(N,\bar{g})$ son {\bf
+localmente isom\'etricas} si para todo $p \in M$, existen
+$U\subseteq M$ abierto, $p\in U$ y $f:U \fl f(U)$ difeomorfismo,
+siendo $f(U)\subseteq N$ abierto, que es una isometr\'{\i}a.
+\end{defi}
+
+
+
+
+\hs Con estas dos definiciones, es directo demostrar este
+resultado:
+
+
+
+\begin{propo}
+Sea $f:(M,g) \fl (N,\bar{g})$ una isometr\'{\i}a. Entonces $f$ es un
+difeomorfismo af\'{\i}n con respecto a las conexiones Riemannianas.
+\end{propo}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Curvatura de Riemann.}
+
+ Profundizaremos en el concepto de Tensor de Curvatura que ya vimos
+ en el capítulo primero.
+
+
+
+\section{El Tensor de Curvatura de Riemann.}
+
+
+
+En todo este capítulo, $(M,g)$ ser\'{a} una variedad Riemanniana y
+$\nabla$ la conexi\'on de Levi-Civita de $g$.
+
+
+
+
+
+\begin{defi}
+Se define el {\bf tensor de curvatura de Riemann} $\overline{R}$ de
+$(M,g)$ como $\overline{R}: \mathcal{X}(M) \times \mathcal{X}(M)
+\times \mathcal{X}(M) \times \mathcal{X}(M) \fl \mathcal{F}(M)$ tal
+que $\overline{R}(X,Y,Z,W)=g(R(X,Y)Z,W)$. $\overline{R}$ es un campo
+tensorial de tipo (0,4) en $M$.
+\end{defi}
+
+\hs Veamos algunas de las principales propiedades del tensor de
+curvatura de Riemann.
+
+
+
+
+
+
+\begin{propo}(Simetr\'{\i}as del tensor de curvatura de Riemann). Sean $X,Y,Z,W \in \mathcal{X}(M)$ cuatro campos
+cualesquiera. Se verifican las siguientes propiedades:
+\begin{enumerate}
+\item
+$\overline{R}(X,Y,Z,W)+\overline{R}(Z,X,Y,W)+\overline{R}(Y,Z,X,W)=0$.
+\item $\overline{R}(X,Y,Z,W)=-\overline{R}(Y,X,Z,W)$.
+\item $\overline{R}(X,Y,Z,W)=-\overline{R}(X,Y,W,Z)$.
+\item $\overline{R}(X,Y,Z,W)=\overline{R}(Z,W,X,Y).$
+\end{enumerate}
+\end{propo}
+
+\
+
+\
+
+\
+
+\noindent {\it Demostración.-} Demostraremos cada uno de los
+apartados anteriores:
+
+ 1.
+ De acuerdo con la Definición (3.1.1.),
+
+\begin{equation*}
+\begin{split}
+\overline{R}(X,Y,Z,W)+&\overline{R}(Z,X,Y,W)+\overline{R}(Y,Z,X,W) \\
+=&g(R(X,Y)Z+R(Z,X)Y+R(Y,Z)X,W)=0,
+\end{split}
+\end{equation*}
+
+
+ en virtud de la primera identidad de Bianchi.
+
+
+ 2.
+ Es claro ver que, según las Proposición (1.3.3.), tenemos:
+ $$\overline{R}(X,Y,Z,W)=g(R(X,Y)Z,W)=g(-R(Y,X)Z,W)=-\overline{R}(Y,X,Z,W).$$
+
+
+ 3.
+ Veamos que la propiedad 3 es análoga a ver que
+ $\overline{R}(X,Y,Z,Z)=0$, para todo campo $Z$, ya que, en virtud de la linealidad de
+ $\overline{R}$:
+ \begin{equation*}
+ \begin{split}
+0=&\overline{R}(X,Y,Z+W,Z+W) \\
+=&\overline{R}(X,Y,Z,Z)+\overline{R}(X,Y,Z,W)+\overline{R}(X,Y,W,Z)+\overline{R}(X,Y,W,W).
+\end{split}
+\end{equation*}
+
+Por tanto, bastaría probar que $\overline{R}(X,Y,Z,Z)=0$.
+Comprobémoslo:
+
+\begin{equation*}
+\begin{split}
+\overline{R}(X,Y,Z,Z)=&g(R(X,Y)Z,Z) \\
+=&g(\nabla_X{\nabla_YZ,Z})-g(\nabla_Y{\nabla_XZ,Z})-g(\nabla_{[X,Y]}Z,Z).
+\end{split}
+\end{equation*}
+
+Como $Xg(Z,Z)=g(\nabla_XZ,Z)+g(Z,\nabla_XZ)=2g(\nabla_XZ,Z)$, se
+sigue, usando (2.2.1.), que:
+
+\begin{equation*}
+\begin{split}
+\overline{R}(X,Y,Z,Z)=&Xg(\nabla_YZ,Z)-g(\nabla_YZ,\nabla_XZ)-Yg(\nabla_XZ,Z) \\
++&g(\nabla_XZ,\nabla_YZ)-1/2[X,Y]g(Z,Z) \\
+=&1/2X(Yg(Z,Z))-1/2Y(Xg(Z,Z))-1/2[X,Y]g(Z,Z)=0.
+\end{split}
+\end{equation*}
+%%HAY QUE CORREGIR ESTO CON UN SPLIT O ALGO, PREGUNTAR A ALFONSO
+
+%%$$\overline{R}(X,Y,Z,Z)=1/2X(Yg(Z,Z))-g(\nabla_YZ,\nabla_XZ)-1/2Y(Xg(Z,Z))+g(\nabla_XZ,\nabla_YZ)-1/2X(Yg(Z,Z)+1/2Y(Xg(Z,Z)=0$$
+
+
+
+ 4.
+ Usando la propiedad 1, tenemos:
+ $$\overline{R}(X,Z,Y,W)+\overline{R}(Y,X,Z,W)+\overline{R}(Z,Y,X,W)=0,$$
+ $$\overline{R}(Y,W,X,Z)+\overline{R}(X,Y,W,Z)+\overline{R}(W,X,Y,Z)=0,$$
+ $$\overline{R}(Z,Y,W,X)+\overline{R}(W,Z,Y,X)+\overline{R}(Y,W,Z,X)=0,$$
+ $$\overline{R}(W,X,Z,Y)+\overline{R}(Z,W,X,Y)+\overline{R}(X,Z,W,Y)=0.$$
+
+ Y por consiguiente, si sumamos todo lo anterior, teniendo en cuenta las propiedades 2 y 3, resulta que
+ $$\overline{R}(Y,X,Z,W)+\overline{R}(X,Y,W,Z)+\overline{R}(W,Z,Y,X)+\overline{R}(Z,W,X,Y)=0,$$
+que es equivalente, utilizando una vez más las propiedades 2 y 3, a
+$$-\overline{R}(X,Y,Z,W)-\overline{R}(X,Y,Z,W)+\overline{R}(Z,W,X,Y)+\overline{R}(Z,W,X,Y)=0,$$
+de donde obtenemos que
+$\overline{R}(X,Y,Z,W)=\overline{R}(W,Z,X,Y)$. \hfill $\Box$
+
+\
+
+
+Veamos ahora una expresión local de este nuevo concepto. Si tenemos
+$(U,\varphi=(x_1,\dots,x_m))$ un sistema local de coordenadas,
+entonces denotamos:
+$$\overline{R}\left(\dep{x_i},\dep{x_j},\dep{x_k},\dep{x_l}\right)=\overline{R}_{ijkl} \in \mathcal{F}(M).$$
+
+Por otro lado,
+$$\overline{R}\left(\dep{x_i},\dep{x_j},\dep{x_k},\dep{x_l}\right)=
+g\left(R\left(\dep{x_i},\dep{x_j}\right)\dep{x_k},\dep{x_l}\right)=$$
+$$=\sum_{h=1}^mR_{ijk}^hg\left(\dep{x_h},\dep{x_l}\right)=\sum_{h=1}^mR_{ijk}^hg_{hl}.$$
+
+As\'{\i}: $$\overline{R}_{ijkl}=\sum_{h=1}^mR_{ijk}^hg_{hl},\mbox{
+}i,j,k,l=1,\dots,m.$$
+
+Adem\'{a}s, por las simetr\'{\i}as de $\overline{R}$ se tienen las
+siguientes propiedades, para cualesquiera $i,j,k,l=1,\dots,m$:
+\begin{enumerate}
+\item $\overline{R}_{ijkl}+\overline{R}_{jkil}+\overline{R}_{kijl}=0$.
+\item $\overline{R}_{ijkl}=-\overline{R}_{jikl}$.
+\item $\overline{R}_{ijkl}=-\overline{R}_{ijlk}$.
+\item $\overline{R}_{ijkl}=\overline{R}_{klij}$.
+\end{enumerate}
+
+
+
+
+
+
+\section{La Curvatura Seccional.}
+
+
+\hs Entramos ahora en una sección importante, en la que introducimos
+otro concepto fundamental: la curvatura seccional. En este apartado
+trabajaremos siempre en una variedad Riemanniana $(M,g)$.
+
+
+
+
+
+
+
+\begin{defi}
+Sean $p\in M$ y $\Pi\subseteq T_p(M)$ con dim$(\Pi)=2$. Se define la
+{\bf curvatura seccional} de $M$ en el punto $p$ correspondiente a
+la secci\'{o}n plana $\Pi$ como
+\begin{equation}\label{cursecc}
+K_p(\Pi)=\overline{R}_p(u,v,v,u)=g_p(R_p(u,v)v,u),
+\end{equation}
+donde $\{u,v\}$ es una base ortonormal de $\Pi$. Es inmediato
+comprobar que la definici\'on anterior no depende de la base
+ortonormal de $\Pi$ elegida.
+\end{defi}
+
+
+
+Conozcamos otra expresión de la curvatura seccional, para una base
+cualquiera:
+
+
+
+
+
+
+
+
+
+\begin{propo}\label{propo322}
+Sean $p\in M$, $\Pi\subseteq T_p(M)$ con dim$(\Pi)=2$ y $\{u,v\}$
+una base de $\Pi$. Entonces,
+\begin{equation}\label{cursecc2}
+K_p(\Pi)=\displaystyle{\frac{\overline{R}_p(u,v,v,u)}{g_p(u,u)g_p(v,v)-g_p(u,v)^2}}.
+\end{equation}
+\end{propo}
+
+
+
+\noindent {\it Demostración.-} Si la base $\{u,v\}$ es ortonormal,
+la expresión (\ref{cursecc2}) se obtiene inmediatamete de
+(\ref{cursecc}), pues $g_p(u,u)=g_p(v,v)=1$ y $g_p(u,v)=0$.
+
+\
+
+Si no lo fuera, utilizamos el procedimiento de ortonormalización de
+Gram-Schmidt para obtener una base ortonormal:
+$u^{'}=\displaystyle{\frac{u}{||u||}}$ y
+$v^{'}=\displaystyle{\frac{v-g_p(u^{'},v)u^{'}}{||v-g_p(u^{'},v)u^{'}||}}$.
+
+Entonces,
+\begin{equation}\label{kp}
+K_p(\Pi)=\overline{R}_p(u^{'},v^{'},v^{'},u^{'})=\displaystyle{\frac{\overline{R}_p(u,v,v,u)}{||v-g_p(u^{'},v)u^{'}||^2||u||^2}}.
+\end{equation}
+
+Pero
+
+\begin{equation*}
+\begin{split}
+||v-g_p(u^{'},v)u^{'}||^2=&g_p(v-g_p(u^{'},v)u^{'},v-g_p(u^{'},v)u^{'}) \\
+=&g_p(v,v)-g_p(u^{'},v)g_p(u^{'},v)-g_p(u^{'},v)g_p(v,u^{'})\\
++&g_p(u^{'},v)g_p(u^{'},u^{'}) \\
+=&||v||^2-g_p^2(u^{'},v)=||v||^2-\displaystyle{\frac{g_p^2(u,v)}{||u||^2}},
+\end{split}
+\end{equation*}
+y al sustituir esta expresión en (\ref{kp}), obtenemos
+(\ref{cursecc2}). \hfill $\Box$
+
+\
+
+
+
+
+
+
+%% LO QUE VIENE A CONTINUACIÓN COMENTADO NO VALE, ES ANTIGUO
+
+%%Primero, veamos el caso en que $\{u,v\}$ sean ortonormales:
+%%
+%%\
+%%
+%%Por un lado, $||u||^2=||v||^2=1$ y $g_p^2(u,v)=0$, asi que:
+%%
+%%$$K_p(\Pi)=\displaystyle{\frac{R_p(u,v,v,u)}{1-0}}=R_p(u,v,v,u),$$
+%%
+%%que es como se había definido la curvatura seccional para una base
+%%ortonormal. Ahora veamos el caso de que $\{u,v\}$ no sean
+%%ortonormales:
+%%
+%%Sea $u^{'}=\displaystyle{\frac{u}{||u||}}$ y sea
+%%$v^{'}=\displaystyle{\frac{v-g_p(u^{'},v)u^{'}}{||v-g_p(u^{'},v)u^{'}||}}$.
+%%Entonces:
+%%$$K_p(\Pi)=R_p(u^{'},v^{'},v^{'},u^{'})=\displaystyle{\frac{R_p(u,v,v,u)}{||v-g_p(u^{'},v)u^{'}||^2||u||^2}}.$$
+%%
+%%Y ahora desarrollamos:
+%%
+%%
+%%%%\begin{equation*}
+%%%%\begin{split}
+%%%%
+%%%%
+%%%%||v-g_p(u^{'},v)u^{'}||^2=&g_p(v-g_p(u^{'},v)u^{'},v-g_p(u^{'},v)u^{'})\\
+%%%%=&g_p(v,v)-g_p(u^{'},v)g_p(u^{'},v)-g_p(u^{'},v)g_p(v,u^{'})+g_p(u^{'},v)g_p(u^{'},u^{'})\\
+%%%%=&||v||^2-g_p^2(u^{'},v)=||v||^2-\displaystyle{\frac{g_p^2(u,v)}{||u||^2},
+%%%%
+%%%%\end{split}
+%%%%\end{equation*}
+%%
+%%Y basta con meter esta expresión en la ecuación anterior.
+%%\hfill $\Box$
+
+
+
+El concepto de curvatura seccional nos permite introducir la idea de
+variedad Riemanniana de curvatura constante:
+
+
+\begin{defi}
+Se dice que $(M,g)$ tiene {\bf curvatura seccional constante}
+$k\in\R$ si $K_p(\Pi)=k$, para todo $p\in M$ y para toda secci\'{o}n
+plana $\Pi\subseteq T_p(M)$.
+\end{defi}
+
+
+
+
+
+
+
+
+
+
+
+A las variedades Riemannianas de curvatura seccional constante se
+les suele llamar {\bf espacios de curvatura constante} o {\bf
+espacios totalmente reales}.
+
+Sea $X,Y\in\mathcal{X}(M)$ tales que en cada punto $p\in M$, $X_p$ e
+$Y_p$ generan una secci\'{o}n plana $<X_p,Y_p>$. Entonces, se llama
+{\bf curvatura seccional de $M$ respecto a $X$ e $Y$} a la
+funci\'{o}n diferenciable en $M$, denotada por $K(X,Y)$ y dada por:
+$$K(X,Y)(p)=K_p(<X_p,Y_p>).$$
+
+En virtud de la proposición \ref{propo322}, se tiene que:
+$$K(X,Y)=\frac{\overline{R}(X,Y,Y,X)}{g(X,X)g(Y,Y)-g(X,Y)^2}.$$
+
+
+Nuestro objetivo ahora es determinar la expresión del tensor de
+curvatura de Riemann para un espacio de curvatura constante. Para
+ello, probamos en primer lugar el siguiente resultado:
+
+
+
+\begin{propo}\label{propo324}
+Sea $(M,g)$ un espacio de curvatura constante $k$. Se verifica que
+$$\overline{R}_p(u,v,v,u)=k(g_p(u,u)g_p(v,v)-g_p(u,v)^2),$$
+para todo $p\in M$ y para todos $u,v\in T_p(M)$.
+
+
+En t\'erminos de campos:
+$$\overline{R}(X,Y,Y,X)=k(g(X,X)g(Y,Y)-g(X,Y)^2)$$ para todos $X,Y\in\mathcal{X}(M)$.
+\end{propo}
+
+
+\noindent {\it Demostración.-} Distinguimos tres casos:
+
+\
+
+ 1. Caso $u=0$ o $v=0$:
+
+En este caso, $\overline{R}(u,v,v,u)=0$ y
+$k(g(u,u)g(v,v)-g(u,v)^2)=0$.
+
+\
+
+ 2. Caso $u=\lambda v$:
+
+Aquí, vemos que $\overline{R}(u,v,v,u)=\overline{R}(\lambda
+v,v,v,\lambda v)=\lambda^2\overline{R}(v,v,v,v)=0$.
+
+\
+
+Por otra parte,
+$k(\lambda^2g_p(v,v)g_p(v,v)-\lambda^2g_p^2(u,v))=0$.
+
+\
+
+ 3. Caso en que $\{u,v\}$ sean linealmente independientes:
+
+ \
+
+
+Como $\{u,v\}$ es una base de la sección plana generada por estos
+vectores y $M$ es un espacio de curvatura constante $k$, usando la
+proposición \ref{propo322} obtenemos
+$$k=\frac{\overline{R_p}(u,v,v,u)}{g_p(u,u)g_p(v,v)-g_p^2(u,v)}$$
+de donde, despejando el denominador, resulta la expresión
+requerida.
+\hfill $\Box$
+
+\
+
+\hs Necesitamos ahora el siguiente resultado técnico:
+
+
+
+
+\begin{propo}\label{propo325}
+Si $S_1$ y $S_2$ son dos campos tensoriales de tipo (0,4) en $M$
+tales que verifican las mismas simetr\'{\i}as que el tensor de
+curvatura de Riemann y que $S_1(X,Y,Y,X)=S_2(X,Y,Y,X)$, para todos
+$X,Y\in\mathcal{X}(M)$, entonces $S_1 = S_2$.
+\end{propo}
+
+
+
+\noindent {\it Demostración.-} Sea $S=S_1-S_2$, por lo que
+$S(X,Y,Y,X)=0$ para todos $X,Y$. Nuestro problema se basa en ver si
+$S=0$. Evidentemente $S$ es un tensor de tipo (0,4), cumpliendo las
+mismas simetrías y propiedades que $R$. Así, tendríamos que para
+todo $X,Y,Z\in\mathcal{X}(M)$,
+
+\begin{equation*}
+\begin{split}
+0=S(X,Y+Z,Y+Z,X)=&S(X,Y,Y,X)+S(X,Z,Z,X) \\
++&S(X,Y,Z,X)+S(X,Z,Y,X).
+\end{split}
+\end{equation*}
+Ahora bien, $S(X,Y,Y,X)=S(X,Z,Z,X)=0$ y
+$$S(X,Z,Y,X)=S(Y,X,X,Z)=S(X,Y,Z,X).$$ Luego, tenemos que:
+$$S(X,Y,Z,X)=0.$$
+
+Veamos ahora para cualesquiera $X,Y,Z,W\in\mathcal{X}(M)$:
+\begin{equation*}
+\begin{split}
+0=S(X+W,Y,Z,X+W)=&S(X,Y,Z,X)+S(X,Y,Z,W) \\
++&S(W,Y,Z,X)+S(W,Y,Z,W).
+\end{split}
+\end{equation*}
+
+Pero $S(X,Y,Z,X)=S(W,Y,Z,W)=0$, por lo que:
+\begin{equation*}
+\begin{split}
+S(X,Y,Z,W)=&-S(W,Y,Z,X)=S(W,Y,X,Z)  \\
+=&S(X,Z,W,Y)=S(X,W,Y,Z).
+\end{split}
+\end{equation*}
+Por último, utilizando las propiedades de simetría:
+\begin{equation*}
+\begin{split}
+3S(X,Y,Z,W)=&S(X,Y,Z,W)+S(X,Z,W,Y)+S(X,W,Y,Z) \\
+=&S(X,Y,Z,W)+S(Z,X,Y,W) \\
++&S(Y,Z,X,W)=0,
+\end{split}
+\end{equation*}
+utilizando la propiedad 1 de la Proposición 3.1.2. Por tanto
+$S=0$. \hfill $\Box$
+
+\
+
+
+\
+
+
+Sea ahora $R^*(X,Y,Z,W)=g(X,W)g(Y,Z)-g(X,Z)g(Y,W)\in\mathcal{F}(M)$.
+Se tiene que $R^*$ es un campo tensorial de tipo (0,4) en $M$, que
+verifica las mismas simetr\'{\i}as que $\overline{R}$. Además, si
+$(M,g)$ es un espacio de curvatura constante $k$, se deduce de la
+Proposición \ref{propo324} que
+$\overline{R}(X,Y,Y,X)=kR^{*}(X,Y,Y,X),$ para todos
+$X,Y\in\mathcal{X}(M)$. Entonces, aplicando la Proposición
+\ref{propo325}, resulta que $\overline{R}=kR^*$. Teniendo en cuenta
+todo esto, es trivial probar el siguiente resultado:
+
+
+
+
+
+
+
+\begin{teo}
+La variedad Riemanniana $(M,g)$ es un espacio de curvatura constante
+$k$ si y s\'{o}lo si
+$$R(X,Y)Z=k(g(Y,Z)X-g(X,Z)Y),$$
+para todos $X,Y,Z\in\mathcal{X}(M)$.
+\end{teo}
+
+
+
+Aunque no es el objetivo de este trabajo demostrarlo, podemos
+enunciar un resultado muy destacado: el Teorema de Schur.
+
+
+
+
+
+
+\begin{teo} {\bf (Teorema de Schur).} Si $(M,g)$ es una variedad Riemanniana conexa con dim$(M)\geq 3$ y si, para todo $p\in M$, $K_p(\Pi)$ no depende
+de la secci\'on plana $\Pi$, entonces $(M,g)$ es un espacio de
+curvatura constante.
+\end{teo}
+
+
+
+
+
+
+
+
+
+\section{La Curvatura de Ricci y la Curvatura Escalar.}
+
+
+
+Aunque realmente no las usaremos más adelante, no debemos dejar
+pasar la ocasión de introducir dos curvaturas muy importantes.
+Comenzamos con la curvatura de Ricci. Para ello, definimos primero
+su tensor:
+
+
+
+
+
+
+\begin{defi}
+Se llama {\bf tensor de Ricci} de $(M,g)$ a la aplicaci\'{o}n
+$S:\mathcal{X}(M)\times\mathcal{X}(M)\fl\mathcal{F}(M)$ dada por
+$S(X,Y)={\rm Traza}(Z\mapsto R(Z,X)Y)$, para cualesquiera
+$X,Y,Z\in\mathcal{X}(M)$.
+\end{defi}
+
+
+
+
+
+
+
+
+Es claro que $S$ es un campo de tensores diferenciable de tipo (0,2)
+en $M$. Por tanto, en cada punto $p\in M$, $S_p$ es una forma
+bilineal. Adem\'{a}s, si $\{e_1,\dots,e_m\}$ es una base ortonormal
+de $T_p(M)$, se tiene que, para todos $u,v\in T_p(M)$:
+$$S_p(u,v)=\sum_{i=1}^m\overline{R}_p(e_i,u,v,e_i).$$
+
+De aqu\'{\i}, se deduce que $S_p(u,v)=S_p(v,u)$, es decir, que $S_p$
+es sim\'{e}trica (con lo que se tiene que $S$ tambi\'{e}n es
+sim\'{e}trico o, lo que es lo mismo, que $S(X,Y)=S(Y,X)$, para todos
+$X,Y\in\mathcal{X}(M)$). Al ser $S_p$ una forma bilineal
+sim\'{e}trica en $T_p(M)$, le corresponde una aplicaci\'{o}n lineal
+autoadjunta $Q_p:T_p(M)\fl T_p(M)$ tal que
+$S_p(u,v)=g_p(Q_pu,v)=g_p(u,Q_pv)$. Entonces, para la misma base
+ortonormal anterior de $T_p(M)$:
+$$\sum_{i=1}^mS_p(e_i,e_i)=\sum_{i=1}^mg_p(Q_pe_i,e_i)={\rm Traza}Q_p.$$
+
+En consecuencia, se ha definido un campo de tensores $Q$ en $M$,
+llamado {\bf el operador de Ricci}, de tipo (1,1) y diferenciable,
+tal que
+$$S(X,Y)=g(QX,Y)=g(X,QY),$$
+para todos $X,Y\in\mathcal{X}(M)$ (es decir, $Q$ es autoadjunto).
+
+\
+
+Con esto, definimos la curvatura de Ricci:
+
+%\newpage
+
+\begin{defi}
+Dado un campo de vectores unitario $X\in\mathcal{X}(M)$, se define
+la {\bf curvatura de Ricci} de $(M,g)$ en la direcci\'{o}n de $X$,
+por
+$$Ric(X)=\frac{1}{m-1}S(X,X),$$
+siendo $m$ la dimensión de $M$.
+\end{defi}
+
+
+
+
+
+
+Conozcamos ahora otra curvatura importante y muy utilizada, la
+curvatura escalar:
+
+
+
+
+\begin{defi}
+Se define la {\bf curvatura escalar} de $(M,g)$ por:
+$$r=\frac{1}{m(m-1)}{\rm Traza}Q,$$
+siendo $m$ la dimensión de $M$.
+\end{defi}
+
+
+
+
+
+
+
+
+
+
+
+
+Es claro que la curvatura de Ricci y la curvatura escalar son
+funciones diferenciables en $M$. Adem\'{a}s, si $p\in M$, $u\in
+T_p(M)$ es un vector unitario y $\{e_1,\dots,e_m=u\}$ es una base
+ortonormal de $T_p(M)$, se tiene que
+$$Ric_p(u)=\frac{1}{m-1}\sum_{i=1}^{m-1}\overline{R}_p(e_i,u,u,e_i)$$
+(curvatura de Ricci de $M$ en $p$ en la direcci\'{o}n de $u$) y que
+$$r_p=\frac{1}{m(m-1)}\sum_{i,j=1}^m\overline{R}_p(e_i,e_j,e_j,e_i)=\frac{1}{m}\sum_{j=1}^mRic_p(e_j),$$
+expresiones que no dependen de la base ortonormal elegida.
+
+
+
+
+
+
+
+Es trivial el resultado de la siguiente proposición:
+
+
+\begin{propo}
+Si $(M,g)$ es un espacio de curvatura constante $k$, entonces $r=k$.
+\end{propo}
+
+
+
+
+
+
+
+
+
+
+Finalmente, sea $(U,\vp=(x_1,\dots,x_m))$ un s.l.c. Entonces,
+denotando por $X_i=\partial/\partial x_i$, $i=1,\dots,m$,
+$$S(X_i,X_j)=R_{ij}={\rm Traza}(Z\mapsto R(Z,X_i)X_j)=\sum_{k=1}^mR_{kij}^k=\sum_{k,s=1}^m\overline{R}_{kijs}g^{sk}$$
+y de aqu\'{\i} se sigue que:
+$$r=\frac{1}{m(m-1)}\sum_{i,k=1}^mR_{ik}g^{ik}.$$
+
+
+
+
+
+
+
+
+
+
+\chapter{Las Geod\'{e}sicas de los Espacios Modelos}
+
+Llegamos al objetivo de este trabajo: describir las geodésicas de
+los modelos de los espacios de curvatura constante. Antes,
+necesitaremos señalar algunos hechos generales sobre las geodésicas
+y sus parámetros.
+
+
+
+
+\section{Generalidades sobre geod\'esicas.}
+
+
+
+\hs Sean $(M,g)$ una variedad Riemanniana y $\a=\a(t)$ una
+geod\'esica de $M$. As\'{\i}, se verifica:
+\begin{enumerate}
+\item $\Vert\a'\Vert$ es constante al ser $\a'$ un campo paralelo a lo
+largo de $\a$, por definición.
+\item
+$\mathcal{L}(\a)_{\a(a)}^{\a(b)}=\int_a^b \Vert\a'\Vert dt =
+cte(b-a)$. Entonces, $s=cte\cdot t + t_0$, es decir, el par\'ametro
+de una geod\'esica es funci\'on af\'{\i}n del arco.
+\end{enumerate}
+
+Un pequeño apunte de notación:
+
+\begin{nota}
+Sean $p\in M$ y $v\in T_p(M)$. Se denota por $\a(t,p,v)$ a la
+geod\'esica que para $t=0$ pasa por $p$ con direcci\'on $v$.
+\end{nota}
+
+
+La demostración del siguiente lema es un mero cálculo, que omitimos.
+
+\begin{lema}
+(Lema de Homogeneidad o de ``re-escalada"). Si $\a(t,p,v)$ est\'a
+definida en $(-\delta,\delta)$, entonces, para cada $a>0$, la
+geod\'{e}sica $\a(t,p,av)$ est\'{a} definida en
+$(-\delta/a,\delta/a)$ y $\a(t,p,av)=\a(at,p,v)$.
+\end{lema}
+
+
+
+
+
+\section{Los modelos de la geometr\'{\i}a Riemanniana.} \label{sec52}
+
+
+A continuación, presentamos modelos para espacios de curvatura
+constante $k$, según el signo de dicha constante:
+
+\
+
+\noindent {\sc El Espacio Eucl\'{\i}deo}: Se considera $\R^n$ con
+coordenadas $(x_1,\dots,x_n)$ y la m\'etrica eucl\'{\i}dea
+$g_e=\sum_{i=1}^n\dif x_i^2$. Entonces, $(\R^n,g_e)$ es un espacio
+de curvatura constante $k=0$.
+
+\medskip
+
+\
+
+\noindent {\sc La Esfera}: Para cada $R>0$, se considera la esfera
+$\S^n_R$ centrada en el origen de $\R^{n+1}$, con radio $R$, dotada
+de la m\'etrica Riemanniana ``redonda" $g^o$ {inducida por la
+m\'etrica eucl\'{\i}dea de $\R^{n+1}$ (es decir, $g^o=i^{*}g_e$).
+Entonces, $(\S^n_R,g^o)$ es un espacio de curvatura constante
+$k=1/R^2$.
+
+\medskip
+
+
+
+
+\
+
+
+
+
+\noindent {\sc Los Espacios Hiperb\'olicos}: Para cada $R>0$, se
+consideran los siguientes espacios:
+\begin{itemize}
+\item[(a)] {\sc El Hiperboloide}: Sea
+$$\H^n_R=\{(x_1,\dots,x_{n+1})\in\R^{n+1}/\sum_{i=1}^nx_i^2-x_{n+1}^2=-R^2, x_{n+1}>0\},$$
+dotado de la m\'etrica Riemannian $h_1$ inducida por la m\'etrica de
+Minkowski $m$ de $\R^{n+1}$, que viene dada por $m=\sum_{i=1}^n\dif
+x_i^2-\dif x_{n+1}^2$ (o sea, $h_1=i^{*}m$).
+
+
+
+
+\item[(b)] {\sc La Bola de Poincar\'e de radio $R$}: Sea
+$$\B^n_R=\{(u_1,\dots,u_n)\in \R^{n} \ / \ \sum_{i=1}^nu_i^2<R^2\},$$
+dotado de la m\'etrica Riemanniana:
+$$h_2=\frac{4R^4}{(R^2-\Vert u\Vert^2)^2}\sum_{i=1}^n\dif u_i^2.$$
+
+
+
+
+
+\item[(c)] {\sc El Semiespacio de Poincar\'e de radio $R$}: Sea
+$$\U^n_R=\{(u_1,\dots,u_n)\in \R^{n} \ / \ u_n>0\},$$
+dotado de la m\'etrica Riemanniana:
+$$h_3=\frac{R^2}{u_n^2}\sum_{i=1}^n\dif u_i^2.$$
+\end{itemize}
+
+
+
+Entonces, $(\H^n_R,h_1)$, $(\B^n_R,h_2)$ y $(\U^n_R,h_3)$ son
+espacios de curvatura constante $k=-1/R^2$.
+
+Estos espacios son isom\'etricos. De hecho, entre $\H^n_R$ y $\B^n_R$ se define la \textbf{Proyecci\'on
+Estereogr\'afica Hi\-per\-b\'o\-li\-ca} $\Phi:\H^n_R\to \B^n_R$ dada por
+$$\Phi(x,x_{n+1})=\frac{Rx}{R+x_{n+1}},$$
+donde $x=(x_1,\dots,x_n)$.
+
+Geométricamente, la Proyección Estereográfica Hiperbólica se obtiene
+uniendo con una recta cada punto de $\H^n_R$ con el punto
+$(0,\dots,0,-1)$ (llamado Polo Sur del Hiperboloide) y considerando
+el corte de dicha recta con el hiperplano $x_{n+1}=0$. El punto de
+corte resultante estará en la Bola de Poincaré. Una ilustración de
+esta construcción en el caso de dimensión $n=2$ puede verse en la
+Figura \ref{proyesthip}:
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=10cm]{proyesthip.jpg}
+\end{center}
+\vspace*{-2cm} \caption{Proyección Estereográfica Hiperbólica.}
+\label{proyesthip}
+\end{figure}
+
+Puede comprobarse con un cálculo directo que $\Phi^*h_2=h_1$.
+
+En cuanto a la Bola y al Semiplano de Poincaré, entre ambos se define la
+\textbf{Transformada de Cayley generalizada} $F:\B^n_R\to \U^n_R$, dada por
+$$F(u,u_n)=\left(\frac{2R^2u}{\Vert u\Vert^2+(u_n-R)^2},R\frac{R^2-\Vert u\Vert^2-u_n^2}{\Vert u\Vert^2+(u_n-R)^2}\right),$$
+donde $u=(u_1,\dots,u_{n-1})$. De nuevo, se comprueba fácilmente que $F^*h_3=h_2$.
+
+
+\section{Geod\'esicas de los espacios modelos.}
+
+\hs En esta sección descubriremos al fin las geodésicas en nuestros
+espacios modelos. Antes necesitamos unas definiciones previas:
+
+
+
+
+\begin{defi}
+Un {\bf grupo de Lie} $G$ es una variedad diferenciable tal que
+tiene estructura de grupo y las siguientes aplicaciones son
+diferenciables:
+\begin{enumerate}
+\item[(i)] $G\times G\fl G:(g_1,g_2)\lm g_1g_2$,
+\item[(ii)] $G\fl G:g\lm g^{-1}$.
+\end{enumerate}
+\end{defi}
+\begin{defi}
+Una {\bf acci\'on} o {\bf actuaci\'{o}n} de un grupo de Lie $G$
+sobre una variedad diferenciable $M$ es una aplicaci\'on
+diferenciable $\phi:G\times M\fl M:(g,p)\lm gp$, tal que
+\begin{enumerate}
+\item[(i)] $(gh)p=g(hp)$, para todos $g,h\in G$ y todo $p\in M$,
+\item[(ii)] $ep=p$, para todo $p \in M$, donde $e$ es el elemento unidad de $G$.
+\end{enumerate}
+Se dice que un grupo de Lie $G$ {\bf act\'{u}a} sobre una variedad
+diferenciable $M$ si existe una acci\'{o}n de $G$ sobre $M$.
+\end{defi}
+
+
+
+
+
+Si $G$ act\'ua sobre $M$ mediante $\phi$ y fijamos $h \in G$,
+entonces la aplicaci\'{o}n
+ $$\phi_h:M\fl M:p\lm gp$$
+es un difeomorfismo, con inversa
+$$\phi_{h^{-1}}:M\fl M:p\lm
+(h^{-1})p,$$
+ es decir, una transformaci\'{o}n de $M$. Por razones
+obvias, se identifica $\phi_h$ con $h$.
+\begin{defi}
+Dada una acci\'{o}n de un grupo de Lie $G$ sobre una variedad
+diferenciable $M$ y fijado $p\in M$, el subgrupo $G_p=\{g\in
+G/gp=p\}$ de $G$ se llama {\bf subgrupo de isotrop\'{\i}a} de $p$.
+\end{defi}
+
+Obs\'{e}rvese que $G_p\neq\emptyset$, para cualquier $p\in M$, pues
+$e\in G_p$.
+\begin{defi} Una acci\'on de un grupo de Lie $G$ sobre una variedad diferenciable $M$ se dice {\bf transitiva} si para todos $p,q\in M$, existe $g\in
+G$ tal que $gp=q$.
+\end{defi}
+\begin{defi}
+Una variedad Riemanniana $(M,g)$ se dice {\bf homog\'enea} si existe
+un grupo de Lie $G$ que act\'ua transitivamente sobre $M$ mediante
+isometr\'{\i}as de $M$, es decir, si $\phi$ es la acci\'{o}n
+transitiva, entonces $\phi_h$ es una isometr\'{\i}a, para todo $h\in
+G$.
+\end{defi}
+
+Intuitivamente, una variedad homog\'{e}nea presenta el mismo aspecto
+en todos sus puntos. Por ejemplo, el plano, la esfera y el cilindro
+son variedades homog\'{e}neas.
+\begin{defi}
+Una variedad Riemanniana $(M,g)$ se dice {\bf isotr\'opica} en $p\in
+M$ si es homog\'{e}nea (por la acci\'{o}n de un grupo de Lie $G$) y
+para cualesquiera $u,v\in T_p(M)$ unitarios, existe $h\in G_p$ tal
+que $h_{*p}u=v$, es decir, si $G_p$ act\'{u}a transitivamente sobre
+los vectores unitarios de $T_p(M)$ mediante las diferenciales. Una
+variedad Riemanniana se dice {\bf isotr\'{o}pica} si es
+isotr\'{o}pica en todos sus puntos.
+\end{defi}
+
+Intuitivamente, en una variedad isotr\'{o}pica todas las direcciones
+en cualquier punto presentan el mismo comportamiento. Por ejemplo,
+el plano y la esfera son variedades isotrópicas en todos sus puntos,
+mientras que el cilindro no lo es, pues en cada punto hay una
+dirección en que se comporta como una recta y otra, ortogonal a la
+anterior, en que lo hace como una circunferencia.
+
+\
+
+Teniendo en cuenta todas estas definiciones, comprobemos que
+$(\S_R^n,g^o)$ es homogénea e isotrópica. El
+grupo de Lie que actúa sobre $\S_R^n$ es $O(n+1)$ que, obviamente,
+deja invariante a $\S_R^n$.
+
+
+
+
+
+
+
+\begin{propo}
+Sea $(\S_R^n,g^o)$. Entonces, dados $p,\widetilde{p}\in\S_R^n$ y
+sendas bases ortonormales $\{{E_i}\}_{i=1,\dots,n}$ y
+$\{{\widetilde{E}_i}\}_{i=1,\dots,n}$ en $T_p(\S_R^n)$ y
+$T_{\widetilde{p}}(\S_R^n)$, respectivamente, existe $\varphi\in
+O(n+1)$ tal que $\varphi(p)=\widetilde{p}$ y
+$\varphi_{*p}E_i=\widetilde{E}_i$, para todo $i=1,\dots,n$. En
+consecuencia, $(\S_R^n,g^o)$ es homog\'enea e isotr\'{o}pica.
+\end{propo}
+
+\noindent {\it Demostración.-} Llamemos $N$ al polo Norte de
+$\S_R^n$. De hecho, bastaría probar que existe $\varphi\in O(n+1)$
+tal que $\varphi(N)=p$ y
+$\varphi_{*N}\left(\partial{x_i}\right)_N=E_i$ para todo $i$, ya que
+si tenemos esto, para llevar $q$ a $p$ llevamos primero $q$ a $N$ y
+luego $N$ a $p$.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=8cm]{propo437.jpg}
+\end{center}
+\vspace*{0cm} \caption{Transitividad de $O(n+1)$ sobre bases
+ortonormales en $\S_R^n$.}\label{propo437}
+\end{figure}
+
+En $\R^{n+1}$, $\{\left(\partial{}{x_i}\right)_N\}_{i=1}^{n+1}$ es
+base ortonormal de $T_N(\R^{n+1})$ y
+$\{E_1,...,E_n,\widetilde{p}=\displaystyle{\frac{p}{R}}\}$, con $p$
+el vector posición del punto, es base ortonormal de $T_p(\R^{n+1})$.
+
+\
+
+Por tanto, sea $\varphi$ la aplicación que lleva una base en otra.
+Entonces,$\varphi\in O(n+1)$ y
+
+$$\varphi\left(\left(\partial{}{x_i}\right)_N\right)=E_i$$
+con $i=1,...,n$, y
+$$\varphi\left(\left(\partial{}{x_{n+1}}\right)_N\right)=\displaystyle{\frac{p}{R}}.$$
+
+\
+
+Ahora, como $\varphi$ es lineal,
+$\varphi\left(R\left(\partial{}{x_{n+1}}\right)_N\right)=p$, o sea,
+$\varphi(N)=p$.
+
+
+\
+
+Además, por la linealidad, se tiene que
+$\varphi_{*N}\left(\partial{}{x_i}\right)_N=E_i,$ para todo
+$i=1,...,n$. \hfill $\Box$
+
+
+
+\
+
+
+Y ahora veamos que la variedad Riemanniana $(\H_R^n,h_1)$ también es homogénea e isotrópica. En este caso, el grupo de Lie que actúa transitivamente sobre
+el Hiperboloide es el formado por las matrices ortogonales con respecto a la métrica de Minkowsky de $\R^{n+1}$, que dejan invariante la hoja superior del mismo. Denotaremos dicho grupo por $O_+(n,1)$.
+
+
+\
+
+\begin{propo}
+La variedad $(\H_R^n,h_1)$ es homog\'enea e isotr\'opica.
+\end{propo}
+
+\noindent {\it Demostración.-} Llamamos $N$ al polo Norte de
+$\H_R^n$. Al igual que antes, bastaría probar que existe $\varphi\in
+O_+(n,1)$ tal que $\varphi(N)=p$ y
+$\varphi_{*N}\left(\partial{}{x_i}\right)_N=E_i$ para todo $i$.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=8cm]{propo438.jpg}
+\end{center}
+\vspace*{-1cm} \caption{Transitividad de $O_+(n,1)$ sobre bases
+ortonormales de $\H_R^n$.}\label{propo438}
+\end{figure}
+
+\ Veamos ahora que el vector de posición de un punto $p$ de $\H_R^n$ es
+ortogonal a cualquier $u\in T_p(\H_R^n)$ con la métrica de
+Minkowsky:
+
+Sean $p\in \H_R^n$ y $u\in T_p(\H_R^n)$. Entonces, existe una curva
+$\beta$ en $\H_R^n$ tal que $\beta(0)=p$ y $\beta^{'}(0)=u$. La
+curva $\beta$ tendrá una expresión,
+$\beta(t)=(x_1(t),...,x_{n+1}(t))$, que, al estar en el
+Hiperboloide, debe cumplir su ecuación $x_1^2+...+x_n^2-x_{n+1}^2=-R^2$. Derivando
+esta expresión y tomando $t=0$, llegamos a:
+
+$$x_1(0)x_1^{'}(0)+...+x_n(0)x_n^{'}(0)-x_{n+1}(0)x_{n+1}^{'}(0)=0,$$
+siendo $x_i(0)$ las coordenadas del punto $p$ y $x_i^{'}(0)$ las
+coordenadas del vector $u$. En definitiva, llegamos a que
+$m(u,p)=0$, siendo $m$ la métrica de Minkowsky de $\R^{n+1}$.
+ Así, con el vector $p/R$ completamos una base de $T_p(\H_R^n)$ a una base
+de $T_p(\R^{n+1})$, y razonamos igual que en la Proposición anterior.
+\hfill $\Box$
+
+
+\
+
+
+Ya para finalizar, describimos las geodésicas de cada uno de los
+espacios modelos. Primero de la esfera:
+
+\
+
+\begin{propo}
+Las geod\'esicas de $(\S_R^n,g^o)$ son los círculos máximos, definidos como
+las circunferencias que se obtienen al intersecar la esfera con los
+planos que pasan por el origen de coordenadas.
+\end{propo}
+
+\noindent {\it Demostración.-} Lo probamos para $n=2$. Basta
+comprobarlo con la geodésica que parte del polo Norte $N$ con
+dirección $\left(\partial{x}\right)_N$, ya que $\S_R^n$ es homogénea
+e isotrópica y los elementos de $O(n+1)$ preservan los planos que
+pasan por el origen. Lo hacemos por reducción al absurdo:
+
+Sea $\gamma$ dicha geodésica. Probemos que está en el plano $y=0$.
+Si no fuera así, supongamos que existe $t_0$ un punto tal que
+$\gamma(t_0)$ no está en el plano $y=0$. Sea $\varphi$ la reflexión con respecto a
+este plano. Entonces, como $\varphi$ es isometría, $\varphi(\gamma)$ será otra geodésica.
+Pero, $\varphi(N)=N$ y
+$\varphi_{*N}\left(\partial{x}\right)_N=\left(\partial{x}\right)_N$.
+De este modo, $\gamma$ y $\varphi(\gamma)$ serían dos geodésicas que parten del mismo punto $N$,
+con idéntica dirección inicial $\left(\partial{x}\right)_N$, lo que contradice el Teorema \ref{119}
+de unicidad local de geodésicas. Una ilustración de este razonamiento puede verse en la Figura \ref{propo439}. \hfill $\Box$
+
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=8cm]{propo439.jpg}
+\end{center}
+\vspace*{-1cm} \caption{Identificación mediante simetría de las
+Geodésicas de $S^2_R$.}\label{propo439}
+\end{figure}
+
+
+
+\
+
+
+Continuamos con las geodésicas del Hiperboloide:
+
+
+
+
+\
+
+
+\begin{propo} \label{4310}
+Las geod\'esicas de $(\H_R^n,h_1)$ son las hipérbolas máximas, es
+decir, los cortes del Hiperboloide con planos que pasan por el
+origen.
+\end{propo}
+
+
+\noindent {\it Demostración.-} Esta demostración es análoga a la
+anterior, pero usando el grupo $O_+(n,1)$. \hfill $\Box$
+
+\newpage
+
+Y ahora, las geodésicas de la Bola de Poincaré:
+
+
+\
+
+\begin{propo}
+Las geod\'esicas de $(\B_R^n,h_2)$ son segmentos de rectas que pasan
+por el origen y arcos de circunferencias que cortan ortogonalmente a
+la frontera.
+\end{propo}
+
+\noindent {\it Demostración.-} Lo hacemos para $R=1$ y $n=2$, ya que
+es análogo en el caso general. Dado que, según hemos señalado anteriormente, la Proyección Estereográfica Hiperbólica es una isometría del Hiperboloide en el Disco de Poincaré, bastará transformar mediante esta aplicación las geodésicas del primer espacio para obtener las del segundo.
+
+Sea $\Phi:\H^2\longmapsto \bf{B}^2$ la proyección estereográfica
+hiperbólica, definida como:
+$$\Phi(x,y,z)=\left(\frac{x}{1+z},\frac{y}{1+z}\right).$$
+Su aplicación inversa viene dada por
+$$\Phi^{-1}(u_1,u_2)=\left(\frac{2u_1}{1-u_1^2-u_2^2},\frac{2u_2}{1-u_1^2-u_2^2},\frac{1+u_1^2+u_2^2}{1-u_1^2-u_2^2}\right),$$
+con $u_1^2+u_2^2<1$.
+
+Como hemos probado en la Proposición \ref{4310}, una geodésica en $\H^2$ es el corte de este espacio con un plano de ecuación $ax+by+cz=0$. Veamos los distintos casos:
+
+\
+
+\underline{Caso 1}: $c=0$. En este caso, el plano pertenece al haz de planos que contienen al eje OZ. Así, de acuerdo con la descripción geométrica de la Proyección Estereográfica Hiperbólica, es inmediato obtener que la imagen por $\Phi$ de la correspondiente geodésica de $\H^2$ es un diámetro en
+$\B^2$, obtenido por el corte del mismo plano con el Disco. Puede verse una ilustración de este hecho en la Figura \ref{dibujo2}, en la que se señalan en rojo y en azul las geodésicas de $\H^2$ y $\B^2$, respectivamente.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=10cm]{pagina491}
+\vspace*{-1cm} \caption{Diámetro en el Disco de Poincaré.} \label{dibujo2}
+\end{center}
+\end{figure}
+
+\underline{Caso 2}: $c\neq0$. Dividiendo en la ecuación del plano, resulta que:
+$$z=-(a/c)x-(b/c)y=\alpha_1x+\alpha_2y,$$
+donde hemos llamado $\alpha_1=-(a/c)$ y $\alpha_2=-(b/c)$. Si aplicamos ahora la inversa de la Proyección Estereográfica Hiperbólica, obtenemos
+$$\frac{1+u_1^2+u_2^2}{1-u_1^2-u_2^2}=\frac{2\alpha_1u_1}{1-u_1^2-u_2^2}+\frac{2\alpha_2u_2}{1-u_1^2-u_2^2},$$
+o, lo que es lo mismo,
+$$1+\vert u \vert^2-2<\alpha,u>=0,$$
+siendo $u=(u_1,u_2)$ y $\alpha=(\alpha_1,\alpha_2)$. Completando cuadrados, se obtiene que:
+\begin{equation}\label{poincare}
+\vert u-\alpha \vert^2=\vert \alpha \vert^2 -1.
+\end{equation}
+
+Si $|\alpha|^2\leq1$, el conjunto dado por (\ref{poincare}) es el vacío, o se reduce a un punto. Este caso ocurre cuando el plano no corta al Hiperboloide, por lo que no define ninguna geodésica, o cuando es asintótico al mismo, cortándolo por tanto en un punto en el infinito, que se proyecta en un punto de la frontera del Disco de Poincaré.
+
+Si $|\alpha|^2>1$, la ecuación (\ref{poincare}) define una circunferencia de centro $\alpha$ y radio
+$r=\sqrt{(|\alpha|^2-1)}$. El Teorema de Pitágoras implica que dicha circunferencia corta ortogonalmente a la frontera de $\B^2$:
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=7cm]{Propo21}
+\vspace*{0cm} \caption{Circunferencia en el Disco de Poincaré.}\label{propo21}
+\end{center}
+\end{figure}
+
+Puede verse una ilustración de la proyección en este caso en la Figura \ref{dibujo3}, en la que, de nuevo, se señalan en rojo y en azul las geodésicas de $\H^2$ y $\B^2$, respectivamente. \\
+
+\vspace{-0.9cm}
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=12cm]{pagina492}
+\vspace*{-2cm} \caption{Circunferencia en el Disco de Poincaré.} \label{dibujo3}
+\end{center}
+\end{figure}
+
+Queda, por tanto, concluida la demostración. \hfill $\Box$
+
+\
+
+
+
+Por último, determinemos las geodésicas del Semiespacio de Poincaré:
+
+
+
+\
+
+\begin{propo}
+Las geod\'esicas de $(\U_R^n,h_3)$ son semirrectas verticales y
+semicircunferencias centradas en el hiperplano $u_n=0$.
+\end{propo}
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=7cm]{propo43122.jpg}
+\end{center}
+\vspace*{-1cm} \caption{Geodésicas del Semiplano de
+Poincaré.}\label{propo43122}
+\end{figure}
+
+\noindent {\it Demostración.-} De nuevo, la hacemos en el caso $n=2$ con $R=1$.
+
+La Transformada de Cayley generalizada $F$ de $\B^2$ en $\U^2$ viene dada por
+$$F(u_1,u_2)=\left(\frac{2u_1}{u_1^2+(u_2-1)^2},\frac{1-u_1^2-u_2^2}{u_1^2+(u_2-1)^2}\right),$$
+con inversa:
+$$F^{-1}(u_1,u_2)=\left(\frac{2u_1}{u_1^2+(u_2+1)^2},\frac{u_1^2+u_2^2-1}{u_1^2+(u_2+1)^2}\right).$$
+
+Tomemos ahora rectas que pasen por el origen en el plano $z=0$ y
+dentro de la circunferencia de radio $1$, que serán de la forma
+$ax+by=0$ con $x^2+y^2<1$. En nuestro caso, nos quedaría (al
+aplicarle $F^{-1}$)
+$$\frac{2au_1}{u_1^2+(u_2+1)^2}+\frac{b(u_1^2+u_2^2-1)}{u_1^2+(u_2+1)^2}=0,$$
+es decir,
+$$2au_1+b(u_1^2+u_2^2-1)=0.$$
+Distinguimos ahora varios casos:
+
+\
+
+\underline{Caso 1}: Sean $a=0,b\neq0$:
+
+Resultaría $u_1^2+u_2^2-1=0$ y $u_2>0$, lo que nos
+da una semicircunferencia de centro $(0,0)$ y radio $1$.
+
+\
+
+\underline{Caso 2}: Sean $a\neq0,b=0$:
+
+En este caso, tendríamos que $u_1=0$ y $u_2>0$, lo que nos lleva
+al semieje de ordenada (que es una semirrecta vertical).
+
+\
+
+\underline{Caso 3}: Sean $a,b\neq0$:
+
+Tendríamos $2au_1+b(u_1^2+u_2^2-1)=0$. Dividiendo por $b$ resulta:
+$$2au_1/b+u_1^2+u_2^2-1=0.$$
+Completando cuadrados, llegamos a
+$$(u_1+a/b)^2+u_2^2=1+a^2/b^2,$$
+es decir, una semicircunferencia de centro $(-a/b,0)$ y
+radio $\sqrt{1+a^2/b^2}$.
+
+El caso de las circunferencias que cortan ortogonalmente a la frontera de la Bola de Poincaré se trataría de manera similar. \hfill $\Box$
+
+
+
+
+
+
+
+
+
+%\addcontentsline{toc}{chapter}{Bibliografía}
+
+\begin{thebibliography}{99}
+\thispagestyle{empty}
+
+\addcontentsline{toc}{chapter}{Bibliografía}
+
+\bibitem{boothby}
+W. M Boothby. \emph{An Introduction to Differentiable Manifolds and Riemannian Geometry}. Academic Press, Amsterdam, 2003.
+
+\bibitem{docar}
+M. P. do Carmo. \emph{Geometría Diferencial de Curvas y Superficies}. Alianza Editorial, Madrid, 1990.
+
+\bibitem{docarmo}
+M. P. do Carmo. \emph{Riemannian Geometry}. Birkh\"{a}user, Boston, 1992.
+
+\bibitem{Lee}
+J. M. Lee. \emph{Riemannian Manilfolds. An Introduction to Curvature}. Springer, New York, 1997.
+
+\bibitem{mccleary}
+J. McCleary. \emph{Geometry form a Differentiable Viewpoint}. Cambridge University Press, Cambridge, 1994.
+
+\end{thebibliography}
+
+\end{document}
