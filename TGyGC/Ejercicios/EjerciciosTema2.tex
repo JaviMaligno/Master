@@ -67,6 +67,22 @@ Considera $K_6$ y una 2-coloración cualquiera de sus aristas con rojo y azul. D
 existe un ciclo $C_4$ monocromático en dicha coloración de $K_6$.
 \end{ejercicio}
 \begin{solucion}
+ %https://math.stackexchange.com/questions/1751954/color-the-edges-of-k-6-red-or-blue-prove-that-there-is-a-cycle-of-length-4-wi
+ %http://math.mit.edu/~sassaf/courses/314/sol11.pdf
+ Como cada vértice de $K_6$ tiene grado 5, cada vértice tiene que tener al menos 3 aristas del mismo color. Diremos que un vértice es rojo si tiene al menos tres aristas rojas y azul si tiene al menos 3 azules. Como hay 6 vértices, tiene que haber 3 que sean del mismo color. Sin pérdida de generalidad digamos que hay 3 vértices $u,v,w$ de color rojo. 
+ 
+ En primer lugar vamos a suponer que las 3 aristas posibles entre $u,v,w$ son azules. Llamemos $x,y,z$ a los vértices azules. Los vértices $u,v,w$ son rojos, así que cualquier arista que vaya de ellos a $x,y,z$ será roja. Así que podemos formar un 4-ciclo rojo con, por ejemplo, $u, x,v,y,u$. 
+ 
+ Ahora suponemos que alguna de las aristas antes asumidas azules es roja, por ejemplo $uv$. Cada uno de estos vértices tiene al menos dos vecinos rojos. Digamos que los vecinos de $u$ son $u_1, u_2\in \{w,x,y,z\}$ y los de $v$ son $v_1,v_2\in\{w,x,y,z\}$. 
+ \begin{itemize}
+ \item Si $\{u_1,u_2\}=\{v_1,v_2\}$, podemos suponer que $u_1=v_1$ y $u_2=v_2$. Entonces $u,u_1,v,u_2,u$ es un 4-ciclo rojo. 
+ \item Si $\{u_1,u_2\}\cap\{v_1,v_2\}=\emptyset$, entonces los 6 vértices $u,v,u_1,u_2,v_1,v_2$ son distintos, por lo que alguno de ellos, digamos $u_1$, es $w$. Hay al menos 3 aristas rojas en $w$, una de las cuales es $uw$. Si $wv_1$ es una arista roja, entonces $u,w,v_1,v,u$ es un 4-ciclo rojo y similarmente en el caso de que lo sea $wv_2$. Si ninguna es roja, entonces $wu_2$ y $wv$ tienen que ser rojas, por lo que $u,v,w,u_2,u$ es un 4-ciclo rojo.
+ \item Si $\{u_1,u_2\}=\{v_1,v_2\}$ tiene exactamente un vértice común, digamos $u_1=v_1$. Se comprueba fácilmente que si alguna de las aristas $u_1u_2, u_1v_2, u_2v_2,uv_2,uv_2$ es roja, entonces podemos formar un 4-ciclo rojo, así que supongamos que son todas azules. Esto significa que $u_2$ y $v_2$ son vértices azules, con lo que o bien $u_1=w$ (en el caso de que sea vecino rojo de $u$, al ser $w$ rojo, $w\neq u_2$) o bien $w$ es el sexto vértice distinto de $u,v,u_1,u_2,v_2$ (en el caso de que $w$ sea vecino azul de $u$). Analicemos estos casos.
+ \begin{itemize}
+ \item Si $w=u_1$, sea $x$ el sexto vértice (análogamente $y,z$). La arista $wx$ debe ser roja por ser $w$ un vértice rojo, y estamos asumiendo que $wu_2, wv_2$ son azules. Si alguna de las aristas de $x$ a $u,v,u_2, v_2$ es roja, es fácil encontrar un 4-ciclo rojo. Si son todas azules, entonces $x,u_2, v_2, u,x$ es un 4-ciclo azul. 
+ \item Si $w$ es el sexto vértice, tiene al menos 3 aristas rojas a los vértices $u,v,u_1,u_2,v_1,v_2$. En particular, debe haber una arista que vaya a uno de $u_1,u_2,v_2$. Supongamos que $wu_1$ es roja; en este caso da igual cual de las aristas $wu,wu_1,wu_2,wv, wv_2$ sea roja, siempre conseguiremos un 4-ciclo rojo (por ejemplo, si $wu$ es roja, podemos usar $w,u,v,u_1,w$, y si $wu_2$ es roja, podemos usar $w,u_2,v,u_1,w$). Por lo tanto, podemos asumir que $wu_1$ es azul y $wu_2$ es, digamos, roja (será análogo si la suponemos azul). Pero entonces, o bien $wv$ es roja y tienemos un 4-ciclo rojo $w,u_2,u, v,w$, o bien $wv$ es azul y tenemos un 4-ciclo azul $w,u_1, u_2,v,2$.
+ \end{itemize}
+ \end{itemize}
  
 \end{solucion}
 
@@ -77,7 +93,7 @@ Considera $K_6$ y una 2-coloración cualquiera de sus aristas con rojo y azul. D
 existen dos triángulos monocromáticos en dicha coloración de $K_6$
 \end{ejercicio}
 \begin{solucion}
-
+Hay $\binom{6}{3}=20$ triángulos en $K_6$. Vamos a probar que existen a lo sumo 18 triángulos \emph{bicromáticos}. Llamamos \emph{águnlo bicromático} a un par de aristas incidentes de distinto color. Todo triángulo bicromático contiene exactamente 2 ángulos bicromáticos y todo ángulo bicromático está contenido exactamente en un triángulo bicromático. Por tanto, el número de triángulos bicromáticos es la mitad que el de ángulos bicromáticos. Sean $v_1,\dots, v_6$ los vértices de $K_6$. Denotamos $r_i$ y $b_i$ respectivamente al número de aristas rojas y azules incidentes en $v_i$. Como $r_i+b_i=5$, el número de ángulos monocromátios en $v_i$ es $r_ib_i\leq 6$. Así, el número de ángulos monocromáticos es $\sum_{i=1}^6r_ib_i\leq 36$, y por tanto el número de triángulos bicromáticos es  $\frac{1}{2}\sum_{i=1}^6r_ib_i\leq 18$. Así que como mínio habrá $20-18=2$ triángulos monocromáticos. 
 \end{solucion}
 
 \newpage
@@ -107,7 +123,7 @@ $R(2,n)=n$. Efectivamente, $K_n$ está coloreado de un solo color, entonces obte
 Demuestra que $R(m, n) ≤ R(m − 1, n) + R(m, n − 1)$ para $m, n ≥ 2$.
 \end{ejercicio}
 \begin{solucion}
-Sea $G=K_n$ con $n=R(m − 1, n) + R(m, n − 1)$ sea $v\in V(G)$ y consideremos los conjuntos $V_m$ (conjunto de vértices adyacentes a $v$ con una arista de color $m$) y $V_n$ (análogo para $n$). Como $G$ es completo, tenemos que 
+Sea $G=K_k$ con $k=R(m − 1, n) + R(m, n − 1)$ sea $v\in V(G)$ y consideremos los conjuntos $V_m$ (conjunto de vértices adyacentes a $v$ con una arista de color $m$) y $V_n$ (análogo para $n$). Como $G$ es completo, tenemos que 
 \[
 |V_m|+|V_n|+1=R(m-1,n)+R(m,n-1)
 \] 
