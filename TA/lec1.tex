@@ -352,7 +352,7 @@ Sea $X$ un espacio y $x_0\in X$. Entonces $\widetilde{H}_n(X)\cong\widetilde{H}_
 Como $\widetilde{H}_*(x_0)=0$, al sustituir en la sucesión exacta larga de homología relativa tenemos los isomorfismos buscados.
 \end{dem}
 
-\begin{prop}
+\begin{prop}\label{2.22}
 Si $(X,A)$ es un buen par, entonces $(X,A)\to (X/A,A/A)$ induce isomorfismos $H_n(X,A)\cong H_n(X/A,A/A)\cong\widetilde{H}_n(X/A)$ para todo $n\in\Z$. 
 \end{prop}
 \begin{dem}
@@ -421,7 +421,96 @@ Ahora bien, como $H_n(D^n,S^{n-1})\cong \widetilde{H}_n(S^n)$ es isomorfismo, si
 Otra forma de hacerlo es la siguiente: podemos expresar $S^n$ como $\Delta^n_1\bigcup_{\partial\Delta^n}\Delta^n_2$, de modo que ambos símplices están incluidos en $S^n$ por $i_1$ e $i_2$. Tendríamos $d(i_1)=d(i_2)$, por lo que $[i_1-i_2]$ es un generador, que se mapea al generador $[i_1-i_2]=[i_1]\in \widetilde{H}_n(S^n,\Delta^n_2)$, que a su vez es la imagen de $[Id_{\Delta^n}]$ mediante el isomorfismo que viene de $\widetilde{H}_n(\Delta^n_1,\partial\Delta^n)$ (es isomorfismo porque está inducido por un homeomorfismo). Más detalles en el ejemplo 2.23 de Hatcher.
 \end{ej}
 
+\begin{coro}
+Para un wedge $\bigvee_{\alpha} X_{\alpha}$, las inclusiones $X_{\alpha}\hookrightarrow\bigvee_{\alpha} X_{\alpha}$ induce isomorfismos $\oplus_{\alpha}i_{\alpha *}:\oplus_{\alpha} \widetilde{H}_n(X_{\alpha})\to  \widetilde{H}_n(\bigvee_{\alpha} X_{\alpha})$, suponiendo que el wedge está formado en puntos base $x_{\alpha}\in X_{\alpha}$ tales que $(X_{\alpha},x_{\alpha})$ son buenos pares.
+\end{coro}
+\begin{dem}
+Como la homología reducida es la misma que la homología relativa a un punto, se sigue de la proposición \ref{2.22}, tomando $(X,A)=(\sqcup_{\alpha} X_{\alpha}, \sqcup_{\alpha}\{x_{\alpha}\})$.
+\end{dem}
 
+\begin{teorema}
+Si dos subconjuntos no vacíos $U\subseteq\R^m$ y $V\subseteq\R^m$ son homeomorfos, entonces $m=n$. 
+\end{teorema}
+\begin{dem}
+Sea $x\in U$, por excisión $H_q(U,U-\{x\})\cong H_q(\R^m, \R^m-\{x\})$. De la sucesión exacta larga reducida del par $(\R^m, \R^m-\{x\})$ obtenemos $H_q(\R^m, \R^m-\{x\})\cong \widetilde{H}_{q-1}(\R^m-\{x\})$. Como $\R^m-\{x\}$ retrae con deformación fuerte sobre $S^{m-1}$, $\widetilde{H}_{q-1}(\R^m-\{x\})=\widetilde{H}_{q-1}(S^{m-1})=\delta_{qm}\Z$. Haciendo lo mismo con $\R^n$, como dos espacios homeomorfos tienen la misma homología, deducimos que $n=m$. 
+\end{dem}
+
+
+Generalizando la estrategia de la demostración anterior, definimos la \emph{homología local} de $X$ en $x$ como $H_*(X, X-\{x\})$. La homología local es un invariante topológico. En variedades topológicas, la homología local distingue puntos del borde.
+
+
+Generalizando las sucesiones exacta larga de pares, podemos hacerla para una tripleta $(X,A,B)$. Esta tripleta da lugar a 3 parejas $(X,A)$, $(X,B)$, $(A,B)$ de donde obtenemos el diagrama de sucesiones exactas siguientes
+\[
+\begin{tikzcd}
+C_*(A,B)\arrow[r, rightarrowtail] & C_*(X,B)\arrow[dr, twoheadrightarrow]&\\
+C_*(A)\arrow[r, rightarrowtail] \arrow[u,twoheadrightarrow] & C_*(X)\arrow[r, twoheadrightarrow] \arrow[u,twoheadrightarrow]& C_*(X,A)\\
+C_*(B)\arrow[u, rightarrowtail]\arrow[ur, rightarrowtail]& & 
+\end{tikzcd}
+\]
+La sucesión exacta superior nos da la sucesión exacta larga
+\[
+\cdots\to H_n(A,B)\to H_n(X,B)\to H_n(X,A)\to H_{n-1}(A,B)\to\cdots
+\]
+
+
+\section{Grado}
+Dada una aplicación continua $f:S^n\to S^n$, se induce un homomofismo $f_*:H_n(S^n)\to H_n(S^n)$, que no es más que un homomorfismo $\Z\to\Z$, que viene dado por $f_*(1)$, a lo cual llamamos \emph{grado} de $f$, denotado $\deg(f)$. 
+\begin{propi}
+Algunas propiedades sencillas son
+\begin{enumerate}
+\item $\deg(Id_{S^n})=1$.
+\item $\deg(g\circ f)=\deg(f)\deg(g)$.
+\item Si $f$ no es sobreyectiva, $\deg(f)=0$. 
+\item Si $f\simeq g$, $\deg(f)=\deg(g)$. El recíproco es cierto, y es un resultado fundamental de Hopf en 1925. Se prueba usando que $\pi_n(S^n)=\Z$ y el grado nos da una aplicación $\pi_n(S^n)=\Z\to\Z$ sobreyectiva, luego tenemos una sucesióne exacta $0\to\ker(\deg)\to \Z\to\Z\to 0$. Como el rango del objeto central es la suma de los de los lados en este caso, $\ker(\deg)=0$. 
+\item Si $f$ es una reflexión, entonces $\deg(f)=-1$.
+\item Si $f=-Id_{S^n}$ (antipodal), $\deg(f)=(-1)^{n+1}$ por ser composición de $n+1$ reflexiones.
+\item Si $f$ no tiene puntos fijos, $\deg(f)=(-1)^{n+1}$, puesto que existe una una homotopía entre $f$ y la antipodal dada por el segmento $(1-t)f(x)-tx$ (que no se anula) normalizado. 
+\end{enumerate}
+\end{propi}
+
+
+\begin{prop}
+$\deg(Sf)=\deg(f)$, donde $Sf:S^{n+1}\to S^{n+1}$ es la suspención de la aplicación $f:S^n\to S^n$. 
+\end{prop}
+\begin{dem}
+Consideramos el cono $CS^n$. La aplicación $(CS^n,S^n)\to (CS^n,S^n)$ inducida por $f$ es una aplicación de parejas. Entonces tenemos el diagrama siguiente, donde los 0 se obtienen de la sucesión exacta larga de homología relativa al ser $CS^n$ contráctil
+\[
+\begin{tikzcd}
+           & \widetilde{H}_n(SS^n)\arrow[d, "\cong"]& &\\
+0\arrow[r] & H_{n+1}(CS^n, S^n)\arrow[r, "\cong"]\arrow[d, "f_*"] &\widetilde{H}_n(S^n)\arrow[r] & 0\\
+           & H_{n+1}(CS^n, S^n)\arrow[r, "\cong"]\arrow[d, "\cong"] &\widetilde{H}_n(S^n)& \\
+           & \widetilde{H}_n(CS^n/S^n)\arrow[d,"\cong"] & & \\
+           & \widetilde{H}_n(SS^n)& &
+\end{tikzcd}
+\]
+La aplicación resultante $H_n(SS^n)\to H_n(SS^n)$ tiene el mismo grado que $f$ por conmutatividad, ya que los isomorfismos aunque envíen el 1 al $-1$ como se hacen dos veces se compensan. 
+\end{dem}
+
+Entendemos acción de un grupo $G$ sobre un espacio $X$ como una aplicación $G\to Homeo(X)$. 
+
+\begin{prop}
+Si $n$ es par, el único grupo que actúa libremente sobre $S^n$ es $\Z_2$. 
+\end{prop}
+\begin{dem}
+Como un homeomorfismo tiene grado $\pm 1$, una acción de un grupo $G$ sobre la esfera define un homomorfismo $d:G\to\{\pm 1\}\cong\Z_2$. Como la acción es libre, $d$ envía cualquier elemento no trivial a $(-1)^{n+1}=-1$, puesto que el homeomorfismo inducido por un elemento será totalmente distinto de la identidad y por tanto será homotópico a la antipodal. Esto significa que $\ker(d)=1$, luego $G$ se inyecta en $\Z_2$. 
+\end{dem}
+
+Vamos a describir ahora una técnica que es útil para calcular el grado de un aplicación en la mayoría de casos. Sea $f:S^n\to S^n$ tal que existe $y\in S^n$ de modo $f^{-1}(y)=\{x_1,\dots, x_k\}$. Sean $U_i$ entornos disjuntos de $x_i$ tales que $y\in V=f(U_i)$. Para cada $i$, tenemos el siguiente diagrama. 
+\[
+\begin{tikzcd}
+& H_n(U_i, U_i-x_i)\arrow[dl, "\cong"']\arrow[r, "f_*"]\arrow[d, "k_i"] & H_n(V, V-y)\arrow[d, "\cong"]\\
+H_n(S^n, S^n-x_i) & H_n(S^n, S^n-f^{-1}(y))\arrow[l, "p_i"]\arrow[r, "f_*"] & H_n(S^n, S^n-y) \\
+& H_n(S^n)\arrow[ul, "\cong"]\arrow[u, "j"']\arrow[r, "f_*"] & H_n(S^n)\arrow[u, "\cong"']
+\end{tikzcd}
+\]
+Las aplicaciones $p_i$ y $k_i$ están inducidas por inclusiones. Los isomorfismos de abajo provienen de la sucesión exacta larga del par y los de arriba de la excisión. El de abajo a la izquierda es de nuevo por la pareja y el de encima por excisión también. Llamamos \emph{grado local} de $f$ en $x_i$ a $\deg((f|_{U_i})_*)=\deg(f)|_{x_i}$. Si $f$ es homeomorfismo de $U_i$ en $V$, entonces $\deg(f)|_{x_i}=\pm 1$. En particular, si $f$ es homeomorfismo global, $y$ puede ser cualquier punto, que tendrá un solo punto preimagen $x_i$, con lo que $\deg(f)|_{x_i}=\deg(f)=\pm 1$.
+
+\begin{prop}
+$\deg(f)=\sum_i \deg(f)|_{x_i}$. 
+\end{prop}
+\begin{dem}
+Como los $U_i$ son disjuntos, por escisión tenemos que $H_n(S^n, S^n-f^{-1}(y))=\oplus_i H_n(U_i, U_i-x_i)\cong\oplus_i\Z$, con $k_i(1)=(0,\dots,0, 1,0,\dots, 0)$ y $p_i$ es la $i$-ésima proyección. Entonces $p_i\circ k_i$ identidad. La conmutatividad del triángulo inferior da que $p_i\circ j(1)=1$, luego $j(1)=(1,\dots, 1)=\sum_ik_i(1)$. La conmutatividad del cuadrado superior dice que la $f_*$ del medio lleva $k_i(1)$ en $\deg(f)|_{x_i}$ (en la excisión el 1 va en el 1). Por lo tanto, $j(1)=\sum_ik_i(1)$ es enviado a $\sum_i \deg(f)|_{x_i}$. La conmutatividad del cuadrado inferior da la fórmula $\deg(f)=\sum_i \deg(f)|_{x_i}$.
+\end{dem}
 \section{Ejercicios}
 \begin{ejer}
 Dadas dos sucesiones exactas cortas de complejos de cadenas $0\to \CC_1\to \CC_2\to\CC_3\to 0$ y $0\to \mathcal{D}_1\to \mathcal{D}_2\to\mathcal{D}_3\to 0$ un morfismo de complejos de cadenas $f:\CC_2\to\mathcal{D_2}$, probar que el homomorfismo inducido por $f$ en homología es natural en la sucesión exacta larga, tal como ocurre en la homología relativa. 
@@ -436,5 +525,6 @@ Asociada a esta sucesión exacta corta tenemos la sucesión exacta larga de homo
 
 Si $\CC$ y $\CC'$ son complejos de cadenas libres (todos los elementos son grupos abelianos libres), probar que entonces se verifica que $f_*$ es isomorfismo si y solo si $f$ es equivalencia de homotopía de complejos de cadenas.  Pista: para encontrar la homotopía, descomponer $D_q=\ker d\oplus D_{q-1}$ que se puede hacer porque las sucesiones exactas cortas escinden. 
 \end{ejer}
+
 
 \end{document}

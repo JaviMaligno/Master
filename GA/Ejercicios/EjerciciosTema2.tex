@@ -28,14 +28,24 @@
 %
 %\newpage
 %
-%\begin{ejercicio}{1.3}
-%
-%
-%\end{ejercicio}
-%\begin{solucion}
-%\end{solucion}
-%
-%\newpage
+\begin{ejercicio}{2.3}\emph{Esquemas reducidos.} Un esquema $(X,\OO_X)$ es \emph{reducido} si para todo abierto $U\subseteq X$, el anillo $\OO_X(U)$ no tiene elementos nilpotentes. 
+\begin{enumerate}[(a)]
+\item Probar que $(X,\OO_X)$ es reducido si y solo si para todo $P\in X$, el anillo local $\OO_{X,P}$ no tiene elementos nilpotentes. 
+\item Sea $(X,\OO_X)$ un esquema. Sea $(\OO_X)_{red}$ el haz asociado al prehaz $U\mapsto \OO_X(U)_{red}$, donde para cualquier anillo $A$, denotamos $A_{red}$ al cociente de $A$ por el ideal de sus elementos nilpotentes. Probar que $(X, (\OO_X)_{red})$ es un esquema. Lo llamamos el esquema \emph{reducido} asociado a $X$, y lo denotamos $X_{red}$. Probar que hay un morfismo de esquemas $X_{red}\to X$, que es homeomorfismo en los espacios topológicos subyacentes. 
+\item Sea $f:X\to Y$ un morfismo de esquemas, y asumamos que $X$ es reducido. Probar que existe un único morfismo $g:X\to Y_{red}$ tal que $f$ se obtiene componiendo $g$ con la aplicación natural $Y_{red}\to Y$. 
+\end{enumerate}
+
+
+\end{ejercicio}
+\begin{solucion}\
+\begin{enumerate}[(a)]
+\item Sea $(X,\OO_X)$ reducido y supongamos que existe $s_p\in \OO_{X,P}$ no nulo tal que $s^n_P=0$ para algún $n\in\N$. Entonces, en un entorno abierto $U\ni P$, $s_P$ está representado por un elemento no nulo $s\in\OO_X(U)$. Pero entonces $s^n=0$, lo cual es una contradicción. Recíprocamente, si para algún abierto $U\subseteq X$ existe $s\in \OO_X(U)$ nilpotente, el germen de $s$ en cualquier punto $P\in U$ verifica que también es nilpotente. 
+\item
+\item 
+\end{enumerate}
+\end{solucion}
+
+\newpage
 
 %\begin{ejercicio}{1.5}
 %Probar que un morfismo de haces es un isomorfismo si y solo si es inyectivo y sobreyectivo.
@@ -131,7 +141,7 @@
 %\newpage
 %
 \begin{ejercicio}{Extra1}
-
+Probar que el haz $\OO_X(U)$ es realmente un haz, describiendo las restricciones. 
 \end{ejercicio}
 \begin{solucion}
 Los axiomas de prehaz se verifican trivialmente a partir de las propiedades de la preimagen. 

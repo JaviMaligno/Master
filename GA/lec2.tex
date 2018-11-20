@@ -236,6 +236,38 @@ Siguiendo el ejemplo anterior, tomamos ahora $\alpha:\spec(\R[\varepsilon])\to (
 Como $\beta$ es local, $\beta(\m_p)\subseteq\gene{\varepsilon}$ y $\beta(\m^2_p)\subseteq\gene{\varepsilon}^2=\{0\}$. Por otra parte tenemos la evaluación $ev_p:\mathcal{E}\to \R$ y $\pi:\R[\varepsilon]\to \R=\R[\varepsilon]/\gene{\varepsilon}$. Así que $\beta(\m_p)\subseteq\ker\pi$. Se tiene en realidad que $\ker\pi=\R\varepsilon$, puesto que $\R[\varepsilon]=\R\oplus\R\varepsilon$. Podemos definir entonces $\overline{\beta}:\m_p/\m^2_p\to\R\varepsilon$ que es $\R$ lineal, es decir, es un vector tangente. 
 \end{ej}
 
+\begin{ej}
+Si $k$ es un cuerpo algebraicamente cerrado, podíamos considerar el espacio afín $k^n$ con la topología de Zariski. Desde el punto de vista esquemático, si tomamos $A=k[x_1,\dots, x_n]=k[x]$, $\spec(A)=\A_k^n=(\spec(k[x]),\OO_{\A_k^n})$. Hay una relación entre estas dos construcciones. Cada punto de $k^n$ nos da un ideal maximal, luego $\tau:k^n\hookrightarrow\spec(k[x])$ mediante $a\mapsto \gene{x_1-a_1, \dots, x_n-a_n}$. Entonces $\Ima\tau$ se llama espectro maximal de $k[x]$. Además $\tau$ es na inmersión topológica (es homeomorfismo sobre su imagen). Dado un ideal cualquiera $I\subseteq k[x]$ y consideramos $\tau^{-1}(V(I))=\{a\in k^n\mid \tau(a)\supseteq I\}=\{a\mid I\supseteq \gene{x_1-a_1, \dots, x_n-a_n}=\{a\mid f(a)=0, \forall f\in I\}=V(I)$ (abusamos de notación, el primer $V(I)$ es el del espectro y el segundo el de la geometría algebraica clásica). Se comprueba además que $\tau^{-1}\OO_{\A_k^n}$ es el haz de las funciones regulares en $k^n$. 
+\end{ej}
+
+Lo siguiente será construir el proyectivo en versión esquemática. Sea $S=\bigoplus_{d=0}^{\infty}S_d$ un anillo graduado (recordemos que la suma es como grupos aditivos, $1\in S_0$, Y $S_dS_e\in S_{d+e}$). Clásico ejemplo el de los polinomios en varias variables con grado la suma de los exponentes de las variables. Los elementos de $S_d$ se llaman homogéneos. Denotamos $S_+$ como la suma directa cuando $d>0$ (denominado ideal irrelevante por analogía al ejemplo mencionado). 
+
+\begin{defi}
+Un ideal $I\subseteq S$ se dice \emph{homogéneo} cuando $I=\bigoplus_{d=0}^{\infty}(I\cap S_d)$, lo cual es equivalente a decir que $I$ está generado por elementos homogéneos. Recordamos que en estas condiciones $S/I=\bigoplus_{d=0}^{\infty}S_d/(I\cap S_d)$.
+\end{defi} 
+
+Dado un anillo graduado $S$, definimos $\proj(S)=\{\p\in\spec(S)\mid \p$ homogéneo, $\p\not\supseteq S_+\}$. Definismos sobre este conjunto la topología cuyos cerrados son de la siguiente forma: si $I$ es un ideal homogéneo, definimos $V(I)=\{\p\in\proj(S)\mid \p\supseteq I\}$. Por ejemplo, $V(S_+)=\emptyset$ y $V(\{0\})=\proj(S)$. Por el lema 2.4 de Hartshore se verifican las propiedades necesarias para que estos conjuntos sean los cerrados de una topología, a la que llamamos topología de Zariski. A veces, para distinguirla de la topología de $\spec(S)$, escribiremos $V^h$ en lugar de $V$.
+
+Obsérvese que $\proj(S)\subset\spec(S)$. De hecho, se tiene que $\proj(S)$ tiene la topología inducida por $\spec(S)$\footnote{\href{https://math.stackexchange.com/questions/2747367/is-the-zariski-topology-of-proj-s-the-same-as-the-subspace-topology-of-spec-s}{Prueba}}.
+
+Definimos ahora un haz de anillos $\OO_{\proj(S)}$. Para ello vamos a definir primero $S_{(\p)}$ para $\p\in\proj(S)$. Sea $T\subseteq S\setminus\p$ el conjunto multiplicativo de todos los elementos homogéneos de $S$ que no están en $\p$. Escrito de otra forma $T=\bigcup_{d=0}^{\infty}(S\setminus\p)\cap S_d$. Entonces $S_{(\p)}$ son los elementos de grado 0 de $T^{-1}S=\{\frac{s}{t}\mid s\in S, t\in T\}$, esto es que $s$ y $t$ sean homogéneos del mismo grado.
+
+\begin{ej}
+Sea $S=\Z[x_1,\dots, x_n]$, $n\geq 2$. Tomamos $\p=\gene{x_1}$, que es ideal primo (el cociente sale dominio de integridad) homogéneo (generado por un polinomio homogéneo) que no contiene al ideal irrelevante. Otro ejemplo más interesante es $\q=\gene{x_1^3+x_2^3+x_3^3}$ para $n=3$. Se demuestra que el polinomio que lo genera es irreducible en $\Z$ y por tanto es primo. Como $\q$ no contiene a ninguna de las variables, no contiene al irrelevante. Llámamos $V_c(\q)=\{(a_1, a_2,a_3)\in\Z^3\mid a_1^3+a_2^3+a_3^3=0\}$ ($c$ de clásico). Por el teorema de Fermat sabemos que alguno de los $a_i$ tiene que ser 0, luego es fácil encontrar las soluciones enteras de esta ecuación. Si consideramos en lugar de este $V_c$, el $V$ en $\proj(S/\q)$ recuperaremos la información de esta ecuación y mucha más, además de poder encontrarla sobre otros anillos. Como en general no sabemos dónde es mejor buscar las soluciones, es preferible el enfoque esquemático. 
+\end{ej} 
+
+Finalmente, $\OO_{\proj(S)}(U)=\{s=(s_{\p})_{\p\in U}\mid s_{\p}\in S_{(\p)}, \forall \p\in U\exists V\ni\p,V\subseteq U, \exists a,f\in S$ homogéneos del mismo grado de modo que $\forall\q\in V, f\notin\q, s_{\q}=\frac{a}{f}\in S_{(\q)}\}\subset\prod_{\p\in U} S_{(\p)}$. Se comprueba que esto efectivamente da un haz.  
+
+\begin{prop}
+En las condiciones anteriores
+\begin{enumerate}[(a)]
+\item $\forall\p\in\proj(S)$, $\OO_{\proj(S),\p}=S_{(\p)}$ como anillo local (habría que probar primero que $S_{(\p)}$ es local).
+\item Para $f\in S_+$ homogéneo, $D_+(f)=\{\p\in\proj(S)\mid f\notin\p\}$ es una base de abiertos. Además, $(D_+(f),\OO|_{D_+(f)})\cong\spec(S_{(f)})$ como espacio localmente anillado, donde $S_{(f)}$ es el conjunto de fracciones que en el denominador tiene una potencia de $f$ y el numerador tiene el mismo grado que esta potencia.
+\item Como corolario, obtenemos que $\proj(S)$ es un esquema. 
+\end{enumerate}
+\end{prop}
+
+
 \section{Ejercicios}
 \begin{ejer}
 Probar que el haz $\OO_X(U)$ es realmente un haz, describiendo las restricciones. 
@@ -243,5 +275,6 @@ Probar que el haz $\OO_X(U)$ es realmente un haz, describiendo las restricciones
 \begin{ejer}
 Probar que el prehaz $\calF(U)=\prod_{x\in U} A_x$ es un haz para $X$ con la topología discreta. 
 \end{ejer}
+
 \end{document}
 
