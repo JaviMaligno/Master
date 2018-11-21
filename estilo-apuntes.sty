@@ -11,7 +11,7 @@
 \usepackage{array,multirow}
 \usepackage{fancyhdr}
 \usepackage{titlesec}
-%\usepackage{floatrow}
+\usepackage{floatrow}
 \usepackage{makeidx}
 \usepackage[tocflat]{tocstyle}
 \usetocstyle{standard}
@@ -19,7 +19,7 @@
 \usepackage{color}
 \usepackage{hyperref}
 \hypersetup{colorlinks=true,citecolor=red, linkcolor=blue}
-\usepackage[]{graphicx, wrapfig, cutwin}
+\usepackage[]{graphicx}
 \usepackage{pgf,tikz}
 \usepackage{tikz-cd}
 \usetikzlibrary{babel}
@@ -63,7 +63,7 @@
 
 \providecommand{\card}[1]{\cardinal\left(#1\right)}
 
-\providecommand{\abs}[1]{\left|#1\right|}
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
 \providecommand{\sen}[1]{sen #1}
 \providecommand{\norm}[1]{\left\lVert#1\right\rVert}
 \providecommand{\ninf}[1]{\norm{#1}_\infty}
@@ -71,10 +71,8 @@
 \providecommand{\gabs}[1]{\left|{#1}\right|}
 \newcommand{\bor}[1]{\mathcal{B}(#1)}
 \newcommand{\A}{\mathbb{A}}
-\newcommand{\U}{\mathcal{U}}
 \newcommand{\calA}{\mathcal{A}}
 \newcommand{\calF}{\mathcal{F}}
-\newcommand{\calG}{\mathcal{G}}
 \newcommand{\Ank}{\A^n_k}
 \newcommand{\Amk}{\A^m_k}
 \newcommand{\R}{\mathbb{R}}
@@ -90,26 +88,20 @@
 \newcommand{\K}{\mathbb{K}}
 \newcommand{\KK}{{\mathcal K}}
 \newcommand{\OO}{{\mathcal O}}
-\newcommand{\UU}{{\mathcal U}}
 \newcommand{\X}{\mathbb{X}}
 \newcommand{\Y}{\mathbb{Y}}
 \newcommand{\Va}{\mathcal{V}_{a}}
 \newcommand{\Vp}{\mathcal{V}_{p}}
 \newcommand{\V}{\mathcal{V}}
 \newcommand{\I}{\mathcal{I}}
-\newcommand{\E}{\mathcal{E}}
 \newcommand{\m}{{\mathfrak{m}}}
 \newcommand{\p}{{\mathfrak{p}}}
-\newcommand{\q}{{\mathfrak{q}}}
 \newcommand{\Tau}{\mathcal{T}}
 \newcommand{\parcial}[2]{\frac{\partial #1}{\partial #2}}
 \newcommand{\dparcial}[2]{\dfrac{\partial #1}{\partial #2}}
 \DeclareMathOperator{\Ima}{Im}
-\DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\Rea}{Re}
 \DeclareMathOperator{\coker}{coker}
-\DeclareMathOperator{\spec}{Spec}
-\DeclareMathOperator{\proj}{Proj}
 
 \newcommand{\verteq}{\rotatebox{90}{$\,=$}}
 \newcommand{\vertequiv}{\rotatebox{110}{$\,\equiv$}}
