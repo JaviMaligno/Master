@@ -1,0 +1,128 @@
+\documentclass[twoside]{article}
+\usepackage{../estilo-ejercicios}
+\newcommand{\x}{{\mathbf{x}}}
+\newcommand{\y}{{\mathbf{y}}}
+\usepackage[]{algorithm2e}
+%--------------------------------------------------------
+\begin{document}
+
+\title{Optimización}
+\author{Rafael González López}
+\maketitle
+
+\begin{ejercicio}{1.1}[Problema de la $p$-mediana]
+Sea un grafo $G=(V,E)$, para cada $e\in E$, existe un coste $c_e$ asociado a $e$. Para cada conjunto $X\subset V \mid |X| = p$ definimos la distancia mediana:
+$$
+d_m(X) = \sum_{v\in V} \min_{x\in X}d(v,x)
+$$
+Entonces, dado un valor de $M$, ¿existe un conjunto $X$ ($p$-mediana) tal que $d_m \leq M$? Probar que este problema es NP-completo.
+\end{ejercicio}
+
+\begin{solucion}
+Primeramente, es claro que el problema es NP. Dado un conjunto de vértices $X$, calculamos $d_m(X)$. Primero, ver si $|X|=p$ es una operación sencilla. Sean $x\in X$ y $v\in V$, calcular la distancia de $v$ a $x$ tiene complejidad polinomial, así como tomar mínimo en $X$. Por tanto, habría que realizar $(|X|+2)|V|$ operaciones (luego debemos sumar y comparar) que en el peor de los casos tienen complejidad polinómica. Dado que $|X|\leq |V|$, es claro que este certificado tiene complejidad polinómica en los datos de entrada.
+
+Para ver que es NP-completo vamos a ver que el problema del conjunto dominante (DS). Este problema consiste en, dado un grafo $G=(V,E)$, encontrar un conjunto $X\subset V$ con $|X|=p$ tal que $\forall v \in V$, o bien $v\in X$, o bien $v$ es adyacente a algún vértice de $X$. DS es un problema NP-completo. \begin{itemize}
+\item Sea $G=(V,E)$ un grafo, consideremos $c_e = 1$ $\forall e \in E$. Vamos a probar que $G$ tiene un conjunto dominante de tamaño $p$ si y solo si $G$ tiene un conjunto de tamaño $p$ tal que $d_m \leq |V|-p$.
+\item Supongamos que tenemos un conjunto dominante $X$ de tamaño $p$ . Entonces es claro que
+$$
+\min_{x\in X} d(v,x) = \begin{cases}
+ 0 & v \in X \\
+ 1 & v \in V \setminus X
+ \end{cases}
+ \Rightarrow d_m(X) = \sum_{v\in V}\min_{x\in X}d(v,x) = |V|-p
+$$
+\item Para el recíproco, supongamos que tenemos un conjunto $X$ que satisface el problema de la $p$-mediana en el grafo que hemos construido ($c_e = 1$ $\forall e \in E)$, de manera que $|X|=p$ y $d_m(X)\leq |V|-p$. En particular
+$$
+\sum_{v \in V} \min_{x\in X} d(v,x) = \sum_{v \in V\setminus X}  \min_{x\in X} d(v,x) \leq |V|-p
+$$
+Pero $d(v,x) \geq 1$ si $v\in V\setminus X$, luego 
+$$
+\sum_{v \in V\setminus X}  \min_{x\in X} d(v,x) \geq \sum_{v \in V\setminus X}  1 = |V|-p
+$$
+Por tanto, $d_m(X) = |V|-p$ y $\min_{x\in X} d(v,x) = 1$ $\forall v \in V\setminus X$, por lo que $X$ es un conjunto dominante. Es claro que la reducción de un problema a otro se realiza polinomialmente, pues trabajamos con el mismo grafo añadiendo un peso $c_e=1$ para cada arista de $E$.
+\end{itemize}
+\end{solucion}
+\newpage
+\begin{ejercicio}{1.2}[Problema del $p$-centro]
+Con el mismo enunciado anterior, se define la distancia centro:
+$$
+d_c(X) = \max_{v\in V}\min_{x\in X} d(v,x)
+$$
+Entonces, dado un valor $M$, ¿existe un conjunto $X$ ($p$-centro) tal que $d_c \leq M$?
+\end{ejercicio}
+
+\begin{solucion}
+Primeramente, es claro que el problema es NP, pues dado un conjunto de vértices $X$, basta calcular $|V||X|$ distancias en un grafo y hacer un mínimo y un máximo, y dos comprobaciones. Todo operaciones de complejidad polinómica.	
+
+Para probar que es NP-hard -y por tanto NP-completo- utilizaremos el problema del cubrimiento de vértices correspondiente al Ejercicio 2. 
+\begin{itemize}
+\item Dada una instancia del problema del cubrimiento de vértices $G=(V,E)$, consideramos una instancia para el problema del $p$-centro dada por $G'=(V\cup V',E')$ con $V' = \{v_e \mid e \in E\}$ y $E'$ definido de la siguiente manera
+\begin{itemize}
+\item Si $u,v \in V$ entonces $\{u,v\}\in E'$.
+\item Si $u\in V$ y $\exists v$ tal que $\exists e=\{u,v\}\in E$, entonces ${u,v_e} \in E'$. 
+\end{itemize}
+Si asignamos $c_e=1$ $\forall e \in E'$ es claro que 
+\begin{itemize}
+\item $d(u,u) = 1$ si $u,v \in V$
+\item $d(u,v_e)=1$ si $\{u,v\} \in E$ para algún $v\in V$.
+\item $d(u,v)=2$ en otro caso.
+\end{itemize}
+\item Sea $S$ un cubrimiento por vértices en $G$ de tamaño $|p|$. Vamos a probar que $S$ es una solución al problema del $p$-centro con $d_c(S)=1$. Sea $u \in V$ en $G'$. Como podemos considerar que $G$ es conexo (pues el problema del cubrimiento por vértices puede prescindir de vértices aislados), es claro que $\exists v \in V$ tal que $\{u,v\} \in E$, o bien $u \in S$ o bien $v\in S$. En cualquier caso, $\min_{v \in S}d(u,v) \leq 1$. Sea $v_e \in V'$, con $e=\{u,v\}\in E$. De nuevo, para cubrir esta arista en $G$ por $S$, o bien $u\in S$ o bien $v\in S$, de donde se desprende que $\min_{v\in S}d(v_e,v) = 1$. Por tanto, $d_c(S)=1$.
+\item Recíprocamente, supongamos que tenemos una solución $S$ al problema de la $p$-mediana en $G'$ con $d_c(S) = 1$. Si $\exists v_e \in S$, basta reemplazarlo por cualquiera de los extremos de $e$, generando un nuevo conjunto $S'$, que naturalmente también es solución del problema de la $p$-mediana verificando $d_m(S')=1$. Por tanto $S'\subset V$. Como para todo $e\in E$, $\min_{v\in S'} d(v,v_e) = 1$, por construcción, al menos uno de los dos extremos está en $S'$. Por tanto, $S'$ es un cubrimiento por vértices de tamaño $p$.
+\end{itemize}
+\end{solucion}
+\newpage
+
+\begin{ejercicio}{2}[Cubrimiento por vértices]
+Sea un grafo $G=(V,E)$, donde todos los arcos tienen peso $1$. Decimos que $X\subset V$ es un cubrimiento por vértices si:
+$$
+\forall e \in E, \; e = (i,j) \mid i,j \in V, \; i \in X \text{ ó } j\in X
+$$
+Probar que este problema es NP-completo. Determinar una 2-aproximación.
+\end{ejercicio}
+
+\begin{solucion}
+Primeramente, es claro que el problema es NP, pues dado un conjunto de vértices $X$ basta eliminar de $E$ todas las aristas adyacentes a todos los elementos de $X$ y comprobar si el resultado es vacío. Para probar que es NP-completo vamos a utilizar el problema del clique. Es decir, encontrar un clique de tamaño $K$ en un grafo $G$ puede transformarse encontrar un cubrimiento por vértices en un grafo $G'$ de tamaño $|V|-K$. 
+\begin{itemize}
+\item Consideremos $G'=\overline{G}$, es decir, el grafo complementario de $G$. Esta será la instancia dónde utilizaremos  cubrimiento por vértices. 
+\item Si tenemos un clique $X$ de tamaño $K$ en $G$, entonces consideremos el resto de vértices en $G'$. Si $\exists e$ arista que no es adyacente a ningún elemento de $V-X$ en $G'$, entonces debe ser una arista con ambos extremos en $X$, pero por definición de grafo complementario, $X$ no puede tener ninguna arista en $G'$ (pues tienen todas las posible en $G$). Por tanto, $V-X$ es un cubrimiento por vértices de tamaño $|V|-K$.
+\item Recíprocamente, supongamos que tenemos un cubrimiento $X$ por vértices de tamaño $|V|-K$ en $G'$. Análogamente al apartado anterior, consideramos el conjunto $V-X$ en $G$, que contiene $|V|-(|V|-K)=K$ vértices. Veamos que este conjunto es un clique. Si efectivamente $V-X$ no fuese clique, existiría en $G'$ una arista con extremos en $V-X$, pero esto contradice el hecho de que $X$ es cubrimiento por vértices en $G'$.
+\end{itemize}
+Ahora daremos un algoritmo para obtener una $2$-aproximación al problema.
+\begin{algorithm}
+\KwData{ Un grafo $G=(V,E)$}
+\KwResult{Un cubrimiento por vértices de $G$}
+ initialization\; 
+ Sea $C = \emptyset$\;
+ \While{$E\neq \emptyset$}{
+ Tomamos $e=(u,v)\in E$\;
+ $C:= C\cup\{u,v\}$\;
+ Eliminamos de $E$ todas las aristas incidentes o adyacentes a $u$ o $v$.
+ } 
+\Return $C$
+\end{algorithm}
+
+Es claro que este algoritmo devuelve un cubrimiento por vértices. Por construcción, nuestro algoritmo induce un matching, pues las aristas $e$ que vamos seleccionando no tienen vértices en común. Es más, lo que nuestro algoritmo induce es un matching maximal, pues no podemos añadir ninguna otra arista sin que deje de ser un matching (pues conectaría dos vértices que ya están conectados a otros). 
+\begin{lemma}
+Sea $M \subset E$ un matching maximal y sea $OPT(G)$ un cubrimiento por vértices minimal, es decir, tal que no existe otro cubrimiento por vértices de menor cardinalidad. Entonces $|OPT(G)|\geq |M|$.
+\end{lemma}
+\begin{proof}
+Si consideramos los vértices extremos de las aristas de $M$, se induce un cubrimiento por vértices $C$, pues si hubiese alguna arista no adyacente o incidente a algún vértice de $E$, entonces nuestro matching podría ampliarse con dicha arista, lo cual contradiría su maximialdad. $OPT(G)$ debe incluir al menos uno de los vértices de cada arista del matching para así poder cubrir dichas aristas, de donde se sigue el resultado.
+\end{proof}
+Ahora bien, si por construcción nuestro algoritmo nos da un cubrimiento por vértices $ALG$ que induce matching maximal $M$, entonces es claro que $|ALG| = 2|M|$. Usando el lema anterior llegamos a que
+$$
+|OPT(G)| \geq |M| = \frac{|ALG|}{2} \Rightarrow |ALG| \leq 2|OPT(G)|
+$$
+Por tanto, nuestro algoritmo es una $2$-aproximación. \end{solucion}
+
+
+
+\newpage
+
+\begin{ejercicio}{4}[Problema de la mochila] Dado un conjunto finito de items $N$, cada uno de los cuales tiene asociado un peso $w_i$ y produce un beneficio $v_i$, seleccionar el subconjunto de items a incluir en una mochila que es capaz de soportar un peso máximo de $W$ y teniendo como objetivo, conseguir un beneficio mínimo de $V$. Formulado como un problema de optimización sería:
+\end{ejercicio}
+
+\begin{solucion}
+\end{solucion}
+
+\end{document}

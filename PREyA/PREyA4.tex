@@ -1,0 +1,254 @@
+\documentclass[PREyA.tex]{subfiles}
+\begin{document}
+
+\chapter{Cadenas de Markov}
+\section{Introducción}
+
+\begin{example} El departamento de estudios de mercado de una fábrica estima que el 20$ \% $ de la gente que compra un producto un mes, no lo compra al siguiente. Además, el 30$\%$ de quienes no lo compran un mes lo adquirirán al mes siguiente. En una población de 1000 individuos 100 compraron el primer mes. ¿Cuántos lo compraran al mes próximo? ¿y dentro de 2?
+
+
+\begin{equation*}
+ P(C_{2}) = P(C_{1}) \cdot P(C_{2}\mid C_{1} ) + P(\overline{C_{1}}) \cdot P(C_{2}\mid \overline{C_{1}} ) = 0.1 \cdot 0.8 + 0.9 \cdot 0.3 = 0.35
+\end{equation*}
+
+\begin{equation*}
+ P(C_{3}) = P(C_{2}) \cdot P(C_{3}\mid C_{2} ) + P(\overline{C_{2}}) \cdot P(C_{3}\mid \overline{C_{2}} ) = 0.35 \cdot 0.8 + 0.65 \cdot 0.3 = 0.35
+\end{equation*}
+
+\end{example}
+\begin{defi}
+	Sea $S$ un conjunto discreto. Una \textit{cadena de Marcov} es una sucesión de v.a. $\left\lbrace X_{n}\right\rbrace _{n \in \mathbb{N}}$ que toma valores en S y cumple la propiedad
+	
+	\begin{equation*}
+	P(X_{n+1}=x_{n+1} \mid  X_{1}=x_{1},\dotsc ,X_{n}=x_{n}) = P(X_{n+1}=x_{n+1}\mid X_{n}=x_{n})
+	\end{equation*}
+	para todo $x_{1},\dotsc ,x_{n+1}\in S$.
+	
+\end{defi}
+
+\begin{nota}
+El conjunto $S$ es el espacio de estados de la cadena de Marcov.	
+\end{nota}
+\begin{defi}
+Diremos que la cadena visita el estado $i$ en el instante $n$ si $X_{n}=i$.
+\end{defi}
+
+\section{Probabilidades de transición}
+\begin{defi}
+Si las probabilidades de la ecuación anterior no dependen de $n$ diremos que la cadena de Marcov es \textbf{homogénea} en el tiempo.
+\end{defi}
+\begin{defi}
+Denominamos \textbf{matriz de transición} $P$ de una cadena de Markov homogénea a la matriz dada por
+$$
+p_{ij} = P(X_{n+1}=j\mid X_{n}=i) 
+$$
+\end{defi}
+\begin{defi}
+Se dice que una matriz $P$ es una \textbf{matriz estocastica} si
+	
+	\begin{itemize}
+		\item $p_{ij} \geq 0$ para todo $i,j$.
+		\item Para cada fila $i$, $\sum_{j} p_{ij} =1$
+	\end{itemize}
+	
+\end{defi}
+\begin{prop}
+Una cadena de Marcov homogénea viene completamente especificada por su matriz de transición $P$ y la distribución inicial sobre el espacio de estado.
+\end{prop}
+\begin{nota}
+Si suponemos que nuestras cadenas son homogéneas podemos definir independientemente de $k$
+$$p_{ij}^{(n)} = P(X_{n+k}=j\mid X_{k}=i)$$
+ con $p_{ij}^{0}=1$ para todo $i = j$ y $p_{ij}=0$ en caso contrario. Entonces
+\begin{align*}
+p_{ij}^{(n)} &= \sum_{l=1}^{m}P(X_{n+k}=j, X_{r+k}=l\mid X_{k}=i)\\
+&= \sum_{l=1}^{m} P(X_{n+k}=j\mid X_{r+k}=l)P(X_{r+k}=l\mid X_{k}=i)\\
+&= \sum_{l=1}^{m}P_{il}^{r} P_{lj}^{n-r}
+\end{align*}
+con $r=0,\dotsc,n$. Se cumple, por tanto, que ${P}^{(n)} = {P}^{r} \cdot {P}^{n-r}$ con ${P}^{0}=I$.
+
+\end{nota}
+\begin{defi}
+La \textbf{distribución marginal} viene dada por 
+\begin{equation*}
+\pi_{j}(n) = \sum_{i=1}^{m} P(X_{0}=i)P(X_{n}=j\mid X_{0}=i)=\sum_{i=1}^{m} \pi_{i}(0) P_{ij}^{(n)} \qquad  j=1,2,\dotsc 
+\end{equation*}
+Luego, $\pi(n)=\pi(0) P^{(n)}$.
+\end{defi}
+
+\section{Clasificación de estados}
+\begin{defi}
+Supongamos una cadena de Markov con $m$ estados y matriz de transición $P$. Diremos que un estado $E_i$ es \textbf{absorvente} si 
+$$
+p_{ii} = 1 \qquad p_{ij} = 0 \quad \forall j \neq i
+$$
+\end{defi}
+\begin{defi}
+Supongamos una cadena de Markov con $m$ estados y matriz de transición $P$. Diremos que un estado $E_i$ es \textbf{periódico} de periodo $t$ si 
+$$
+p_{ii}^{(n)} = 0  \quad p_{ij}^{(n)} = 0 \quad \forall t,2t,3t,\dotsc
+$$
+\end{defi}
+\begin{defi}
+Sea $d(i) = \gcd\{n\mid p_{ii}^{(n)}>0\}$. Entonces el estado $E_i$ es \textbf{periódico} si $d(i)>1$ y \textbf{aperiódico} si $d(i)=1$.
+\end{defi}
+\begin{example}
+Supongamos una caadena de Markov con $4$ estados y matriz de transición
+$$P = 
+\begin{pmatrix}
+0 & 1/2 & 0 & 1/2\\
+0 & 0  & 1 & 0\\
+1 & 0 & 0 & 0\\
+0 & 0 & 1 & 0
+\end{pmatrix}
+$$
+Entonces es claro que
+$$P^2 = 
+\begin{pmatrix}
+0 & 0 & 1 & 0\\
+1 & 0  & 0 & 0\\
+0 & 1/2 & 0 & 1/2 \\
+1 & 0 & 0 & 0
+\end{pmatrix} \qquad P^3= \begin{pmatrix}
+1 & 0 & 0 & 0\\
+0 & 1/2  & 0 & 1/2\\
+1 & 0 & 1 & 0\\
+0 & 1/2 & 0 & 1/2
+\end{pmatrix}
+\qquad P^4 = P
+$$
+Se comprueba fácil,ente que todos los estados tienen período $3$.
+\end{example}
+
+\begin{defi}
+Supongamos una cadena de Markov con $m$ estados y matriz de transición $P$. Diremos que un estado $E_i$ es \textbf{recurrente} si la probabilidad de que visite el estado $j$ es $1$. Cuando un estado no es recurrente se dice que es \textbf{transitorio}. 
+\end{defi}
+\begin{defi}
+Denotamos por $f_{ij}$ la probabilidad de que partiendo de $i$ alcancemos $j$ en algún momento. Además, $f_{ij}^{(n)}$ denota la probabilidad de que la cadena visite por primera vez al estado $j$ en el $n$-ésimo instante partiendo de $i$. 
+\end{defi}
+\begin{prop}
+Se tiene
+$$
+f_{ij} = \sum_{n=1}^\infty f_{ij}^{(n)}
+$$
+y además
+$$
+\begin{cases}
+p_{ij}^{(1)} = f_{ij}^{(1)} \\
+p_{ij}^{(n)} = \sum_{r=1}^{n}f_{ij}^{(r)}p_{jj}^{(n-r)}
+\end{cases}
+$$
+\end{prop}
+\begin{prop}
+Una estado $E_i$ es recurrente si y solo si $f_i = 1$.
+\end{prop}
+\begin{defi}
+Dada una v.a. discreta $X$ que toma valores enteros no negativos. Se define fgp a la función dada por
+$$
+P(s) = E[s^X] = \sum_{k=0}^\infty {s^k}p[X=k]
+$$
+\end{defi}
+\begin{nota}
+Podemos definir $p_{ij}^{(0)} = 1$ si $i=j$ y $0$ en caso contrario, y $f^{(0)}_{ij}=0$ en cualquier caso.
+\end{nota}
+\begin{theorem}
+El estado $E_j$ es recurrente si y solo si
+$$
+\sum_{n = 0}^\infty p_{jj}^{(n)} = \infty
+$$
+Por tanto, será transitorio si y solo si la serie es convergente.
+\end{theorem}
+
+\begin{proof}
+Podemos calcular las fg de $p_{ij}^{(n)}$ y $f_{ij}^{(n)}$, las cuales denotamos $P_{ij}(s)$ y $F_{ij}(s)$ respectivamente. Podemos escribir si $i\neq j$:
+\begin{align*}
+P_{ij}(s) &= \sum_{n=0}^\infty s^n p_{ij}^{(n)}\\
+&= \sum_{n=0}^\infty s^n \left(\sum_{r=0}^{n}f_{ij}^{(r)}p_{jj}^{(n-r)}\right)\\
+&=  \left(\sum_{n=0}^\infty s^n f_{ij}^{(n)}\right)\left( \sum_{n=0}^\infty s^n p_{jj}^{(n)}\right)\\
+&=  F_{ij}(s)P_{jj}(s)
+\end{align*}
+Para $i=j$ el razonamiento es ligeramente distinto
+\begin{align*}
+P_{ii}(s) &= \sum_{n=0}^\infty s^n p_{ii}^{(n)}\\
+&= 1+\sum_{n=0}^\infty s^n \left(\sum_{r=0}^{n}f_{ii}^{(r)}p_{ii}^{(n-r)}\right)\\
+&= 1+ \left(\sum_{n=0}^\infty s^n f_{ij}^{(n)}\right)\left( \sum_{n=0}^\infty s^n p_{jj}^{(n)}\right)\\
+&=  1 + F_{ij}(s)P_{jj}(s)
+\end{align*}
+Despejando, obtenemos
+\begin{align*}
+P_{ii}(s) &= \frac{1}{1-F_{ii}(s)} 
+\end{align*}
+Por tanto, $$P_{jj}(1)=\infty \Leftrightarrow  F_{jj}(1)=1 \Leftrightarrow f_j = 1 \Leftrightarrow \text{$E_j$ es recurrente}$$ .
+\end{proof}
+
+\begin{example}
+Supognamos una cadena de Markov con $3$ estados y matriz de transición
+$$
+P=
+\begin{pmatrix}
+p & 1-p &0 \\
+0 & 0 & 1\\
+1-q & 0 & q
+\end{pmatrix}
+$$
+donde $0<p,q<1$. Demostrar que $E_1$ es recurrente. Es fácil comprobar que
+\begin{align*}
+f_{11}^{(1)} &= p\\
+f_{11}^{(2)} &=0\\
+ f_{11}^{(n)}&=(1-p)(1-q)q^{n-3} \quad \forall n\geq 3\\
+\end{align*}
+Por tanto
+$$
+F_{11}(1) = p + (1-p)(1-q)\sum_{n=3}^\infty q^{n-3} = 1
+$$
+Por tanto, $P_{11}(1)=\infty$ y el proceso es recurrente por el teorema anterior.
+\end{example}
+\begin{defi}
+Se define el \textbf{tiempo medio de recurrencia} de un estado recurrente $E_j$ al valor cuando exista de
+$$
+\mu_j=  \sum_{n=1}^\infty nf_j^{(n)}
+$$
+Un estado recurrente $E_j$ se dice que es \textbf{nulo} si $\mu_j=\infty$ y \textbf{no nulo} en caso contrario.
+\end{defi}
+\begin{theorem}
+Un estado recurrente $E_j$ es nulo si y solo si $p_{jj}^{(n)} \to 0$. Además esto ocurre si $p_{ij}^{(n)} \to 0$ para todo $i$.
+\end{theorem}
+\begin{proof}
+Recordemos que
+$$
+P_{jj}(s)=\frac{1}{1-F_{jj}(s)} \Rightarrow F_{jj}(s)=1-\frac{1}{P_{jj}(s)} 
+$$
+Un estado $j$ es recurrente si $P_{jj}(1) = \infty$ o $F_{jj}(1)=1$. Además, notemos que $F'_{jj}(1)=\mu_j$. Vamos aplicar el teorema de Cesaro. Éste establece que, sea una sucesión $a_k$ con límite $a$, entonces
+$$
+\lim_{n\to \infty} \frac{1}{n+1}\sum_{k=0}^n a_k = a
+$$
+Es más,
+$$
+\lim_{n\to \infty} \frac{1}{n}\sum_{k=0}^n a_k = \lim_{s\to 1}(1-s)\sum_{n=0}^\infty a_n s^n
+$$
+Dado que $F_{jj}(1)=1$, podemos aplicar L'Hopital en la siguiente igualdad
+$$
+\lim_{s\to 1} (1-s)P_{jj}(s)=\lim_{s \to 1} \frac{1-s}{1-F_{jj}(s)} =  \lim_{s \to 1} \frac{1}{F_{jj}'(s)}  = \frac{1}{\mu_j}
+$$
+Por tanto, si existe $\lim_{n\to \infty} p_{jj}^{(n)}$ entonces vale $1/\mu_j$. 
+\begin{itemize}
+\item Supongamos que $p_{jj}^{(n)}\to0$. Entonces $\mu_j = \infty$ y por tanto el proceso es nulo.
+\item Supongamos que $\mu_j = 0$, entonces si existe el límite de $p_{jj}^{(n)}$ este es $0$.
+\end{itemize}
+Es más, usando que $P_{ij}(s)=F_{ij}(s)P_{jj}(s)$ tenemos que para cualquier $i\neq j$
+$$
+\frac{1}{\mu_j} = \lim_{s\to 1} (1-s)P_{jj}(s)= \lim_{s\to 1} (1-s)\frac{P_{ij}(s)}{F_{ij}(s)} = \lim_{s\to 1} (1-s)\frac{P_{ij}(s)}{F_{ij}(1)} 
+$$
+Por tanto, si existe el límite de $p_{ij}^{(n)}$ este debe ser $F_{ij}(1)/m_j$. Si $m_j = \infty$ entonces todos los $p_{ij}^{(n)} \to 0$.
+\end{proof}
+
+\newpage
+\begin{defi}
+Un estado $E_j$ se dice que \textbf{ergódico} si es recurrente, no nulo y aperiódico.
+\end{defi}
+
+\section{Clasificación de las cadenas}
+
+\section{Distribuciones estacionarias}
+
+
+\end{document}

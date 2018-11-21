@@ -1,0 +1,94 @@
+\documentclass[PREyA.tex]{subfiles}
+\begin{document}
+
+\chapter{Repaso al Cálculo de Probabilidades}
+\section{Concepto de probabilidad}
+Con el concepto de probabilidad buscamos cuantificar la incertidumbre. Ilustremos esta idea con un ejemplo. Supongamos que tenemos dos juegos $J_1$, donde utilizamos una moneda equilibrada, y $J_2$, donde usamos un dado perfecto, cuyos premios están determinados por las reglas
+$$
+J_1 = \begin{cases}
+10^6 &\text{si sale cara}\\
+0 & \text{cc}
+\end{cases} \qquad J_2 = \begin{cases}
+10^6 & \text{si sale 1} \\
+0&  cc 
+\end{cases}
+$$
+Intuitivamente, es claro que el primer juego es preferible al segundo, pues sabemos que obtener una cara es más probable que obtener un número determinado en un dado perfecto.
+
+\begin{defi} El conjunto de todos los resultados posibles de un experimento aleatorio se conoce como \textbf{espacio muestral} $\Omega$. A cada elemento $\omega \in \Omega$ se denomina \textbf{suceso elemental}. A todo subconjunto $A\subseteq{\Omega}$ se le llama \textbf{suceso aleatorio}.
+\end{defi}
+
+\begin{nota} La estructura de los espacios muestrales puede ser cualquiera: finita, numerable, $\mathbb{R}^{+}$, funcional...
+\end{nota}
+\begin{defi}Sea $\xi$ un experimento aleatorio y $\Omega \neq \emptyset$. Se dice que $\mathscr{F}$ es un \textbf{\'algebra} si cumple que:
+\begin{enumerate}
+\item $\Omega \in \mathscr{F}$.
+\item $\forall A \in \mathscr{F}$, $\overline{A} \in \mathscr{F}$
+\item $\forall A,B \in \mathscr{F}$, $A\cup{B}\in \mathscr{F}$
+\end{enumerate}
+\end{defi}
+\begin{nota} Esta estructura es débil. Por ejemplo, $\Omega = [0,1]$ y $$\mathscr{F} = \{\Omega,\emptyset,\text{uniones finitas de intervalos de la forma $[a,b)$}\}$$
+ Es claro que en este álgebra $0\notin \mathscr{F}$. Necesitamos, por tanto, fortalecer este concepto.
+\end{nota}
+\begin{defi}
+Sea $\xi$ un experimento aleatorio y $\Omega \neq \emptyset$. Decimos que $\mathscr{A}$ es un \textbf{$\sigma$-\'algebra} si cumple que:
+\begin{enumerate}
+\item $\Omega \in \mathscr{A}$.
+\item $\forall A \in \mathscr{A}$, $\overline{A} \in \mathscr{A}$
+\item Si $A_1,A_2,\dotsc,A_n,\dotsc\in \mathscr{A}\Rightarrow \bigcup_{i=1}^{\infty}A_i\in \mathscr{A}$
+\end{enumerate}
+\end{defi}
+\begin{defi}
+Un experimento aleatorio $\xi$ genera un \textbf{espacio probabil\'istico} $(\Omega,\mathscr{A}, P )$, donde $\Omega$ es un espacio muestral no vac\'io, $\mathscr{A}$ es un $\sigma$-\'algebra construido sobre $\Omega$ y $P$ es una \textbf{funci\'on probabil\'istica} que asigna una probabilidad a todo suceso y que verifica los llamados axiomas de Kolmog\'orov. Dichos axiomas son: para todo suceso A $ P (A)\geq 0$, $ P (\Omega)=1$ y ser \textbf{$\sigma$-aditiva}. Esto es que, sean $A_1,..,A_n,\dotsc$ con $A_i\cap A_j = \emptyset$ si $\; i\neq j$
+\begin{equation*}
+ P \left(\bigcup_{i=1}^{\infty}A_i\right) = \sum_{i=1}^{\infty}{ P (A_i)}
+\end{equation*}
+\end{defi}
+
+\begin{example} Si nuestro experimento es un lanzamiento de un dado, tenemos que $\Omega = \{1,2,3,4,5,6\}$ y podemos tomar $\mathscr{A} =  \mathcal{P} (\Omega)$. Para definir nuestra función de probabilidad $P$ utilizamos la regla de Laplace, la cual establece que si todos los sucesos sean equiprobables, teniéndose
+$$
+P(A) = \frac{\#(\text{Sucesos simples de A})}{\#(\Omega)}$$
+\end{example} 
+\begin{example} Si nuestro experimento es tirar dos dados y calcular la suma, entonces no podemos aplicar la regla de Laplace, pues los sucesos no son equiprobables.
+\end{example} 
+
+\section{Probabilidad condicionada e independencia}
+\begin{defi}
+Sea un espacio probabil\'istico $(\Omega,\mathscr{A}, P )$, sean $A,B\in \mathscr{A}$ con $P(B)>0$. Definimos la \textbf{probabilidad condicionada} de $A$ a $B$ como
+\begin{equation*}
+P(A|B)=\frac{P(A\cap B)}{P(B)}=P_{B}(A)
+\end{equation*}
+\end{defi}
+
+\begin{defi}
+Dado un espacio  probabil\'istico $(\Omega,\mathscr{A},\mathcal{P})$, se dice que dos sucesos $A$ y $B$ son \textbf{independientes} si $P(A|B) = P(A)$, es decir si verifican que $P(A\cap B)=P(A)P(B)$. La independencia es un concepto sim\'etrico: si $A$ es independiente de $B$, $B$ es independiente de $A$.
+\end{defi}
+
+\begin{prop}
+Sea un espacio probabil\'istico $(\Omega,\mathscr{A},\mathcal{P})$ y sean $A_1, \dotsc A_n \in \mathscr{A}$ sucesos aleatorios que verifican $P(A_1 \cap \dotsc \cap A_{n-1}) > 0$, entonces se tiene
+\begin{equation*}
+P(A_1 \cap \dotsc \cap A_n) = P(A_1)P(A_2 | A_1)P(A_3|A_1 \cap A_2)\dotsc P(A_n | A_1 \cap \dotsc \cap A_{n-1})
+\end{equation*}
+\end{prop}
+
+\section{Variables aleatorias y vectores}
+
+\begin{defi}Sean $(\Omega,\mathscr{A})$ y $(\mathbb{R},\mathcal{B}(\mathbb{R}))$. Diremos que $X: \Omega \rightarrow \mathbb{R}$ es una \textbf{variable aleatoria real} si 
+\begin{equation*}
+X^{-1}(B)=\{\omega\in\Omega\;|\;X(\omega)\in B\}\in\mathscr{A}\;\forall B\in \mathcal{B}(\mathbb{R})
+\end{equation*}
+donde $\mathcal{B}(\mathbb{R})$ es el $\sigma$-álgebra de Borel, es decir, el menor $\sigma$-álgebra que contiene a los conjuntos de la forma $(-\infty,a]$ $\forall a \in \R$.
+\end{defi}
+
+\begin{defi}
+Sean $(\Omega,\mathscr{A},P)$ y $(\mathbb{R},\mathcal{B}(\mathbb{R}))$. Definimos
+\begin{equation*}
+P_X(B)=P(X^{-1}(B)) \; \forall B \in \mathcal{B}(\mathbb{R})
+\end{equation*}
+\end{defi}
+\begin{prop}$P_X$ es una funci\'on de probabilidad.
+\end{prop}
+
+\section{Esperanzas y momentos}
+\section{Funciones generatrices}
+\end{document}

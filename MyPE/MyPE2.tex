@@ -1,0 +1,233 @@
+\documentclass[MyPE.tex]{subfiles}
+\setcounter{theorem}{1}
+\begin{document}
+
+\chapter{Estimación núcleo}
+\section{Concepto de probabilidad}
+\begin{theorem}
+Sea $K:\R\to\R$ una función medible tal que es acotada, integrable y satisface
+$$
+|x||K(x)|\to 0 \quad |x|\to \infty
+$$
+Sea $g:\R\to\R$ una función medible e integrable. Sea además
+$$
+g_n(x) = \frac{1}{h}\int K(z/h)g(x-z)dz
+$$
+donde $0<h=h_n \to 0$. Entonces se tiene
+\begin{itemize}
+\item Si $g$ es continua en $x$ 
+$$
+g_n(x)\to g(x)\int K(z)dz
+$$
+\item Si $g$ es uniformemente continua
+$$
+\sup_x \abs{g_n(x)-g(x)\int K(z)dz}\to 0
+$$
+\end{itemize}
+\end{theorem} 
+
+\begin{proof}
+\begin{align*}
+g_n(x)-g(x)\int K(z)dz &=  \frac{1}{h}\int K(z/h)g(x-z)dz-g(x)\int K(z)dz \\
+&=
+  \frac{1}{h}\int K(z/h)(g(x-z)-g(x))dz 
+\end{align*}
+Podemos separar la integral en los dominios $|z|<\delta$ y $|z|\geq \delta$. No precisamos quién es $\delta$ sino que se escogerá posteriormente de manera conveniente. A la primera la denominamos $I_1$ y a la segunda $I_2$. Tenemos que
+$$
+\abs{I_1} \leq \sup_{|z|\leq \delta} |g(x-z)g(z)|\frac{1}{h} \int_{|z|<\delta} |K(z/h)|dz
+$$
+\newpage
+Dado que $g$ es continua en x, $\forall \varepsilon >0$ $\exists \delta=\delta(\varepsilon,x)$ tal que $|z-x|<\delta$ implica $|g(x)-g(z)| < \varepsilon$. Si $g$ es uniformemente continua entonces $\delta = \delta(\varepsilon)$. Tenemos entonces que
+$$
+\abs{I_1} \leq \varepsilon \frac{1}{h}  \int_{|z|<\delta} |K(z/h)|dz \leq \varepsilon \int|K(z)|dz
+$$
+$$
+\abs{I_2} \leq \frac{1}{h} \int_{|z|\geq \delta} |K(z/h)||g(x-z)|dz + \frac{1}{h} \int_{|z|\geq \delta} |K(z/h)||g(x)|dz = I_3 + I_4 
+$$
+Como $h \to 0$, $\delta/h\to \infty$, luego para $n$ suficientemente grande podemos acotar el resto de una integral covergente, de manera que
+$$
+I_4 = |g(x)|\frac{1}{h} \int_{|z|\geq \delta/h} K(z)dz < \varepsilon \abs{g(x)}
+$$
+Finalmente
+$$
+I_3 = \frac{1}{h} \int_{|z|\geq \delta} \frac{|z|}{|z|}|K(z/h)||g(x-z)|dz \leq \sup_{|z|\geq \delta} \frac{|z|}{|h|} |K(z/h)| \frac{1}{\delta} \int|g(z)|dz
+$$
+
+\end{proof}
+\begin{coro}
+En nuestro caso podemos aplicar el teorema anterior domando $K$ como la función núcleo y $g$ al estimador del núcleo, es decir,
+$$
+\hat{f}(x) = \frac{1}{nh}\sum_{i=1}^n K\left(\frac{x-X_i}{h}\right)
+$$
+En las condiciones del teorema anterior
+$$
+E[\hat{f}(x)] = \frac{1}{h}E\left[K\left(\frac{x-X}{h}\right)\right] = \int \frac{1}{h} K\left(\frac{x-y}{h}\right) f(y) dy \to f(x) \int K(z)dz = f(x)$$
+Si además $f$ es uniformemente continua se verifica la segunda parte del teorema.
+\end{coro}
+\begin{coro}
+Si denotamos para cada $x,n$ fijos $Z_{i,n} = K((x-X_i)h^{-1})h^{-1}$, entonces $\hat{f}(x) = \frac{1}{n}\sum_{i=1}^n Z_{i,n}$. Para cada $n$ fijo, las $Z_{i,n}$ son i.i.d., aunque para $n$ distintos no lo son. Además, del corolario anterior se deduce que
+$$
+E[Z_{i,n}] = \int\frac{1}{h} K\left(\frac{x-y}{h}\right) f(y) dy \to f(x) \int K(z)dz = f(x)
+$$
+Si queremos estimar la varianza de esta variable, lo más sencillo es calcular el momento de segundo orden de la misma forma. Tan solo es necesario ver que $K^2(\cdot)$ está en las condiciones de la $K(\cdot)$ del Teorema 1 (lo cuál es trivial). Por tanto
+$$
+hE[Z_{i,n}^2] = \int\frac{1}{h} K^2\left(\frac{x-y}{h}\right) f(y) dy \to f(x) \int K^2(z)dz
+$$
+Por tanto, para $n$ suficientemente grande podemos aproximar
+$$
+Var[Z_{i,n}] \approx \frac{1}{h}f(x) \int K^2(z)dz - f(x)^2
+$$
+\end{coro}
+\newpage
+\begin{theorem}
+Sea $K:\R\to\R$ en las condiciones del Teorema 2, sea $0<h = h_n \to 0$ tal que $hn \to \infty$ y sea ${f}$ continua en $x$. Entonces 
+$$
+MSE\{\hat{f}(x)\}\to 0
+$$
+\end{theorem}
+\begin{proof}
+Sabemos que
+$$
+MSE(\hat{f}(x)) = Var[\hat{f}(x)] + \left(E[\hat{f}(x)]-f(x)\right)^2
+$$
+Como consecuencia del Corolario 1, el término que corresponde al sesgo tiende a $0$, pues $E[\hat{f}(x)]\to f(x)$. Además, por el  Corolario 2
+$$
+Var[\hat{f}(x)] \approx \frac{f(x)}{hn}\left(\int K^2(z)dz - hf(x)^2\right)  \approx \frac{f(x)}{hn}\int K^2(z)dz 
+$$
+Como $hf(x) \to 0$ y $f(x)\int K^2(z)dz$ es finito y $hn\to \infty$ tenemos que $Var[\hat{f}(x)] \to 0$ y el resultado. 
+\end{proof}
+\begin{coro}
+En las condiciones del teorema anterior
+$$
+\hat{f}(x)\overset{p}{\longrightarrow}f(x)
+$$
+\end{coro}
+\begin{proof}
+Tenemos que probar que para cada $\varepsilon>0$ fijo
+$$
+\lim_{n\to\infty}P\left[\abs{\hat{f}(x)-f(x)}>\varepsilon\right]=0
+$$
+Para esto, aplicamos la desigualdad de Chebysev, que establece
+$$
+P[|X-\mu|\geq \varepsilon ]\leq \frac{Var[X]^2}{\varepsilon}
+$$
+En nuestro caso, esto se traduce en que
+$$
+P\left[\abs{\hat{f}(x)-f(x)}>\varepsilon\right] \leq \frac{Var[\hat{f}(x)]}{\varepsilon^2} \approx \frac{MSE(\hat{f}(x))}{\varepsilon^2} \to 0 
+$$
+En clase hemos utilizado en mi opinión innecesariamente el $MSE$ en la desigualdad, aunque al fin y al cabo para poder aplicar Chebyshev es necesario que el estimador sea asintóticamente insesgado y para que funcione la demostración que la varianza del estimador converja a $0$, que es equivalente a ser consistentemente insesgado.
+\end{proof}
+\begin{defi}
+Diremos que un conjunto de variables $\{X_{i,n} \mid 1\leq i \leq n\}_{n\geq 1}$ satisface la \textbf{condición de Lindeberg} si
+$$
+\lim_{n\to \infty} \frac{1}{s_n^2}\sum_{k=1}^n E[(X_{k,n}-\mu_{k,n})^2 1_{\{|X_{i,n}-\mu_{k,n}|>\varepsilon s_n\}}]=0
+$$
+donde $s_n^2 = \sum_{k=1}^n Var[X_{k,n}]$.
+\end{defi}
+\newpage
+\begin{defi}
+Diremos que un conjunto de variables $\{X_{i,n} \mid 1\leq i \leq n\}_{n\geq 1}$ satisface la \textbf{condición de Liapunov} si $\exists \delta >0$  tal que
+$$
+\frac{\sum_{i=1}^n E[|X_{i,n}^{2+\delta}|]}{s_n^{2+\delta}} \to 0
+$$
+donde $s_n^2 = \sum_{k=1}^n Var[X_{k,n}]$.
+\end{defi}
+\begin{prop}
+La condición de Liapunov implica la condición de Lindeberg.
+\end{prop}
+\begin{prop}
+Sea array triangula $\{X_{i,n}\mid 1\leq i \leq n\}_{n\geq 1}$ de manera que para cada $n$ fijo las variables del conjunto son independientes (variables independientes por filas), que verifica $\forall n \geq 1$
+$$
+E[X_{i,n}] = 0, \; \leq i \leq n 
+$$
+$$
+0< E[X_{i,n}^2] = \sigma_{i,n}^2 < \infty, \; 1\leq i \leq n
+$$
+y que además satisfacen la condición de Lindeberg. Entonces 
+$$
+\frac{\sum_{i=1}^n X_{i,n}}{s_n} \to N(0,1)
+$$
+donde $s_n^2 = \sum_{i=1}^n Var[X_{i,n}]$.
+\end{prop}
+\setcounter{theorem}{4}
+\begin{theorem}
+Sea $K:\R\to\R$ una función medible, acotada, integrable, simétrica tal que
+$$
+|x||K(x)|\to 0 \quad |x|\to \infty 
+$$
+$$
+\int K(x)dx = 1 \qquad A=\int x^2 K(x)dx <\infty
+$$
+Sea $h=h_n \to 0$ tal que $nh\to \infty$. Si $f$ es continua en $x$ entonces 
+$$
+\sqrt{nh}(\hat{f}(x)-E[\hat{f}(x)])\overset{d}{\longrightarrow}N(0,\sigma^2)
+$$
+donde $\sigma^2 = f(x)\int K^2(u)du$.
+\end{theorem}
+\begin{proof}
+Sabemos que $\hat{f}(x)$ es la media aritmética de unas ciertas variables $Z_{i,n}$ i.i.d. para cada $n$ fijo. Aunque no podemos usar el TCL tradicional, podemos usar el anterior. Sea $X_{i,n} = Z_{i,n} - E[z_{i,n}]$.  Por construcción las $X_{i,n}$ tienen media $0$ y varianza aproximadamente (para $n$ suficentemente grande) $ f(x)\int K^2(u)du/h  = \sigma^2/h$. Veamos que se satisface la condición de Liapunov 
+\begin{align*}
+E[|X_{i,n}^{2+\delta}|] &= \int \frac{1}{h^{2+\delta}}\abs{K\left(\frac{x-y}{h}\right) - h E[z_{i,n}]}^{2+\delta} f(y)dy \\
+&= 
+\int \frac{1}{h^{2+\delta}}|K(u) - h E[z_{i,n}]|^{2+\delta} f(x+uh)du 
+\end{align*}
+Se puede probar que la función integrando está en las condiciones del Teorema de Convergencia Dominada, de donde obtenemos junto con el Teorema 2
+$$
+h^{1+\delta}E[|X_{i,n}^{2+\delta}|] \to f(x)\int |K(u)|^{2+\delta}du < \infty
+$$
+Se tiene pues
+$$
+\frac{\sum_{i=1}^n E[|X_{i,n}^{2+\delta}|]}{s_n^{2+\delta}}  \approx \frac{n}{h^{1+\delta}} \frac{f(x)\int {|k(u)|^{2+\delta} du}}{(\frac{n}{h}f(x)\int k^2(u)du )^{1+\delta/2}} =
+M \frac{n}{n^{1+\delta/2}} \frac{h^{1+\delta/2}}{h^{1+\delta}} = M \frac{1}{(nh)^{\delta/2}} \to 0
+$$
+Quedando probada la condición de Liapunov, deducimos
+$$
+\frac{\sum_{i=1}^n Z_{i,n}-E[Z_{i,n}]}{\left(n\sigma^2/h\right)^{½}} \to N(0,1)
+$$
+Dividiendo arriba y abajo por $n$ tenemos 
+$$
+\sqrt{nh} \frac{\hat{f}(x)-E[\hat{f}(x)]}{\sigma} \to N(0,1)
+$$
+\end{proof}
+\begin{nota}
+La varianza muestral no es un estimador robusto.
+\end{nota}
+\begin{example}
+Probar que 
+$$
+\frac{1}{n}\sum_{i=1}^n \hat{f}(X_i)
+$$
+es un estimador sesgado de $\int \hat{f(x)}f(x)dx$.
+\end{example}
+\begin{prop}
+Se tiene que
+$$
+E\left[\frac{1}{n}\sum_{i=1}^n \hat{f}_{-i}(X_i)\right] = E\left[\int \hat{f}(x)f(x)dx \right]
+$$
+
+\end{prop}
+\begin{proof}
+\begin{align*}
+E\left[\int \hat{f}(x)f(x)dx \right] &= E\left[\int \frac{1}{h}K\left(\frac{x-X_i}{h}\right)f(x)dx \right]\\
+&=\int \int   \frac{1}{h}K\left(\frac{x-y}{h}\right)f(x)f(y)dxdy
+\end{align*}
+Si desarrollamos el otro lado
+\begin{align*}
+E\left[\frac{1}{n}\sum_{i=1}^n \hat{f}_{-i}(X_i)\right] &= E\left[\hat{f}_{-1}(X_1)\right]\\
+&= E\left[\frac{1}{h}K\left(\frac{X_1-X_2}{h}\right)\right]\\
+&=\int \int   \frac{1}{h}K\left(\frac{x-y}{h}\right)f(x)f(y)dxdy
+\end{align*}
+\end{proof}
+
+\begin{prop}
+\end{prop}
+\begin{proof}
+Sumar y restar $Y_i$ y devidir en dos integrales, de manera que una queda $0$ por ser simétrica y la otra $Y_i$ por hipótesis de que $L$ integra con valor $1$.
+\begin{align*}
+\hat{m}(x) &= \int y \frac{\hat{f}(x,y)}{\hat{f}_X(x)}dy\\
+&=\frac{1}{\hat{f}_X(x)}\frac{1}{nh}\sum_{i=1}^n K\left(\frac{x-X_i}{h}\right)\int y\frac{1}{g}L\left(\frac{y-Y_i}{g}\right)\\
+&=\frac{1}{\hat{f}_X(x)}\frac{1}{nh}\sum_{i=1}^n K\left(\frac{x-X_i}{h}\right)\left(\int (y-Y_i)\frac{1}{g}L\left(\frac{y-Y_i}{g}\right)dy + \int Y_i\frac{1}{g}L\left(\frac{y-Y_i}{g}\right)dy \right)\\
+&=\sum_{i=1}^n \frac{K\left(\frac{x-X_i}{h}\right)}{\sum_{j=1}^n K\left(\frac{x-X_j}{h}\right)}Y_i
+\end{align*}
+\end{proof}
+\end{document}
