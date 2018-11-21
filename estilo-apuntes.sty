@@ -19,7 +19,7 @@
 \usepackage{color}
 \usepackage{hyperref}
 \hypersetup{colorlinks=true,citecolor=red, linkcolor=blue}
-\usepackage[]{graphicx}
+\usepackage[]{graphicx, cutwin}
 \usepackage{pgf,tikz}
 \usepackage{tikz-cd}
 \usetikzlibrary{babel}
@@ -73,6 +73,7 @@
 \newcommand{\A}{\mathbb{A}}
 \newcommand{\calA}{\mathcal{A}}
 \newcommand{\calF}{\mathcal{F}}
+\newcommand{\calG}{\mathcal{G}}
 \newcommand{\Ank}{\A^n_k}
 \newcommand{\Amk}{\A^m_k}
 \newcommand{\R}{\mathbb{R}}
@@ -85,6 +86,7 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\CC}{\mathcal{C}}
+\newcommand{\UU}{\mathcal{U}}
 \newcommand{\K}{\mathbb{K}}
 \newcommand{\KK}{{\mathcal K}}
 \newcommand{\OO}{{\mathcal O}}
@@ -96,16 +98,21 @@
 \newcommand{\I}{\mathcal{I}}
 \newcommand{\m}{{\mathfrak{m}}}
 \newcommand{\p}{{\mathfrak{p}}}
+\newcommand{\q}{{\mathfrak{q}}}
 \newcommand{\Tau}{\mathcal{T}}
 \newcommand{\parcial}[2]{\frac{\partial #1}{\partial #2}}
 \newcommand{\dparcial}[2]{\dfrac{\partial #1}{\partial #2}}
 \DeclareMathOperator{\Ima}{Im}
 \DeclareMathOperator{\Rea}{Re}
 \DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\spec}{Spec}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\proj}{Proj}
 
 \newcommand{\verteq}{\rotatebox{90}{$\,=$}}
 \newcommand{\vertequiv}{\rotatebox{110}{$\,\equiv$}}
-\providecommand{\lrg}{\longrightarrow}
+\providecommand{\lrg}{\longrighta
+rrow}
 \providecommand{\xn}[1]{x_1,\dotsc,x_{#1}}
 \providecommand{\func}[2]{\colon{#1}\longrightarrow{#2}}
 \newcommand*{\QED}{\hfill\ensuremath{\blacksquare}}

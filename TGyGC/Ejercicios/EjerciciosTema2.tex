@@ -36,7 +36,7 @@ Sea $K_{1,r}$ el grafo estrella de $r + 1$ vértices y $r$ aristas. Calcula $ex(
 $r, n ∈ \N$.
 \end{ejercicio}
 \begin{solucion}
-Si $n\leq r$, entonces el grafo extremal es $K_n$, puesto que los vértices tienen grado $n-1<r$. Para $n\geq r+1$ podemos seguir la estrategia del ejercicio anterior, asignando a cada vértices $r-1$ aristas mientras sea posible. CONTINUAR
+Si $n\leq r$, entonces el grafo extremal es $K_n$, puesto que los vértices tienen grado $n-1<r$. Para $n\geq r+1$ podemos seguir la estrategia del ejercicio anterior, asignando a cada vértices $r-1$ aristas mientras sea posible. Por el lema del apretón de manos sabemos que $2ex(5, K_{1,4})=\sum\delta(v)\leq (r-1)n$, luego $ex(5, K_{1,r})=\lfloor \frac{(r-1)n}{2}\rfloor$. 
 \end{solucion}
 
 \newpage
@@ -94,6 +94,11 @@ existen dos triángulos monocromáticos en dicha coloración de $K_6$
 \end{ejercicio}
 \begin{solucion}
 Hay $\binom{6}{3}=20$ triángulos en $K_6$. Vamos a probar que existen a lo sumo 18 triángulos \emph{bicromáticos}. Llamamos \emph{águnlo bicromático} a un par de aristas incidentes de distinto color. Todo triángulo bicromático contiene exactamente 2 ángulos bicromáticos y todo ángulo bicromático está contenido exactamente en un triángulo bicromático. Por tanto, el número de triángulos bicromáticos es la mitad que el de ángulos bicromáticos. Sean $v_1,\dots, v_6$ los vértices de $K_6$. Denotamos $r_i$ y $b_i$ respectivamente al número de aristas rojas y azules incidentes en $v_i$. Como $r_i+b_i=5$, el número de ángulos monocromátios en $v_i$ es $r_ib_i\leq 6$. Así, el número de ángulos monocromáticos es $\sum_{i=1}^6r_ib_i\leq 36$, y por tanto el número de triángulos bicromáticos es  $\frac{1}{2}\sum_{i=1}^6r_ib_i\leq 18$. Así que como mínio habrá $20-18=2$ triángulos monocromáticos. 
+
+
+%\textbf{ALTERNATIVA}
+%
+%Usando el ejercicio siguiente, partimos de que existe un $K_3$ monocromático, digamos azul, por ejemplo en los vértices $v_1,v_2,v_3$. Supongamos que de $v_1,v_2,v_3$ salen 2 aristas azules hacia $v_3,v_4,v_5$, entonces podemos encontrar un 4-ciclo monocromático. En otro caso, al menos dos aristas de $v_4,v_5,v_6$ al $K_3$ son rojas, de donde sacamos el 4-ciclo rojo. 
 \end{solucion}
 
 \newpage

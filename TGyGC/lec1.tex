@@ -127,5 +127,11 @@ $R(m,n:2)\leq R(m-1,n;2)+R(m,n-1;2)$. $R(m,n;2)\leq\binom{m+n-2}{m-1}$.
 
 Dado un conjunto $A=\{1,\dots, N\}$ y una coloración $\varphi(x)\in\{1,\dots, n\}$, podemos 2-colorar las aristas de $K_n$ mediante $c(\{i,j\})=\varphi(|i-j|)$. ¿Cuál es la relación entre $n$ y $N$?
 
-Si $K_3$ monocromático está contenido en $K_n$, con vértices digamos $i<j<k$, entonces $\varphi(|i-j|)=\varphi(|j-k|)\varphi(|k-i|)$, llamándolos $x=j-i$, $y=k-j$ y $z=k-i$, tenemos solución monocromática a la ecuación $x+y=z$. 
+Si $K_3$ monocromático está contenido en $K_n$, con vértices digamos $i<j<k$, entonces $\varphi(|i-j|)=\varphi(|j-k|)\varphi(|k-i|)$, llamándolos $x=j-i$, $y=k-j$ y $z=k-i$, tenemos solución monocromática a la ecuación $x+y=z$ ($x$ e $y$ no tienen que ser distintos). Se dice que un conjunto $C=\{x_1,\dots x_p\}$ es libre de suma para la ecuación $x+y=z$ si $x_{i_1}+x_{i_2}\notin C$ $\forall i_1,i_2$. 
+
+Dado un conjunto $\{1,\dots, P\}$ podemos buscar una partición en $n$ subconjuntos tal que cada conjunto de la partición sea libre de suma para $x+y=z$. Hay una solución monocromática de $x+y=z\Leftrightarrow\exists\{x,y,z\}$ contenido en la partición $C_i\Rightarrow C_i$ no es libre de suma. Sabemos que $P$ debe ser menor estrictamente que $S(n,2)$. 
+
+Los parámetros del número $S(n,m)$ representan el número de colores y el número de sumandos en el lado izquierdo de la ecuación, respectivamente. A base de probar se demuestra que $S(2,2)=5$ (con 4 elementos se puede conseguir la coloración libre de suma). 
+
+Sea $A =\{1,\dots, N\}$ y una coloración $c:A\to \{1,\dots, n\}$. Consideremos $K_{N+1}$ ($V(K_{N+1})=\{0,\dots, N\}$) coloreado con $n$ colores mediante una coloración $\varphi$ tal que para cada par de vértices  $(i,j)$ con $i<j$, $\varphi(\{i,j\})=c(j-i)$. Por ejemplo para $p_i=3$, $N+1\geq R(3,\dots, 3;2)$ ($n$ colores), luego existe $K_3$ monocromático, luego existen $(i,j), (j,k), (i,k)$ tales que $\varphi(i,j)=\varphi(j,k)=\varphi(i,k)$. Entonces si llamamos $x=j-i, y=k-j, z=k-i$, $x+y=z$ y se tiene que $c(x)=c(y)=c(z)$. En general, $S(n,2)\leq R(\underbrace{3,\dots, 3}_{n};2)-1$. 
 \end{document}
