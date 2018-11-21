@@ -130,7 +130,25 @@ w_k = \begin{cases}
 \end{cases} \qquad b\leq k\leq a
 $$
 \newpage
-Para la segunda parte del problema, vamos a calcular $v_k=P$
+Para la segunda parte del problema, consideremos $T_k$ la variable aleatoria del número de partidas antes de la ruina sabiendo que tenemos $k$ unidades. Queremos calcular $d_k = E[T_k]$. Naturalmente
+$$d_k=E[T_k|\text{Ganar}]P[\text{Ganar}]+E[T_k|\text{Perder}]P[\text{Perder}]$$
+Ahora bien, la distriubución de $T_k$ sujeto a que ganamos, debe ser $1+T_{k+1}$, así como si está sujeto a que perdemos, $1+T_{k-1}$, luego obtenemos la ecuación
+$$
+d_k = p(1+d_{k+1})+q(1+d_{k-1})=1+pd_{k+1}+qd_{k-1}
+$$
+con las condiciones de contorno $d_b = d_a = 0$. Si nos fijamos, la ecuación homogénea asociada es la que resolvimos antes, por lo que una solucion general de la ecuación homogénea viene dada (para $p=q$) por $C_1+C_2k$. Por otra parte, es trivial comprobar que $-k^2$ es una solución particular de la ecuación, luego la solución general viene dada por
+$$
+-k^2 + C_1+ C_2k 
+$$
+Imponiendo las condiciones de contorno tenemos
+\begin{align*}
+-a^2 + C_1 + C_2a &=0\\
+-b^2+C_1 +C_2b &=0
+\end{align*}
+Si despejamos, obtenemos $C_1 = -ab$ y $C_2 = a+b$, por lo que la solución del problema es
+$$
+d_k = -k^2 -ab + (a+b)k = (k-a)(b-k)
+$$
 \end{solucion}
 
 
@@ -160,14 +178,18 @@ y análogamente para $T_{m_3}- T_{m_2}$. Por la proposición anterior, las difer
 \item \textbf{Independencia}. Claramente no lo son, pues $T_1$ y $T_2$ (p.e) no lo son, ya que $T_1$ y $T_2-T_1$ sí lo son, luego 
 
 $$
-Cov(T_1,T_2-T_1) = 0 = Cov(T_1,T_2) - Var(T_1) \Rightarrow Cov(T_1,T_2) = Var(T_1). 
+Cov(T_1,T_2-T_1) = 0 = Cov(T_1,T_2) + Var(T_1) \Rightarrow Cov(T_1,T_2) = Var(T_1). 
 $$
 
 Como $T_1$ no es constante, su varianza no puede ser nula.
-\item \textbf{Proceso markoviano}. Para $T_1,T_2,T_3$ la ecuacion implicaria $T_3$ independiente de $T_1$, lo cual no es cierto.
+\item \textbf{Proceso markoviano}. Para $T_1,T_2,T_3$ tendríaos que
+$$
+P[T_1 = x_1 \mid T_2 = x_2,T_3=x_3] = P[T_1=x_1\mid T_3=x_3]
+$$
+la ecuacion implicaria $T_3$ independiente de $T_1$, lo cual no es cierto.
 
 \item \textbf{Cadena de Markov}. Al no ser proceso markoviano tampoco puede ser cadena de Markov.
-\item Martingala
+\item 
 \item \textbf{Estacionario}. Claramente no puede serlo, pues en particular las $T_k$ deberían ser idénticamente distribuidas.
 \item \textbf{Débilmente estacionario}. Si calculamos explícitamente la esperanza de $T_k$ observamos
 $$
@@ -187,14 +209,14 @@ Por tanto, será transitorio si y solo si la serie es convergente.
 \end{ejercicio}
 
 \begin{solucion}
-Podemos calcular las fg de $p_{ij}^{(n)}$ y $f_{ij}^{(n)}$, las cuales denotamos $P_{ij}(s)$ y $F_{ij}(s)$ respectivamente. Podemos escribir si $i\neq j$:
+Podemos calcular las fg de $p_{ij}^{(n)}$ y $f_{ij}^{(n)}$, las cuales denotamos $P_{ij}(s)$ y $F_{ij}(s)$ respectivamente. Tengamos en cuenta que $p_{ij}^{(0)}=1$ si $i=j$ y $0$ en caso contrario, y que $f_{ij}^{(0)} = 0$ $\forall i,j$. Podemos escribir si $i\neq j$:
 \begin{align*}
 P_{ij}(s) &= \sum_{n=0}^\infty s^n p_{ij}^{(n)}\\
 &= \sum_{n=0}^\infty s^n \left(\sum_{r=0}^{n}f_{ij}^{(r)}p_{jj}^{(n-r)}\right)\\
 &=  \left(\sum_{n=0}^\infty s^n f_{ij}^{(n)}\right)\left( \sum_{n=0}^\infty s^n p_{jj}^{(n)}\right)\\
 &=  F_{ij}(s)P_{jj}(s)
 \end{align*}
-Para $i=j$ el razonamiento es ligeramente distinto
+Para $i=j$ el razonamiento es ligeramente distinto,
 \begin{align*}
 P_{ii}(s) &= \sum_{n=0}^\infty s^n p_{ii}^{(n)}\\
 &= 1+\sum_{n=0}^\infty s^n \left(\sum_{r=0}^{n}f_{ii}^{(r)}p_{ii}^{(n-r)}\right)\\
@@ -223,7 +245,11 @@ Demostrar que el estado $E_1$ es recurrente no nulo.
 \end{ejercicio}
 
 \begin{solucion}
-Tenemos que $p_{11}^{(n)}=1/2$, luego la suma diverge. Además, por el teorema de caracterización no puede ser nulo, pues no tiende a $0$.
+Tenemos que $p_{11}^{(n)}=1/2$, por lo que
+$$
+\lim_{s\to 1} P_{11}(s)= \sum_{n=0}^\infty 1/2 = \infty
+$$
+Por el Teorema de Caracterización, el estado $E_1$ es recurrente. Además, por el teorema de caracterización de estados nulos, tenemos que para que fuese nulo debería tenerse que $p_{11}^{(n)}\to0$, pero no es así. Por tanto, el proceso es no nulo.
 \end{solucion}
 \newpage
 
