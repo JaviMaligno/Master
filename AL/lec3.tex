@@ -1,0 +1,32 @@
+\documentclass[AL.tex]{subfiles}
+
+\begin{document}
+
+
+%\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
+
+\chapter{Complejidad de un problema}
+
+\section{Primeras nociones}
+\begin{defi}\
+\begin{itemize}
+\item Complejidad de un algoritmo $A$: ratio de crecimiento del tiempo de computación del algoritmo, denotado $T_A(n)$
+\item Complejidad de un problema $P$: complejidad del ``mejor algoritmo'' (en el sentido de su complejidad) que resuelve $P$. La denotamos $C_P(n)$. 
+\end{itemize}
+\end{defi}
+De la definición se deduce que $C_p(n)\leq T_A(n)$ para $A$ un algoritmo que resuelve $P$.  Si cualquier algoritmo $A$ para resolver $P$ requiere al menos $S_P(n)$, entonces $C_P(n)\geq S_P(n)$. Si $T_A(n)\in\Theta(S_p(n))$, se dice que $C_p(n)=\Theta(T(n))$ y el algoritmo $A$ es \emph{óptimo}. 
+
+\begin{ej}[Matrix-Addition]
+El algoritmo más evidente tiene dos bucles (hay un índice para las filas y otro para las columnas), luego $T_A(n)\in\O(n^2)$. Por el tamaño de la matriz sabemos que el algoritmo no puede ser mejor, ya que hay que tener al menos un espacio de memoria de orden $n^2$, luego $S_P(n)=\Theta(n^2)$. 
+\end{ej}
+
+\begin{ej}[Matrix-Multiplication]
+El algoritmo clásico para multiplicar matrices requiere 3 bucles (hay que tener en cuenta que hacer el producto de una fila por una columna también es un bucle), luego $T_A(n)=\Theta(n^3)$. Es claro que $C_P(n)\in\Omega(n^2)$ de nuevo por el tamaño de la matriz. Esto nos dice que $n^2\leq C_P(n)\leq n^3$. La complejidad exacta de este problema es un problema abierto. Los mejores algoritmos para resolver este problema actualmente tienen orden $O(n^{2.373})$. 
+\end{ej}
+
+\begin{ej}[Sorting]
+Conocemos el algoritmo Merge-Sort, en el cual $T_A(n)\in O(n\log n)$, de modo que $C_P(n)\leq O(n\log n)$. De hecho puede probarse $C_p(n)\geq\Omega(n\log n)$, con lo que $C_P(n)\in\Theta(n\log n)$. Esto quiere decir que Merge-Sort es óptimo. Este resultado lo probamos a continuación.
+
+\end{ej}
+
+\end{document}
