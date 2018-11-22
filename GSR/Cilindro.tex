@@ -276,6 +276,8 @@ Damos ahora también dos ejemplos de funciones diferenciables.
 
 \section{Ejemplos de curvas diferenciables y vectores tangentes}
 
+
+
 Vamos a dar dos ejemplos de curvas que luego veremos que son geodésicas y uno que se verá que no es geodésica, y calcularemos vectores tangentes a la variedad en puntos por los que pasan estas curvas. Usaremos el sistema de coordenadas de una sola carta $(C, \psi=(x_1,x_2))$ para calcular las coordenadas de los vectores tangentes mediante su expresión local.
 
 %\begin{enumerate}
@@ -291,14 +293,21 @@ Vamos a dar dos ejemplos de curvas que luego veremos que son geodésicas y uno q
 
 
 \begin{enumerate}
-\item La curva $\gamma(t)=(\cos t, \sin t, t)$ con $t\in\R$ es una curva diferenciable sobre el cilindro. Sea $p=(1,0,0) =\gamma(0)$. Entonces el campo $\gamma'(0)$ tiene coordenadas $\gamma'(0)(x_1)$ y $\gamma'(0)(x_2)$. Vamos a calcularlas. 
+\item La curva $\gamma(t)=(\cos t, \sin t, t)$ con $t\in\R$ es una curva diferenciable sobre el cilindro. Podemos interpretarla como la imagen de una espiral mediante la carta $\psi$. Efectivamente, $\psi(\gamma(t))=(\cos t e^t, \sin t e^t)$, que es la espiral siguiente:
+
+\begin{figure}[h!]
+\includegraphics[scale=0.3]{espiral}
+\end{figure}
+
+
+Sea $p=(1,0,0) =\gamma(0)$. Entonces el campo $\gamma'(0)$ tiene coordenadas $\gamma'(0)(x_1)$ y $\gamma'(0)(x_2)$. Vamos a calcularlas. 
 \[
 \gamma'(0)(x_1)=\left.\frac{d(x_1\circ\gamma)}{dt}\right|_{t=0}=\left.\frac{d(\cos(t)e^t)}{dt}\right|_{t=0}=(-\sin(t)e^t+\cos(t)e^t)_{t=0}=1
 \]
 \[
 \gamma'(0)(x_2)=\left.\frac{d(x_2\circ\gamma)}{dt}\right|_{t=0}=\left.\frac{d(\sin(t)e^t)}{dt}\right|_{t=0}=(\cos(t)e^t+\sin(t)e^t)_{t=0}=1
 \]
-Luego tenemos el vector tangente $u=\left(\parcial{}{x_1}\right)_p+\left(\parcial{}{x_2}\right)_p$
+Luego tenemos el vector tangente $u=\left(\parcial{}{x_1}\right)_p+\left(\parcial{}{x_2}\right)_p$. Este resultado también tiene una interpretación geométrica. Sabemos que el espacio tangente a $S^1\times\R$ en $p$ es isomorfo a $\R\oplus\R$, luego el vector tangente en $p$ tiene la misma componente en cada sumando, lo cual en este caso coincide con la dirección del vector visto sobre el cilindro en $\R^3$ si pensamos en $S^1$ y $\R$ como la circunferencia y la generatriz que pasan por $p$, que sería el $(0,1,1)$. 
 
 \item  La curva $\beta(t)=(1, 0, t)$ para $t\in\R$ es una curva diferenciable sobre el cilindro. Sea $p=(1,0,1)=\beta(1)$. Calculamos las coordenadas del vector $\beta'(1)$.
 \[
@@ -322,7 +331,8 @@ Entonces el vector es $\beta'(1)=e\left(\parcial{}{x_1}\right)_p$.
 
 \section{El cilindro es subvariedad regular de $\R^3$ con la inclusión}
 
-Sea $i:C\hookrightarrow \R^3$ la inclusión. Tal como hemos definido $C$, tiene la topología relativa de $\R^3$, por lo que en virtud de la proposición 4.2.2 de la asignatura Variedades Diferenciables, es suficiente probar que $(C,i)$ es subvariedad de $\R^3$. Para ello probaremos que $i$ es una inmersión inyectiva. Que es inyectiva es evidente, y para que sea inmersión necesitamos que su diferencial lo sea, así que calculamos la matriz de la aplicación $i_{*p}$ para un punto $p\in C$ genérico, que coincide con la matriz jacobiana de la aplicación $i\circ \varphi^{-1}$. Por tanto, obtenemos la matriz
+
+Sea $i:C\hookrightarrow \R^3$ la inclusión. Tal como hemos definido $C$, tiene la topología relativa de $\R^3$, por lo que en virtud de la proposición 4.2.2 de la asignatura Variedades Diferenciables, es suficiente probar que $(C,i)$ es subvariedad de $\R^3$. Para ello probaremos que $i$ es una inmersión inyectiva. Que es inyectiva es evidente, y para que sea inmersión necesitamos que su diferencial lo sea, así que calculamos la matriz de la aplicación $i_{*p}$ para un punto $p\in C$ genérico, que coincide con la matriz jacobiana de la aplicación $i\circ \varphi^{-1}_i$, donde $\varphi_i$ proviniene de la carta que contiene a $p$. Suponemos $i=1$ y el resto de casos son análogos. Por tanto, obtenemos la matriz
 \[
 \begin{pmatrix}
 -\sin\theta & 0 \\
@@ -334,19 +344,27 @@ Esta matriz representa una aplicación lineal $\R^2\to\R^3$ y tiene rango máxim
 
 \section{Campos diferenciables sobre el cilindro}
 
-Damos dos ejemplos de campos de vectores diferenciables sobre el cilindro. Para ambos usaremos la estrategia de cubrir el cilindro por una familia de curvas diferenciables disjuntas, de modo que en cada punto podemos asociar el vector tangente a ese punto obtenido a partir de la curva que pasa por él. Igual que para los vectores tangentes, usamos el sistema de coordenadas $(C,\psi=(x_1,x_2))$. 
+Damos tres ejemplos de campos de vectores diferenciables sobre el cilindro. Para los dos primeros usaremos la estrategia de cubrir el cilindro por una familia de curvas diferenciables disjuntas, de modo que en cada punto podemos asociar el vector tangente a ese punto obtenido a partir de la curva que pasa por él. Para el tercero induciremos en $C$ un campo de vectores a partir del campo de vectores de posición de $\R^2\setminus\{0\}$ mediante $\psi$. Igual que para los vectores tangentes, usamos el sistema de coordenadas $(C,\psi=(x_1,x_2))$. 
 
 \begin{enumerate}
 \item
  Recordemos la curva $\beta(t)=(1,0,t)$, que es una recta vertical con $t\in\R$. Podemos cubrir el cilindro si hacemos girar esta recta mediante un parámetro $\theta\in[0,2\pi)$, de modo que obtenemos la familia $\beta_\theta(t)=(\cos\theta,\sin\theta, t)$. Para cada punto $p\in C$, existe un único par  $(\theta_0,t_0)$ tal que $p=\beta_{\theta_0}(t_0)$, por lo que definimos el campo $X:C\to TC$ como $X_p=\beta'_{\theta_0}(t_0)$.
  
-\item Hacemos ahora lo propio con la familia de circunferencias $\gamma_h(t)=(\cos t,\sin t, h)$ para $t\in (0,2\pi)$ y $h$ variando en $\R$. La diferencia ahora es que esta familia no cubre por completo el cilindro, pero podemos definir el campo de vectores sobre la recta que queda sin cubrir simplemente tomando límite. Es decir, como tenemos que $\lim_{t\to 0^+}\gamma'_h(t)=\lim_{t\to 2\pi^-}\gamma'_h(t)=-e^h\left(\parcial{}{x_2}\right)_p$, donde $p=(1,0,h)$, tenemos un vector tangente para cada punto de dicha recta, al que denotaremos $\gamma'_h(0)$. Así, definimos el campo $Y:C\to TM$ como $Y_p=\gamma'_{h_0}(t_0)$, donde $(h_0, t_0)$ es el único par tal que o bien $\gamma_{h_0}(t_0)=p$ o bien $t=0$ y $p=(1,0,h_0)$. 
+\item Hacemos ahora lo propio con la familia de circunferencias $\gamma_h(t)=(\cos t,\sin t, h)$ para $t\in (0,2\pi)$ y $h$ variando en $\R$. La diferencia ahora es que esta familia no cubre por completo el cilindro, pero podemos definir el campo de vectores sobre la recta que queda sin cubrir simplemente tomando límite. Es decir, como tenemos que $\lim_{t\to 0^+}\gamma'_h(t)=\lim_{t\to 2\pi^-}\gamma'_h(t)=-e^h\left(\parcial{}{x_2}\right)_p$, donde $p=(1,0,h)$, tenemos un vector tangente para cada punto de dicha recta, al que denotaremos $\gamma'_h(0)$. Así, definimos el campo $Y:C\to TC$ como $Y_p=\gamma'_{h_0}(t_0)$, donde $(h_0, t_0)$ es el único par tal que o bien $\gamma_{h_0}(t_0)=p$ o bien $t=0$ y $p=(1,0,h_0)$. 
 
+\item Sea $\R^2\setminus\{0\}$ con coordenadas $(u_1,u_2)$ dadas por la identidad. Consideramos el campo $X_p=u_1(p)\left(\parcial{}{u_1}\right)_p+u_2(p)\left(\parcial{}{u_2}\right)_p$. Transformamos este campo sobre $\R^2\setminus\{0\}$ en un campo sobre $C$ mediante el $\psi^{-1}_*:\mathcal{X}(C)\to\mathcal{X}(\R^2\setminus\{0\})$. Recordamos que en el cilindro tenemos coordenadas $(x_1,x_2)$. Por definición, 
+\[
+(\psi^{-1}_*X)x_i=X(x_i\circ \psi^{-1})\circ \psi=X(u_i)\circ\psi =u_i\circ\psi 
+\]
+que para $i=1$ nos da $xe^z$ y para $i=2$, $ye^z$. Es decir, para un punto $p=(x,y,z)\in C$, $(\psi^{-1}_*X)_p$ tiene la expresión local
+\[
+xe^z\left(\parcial{}{x_1}\right)_p+ye^z\left(\parcial{}{x_2}\right)_p.
+\]
 \end{enumerate}
 
 \section{Métrica Riemanniana sobre el cilindro}
 
-
+Como hemos visto anteriormente, $(C,i)$ es una subvariedad regular de $\R^3$. En particular, $i:C\to \R^3$ es una inmersión, luego el pull-back $i^*g$, donde $g$ es la métrica usual de $\R^3$, define una métrica riemanniana sobre $C$ tal como se ha visto en clase.
 
 
 \section{Ejemplos de geodésicas}

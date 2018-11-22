@@ -462,14 +462,14 @@ Algunas propiedades sencillas son
 \item $\deg(g\circ f)=\deg(f)\deg(g)$.
 \item Si $f$ no es sobreyectiva, $\deg(f)=0$. 
 \item Si $f\simeq g$, $\deg(f)=\deg(g)$. El recíproco es cierto, y es un resultado fundamental de Hopf en 1925. Se prueba usando que $\pi_n(S^n)=\Z$ y el grado nos da una aplicación $\pi_n(S^n)=\Z\to\Z$ sobreyectiva, luego tenemos una sucesióne exacta $0\to\ker(\deg)\to \Z\to\Z\to 0$. Como el rango del objeto central es la suma de los de los lados en este caso, $\ker(\deg)=0$. 
-\item Si $f$ es una reflexión, entonces $\deg(f)=-1$.
+\item Si $f$ es una reflexión, entonces $\deg(f)=-1$, ya que intercambia los generadores norte y sur de $S^n$. 
 \item Si $f=-Id_{S^n}$ (antipodal), $\deg(f)=(-1)^{n+1}$ por ser composición de $n+1$ reflexiones.
 \item Si $f$ no tiene puntos fijos, $\deg(f)=(-1)^{n+1}$, puesto que existe una una homotopía entre $f$ y la antipodal dada por el segmento $(1-t)f(x)-tx$ (que no se anula) normalizado. 
 \end{enumerate}
 \end{propi}
 
 
-\begin{prop}
+\begin{prop}\label{suspension}
 $\deg(Sf)=\deg(f)$, donde $Sf:S^{n+1}\to S^{n+1}$ es la suspención de la aplicación $f:S^n\to S^n$. 
 \end{prop}
 \begin{dem}
@@ -511,6 +511,94 @@ $\deg(f)=\sum_i \deg(f)|_{x_i}$.
 \begin{dem}
 Como los $U_i$ son disjuntos, por escisión tenemos que $H_n(S^n, S^n-f^{-1}(y))=\oplus_i H_n(U_i, U_i-x_i)\cong\oplus_i\Z$, con $k_i(1)=(0,\dots,0, 1,0,\dots, 0)$ y $p_i$ es la $i$-ésima proyección. Entonces $p_i\circ k_i$ identidad. La conmutatividad del triángulo inferior da que $p_i\circ j(1)=1$, luego $j(1)=(1,\dots, 1)=\sum_ik_i(1)$. La conmutatividad del cuadrado superior dice que la $f_*$ del medio lleva $k_i(1)$ en $\deg(f)|_{x_i}$ (en la excisión el 1 va en el 1). Por lo tanto, $j(1)=\sum_ik_i(1)$ es enviado a $\sum_i \deg(f)|_{x_i}$. La conmutatividad del cuadrado inferior da la fórmula $\deg(f)=\sum_i \deg(f)|_{x_i}$.
 \end{dem}
+
+Vamos a ver ejemplos de cómo construir aplicaciones de grado arbitrario.
+
+\begin{ej}
+Sea $n>0$. Queremos construir una aplicación $f:S^n\to S^n$ de grado $k\in\Z$. Consideramos $q:S^n\to \bigvee_k S^n$ la aplicación cociente que surge al colapsar el complementario de $k$ discos disjuntos $B_i$ sobre $S^n$ sobre un punto. Y sea $p:\bigvee_k S^n\to S^n$ la aplicación consistente en identificar todas las esferas en una sola. Así que definimo $s=pq$. Para casi todos los puntos $y\in S^n$ (los que no son la imagen del punto común), $f^{-1}(y)$ consiste en $k$ puntos $x_i$, uno en cada $B_i$. El grado local de $f$ en $x_i$ es $\pm 1$ porque $f$ es homeomorfismo en un entorno de $x_i$. Componiendo $p$ con reflexiones en cada sumando de $\bigvee_k S^n$ si es necesario, podemos hacer que el grado local sea 1 (o $-1$), lo que el grado total de $f$ es la suma de los grados locales, que será $k$ (o $-k$). También podemos hacer que sea de grado $-k$ simplemente componiendo $f$ de grado positivo con una reflexión. Por la proposición \ref{suspension} podemos generar aplicaciones de grado arbitrario en esferas de dimensión mayor. 
+\end{ej}
+
+\begin{ej}
+La aplicación $f:S^1\to S^1; z\mapsto z^k$ tiene grado $k>0$. Sea $x=1$, $f^{-1}(x)$ son las raíces $k$-ésimas de la unidad. Entonces $\deg(f)=\sum_{i^1}^k\deg(f)|_{y_i}$. En un entorno de $y_i$, $f$ es un homeomorfismo (simplemente hace más grande el intervalo y lo centra en $x$). Hay un homeomorfismo claro que hace exactamente lo mismo con este intervalo, consistente en un giro y una expansión en una mitad (con contracción en la otra). Esta aplicación es composición de dos aplicaciones homotópicas a la identidad, por lo que tienen grado 1. Así que el grado total es la suma de los grados de estas aplicaciones, es decir, $k$. El caso de $z^{-k}$, tenemos $z^{-k}=z^kz^{-1}$, y como $k^{-1}$ es el conjugado, se corresponde con una reflexión, luego tiene grado $-k$. Para $k=0$ es trivial porque es una aplicación constante.  
+\end{ej}
+
+\section{Homología celular}
+\begin{defi}
+Un $CW$-complejo es un espacio topológico $X$ equipado con una filtración $X^0\subset X^1\subset\cdots \subset X^n\subset\cdots\subset X$ tal que:
+\begin{enumerate}
+\item $X^0$ es un conjunto discreto de puntos. 
+\item $X^{n+1}$ se construye a partir de $X^n$ ($n$-esqueleto) del siguiente como el pushout siguiente
+\[
+\begin{tikzcd}
+\coprod_{\alpha}S^n_{\alpha}\arrow[r, hookrightarrow]\arrow[d, "f=(f_{\alpha})"] & \coprod_{\alpha}D^{n+1}_{\alpha}\arrow[d, "\overline{f}"]\\
+X^n\arrow[r, hookrightarrow] & X^{n+1}
+\end{tikzcd}
+\]
+Aquí $f_\alpha=f|_{S^n_{\alpha}}$. Tenemos que $\overline{f}$ es homeomorfismo sobre el interior de $D_{\alpha}^{n+1}$. Su imagen se denota $e^n_{\alpha}$ y se denomina \emph{celda abierta}. Se llaman \emph{celdas cerradas} son las clausuras $\overline{e}^n_{\alpha}\subseteq X$.  Los puntos son celdas abiertas y cerradas. 
+\item $X=\bigcup_{n\geq 0} X^n$ con la topología débil, es decir, un subconjunto es cerrado si y solo si su intersección con todos los esqueletos es cerrado. 
+\end{enumerate}
+\end{defi}
+
+Llamamos pushout al (único por propiedad universal) espacio que hace que este diagrama conmute
+\[
+\begin{tikzcd}
+Y\arrow[r, hookrightarrow, "\iota"]\arrow[d, "f"] & Z\arrow[d, "\overline{f}"]\\
+X\arrow[r, hookrightarrow, "\overline{\iota}"] & X\cup_f Z
+\end{tikzcd}
+\]
+donde $X\cup_f Z=X\coprod Z/y\sim f(y)$, Obsérvese que realmente la aplicación $\overline{\iota}$ es una inclusión en el sentido de que no se están identificando puntos de $x$. Además $\overline{f}$ es homeomorfismo sobre el complementario de la imagen de $Y$. A $f$ se la llama aplicación de pegamiento y a $\overline{f}$ aplicación característica. 
+
+Si $X=X^n$ y $X^n\neq X^{n-1}$, entonces $\dim X=n$. Dado un CW-complejo $X$, un \emph{subcomplejo} $Y\subseteq X$ es un CW-complejo $Y$ formado por la unión de celdas de $X$. En particular $Y^n\subseteq X^n$ y los esqueletos de $X$ son subcomplejos. El cociente de $X$ por $Y$ es un CW-complejo formado por las celdas de $X$ que no están en $Y$ y una 0-celda que representa a $Y$.
+
+\begin{ej}
+$S^n$ con una 0-celda y una $n$-celda. Otra forma es$S^n$ construido inductivamente como $S^{n-1}$ en el ecuador y dos $n$-celdas en los hemisferios, partiendo de $S^0$ como dos puntos (0-celdas). Esto es
+\[
+\begin{tikzcd}
+S^{n-1}\coprod S^{n-1}\arrow[r, hookrightarrow]\arrow[d, "Id\coprod Id"] & D^n\coprod D^n\arrow[d]\\
+S^{n-1}\arrow[r, hookrightarrow] & S^n
+\end{tikzcd}
+\]  
+Se puede de hecho construir $S^{\infty}$ si no nos detenemos en ningún $n$. 
+\end{ej}
+
+\begin{ej}
+El toro de puede conseguir con una 0-celda, dos 1-celdas y una 2-celda. Las dos 1-celdas provienen de las circunferencias generatrices, que intersecan en la 0-celda. El resto es una 2-celda.
+\end{ej}
+
+\begin{lemma}
+Sea $X$ un CW-complejo.
+\begin{enumerate}
+\item $H_k(X^n,X^{n-1})\cong\begin{cases}
+0 & k\neq n\\
+\Z^m & k=n
+\end{cases}$, donde $m$ es el número de $n$-celdas de $X$.
+\item $H_k(X^n)=0$ si $k>n$. 
+\end{enumerate}
+\begin{dem}\
+\begin{enumerate}
+
+
+\item
+ En primer lugar $(X^n,X^{n-1})$ es un buen par, luego $H_k(X^n,X^{n-1})\cong \widetilde{H}_k(X^n/X^{n-1})$. Además $X^n/X^{n-1}=\bigvee_{\alpha} S^n_{\alpha}$ con un $S^n_{\alpha}$ por cada $e^n_{\alpha}$, luego $\widetilde{H}_k(X^n/X^{n-1})=\oplus_{\alpha}\widetilde{H}_k(S^n_{\alpha}$, lo que nos da el resultado.
+ \item Por inducción en $n$, si $n=0$ el resultado es cierto porque conocemos la homología de un espacio totalmente disconexo. Supongamos $n<k$ y $H_k(X^{n-1})=0$. Consideramos el par $(X^n,X^{n-1}$ y nos vamos a la sucesión exacta larga de homología relativa de este par. Como $H_k(X^{n-1})=0$ por hipótesis de inducción y $H_k(X^n,X^{n-1})=0$ por el apartado anterior, luego $H_k(X^n)=0$.
+\end{enumerate}
+\end{dem}
+\end{lemma}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \section{Ejercicios}
 \begin{ejer}
 Dadas dos sucesiones exactas cortas de complejos de cadenas $0\to \CC_1\to \CC_2\to\CC_3\to 0$ y $0\to \mathcal{D}_1\to \mathcal{D}_2\to\mathcal{D}_3\to 0$ un morfismo de complejos de cadenas $f:\CC_2\to\mathcal{D_2}$, probar que el homomorfismo inducido por $f$ en homología es natural en la sucesión exacta larga, tal como ocurre en la homología relativa. 
@@ -524,6 +612,7 @@ Dados $\CC$ y $\CC'$ complejos de cadenas positivos y $f_*:\CC\to\CC'$, se defin
 Asociada a esta sucesión exacta corta tenemos la sucesión exacta larga de homología. Donde $H_q(\CC[1])=H_{q-1}(\CC)$. Probar que $\partial=f_*$. En particular, $H_q(Cf)=0$ si y solo si $f_*$ es isomorfismo. 
 
 Si $\CC$ y $\CC'$ son complejos de cadenas libres (todos los elementos son grupos abelianos libres), probar que entonces se verifica que $f_*$ es isomorfismo si y solo si $f$ es equivalencia de homotopía de complejos de cadenas.  Pista: para encontrar la homotopía, descomponer $D_q=\ker d\oplus D_{q-1}$ que se puede hacer porque las sucesiones exactas cortas escinden. 
+
 \end{ejer}
 
 
