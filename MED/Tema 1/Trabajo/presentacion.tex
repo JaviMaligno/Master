@@ -1,0 +1,225 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usetheme{Berlin}
+\usepackage[spanish]{babel}
+\usepackage{multirow}
+%\usepackage{estilo-apuntes}
+\usepackage[]{graphicx}
+\usepackage{svg}
+\usepackage{multicol}
+\theoremstyle{definition}
+
+\newtheorem{teorema}{Teorema}
+\newtheorem{defi}{Definición}
+\newtheorem{prop}[teorema]{Proposición}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+
+\providecommand{\conv}[1]{\overset{#1}{\longrightarrow}}
+\providecommand{\convcs}{\xrightarrow{CS}}
+\providecommand{\gene}[1]{\langle{#1}\rangle}
+\providecommand{\posi}[1]{\left[#1\right]^+}
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+\setbeamercolor{footline}{fg=black}
+\setbeamerfont{footline}{series=\bfseries}
+
+%-----------------------------------------------------------
+
+\title{Minería Estadística de Datos\\
+Tema 1 - Naive-Bayes y KNN	}
+\author{Rafael González López 
+}
+
+\institute{
+Universidad de Sevilla}
+\date{}
+ 
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Tabla de contenidos}
+\tableofcontents
+\end{frame}
+%}
+
+\section{BreastCancer}
+
+\begin{frame}
+\frametitle{Introducción a los datos (1/3)}
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlllll}
+  \hline
+ & Id & Cl.thickness & Cell.size & Cell.shape & Marg.adhesion \\ 
+  \hline
+1 & 1000025 & 5 & 1 & 1 & 1 \\ 
+  2 & 1002945 & 5 & 4 & 4 & 5 \\ 
+  3 & 1015425 & 3 & 1 & 1 & 1 \\ 
+  4 & 1016277 & 6 & 8 & 8 & 1 \\ 
+  5 & 1017023 & 4 & 1 & 1 & 3 \\ 
+  6 & 1017122 & 8 & 10 & 10 & 8 \\ 
+   \hline
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}
+\frametitle{Introducción a los datos (2/3)}
+\begin{table}[ht]
+\centering
+\begin{tabular}{rllll}
+  \hline
+ & Epith.c.size & Bare.nuclei & Bl.cromatin & Normal.nucleoli \\ 
+  \hline
+1 & 2 & 1 & 3 & 1 \\ 
+  2 & 7 & 10 & 3 & 2 \\ 
+  3 & 2 & 2 & 3 & 1 \\ 
+  4 & 3 & 4 & 3 & 7 \\ 
+  5 & 2 & 1 & 3 & 1 \\ 
+  6 & 7 & 10 & 9 & 7 \\ 
+   \hline
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}
+\frametitle{Introducción a los datos (3/3)}
+\begin{table}[ht]
+\centering
+\begin{tabular}{rll}
+  \hline
+ & Mitoses & Class \\ 
+  \hline
+1 & 1 & benign \\ 
+  2 & 1 & benign \\ 
+  3 & 1 & benign \\ 
+  4 & 1 & benign \\ 
+  5 & 1 & benign \\ 
+  6 & 1 & malignant \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Parámetro KNN}
+\begin{figure}[h!]
+\includegraphics[scale=0.5]{param1}
+\end{figure}
+\end{frame}
+
+
+
+
+
+\begin{frame}
+\frametitle{Curva ROC para Naive-Bayes}
+\begin{figure}[h!]
+\includegraphics[scale=0.5]{myfile}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Curva ROC para KNN}
+\begin{figure}[h!]
+\includegraphics[scale=0.5]{roc2}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Comparativa modelos}
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrr}
+  \hline
+ & Naive.Bayes & knn \\ 
+  \hline
+Acierto & 98.54 & 97.56 \\ 
+  Sensitividad & 98.53 & 95.59 \\ 
+  Especificidad & 98.54 & 98.54 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+\end{frame}
+
+\section{Glass}
+
+
+\begin{frame}
+\frametitle{Introducción a los datos (1/2)}
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & RI & Na & Mg & Al & Si & K \\ 
+  \hline
+1 & 1.52 & 13.64 & 4.49 & 1.10 & 71.78 & 0.06 \\ 
+  2 & 1.52 & 13.89 & 3.60 & 1.36 & 72.73 & 0.48 \\ 
+  3 & 1.52 & 13.53 & 3.55 & 1.54 & 72.99 & 0.39 \\ 
+  4 & 1.52 & 13.21 & 3.69 & 1.29 & 72.61 & 0.57 \\ 
+  5 & 1.52 & 13.27 & 3.62 & 1.24 & 73.08 & 0.55 \\ 
+  6 & 1.52 & 12.79 & 3.61 & 1.62 & 72.97 & 0.64 \\ 
+   \hline
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}
+\frametitle{Introducción a los datos (2/2)}
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrl}
+  \hline
+ & Ca & Ba & Fe & Type \\ 
+  \hline
+1 & 8.75 & 0.00 & 0.00 & 1 \\ 
+  2 & 7.83 & 0.00 & 0.00 & 1 \\ 
+  3 & 7.78 & 0.00 & 0.00 & 1 \\ 
+  4 & 8.22 & 0.00 & 0.00 & 1 \\ 
+  5 & 8.07 & 0.00 & 0.00 & 1 \\ 
+  6 & 8.07 & 0.00 & 0.26 & 1 \\ 
+   \hline
+\end{tabular}
+\end{table}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Introducción a los datos (2/2)}
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrr}
+  \hline
+ & KNN & Naive.Bayes \\ 
+  \hline
+Tasa Error Empírico & 0.00 & 0.57 \\ 
+  Tasa Error Bootstrap & 0.11 & 0.60 \\ 
+  Tasa Error OOB & 0.93 & 0.65 \\ 
+  Tasa Error 0.632Boot & 0.59 & 0.62 \\ 
+  Tasa Error 0.632+Boot & 0.74 & 0.63 \\ 
+   \hline
+\end{tabular}
+\end{table}
+\end{frame}
+
+
+\begin{frame}
+\begin{center}
+\huge{¡Gracias por su atención!}
+\end{center} 
+\end{frame}
+\end{document}
