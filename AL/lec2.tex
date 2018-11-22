@@ -123,4 +123,54 @@ Tenemos que resolver la ecuación de recursión $T(n)=2T(\frac{n}{2})+\Theta(n)$
 2T(\frac{n}{2})+\Theta(n)=2(2T(\frac{n}{2^2}+\Theta(\frac{n}{2}))+\Theta(n)=2^2T(\frac{n}{2^2})+2\Theta(n)
 \]
 Seguimos aplicando esta estrategia y obtenemos $T(n)=2^kT(\frac{n}{2^k})+k\Theta(n)$. Cuando $n=2^k\Rightarrow k\in O(\log n)$ se termina, obteniendo $T(n)=nT(1)+O(\log n)\Theta(n)=O(n)+O(n\log n)=O(n\log n)$. 
+
+Vemos ahora un teorema general que nos ayudará a resolver ecuaciones de recurrencia como la anterior.
+
+\begin{teorema}[Teorema del maestro]
+
+Si $T(n)=\begin{cases}
+O(1) & n\leq n_0\\
+aT(\frac{n}{b})+\Theta(f(n)) & n> n_0
+\end{cases}$, entonces
+\begin{enumerate}
+\item Si $f(n)\in O(n^{\log_ba-\varepsilon})$, $\varepsilon\in [0,1]$, entonces $T(n)\in\Theta(n^{\log_ba})$.
+\item Si $f(n)\in \Theta(n^{\log_ba})$, entonces $T(n)\in\Theta(n^{\log_ba}\log n)$.
+\item Si $f(n)\in\Omega(n^{\log_ba+\varepsilon})$, $\varepsilon\in[0,1]$, y $af(\frac{n}{b})\leq cf(n)$ para $c<1$ y $n$ suficientemenre grande, entonces $T(n)\in\Theta(f(n))$. 
+\end{enumerate}
+
+\end{teorema}
+En el enunciado del teorema, $a$ representa el número de llamadas recursivas, $b$ las partes en las que se divide el conjunto y $f(n)$ es el tiempo necesario para ``procesado extra''. La prueba del resultado puede encontrarse en el libro de Cormen A LO MEJOR PONER AL PRINCIPIO QUE TODAS LAS DEMOSTRACIONES ESTÁN AHÍ. En dicha prueba se muestra además que el costo de todas las llamadas recursivas es $\Theta(n^{\log_ba})$ y el costo del procesado extra es $\Theta(f(n))$. En función de cuál de estos costos domine más, obtenemos cada uno de los casos del teorema. 
+
+\begin{ejs}\
+\begin{enumerate}
+\item En el caso de Merge-Sort, $a=b=2$, con lo que $\log_22=1$. En este caso $f(n)=\Theta(n)$ (abuso de lenguaje), que coincide con el caso 2 del teorema. Así que $T(n)\in\Theta(n\log n)$, que fue lo que demostramos a mano. 
+
+\item La búsqueda binaria tiene una recurrencia $T(n)=T(\frac{n}{2})+O(1)$, puesto que se divide la lista en 2 tras hacer una pregunta para decidir con qué mitad quedarnos. Así que $a=1$, $b=2$, con lo que $\log_21=0$ y $f(n)=O(1)\in O(n^0)$. Volvemos a estar en el caso 2 del teorema, con lo que $T(n)=\Theta(\log n)$, cosa que hay conocíamos. 
+
+\item Resolvemos $T(n)=4T(\frac{n}{2})+n^3$. Claramente $a=4$, $b=2$ y $f(n)=n^3$, de donde $\log_24=2$. Como $n^3\in\Omega (n^{2+\varepsilon})$ para cualquier $\varepsilon\leq 1$ y $4(\frac{n^3}{8})=\frac{1}{2}n^3$, estamos en las hipótesis del caso 3 del teorema. Por ello concluimos que $T(n)\in\Theta(n^3)$. 
+
+\item $T(n)=2T(\frac{n}{2})+n^2$. Tenemos aquí $a=2$, $b=2$ y $f(n)=n^2$. De aquí $\log_22=1$, y como $n^2\in\Omega(n^{1+\varepsilon})$ para cualquier $\varepsilon\leq 1$, estmos en el tercer caso. Esto nos da $T(n)\in\Theta(n^2)$. REVISAR 
+\end{enumerate}
+\end{ejs}
+
+\begin{coro}[versión para $f(n)=\Theta(n^k)$]
+En las condiciones del teorema
+\begin{enumerate}
+\item Si $k<\log_ba$, entones $T(n)\in\Theta(n^{\log_ba})$.
+\item Si $k=\log_ba$, entonces $T(n)\in\Theta(n^{\log_ba}\log n)$.
+\item Si $k>\log_ba$, entonces $T(n)\in\Theta(n^k)$. 
+\end{enumerate}
+\end{coro}
+
+Atención, el teorema del maestro no resuelve todos los casos, como vemos a continuación.
+\begin{ej}
+Sea la ecuación de recurrencia $T(n)=2T(\frac{n}{2})+\Theta(n\log n)$. Aquí $a=b=2$ y $f(n)=n\log n$. Aquí $f$ no verifica ninguno de los dos casos. El más interesante de ver es el tercero. $n^{1+\varepsilon}=nn^{\varepsilon}$. Las $n$ se compensan, luego tendríamos que comparar $n^{\varepsilon}$ con $\log n$. Se puede demostrar que $\frac{n^{\varepsilon}}{\log n}\to\infty$ cuando $n\to\infty$, por lo que efectivamente $n^{1+\varepsilon}\notin O(n\log n)$. Como $f$ no está en ninguno de los casos, el teorema del maestro no es aplicable. Sin embargo sí lo será el siguiente teorema.
+\end{ej}
+
+\begin{teorema}
+Si $(n)=aT(\frac{n}{b})+\Theta(n^{\log_ba}\log^kn)$, entonces $T(n)\in\Theta(n^{\log_ba}\log^{k+1}n)$.
+\end{teorema}
+
+En el ejemplo anterior podemos aplicar este teorema para $k=1$, con lo que $T(n)\in\Theta(n\log^2n)$. 
+
 \end{document}
