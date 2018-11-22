@@ -267,6 +267,81 @@ En las condiciones anteriores
 \end{enumerate}
 \end{prop}
 
+\begin{ej}
+Sea $S=A[x_0,\dots, x_n]$ con $A$ un anillo cualquiera. Entonces denotamos $\proj(S)=\PP^n_A$ y lo denominamos \emph{espacio proyectivo} $n$-dimensional sobre $A$. En el caso particular de que $A$ sea un cuerpo, entonces el espacio proyectivo es une squema cuyo subespacio de puntos cerrados es homeomorfo a la variedad algebraica llamada espacio proyectivo $n$-dimensional. 
+\end{ej}
+
+\subsection{Productos y coproductos}
+
+\begin{nota}[Lenguaje categórico]
+Una subcategoría se dice \emph{plena} (full subcategory) los morfismos en la subcategoría son todos los que había en la categoría inicial entre los objetos de la subcategoría. Por ejemplo, la categoría de haces es una subcategoría plena de la categoría de prehaces, pero la categoría de espacios localmente anillados no es una subcategoría plena de la categoría de espacios anillados.
+\end{nota}
+
+\begin{defi}
+Sea $\CC$ una categoría. Dados dos objetos $X,Y$ de $\CC$, un \emph{producto} de $X$ e $Y$ es una tripleta $(Z,p,q)$ donde $Z$ es un objeto de $\CC$, $p:Z\to X$ y $q:Z\to Y$ verificando la siguiente propiedad universal: para todo $U\in Ob(\CC)$ y para todo $\alpha:U\to X, \beta:U\to Y$, existe un único $\gamma:U\to Z$ tal que $p\circ\gamma=\alpha$ y $q\circ\gamma=\beta$, o dicho con un diagrama conmutativo
+\[
+\begin{tikzcd}
+& U\arrow[dl, "\alpha"]\arrow[dr, "\beta"]\arrow[d, dashed, "\exists!\gamma"] & \\
+X & Z\arrow[r, "q"]\arrow[l, "p"] & Y
+\end{tikzcd}
+\]
+\end{defi}
+Es fácil probar que, en caso de existir, este objeto es único salvo isomorfismo único.
+\begin{ej}
+Para $\CC=\mathrm{Set}$, el producto es el producto cartesiano con las proyecciones. Para $\CC=\mathrm{Vec}_k$ también tenemos el producto cartesiano usual. Lo mismo con $\CC=\mathrm{Top}$. 
+\end{ej}
+
+\begin{defi}
+Un \emph{coproducto} de $X$ e $Y$ es un producto en $\CC^{op}$. 
+\end{defi}
+\begin{defi}
+En $\mathrm{Set}$ y $\mathrm{Top}$ el coproducto es la unión disjunta. Mientras que en $\mathrm{Vec}_k$ es la suma directa (que es lo mismo que el producto cartesiano), así que el producto y el coproducto de espacios vectoriales son isomorfos (esto pasa también es los $R$-módulos y cualquier otra categoría abeliana). 
+\end{defi}
+
+Vamos a centrarnos ahora en la categoría $\mathrm{Ring}$. Aquí el producto no es más que el producto cartesiano. El coproducto sin embargo es $A\otimes_{\Z} B$. Aquí el producto está definido como $(a\otimes b)(a'\otimes b')=(aa')\otimes (bb')$. La propiedad universal se cumple para $a\mapsto a\otimes 1$ y $b\mapsto 1\otimes b$ (el elemento neutro es $1\otimes 1$). 
+
+\begin{defi}
+Un objeto $F$ es \emph{final} en $\CC$ si para todo objeto $X$ existe un único morfismo $X\to F$. Un objeto $I$ es \emph{inicial} si es final en la categoría opuesta.
+\end{defi}
+Dos objetos finales son siempre isomorfos mediante isomorfismo único.
+
+\begin{ej}
+En $\mathrm{Set}$ un objeto final es $\{*\}$ y el objeto inicial es $\emptyset$. Igual en $\mathrm{Top}$. En $\mathrm{Vec}_k$ el final y el inicial es el espacio vectorial trivial. En $\mathrm{Ring}$ el objeto final es el anillo nulo. El objeto inicial es $\Z$ porque el único morfismo es $1\mapsto 1_R$. 
+\end{ej}
+
+Las categorías en las que $I\cong F$, este objeto se denomina objeto nulo. 
+
+Nuestro objetivo a partir de ahora será probar que en la categoría de esquemas $\mathrm{Sch}$ existen productos. Por el ejercicio 2.4, tenemos que
+\[
+\Hom_{\mathrm{Sch}}(X,\spec(A))\cong\Hom_{\mathrm{Ring}}(A,\OO_x(X)).
+\]
+
+El isomorfismo es una biyección de conjuntos. Obsérvese la similitud de este resultado con el del ejercicio 1.18, es decir
+\[
+\Hom_{\mathrm{Sh}_X}(f^{-1}\calG,\calF)\cong \Hom_{\mathrm{Sh}_Y}(\calG, f_*\calF)
+\] 
+
+que nos daba una adjunción de functores. En el caso de los esquemas, tenemos un functor $\spec:\mathrm{Ring}\to \mathrm{Sch}$. En sentido opuesto tenemos el functor $(X,\OO_X)\mapsto \OO_X(X)$. Vamos a tratar más en detalle el fuctor $\spec$. A nivel de objetos tenemos claro cómo funciona. A nivel de morfismos la proposición 2.3 de Hartshorne nos da el funcionamiento, que como se observa es contravariante. Por ser contravariante, para que las dos ecuaciones sean totalmente análogas habría que poner la categoría opuesta en $\mathrm{Ring}$ o $\mathrm{Sch}$, ya que sin eso los objetos están ``en orden contrario''. Vamos a ver en detalle quién es el morfismo de espacios anillados. Si llamamos $f:\spec(B)\to\spec(A)$ al morfismo inducido por $\varphi:A\to B$, buscamos un morfismo $\OO_{\spec(A)}\to f_*\OO_{\spec(B)}$, o por el ejercicio 2.4, $f^{-1}\OO_{\spec(A)}\to \OO_{\spec(B)}$. Se tiene que $(f^{-1}\OO_{\spec(A)})_q=\OO_{\spec(A),f(q)}\cong A_{q^c}$ y por otro lado $(\OO_{\spec(B)})_q\cong B_q$. El morfismo que buscamos es el que hace conmutar el diagrama
+\[
+\begin{tikzcd}
+A\arrow[r, "f"]\arrow[d] & B\arrow[d]\\
+A_{q^c}\arrow[r, dashed] & B_q
+\end{tikzcd}
+\]
+Como este homomorfismo es local, se tiene de hecho un morfismo de espacios localmente anillados. 
+
+
+Ahora nos interesa buscar objetos iniciales y finales en la categoría de los esquemas. Vamos a ver que el objeto final es $\spec(\Z)$. Esto se tiene del ejercicio 2.4 por ser $\Z$ objeto inicial de los anillos. Del mismo modo podemos obtenemos el objeto inicial. 
+
+\begin{observacion}
+$\spec(\{0\})=(\emptyset,\{0\})$, ya que un ideal primo por definición no puede ser el total. 
+\end{observacion}
+
+\begin{defi}
+Sea $S$ un esquema. Un esquema sobre $S$ es una flecha de esquemas $X\to S$. Un morfismo de esquemas sobre $S$ es un morfismo de esquemas $X\to Y$ que conmute con las flechas hacia $S$. 
+\end{defi}
+
+Esta construcción es general en cualquier categoría, y es lo que se llama la categoría \emph{slice}. 
 
 \section{Ejercicios}
 \begin{ejer}
