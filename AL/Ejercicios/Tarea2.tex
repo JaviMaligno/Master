@@ -14,6 +14,92 @@ Dadas dos secuencias binarias $X,Y$ con el mismo número de 1's y $n$ items cada
 \end{ejercicio}
 \begin{solucion}
 
+\textbf{Fundamentos del algoritmo}
+
+Antes de dar el algoritmo vamos a explicar un poco el trasfondo teórico del mismo. La situación que se nos da es la de que existe una permutación $\sigma\in S_n$ tal que $\sigma(X)=Y$. Un swap es una permutación de la forma $s_i=(i, i+1)$, $i=1,\dots, n-1$. Es fácil comprobar que los swaps generan $S_n$, es decir, que siempre existe solución al problema planteado. En particular, buscamos el menor $k$ tal que $\sigma=s_{i_1}\cdots s_{i_k}$. A este $k$ lo llamamos la \emph{longitud} de $\sigma$. 
+
+Definimos una \emph{inversión} de $\sigma$ como un par $(i,j)$ con $1\leq i<j\leq n$ y $\sigma(i)>\sigma(j)$. Nos basamos entonces en el siguiente resultado para crear el algoritmo:
+
+\begin{lemma}
+La longitud de $\sigma$ es igual al número de inversiones de $\sigma$. 
+\end{lemma}
+\begin{proof}
+Lo probamos por inducción en la longitud $l$ de $\sigma$. Si $l=0$, entonces $\sigma=()$ y el número de inversiones es 0. Supongamos que el resultado es cierto para $l=k-1$ y denotemos $I_{\sigma}$ el número de inversiones de $\sigma$. Sea $\sigma=s_{i_k}\cdots s_{i_1}=s_{i_k}\tau$. Sabemos que $\tau$ está en las hipótesis de inducción, ya que su longitud es exactamente $k-1$ (si fuera menor, también podríamos reducir la de $\sigma$). 
+
+Recordamos que una inversión es un par de elementos que están en el orden inverso al natural. Al hacer un swap cambiamos el orden de dos elementos, por lo que, o bien devolvemos un par a su orden natural o bien hacemos que un par deje de estar en su orden natural. Por lo tanto $I_{\sigma}=I_{\tau}\pm 1$. 
+
+%Recordamos que el signo de una permutación es $(-1)^{\text{nº de inversiones}}$, que las transposiciones tienen signo $-1$ y que el signo del producto es el producto de los signos. Así que $sign(\sigma)=-sgn(\tau)$. Como $k=l(\sigma)$ es mínima, $I_{\sigma}=I_{\tau}+2m+1$, para $m\geq 0$. Además, cada inversión se corresponde con una trasposición $(i,j)$, luego tendríamos que $\sigma=t_1\cdots t_{2m+1}\tau$, siendo $t_i$ transposiciones, y siendo este $m$ mínimo ya que estamos eliminando justamente las inversiones extra. Pero entonces $m=0$, puesto que ya teníamos $\sigma=s_{i_k}\tau$, siendo $s_{i_k}$ una transposición. 
+%luego necesariamente $m=1$, ya que de ser $m>1$, tendríamos que $\sigma=t_1\cdots t_m \tau$, para $t_i$ transposiciones, siendo este $m$ mínimo, pero ya tenemos que que $\sigma= s_{i_k}\tau$, siendo $s_{i_k}$ una transposición. 
+\end{proof}
+
+\vspace{0.8cm}
+
+\textbf{Algoritmo}
+
+Denotamos $X[i]$ al elemento en la posición $i$-ésima de $X$ (empezando por $i=1$). Denotamos como $L+x$ a la operación de añadir el elemento $x$ al final de la lista o string $L$. Escribimos $L-L[1]$ a la operación de eliminar el primer elemento de $L$. Damos el siguiente algoritmo para calcular la distancia swap:
+
+\begin{enumerate}
+
+\item \underline{Crear listas $L_0=[i\mid X[i]=0]$ y $L_1=[i\mid X[i]=1]$}. Sean $L_0=[]$ y $L_1=[]$. Para cada $i=1,\dots, n$: si $X[i]=0$, hacer $L_0= L_0+X[i]$. En caso contrario, $L_1= L_1+X[i]$. 
+
+%CONTAR LOS CRUCES. PROBABLEMENTE ANTES CONSTRUIR LAS LISTAS DE LA RESPUESTA DE ABAJO. Para cada $i=1,\dots, n$:
+
+%Buscar el primer $j$ tal que $X[i]=Y[j]$. Si $i\leq j$, n
+
+\item \underline{Obtener una lista de posiciones a partir de $Y$}. Para cada $i=1,\dots, n$: sea $j=1$, $L_Y=[]$. Mientras $X[j]\neq Y[i]\Rightarrow j=j+1$. Cuando $X[j]= Y[i]$:
+\begin{itemize}
+\item si $X[j]=0$, hacer $L_Y= L_Y+L_0[1]$, $L_0= L_0-L_0[1]$;
+\item si $X[j]=1$, hacer $L_Y= L_Y+L_1[1]$, $L_1= L_1-L_1[1]$.
+\end{itemize}  
+
+\item \underline{Contar el número de inversiones}. Para cada $i=1,\dots, n-1$, sea $j=i+1$. Mientras $L_Y[i]\leq L_Y[j]$ y $j\leq n-1$, $j=j+1$. Cuando $L_Y[i]> L_Y[j]$, $d=d+1$.  
+
+\item Devolver $d$. 
+\end{enumerate}
+
+\vspace{0.8cm}
+
+\textbf{Explicación de los pasos del algoritmo y complejidad}
+
+En el primer paso construimos las listas indicadas, cada una requiere un tiempo $O(n)$, luego hasta el paso 1 el algoritmo tiene complejidad $O(n)$. 
+El segundo paso se construye $\sigma^{-1}$ como permutación del conjunto $\{1,\dots, n\}$ y para ello usamos dos bucles, luego la complejidad asciende a $O(n^2)$. En el paso 3 estamos contando los pares $(i,j)$ con $i<j$ y $L_Y[i]>L_Y[j]$, que es equivalente a que el par $(i,j)$ sea una inversión de $\sigma$. Para este paso también usamos dos bucles, que no recorren toda la lista, pero que de todos modos suponen una complejidad $O(n^2)$. 
+
+Por tanto, la complejidad total del algoritmo es $O(n^2)$, con lo que es relativamente eficiente. 
+ 
+\vspace{0.8cm}
+
+\textbf{Aplicación del algoritmo}
+
+Sean $X=101011$, $Y=111001$ como en el enunciado. $L_0=[2,4]$, $L_1=[1,3,5,6]$. Construimos ahora $L_Y$. $Y[1]=1$, luego vamos a $L_1$ y tomamos el primer elemento, que es 1, y hacemo $L_Y=[1]$, $L_1=[3,5,6]$. $Y[2]=1$, y ahora $L_1[1]=3$, con lo que $L_Y=[1,3]$, $L_1=[5,6]$. Seguimos así y obtenemos $L_Y=[1,3,5,2,4,6]$. Buscamos ahora los números que tienen un número más pequeño en una posición superior y hacemos pares con ellos. Esto nos da los pares $(3,2), (5,2), (5,4)$. Son 3 pares así que la distancia swap es 3, con lo que en el enunciado lo habíamos hecho de forma óptima. 
+
+%Este conteo es equivalente a contar los cruces en el siguiente diagrama de permutación: QUIZÁ PONER ESTO DESPUÉS DEL LEMA, PARA QUE SE ENTIENDA MEJOR LO QUE HAGO
+%
+%HACER EL DIBUJO
+
+
+%IDEA PARA CONTAR LOS CRUCES: sea $i$ el punto en posición $i$-ésima y $\sigma(i)$ su imagen. Tengo que contar cuántos puntos menores estrictamente que $\sigma(i)$ están enlazados con puntos mayores estrictos que $i$. Sumar estas cantidades para cada $i$. 
+
+%https://math.stackexchange.com/questions/1384838/if-g-n-j-dots-n-and-sigma-in-s-n-1-why-are-the-inversions-of-g-sigma?rq=1
+
+%\url{https://stackoverflow.com/questions/18292202/finding-the-minimum-number-of-swaps-to-convert-one-string-to-another-where-the}
+%\url{https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance}
+
+%Esto responde, quizá las respuestas más abajo sean más claras \url{https://stackoverflow.com/questions/7797540/counting-the-adjacent-swaps-required-to-convert-one-permutation-into-another}
+
+%Recordar $(a_1,a_2...,a_n) = (a_1,a_{n-1})...(a_1,a_2)$, y $(a_i,a_j)$ se puede escribir como producto de swaps que van deslizando $a_i$ hasta la posición %$j$.
+%
+%Acabo de ver que de hecho $(a_1, a_2, \ldots, a_n) = (a_1, a_2)(a_2, a_3) \cdots(a_{n - 1}, a_n)$ \url{https://math.stackexchange.com/a/499633/434862}
+%
+%TENER CUIDADO CON ESTO PORQUE HAY MÁS DE UNA PERMUTACIÓN QUE TRANSFORMA UN STRING EN OTRO, PENSAR QUIZÁ EN VER ELEMENTO A ELEMENTO A DÓNDE SE ENVÍA EL QUE ES IGUAL MÁS CERCANO. PUEDE QUE SIMPLEMENTE ENCONTRAR LA PERMUTACIÓN SEA CARO.
+%
+%TENGO QUE ENCONTRAR LA PALABRA REDUCIDA, CONCRETAMENTE LA DE COXETER LENGHT \url{https://math.stackexchange.com/questions/175652/converting-a-signed-permutation-to-a-reduced-word}
+%\url{https://rfgsemisimply.wordpress.com/2013/05/08/length-of-a-permutation/}
+%COMENTAN SOBRE ALGORITMO PARA ENCONTRAR PALABRA REDUCIDA \url{https://mathoverflow.net/questions/109071/algorithm-for-reducing-words-in-a-coxeter-group}
+
+%OTRA IDEA ES INTENTAR HACER UN GRAFO PARA QUE EL CAMINO MÁS CORTO ME DE LA SOLUCIÓN \url{https://stackoverflow.com/a/18294951}
+
+
+
 \end{solucion}
 
 
