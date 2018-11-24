@@ -4,7 +4,7 @@
 %--------------------------------------------------------
 \begin{document}
 
-\title{Tarea 1 de Algorítmica}
+\title{Tarea 2 de Algorítmica}
 \author{Javier Aguilar Martín}
 \maketitle
 
@@ -16,7 +16,7 @@ Dadas dos secuencias binarias $X,Y$ con el mismo número de 1's y $n$ items cada
 
 \textbf{Fundamentos del algoritmo}
 
-Antes de dar el algoritmo vamos a explicar un poco el trasfondo teórico del mismo. La situación que se nos da es la de que existe una permutación $\sigma\in S_n$ tal que $\sigma(X)=Y$. Un swap es una permutación de la forma $s_i=(i, i+1)$, $i=1,\dots, n-1$. Es fácil comprobar que los swaps generan $S_n$, es decir, que siempre existe solución al problema planteado. En particular, buscamos el menor $k$ tal que $\sigma=s_{i_1}\cdots s_{i_k}$. A este $k$ lo llamamos la \emph{longitud} de $\sigma$. 
+Antes de dar el algoritmo vamos a explicar un poco el trasfondo teórico del mismo. La situación que se nos da es la de que existe una permutación $\sigma\in S_n$ (no necesariamente única) tal que $\sigma(X)=Y$. Un swap es una permutación de la forma $s_i=(i, i+1)$, $i=1,\dots, n-1$. Es fácil comprobar que los swaps generan $S_n$, es decir, que siempre existe solución al problema planteado. En particular, buscamos el menor $k$ tal que $\sigma=s_{i_1}\cdots s_{i_k}$. A este $k$ lo llamamos la \emph{longitud} de $\sigma$, denotada $l(\sigma)$. 
 
 Definimos una \emph{inversión} de $\sigma$ como un par $(i,j)$ con $1\leq i<j\leq n$ y $\sigma(i)>\sigma(j)$. Nos basamos entonces en el siguiente resultado para crear el algoritmo:
 
@@ -24,10 +24,9 @@ Definimos una \emph{inversión} de $\sigma$ como un par $(i,j)$ con $1\leq i<j\l
 La longitud de $\sigma$ es igual al número de inversiones de $\sigma$. 
 \end{lemma}
 \begin{proof}
-Lo probamos por inducción en la longitud $l$ de $\sigma$. Si $l=0$, entonces $\sigma=()$ y el número de inversiones es 0. Supongamos que el resultado es cierto para $l=k-1$ y denotemos $I_{\sigma}$ el número de inversiones de $\sigma$. Sea $\sigma=s_{i_k}\cdots s_{i_1}=s_{i_k}\tau$. Sabemos que $\tau$ está en las hipótesis de inducción, ya que su longitud es exactamente $k-1$ (si fuera menor, también podríamos reducir la de $\sigma$). 
+Lo probamos por inducción en la longitud $l=l(\sigma)$. Si $l=0$, entonces $\sigma=()$ y el número de inversiones es 0. Supongamos que el resultado es cierto para $l\leq k-1$ y denotemos $I_{\sigma}$ el número de inversiones de $\sigma$. Sea $\sigma=s_{i_k}\cdots s_{i_1}=s_{i_k}\tau$. Sabemos que $\tau$ está en las hipótesis de inducción, ya que su longitud es exactamente $k-1$ (si fuera menor, también podríamos reducir la de $\sigma$). 
 
-Recordamos que una inversión es un par de elementos que están en el orden inverso al natural. Al hacer un swap cambiamos el orden de dos elementos, por lo que, o bien devolvemos un par a su orden natural o bien hacemos que un par deje de estar en su orden natural. Por lo tanto $I_{\sigma}=I_{\tau}\pm 1$. 
-
+Recordamos que una inversión es un par de elementos que están en el orden inverso al natural. Al hacer un swap cambiamos el orden de dos elementos, por lo que, o bien devolvemos un par a su orden natural o bien hacemos que un par deje de estar en su orden natural. Por lo tanto $I_{\sigma}=I_{\tau}\pm 1$. Si fuera $I_{\sigma}=I_{\tau}- 1=k-2$ estaríamos en la hipótesis de inducción, ya que una permutación con $k-2$ inversiones tendría longitud $k-2$, pero estamos suponiendo que $l(\sigma)=k$, luego necesariamente $I_{\sigma}=I_{\tau}+1=k$ y se tiene el resultado.
 %Recordamos que el signo de una permutación es $(-1)^{\text{nº de inversiones}}$, que las transposiciones tienen signo $-1$ y que el signo del producto es el producto de los signos. Así que $sign(\sigma)=-sgn(\tau)$. Como $k=l(\sigma)$ es mínima, $I_{\sigma}=I_{\tau}+2m+1$, para $m\geq 0$. Además, cada inversión se corresponde con una trasposición $(i,j)$, luego tendríamos que $\sigma=t_1\cdots t_{2m+1}\tau$, siendo $t_i$ transposiciones, y siendo este $m$ mínimo ya que estamos eliminando justamente las inversiones extra. Pero entonces $m=0$, puesto que ya teníamos $\sigma=s_{i_k}\tau$, siendo $s_{i_k}$ una transposición. 
 %luego necesariamente $m=1$, ya que de ser $m>1$, tendríamos que $\sigma=t_1\cdots t_m \tau$, para $t_i$ transposiciones, siendo este $m$ mínimo, pero ya tenemos que que $\sigma= s_{i_k}\tau$, siendo $s_{i_k}$ una transposición. 
 \end{proof}
@@ -36,7 +35,7 @@ Recordamos que una inversión es un par de elementos que están en el orden inve
 
 \textbf{Algoritmo}
 
-Denotamos $X[i]$ al elemento en la posición $i$-ésima de $X$ (empezando por $i=1$). Denotamos como $L+x$ a la operación de añadir el elemento $x$ al final de la lista o string $L$. Escribimos $L-L[1]$ a la operación de eliminar el primer elemento de $L$. Damos el siguiente algoritmo para calcular la distancia swap:
+Denotamos $X[i]$ al elemento en la posición $i$-ésima de $X$ (empezando por $i=1$). Denotamos como $L+x$ a la operación de añadir el elemento $x$ al final de la lista $L$. Escribimos $L-L[1]$ a la operación de eliminar el primer elemento de $L$. Damos el siguiente algoritmo para calcular la distancia swap:
 
 \begin{enumerate}
 
@@ -46,13 +45,13 @@ Denotamos $X[i]$ al elemento en la posición $i$-ésima de $X$ (empezando por $i
 
 %Buscar el primer $j$ tal que $X[i]=Y[j]$. Si $i\leq j$, n
 
-\item \underline{Obtener una lista de posiciones a partir de $Y$}. Para cada $i=1,\dots, n$: sea $j=1$, $L_Y=[]$. Mientras $X[j]\neq Y[i]\Rightarrow j=j+1$. Cuando $X[j]= Y[i]$:
+\item  \underline{Obtener una lista de posiciones a partir de $Y$}. Para cada $i=1,\dots, n$: sea $j=1$, $L_Y=[]$. Mientras $ Y[i]\neq X[j]\Rightarrow j=j+1$. Cuando $Y[i]=X[j]$:
 \begin{itemize}
 \item si $X[j]=0$, hacer $L_Y= L_Y+L_0[1]$, $L_0= L_0-L_0[1]$;
 \item si $X[j]=1$, hacer $L_Y= L_Y+L_1[1]$, $L_1= L_1-L_1[1]$.
 \end{itemize}  
 
-\item \underline{Contar el número de inversiones}. Para cada $i=1,\dots, n-1$, sea $j=i+1$. Mientras $L_Y[i]\leq L_Y[j]$ y $j\leq n-1$, $j=j+1$. Cuando $L_Y[i]> L_Y[j]$, $d=d+1$.  
+\item \underline{Contar el número de inversiones}. Sea $d=0$. Para cada $i=1,\dots, n-1$, sea $j=i+1$. Mientras $j\leq n$: si $L_Y[i]\leq L_Y[j]$, hacer $j=j+1$. Si $L_Y[i]> L_Y[j]$, hacer $j=j+1$ y $d=d+1$.  
 
 \item Devolver $d$. 
 \end{enumerate}
@@ -62,15 +61,17 @@ Denotamos $X[i]$ al elemento en la posición $i$-ésima de $X$ (empezando por $i
 \textbf{Explicación de los pasos del algoritmo y complejidad}
 
 En el primer paso construimos las listas indicadas, cada una requiere un tiempo $O(n)$, luego hasta el paso 1 el algoritmo tiene complejidad $O(n)$. 
-El segundo paso se construye $\sigma^{-1}$ como permutación del conjunto $\{1,\dots, n\}$ y para ello usamos dos bucles, luego la complejidad asciende a $O(n^2)$. En el paso 3 estamos contando los pares $(i,j)$ con $i<j$ y $L_Y[i]>L_Y[j]$, que es equivalente a que el par $(i,j)$ sea una inversión de $\sigma$. Para este paso también usamos dos bucles, que no recorren toda la lista, pero que de todos modos suponen una complejidad $O(n^2)$. 
+El segundo paso se construye la imagen de $\sigma^{-1}$ como permutación del conjunto $\{1,\dots, n\}$, a la que llamamos $L_Y$, y para ello usamos dos bucles, luego la complejidad asciende a $O(n^2)$. En el paso 3 estamos contando los pares $(i,j)$ con $i<j$ y $L_Y[i]>L_Y[j]$, que es equivalente a que el par $(i,j)$ sea una inversión de $\sigma$. Para este paso también usamos dos bucles, que no recorren toda la lista, pero que de todos modos suponen una complejidad $O(n^2)$. Por tanto, la complejidad total del algoritmo es $O(n^2)$, con lo que es relativamente eficiente. 
 
-Por tanto, la complejidad total del algoritmo es $O(n^2)$, con lo que es relativamente eficiente. 
- 
-\vspace{0.8cm}
+\begin{nota}
+El paso 3 se puede mejorar hasta $O(n\log n)$ con una variante de Merge-Sort. Cuando comparamos dos listas ya ordenadas $L_1$ y $L_2$ por Merge-Sort podemos hacer el siguiente merge tomando el primer elemento de $L_2$ y hacer swaps desde la última posición de $L_1$ hasta que encuentre su lugar y así sucesivamente con los demás. Por tanto, bastaría con contar los swaps que se hacen, y esto nos daría la distancia swap. De todos modos, esto no altera la complejidad total del algoritmo porque el paso 2 sigue siendo $O(n^2)$. 
+\end{nota}
+
+\newpage
 
 \textbf{Aplicación del algoritmo}
 
-Sean $X=101011$, $Y=111001$ como en el enunciado. $L_0=[2,4]$, $L_1=[1,3,5,6]$. Construimos ahora $L_Y$. $Y[1]=1$, luego vamos a $L_1$ y tomamos el primer elemento, que es 1, y hacemo $L_Y=[1]$, $L_1=[3,5,6]$. $Y[2]=1$, y ahora $L_1[1]=3$, con lo que $L_Y=[1,3]$, $L_1=[5,6]$. Seguimos así y obtenemos $L_Y=[1,3,5,2,4,6]$. Buscamos ahora los números que tienen un número más pequeño en una posición superior y hacemos pares con ellos. Esto nos da los pares $(3,2), (5,2), (5,4)$. Son 3 pares así que la distancia swap es 3, con lo que en el enunciado lo habíamos hecho de forma óptima. 
+Sean $X=101011$ e $Y=111001$ como en el enunciado. Construimos $L_0=[2,4]$ y $L_1=[1,3,5,6]$. Construimos ahora $L_Y$. $Y[1]=1$, luego vamos a $L_1$ y tomamos el primer elemento, que es 1, y hacemos $L_Y=[1]$, $L_1=[3,5,6]$. $Y[2]=1$, y ahora $L_1[1]=3$, con lo que $L_Y=[1,3]$, $L_1=[5,6]$. Seguimos así y obtenemos $L_Y=[1,3,5,2,4,6]$. Buscamos ahora los números que tienen un número más pequeño en una posición superior y hacemos pares con ellos. Esto nos da los pares $(3,2), (5,2), (5,4)$. Son 3 pares así que la distancia swap es 3, con lo que en el enunciado lo habíamos hecho de forma óptima. 
 
 %Este conteo es equivalente a contar los cruces en el siguiente diagrama de permutación: QUIZÁ PONER ESTO DESPUÉS DEL LEMA, PARA QUE SE ENTIENDA MEJOR LO QUE HAGO
 %
@@ -83,6 +84,7 @@ Sean $X=101011$, $Y=111001$ como en el enunciado. $L_0=[2,4]$, $L_1=[1,3,5,6]$. 
 
 %\url{https://stackoverflow.com/questions/18292202/finding-the-minimum-number-of-swaps-to-convert-one-string-to-another-where-the}
 %\url{https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance}
+%\url{https://stackoverflow.com/questions/20990127/sorting-a-sequence-by-swapping-adjacent-elements-using-minimum-swaps}
 
 %Esto responde, quizá las respuestas más abajo sean más claras \url{https://stackoverflow.com/questions/7797540/counting-the-adjacent-swaps-required-to-convert-one-permutation-into-another}
 
