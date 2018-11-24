@@ -120,7 +120,7 @@ Se comprueba fácil,ente que todos los estados tienen período $3$.
 \end{example}
 
 \begin{defi}
-Supongamos una cadena de Markov con $m$ estados y matriz de transición $P$. Diremos que un estado $E_i$ es \textbf{recurrente} si la probabilidad de que visite el estado $j$ es $1$. Cuando un estado no es recurrente se dice que es \textbf{transitorio}. 
+Supongamos una cadena de Markov con $m$ estados y matriz de transición $P$. Diremos que un estado $E_j$ es \textbf{recurrente} si la probabilidad de que visite el estado $j$ es $1$. Cuando un estado no es recurrente se dice que es \textbf{transitorio}. 
 \end{defi}
 \begin{defi}
 Denotamos por $f_{ij}$ la probabilidad de que partiendo de $i$ alcancemos $j$ en algún momento. Además, $f_{ij}^{(n)}$ denota la probabilidad de que la cadena visite por primera vez al estado $j$ en el $n$-ésimo instante partiendo de $i$. 
@@ -247,8 +247,149 @@ Un estado $E_j$ se dice que \textbf{ergódico} si es recurrente, no nulo y aperi
 \end{defi}
 
 \section{Clasificación de las cadenas}
+\begin{defi}
+Dados los estados $i$ y $j$, se dice que \textbf{$i$ se comunica con $j$} (denotado $i\to j$ si existe $nºgeq 1$ tal que $p_{ij}^{(n)}>0$. Si $\to j$ y $j\to i$, se dice que \textbf{$i$ se intercomunica con $j$}  y se denota por i$\leftrightarrow j$.
+\end{defi}
+\begin{prop}
+Si $i\leftrightarrow j$, entonces ambos son simultáneamente recurrentes o transitorios.
+\end{prop}
+\begin{proof}
+Tomemos $m,n$ tales que $p^{(m)}_{ij},p^{(n)}_{ji}>0$. Definimos $\alpha =p^{(m)}_{ij}p^{(n)}_{ji}$ y sea $k$ un entero mayor o igual que $0$. Se tiene que 
+$$
+p_{ii}^{(m+k+n)} \geq p^{(m)}_{ij}p_{jj}^{(k)}p^{(n)}_{ji}\geq \alpha p_{jj}^{(k)}
+$$
+Con nun razonamiento análogo, $p_{jj}^{(m+k+n)}\geq \alpha p_{ii}^{(k)}$. Por tanto, las series que definen tienen el mismo caracter.
+\end{proof}
+\begin{prop}
+Si $i\leftrightarrow j$ entonces $d(i)=d(j)$.
+\end{prop}
+\begin{proof}
+Supongamos que se tiene la intercomunicación. Tomemos $m,n$ tales que $p^{(m)}_{ij},p^{(n)}_{ji}>0$. Sea $R(i) = \{k\in \mathbb{N} \mid p_{ii}^{(k)}>0\}$. Igualmente $R(j)$. Sea entonces $d(i)=\gcd R(i)$. Como $p_{jj}^{(m+n)}>0$ entonces $m+n \in R(j)$. Por tanto, $d(j)\mid m+n$.
 
+Si $k\in R(i)$ entonces $m+k+n \in R(j)$, y por tanto $d(j)\mid k+m+n$ y por tanto $d(j)\mid k$. Por tanto, $d(j)$ dividie a todos los elementos de $R(i)$. Se sigue que $d(j) \leq d(i)$. Análogamente se tiene la otra desigualdad.
+\end{proof}
+\begin{prop}
+Si $i\leftrightarrow j$ y el estado $i$ es recurrente nulo, entonces el estado $j$ es recurrente nulo.
+\end{prop}
+\begin{proof}
+Supongamos que se tiene la intercomunicación. Tomemos $m,n$ tales que $p^{(m)}_{ij},p^{(n)}_{ji}>0$. Sea $k$ entero mayor que $0$. Entonces se tiene que
+$$
+p_{ii}^{(n+m+k)} \geq \alpha p_{jj}^{(k)}\geq 0
+$$
+Si hacemos $k\to \infty$ entonces $p_{ii}^{(n+m+k)} \to 0$, luego $\alpha p_{jj}^{(k)} \to 0$ y, en particular, $p_{jj}^{(k)} \to 0$.
+\end{proof}
+\begin{defi}
+Un subconjunto $C\subset E$ se dice que es \textbf{irreducible} si todos los estados están intercomunicados. Si $E$ es irreducible, la cadena se dice irreducible.
+\end{defi}
+\begin{nota}
+Nótese que, por el resultado anterior, si una cadena es periódica entonces todos los estados tienen igual periodo.
+\end{nota}
+\begin{defi}
+Una cadena se dice \textbf{aperiódica} si todos los estados tienen sus estados aperiódicos. Una cadena irreducible que tiene todos sus estados recurrentes positivos y aperiódicos se dice que es una cadena ergódica.
+\end{defi}
+\begin{defi}
+Un subconjunto $C\subset E$ se dice que es \textbf{cerrado} $p_{ij}=0$ para todos $i\in C$, $j\not\in C$.
+\end{defi}
+\begin{theorem}
+El conjunto $E$ de estados de una cadena de Markov se puede particionar de manera única como
+$$
+E=T\cup C_1\cup C_2 \cup \dotsc
+$$
+donde $T$ es el conjunto de estados transitorios de la cadena y $C_1,C_2,\dotsc$ son conjuntos irreducibles y cerrados de estados recurrentes.
+\end{theorem}
+\begin{nota}
+Si la cadena entra en una clase cerrada e irreducible nunca saldrá de ella. Si la cadena entra en una clase de estados transitorios entonces se queda ahí permanentemente o entra en una clase cerrada e e irreducible de estados reccurentes. Eventualmente el conjunto de estados transitorios puede ser vacío.
+\end{nota}
+\begin{theorem}
+Si una cadena de Markov $S$ es finita entonces todos los estados no pueden ser transitorios, siendo los estados recurrentes no nulos.
+\end{theorem}
+\begin{example}
+Supongamos una cadena de Markov con $6$ estados y matriz de transición dada por 
+$$
+P=
+\begin{pmatrix}
+1/2 & 1/2 & 0 & 0 & 0 & 0\\
+3/4 & 1/4 & 0 & 0 & 0 & 0\\
+1/4 & 1/4 & 1/4 & 1/4 & 0 & 0\\
+1/4 & 0 & 1/4 & 1/4 & 0 & 1/4\\
+0 & 0 & 0 &0 & 1/2 & 1/2\\
+0 & 0 & 0 &0 & 1/2 & 1/2
+\end{pmatrix}
+$$
+Tenemos entonces que obviamente $\{1,2\}$ y $\{5,6\}$ son cerrados e irreducibles, mientras que el resto son transitorios.
+\end{example}
 \section{Distribuciones estacionarias}
-
-
+\begin{defi}
+Sea $S$ una cadena de Markov con matriz de transición $P$. Una \textbf{distribución límite} de una cadena de Markov es una distribución de probabilidad $\lambda$ tal que para todo $i,j$ se tiene que
+$$
+\lim_{n\to \infty} p_{ij}^{(n)}=\lambda_j
+$$
+\end{defi}
+\begin{prop}
+Para cualquier distribución inicial, y pra todo $J$
+$$
+\lim_{n\to \infty} P[X_n=j]=\lambda_j
+$$
+Para cualquier distribución inicial $\alpha$
+$$
+\lim_{n\to \infty} \alpha P^n = \lambda
+$$
+Además
+$$
+\lim_{n\to \infty}  P^n = \Lambda
+$$
+donde $\Lambda$ es una matriz estocástica por filas.
+\end{prop}
+\begin{defi}
+Sea $S$ una cadena de Markov con matriz de transición $P$. Una distribución de probabilidad $\pi$ se dice que \textbf{estacionaria} si 
+$$
+\pi = \pi P
+$$
+\end{defi}
+\begin{nota}
+La distribución estacionaria ni es única ni existe siempre.
+\end{nota}
+\begin{prop}
+Sea $S$ una cadena de Markov con matriz de transición $P$. Si $\pi$ es la distribución límite entonces es estacionaria.
+\end{prop}
+\begin{proof}
+$$
+\pi = \lim \alpha P^{n} = \lim \alpha P^{n-1} P = \pi P
+$$
+\end{proof}
+\begin{defi}
+Una matriz $M$ se dice que es \textbf{positiva} si todos los valores $m_{ij}$ de $M$ son positivos. Se denota por $M>0$. Análogamente para vectores.
+\end{defi}
+\begin{defi} Una matriz de transición $P$ se dice que es \textbf{regular} si para alguna potencia $n\geq 1$ de $P$ se tiene que $P^n>0$.
+\end{defi}
+\begin{theorem}
+Una cadena de Markov es ergódica si, y solo si, la matriz de transición es regular.
+\end{theorem}
+\begin{theorem}
+Sea $S$ una cadena de Markov con matriz de transición $P$. Si $P$ es regular entonces tiene distribución límite, la cual es única, positiva y además es la distribución estacionaria.
+\end{theorem}
+\begin{prop}
+Sea $\pi$ una distribución estaiconaria para una cadena de Markov. Si $j$ es un estado transitorio o reccurente nulo entonces $\pi_j=0$.
+\end{prop}
+\begin{theorem}
+Sea $S$ una cadena de Markov finita irreducible con matriz de transición $P$. Entonces, $\mu_j$ es finito, y existe una única distribución estacionaria positiva $\pi$ tal que
+$$
+\pi_j = \frac{1}{\mu_j}
+$$
+Más aún, se cumple que
+$$
+\pi_j = \lim_{n\to \infty} \frac{1}{n}\sum_{m=0}^{n-1}p_{ij}^{(m)}
+$$
+\end{theorem}
+\begin{example}
+Si tenemos la cadena de Markov dada por la matriz de transición
+$$
+P = 
+\begin{pmatrix}
+1 & 0 & 0 \\
+1/3 & 1/3 & 1/3\\
+0 & 0 & 1
+\end{pmatrix}
+$$
+\end{example}
 \end{document}

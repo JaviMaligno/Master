@@ -1,0 +1,27 @@
+\documentclass[twoside]{article}
+\usepackage{../estilo-ejercicios}
+\newcommand{\x}{{\mathbf{x}}}
+\newcommand{\y}{{\mathbf{y}}}
+%--------------------------------------------------------
+\begin{document}
+
+\title{Procesos Estocásticos. Aplicaciones}
+\author{Rafael González López}
+\maketitle
+
+\begin{ejercicio}{6}
+Una máquina tiene dos piezas colocadas en paralelo de manera que para funcionar utiliza solo una de ellas, quedando la otra de repuesto para reemplazar a la que trabaja cuando esta se estropea, si está en condiciones de trabajar. Las piezas trabajan de manera que se estropean durante un periodo de tiempo dado con una probabilidad $q$. Supongamos que la pieza que está trabajando, en caso de que se estropee, lo hace al final de un periodo, de manera que la pieza de repuesto empieza a trabajar, si está en condiciones de hacerlo, al principio del periodo siguiente. Hay un único mecánico para reparar las piezas estropeadas, que tarda dos periodos en reparar una pieza estropeada. El proceso puede describirse mediante un vector $X_t$ de dos componentes $U$ y $V$, donde $U$ representa el número de piezas hábiles, trabajando o en condiciones de trabajar, al final del periodo $t$-ésimo, y $V$ toma el valor $!$ si el mecánico requiere únicamente un periodos adicional para completar una reparación, si está procediendo a ella, y $0$ en caso contrario. Por lo tanto, el espacio de estados consta de cuatro estados
+$$
+(2,0), (1,0),(0,1),(1,1)
+$$
+(Por ejemplo, el estado $(1,1)$ implica que una componente opera y la otra necesita un periodo adicional para acabar de ser reparada). Denotemos los cuatro estados por $0,1,2$ y $3$, respectivamente. (Es decir, $X_t=0$ quiere decir $X_t = (2,0)$, por ejemplo). Se pide:
+\begin{itemize}
+\item Comprobar que $X_t$ para $t=0,1,\dotsc$ es una cadenada de Markov.
+\item Describir el diagrama de transiciones y hallar la matriz de probabilidades de transición.
+\end{itemize} 
+\end{ejercicio}
+
+\begin{solucion}
+
+\end{solucion}
+\end{document}

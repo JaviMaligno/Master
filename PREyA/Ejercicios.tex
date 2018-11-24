@@ -250,6 +250,17 @@ $$
 \lim_{s\to 1} P_{11}(s)= \sum_{n=0}^\infty 1/2 = \infty
 $$
 Por el Teorema de Caracterización, el estado $E_1$ es recurrente. Además, por el teorema de caracterización de estados nulos, tenemos que para que fuese nulo debería tenerse que $p_{11}^{(n)}\to0$, pero no es así. Por tanto, el proceso es no nulo.
+
+Vamos a probarlo por otro camino. Veamos directamente que $f_{11}=1$. Tenemos que
+\begin{align*}
+f_{11}^{(1)} &= \frac{1}{2}& f_{11}^{(2)} &= 0\\
+f_{11}^{(3)} &= \frac{1}{2} \frac{1}{3+1} & f_{11}^{(4)} &= \frac{1}{2} \frac{3}{3+1}\frac{1}{4+1} = \\
+f_{11}^{(n)} &= \frac{1}{2}\prod_{i=3}^{n-1}\frac{i}{i+1}\frac{1}{n+1} & f_{11}^{(n)} &= \frac{3}{2}\frac{1}{n(n+1)} 
+\end{align*}
+Por tanto
+$$
+f_{11} = \frac{1}{2} + 0 + \frac{3}{2}\sum_{n=3}^\infty \frac{1}{n(n+1)} = \frac{1}{2} + \frac{3}{2}\frac{1}{3} = 1
+$$
 \end{solucion}
 \newpage
 
@@ -281,4 +292,10 @@ Por tanto, $E_1$ es transitorio, pues la suma debería ser $1$ para que fuese re
 \end{solucion}
 \newpage
 
+\begin{ejercicio}{9}
+Probar que una cadena de Markov $S$ es finita entonces todos los estados no pueden ser transitorios, siendo los estados recurrentes no nulos.
+\end{ejercicio}
+
+\begin{solucion}
+\end{solucion}
 \end{document}
