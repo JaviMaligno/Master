@@ -293,9 +293,27 @@ Por tanto, $E_1$ es transitorio, pues la suma debería ser $1$ para que fuese re
 \newpage
 
 \begin{ejercicio}{9}
-Probar que una cadena de Markov $S$ es finita entonces todos los estados no pueden ser transitorios, siendo los estados recurrentes no nulos.
+Probar que una cadena de Markov $S$ es finita entonces todos los estados no pueden ser transitorios. De hecho, tampoco puede tener estados recurrentes no nulos.
 \end{ejercicio}
-
 \begin{solucion}
+Veamos que siempre existe un estado recurrente. Sea $i$ fijo y sea $S$ el conjunto de estados, finito por hipótesis. Para $n$ fijo, se tiene naturalmente que
+$$
+1 = \sum_{j \in S} p_{ij}^{(n)}
+$$
+Por tanto, utilizando que todas las cantidades son positivas, podemos escribir y reordenar
+$$
+\infty = \sum_{n =0}^{\infty} 1 = \sum_{n =0}^{\infty}\sum_{j \in S} p_{ij}^{(n)} = \sum_{j \in S} \sum_{n =0}^{\infty} p_{ij}^{(n)}	
+$$
+Dado que $S$ es finito, existe al menos un $j$ tal que
+$$
+ \sum_{n =0}^{\infty} p_{ij}^{(n)}	 = \infty
+$$
+Por el Teorema de Caracterizción de estados recurrentes, tenemos que ese $E_j$ es un estado recurrente.
+
+Por el Teorema de descomposición, si existen estados recurrentes no nulos, estarán en ciertos conjuntos de estados irreducibles y cerrados de estados no nulos. Tiene sentido, por tanto, considerar la matriz $P$ restringida únicamente a estos conjuntos de estados. Por el teorema de caracterización de estados nulos, tenemos que si un estado $i$ es no nulo entonces $p_{ij}^{(n)}\to 0$. Por tanto,
+$$
+P^n \to 0
+$$
+Pero siempre ha de verificarse que la suma por filas ha de ser $1$, lo cuál es imposible dado que las filas tienen un número finito de elementos al ser $S$ finito.
 \end{solucion}
 \end{document}

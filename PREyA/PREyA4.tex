@@ -44,7 +44,7 @@ p_{ij} = P(X_{n+1}=j\mid X_{n}=i)
 $$
 \end{defi}
 \begin{defi}
-Se dice que una matriz $P$ es una \textbf{matriz estocastica} si
+Se dice que una matriz $P$ es una \textbf{matriz estocástica} si
 	
 	\begin{itemize}
 		\item $p_{ij} \geq 0$ para todo $i,j$.
@@ -258,7 +258,7 @@ Tomemos $m,n$ tales que $p^{(m)}_{ij},p^{(n)}_{ji}>0$. Definimos $\alpha =p^{(m)
 $$
 p_{ii}^{(m+k+n)} \geq p^{(m)}_{ij}p_{jj}^{(k)}p^{(n)}_{ji}\geq \alpha p_{jj}^{(k)}
 $$
-Con nun razonamiento análogo, $p_{jj}^{(m+k+n)}\geq \alpha p_{ii}^{(k)}$. Por tanto, las series que definen tienen el mismo caracter.
+Con nun razonamiento análogo, $p_{jj}^{(m+k+n)}\geq \alpha p_{ii}^{(k)}$. Por tanto, las series que definen tienen el mismo carácter.
 \end{proof}
 \begin{prop}
 Si $i\leftrightarrow j$ entonces $d(i)=d(j)$.
@@ -266,7 +266,7 @@ Si $i\leftrightarrow j$ entonces $d(i)=d(j)$.
 \begin{proof}
 Supongamos que se tiene la intercomunicación. Tomemos $m,n$ tales que $p^{(m)}_{ij},p^{(n)}_{ji}>0$. Sea $R(i) = \{k\in \mathbb{N} \mid p_{ii}^{(k)}>0\}$. Igualmente $R(j)$. Sea entonces $d(i)=\gcd R(i)$. Como $p_{jj}^{(m+n)}>0$ entonces $m+n \in R(j)$. Por tanto, $d(j)\mid m+n$.
 
-Si $k\in R(i)$ entonces $m+k+n \in R(j)$, y por tanto $d(j)\mid k+m+n$ y por tanto $d(j)\mid k$. Por tanto, $d(j)$ dividie a todos los elementos de $R(i)$. Se sigue que $d(j) \leq d(i)$. Análogamente se tiene la otra desigualdad.
+Si $k\in R(i)$ entonces $m+k+n \in R(j)$, y por tanto $d(j)\mid k+m+n$ y por tanto $d(j)\mid k$. Por tanto, $d(j)$ divide a todos los elementos de $R(i)$. Se sigue que $d(j) \leq d(i)$. Análogamente se tiene la otra desigualdad.
 \end{proof}
 \begin{prop}
 Si $i\leftrightarrow j$ y el estado $i$ es recurrente nulo, entonces el estado $j$ es recurrente nulo.
@@ -298,7 +298,7 @@ $$
 donde $T$ es el conjunto de estados transitorios de la cadena y $C_1,C_2,\dotsc$ son conjuntos irreducibles y cerrados de estados recurrentes.
 \end{theorem}
 \begin{nota}
-Si la cadena entra en una clase cerrada e irreducible nunca saldrá de ella. Si la cadena entra en una clase de estados transitorios entonces se queda ahí permanentemente o entra en una clase cerrada e e irreducible de estados reccurentes. Eventualmente el conjunto de estados transitorios puede ser vacío.
+Si la cadena entra en una clase cerrada e irreducible nunca saldrá de ella. Si la cadena entra en una clase de estados transitorios entonces se queda ahí permanentemente o entra en una clase cerrada e e irreducible de estados recurrentes. Eventualmente el conjunto de estados transitorios puede ser vacío.
 \end{nota}
 \begin{theorem}
 Si una cadena de Markov $S$ es finita entonces todos los estados no pueden ser transitorios, siendo los estados recurrentes no nulos.
@@ -369,7 +369,7 @@ Una cadena de Markov es ergódica si, y solo si, la matriz de transición es reg
 Sea $S$ una cadena de Markov con matriz de transición $P$. Si $P$ es regular entonces tiene distribución límite, la cual es única, positiva y además es la distribución estacionaria.
 \end{theorem}
 \begin{prop}
-Sea $\pi$ una distribución estaiconaria para una cadena de Markov. Si $j$ es un estado transitorio o reccurente nulo entonces $\pi_j=0$.
+Sea $\pi$ una distribución estacionaria para una cadena de Markov. Si $j$ es un estado transitorio o recurrente nulo entonces $\pi_j=0$.
 \end{prop}
 \begin{theorem}
 Sea $S$ una cadena de Markov finita irreducible con matriz de transición $P$. Entonces, $\mu_j$ es finito, y existe una única distribución estacionaria positiva $\pi$ tal que
@@ -391,5 +391,6 @@ P =
 0 & 0 & 1
 \end{pmatrix}
 $$
+Es claro que no existe una única distribución límite.
 \end{example}
 \end{document}

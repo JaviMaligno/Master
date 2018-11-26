@@ -230,4 +230,78 @@ Sumar y restar $Y_i$ y devidir en dos integrales, de manera que una queda $0$ po
 &=\sum_{i=1}^n \frac{K\left(\frac{x-X_i}{h}\right)}{\sum_{j=1}^n K\left(\frac{x-X_j}{h}\right)}Y_i
 \end{align*}
 \end{proof}
+
+\begin{theorem}
+Supongamos que
+\begin{itemize}
+\item $X_1,\dotsc,X_n$ tiene fdd $f$ con soporte $[0,1]$, $f$ continuamente diferenciable.
+\item $m$ es dos veces continuamente diferenciable en $(0,1)$ y que $v$ es continua.
+\item $K$ es simétrico y acotado con soporte $[-1,1]$.
+\item $h\to 0$ y $nh^2 \to \infty$.
+\item $x$ es un punto interior del soporte, con $f(x)>0$.
+\end{itemize}
+Entonces
+$$
+E[\hat{m}(x;1,h)\mid X_1,\dotsc X_n]-m(x) = \frac{1}{2}h^2\mu_2(K)m''(x)+o_p(h^2)
+$$
+donde 
+$$
+\mu_2(K) = \int x^2 K(x)dx
+$$
+\end{theorem}
+\begin{proof} 
+Sabemos que
+\begin{align*}
+m(x_1) &= m(x)+m'(x)(x_1-x)+\frac{1}{2}m''(x)(x_1-x)^2+r_1 \\
+&=
+\begin{pmatrix}
+1 & x_1-x
+\end{pmatrix}
+\begin{pmatrix}
+m(x)\\
+m'(x)
+\end{pmatrix}+\frac{1}{2}m''(x)(x_1-x)^2+r_1
+\end{align*}
+donde $r_1 = O((x_1-x)^2)$. Por tanto
+\begin{align*}
+E[\hat{m}(x;1,h)\mid X_1,\dotsc X_n] &= (1,0)(X'WX)^{-1}X'WE[Y|X]\\
+&= 
+(1,0)(X'WX)^{-1}X'W
+X\begin{pmatrix}
+m(x)\\
+m'(x)
+\end{pmatrix}+\frac{1}{2}m''(x)
+\begin{pmatrix}
+(x_1-x)^2\\
+\vdots \\
+(x_n-x)^2
+\end{pmatrix}+r_1)\\
+&=m(x) + \frac{1}{2}m'(x)(1,0)(X'WX)^{-1}X'W\begin{pmatrix}
+(x_1-x)^2\\
+\vdots \\
+(x_n-x)^2
+\end{pmatrix} + O(\text{menor orden})
+\end{align*}
+Sea el vector de las $(x_i-x)^2$. Si $s_l (x,h)=\frac{1}{n}\sum_{i=1}^n(x_i-x)^lK_h(x-x_i)$. Entonces
+$$
+\frac{1}{n}X'WX = \begin{pmatrix}
+s_0(x,h) &s_1(x,h) \\
+s_1(x,h) & s_2(x,h)
+\end{pmatrix} \qquad \frac{1}{n}X'WV = \begin{pmatrix}
+s_2(x,h)\\
+s_3(x,h) 
+\end{pmatrix}
+$$
+Se tiene además
+$$
+s_l(x,h) = \begin{cases}
+f(x)\mu_{l+1}(K)h^l+o_p(h^l) & \text{$l$ par}\\
+f'(x)\mu_{l+1}(K)h^{l+1}+o_p(h^{l+1})& \text{$l$ impar}
+\end{cases}
+$$
+Como nuestra $K$ es función de densidad, $\mu_0(K)=1$. Como $K$ es simétrico, $\mu_1(K)=0$. Sustituyendo esto en la expresión anterior y esta a su vez en la anterior obtenemos 
+$$
+E[\hat{m}(x;1,h)\mid X_1,\dotsc X_n]-m(x)
+$$
+\end{proof}
 \end{document}
