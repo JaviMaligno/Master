@@ -182,13 +182,17 @@ Cov(T_1,T_2-T_1) = 0 = Cov(T_1,T_2) + Var(T_1) \Rightarrow Cov(T_1,T_2) = Var(T_
 $$
 
 Como $T_1$ no es constante, su varianza no puede ser nula.
-\item \textbf{Proceso markoviano}. Para $T_1,T_2,T_3$ tendríaos que
-$$
-P[T_1 = x_1 \mid T_2 = x_2,T_3=x_3] = P[T_1=x_1\mid T_3=x_3]
-$$
-la ecuacion implicaria $T_3$ independiente de $T_1$, lo cual no es cierto.
-
-\item \textbf{Cadena de Markov}. Al no ser proceso markoviano tampoco puede ser cadena de Markov.
+\item \textbf{Proceso markoviano}. Naturalmente, se deduce a partir de la propeidad de incrementos independientes. Sean $t_1,\dotsc,t_n$, vamos a utilizar los incrementos independientes que probaremos después
+\begin{gather*}
+P[T_n =  k_n \mid T_1=k_1,\dotsc,T_{n-1}=k_{n-1}] \\= P[T_n -T_{n-1} =  k_n - k_{n-1}\mid T_1=k_1,\dotsc,T{n-1}-T_{n-2}=k_{n-1}-k_{n-2}]\\
+=P[T_n-T_{n-1}=k_n - k_{n-1}]
+\end{gather*}
+Ahora bien, volviendo a aplicar incrementos independientes en $t_{n-1},t_n$ tenemos que 
+\begin{align*}
+P[T_n-T_{n-1}=k_n - k_{n-1}] &= P[T_n -T_{n-1} =k_n - k_{n-1}\mid T_{n-1}  = k_{n-1}]\\
+&= P[T_n =k_n \mid T_{n-1} =k_{n-1}]
+\end{align*}
+\item \textbf{Cadena de Markov}. No lo es, pues el soporte no es finito.
 \item 
 \item \textbf{Estacionario}. Claramente no puede serlo, pues en particular las $T_k$ deberían ser idénticamente distribuidas.
 \item \textbf{Débilmente estacionario}. Si calculamos explícitamente la esperanza de $T_k$ observamos
@@ -293,7 +297,7 @@ Por tanto, $E_1$ es transitorio, pues la suma debería ser $1$ para que fuese re
 \newpage
 
 \begin{ejercicio}{9}
-Probar que una cadena de Markov $S$ es finita entonces todos los estados no pueden ser transitorios. De hecho, tampoco puede tener estados recurrentes no nulos.
+Probar que una cadena de Markov $S$ es finita entonces todos los estados no pueden ser transitorios. De hecho, tampoco puede tener estados recurrentes nulos.
 \end{ejercicio}
 \begin{solucion}
 Veamos que siempre existe un estado recurrente. Sea $i$ fijo y sea $S$ el conjunto de estados, finito por hipótesis. Para $n$ fijo, se tiene naturalmente que
@@ -310,10 +314,57 @@ $$
 $$
 Por el Teorema de Caracterizción de estados recurrentes, tenemos que ese $E_j$ es un estado recurrente.
 
-Por el Teorema de descomposición, si existen estados recurrentes no nulos, estarán en ciertos conjuntos de estados irreducibles y cerrados de estados no nulos. Tiene sentido, por tanto, considerar la matriz $P$ restringida únicamente a estos conjuntos de estados. Por el teorema de caracterización de estados nulos, tenemos que si un estado $i$ es no nulo entonces $p_{ij}^{(n)}\to 0$. Por tanto,
+Por el Teorema de descomposición, si existen estados recurrentes nulos, estarán en ciertos conjuntos de estados irreducibles y cerrados de estados no nulos. Tiene sentido, por tanto, considerar la matriz $P$ restringida únicamente a estos conjuntos de estados. Por el teorema de caracterización de estados nulos, tenemos que si un estado $i$ es no nulo entonces $p_{ij}^{(n)}\to 0$. Por tanto,
 $$
 P^n \to 0
 $$
 Pero siempre ha de verificarse que la suma por filas ha de ser $1$, lo cuál es imposible dado que las filas tienen un número finito de elementos al ser $S$ finito.
 \end{solucion}
+\newpage
+\begin{ejercicio}{10}
+El proceso de Poisson $\{N(t)\}_{t\geq 0}$ satisface
+\begin{itemize}
+\item Es un proceso de Markov
+\item Tiene incrementos independientes
+\item Tiene incrementos estacionarios
+\item Para cualesquiera $s\leq t$ y naturales $i\leq j$ las probabilidades de transición son
+$$
+P[N(t+s)=j\mid N(s)=i] = e^{-\lambda t}\frac{(\lambda t)^{j-i}}{(j-i)!}
+$$
+\end{itemize}
+\end{ejercicio}
+\begin{solucion}
+Veamos punto por punto las demostraciones
+\begin{itemize}
+\item Sean $t_1,\dotsc,t_n$, vamos a utilizar los incrementos independientes que probaremos después
+\begin{gather*}
+P[N(t_n) =  k_n \mid N(t_1)=k_1,\dotsc,N(t_{n-1})=k_{n-1}] \\= P[N(t_n) -N(t_{n-1}) =  k_n - k_{n-1}\mid N(t_1)=k_1,\dotsc,N(t_{n-1})-N(t_{n-2})=k_{n-1}-k_{n-2}]\\
+=P[N(t_n)-N(t_{n-1})=k_n - k_{n-1}]
+\end{gather*}
+Ahora bien, volviendo a aplicar incrementos independientes en $t_{n-1},t_n$ tenemos que 
+\begin{align*}
+P[N(t_n)-N(t_{n-1})=k_n - k_{n-1}] &= P[N(t_n)-N(t_{n-1})=k_n - k_{n-1}\mid N(t_{n-1}) = k_{n-1}]\\
+&= P[N(t_n)=k_n \mid N(t_{n-1})=k_{n-1}]
+\end{align*}
+\item Sean $t_1<t_2\leq t_3<t_4$ tenemos que por el postulado $1$.
+\begin{align*}
+P[N(t_4)-N(t_3)& = i\mid N(t_2)-N(t_1)=j]\\
+& = P[N(t_3,t_4]=i \mid N(t_1,t_2]=j] \\
+&= P[N(t_3,t_4]=i] \\
+&= P[N(t_3)-N(t_2)]
+\end{align*}
+\item Es consecuencia inmediata del segundo postulado, pues en particular, si $t>s$ y sea $h>0$
+$$N(t+h)-N(s+h)=N(s+h,t+h] \sim N(t-s) $$
+Y análogamente para $N(t)-N(s)$. 
+\item Usando la propiedad de incrementos independientes
+\begin{align*}
+P[N(t+s)=j\mid N(s)=i] &= \frac{P[N(t+s)=j,  N(s)=i]}{P[N(s)=i]}\\
+&=\frac{P[N(t+s)-N(s)=j-i,  N(s)=i]}{P[N(s)=i]}\\
+&=\frac{P[N(t+s)-N(s)=j-i]P[N(s)=i]}{P[N(s)=i]}\\
+&=P[N(t)=j-1]\\
+&=e^{-\lambda t}\frac{(\lambda t)^{j-i}}{(j-i)!}
+\end{align*}
+\end{itemize}
+\end{solucion}
+
 \end{document}
