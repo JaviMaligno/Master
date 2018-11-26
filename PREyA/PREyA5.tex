@@ -1,0 +1,106 @@
+\documentclass[PREyA.tex]{subfiles}
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\begin{document}
+
+\chapter{Procesos de Poisson}
+\section{Introducción}
+\begin{theorem}[Teorema Central del Límite de Poisson]
+Supongamos la matriz aleatoria triangular de v.a.i. $X_{n,m} \sim Ber(p_{n,m})$ con $m\leq n$. Definimos la sucesión $S_n = \sum_{m=1}^n X_{n,m}$. Sean además $\lambda_n = \sum_{m=1}^n p_{n,m}$ tal que $\lambda_n \to \lambda$ y $\max_{k\leq n}p_{n,k}\to0$. Se tiene entonces que
+$$
+\lim_{n\to \infty} P[S_n = k] = e^{-\lambda}\frac{\lambda^k}{k!}
+$$
+\end{theorem}
+\begin{coro}
+Bajo las condiciones anteriores se tiene que para cualquier conjunto $A$
+$$
+\abs{P(S_n\in A)-P(Z_n\in A)} \leq \sum_{m=1}^n p_{n,m}^2
+$$
+con $Z_n \sim Poi(\lambda_n)$.
+\end{coro}
+\section{Postulados para el Proceso de Poisson}
+Consideremos una sucesión de sucesos que ocurre en el tiempo en $[0,\infty)$. Sea $N(a,b]$ el número de suceso que ocurren en $(a,b]$. Cada uno de esos sucesos ocurren en los instantes $a<\tau_i\leq b$. Tenemos los siguientes postulados 
+\begin{enumerate}
+\item El número de sucesos que ocurren intervalos disjuntos son v.a.i. Esto es, para cualquier natural $n\geq 2$ es instantes cualesquiera $0<t_1<t_2<\dotsc<t_n$ las v.a.
+$$
+N(0,t_1],\dotsc,N(t_{n-1},t_n]
+$$
+son independientes.
+\item Para cualquier $h>0$ e instante $t$ la distribución de $N(t,t+h]$ depende solo de la longitud $h$ y no de $t$.
+\item Existe una constante positiva $\lambda$ tal que 
+$$
+P[N(t,t+h]\geq 1] = \lambda h + o(h)
+$$
+con $h\to0$ y $o(h)/h\to 0$. A $\lambda$ se le conoce como intensidad del proceso.
+\item La probabilidad de que haya dos o más eventos en un intervalo de longitud $h$ es $o(h)$. Es decir,
+$$
+P[N(t,t+h]\geq 2] = o(h)
+$$
+\end{enumerate}
+Por el primer postulado sabemos que el numero de sucesos que ocurren intervalos disjuntos son independientes. Por el segundo, sabemos que $N(s,t]=N(0,t-s]$. Por tanto, la ley de probabilidad del proceso será la de $N(0,t]$ que denotaremos por $N(t)$.
+\begin{theorem}
+Bajo las condiciones anteriores se tiene que
+$$
+P[N(t)=k]=e^{-\lambda t}\frac{(\lambda t)^k}{k!}
+$$
+\end{theorem}
+\begin{proof}
+Dividamos el intervalo $(0,t]$ en $n$ subintervalos de igual longitud $t/n$. Definamos las siguientes variables aleatorias $\xi_{n,i}=1$ si hay al menos un suceso en $((i-1)t/n,it/n]$. Definimos $S_n = \sum_{i=1}^n \xi_{n,i}$ el número de subintervalos que contienen al menos un evento, con $p_{n,i}=P[\xi_{n,i}=1] = \lambda\frac{t}{n}+o(t/n)$. 
+
+Ahora bien, se tiene que
+\begin{align*}
+\abs{P[S_n=k]-e^{-\mu_n}\mu_n^k / k!}&\leq n\left(\frac{\lambda t}{n}+o(t/n)\right)^2 \\
+&=\frac{(\lambda t)^2}{n} + 2\lambda t o(t/n)+ m o(t/n)^2
+\end{align*}
+donde $\mu_n = \sum_{i=1}^n p_{i,n} = \lambda t + n o(t/n)$ sabiendo que $no(t/n)\to 0$, se obtiene que
+$$
+P[S_n = k] \to e^{-\lambda t}\frac{(\lambda t)^k}{k!}
+$$
+Además
+$$
+P[N(t)\neq S_n] \leq \sum_{i=1}^n P\left[N\left(\frac{(i-1)t}{n},\frac{it}{n}\right]\geq 2 \right] \leq n(t/n)\to 0
+$$
+Por tanto, tomando $n$ suficientemente grande si tiene que
+$$
+P[N(t)=k]=e^{-\lambda t}\frac{(\lambda t)^k}{k!}
+$$
+Al proceso estocástico $N(a,b]$ se le llama proceso de Poisson.
+\end{proof}
+\begin{prop}
+El proceso de Poisson $\{N(t)\}_{t\geq 0}$ satisface
+\begin{itemize}
+\item Es un proceso de Markov
+\item Tiene incrementos independientes
+\item Tiene incrementos estacionarios
+\item Para cualesquiera $s\leq t$ y naturales $i\leq j$ las probabilidades de transición son
+$$
+P[N(t+s)=j\mid N(s)=i] = e^{-\lambda t}\frac{(\lambda t)^{j-i}}{(j-i)!}
+$$
+\end{itemize}
+\end{prop}
+\begin{example}
+Demostrar que los tiempos de llegadas en un proceso de Poisson son independientes y exponenciales de tasa $\lambda$. 
+$$
+P[T_1 > t] =  P[N(t) = 0] = e^{-\lambda t}
+$$
+$$
+P[T_2 > t\mid X_1 = s] =  P[N(s,s+t) = 0\mid X_1 = s] = e^{-\lambda t}
+$$
+En general, $T_i \sim Exp(\lambda)$. Además
+$$
+P[T_t = a \mid T_s = b] = 
+$$
+\end{example}
+\begin{example}
+Demostrar que la suma de dos procesos de Poisson independentes también es un proceso de Poisson, y determinar su intensidad. Sea $N_i(t)\sim PPoi(\lambda_i t)$. Sea $N(t)=N_1(t)+N_2(t)$
+
+\begin{align*}
+P[N(t)= k] &= \sum_{i=0}^k P[N_1(t)=k-i,N_2=i] \\
+&= \sum_{i=0}^k e^{-\lambda_1 t}\frac{(\lambda_1 t)^{k-i}}{(k-i)!}e^{-\lambda_2 t}\frac{(\lambda_2 t)^{i}}{i!}\\
+&= e^{-(\lambda_1+\lambda_2)t}\frac{((\lambda_1+\lambda_2)t)^k}{k!}
+\end{align*}
+Por tanto, es un proceso de Poisson con intensidad suma de las intensidades.
+\end{example}
+\section{Distribuciones asociadas al Proceso de Poisson}
+\section{Definiciones alternativas}
+\section{Algunos Procesos de Poisson Generalizados}
+\end{document}
