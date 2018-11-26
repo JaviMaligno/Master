@@ -254,10 +254,30 @@ Cov(T_1,T_2-T_1) = 0 = Cov(T_1,T_2) - Var(T_1) \Rightarrow Cov(T_1,T_2) = Var(T_
 $$
 
 Como $T_1$ no es constante, su varianza no puede ser nula.
-\item \textbf{Proceso markoviano}. Para $T_1,T_2,T_3$ la ecuacion implicaria $T_3$ independiente de $T_1$, lo cual no es cierto.
-
-\item \textbf{Cadena de Markov}. Al no ser proceso markoviano tampoco puede ser cadena de Markov.
-\item Martingala
+\item \textbf{Proceso markoviano}. Naturalmente, se deduce a partir de la propeidad de incrementos independientes. Sean $t_1,\dotsc,t_n$, vamos a utilizar los incrementos independientes que probaremos después
+\begin{gather*}
+P[T_n =  k_n \mid T_1=k_1,\dotsc,T_{n-1}=k_{n-1}] \\= P[T_n -T_{n-1} =  k_n - k_{n-1}\mid T_1=k_1,\dotsc,T{n-1}-T_{n-2}=k_{n-1}-k_{n-2}]\\
+=P[T_n-T_{n-1}=k_n - k_{n-1}]
+\end{gather*}
+Ahora bien, volviendo a aplicar incrementos independientes en $t_{n-1},t_n$ tenemos que 
+\begin{align*}
+P[T_n-T_{n-1}=k_n - k_{n-1}] &= P[T_n -T_{n-1} =k_n - k_{n-1}\mid T_{n-1}  = k_{n-1}]\\
+&= P[T_n =k_n \mid T_{n-1} =k_{n-1}]
+\end{align*}
+\item \textbf{Cadena de Markov}. No lo es, pues el soporte no es finito.
+\item \textbf{Martingala}. Por la propiedad Markoviana tenemos
+\begin{align*}
+E[T_n \mid T_1,\dotsc,T_{n-1}] &= \sum_{m=n}^\infty m P[T_n =m \mid T_1,\dotsc,T_{n-1}]\\
+&= \sum_{m=n}^\infty m P[T_n =m \mid  T_{n-1}]\\
+&=E[T_n \mid T_{n-1}] \\
+&= E[T_n - T_{n-1} + T_{n-1} \mid T_{n-1}] \\
+&= E[T_n] - E[T_{n-1}] + T_{n-1}
+\end{align*}
+Usando el cálculo del último apartado
+$$
+E[T_n \mid T_1,\dotsc,T_{n-1}] = T_{n-1} + \frac{p}{k-k^2}
+$$
+Por lo que nunca puede ser martingala.
 \item \textbf{Estacionario}. Claramente no puede serlo, pues en particular las $T_k$ deberían ser idénticamente distribuidas.
 \item \textbf{Débilmente estacionario}. Si calculamos explícitamente la esperanza de $T_k$ observamos
 $$

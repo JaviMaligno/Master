@@ -1,3 +1,4 @@
+
 \documentclass[twoside]{article}
 \usepackage{../estilo-ejercicios}
 \newcommand{\x}{{\mathbf{x}}}
@@ -193,7 +194,19 @@ P[T_n-T_{n-1}=k_n - k_{n-1}] &= P[T_n -T_{n-1} =k_n - k_{n-1}\mid T_{n-1}  = k_{
 &= P[T_n =k_n \mid T_{n-1} =k_{n-1}]
 \end{align*}
 \item \textbf{Cadena de Markov}. No lo es, pues el soporte no es finito.
-\item 
+\item \textbf{Martingala}. Por la propiedad Markoviana tenemos
+\begin{align*}
+E[T_n \mid T_1,\dotsc,T_{n-1}] &= \sum_{m=n}^\infty m P[T_n =m \mid T_1,\dotsc,T_{n-1}]\\
+&= \sum_{m=n}^\infty m P[T_n =m \mid  T_{n-1}]\\
+&=E[T_n \mid T_{n-1}] \\
+&= E[T_n - T_{n-1} + T_{n-1} \mid T_{n-1}] \\
+&= E[T_n] - E[T_{n-1}] + T_{n-1}
+\end{align*}
+Usando el cálculo del último apartado
+$$
+E[T_n \mid T_1,\dotsc,T_{n-1}] = T_{n-1} + \frac{p}{k-k^2}
+$$
+Por lo que nunca puede ser martingala.
 \item \textbf{Estacionario}. Claramente no puede serlo, pues en particular las $T_k$ deberían ser idénticamente distribuidas.
 \item \textbf{Débilmente estacionario}. Si calculamos explícitamente la esperanza de $T_k$ observamos
 $$
