@@ -332,7 +332,7 @@ Como este homomorfismo es local, se tiene de hecho un morfismo de espacios local
 
 
 Ahora nos interesa buscar objetos iniciales y finales en la categoría de los esquemas. Vamos a ver que el objeto final es $\spec(\Z)$. Esto se tiene del ejercicio 2.4 por ser $\Z$ objeto inicial de los anillos. Del mismo modo podemos obtenemos el objeto inicial. 
-
+\
 \begin{observacion}
 $\spec(\{0\})=(\emptyset,\{0\})$, ya que un ideal primo por definición no puede ser el total. 
 \end{observacion}
@@ -342,6 +342,76 @@ Sea $S$ un esquema. Un esquema sobre $S$ es una flecha de esquemas $X\to S$. Un 
 \end{defi}
 
 Esta construcción es general en cualquier categoría, y es lo que se llama la categoría \emph{slice}. 
+
+
+Sea $\CC$ una categoría y $X,Y\in Ob(\CC)$. Sea un functor $F=F_{X,Y}:\CC\to\mathrm{Set}$ definido en los objetos como $F(U)=\Hom_{\CC}(U,X)\times\Hom_{\CC}(U,Y$ y en los morfismos $F(\alpha):F(U')\to F(U)$ es contravariante, definido como $F(\alpha)(f,g)=(f\circ \alpha, g\circ\alpha)$. Dado $Z\in Ob(\CC)$ definimos $h_z:\CC\to\mathrm{Set}$ como el archiconocido functor $h_Z=\Hom_{\CC}(-,Z)$. 
+
+\begin{defi}
+Un functor contravariante $G:\CC\to\mathrm{Set}$ se dice \emph{representable} si $\exists Z\in Ob(\CC)$ y $\exists\gamma$ transformación natural entre $G$ y $h_Z$. Vamos a definir ahora lo que significa una transformación natural (morfismo en la categoría de los functores) $\tau:G\to H$ entre dos functores $G,H:\CC\to\CC'$ (que vamos a suponer covariantes para escribir la definición) es una familia $\tau(U):G(U)\to H(U)$ haciendo conmutar el diagrama
+\[
+\begin{tikzcd}
+G(U)\arrow[r, "\tau(U)"]\arrow[d, "G(\alpha)"'] & H(U)\arrow[d, "H(\alpha)"]\\
+G(U')\arrow[r, "\tau(V)"] & H(U')
+\end{tikzcd}
+\]
+Se comprueba en seguida que las transformaciones naturales se pueden componer y que existe la transformación natural identidad de un functor en sí mismo. Llamaremos isomorfismo de functores a $\tau:G\to H$ cuando $\tau(U)$ es isomorfismo para todo objeto $U\in Ob(\CC)$, que es equivalente a que tenga un inverso a los dos lados. 
+\end{defi}
+
+\begin{prop}
+$(Z,p,q)$ es un producto de $X,Y$ si y solo si $h_Z\cong F_{X,Y}$. 
+\end{prop}
+\begin{dem}
+Sea $(Z,p,q)$ un producto. Entonces, para todo $\alpha:U\to X$, $\beta:U\to Y$ existe un único $\gamma:U\to Z$ tal que $q\gamma=\beta$ y $p\gamma=\alpha$. A cada $\gamma\in\Hom_{\CC}(U,Z)$ le asociamos $(p\gamma,q\gamma)\in F_{X,Y}(U)$. La propiedad universal del producto implica que esto es un isomorfismo. Recíprocamente, supongamos que existe un isomorfismo $\tau:h_Z\to F_{X,Y}$. El objeto del producto será $Z$. Tenemos que $\tau(Z):h_Z(Z)\to F_{X,Y}(Z)$, por lo que tomamos $(p,q)=\tau_Z(Z)(Id_Z)=(p,q)$, que verificará la propiedad universal del producto por ser $\tau$ isomorfismo. 
+\end{dem}
+
+Denotamos como $h_{\alpha}$ para $\alpha:X\to X'$ a la transformación natural $h_{\alpha}:h_X\to h_{X'}$ dado por $h_{\alpha}(U)(g)=\alpha\circ g$
+
+\begin{lemma}[de Yoneda]
+$h_*:\CC\to \mathrm{Fun}(\CC, \mathrm{Set})$ es plenamente fiel, es decir, para todo $X,X'\in Ob(\CC)$ la aplicación $\alpha\in\Hom_{\CC}(X,X')\mapsto h_{\alpha}$ es un isomorfismo. 
+\end{lemma}
+La demostración se deja como ejercicio. 
+
+Como consecuencia, $X,Y$ tiene un producto $Z$ en $\CC$ si y solo si $h_Z\cong h_X\times h_Y$ definido como $(h_X\times h_Y)(U)=h_X(U)\times h_Y(U)$. De igual modo con el coproducto. 
+
+\section{Categorías aditivas y abelianas}
+Sea $\CC$ una categoría cumpliendo que $\Hom_{\CC}(X,Y)$ es un grupo abeliano (no con la composición) y existen productos y coproductos finitos. A esto lo llamaremos categoría aditiva. Por el lema de Yoneda $h_{X\times Y}\cong h_X\times h_Y$, aunque en este caso $h_*:\CC\to\mathrm{Fun}(\CC, \mathfrak{Ab})$. Como en grupos abelianos el producto y el coproducto son isomorfos (la suma directa), en cualquier categoría aditiva también, puesto que $h_{X\oplus Y}\cong h_X\oplus h_Y$. Vamos a añadir un axioma que en realidad se puede probar a partir de los existentes considerando el producto y coproducto de familias vacías, que es que toda categoría aditiva debe contener un objeto nulo. 
+
+\begin{ej}
+La categoría $\mathfrak{Ab}$ es aditiva. Si $R$ es un anillo conmutativo, $\mathrm{Mod}_R$ es aditiva. Los espacios vectoriales normados (bajo la equivalencia de normas). La categoría $\mathrm{Sh}_X$.
+\end{ej}
+
+\begin{defi}[$\ker$ y $\coker$]
+Sea $\CC$ una categoría aditiva. Sean $X,Y\in Ob(\CC)$ y $\alpha\in\Hom(X,Y)$.
+\begin{itemize}
+\item el núcleo de $\alpha$: es un par $(K,i)$ donde $K\in Ob(\CC)$, $i\in\Hom(K,X)$ tal que $\alpha\circ i=0$ y además es universal, esto es, si $\beta:Z\to X$ es un morfismo, entonces existe un único $\gamma :Z\to K$ verificando $i\circ\gamma$. 
+
+\item El conúcleo es la noción dual. La categoría opuesta de una categoría aditiva es también aditiva, y su núcleo es el conúcleo de la categoría original. 
+\end{itemize}
+\end{defi}
+
+\begin{ej}
+La definición anterior nos da ejemplos de functores $F_{\alpha}:\CC\to\mathfrak{Ab}$ definido como $F_{\alpha}(Z)=\{\beta\in\Hom(Z,X)\mid \alpha\circ\beta=0\}$ y para $f:F_{\alpha}(Z')\to F_{\alpha}(Z)$, $F_{\alpha}(f)(\beta)=\beta\circ f$. El núcleo es el objeto que representa a este functor. En concreto, si tenemos $h_{\alpha}:h_X\to h_Y$, $F_{\alpha}=\ker h_{\alpha}$, entendiéndose este functor como $(\ker h_{\alpha})(Z)=\ker(h_{\alpha}(Z))$. Y esto es claro porque $h_{\alpha}(Z)(\beta)=\alpha\circ\beta$. 
+
+
+\end{ej}
+
+\begin{defi}
+Una categoría aditiva $\CC$ se dice que es \emph{abeliana} si
+\begin{enumerate}
+\item $\forall\alpha$ flecha en $\CC$ existen $\ker\alpha$ y $\coker\alpha$
+\item Se verifica la factorización canónica
+\[
+\begin{tikzcd}
+\ker\alpha\arrow[r, "i"] & X\arrow[r, "\alpha"]\arrow[d, "p"] & Y\arrow[r, "\pi"] & \coker\alpha\\
+&     \coker i\arrow[ur] \arrow[r, dashed, "\overline{\alpha}"] & \ker\pi\arrow[u, "j"] &
+\end{tikzcd}
+\]
+donde los morfismos existen por las propiedades universales y en el caso de las categorías abelianas se pide que $\overline{\alpha}$ sea isomorfismo. 
+\end{enumerate}
+
+\end{defi}
+
+Un ejemplo de categoría aditiva no abeliana es la de los espacios normados.
 
 \section{Ejercicios}
 \begin{ejer}
