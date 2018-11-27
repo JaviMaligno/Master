@@ -35,16 +35,16 @@ $$
 	\node[state]             (1) {$1$};
 	\node[state, right=of 1] (2) {$2$};
 	\node[state, right=of 2] (3) {$3$};
-	\node[state, right=of 3] (4) {$4$};
+	\node[state, above=of 2] (4) {$4$};
     % Connect the states with arrows
 	\draw[every loop]
 		(1) edge[right, auto=right] node {$q$} (2)
-		(1) edge[loop above] 	   node {$1-q$} (1)
+		(1) edge[loop left] 	   node {$1-q$} (1)
 		(2) edge[bend right, auto=right] node {$q$} (3)
-		(2) edge[bend left, auto=left] node {$1-q$} (4)
+		(2) edge[bend right, auto=right] node {$1-q$} (4)
 		(3) edge[right, auto=right] node {$1$} (2)
 		(4) edge[loop right, auto=left] node {$q$} (3)
-		(4) edge[bend left, auto=left] node {$1-q$} (1);
+		(4) edge[bend right, auto=left] node {$1-q$} (1);
 \end{tikzpicture}
 \end{center}
 La matriz de transición es
@@ -56,6 +56,41 @@ $$
 1-q & 0 & 0 & q
 \end{pmatrix}
 $$
+\item Es fácil ver, o bien calculando $P^4$ (es $>0$ y por tanto $P$ es regular) o bien directamente sobre el diagrama, que todos los estados están interconectados cuando $q\in(0,1)$. Por tanto, todos deben tener el mismo carácter. Como estamos en una cadena finita, deben ser todos recurrentes no nulos. Se tiene naturalmente que $f_i = 1$, $i=1,2,3,4$.
+\item Que $P$ sea regular implica que la cadena es ergódica. En particular, todos los estados son aperiódicos.
+\item Otra consecuencia de que $P$ sea regular es que existe una única distribución límite que además es la distribución estacionaria, luego podemos calcularla directamente.
+$$
+P =\begin{pmatrix}
+1-q	& q & 0 & 0\\
+0 	& 0	& q	& 1-q\\
+0	& 1 & 0 & 0\\
+1-q & 0 & 0 & q
+\end{pmatrix} \Rightarrow 
+P' =
+\begin{pmatrix}
+1-q	& 0 & 0 & 1-q\\
+q 	& 0	& 1	& 0\\
+0	& q & 0 & 0\\
+0	& 1-q & 0 & q
+\end{pmatrix}
+$$
+$$
+P'-I = 
+\begin{pmatrix}
+-q	& 0 & 0 & 1-q\\
+q 	& -1	& 1	& 0\\
+0	& q & -1 & 0\\
+0	& 1-q & 0 & q-1
+\end{pmatrix}
+$$
+Resolviendo el sistema e imponiendo que los coeficientes sumen $1$ obtenemos que la distribución estacionaria es
+$$
+\pi(q) = \sqrt{\frac{q^2}{q^4+3q^2-2q+1}}
+\begin{pmatrix}
+\dfrac{1-q}{q} & 1 & q & 1
+\end{pmatrix}
+$$
+Está bien definido porque el denominador solo tiene dos raíces reales y son menores que $-1$. Además, es positivo en $[0,1]$.	
 \end{itemize}
 \end{solucion}
 \end{document}

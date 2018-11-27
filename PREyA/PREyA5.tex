@@ -83,12 +83,14 @@ $$
 P[T_1 > t] =  P[N(t) = 0] = e^{-\lambda t}
 $$
 $$
-P[T_2 > t\mid X_1 = s] =  P[N(s,s+t) = 0\mid X_1 = s] = e^{-\lambda t}
+P[T_2 > t\mid T_1 = s] =  P[N(s,s+t) = 0\mid X_1 = s] = e^{-\lambda t}
 $$
-En general, $T_i \sim Exp(\lambda)$. Además
-$$
-P[T_t = a \mid T_s = b] = 
-$$
+Directamente, sean $s_1<\dotsc<s_n<t$. Dado que los intervalos $(0,s_i]$ y $(s_n,t]$ son disjuntos para todo $i$, lo que ocurre en ellos son sucesos independientes, luego
+\begin{align*}
+P[T_{n+1} > t \mid T_1 = s_1,\dotsc, T_n = s_n] &= P[N(s_n,s_n+t)=0 \mid T_1 = s_1,\dotsc, T_n = s_n]\\
+& = P[N(s_n,s_n+t] = 0]\\
+&= e^{-\lambda t}
+\end{align*}
 \end{example}
 \begin{example}
 Demostrar que la suma de dos procesos de Poisson independentes también es un proceso de Poisson, y determinar su intensidad. Sea $N_i(t)\sim PPoi(\lambda_i t)$. Sea $N(t)=N_1(t)+N_2(t)$
