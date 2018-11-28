@@ -160,19 +160,50 @@ Sea $X$ un esquema, sea $f\in\Gamma(X,\OO_X)$, y se define $X_f$ como el subconj
 \item Con las hipótesis de (c), concluir que $\Gamma(X_f,\OO_{X_f})\cong A_f$.
 \end{enumerate}
 \end{ejercicio}
-\begin{solucion}
+\begin{solucion}\
+\begin{enumerate}[(a)]
+\item
+\item
+\item
+\item 
+\end{enumerate}
 
 \end{solucion}
 %
 %\newpage
 %
 \begin{ejercicio}{Lema de Yoneda}
-$h_*:\CC\to \mathrm{Fun}(\CC, \mathrm{Set})$ es plenamente fiel, es decir, para todo $X,X'\in Ob(\CC)$ la aplicación $\alpha\in\Hom_{\CC}(X,X')\mapsto h_{\alpha}\in \mathrm{Nat}(h_X,h_{X'})$ es un isomorfismo. 
+$h_*:\CC\to \mathrm{Fun}(\CC^{op}, \mathrm{Set})$ es plenamente fiel, es decir, para todo $X,X'\in Ob(\CC)$ la aplicación $\alpha\in\Hom_{\CC}(X,X')\mapsto h_{\alpha}\in \mathrm{Nat}(h_X,h_{X'})$ es un isomorfismo. 
 \end{ejercicio}
 \begin{solucion}
-%
-%
-%
+%https://math.stackexchange.com/questions/94007/proof-of-yoneda-lemma
+Supongamos que existen $\alpha,\alpha'\in\Hom(X,X')$ tales que $h_\alpha=h_{\alpha'}$. Tenemos entonces, un diagrama conmutativo
+\[
+\begin{tikzcd}
+h_X(X)\arrow[r, "h_\alpha=h_{\alpha'}"]\arrow[d, "h_X(Id)"'] & h_{X'}(X)\arrow[d, "h_{X'}(Id)"]\\
+h_X(X)\arrow[r, "h_\alpha=h_{\alpha'}"'] & h_{X'}(X)
+\end{tikzcd}
+\]
+Dada una flecha $f\in h_X(X)$, $$h_{X'}\circ h_{\alpha}(f)=\alpha\circ f\circ Id=\alpha\circ f$$
+$$h_{X'}\circ h_{\alpha'}(f)=\alpha'\circ f\circ Id=\alpha'\circ f$$
+En particular, para $f=Id:X\to X$, obtenemos $\alpha=\alpha'$, y con ello la inyectividad. 
+
+Sea ahora $\tau:h_X\to h_{X'}$ una transformación natural cualquiera, de modo que tenemos el diagrama conmutativo para todo $U,V\in Ob(\CC)$  y $f\in\Hom_{\CC^{op}}(U,V)$ 
+\[
+\begin{tikzcd}
+h_X(U)\arrow[r, "\tau(U)"] \arrow[d, "h_X(f)"']& h_{X'}(U)\arrow[d, "h_{X'}(f)"]\\
+h_X(V)\arrow[r, "\tau(V)"'] & h_{X'}(V)
+\end{tikzcd}
+\]
+donde $h_X(f)$ se debe interpretar como $h_X(f^{op})$. En particular, para $U=X$ tenemos por el diagrama que $\tau(U)\circ h_X(f)=h_{X'}(f)\circ\tau(X)$. Definimos $\alpha=\tau(X)(Id)\in h_{X'}(X)=\Hom(X,X')$. Sustituyendo $Id$ en el lado izquierdo de la ecuación de conmutatividad obtenemos
+\[
+\tau(U)\circ h_X(f)(Id)=\tau(U)( f^{op})
+\]
+y en el lado derecho
+\[
+h_{X'}(f)\circ\tau(X)(Id)=h_{X'}(f)(\alpha)=\alpha\circ f^{op}=h_\alpha(f^{op})
+\]
+Como esto se tiene para toda $f$, obtenemos que $h_\alpha=\tau(U)$, y como esta igualdad es para todo $U$, deducimos que $\tau=h_{\alpha}$, lo que nos da la sobreyectividad. 
 \end{solucion}
 %
 %\newpage

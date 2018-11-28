@@ -575,7 +575,7 @@ S^{n-1}\arrow[u, hookrightarrow]\arrow[r, "q"] & \R P^{n-1}=S^{n-1}/\sim\arrow[u
 \]
 Así, $\R P^n=e^0\cup e^1\cup e^2\cup\cdots\cup e^n$. 
 
-En el caso complejo hacemos la construcción análoga, en este caso $\C P^n=S^{2n+1}/(z\sim\lambda z)$ con $\lambda\in\C$ tal que $|\lambda|=1$. En el ejemplo 0.6 se puede ver que $\C P^n=\C P^{n-1}\cup B^{2n}$. Para ello, consideramos el conjunto de tuplas $(z_1,\dots, z_{n+1})$ con $z_{n+1}\in (0,+\infty)$. Todo elemento de $\C P^n$ tiene un representante en este conjunto multiplicando por $\overline{z}_{n+1}/|z_{n+1}|$. Este conjunto es a su vez el grafo de $w=(z_1,\dots, z_n)\mapsto \sqrt{1-|w|^2}$ (es obvio que $|w|\leq 1$). Por topología general, el grafo de cualquier aplicación continua $f:X\to Y$ es homeomorfo a $Y$ usando la proyección y la propia función. De aquí obtenemos que el grafo descrito es homeomorfo a $B^{2n}\supset S^{2n-1}$. 
+En el caso complejo hacemos la construcción análoga, en este caso $\C P^n=S^{2n+1}/(z\sim\lambda z)$ con $\lambda\in\C$ tal que $|\lambda|=1$. En el ejemplo 0.6 se puede ver que $\C P^n=\C P^{n-1}\cup B^{2n}$. Para ello, consideramos el conjunto de tuplas $(z_1,\dots, z_{n+1})$ con $z_{n+1}\in (0,+\infty)$. Todo elemento de $\C P^n$ tiene un representante en este conjunto multiplicando por $\overline{z}_{n+1}/|z_{n+1}|$. Este conjunto es a su vez el grafo de $w=(z_1,\dots, z_n)\mapsto \sqrt{1-|w|^2}$ (es obvio que $|w|\leq 1$). Por topología general, el grafo de cualquier aplicación continua $f:X\to Y$ es homeomorfo a $Y$ usando la proyección y la propia función. De aquí obtenemos que el grafo descrito es homeomorfo a $B^{2n}\supset S^{2n-1}$, conteniéndola como borde, exactamente para $|w|=1$. Aquí $B^{2n}$ se identifica con el hemisferio norte de $S^{2n}$. 
 
 \end{ej}
 
@@ -589,7 +589,7 @@ Si $K\subseteq X$ es un subcomplejo compacto, entonces $K$ toca a un número fin
 \end{observacion}
 
 \begin{prop}
-Dados $X,Y$ CW-complejos, el producto $X\times Y$ es un CW-complejo. Si las células de $X$ e $Y$ son respectivamente $\{e_\alpha^n\}$ y $\{e_{\beta}^m\}$, las del producto son $\{e_{\alpha,\beta}^{n+m}=\{e_\alpha^n\times e_\beta^m\}$.
+Dados $X,Y$ CW-complejos, el producto $X\times Y$ es un CW-complejo. Si las células de $X$ e $Y$ son respectivamente $\{e_\alpha^n\}$ y $\{e_{\beta}^m\}$, las del producto son $\{e_{\alpha,\beta}^{n+m}\}=\{e_\alpha^n\times e_\beta^m\}$.
 \end{prop}
 
 Obsérvese que $X\times Y$ en general no tiene la topología producto. Sí son la misma si $X$ o $Y$ son localmente compactos, que como CW-complejos se traduce en que alguno sea localmente finito. En general, $X\times Y$ como CW-complejo tiene la misma topología que $X\times Y$ con la topología generada por compactos, es decir, que un conjunto $A$ es cerrado si y solo si $A\cap K$ es compacto para cualquier $K$ compacto. 
@@ -601,7 +601,7 @@ El toro se puede obtener como $S^1\times S^1=\{e_{\alpha}^0,e_{\alpha}^1\}\times
 Como consecuencia de que el producto y el cociente sea CW-complejo, la suspensión también lo es. Lo mismo pasa con el wedge product.
 
 \begin{ej}[Join]
-Dados $X,Y$ CW-complejos, su join se define como $X*Y=\{tx+(1-t)y\mid  x\in X,y\in Y, 0\leq t\leq 1\}/sim =X\times Y\times I/\sim$, donde $X\times Y\times\{0\}\sim X$ y $X\times Y\times \{1\}\sim Y$. 
+Dados $X,Y$ CW-complejos, su join se define como $X*Y=\{tx+(1-t)y\mid  x\in X,y\in Y, 0\leq t\leq 1\}/\sim =X\times Y\times I/\sim$, donde $X\times Y\times\{0\}\sim X$ y $X\times Y\times \{1\}\sim Y$. 
 \end{ej}
 
 \begin{ej}[smash product]

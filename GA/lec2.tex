@@ -344,7 +344,7 @@ Sea $S$ un esquema. Un esquema sobre $S$ es una flecha de esquemas $X\to S$. Un 
 Esta construcción es general en cualquier categoría, y es lo que se llama la categoría \emph{slice}. 
 
 
-Sea $\CC$ una categoría y $X,Y\in Ob(\CC)$. Sea un functor $F=F_{X,Y}:\CC\to\mathrm{Set}$ definido en los objetos como $F(U)=\Hom_{\CC}(U,X)\times\Hom_{\CC}(U,Y$ y en los morfismos $F(\alpha):F(U')\to F(U)$ es contravariante, definido como $F(\alpha)(f,g)=(f\circ \alpha, g\circ\alpha)$. Dado $Z\in Ob(\CC)$ definimos $h_z:\CC\to\mathrm{Set}$ como el archiconocido functor $h_Z=\Hom_{\CC}(-,Z)$. 
+Sea $\CC$ una categoría y $X,Y\in Ob(\CC)$. Sea un functor $F=F_{X,Y}:\CC\to\mathrm{Set}$ definido en los objetos como $F(U)=\Hom_{\CC}(U,X)\times\Hom_{\CC}(U,Y)$ y en los morfismos $F(\alpha):F(U')\to F(U)$ es contravariante, definido como $F(\alpha)(f,g)=(f\circ \alpha, g\circ\alpha)$. Dado $Z\in Ob(\CC)$ definimos $h_z:\CC\to\mathrm{Set}$ como el archiconocido functor $h_Z=\Hom_{\CC}(-,Z)$. Recordamos que este functor actúa en los morfismos como $h_Z(\alpha):\Hom(B,Z)\to \Hom(A,Z); h_Z(\alpha)(\beta)=\beta\circ\alpha$, donde $\alpha:A\to B$. 
 
 \begin{defi}
 Un functor contravariante $G:\CC\to\mathrm{Set}$ se dice \emph{representable} si $\exists Z\in Ob(\CC)$ y $\exists\gamma$ transformación natural entre $G$ y $h_Z$. Vamos a definir ahora lo que significa una transformación natural (morfismo en la categoría de los functores) $\tau:G\to H$ entre dos functores $G,H:\CC\to\CC'$ (que vamos a suponer covariantes para escribir la definición) es una familia $\tau(U):G(U)\to H(U)$ haciendo conmutar el diagrama
@@ -419,6 +419,9 @@ Probar que el haz $\OO_X(U)$ es realmente un haz, describiendo las restricciones
 \end{ejer}
 \begin{ejer}
 Probar que el prehaz $\calF(U)=\prod_{x\in U} A_x$ es un haz para $X$ con la topología discreta. 
+\end{ejer}
+\begin{ejer}
+Probar el lema de Yoneda. 
 \end{ejer}
 
 \end{document}
