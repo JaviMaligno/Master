@@ -1,0 +1,165 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usetheme{Berlin}
+\usepackage[spanish]{babel}
+\usepackage{multirow}
+%\usepackage{estilo-apuntes}
+\usepackage[]{graphicx}
+\usepackage{svg}
+\usepackage{multicol}
+\theoremstyle{definition}
+
+\newtheorem{teorema}{Teorema}
+\newtheorem{defi}{Definición}
+\newtheorem{prop}[teorema]{Proposición}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+
+\providecommand{\conv}[1]{\overset{#1}{\longrightarrow}}
+\providecommand{\convcs}{\xrightarrow{CS}}
+\providecommand{\gene}[1]{\langle{#1}\rangle}
+\providecommand{\posi}[1]{\left[#1\right]^+}
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+\setbeamercolor{footline}{fg=black}
+\setbeamerfont{footline}{series=\bfseries}
+
+%-----------------------------------------------------------
+
+\title{Minería Estadística de Datos\\
+Tema 4 - Redes Neuronales	}
+\author{Rafael González López 
+}
+
+\institute{
+Universidad de Sevilla}
+\date{}
+ 
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Tabla de contenidos}
+\tableofcontents
+\end{frame}
+
+\section{Datos}
+
+\begin{frame}
+\frametitle{Introducción a los datos}
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & V780 & V781 & V782 & V783 & V784 & V785 \\ 
+  \hline
+1 &   0 &   0 &   0 &   0 &   0 &   2 \\ 
+  2 &   0 &   0 &   0 &   0 &   0 &   3 \\ 
+  3 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  4 &   0 &   0 &   0 &   0 &   0 &   0 \\ 
+  5 &   0 &   0 &   0 &   0 &   0 &   2 \\ 
+  6 &   0 &   0 &   0 &   0 &   0 &   7 \\ 
+  7 &   0 &   0 &   0 &   0 &   0 &   5 \\ 
+  8 &   0 &   0 &   0 &   0 &   0 &   2 \\ 
+  9 &   0 &   0 &   0 &   0 &   0 &   6 \\ 
+  10 &   0 &   0 &   0 &   0 &   0 &   8 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+\end{frame}
+
+
+
+
+\begin{frame}
+\frametitle{Conjunto Entrenamiento}
+\begin{figure}[h!]
+\includegraphics[scale=0.4]{train.png}
+\end{figure}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Conjunto Test}
+\begin{figure}[h!]
+\includegraphics[scale=0.4]{test.png}
+\end{figure}
+\end{frame}
+
+\section{Modelo nnet usando ACP}
+
+
+\begin{frame}
+\frametitle{Acierto en el conjunto de Entrenamiento}
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 0 & 1 & 2 & 3 & 9 & Acierto Ent \\ 
+  \hline
+0 & 603 & 0 & 1 & 2 & 2 & 99.20 \\ 
+  1 & 0 & 638 & 3 & 2 & 2 & 98.90 \\ 
+  2 & 3 & 0 & 577 & 17 & 3 & 96.20 \\ 
+  3 & 0 & 0 & 13 & 613 & 1 & 97.80 \\ 
+  9 & 1 & 0 & 2 & 3 & 514 & 98.80 \\ 
+   \hline
+\end{tabular}
+\end{table}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Acierto en el conjunto Test}
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 0 & 1 & 2 & 3 & 9 & Acierto Test \\ 
+  \hline
+0 & 191 & 0 & 0 & 0 & 0 & 100.00 \\ 
+  1 & 0 & 184 & 1 & 2 & 1 & 97.90 \\ 
+  2 & 5 & 1 & 203 & 9 & 2 & 92.30 \\ 
+  3 & 1 & 0 & 4 & 199 & 4 & 95.70 \\ 
+  9 & 1 & 1 & 5 & 3 & 183 & 94.80 \\ 
+   \hline
+\end{tabular}
+\end{table}
+\end{frame}
+
+
+\section{Modelo Deep Learning con H20}
+
+\begin{frame}
+\frametitle{Acierto en el conjunto Test}
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrrr}
+  \hline
+ & 0 & 1 & 2 & 3 & 9 & Acierto Test \\ 
+  \hline
+0 & 190.00 & 0.00 & 0.00 & 0.00 & 1.00 & 99.50 \\ 
+  1 & 0.00 & 186.00 & 0.00 & 2.00 & 0.00 & 98.90 \\ 
+  2 & 3.00 & 0.00 & 212.00 & 5.00 & 0.00 & 96.40 \\ 
+  3 & 0.00 & 0.00 & 2.00 & 204.00 & 2.00 & 98.10 \\ 
+  9 & 1.00 & 1.00 & 2.00 & 2.00 & 187.00 & 96.90 \\ 
+   \hline
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\huge{¡Gracias por su atención!}
+\end{center} 
+\end{frame}
+\end{document}

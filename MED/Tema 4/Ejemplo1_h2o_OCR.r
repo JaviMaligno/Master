@@ -97,10 +97,12 @@ cbind(1:50,varcp[1:50],porcen[1:50],acum=cumsum(porcen)[1:50])
 m<- 45  # componentes principales con var >1 (83.67% de la varianza total)
 puntucp_ent<- acp$scores[,1:m]
 puntucp_test<- predict(acp,datos[inditest,-1])[,1:m]
+
 puntucp=rbind(puntucp_ent,puntucp_test)
 digito=c(datos[indient,1],datos[inditest,1])
 digi_cod=class.ind(digito)
 head(digi_cod)
+
 #Una red con nnet, sin configurar el tamaño
 red=nnet(puntucp[1:nent,],digi_cod[1:nent,],
          size=15,linout=TRUE)
