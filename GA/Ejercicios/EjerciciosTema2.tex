@@ -28,35 +28,35 @@
 %
 %\newpage
 %
-\begin{ejercicio}{2.3}\emph{Esquemas reducidos.} Un esquema $(X,\OO_X)$ es \emph{reducido} si para todo abierto $U\subseteq X$, el anillo $\OO_X(U)$ no tiene elementos nilpotentes. 
-\begin{enumerate}[(a)]
-\item Probar que $(X,\OO_X)$ es reducido si y solo si para todo $P\in X$, el anillo local $\OO_{X,P}$ no tiene elementos nilpotentes. 
-\item Sea $(X,\OO_X)$ un esquema. Sea $(\OO_X)_{red}$ el haz asociado al prehaz $U\mapsto \OO_X(U)_{red}$, donde para cualquier anillo $A$, denotamos $A_{red}$ al cociente de $A$ por el ideal de sus elementos nilpotentes. Probar que $(X, (\OO_X)_{red})$ es un esquema. Lo llamamos el esquema \emph{reducido} asociado a $X$, y lo denotamos $X_{red}$. Probar que hay un morfismo de esquemas $X_{red}\to X$, que es homeomorfismo en los espacios topológicos subyacentes. 
-\item Sea $f:X\to Y$ un morfismo de esquemas, y asumamos que $X$ es reducido. Probar que existe un único morfismo $g:X\to Y_{red}$ tal que $f$ se obtiene componiendo $g$ con la aplicación natural $Y_{red}\to Y$. 
-\end{enumerate}
-
-
-\end{ejercicio}
-\begin{solucion}\
-\begin{enumerate}[(a)]
-\item Sea $(X,\OO_X)$ reducido y supongamos que existe $s_p\in \OO_{X,P}$ no nulo tal que $s^n_P=0$ para algún $n\in\N$. Entonces, en un entorno abierto $U\ni P$, $s_P$ está representado por un elemento no nulo $s\in\OO_X(U)$. Pero entonces $s^n=0$, lo cual es una contradicción. Recíprocamente, si para algún abierto $U\subseteq X$ existe $s\in \OO_X(U)$ nilpotente, el germen de $s$ en cualquier punto $P\in U$ verifica que también es nilpotente. 
-
-\item Sea $U\subseteq X$ tal que $(X,\OO_X|_{U})$ es un esquema afín, esto es, $(X,\OO_X|_{U})\cong (\spec(R),\OO_{\spec(R)})$ para algún anillo $R$. Entonces afirmamos que $(U, (\OO_X)_{red}|_{U})\cong (\spec(R_{red}), \OO_{\spec(R_{red})})$. En primer lugar, $\spec(R)\cong\spec(R_{red})$ como espacios topológicos, puesto que hay una biyección entre los ideales primos de $R$ y los de $R_{red}$ que contiene al nilradical, pero es que por álgebra conmutativa el nilradical es la intersección de todos los ideales primos, luego hay una biyección entre todos los ideales primos. 
-
-Para probar $(\OO_X)_{red}|_{U}\cong \OO_{\spec(R_{red})}$ probamos primero  $(\OO_X)_{red}|_{U}\cong(\OO_X|_{U})_{red}$, con lo que por hipótesis $(\OO_X)_{red}|_{U}\cong (\OO_{\spec(R)})_{red}$, y por último probaremos $(\OO_{\spec(R)})_{red}\cong \OO_{\spec(R_{red})}$. 
-
-El primer isomorfismo es en realidad una igualdad, ya que la restricción a $U$ solo interviene en el hecho de que el haz actúa sobre abiertos contenidos en $V$, lo cual no afecta a la definición de haz asociado, puesto que las fibras no dependen de el entorno concreto que se tome. 
-
-Para el último isomorfismo recordamos que $(R_{\p})_{red}=(R_{red})_{\p}$, ya que localizar conmuta con tomar cociente. Por tanto, los elementos de $\OO_{\spec(R_{red})}(U)$ son funciones $s:U\to\coprod_{\p\in U}(R_{\p})_{red}$ con las propiedades de la definición $\OO_{\spec(R_{red})}$. Por otro lado, los elementos de $(\OO_{\spec(R)})_{red}(U)$ son funciones $t:U\to \coprod_{\p\in U}(\OO_{\spec(R),\p})_{red}$. Ahora bien, $t(\p)$ está representado por un par $(U, t_{\p})$, donde $t_{\p}\in \OO_{\spec(R)}(U)_{red}$, es decir, $t_{\p}(\p)\in (R_{\p})_{red}$. Así que tenemos un isomorfismo claro $s\in \OO_{\spec(R_{red})}(U)\mapsto t\in (\OO_{\spec(R)})_{red}(U)$ tal que $t_{\p}=s$. Esta aplicación está bien definida porque si dos secciones tienen el mismo germen, en particular todos los representantes de una están relacionados con todos los de la otra, luego son la misma sección, de lo cual se deduce también la inyectividad. La sobreyectividad es evidente. Con lo cual hemos definido un isomorfismo de haces. 
-
-Ahora probamos que existe el morfismo $(f,f^{\sharp}):X_{red}\to X$ del enunciado. Como hemos visto en la primera parte de este apartado, los espacios topológicos de $X_{red}$ y de $X$ son los mismos, por lo que definimos $f=Id$, que es claramente homeomorfismo. Definimos ahora $f^{\sharp}:\OO_{X}\to Id_*\OO_{X_{red}}=\OO_{X_{red}}$, que la definimos como el paso al cociente $\OO_{X}(U)\to\OO_{X_{red}}(U)$. Es decir, dada $s\in \OO_X(U)$, la podemos ver como la aplicación de su germen $s\mapsto s_{\p}$, luego basta tomar la clase de $s_{\p}$ en $\OO_{X_{red}, \p}=(\OO_{X,\p})_{red}$.
-%Por tanto, los elementos de $\OO_{\spec(R_{red})}(U)$ son elementos de $s:\prod_{\p\in U}(R_{\p})_{red}$ con las propiedades de la definición $\OO_{\spec(R_{red})}$. Por otro lado, los elementos de $(\OO_{\spec(R)})_{red}(U)$ son funciones $t:U\to \coprod_{\p\in U}(\OO_{\spec(R),\p})_{red}$.
-
-\item Definimos $g=f$ como aplicación entre espacios topológicos, con lo cual es claro que como aplicación entre espacios topológicas es única, ya que la aplicación natural $Y_{red}\to Y$ es la identidad entre los espacios. Ahora, definimos $g^{\sharp}$ como $(f^{\sharp})_{red}$, es decir, la aplicación definida en las secciones como el paso al cociente de $f^{\sharp}$ (similar a como definimos en el apartado anterior $f^{\sharp}$, solo que ahora tomaríamos la clase de $f^{\sharp}(s)_{\p}$). Esta aplicación está bien definida porque al ser $X$ reducido, los elementos nilpotentes de $\OO_Y(U)$ se mapean al 0. Que esta $g^{\sharp}$ verifica las condiciones del enunciado es una sencilla comprobación. La unicidad se tiene del resultado de álgebra conmutativa de que una aplicación de un anillo cualquiera $A$ a un anillo reducido $R$ factoriza de modo único a través de $A_{red}$. 
-\end{enumerate}
-\end{solucion}
-
-\newpage
+%\begin{ejercicio}{2.3}\emph{Esquemas reducidos.} Un esquema $(X,\OO_X)$ es \emph{reducido} si para todo abierto $U\subseteq X$, el anillo $\OO_X(U)$ no tiene elementos nilpotentes. 
+%\begin{enumerate}[(a)]
+%\item Probar que $(X,\OO_X)$ es reducido si y solo si para todo $P\in X$, el anillo local $\OO_{X,P}$ no tiene elementos nilpotentes. 
+%\item Sea $(X,\OO_X)$ un esquema. Sea $(\OO_X)_{red}$ el haz asociado al prehaz $U\mapsto \OO_X(U)_{red}$, donde para cualquier anillo $A$, denotamos $A_{red}$ al cociente de $A$ por el ideal de sus elementos nilpotentes. Probar que $(X, (\OO_X)_{red})$ es un esquema. Lo llamamos el esquema \emph{reducido} asociado a $X$, y lo denotamos $X_{red}$. Probar que hay un morfismo de esquemas $X_{red}\to X$, que es homeomorfismo en los espacios topológicos subyacentes. 
+%\item Sea $f:X\to Y$ un morfismo de esquemas, y asumamos que $X$ es reducido. Probar que existe un único morfismo $g:X\to Y_{red}$ tal que $f$ se obtiene componiendo $g$ con la aplicación natural $Y_{red}\to Y$. 
+%\end{enumerate}
+%
+%
+%\end{ejercicio}
+%\begin{solucion}\
+%\begin{enumerate}[(a)]
+%\item Sea $(X,\OO_X)$ reducido y supongamos que existe $s_p\in \OO_{X,P}$ no nulo tal que $s^n_P=0$ para algún $n\in\N$. Entonces, en un entorno abierto $U\ni P$, $s_P$ está representado por un elemento no nulo $s\in\OO_X(U)$. Pero entonces $s^n=0$, lo cual es una contradicción. Recíprocamente, si para algún abierto $U\subseteq X$ existe $s\in \OO_X(U)$ nilpotente, el germen de $s$ en cualquier punto $P\in U$ verifica que también es nilpotente. 
+%
+%\item Sea $U\subseteq X$ tal que $(X,\OO_X|_{U})$ es un esquema afín, esto es, $(X,\OO_X|_{U})\cong (\spec(R),\OO_{\spec(R)})$ para algún anillo $R$. Entonces afirmamos que $(U, (\OO_X)_{red}|_{U})\cong (\spec(R_{red}), \OO_{\spec(R_{red})})$. En primer lugar, $\spec(R)\cong\spec(R_{red})$ como espacios topológicos, puesto que hay una biyección entre los ideales primos de $R$ y los de $R_{red}$ que contiene al nilradical, pero es que por álgebra conmutativa el nilradical es la intersección de todos los ideales primos, luego hay una biyección entre todos los ideales primos. 
+%
+%Para probar $(\OO_X)_{red}|_{U}\cong \OO_{\spec(R_{red})}$ probamos primero  $(\OO_X)_{red}|_{U}\cong(\OO_X|_{U})_{red}$, con lo que por hipótesis $(\OO_X)_{red}|_{U}\cong (\OO_{\spec(R)})_{red}$, y por último probaremos $(\OO_{\spec(R)})_{red}\cong \OO_{\spec(R_{red})}$. 
+%
+%El primer isomorfismo es en realidad una igualdad, ya que la restricción a $U$ solo interviene en el hecho de que el haz actúa sobre abiertos contenidos en $V$, lo cual no afecta a la definición de haz asociado, puesto que las fibras no dependen de el entorno concreto que se tome. 
+%
+%Para el último isomorfismo recordamos que $(R_{\p})_{red}=(R_{red})_{\p}$, ya que localizar conmuta con tomar cociente. Por tanto, los elementos de $\OO_{\spec(R_{red})}(U)$ son funciones $s:U\to\coprod_{\p\in U}(R_{\p})_{red}$ con las propiedades de la definición $\OO_{\spec(R_{red})}$. Por otro lado, los elementos de $(\OO_{\spec(R)})_{red}(U)$ son funciones $t:U\to \coprod_{\p\in U}(\OO_{\spec(R),\p})_{red}$. Ahora bien, $t(\p)$ está representado por un par $(U, t_{\p})$, donde $t_{\p}\in \OO_{\spec(R)}(U)_{red}$, es decir, $t_{\p}(\p)\in (R_{\p})_{red}$. Así que tenemos un isomorfismo claro $s\in \OO_{\spec(R_{red})}(U)\mapsto t\in (\OO_{\spec(R)})_{red}(U)$ tal que $t_{\p}=s$. Esta aplicación está bien definida porque si dos secciones tienen el mismo germen, en particular todos los representantes de una están relacionados con todos los de la otra, luego son la misma sección, de lo cual se deduce también la inyectividad. La sobreyectividad es evidente. Con lo cual hemos definido un isomorfismo de haces. 
+%
+%Ahora probamos que existe el morfismo $(f,f^{\sharp}):X_{red}\to X$ del enunciado. Como hemos visto en la primera parte de este apartado, los espacios topológicos de $X_{red}$ y de $X$ son los mismos, por lo que definimos $f=Id$, que es claramente homeomorfismo. Definimos ahora $f^{\sharp}:\OO_{X}\to Id_*\OO_{X_{red}}=\OO_{X_{red}}$, que la definimos como el paso al cociente $\OO_{X}(U)\to\OO_{X_{red}}(U)$. Es decir, dada $s\in \OO_X(U)$, la podemos ver como la aplicación de su germen $s\mapsto s_{\p}$, luego basta tomar la clase de $s_{\p}$ en $\OO_{X_{red}, \p}=(\OO_{X,\p})_{red}$.
+%%Por tanto, los elementos de $\OO_{\spec(R_{red})}(U)$ son elementos de $s:\prod_{\p\in U}(R_{\p})_{red}$ con las propiedades de la definición $\OO_{\spec(R_{red})}$. Por otro lado, los elementos de $(\OO_{\spec(R)})_{red}(U)$ son funciones $t:U\to \coprod_{\p\in U}(\OO_{\spec(R),\p})_{red}$.
+%
+%\item Definimos $g=f$ como aplicación entre espacios topológicos, con lo cual es claro que como aplicación entre espacios topológicas es única, ya que la aplicación natural $Y_{red}\to Y$ es la identidad entre los espacios. Ahora, definimos $g^{\sharp}$ como $(f^{\sharp})_{red}$, es decir, la aplicación definida en las secciones como el paso al cociente de $f^{\sharp}$ (similar a como definimos en el apartado anterior $f^{\sharp}$, solo que ahora tomaríamos la clase de $f^{\sharp}(s)_{\p}$). Esta aplicación está bien definida porque al ser $X$ reducido, los elementos nilpotentes de $\OO_Y(U)$ se mapean al 0. Que esta $g^{\sharp}$ verifica las condiciones del enunciado es una sencilla comprobación. La unicidad se tiene del resultado de álgebra conmutativa de que una aplicación de un anillo cualquiera $A$ a un anillo reducido $R$ factoriza de modo único a través de $A_{red}$. 
+%\end{enumerate}
+%\end{solucion}
+%
+%\newpage
 
 %\begin{ejercicio}{1.5}
 %Probar que un morfismo de haces es un isomorfismo si y solo si es inyectivo y sobreyectivo.
@@ -151,25 +151,60 @@ Ahora probamos que existe el morfismo $(f,f^{\sharp}):X_{red}\to X$ del enunciad
 %
 %\newpage
 %
-%\begin{ejercicio}{Extra1}
-%Probar que el haz $\OO_X(U)$ es realmente un haz, describiendo las restricciones. 
-%\end{ejercicio}
-%\begin{solucion}
-%Los axiomas de prehaz se verifican trivialmente a partir de las propiedades de la preimagen. 
-%
-%Por ser $\calF$ un haz y de nuevo por las propiedades de la preimagen de una aplicación continua se verifican también fácilmente las propiedades de haz.
-%\end{solucion}
+\begin{ejercicio}{2.16}
+Sea $X$ un esquema, sea $f\in\Gamma(X,\OO_X)$, y se define $X_f$ como el subconjunto de puntos $x\in X$ tales que la fibra $f_x$ de $f$ en $x$ no está contenida en el ideal maximal $\mm_x$ del anillo local $\OO_{X,x}$. 
+\begin{enumerate}[(a)]
+\item Si $U=\spec(B)$ es un subesquema afín abierto de $X$, y si $\overline{f}\in B=\Gamma(U,\OO_X|_U)$ es la restricción de $f$, probar que $U\cap X_f=D(\overline{f})$. Concluir que $X_f$ es un subconjunto abierto de $X$. 
+\item Supongamos que $X$ es quasi-compacto\footnote{Todo recubrimiento abierto admite un refinamiento finito.}. Sea $A=\Gamma(X,\OO_X)$, y sea $a\in A$ un elemento cuya restricción a $X_f$ es 0. Probar que para algún $n>0$, $f^na=0$. [Pista: usar un recubrimiento afín de $X$.]
+\item Supongamos ahora que $X$ tiene un recubrimiento finito de abiertos afines $U_i$ tal que cada intersección $U_i\cap U_j$ es quasi-compacta. (Esta hipótesis se satisface, por ejemplo, si $\spec(X)$ es noetheriano.) Sea $b\in\Gamma(X_f,\OO_{X_f})$. Probar que para algún $n>0$, $f^nb$ es la restricción de un elemento de $A$.
+\item Con las hipótesis de (c), concluir que $\Gamma(X_f,\OO_{X_f})\cong A_f$.
+\end{enumerate}
+\end{ejercicio}
+\begin{solucion}\
+\begin{enumerate}[(a)]
+\item
+\item
+\item
+\item 
+\end{enumerate}
+
+\end{solucion}
 %
 %\newpage
 %
-%\begin{ejercicio}{1.11}
-%
-%\end{ejercicio}
-%\begin{solucion}
-%
-%
-%
-%\end{solucion}
+\begin{ejercicio}{Lema de Yoneda}
+$h_*:\CC\to \mathrm{Fun}(\CC^{op}, \mathrm{Set})$ es plenamente fiel, es decir, para todo $X,X'\in Ob(\CC)$ la aplicación $\alpha\in\Hom_{\CC}(X,X')\mapsto h_{\alpha}\in \mathrm{Nat}(h_X,h_{X'})$ es un isomorfismo. 
+\end{ejercicio}
+\begin{solucion}
+%https://math.stackexchange.com/questions/94007/proof-of-yoneda-lemma
+Supongamos que existen $\alpha,\alpha'\in\Hom(X,X')$ tales que $h_\alpha=h_{\alpha'}$. Tenemos entonces, un diagrama conmutativo
+\[
+\begin{tikzcd}
+h_X(X)\arrow[r, "h_\alpha=h_{\alpha'}"]\arrow[d, "h_X(Id)"'] & h_{X'}(X)\arrow[d, "h_{X'}(Id)"]\\
+h_X(X)\arrow[r, "h_\alpha=h_{\alpha'}"'] & h_{X'}(X)
+\end{tikzcd}
+\]
+Dada una flecha $f\in h_X(X)$, $$h_{X'}\circ h_{\alpha}(f)=\alpha\circ f\circ Id=\alpha\circ f$$
+$$h_{X'}\circ h_{\alpha'}(f)=\alpha'\circ f\circ Id=\alpha'\circ f$$
+En particular, para $f=Id:X\to X$, obtenemos $\alpha=\alpha'$, y con ello la inyectividad. 
+
+Sea ahora $\tau:h_X\to h_{X'}$ una transformación natural cualquiera, de modo que tenemos el diagrama conmutativo para todo $U,V\in Ob(\CC)$  y $f\in\Hom_{\CC^{op}}(U,V)$ 
+\[
+\begin{tikzcd}
+h_X(U)\arrow[r, "\tau(U)"] \arrow[d, "h_X(f)"']& h_{X'}(U)\arrow[d, "h_{X'}(f)"]\\
+h_X(V)\arrow[r, "\tau(V)"'] & h_{X'}(V)
+\end{tikzcd}
+\]
+donde $h_X(f)$ se debe interpretar como $h_X(f^{op})$. En particular, para $U=X$ tenemos por el diagrama que $\tau(U)\circ h_X(f)=h_{X'}(f)\circ\tau(X)$. Definimos $\alpha=\tau(X)(Id)\in h_{X'}(X)=\Hom(X,X')$. Sustituyendo $Id$ en el lado izquierdo de la ecuación de conmutatividad obtenemos
+\[
+\tau(U)\circ h_X(f)(Id)=\tau(U)( f^{op})
+\]
+y en el lado derecho
+\[
+h_{X'}(f)\circ\tau(X)(Id)=h_{X'}(f)(\alpha)=\alpha\circ f^{op}=h_\alpha(f^{op})
+\]
+Como esto se tiene para toda $f$, obtenemos que $h_\alpha=\tau(U)$, y como esta igualdad es para todo $U$, deducimos que $\tau=h_{\alpha}$, lo que nos da la sobreyectividad. 
+\end{solucion}
 %
 %\newpage
 %

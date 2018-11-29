@@ -551,7 +551,7 @@ donde $X\cup_f Z=X\coprod Z/y\sim f(y)$, Obsérvese que realmente la aplicación
 Si $X=X^n$ y $X^n\neq X^{n-1}$, entonces $\dim X=n$. Dado un CW-complejo $X$, un \emph{subcomplejo} $Y\subseteq X$ es un CW-complejo $Y$ formado por la unión de celdas de $X$. En particular $Y^n\subseteq X^n$ y los esqueletos de $X$ son subcomplejos. El cociente de $X$ por $Y$ es un CW-complejo formado por las celdas de $X$ que no están en $Y$ y una 0-celda que representa a $Y$.
 
 \begin{ej}
-$S^n$ con una 0-celda y una $n$-celda. Otra forma es$S^n$ construido inductivamente como $S^{n-1}$ en el ecuador y dos $n$-celdas en los hemisferios, partiendo de $S^0$ como dos puntos (0-celdas). Esto es
+$S^n$ con una 0-celda y una $n$-celda. Otra forma es $S^n$ construido inductivamente como $S^{n-1}$ en el ecuador y dos $n$-celdas en los hemisferios, partiendo de $S^0$ como dos puntos (0-celdas). Esto es
 \[
 \begin{tikzcd}
 S^{n-1}\coprod S^{n-1}\arrow[r, hookrightarrow]\arrow[d, "Id\coprod Id"] & D^n\coprod D^n\arrow[d]\\
@@ -565,6 +565,60 @@ Se puede de hecho construir $S^{\infty}$ si no nos detenemos en ningún $n$.
 El toro de puede conseguir con una 0-celda, dos 1-celdas y una 2-celda. Las dos 1-celdas provienen de las circunferencias generatrices, que intersecan en la 0-celda. El resto es una 2-celda.
 \end{ej}
 
+\begin{ej}[espacio proyectivo]
+$\R P^n=B^n/(y\sim -y)$ para $y\in S^{n-1}$, que se puede ver como $\R P^{n-1}\cup_{\varphi} B^n$, es decir el espacio proyectivo de dimensión $n-1$ al que le pegamos una bola de dimensión $n$ mediante el pushout
+\[
+\begin{tikzcd}
+B^n\arrow[r] & \R P^n\\
+S^{n-1}\arrow[u, hookrightarrow]\arrow[r, "q"] & \R P^{n-1}=S^{n-1}/\sim\arrow[u]
+\end{tikzcd}
+\]
+Así, $\R P^n=e^0\cup e^1\cup e^2\cup\cdots\cup e^n$. 
+
+En el caso complejo hacemos la construcción análoga, en este caso $\C P^n=S^{2n+1}/(z\sim\lambda z)$ con $\lambda\in\C$ tal que $|\lambda|=1$. En el ejemplo 0.6 se puede ver que $\C P^n=\C P^{n-1}\cup B^{2n}$. Para ello, consideramos el conjunto de tuplas $(z_1,\dots, z_{n+1})$ con $z_{n+1}\in (0,+\infty)$. Todo elemento de $\C P^n$ tiene un representante en este conjunto multiplicando por $\overline{z}_{n+1}/|z_{n+1}|$. Este conjunto es a su vez el grafo de $w=(z_1,\dots, z_n)\mapsto \sqrt{1-|w|^2}$ (es obvio que $|w|\leq 1$). Por topología general, el grafo de cualquier aplicación continua $f:X\to Y$ es homeomorfo a $Y$ usando la proyección y la propia función. De aquí obtenemos que el grafo descrito es homeomorfo a $B^{2n}\supset S^{2n-1}$, conteniéndola como borde, exactamente para $|w|=1$. Aquí $B^{2n}$ se identifica con el hemisferio norte de $S^{2n}$. 
+
+\end{ej}
+
+
+\begin{ej}[cociente]
+Sea $S^{n-1}=\{e^0, e^{n-1}\}\hookrightarrow D^n=\{e^0, e^{n-1}, e^n\}$. Entonces $D^n/S^{n-1}=\{e^0, e^n\}=S^n$. 
+\end{ej}
+
+\begin{observacion}
+Si $K\subseteq X$ es un subcomplejo compacto, entonces $K$ toca a un número finito de células y por tanto está contenido en un subcomplejo de dimensión finita. En particular, esta propiedad se cumple para cada célula.
+\end{observacion}
+
+\begin{prop}
+Dados $X,Y$ CW-complejos, el producto $X\times Y$ es un CW-complejo. Si las células de $X$ e $Y$ son respectivamente $\{e_\alpha^n\}$ y $\{e_{\beta}^m\}$, las del producto son $\{e_{\alpha,\beta}^{n+m}\}=\{e_\alpha^n\times e_\beta^m\}$.
+\end{prop}
+
+Obsérvese que $X\times Y$ en general no tiene la topología producto. Sí son la misma si $X$ o $Y$ son localmente compactos, que como CW-complejos se traduce en que alguno sea localmente finito. En general, $X\times Y$ como CW-complejo tiene la misma topología que $X\times Y$ con la topología generada por compactos, es decir, que un conjunto $A$ es cerrado si y solo si $A\cap K$ es compacto para cualquier $K$ compacto. 
+
+\begin{ej}
+El toro se puede obtener como $S^1\times S^1=\{e_{\alpha}^0,e_{\alpha}^1\}\times \{e_\beta^0,e_\beta^1\}$. En dimensión 0 hay una 0-célula que surge del producto de las dos 0-células; en dimensión 1 hay dos células y en dimensión 2 hay una. 
+\end{ej}
+
+Como consecuencia de que el producto y el cociente sea CW-complejo, la suspensión también lo es. Lo mismo pasa con el wedge product.
+
+\begin{ej}[Join]
+Dados $X,Y$ CW-complejos, su join se define como $X*Y=\{tx+(1-t)y\mid  x\in X,y\in Y, 0\leq t\leq 1\}/\sim =X\times Y\times I/\sim$, donde $X\times Y\times\{0\}\sim X$ y $X\times Y\times \{1\}\sim Y$. 
+\end{ej}
+
+\begin{ej}[smash product]
+Se define el producto smash de $X$ e $Y$ como $X\land Y=X\times Y/X\lor Y$. Esto tiene sentido porque $X\times \{y_0\}\cup\{x_0\}\times Y\subseteq X\times Y$ y además la inversección de estos conjuntos es justamente $\{(x_0, y_0)\}$. Como ejemplo, tenemos que $S^n\land S^m=S^{n+m}$. Esto se ve claro en el caso $S^1\land S^1$ viendo $S^1\times S^1$ como el diagrama poligonal habitual del toro y colapsando el borde. 
+\end{ej}
+
+
+
+\begin{prop}
+Si $X$ es un CW-complejo:
+\begin{enumerate}
+\item $\phi_{\alpha}:D_{\alpha}^n\to X$ se restringe a un homeomorfismo sobre $e_{\alpha}^n$.
+\item Para todo $\alpha$, $\phi_{\alpha}(\partial D_{\alpha}^n)$ esta contenido en un número finito de células de dimensión menor. 
+\item $A\subseteq X$ es cerrado si y solo si $A\cap e_{\alpha}^n$ es cerrado para todo $\alpha$.
+\end{enumerate}
+\end{prop}
+
 \begin{lemma}
 Sea $X$ un CW-complejo.
 \begin{enumerate}
@@ -573,21 +627,27 @@ Sea $X$ un CW-complejo.
 \Z^m & k=n
 \end{cases}$, donde $m$ es el número de $n$-celdas de $X$.
 \item $H_k(X^n)=0$ si $k>n$. 
+\item La aplicación $H_k(X^n)\to H_k(X)$ inducida por la inclusión es un isomorfismo para $k<n$.
 \end{enumerate}
 \begin{dem}\
 \begin{enumerate}
 
-
 \item
- En primer lugar $(X^n,X^{n-1})$ es un buen par, luego $H_k(X^n,X^{n-1})\cong \widetilde{H}_k(X^n/X^{n-1})$. Además $X^n/X^{n-1}=\bigvee_{\alpha} S^n_{\alpha}$ con un $S^n_{\alpha}$ por cada $e^n_{\alpha}$, luego $\widetilde{H}_k(X^n/X^{n-1})=\oplus_{\alpha}\widetilde{H}_k(S^n_{\alpha}$, lo que nos da el resultado.
- \item Por inducción en $n$, si $n=0$ el resultado es cierto porque conocemos la homología de un espacio totalmente disconexo. Supongamos $n<k$ y $H_k(X^{n-1})=0$. Consideramos el par $(X^n,X^{n-1}$ y nos vamos a la sucesión exacta larga de homología relativa de este par. Como $H_k(X^{n-1})=0$ por hipótesis de inducción y $H_k(X^n,X^{n-1})=0$ por el apartado anterior, luego $H_k(X^n)=0$.
+ En primer lugar $(X^n,X^{n-1})$ es un buen par, luego $H_k(X^n,X^{n-1})\cong \widetilde{H}_k(X^n/X^{n-1})$. Además $X^n/X^{n-1}=\bigvee_{\alpha} S^n_{\alpha}$ con un $S^n_{\alpha}$ por cada $e^n_{\alpha}$, luego $\widetilde{H}_k(X^n/X^{n-1})=\oplus_{\alpha}\widetilde{H}_k(S^n_{\alpha})$, lo que nos da el resultado.
+ \item Por inducción en $n$, si $n=0$ el resultado es cierto porque conocemos la homología de un espacio totalmente disconexo. Supongamos $n<k$ y $H_k(X^{n-1})=0$. Consideramos el par $(X^n,X^{n-1})$ y nos vamos a la sucesión exacta larga de homología relativa de este par. Como $H_k(X^{n-1})=0$ por hipótesis de inducción y $H_k(X^n,X^{n-1})=0$ por el apartado anterior, luego $H_k(X^n)=0$.
+ 
+ \item De la sucesión relativa de la pareja $(X^n,X^{n-1})$, $H_k(X^{n-1})\cong H_k(X^n)\cong\cdots$. Así que si la dimensión de $X$ es finita ya lo tendríamos probado. Para el caso de dimensión infita hacemos una demostración más corta que Hatcher.
+ 
+ Consideremos la inclusión $i_*:C_*(X^n)\to C_*(X)$ y vamos a probar que induce isomorfismo en homología. Sea $\alpha\in C_k(X)$ una combinación lineal finita de aplicaciones continuas. $\Ima\alpha\subseteq X$ es un compacto, luego $\Ima\alpha$ está contenida en un subcomplejo de dimensión finita $X^m$. Si $\alpha$ es un ciclo en $X$ también lo es en $X^m=X^{n+(m-n)}$ . Como $\dim X^m$ es finita, por el caso finito tenemos que $H_k(X^m)\cong\cdots\cong H_k(X^m)$, así que $i_*$ es sobre en homología porque existe $\alpha'\in H_k(X^n)$ cuya imagen es $\alpha$. Sea ahora $[\alpha]\in H_k(X^n)$ tal que $\alpha=i_*(\alpha)=d(\beta)$, para $\beta$ una $(k+1)$-cadena en $X$. Luego $\Ima\alpha\subseteq\Ima\beta\subseteq X^m$ para $m\geq n$, luego $d(\beta)=\alpha$, así que $[\alpha]=0\in H_k(X^m)\cong H_k(X^n)$. Así que $i_*$ es inyectiva. 
 \end{enumerate}
 \end{dem}
 \end{lemma}
 
 
 
-
+\begin{prop}
+Los pares $(X,A)$ de CW-complejos verifican la propiedad de extensión de homotopía. 
+\end{prop}
 
 
 
