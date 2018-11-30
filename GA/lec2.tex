@@ -131,7 +131,7 @@ Un \emph{esquema afín} es un espacio localmente anillado $(X,\OO_X)$ que es iso
 
 
 Vamos a ver que la correspondencia $A\to\spec(A)$ es functorial, y que además este functor es plenamente fiel. De hecho es equivalencia de categorías si nos restringimos a los esquemas afines, que son la imagen de este functor. 
-\begin{prop}
+\begin{prop}\label{inducido}
 \begin{enumerate}[(a)]
 \item Si $A$ es un anillo, $(\spec(A), \OO)$ es un espacio localmente anillado.
 \item Si $\varphi:A\to B$ es un homomorfismo de anillos, $\varphi$ induce un morfismo natural de espacios localmente anillados
@@ -271,6 +271,7 @@ En las condiciones anteriores
 Sea $S=A[x_0,\dots, x_n]$ con $A$ un anillo cualquiera. Entonces denotamos $\proj(S)=\PP^n_A$ y lo denominamos \emph{espacio proyectivo} $n$-dimensional sobre $A$. En el caso particular de que $A$ sea un cuerpo, entonces el espacio proyectivo es un esquema cuyo subespacio de puntos cerrados es homeomorfo a la variedad algebraica llamada espacio proyectivo $n$-dimensional. 
 \end{ej}
 
+\section{Categorías}
 \subsection{Productos y coproductos}
 
 \begin{nota}[Lenguaje categórico]
@@ -373,7 +374,7 @@ La demostración se deja como ejercicio.
 
 Como consecuencia, $X,Y$ tiene un producto $Z$ en $\CC$ si y solo si $h_Z\cong h_X\times h_Y$ definido como $(h_X\times h_Y)(U)=h_X(U)\times h_Y(U)$. De igual modo con el coproducto. 
 
-\section{Categorías aditivas y abelianas}
+\subsection{Categorías aditivas y abelianas}
 Sea $\CC$ una categoría cumpliendo que $\Hom_{\CC}(X,Y)$ es un grupo abeliano (no con la composición) y existen productos y coproductos finitos. A esto lo llamaremos categoría aditiva. Por el lema de Yoneda $h_{X\times Y}\cong h_X\times h_Y$, aunque en este caso $h_*:\CC\to\mathrm{Fun}(\CC, \mathfrak{Ab})$. Como en grupos abelianos el producto y el coproducto son isomorfos (la suma directa), en cualquier categoría aditiva también, puesto que $h_{X\oplus Y}\cong h_X\oplus h_Y$. Vamos a añadir un axioma que en realidad se puede probar a partir de los existentes considerando el producto y coproducto de familias vacías, que es que toda categoría aditiva debe contener un objeto nulo. 
 
 \begin{ej}
@@ -411,7 +412,62 @@ donde los morfismos existen por las propiedades universales y en el caso de las 
 
 \end{defi}
 
+\section{Propiedades de los esquemas}
+
 Un ejemplo de categoría aditiva no abeliana es la de los espacios normados.
+
+\begin{defi}
+Dados $X,Y$ esquemas sobre $S$ (siempre existe $S$ porque existe el objeto final). El \emph{producto fibrado} $X\times_S Y$ es un esquema sobre $S$ dotado de morfismos $p_1:X\times_S Y\to X$, $p_2:X\times_S Y\to Y$ compatibles con $X\to S$, $Y\to S$, $X\times_S Y\to X$ con la propiedad universal: si $Z$ es un esquema sobre $S$ y $f:Z\to X$, $g:Z\to X$ morfismos que hacen conmutar el diagrama con los morfismos $X\to S$, $Y\to S$, entonces existe un único morfismo $\theta:Z\to X\times_S Y$ tal que $f=p_1\circ\theta$ y $g=p_2\circ\theta$. Los morfismos $p_1$ y $p_2$ se llaman \emph{morfismos proyecciones} del producto fibrado sobre sus factores.
+\[
+\begin{tikzcd}
+Z\arrow[rr, dashed]\arrow[dr]\arrow[drrr] & &X\times_S Y\arrow[dr]\arrow[dl] & \\
+&                              X\arrow[dr] & & Y\arrow[dl]\\
+& & S & 
+\end{tikzcd}
+\]
+Si $X$ e $Y$ son esquemas sin referencia a ningún esquema base $S$, tomamos $S=\spec(\Z)$ por el ejercicio 2.5 y se define el \emph{producto} $X\times Y$ como $X\times_{\spec(\Z)}Y$.
+\end{defi}
+
+\begin{teorema}
+\begin{enumerate}
+\item En $\mathrm{Sch}$ existen productos finitos. 
+\item En $\mathrm{Sch}$ existen productos fibrados, es decir, en $\mathrm{Sch}_S$ existen productos finitos.
+\end{enumerate}
+\end{teorema}
+\begin{dem}
+Como $\mathrm{Sch}=Sch_{\spec(\Z)}$ basta demostrar 2. Vamos a probarlo primero para el caso afín. Sea $S=\spec(C)$, y $X,Y$ esquemas afines sobre $S$ (denotamos a esta categoría $\mathrm{Aff}_S$). Se tiene que $\mathrm{Aff}\cong \mathrm{Ring}^{op}$, como probamos en la proposición \ref{inducido}, junto con el ejercicio 2.4 teniendo en cuenta que $\Gamma(\spec(A),\OO)=A$ (un functor plenamente fiel establece una equivalencia de categorías con su imagen esencial, los objetos isomorfos a los que están en la imagen). En categorías equivalentes se mantiene la existencia de los objetos que hemos definido, en particular los productos. En $\mathrm{Ring}^{op}$, el producto es el coproducto en $\mathrm{Ring}$, que como hemos comentado a lo largo del capítulo, es el producto tensorial, así que existe. Esto nos da además la equivalencia $\mathrm{Aff}_S\cong\mathrm{Ring}_C^{op}=(C-\mathrm{Alg})^{op}$ (una $C$-álgebra es un anillo $A$ con un homomorfismo $C\to A$, y los morfismos de $C$-álgebras son morfismos de anillos compatibles con el morfismo de $C$). Necesitamos saber entonces que en la categoría de $C$-álgebras hay coproductos, que se prueba si $A$ y $B$ son $C$-álgebras, el coproducto es $A\otimes_C B$. Se comprueba también que si $h:C\to A$ y $h':C\to B$, existe un homomorfismo $h'':C\to A\otimes_C B$ dado por $h''(x)=h(c)\otimes 1=1\otimes h'(c)$. (Recordamos que $h(c)=c\cdot 1$ con la estructura de una $C$-álgebra como $C$-módulo y por eso se tiene la igualdad). De todo esto, deducimos que $\spec(A)\times_{\spec(C)}\spec(B)=\spec(A\otimes_C B)$. 
+
+\begin{lemma}
+$\spec(A\otimes_C B)\to\spec(C)$ es un producto de $X=\spec(A)\to\spec(C)$ e $Y=\spec(B)\to\spec(C)$ en $\mathrm{Sch}_{\spec(C)}$.
+\end{lemma}
+\begin{proof}
+Sean $Z,\alpha,\beta$ en las condiciones de la propiedad universal del producto. 
+\[
+\begin{tikzcd}
+& X\arrow[dr, "x"]&\\
+Z\arrow[ur, "\alpha"]\arrow[rr, "s"]\arrow[dr, "\beta"] &  & S\\
+& Y \arrow[ur, "y"]&
+\end{tikzcd}
+\]
+Tenemos que $\alpha\in\Hom(Z,X)\cong\Hom_{\mathrm{Ring}}(A,\OO_Z(Z))$. Así que el diagrama anterior nos proporciona otro en la categoría de anilllos, que junto con la propiedad universal del producto nos da
+\[
+\begin{tikzcd}
+& A\arrow[dl, "x"]\arrow[d]&\\
+\OO_Z(Z) & A\otimes_C B\arrow[l, dashed] & C\arrow[dl]\arrow[ul]\\
+& B \arrow[ul]\arrow[u]&
+\end{tikzcd}
+\]
+Luego podemos introducir $\spec(A\otimes_C B)$ en el primer diagrama, haciendo que conmute. 
+
+\end{proof}
+
+Vamos ahora al caso general. Denotamos $p:X\to S$ y $q:Y\to S$. Consideramos las ternas $(U,V,W)$ de abiertos afines $U\subseteq X, V\subseteq Y, W\subseteq S$, $p(U),Q(V)\subseteq W$. Siempre se pueden encontrar ternas de este tipo que recubran todos los espacios, pues podemos recubrir $S$ por abiertos $W_i$ y considerar $p^{-1}(W_i)$, que son abiertos de $X$ y se pueden recubrir con abiertos afines (y lo mismo para $Y$). En cada abierto afín tenemos definidos los coproductos, de modo que tenemos que ``pegarlos''. Demostración detallada en la pagina 16 de LAS NOTAS ESAS QUE TENGO QUE AÑADIR A LA BIBLIOGRAFÍA. 
+\end{dem}
+
+Sea $S$ un esquema y $x\in S$. Consideremos el anillo local $\OO_{S,x}$ con ideal maximal $\m_{S,x}$ que da lugar al cuerpo residual $\OO_{S,x}/\m_{S,x}=k(x)$. Podemos considerar $\spec(k(x))$, como hemos hecho en general con cualquier cuerpo. Vemos que además un morfismo $\spec(k(x))\to S$. Recordemos que$\spec(k(x))=(\{0\},k(x))$. Definimos $f(\{0\})=x$, que es claramente continua. Ahora tenemos que definir $\OO_S\to f_*k(x)$, o lo que es lo mismo, $f^{-1}\OO_S\to k(x)$. Como $f$ es una aplicación de un solo punto, $f^{-1}\OO_S$ es un anillo sobre un punto, así que es su fibra $(f^{-1}\OO_S)_{\{0\}}=\OO_{S,x}$. Y aquí tenemos un morfismo obvio $\OO_{S,x}\to k(x)$ dado por la proyección al cociente. 
+
+
+
 
 \section{Ejercicios}
 \begin{ejer}

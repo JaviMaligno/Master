@@ -29,4 +29,37 @@ Conocemos el algoritmo Merge-Sort, en el cual $T_A(n)\in O(n\log n)$, de modo qu
 
 \end{ej}
 
+\section{Cotas inferiores}
+\begin{teorema}
+La complejidad del problema Sorting es $C_s(n)\in\Theta(n\log n)$.
+\end{teorema}
+
+Sabemos que existe un algoritmo $A$ (Merge-Sort) tal que $T_A(n)\in O(n\log n)$, luego falta demostrar que $C_s(n)\in\Omega(n\log n)$. Vamos a usar el modelo dde computación \emph{Comparison Model}, donde la operación básica es comparar dos elementos, así que solo contaremos la cantidad de comparaciones necesarias y veremos que no puede ser menor que $\Omega(n\log n)$. 
+
+Para probar que $C_s(n)\in\Omega(n\log n)$ en este modelo usamos un \emph{Decisin Tree} (abstracción del funcionamiento de cualquier algoritmo). 
+\begin{ej}
+Algoritmo Insertion-sort. Para $n=3$, sea $L=[3,5,2]=[L(1),L(2),L(3)]$. El árbol sería el siguiente
+HACER ÁRBOL CON LO QUE VOY A PONER AHORA MIRA EL SOURCE QUE LO TENGO ESCRITO ORDENAO
+$L(1):L(2)$, si $\leq$, $L(2):L(3)$, si $\leq$ $L(1),L(2),L(3)$
+                                     si $>$ $L(1),L(3)$,        si $\leq$ $L(1),L(3),L(2)$
+                                                                si $>$ $L(3),L(1),L(2)$
+             si $>$, $L(1):L(3)$, si $\leq$ $L(2),L(1),L(3)$ 
+                                     si $>$ $L(2):L(3)$         si $\leq$ $L(2),L(3),L(1)$
+             													SI $>$ $L(3),L(2),L(1)$
+\end{ej}
+\begin{center}
+\begin{tabular}{c|c}
+Decision tree & Algoritmo\\
+\hline
+Nodo & Comparación\\
+Hoja & Respuesta\\
+Camino Raíz-Hoja & Ejecución\\
+Longitud camino R-H & Running time\\
+Altura & Máximo tiempo de ejecución
+\end{tabular}
+\end{center}
+
+Denotmos $h$ a la altura del árbol y $l$ al número de hojas. Es claro que $l\leq 2^h$, y como las hojas nos dan permutaciones de la lista, $l\geq n!$. De aquí deducimos que $2^h\geq n!$, de donde 
+$$h\geq \log n!=\sum_{i=1}^n\log i\geq \sum_{i=\frac{n}{2}}^n\log i\geq \sum_{i=\frac{n}{2}}^n\log(\frac{n}{2})=\sum_{i=\frac{n}{2}}^n(\log n-1)=\frac{n}{2}\log n-\frac{n}{2}\in\Omega(n\log n)$$
+Esto prueba el teorema. 
 \end{document}

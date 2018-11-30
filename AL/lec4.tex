@@ -1,0 +1,50 @@
+\documentclass[AL.tex]{subfiles}
+
+\begin{document}
+
+
+%\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
+
+\chapter{Paradigmas algorítmicos}
+\section{Técnicas algorítmicas}
+Vamos a ver las siguientes técnicas algorítmicas.
+\begin{itemize}
+\item Incremental
+\item Divide y vencerás
+\item Programación Dinámica
+\item Greedy
+\item Recorridos en grafos
+\item Aproximaciones
+\item Heurísticos
+\item etc.
+\end{itemize}
+
+\subsection{Algoritmo Incremental}
+Consisten en un caso base que resuelve el problema para $[a_1,\dots, a_c]$ con $c$ pequeño y paso inductivo que extiende la solución de $[a_1,\dots, a_{i-1}]$ a $[a_1,\dots, a_i]$. 
+\begin{ejs}
+\begin{enumerate}
+\item
+ Al calcular el mínimo o el máximo de un conjunto de valores $[a_1,\dots, a_n]$. Se resuelve para $[a_1,a_2]$ (caso base) y después se pasa a $[a_1,a_2,a_3]$, etc. 
+ 
+ \item Insertion-Sort (con dos bucles).
+ 
+ \item Cálculo de la envolvente convexa en $\R^2$. Consideramos como caso base la envolutra convexa de $n=3$ puntos, que es simplemente el triángulo que determinan. Supongamos que tenemos calculada la envolvente convexa de un conjunto de $i-1$ puntos. Si añadimos un punto $p_i$ exterior, calculamos las tangentes superior e inferior al polígono convexo que pasan por $p_i$. HACER UN DIBUJO
+ 
+ Para ello vamos a pensar la envoltura convexa como una lista ordenada de puntos. Usamos la primitiva $$Orient(p,q,r)=\begin{vmatrix}
+ 1 & p_x & q_x\\
+ 1 & q_x & p_y\\
+ 1 & r_x & r_y
+ \end{vmatrix}$$
+ Si $Orient(p,q,r)$, los puntos están orientados en sentido antihorario; si $Orient(p,q,r)$ están orientados en sentido horario; si $Orient(p,q,r)=0$, están alineados. Se cumple: si $Orient(p,q_j,q_{j-1})=Orient(p,q_j,q_{j+1})$, entonces $q_j$ es punto de tangencia. El cálculo del determinante es constante con respecto a $n$, es decir, $O(1)$. Basta entonces hacer los tests de tangencia para encontrar los puntos que son tangentes (escan de Graham). El algoritmo tiene la siguiente procedimiento:
+ \begin{enumerate}
+ \item Ordenar estos puntos por abcisa ($\Theta(n\log n)$)
+ \item Aplicar test desde $n=3$ de forma incremental. ($O(n)$)
+ \item Actualizar la envoltura convexa. 
+ \end{enumerate}
+ En total el algoritmo tiene complejidad $O(n\log n)$. 
+\end{enumerate}
+\end{ejs}
+
+
+
+\end{document}

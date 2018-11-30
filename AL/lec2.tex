@@ -12,13 +12,13 @@
 El análisis asintótico consiste en el estudio de la eficiencia de un algoritmo en el \emph{peor caso}. 
 
 \begin{ej}
-Supongamos que tenemos un inventario, que para poder leerlo necesitamso 10000 milisegundos (ms) y 10 ms en procesar una transacción (por ejemplo clasificar un libro). Entonces, el tiempo de $n$ transacciones será $T(n)=10000+10n$. Cuando $n>>0$, el término que domina es $10n$. 
+Supongamos que tenemos un inventario, que para poder leerlo necesitamos 10000 milisegundos (ms) y 10 ms en procesar una transacción (por ejemplo clasificar un libro). Entonces, el tiempo de $n$ transacciones será $T(n)=10000+10n$. Cuando $n>>0$, el término que domina es $10n$. 
 \end{ej}
 
 La notación que usamos es la llamada Big-o (o grande): si $n$ es el tamaño de la entrada, $T(n)$ es una función de complejidad temporal (running time) y supongamos que existe una función conocida $f(n)$, decimos que $T(n)\in O(f(n))$ si $T(n)\leq c f(n)$ para alguna constante $c$ a partir de un $n$ suficientemente grande (se dice que $T$ es de orden $f(n)$). $O(f(n))$ es el conjunto de funciones que cumplen la propiedad que acabamos de definir.
 
 \begin{ej}
-$T(n)=10^6n\in O(n)$. Podemos tomar $C=10^6$ y $n_0=1$, de modo que para todo $n\geq n_0$ se cumple la definición. Se observa con este ejemplo que la notación $O(\cdot)$ prescinde de las constantes. Se tiene además que, por ejemplo.
+$T(n)=10^6n\in O(n)$. Podemos tomar $C=10^6$ y $n_0=1$, de modo que para todo $n\geq n_0$ se cumple la definición. Se observa con este ejemplo que la notación $O(\cdot)$ prescinde de las constantes.
 \end{ej}
 \begin{ej}
 $T(n)=n\in O(n^k)$ para todo $k\geq 1$. $T(n)=n^3+n^2+n\in O(n^3)$, por ejemplo con $c=3$ y $n_0=1$.
@@ -29,7 +29,7 @@ $n^2\notin O(n)$.
 \end{ej}
 
 \begin{ej}
-$O(\cdot)$ no da toda la información. El algoritmo de búsqueda binaria tiene una función de complejidad temporal $T(n)=\log n\in O(\log n)$. Pero este es el peor caso. En el mejor caso podría encontrar el elemento al primer paso, es decir, sería $O(1)$. Exite también el estudio del caso promedio, aunque no lo estudiaremos. 
+$O(\cdot)$ no da toda la información. El algoritmo de búsqueda binaria tiene una función de complejidad temporal $T(n)=\log n\in O(\log n)$. Pero este es el peor caso. En el mejor caso podría encontrar el elemento al primer paso, es decir, sería $O(1)$. Existe también el estudio del caso promedio, aunque no lo estudiaremos. 
 \end{ej}
 
 \begin{ej}
@@ -40,7 +40,7 @@ $e^{3}\notin O (e^n)$ pues $e^{3n}=e^{2n}e^n$, luego no se puede minorar por una
 Consideremos $T(n)=n\log n$ y $U(n)=100n$. Asintóticamente $U(n)$ es más rápido, pero el $n_0$ a partir del cual se cumple esto es muy grande para la mayoría de los casos prácticos, en los que $\log n\sim 50$. Así que en la práctica es preferible $T(n)$.
 \end{ej}
 
-Introducimos la notación $\Omega(f(n))$ para referirnos al conjunto de las funciones $T(n)$ tales que $T(n)\geq Df(n)$ para todo $n\geq n_0$, $D\in\N$. Es claro que $\Omega$ es inverso de $O$, es decir, $T(n)\in O(f(n))\Leftrightarrow f(n)\in\Omega(T(n))$.
+Introducimos la notación $\Omega(f(n))$ para referirnos al conjunto de las funciones $T(n)$ tales que $T(n)\geq df(n)$ para todo $n\geq n_0$, $d\in\N$. Es claro que $\Omega$ es inverso de $O$, es decir, $T(n)\in O(f(n))\Leftrightarrow f(n)\in\Omega(T(n))$.
 
 \begin{ej}
 $2n\in\Omega(n)$. Se puede ver por la definición o por la equivalencia con $O$. De la misma forma, $n^2\in\Omega(3n^2+n\log n)$. 
@@ -53,7 +53,7 @@ $n^3\in\Theta(3n^3-n^2)$.
 \end{ej}
 
 \begin{ej}
-El algoritmo para calcular el máximo de $n$ valores tiene $T(n)=\Theta(n)$. De hecho es lineal siempre, puesto que siempre hay que comprobar todos los elementos. 
+El algoritmo para calcular el máximo de $n$ valores tiene $T(n)\in\Theta(n)$. De hecho es lineal siempre, puesto que siempre hay que comprobar todos los elementos. 
 \end{ej}
 
 \begin{ej}
@@ -71,20 +71,20 @@ $O(1)\subset O(\log n)\subset O(n)\subset O(n\log n)\subset O(n^2)\subset O(2^n)
 Normalmente se considerar que un algoritmo es eficiente cuando a lo sumo está en $O(n\log n)$. Si está en $O(n^k)$ para $k\geq 2$ se llama polinomial. A partir de $O(2^n)$ se considera inútil.
 
 
-\section{Ejercicios}
-
-\begin{ejer}[La menor caja contenedora]\
-
-Input: $n$ puntos en $\R^p$. 
-
-Output: la caja $p$-dimensional de mínimo volumen que contiene a todos los puntos. 
-
-Una caja es hipercubo que tiene lados paralelos a los ejes (isotéticos). 
-
-El ejercicio consiste en dar un algoritmo (preferiblemente no inútil) y su complejidad.
-
-%dbanez@us.es
-\end{ejer}
+%\section{Ejercicios}
+%
+%\begin{ejer}[La menor caja contenedora]\
+%
+%Input: $n$ puntos en $\R^p$. 
+%
+%Output: la caja $p$-dimensional de mínimo volumen que contiene a todos los puntos. 
+%
+%Una caja es hipercubo que tiene lados paralelos a los ejes (isotéticos). 
+%
+%El ejercicio consiste en dar un algoritmo (preferiblemente no inútil) y su complejidad.
+%
+%%dbanez@us.es
+%\end{ejer}
 
 \section{Análisis de algoritmos}
 
@@ -92,15 +92,16 @@ El ejercicio consiste en dar un algoritmo (preferiblemente no inútil) y su comp
 Dado un conjunto de items, decidir si hay o no dos iguales. Existe un algoritmo sencillo que es cuadrático, ya que hay $\binom{n}{2}$ pares, y se trata de comparar los elementos de los pares. Otra posibilidad es ordenar la lista, lo cual ya nos detectaría si hay dos iguales ya sea en el propio ordenamiento o bien luego mirando dos seguidos. Así que podemos mejorar la eficiencia si encontrar una forma de ordenar de complejidad menor que cuadrática, el cual existe (en concreto $O(n\log n)$).
 
 \subsection{Problema 2}
-Dados $m$ hombres y $w$ mujeres, ver qué pareja $(w,m)$ es compatible, suponiendo que comprobar la compatibilidad es de complejidad constante. Podría darse una descripción menos sexista, pero esta es la que ha dado el profesor. El algoritmo exhaustivo consistiría en realizar todas las parejas posibles y comprobar si son compatibles, que tiene orden $O(wm)$. Obsérvese que $w$ y $m$ son variables independientes, por lo que $O(wm)\neq O(w^2)$. 
+Dados $m$ hombres y $w$ mujeres, ver qué pareja $(w,m)$ es compatible, suponiendo que comprobar la compatibilidad es de complejidad constante. %Podría darse una descripción menos sexista, pero esta es la que ha dado el profesor. 
+El algoritmo exhaustivo consistiría en realizar todas las parejas posibles y comprobar si son compatibles, que tiene orden $O(wm)$. Obsérvese que $w$ y $m$ son variables independientes, por lo que $O(wm)\neq O(w^2)$. 
 
 
-A propósito de este último comentario, nos preguntamos si $\Theta(w^6+wm+m^3)=\Theta(w^6+m^3)$. Si $w>>m$, entonces $w^6+wm+m^3$ estará en la misma clase que $w^6+m^3$, que es $\in\Theta(w^6)$. Si $w<<m$ podemos hacer el razonamiento análogo, con lo que pertenecería a $\Theta(m^3)$. Así que la respuesta es afirmativa. Se puede probar haciendo el cociente y tomando límtie, que da 1 y por tanto efectivamente son del mismo orden. 
+A propósito de este último comentario, nos preguntamos si $\Theta(w^6+wm+m^3)=\Theta(w^6+m^3)$. Si $w>>m$, entonces $w^6+wm+m^3$ estará en la misma clase que $w^6+m^3$, que es $\Theta(w^6)$. Si $w<<m$ podemos hacer el razonamiento análogo, con lo que pertenecería a $\Theta(m^3)$. Así que la respuesta es afirmativa. Se puede probar haciendo el cociente y tomando límtie, que da 1 y por tanto efectivamente son del mismo orden. 
 
 Sin embargo $\Theta(w^6+wm)\neq\Theta(w^6)$, porque si domina $m$ no se tiene la igualdad. 
 
 \subsection{Problema 3}
-Hay un arreglo ordenado por título de $n$ CD's. Existe $k$ que comienzan por ``The best of...''. Se trata de obtener todos los de este tipo. Hacemos búsqueda binaria. En el mejor caso llegas a un disco de ellos y avanzas y retrocedes para coger los todos, con lo que sería $O(k)$. En el peor caso hay $O(\log n)$ pasos y luego $O(k)$, o sea, $O(\log n +k)$. Este es un algoritmo \emph{output sensitive}, porque dependiendo del tamaño de la salida tiene una complejidad. 
+Hay un arreglo ordenado por título de $n$ CD's. Existen $k$ que comienzan por ``The best of...''. Se trata de obtener todos los de este tipo. Hacemos búsqueda binaria. En el mejor caso llegas a un disco de ellos y avanzas y retrocedes para cogerlos todos, con lo que sería $O(k)$. En el peor caso hay $O(\log n)$ pasos y luego $O(k)$, o sea, $O(\log n +k)$. Este es un algoritmo \emph{output sensitive}, porque dependiendo del tamaño de la salida tiene una complejidad. 
 
 
 \subsection{Problema 4}
@@ -120,7 +121,7 @@ O(1) & n\leq 2\\
 \]
 Tenemos que resolver la ecuación de recursión $T(n)=2T(\frac{n}{2})+\Theta(n)$. Para ello hacemos lo siguiente
 \[
-2T(\frac{n}{2})+\Theta(n)=2(2T(\frac{n}{2^2}+\Theta(\frac{n}{2}))+\Theta(n)=2^2T(\frac{n}{2^2})+2\Theta(n)
+2T\left(\frac{n}{2}\right)+\Theta(n)=2(2T\left(\frac{n}{2^2}+\Theta\left(\frac{n}{2}\right)\right)+\Theta(n)=2^2T\left(\frac{n}{2^2}\right)+2\Theta(n)
 \]
 Seguimos aplicando esta estrategia y obtenemos $T(n)=2^kT(\frac{n}{2^k})+k\Theta(n)$. Cuando $n=2^k\Rightarrow k\in O(\log n)$ se termina, obteniendo $T(n)=nT(1)+O(\log n)\Theta(n)=O(n)+O(n\log n)=O(n\log n)$. 
 
@@ -128,10 +129,10 @@ Vemos ahora un teorema general que nos ayudará a resolver ecuaciones de recurre
 
 \begin{teorema}[Teorema del maestro]
 
-Si $T(n)=\begin{cases}
+Sea $$T(n)=\begin{cases}
 O(1) & n\leq n_0\\
 aT(\frac{n}{b})+\Theta(f(n)) & n> n_0
-\end{cases}$, entonces
+\end{cases}$$ 
 \begin{enumerate}
 \item Si $f(n)\in O(n^{\log_ba-\varepsilon})$, $\varepsilon\in [0,1]$, entonces $T(n)\in\Theta(n^{\log_ba})$.
 \item Si $f(n)\in \Theta(n^{\log_ba})$, entonces $T(n)\in\Theta(n^{\log_ba}\log n)$.
@@ -139,7 +140,7 @@ aT(\frac{n}{b})+\Theta(f(n)) & n> n_0
 \end{enumerate}
 
 \end{teorema}
-En el enunciado del teorema, $a$ representa el número de llamadas recursivas, $b$ las partes en las que se divide el conjunto y $f(n)$ es el tiempo necesario para ``procesado extra''. La prueba del resultado puede encontrarse en el libro de Cormen A LO MEJOR PONER AL PRINCIPIO QUE TODAS LAS DEMOSTRACIONES ESTÁN AHÍ. En dicha prueba se muestra además que el costo de todas las llamadas recursivas es $\Theta(n^{\log_ba})$ y el costo del procesado extra es $\Theta(f(n))$. En función de cuál de estos costos domine más, obtenemos cada uno de los casos del teorema. 
+En el enunciado del teorema, $a$ representa el número de llamadas recursivas, $b$ las partes en las que se divide el conjunto y $f(n)$ es el tiempo necesario para ``procesado extra''. La prueba del resultado puede encontrarse en el libro de Cormen \emph{Introducton to Algorithms}. En dicha prueba se muestra además que el costo de todas las llamadas recursivas es $\Theta(n^{\log_ba})$ y el costo del procesado extra es $\Theta(f(n))$. En función de cuál de estos costos domine más, obtenemos cada uno de los casos del teorema. 
 
 \begin{ejs}\
 \begin{enumerate}
@@ -149,7 +150,7 @@ En el enunciado del teorema, $a$ representa el número de llamadas recursivas, $
 
 \item Resolvemos $T(n)=4T(\frac{n}{2})+n^3$. Claramente $a=4$, $b=2$ y $f(n)=n^3$, de donde $\log_24=2$. Como $n^3\in\Omega (n^{2+\varepsilon})$ para cualquier $\varepsilon\leq 1$ y $4(\frac{n^3}{8})=\frac{1}{2}n^3$, estamos en las hipótesis del caso 3 del teorema. Por ello concluimos que $T(n)\in\Theta(n^3)$. 
 
-\item $T(n)=2T(\frac{n}{2})+n^2$. Tenemos aquí $a=2$, $b=2$ y $f(n)=n^2$. De aquí $\log_22=1$, y como $n^2\in\Omega(n^{1+\varepsilon})$ para cualquier $\varepsilon\leq 1$, estmos en el tercer caso. Esto nos da $T(n)\in\Theta(n^2)$. REVISAR 
+\item $T(n)=2T(\frac{n}{2})+n^2$. Tenemos aquí $a=2$, $b=2$ y $f(n)=n^2$. De aquí $\log_22=1$, y como $n^2\in\Omega(n^{1+\varepsilon})$ para cualquier $\varepsilon\leq 1$, esatmos en el tercer caso. Esto nos da $T(n)\in\Theta(n^2)$. 
 \end{enumerate}
 \end{ejs}
 
@@ -164,7 +165,7 @@ En las condiciones del teorema
 
 Atención, el teorema del maestro no resuelve todos los casos, como vemos a continuación.
 \begin{ej}
-Sea la ecuación de recurrencia $T(n)=2T(\frac{n}{2})+\Theta(n\log n)$. Aquí $a=b=2$ y $f(n)=n\log n$. Aquí $f$ no verifica ninguno de los dos casos. El más interesante de ver es el tercero. $n^{1+\varepsilon}=nn^{\varepsilon}$. Las $n$ se compensan, luego tendríamos que comparar $n^{\varepsilon}$ con $\log n$. Se puede demostrar que $\frac{n^{\varepsilon}}{\log n}\to\infty$ cuando $n\to\infty$, por lo que efectivamente $n^{1+\varepsilon}\notin O(n\log n)$. Como $f$ no está en ninguno de los casos, el teorema del maestro no es aplicable. Sin embargo sí lo será el siguiente teorema.
+Sea la ecuación de recurrencia $T(n)=2T(\frac{n}{2})+\Theta(n\log n)$. Aquí $a=b=2$ y $f(n)=n\log n$. Aquí $f$ no verifica ninguno de los dos casos. El más interesante de ver es el tercero. $n^{1+\varepsilon}=nn^{\varepsilon}$. Con lo que una $n$ se compensa con la de $n\log n$, luego tendríamos que comparar $n^{\varepsilon}$ con $\log n$. Se puede demostrar que $\frac{n^{\varepsilon}}{\log n}\to\infty$ cuando $n\to\infty$, por lo que efectivamente $n^{1+\varepsilon}\notin O(n\log n)$. Como $f$ no está en ninguno de los casos, el teorema del maestro no es aplicable. Sin embargo sí lo será el siguiente teorema.
 \end{ej}
 
 \begin{teorema}
