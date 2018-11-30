@@ -103,6 +103,79 @@ P[N(t)= k] &= \sum_{i=0}^k P[N_1(t)=k-i,N_2=i] \\
 Por tanto, es un proceso de Poisson con intensidad suma de las intensidades.
 \end{example}
 \section{Distribuciones asociadas al Proceso de Poisson}
+\begin{prop}
+Sea $N(t)$ un proceso de Poisson de parámetro $\lambda >0$ para $0<u<t$ y $0\leq  k \leq n$, se tiene que
+$$
+P[N(u)=k\mid N(t)=n] = \frac{n!}{k!(n-k)!}(u/t)^k(1-u/t)^{n-k}
+$$
+\end{prop}
+\begin{proof}
+Sabemos que
+\begin{align*}
+P[N(u)=k, N(t)=n] = P[N(u)=k, N(t)-N(u)=n-k] = P[N(u)=k]P[N(t)-N(u) = n-k]
+\end{align*}
+Por tanto
+\begin{align*}
+P[N(u)=k\mid N(t)=n] &= \frac{P[N(u)=k, N(t)=n]}{P[N(t)=n]}\\
+&= \frac{P[N(u)=k]P[N(t)-N(u) = n-k]}{P[N(t)=n]}\\
+&= \frac{e^{-\lambda u}(\lambda u)^k/k! e^{-\lambda(t-u)}[\lambda(t-u)]^{n-k}/(n-k)! }{e^{-\lambda t}(\lambda t)^n/n!}\\
+&= \frac{n!}{k!(n-k)!}\frac{u^k(t-u)^{n-k}}{t^n}\\
+&= \frac{n!}{k!(n-k)!}(u/t)^k(1-u/t)^{n-k}
+\end{align*}
+
+\end{proof}
+
+\begin{prop}
+Dado el suceso $N(t)=n$, el vector de tiempos $(T_1,\dotsc,T_n)$ tiene la misma distribución que el vector de estadísticos de orden $(Y_{(1)},\dotsc,Y_{(n)})$ de una nuestra aleatoria $Y_1,\dotsc,Y_n$ de una uniforme en $[0,t]$.
+$$
+f_{T_1,\dotsc,T_n\mid N(t)}(t_1,\dotsc,t_n;n) = \frac{n!}{t^n} \quad 0<t_1<\dotsc<t_n < t
+$$
+\end{prop}
+\begin{proof}
+Veamos el caso $n=2$.
+\begin{align*}
+P[T_1\leq t_1,T_2 \leq t_2 \mid N(t)=2] & = P[N(t_1) \geq 1, N(t_2)\geq 2 \mid N(t)=2]\\
+&= \frac{ P[N(t_1) \geq 1, N(t_2)\geq 2, N(t)=2]}{P[N(t)=2]}\\
+&= \frac{P[N(t_1)=1,N(t_2)-N(t_1) =1, N(t)-N(t_2)=0]}{P[N(t)=2]}\\
+&= \frac{e^{-\lambda t_1}\lambda t_1 e^{-\lambda(t_2-t_1)}\lambda(t_2-t_1) e^{-\lambda(t-t_2)}}{e^{-\lambda t}(\lambda t)^2/2!}
+\end{align*}
+Derivando con respecto a $t_1$ y $t_2$ obtenemos 
+$$
+Resultado
+$$
+El caso general se sigue análogamente.
+\end{proof}
+\begin{defi}
+Seab $T_1,T_2,\dotsc$ una sucesión de v.a. i.i.d  a una exponencia de parámetro $\lambda$. El proceso de Poisson de parámetro $\lambda$ es el proceso en tiempo continuo $\{N_t:t\geq 0\}$ definido como 
+$$
+N_t = \max\{n\geq 1\mid T_1+\dotsc T_n \leq t\}
+$$
+\end{defi}
+\begin{defi}
+Un proceso de Poisson de parámetro $\lambda > 0$ es un proceso a tiempo continuo $\{N_t \mid t\geq0\}$ con espacio de estados $\{0,1,2\dotsc\}$ con trayectorias no decrecientes y que cumple las siguientes propiedades
+\begin{enumerate}
+\item $N(0)=0$.
+\item Tiene ncrementos independientes
+\item $N(t+s)-N(s) \sim Poi(\lambda t)$ $\forall s\geq 0, t>0$.
+\end{enumerate}
+\end{defi}
+\begin{example}
+Dos líneas de tren $A$ y $B$ comparten estación. Los trenes de tipo $A$ y$B$ llegan a la estación según procesos de Poisson independientes con tasas $\lambda_A =3$, $\lambda_B =6$ trenes por hora. Supongemos que los viajeros suben y bajan de los trenes instantáneamente.
+\begin{itemize}
+\item En un instante al azar un pasajero llega a la estación a tomar el tren tipo $A$, ¿cuál es la función de densidad del tiempo que debe esperar para tomar su tren?
+$$
+f(t) = \lambda_A e^{-t\lambda_A} = 3e^{-3t}
+$$
+\item ¿Cuál es la probabilidad de que por la estación pasen exactamente $9$ trenes en una hora?
+$$
+P[N(1)_A + N(1)_B = 9] = P[N(1)_{A+B} = 9] = (\lambda_A + \lambda_B)^9\frac{e^{-(\lambda_A+\lambda_B)}}{9!} = 9^9\frac{e^{-9}}{9!} \approx 0.13175
+$$
+\item Si un observador cuenta el número de trenes que pasan por la estación cada hora, comenzando a las 8:00 de la mañana, ¿cuál es el número esperado de horas transcurridas hasta que cuenta $9$ trenes?
+$$
+E[T_1^A + \dotsc + T_9^A + T_1^B + \dotsc + T_9^B] = 
+1$$
+\end{itemize}
+\end{example}
 \section{Definiciones alternativas}
 \section{Algunos Procesos de Poisson Generalizados}
 \end{document}
