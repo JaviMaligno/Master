@@ -137,12 +137,16 @@ Veamos el caso $n=2$.
 P[T_1\leq t_1,T_2 \leq t_2 \mid N(t)=2] & = P[N(t_1) \geq 1, N(t_2)\geq 2 \mid N(t)=2]\\
 &= \frac{ P[N(t_1) \geq 1, N(t_2)\geq 2, N(t)=2]}{P[N(t)=2]}\\
 &= \frac{P[N(t_1)=1,N(t_2)-N(t_1) =1, N(t)-N(t_2)=0]}{P[N(t)=2]}\\
-&= \frac{e^{-\lambda t_1}\lambda t_1 e^{-\lambda(t_2-t_1)}\lambda(t_2-t_1) e^{-\lambda(t-t_2)}}{e^{-\lambda t}(\lambda t)^2/2!}
+&= \frac{e^{-\lambda t_1}\lambda t_1 e^{-\lambda(t_2-t_1)}\lambda(t_2-t_1) e^{-\lambda(t-t_2)}}{e^{-\lambda t}(\lambda t)^2/2!}\\
+&= \frac{2!t_1(t_2-t_1)}{t^2}
 \end{align*}
 Derivando con respecto a $t_1$ y $t_2$ obtenemos 
-$$
-Resultado
-$$
+\begin{align*}
+f_{T_1,T_2\mid N(2)}(t_1,t_2;2) &= \frac{\partial^2 P[T_1\leq t_1,T_2 \leq t_2 \mid N(t)=2] }{\partial t_1 \partial t_2}\\
+&= \frac{2!}{t^2}\frac{\partial^2 t_1(t_2-t_1)}{\partial t_1 \partial t_2}\\
+&=\frac{2!}{t^2}\frac{\partial t_1}{\partial t_1} = \frac{2!}{t^2}
+\end{align*}
+
 El caso general se sigue análogamente.
 \end{proof}
 \begin{defi}
@@ -171,9 +175,11 @@ $$
 P[N(1)_A + N(1)_B = 9] = P[N(1)_{A+B} = 9] = (\lambda_A + \lambda_B)^9\frac{e^{-(\lambda_A+\lambda_B)}}{9!} = 9^9\frac{e^{-9}}{9!} \approx 0.13175
 $$
 \item Si un observador cuenta el número de trenes que pasan por la estación cada hora, comenzando a las 8:00 de la mañana, ¿cuál es el número esperado de horas transcurridas hasta que cuenta $9$ trenes?
+
+Si $T_i$ es el tiempo entre el suceso $i$ y el $i+1$, estos son i.i.d a exponenciales de parámetro $A+B=9$, luego
 $$
-E[T_1^A + \dotsc + T_9^A + T_1^B + \dotsc + T_9^B] = 
-1$$
+E[T_1 + \dotsc + T_9] = 9 E[T_i] = 1
+$$
 \end{itemize}
 \end{example}
 \section{Definiciones alternativas}
