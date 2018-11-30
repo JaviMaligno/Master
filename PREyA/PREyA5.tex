@@ -144,11 +144,14 @@ Derivando con respecto a $t_1$ y $t_2$ obtenemos
 \begin{align*}
 f_{T_1,T_2\mid N(2)}(t_1,t_2;2) &= \frac{\partial^2 P[T_1\leq t_1,T_2 \leq t_2 \mid N(t)=2] }{\partial t_1 \partial t_2}\\
 &= \frac{2!}{t^2}\frac{\partial^2 t_1(t_2-t_1)}{\partial t_1 \partial t_2}\\
-&=\frac{2!}{t^2}\frac{\partial t_1}{\partial t_1} = \frac{2!}{t^2}
+&=\frac{2!}{t^2}\frac{\partial t_1}{\partial t_1}\\
+&= \frac{2!}{t^2}
 \end{align*}
+Veamos cuál es la distribución de los estadísticos ordenados para la uniforme $[0,t]$. 
 
 El caso general se sigue análogamente.
 \end{proof}
+
 \begin{defi}
 Seab $T_1,T_2,\dotsc$ una sucesión de v.a. i.i.d  a una exponencia de parámetro $\lambda$. El proceso de Poisson de parámetro $\lambda$ es el proceso en tiempo continuo $\{N_t:t\geq 0\}$ definido como 
 $$
