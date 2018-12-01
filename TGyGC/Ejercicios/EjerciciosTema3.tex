@@ -97,7 +97,13 @@ Show that for the cycle $C_n$ of length $n$, $P(C_n; λ) = (λ − 1)^n + (−1)
 (λ − 1)$, $n ≥ 3$
 \end{ejercicio}
 \begin{solucion}
- 
+Para $n=3$, como $C_3=K_3$, es fácil comprobar que $P(C_3;\lambda)=\lambda(\lambda-1)(\lambda-2)=(λ − 1)^3 −(λ − 1)$. Para $n>3$ usamos la fórmula recursiva del polinomio cromático, teniendo en cuenta que en un ciclo ninguna arista es un puente. Asumimos como hipótesis de inducción que el resultado es cierto para $C_{n-1}$. Entonces, 
+\[
+P(C_n;\lambda)=P(C_n-e;\lambda)-P(G/e;\lambda)=P(P_n;\lambda)-P(C_{n-1};\lambda)=\lambda(\lambda-1)^{n-1}-(λ − 1)^{n-1} - (−1)^{n-1}(λ − 1)=
+\]
+\[
+(λ − 1)^{n-1}(\lambda-1)-(−1)^{n-1}(λ − 1))=(λ − 1)^n+(−1)^n(λ − 1).
+\]
 
 
 %\textbf{ALTERNATIVA}
@@ -109,11 +115,15 @@ Show that for the cycle $C_n$ of length $n$, $P(C_n; λ) = (λ − 1)^n + (−1)
 
 \begin{ejercicio}{3.7}
 Show that there is no graph with the following polynomials as chromatic polynomials:
-(i) $λ
-5 − 4λ^4 + 8λ^3 − 4λ^2 + λ$; (ii) $λ^7 − λ^6 + 1$.
+(i) $λ^5 − 4λ^4 + 8λ^3 − 4λ^2 + λ$; (ii) $λ^7 − λ^6 + 1$.
 \end{ejercicio}
 \begin{solucion}
+\begin{enumerate}[(i)]
+\item Conexo. El 1 no es raíz así que no tiene bloques, pero eso quiere decir que no contiene ningún $K_2$, por lo que solo podría ser un vértice, que no tiene ese polinomio cromático. 
 
+Esto no es del ejercicio pero me salió al interpretar mal una cosa y puede ser útil: Solo hay 3 árboles de 4 aristas: $P_5$, el grafo estrella y un árbol con un punto de corte de orden 2. Todos ellos tienen como polinomio cromático
+\item $a_0=1\neq 0$. 
+\end{enumerate}
 \end{solucion}
 
 \newpage
@@ -123,8 +133,7 @@ Find a graph $G$ whose chromatic polynomial is $λ^5 − 6λ^4 + 11λ^3 − 6λ^
 .
 \end{ejercicio}
 \begin{solucion}
-
-
+Tiene que ser un grafo de 5 vértices, 6 aristas, 2 componentes conexas y con 1 bloque. Como tiene dos componentes conexas y un solo bloque, tiene un vértice aislado, así que las 6 aristas restantes están concentradas en los otros 4 vértices. Necesariamente debe ser entonces un $K_4$ el resto del grafo. El polinomio cromático del grafo que hemos descrito es $\lambda^2(\lambda-1)(\lambda-2)(\lambda-3)=λ^5 − 6λ^4 + 11λ^3 − 6λ^2$.
 
 
 
