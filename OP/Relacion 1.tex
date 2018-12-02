@@ -120,9 +120,106 @@ Por tanto, nuestro algoritmo es una $2$-aproximación. \end{solucion}
 \newpage
 
 \begin{ejercicio}{4}[Problema de la mochila] Dado un conjunto finito de items $N$, cada uno de los cuales tiene asociado un peso $w_i$ y produce un beneficio $v_i$, seleccionar el subconjunto de items a incluir en una mochila que es capaz de soportar un peso máximo de $W$ y teniendo como objetivo, conseguir un beneficio mínimo de $V$. Formulado como un problema de optimización sería:
+\begin{align*}
+\max &\;v(x):=\sum_{i=1}^Nv_ix_i\\
+s.a.&:\sum_{i=1}^n w_i x_i \leq W\\
+x_i \in & \;\{0,1\}\;\forall i =1,2,\dotsc,N
+\end{align*}
+Probar que este problema es NP-completo. 
+\begin{itemize}
+\item Supongamos que los items están ordenados verificando que
+$$
+\frac{v_1}{w_1}\geq \frac{v_2}{w_2} \geq \cdots \geq \frac{v_N}{w_N}
+$$
+Probar que el siguiente algoritmo greedy es una $1/2$-aproximación para el problema de la mochila.
+\begin{enumerate}
+\item[Paso 1.] Determinar $k=\max\{j\in\{1,\dotsc,N\}\mid\sum_{n=1}^j w_n \leq W\}$.
+\item[Paso 2.] Sean $x$ e $y$ los siguientes vectores: $x_j=1$ para $j=1,\dotsc,k$, $x_j=0$ para $j=k+1,\dotsc,N$; e $y_j=1$ para $j=k+1$, $y_j=0$ para todo $j\neq k+1$. Devolver $x$ si $v(x)\geq v(y)$, en caso contrario devolver $y$.
+\end{enumerate}
+\item Resolver óptimamente el problema para los dos casos siguientes.
+\begin{itemize}
+\item Si $w_i=1$ $\forall i=1,\dotsc,N$.
+\item Si $x_i \in [0,1]$ $\forall i =1,\dotsc,N$, es decir, las variables de decisión son continuas.
+\end{itemize}
+\end{itemize}
 \end{ejercicio}
 
 \begin{solucion}
-\end{solucion}
+\begin{itemize}
+\item[]
+\item Veamos que el problema es NP-completo. Consideremos el problema de decisión, es decir, dados $N$ items con pesos $w_i$ y beneficios $v_i$, sea $W$ la capacidad máxima y $V$ un valor fijo, deseamos encontrar un subcojunto $S$ de items tales que $\sum_{i\in S}w_i \leq W$ y $\sum_{i \in S}v_i \geq V$.
+\begin{itemize}
+\item Comprobar si tenemos o no una solución es tan sencillo como, dado $S$, evaluar las restricciones, lo cual tiene una complejidad polinomial.
+\item Utilizaremos el problema de la partición. Supongamos que tenemos una instancia del problema de la partición dada por $a_1,\dotsc,a_N$. Definimos el problema de la mochila con parámetro $w_i = v_i = a_i$, $W=V = \frac{1}{2}\sum_{i=1}^N a_i$. 
 
+Si tenemos una instancia positiva del problema de la partición, entonces existen $S,T$ partición del conjunto de los $a_i$ tales que 
+$$
+\sum_{i\in T} a_i = \sum_{i\in Q} a_i = \frac{1}{2}\sum_{i=1}^N a_i
+$$
+Basta tomar como solución del problema de la mochila asociado los items que induce el conjunto $S$. Recíprocamente, si tenemos una instancia positiva de este problema de la mochila donde $S$ es un conjunto óptimo de índices, entonces consideremos $T=\{1,\dotsc,N\}-S$. Por las restricciones tenemos
+\begin{align*}
+\sum_{i\in S}w_i = \sum_{i\in S}a_i \leq W = \frac{1}{2}\sum_{i=1}^N a_i\\
+\sum_{i\in S}v_i = \sum_{i\in S}a_i \geq V = \frac{1}{2}\sum_{i=1}^N a_i
+\end{align*}
+Se deduce, por tanto, que
+$$
+\sum_{i\in S} a_i = \frac{1}{2}\sum_{i=1}^Na_i
+$$
+Esto implica que
+$$
+\sum_{i\in T} a_i = \sum_{i=1}^Na_i - \sum_{i\in S} a_i = \sum_{i=1}^Na_i - \frac{1}{2}\sum_{i=1}^Na_i= \frac{1}{2}\sum_{i=1}^Na_i
+$$
+Dado que $S$ y $T$ forman una partición, tenemos una instancia positiva del problema de la partición.
+\end{itemize}
+\item Probemos que el algoritmo es una $1/2$-aproximación. Sea $OPT$ el valor objetivo óptimo del problema. Consideremos la relajación lineal del problema, es decir, ahora $x_i \in [0,1]$. Sea $OPT'$ el valor objetivo óptimo del problema relajado. Naturalmente $OPT'\geq OPT$. Sea $k$ escogido en el primer paso del algoritmo. Consideremos el vector $z_i = 1$ si $i\leq k$, $z_{k+1} = \alpha$ y $z_i = 0$ si $i>k+1$, donde 
+$$
+\alpha = \frac{W-\sum_{i=1}^k w_i}{w_{k+1}}
+$$
+Tenemos que $z$ es una solución factible. Además, por la manera en la que hemos ordenado los items, esta solución es la óptima para el problema relajado. Por tanto,
+$$
+v_1+v_2 + \dotsc + v_k + \alpha v_{k+1} = OPT' \geq OPT
+$$
+Por construcción $\alpha <1$. Por tanto
+$$
+v_1+v_2 + \dotsc v_k + v_{k+1} > OPT
+$$
+Por tanto, o bien $\sum_{i=1}^k v_i \geq OPT/2$ o bien $v_{k+1}\geq OPT/2$, de donde se tiene el resultado.
+\end{itemize}
+\item Resolvamos los dos problemas
+\begin{itemize}
+\item Si todos los pesos son unitarios entonces es claro que si los items están ordenados de manera que $v_1 \geq v_2 \geq \dotsc \geq v_N$ y sea $k=\max\{j\in\{1,\dotsc,N\}\mid j \leq W\}$, entonces el vector $x_i =1$ si $i\leq k$ y $x_i = 0$ en otro caso forma una solución óptima.
+\item Se desprende de la prueba de que el algoritmo anterior era una $1/2$-aproximación para el problema $0-1$. 
+\end{itemize}
+\end{solucion}
+\newpage
+
+
+\begin{ejercicio}{5}
+Considere la búsqueda unidimensional $M\colon\R^n\times\R^n\to\R^n$ definida como $y\in M(x,d)$ si resuelve el siguiente problema de optimización para la función $f\colon \R^n\to\R$:
+\begin{align}
+\min&\;f(x+\lambda d)\\
+s.a.:&\;x+\lambda d\geq 0\\
+&\;\lambda \geq  0
+\end{align}
+\begin{enumerate}
+\item Probar que $M$ no es una aplicación cerrada.
+\item Considere la sucesión definida por $x_1=(1,0)'$ y $x^{k+1}$ el punto en la circunferencia 
+$$
+(x-1)^2 + (y-1)^2 = 1
+$$
+a mitad de camino entra $x^k$ y $(0,1)'$. Sea $d^k=\frac{x_{k+1}-x_k}{\norm{x_{k+1}-x_k}}$. Tomando la función $f(x,y)= (x+2)^2+(y-2)^2$, probar
+\begin{itemize}
+\item La sucesión $\{x_k\}$ converge a $x^*=(0,1)'$.
+\item La sucesión $\{d_k\}$ converge a $d^*=(0,1)'$.
+\item La sucesión $\{y_k\}$ converge a $y^*=(0,1)'$.
+\end{itemize}
+\end{enumerate}
+\end{ejercicio}
+\begin{solucion}
+\begin{enumerate}
+\item[]
+\item 
+\end{enumerate}
+\end{solucion}
+\newpage
 \end{document}
