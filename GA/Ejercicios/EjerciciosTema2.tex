@@ -1,6 +1,6 @@
 	\documentclass[twoside]{article}
 \usepackage{../../estilo-ejercicios}
-\renewcommand{\baselinestretch}{1,3}
+\renewcommand{\baselinestretch}{1,4}
 %--------------------------------------------------------
 \begin{document}
 
@@ -10,7 +10,7 @@
 
 
 %\begin{ejercicio}{1.1}
-%Sea $A$ un grupo abeliano, definimos el prehaz constante asociado a $A$ en el espacio topológico $X$ como el prehaz $U\mapsto A$ para todo $U\neq\emptyset$ con la identidad como restricciones. Probar que el haz constante $\calA$ definido en el texto es el haz asociado a este prehaz. 
+
 %\end{ejercicio}
 %\begin{solucion}
 %
@@ -28,121 +28,39 @@
 %
 %\newpage
 %
-%\begin{ejercicio}{2.3}\emph{Esquemas reducidos.} Un esquema $(X,\OO_X)$ es \emph{reducido} si para todo abierto $U\subseteq X$, el anillo $\OO_X(U)$ no tiene elementos nilpotentes. 
-%\begin{enumerate}[(a)]
-%\item Probar que $(X,\OO_X)$ es reducido si y solo si para todo $P\in X$, el anillo local $\OO_{X,P}$ no tiene elementos nilpotentes. 
-%\item Sea $(X,\OO_X)$ un esquema. Sea $(\OO_X)_{red}$ el haz asociado al prehaz $U\mapsto \OO_X(U)_{red}$, donde para cualquier anillo $A$, denotamos $A_{red}$ al cociente de $A$ por el ideal de sus elementos nilpotentes. Probar que $(X, (\OO_X)_{red})$ es un esquema. Lo llamamos el esquema \emph{reducido} asociado a $X$, y lo denotamos $X_{red}$. Probar que hay un morfismo de esquemas $X_{red}\to X$, que es homeomorfismo en los espacios topológicos subyacentes. 
-%\item Sea $f:X\to Y$ un morfismo de esquemas, y asumamos que $X$ es reducido. Probar que existe un único morfismo $g:X\to Y_{red}$ tal que $f$ se obtiene componiendo $g$ con la aplicación natural $Y_{red}\to Y$. 
-%\end{enumerate}
-%
-%
-%\end{ejercicio}
-%\begin{solucion}\
-%\begin{enumerate}[(a)]
-%\item Sea $(X,\OO_X)$ reducido y supongamos que existe $s_p\in \OO_{X,P}$ no nulo tal que $s^n_P=0$ para algún $n\in\N$. Entonces, en un entorno abierto $U\ni P$, $s_P$ está representado por un elemento no nulo $s\in\OO_X(U)$. Pero entonces $s^n=0$, lo cual es una contradicción. Recíprocamente, si para algún abierto $U\subseteq X$ existe $s\in \OO_X(U)$ nilpotente, el germen de $s$ en cualquier punto $P\in U$ verifica que también es nilpotente. 
-%
-%\item Sea $U\subseteq X$ tal que $(X,\OO_X|_{U})$ es un esquema afín, esto es, $(X,\OO_X|_{U})\cong (\spec(R),\OO_{\spec(R)})$ para algún anillo $R$. Entonces afirmamos que $(U, (\OO_X)_{red}|_{U})\cong (\spec(R_{red}), \OO_{\spec(R_{red})})$. En primer lugar, $\spec(R)\cong\spec(R_{red})$ como espacios topológicos, puesto que hay una biyección entre los ideales primos de $R$ y los de $R_{red}$ que contiene al nilradical, pero es que por álgebra conmutativa el nilradical es la intersección de todos los ideales primos, luego hay una biyección entre todos los ideales primos. 
-%
-%Para probar $(\OO_X)_{red}|_{U}\cong \OO_{\spec(R_{red})}$ probamos primero  $(\OO_X)_{red}|_{U}\cong(\OO_X|_{U})_{red}$, con lo que por hipótesis $(\OO_X)_{red}|_{U}\cong (\OO_{\spec(R)})_{red}$, y por último probaremos $(\OO_{\spec(R)})_{red}\cong \OO_{\spec(R_{red})}$. 
-%
-%El primer isomorfismo es en realidad una igualdad, ya que la restricción a $U$ solo interviene en el hecho de que el haz actúa sobre abiertos contenidos en $V$, lo cual no afecta a la definición de haz asociado, puesto que las fibras no dependen de el entorno concreto que se tome. 
-%
-%Para el último isomorfismo recordamos que $(R_{\p})_{red}=(R_{red})_{\p}$, ya que localizar conmuta con tomar cociente. Por tanto, los elementos de $\OO_{\spec(R_{red})}(U)$ son funciones $s:U\to\coprod_{\p\in U}(R_{\p})_{red}$ con las propiedades de la definición $\OO_{\spec(R_{red})}$. Por otro lado, los elementos de $(\OO_{\spec(R)})_{red}(U)$ son funciones $t:U\to \coprod_{\p\in U}(\OO_{\spec(R),\p})_{red}$. Ahora bien, $t(\p)$ está representado por un par $(U, t_{\p})$, donde $t_{\p}\in \OO_{\spec(R)}(U)_{red}$, es decir, $t_{\p}(\p)\in (R_{\p})_{red}$. Así que tenemos un isomorfismo claro $s\in \OO_{\spec(R_{red})}(U)\mapsto t\in (\OO_{\spec(R)})_{red}(U)$ tal que $t_{\p}=s$. Esta aplicación está bien definida porque si dos secciones tienen el mismo germen, en particular todos los representantes de una están relacionados con todos los de la otra, luego son la misma sección, de lo cual se deduce también la inyectividad. La sobreyectividad es evidente. Con lo cual hemos definido un isomorfismo de haces. 
-%
-%Ahora probamos que existe el morfismo $(f,f^{\sharp}):X_{red}\to X$ del enunciado. Como hemos visto en la primera parte de este apartado, los espacios topológicos de $X_{red}$ y de $X$ son los mismos, por lo que definimos $f=Id$, que es claramente homeomorfismo. Definimos ahora $f^{\sharp}:\OO_{X}\to Id_*\OO_{X_{red}}=\OO_{X_{red}}$, que la definimos como el paso al cociente $\OO_{X}(U)\to\OO_{X_{red}}(U)$. Es decir, dada $s\in \OO_X(U)$, la podemos ver como la aplicación de su germen $s\mapsto s_{\p}$, luego basta tomar la clase de $s_{\p}$ en $\OO_{X_{red}, \p}=(\OO_{X,\p})_{red}$.
-%%Por tanto, los elementos de $\OO_{\spec(R_{red})}(U)$ son elementos de $s:\prod_{\p\in U}(R_{\p})_{red}$ con las propiedades de la definición $\OO_{\spec(R_{red})}$. Por otro lado, los elementos de $(\OO_{\spec(R)})_{red}(U)$ son funciones $t:U\to \coprod_{\p\in U}(\OO_{\spec(R),\p})_{red}$.
-%
-%\item Definimos $g=f$ como aplicación entre espacios topológicos, con lo cual es claro que como aplicación entre espacios topológicas es única, ya que la aplicación natural $Y_{red}\to Y$ es la identidad entre los espacios. Ahora, definimos $g^{\sharp}$ como $(f^{\sharp})_{red}$, es decir, la aplicación definida en las secciones como el paso al cociente de $f^{\sharp}$ (similar a como definimos en el apartado anterior $f^{\sharp}$, solo que ahora tomaríamos la clase de $f^{\sharp}(s)_{\p}$). Esta aplicación está bien definida porque al ser $X$ reducido, los elementos nilpotentes de $\OO_Y(U)$ se mapean al 0. Que esta $g^{\sharp}$ verifica las condiciones del enunciado es una sencilla comprobación. La unicidad se tiene del resultado de álgebra conmutativa de que una aplicación de un anillo cualquiera $A$ a un anillo reducido $R$ factoriza de modo único a través de $A_{red}$. 
-%\end{enumerate}
-%\end{solucion}
-%
-%\newpage
+\begin{ejercicio}{2.3}\emph{Esquemas reducidos.} Un esquema $(X,\OO_X)$ es \emph{reducido} si para todo abierto $U\subseteq X$, el anillo $\OO_X(U)$ no tiene elementos nilpotentes. 
+\begin{enumerate}[(a)]
+\item Probar que $(X,\OO_X)$ es reducido si y solo si para todo $P\in X$, el anillo local $\OO_{X,P}$ no tiene elementos nilpotentes. 
+\item Sea $(X,\OO_X)$ un esquema. Sea $(\OO_X)_{red}$ el haz asociado al prehaz $U\mapsto \OO_X(U)_{red}$, donde para cualquier anillo $A$, denotamos $A_{red}$ al cociente de $A$ por el ideal de sus elementos nilpotentes. Probar que $(X, (\OO_X)_{red})$ es un esquema. Lo llamamos el esquema \emph{reducido} asociado a $X$, y lo denotamos $X_{red}$. Probar que hay un morfismo de esquemas $X_{red}\to X$, que es homeomorfismo en los espacios topológicos subyacentes. 
+\item Sea $f:X\to Y$ un morfismo de esquemas, y asumamos que $X$ es reducido. Probar que existe un único morfismo $g:X\to Y_{red}$ tal que $f$ se obtiene componiendo $g$ con la aplicación natural $Y_{red}\to Y$. 
+\end{enumerate}
 
-%\begin{ejercicio}{1.5}
-%Probar que un morfismo de haces es un isomorfismo si y solo si es inyectivo y sobreyectivo.
-%
-%\end{ejercicio}
-%\begin{solucion}
-%Sea $\varphi:\calF\to\calG$ un isomorfismo de haces sobre un espacio topológico $X$ con inverso $\psi:\calG\to\calF$. Esto significa que los homomorfismos inducidos para cualquier abierto $U\subseteq X$, $\psi(U)\circ\varphi(U)=(\psi\circ\varphi)(U):\calF(U)\to\calF(U)$ y $\varphi(U)\circ\psi(U)=(\varphi\circ\psi)(U):\calG(U)\to\calG(U)$ son las correspondientes identidades. Con lo cual, tanto $\varphi(U)$ y $\psi(U)$ son isomorfismos de grupos abelianos, implicando como sabemos, que son inyectivos. Esto ya implica por definición que $\varphi$ es inyectivo, puesto que $\ker\varphi(U)=0$ para todo $U$. 
-%
-%Para probar la sobreyectividad usamos que $\varphi$ es isomorfismo si y solo si $\varphi_p:\calF_p\to\calG_p$ es isomorfismo para todo $P\in X$. Como $\varphi_P$ es un isomorfismo de grupos abelianos, podemos decir que en particular es sobreyectivo para todo $P$. Esto es equivalente a afirmar que $\varphi$ es un morfismo de haces sobreyectivo gracias a la segunda parte de la demostración de la proposición 1.1. 
-%\end{solucion}
-%
-%\newpage
-%
-%\begin{ejercicio}{1.6}\
-%\begin{enumerate}
-%\item[(a)]
-%Sea $\calF'$ un subhaz del haz $\calF$. Probar que la aplicación natural de $\calF$ al haz cociente $\calF/\calF'$ es sobreyectiva y tiene núcleo $\calF'$. Por tanto, hay una sucesión exacta 
-%\[
-%0\to \calF'\to\calF\to \calF/\calF'\to 0.
-%\]
-%
-%\item[(b)] Recíprocamente, si $0\to \calF'\to\calF\to \calF''\to 0$ es una sucesión exacta, probar que $\calF'$ es isomorfo a un subhaz de $\calF$, y que $\calF''$ es isomorfo al cociente de $\calF$ por este subhaz.
-%\end{enumerate}
-%\end{ejercicio}
-%\begin{solucion}\
-%\begin{enumerate}[(a)]
-%\item Probamos la sobreyectividad viendo que la aplicación inducida en las fibras es sobreyectiva. Tenemos que en cada punto $P\in X$, la fibra del cociente $\calF/\calF'$ es $(\calF/\calF')_P=\calF_P/\calF'_P$, por tanto, a nivel de fibras tenemos la aplicación cociente $\calF_P\to \calF_P/\calF'_P$, que sabemos que es sobreyectiva para todo $P$ por ser las aplicaciones cociente de grupos abelianos. Así que $\varphi$ es sobreyectiva.
-%
-%Veamos ahora que la aplicación cociente tiene como núcleo a $\calF'$. Primero vamos a definirla explícitamente. Denotamos $\calG$ al prehaz cociente $U\mapsto \calF(U)/\calF'(U)$. La aplicación cociente $\varphi:\calF\to\calF/\calF'$ será la composición $\varphi=\theta\circ q$, donde $q:\calF\to \calG$ está definida como la aplicación cociente en cada sección, es decir, $q(U): \calF(U)\to \calF(U)/\calF'(U)$, y $\theta:\calG\to\calF/\calF'$ es la aplicación natural del haz asociado. Esta aplicación $\theta$ está definida de la siguiente forma: $\theta(U):\calG(U)\to\left(\calF/\calF'\right)(U)$, $\overline{s}\mapsto\theta(U)(\overline{s}):U\to\bigcup_{P\in U} \calG_P$, $p\mapsto\overline{s}_P$, siendo $\overline{s}_P$ el germen de $\overline{s}$ en $P$.
-%
-%Sea $U\subseteq X$ abierto. Es claro que si $s\in\calF'(U)$, entonces $\varphi(U)(s)=0$, luego $\calF'\subseteq\ker\varphi$. Recíprocamente, sea $s\in \ker\varphi(U)$, esto es, $\theta(U)(\overline{s})$ es la aplicación constantemente nula. Esto signfica que $\overline{s}_P=0$ para todo $P\in U$, lo cual implica que para cualquier recubrimiento abierto $\{V_i\}$ de $U$, $\overline{s}|_{V_i}=0$ para todo $i$ (tiene el mismo germen que la sección nula). Por ser el haz cociente un haz, esto implica que $\overline{s}=0$, o lo que es lo mismo, $s\in \calF'(U)$. 
-%
-%
-%\item Veamos primero que $\calF'$ es isomorfo a un subhaz de $\calF$. Sea $\varphi:\calF'\to\calF$ la aplicación inyectiva de la sucesión exacta. Por el ejercicio 1.4 basta probar que $\varphi:\calF'\to\Ima\varphi$ es sobreyectiva. Para ello consideramos la aplicación inducida en las fibras, que por el ejercicio 1.2 es $\varphi_P:\calF'_p\to\Ima(\varphi_P)$, la cual es evidentemente sobreyectiva. 
-%
-%Sea ahora $\psi:\calF\to\calF''$ la aplicación sobreyectiva de la sucesión exacta, que induce un homomorfismo sobreyectivo $\psi_P:\calF_P\to\calF''_P$ y cuyo núcleo tiene como fibra $(\ker\psi)_P=\ker\psi_P$ por el ejercicio 1.2. Basta aplicar el primer teorema de isomorfía para obtener (haciendo abuso de notación al ser $\ker\psi_P\cong\calF'_P$) $\calF_P/\calF'_P \cong \calF''_P$. Este isomorfismo en las fibras tiene como consecuencia un isomorfismo de haces. 
-%\end{enumerate}
-%\end{solucion}
-%
-%\newpage
-%
-%\begin{ejercicio}{1.16}[\emph{Haces flasque}]
-%Un haz $\calF$ en un espacio topológico $X$ es \emph{flasque} si para toda inclusión $V\subseteq U$ de abiertos, la restricción $\calF(U)\to\calF(V)$ es sobreyectiva.
-%\begin{enumerate}[(a)]
-%\item Probar que el haz constante en un espacio topológico irreducible es flasque.
-%\item Si $0\to\calF'\to\calF\to\calF''\to 0$ es una sucesión exacta de haces, y si $\calF'$ es flasque, entonces para cualquier abierto $U$, la sucesión $0\to\calF'(U)\to\calF(U)\to\calF''(U)\to 0$ es exacta. 
-%\item Si $0\to\calF'\to\calF\to\calF''\to 0$ es exacta, y si $\calF'$ y $\calF$ son flasque, entonces $\calF''$ es flasque. 
-%\item Sea $\calF$ un haz cualquiera en $X$. Definimos un nuevo haz $\calG$, llamado haz de \emph{secciones discontinuas} de $\calF$ como sigue. Para cada abierto $U\subseteq X$, $\calG(U)$ es el conjunto de aplicaciones $s:U\to \bigcup_{P\in U}\calF_p$ tales que para cada $P\in U$, $s(P)\in \calF_p$. Probar que $\calG$ es flasque, y que hay un morfismo inyectivo natural de $\calF$ a $\calG$. 
-%\end{enumerate} 
-%\end{ejercicio}
-%\begin{solucion}\
-%\begin{enumerate}[(a)]
-%\item Recordamos que un espacio topológico $X$ se dice irreducible si no puede ser expresado como unión $X=X_1\cup X_2$ de subconjuntos propios cerrados no vacíos. Sea $A$ un grupo abeliano con la topología discreta y consideremos el haz constante $\calA$ en $X$ determinado por $A$. Sean $V\subseteq X$ abierto no vacío, $a\in A$ y $f\in\calA(V)$ tal que $a\in f(V)$. Se tiene que $H=f^{-1}(a)$ es un abierto y cerrado de $V$, con lo que $V\setminus H$ también lo es. En particular, son de la forma $V\cap F_1$ y $V\cap F_2$, respectivamente, para ciertos cerrados $F_1$ y $F_2$ de $X$. Además, $X=F_1\cup F_2\cup (X\setminus V)$. Como $X$ es irreducible, alguno de estos conjuntos tiene que ser igual a $X$, y claramente no puede ser ni $F_2$ ni $X\setminus V$ porque ni $V$ ni $H$ son vacíos, por lo que tiene que ser $F_1$. Esto implica que $H=V$, es decir, $f$ es constante en todo $V$. Por tanto, para todo $U$ que contenga a $V$, $f$ es la restricción de la aplicación constante $c_a:U\to A$ a $V$. Esto demuestra que la restricción $\calA(U)\to\calA(V)$ es sobreyectiva para todo $V\subseteq U$.
-%
-%\item Por el ejercicio 1.8, tenemos exactitud en $0\to\calF'(U)\to\calF(U)\to\calF''(U)$, luego solo hay que probar que $\varphi(U):\calF(U)\to\calF''(U)$ es sobreyectivo. Probamos primero el siguiente resultado previo:
-%\begin{lemma}
-%Sea $U=U_1\cup U_2$, donde $U_1$ y $U_2$ son abiertos. Entonces, dados $s_1\in\calF(U_1)$ y $s_2\in\calF(U_2)$ tales que $\varphi(U_1\cap U_2)(s_1|_{U_1\cap U_2})=\varphi(U_1\cap U_2)(s_2|_{U_1\cap U_2})$, entonces existe $s\in\calF(U)$ tal que $\varphi(U_i)(s|_{U_i})=\varphi(U_i)(s_i)$. 
-%\end{lemma}
-%\begin{proof}
-%Por hipótesis, $s_1|_{U_1\cap U_2}-s_2|_{U_1\cap U_2}\in\ker\varphi(U_1\cap U_2)$. Por exactitud, denotando $\psi:\calF'\to\calF$, existe $t\in\calF'(U_1\cap U_2)$ tal que $\psi(U_1\cap U_2)(t)=s_1|_{U_1\cap U_2}-s_2|_{U_1\cap U_2}$. Por ser $\calF'$ flasque, existe $\tilde{t}\in\calF'(U_1)$ con $\tilde{t}|_{U_1\cap U_2}=t$. Sea $t'=\psi(U_1)(\tilde{t})$, que verifica $t'|_{U_1\cap U_2}=\psi(U_1\cap U_2)(t)=s_1|_{U_1\cap U_2}-s_2|_{U_1\cap U_2}$. Consideramos ahora $s_1-t'\in\calF(U_1)$ y $s_2\in\calF(U_2)$. Por lo observado antes, $(s_1-t')|_{U_1\cap U_2}=s_2|_{U_1\cap U_2}$, así que por los axiomas de haz existe $s\in\calF(U)$ verificando $s|_{U_1}=s_1-t'$ y $s|_{U_2}=s_2$. Como $\varphi(U_i)(t')=0$ por exactitud, hemos encontrado $s\in\calF(U)$ verificando el lema. 
-%\end{proof}
-%%$\cal BLABLA$ pone en mathcal las mayúsculas 
-%%\url{https://math.berkeley.edu/~ceur/notes_pdf/Eur_HartshorneNotes.pdf}
-%%\url{https://www.math.utah.edu/~zwick/Classes/Hartshorne/Section2_1.pdf}
-%%\url{https://math.stackexchange.com/questions/2376628/a-sheaf-is-flasque-if-all-restriction-maps-are-surjective}
-%
-%Para $s\in\calF''(U)$, consideremos ahora el conjunto de tuplas $(V,t)$ donde $t\in\calF(V)$ tal que $\varphi(V)(t)=s|_V$, y definimos un orden en este conjunto como $(V,t)\leq (V',t')$ si $V\subseteq V'$ y $t'|_V=t$. Este conjunto es no vacío porque el par $(\emptyset, 0)$ está en él. Cualquier cadena creciente $\{(V_i,t_i)\}$ tiene una cota superior, pues podemos construir $V=\bigcup_i V_i$ y por los axiomas de haz existe $t\in\calF(V)$ con $t|_{V_i}=t_i$. Por el lema de Zorn existe un elemento maximal en el conjunto de tuplas, $(V_m,t_m)$. Basta probar entonces que $V_m=U$. 
-%
-%Supongamos que $x\in U\setminus V_m$. Por el ejercicio 1.3, existen un entorno $V_x$ de $x$ y $t_x\in\calF(V_x)$ con $\varphi(V_x)(t_x)=s|_{V_x}$. Usamos el lema aplicado a $V_m$ y $V_x$, de lo que deducimos que existe una sección $t\in\calF(V_m\cup V_x)$ tal que $\varphi(V_x)(t|_{V_x})=\varphi(V_x)(t_x)=s|_{V_x}$. Por maximalidad, debe ser $V_m=V_m\cup V_x$, lo cual contradice el hecho de que $x\notin V_m$. 
-%
-%\item Por el apartado anterior sabemos que la sucesión $0\to\calF'(U)\to\calF(U)\to\calF''(U)\to 0$ es exacta. Sean $V\subseteq U$ abiertos. Dado $s\in\calF''(V)$, por exactitud existe $t\in\calF(V)$ tal que $t\mapsto s$. Como $\calF$ es flasque, existe $r\in\calF(U)$ tal que $r|_V=t$. Basta ahora tomar $\varphi(U)(r)$, pues por conmmutatividad, $\varphi(U)(r)|_V=\varphi(V)(r|_V)=s$. 
-%
-%\item Dada $s\in\calG(V)$, para cualquier abierto $U$ que contenga a $V$ definimos $\tilde{s}:U\to \bigcup_{P\in U}\calF_p$ como $\tilde{s}=s$ en $V$ y $\tilde{s}=0$ en $U\setminus V$. Es claro que $\tilde{s}\in\calG(U)$ y verifica $\tilde{s}|_V=s$. Esto prueba que $\calG$ es flasque. Definimos ahora $\iota(U):\calF(U)\to\calG(U)$ como $s\mapsto s(P)=s_P$ (el germen de $s$ en $P$). Esta aplicación es inyectiva, puesto que si $s_P=0$ para todo $P\in U$, la condición de haz implica que $s=0$. 
-%\end{enumerate}
-%
-%\end{solucion}
-%
-%\newpage
-%
-%\begin{ejercicio}{Extra 1}
-%Probar que el prehaz ker de un morfismo de haces es un haz.
-%\end{ejercicio}
-%\begin{solucion}
-%Si $x\in\ker\varphi(U)$ y $x|_{U_i}=0$ para todo $U_i$ entonces $x=0$ por ser $\calF$ un haz.
-%
-%Si extendemos dos elementos de $\ker\varphi(U)$ que coinciden en las intersecciones, el resultado también está en el $\ker$ porque $\calG$ es un haz y la restricción de la imagen (que es igual a la imagen de la restricción) es 0 en $\calG(U)$. 
+
+\end{ejercicio}
+\begin{solucion}\
+\begin{enumerate}[(a)]
+\item Sea $(X,\OO_X)$ reducido y supongamos que existe $s_p\in \OO_{X,P}$ no nulo tal que $s^n_P=0$ para algún $n\in\N$. Entonces, en un entorno abierto $U\ni P$, $s_P$ está representado por un elemento no nulo $s\in\OO_X(U)$. Pero entonces $s^n=0$, lo cual es una contradicción. Recíprocamente, si para algún abierto $U\subseteq X$ existe $s\in \OO_X(U)$ nilpotente, el germen de $s$ en cualquier punto $P\in U$ verifica que también es nilpotente. 
+
+\item Sea $U\subseteq X$ tal que $(X,\OO_X|_{U})$ es un esquema afín, esto es, $(X,\OO_X|_{U})\cong (\spec(R),\OO_{\spec(R)})$ para algún anillo $R$. Entonces afirmamos que $(U, (\OO_X)_{red}|_{U})\cong (\spec(R_{red}), \OO_{\spec(R_{red})})$. En primer lugar, $\spec(R)\cong\spec(R_{red})$ como espacios topológicos, puesto que hay una biyección entre los ideales primos de $R$ y los de $R_{red}$ que contiene al nilradical, pero es que por álgebra conmutativa el nilradical es la intersección de todos los ideales primos, luego hay una biyección entre todos los ideales primos. 
+
+Para probar $(\OO_X)_{red}|_{U}\cong \OO_{\spec(R_{red})}$ probamos primero  $(\OO_X)_{red}|_{U}\cong(\OO_X|_{U})_{red}$, con lo que por hipótesis $(\OO_X)_{red}|_{U}\cong (\OO_{\spec(R)})_{red}$, y por último probaremos $(\OO_{\spec(R)})_{red}\cong \OO_{\spec(R_{red})}$. 
+
+El primer isomorfismo es en realidad una igualdad, ya que la restricción a $U$ solo interviene en el hecho de que el haz actúa sobre abiertos contenidos en $V$, lo cual no afecta a la definición de haz asociado, puesto que las fibras no dependen de el entorno concreto que se tome. 
+
+Para el último isomorfismo recordamos que $(R_{\p})_{red}=(R_{red})_{\p}$, ya que localizar conmuta con tomar cociente. Por tanto, los elementos de $\OO_{\spec(R_{red})}(U)$ son funciones $s:U\to\coprod_{\p\in U}(R_{\p})_{red}$ con las propiedades de la definición $\OO_{\spec(R_{red})}$. Por otro lado, los elementos de $(\OO_{\spec(R)})_{red}(U)$ son funciones $t:U\to \coprod_{\p\in U}(\OO_{\spec(R),\p})_{red}$. Ahora bien, $t(\p)$ está representado por un par $(U, t_{\p})$, donde $t_{\p}\in \OO_{\spec(R)}(U)_{red}$, es decir, $t_{\p}(\p)\in (R_{\p})_{red}$. Así que tenemos un isomorfismo claro $s\in \OO_{\spec(R_{red})}(U)\mapsto t\in (\OO_{\spec(R)})_{red}(U)$ tal que $t_{\p}=s$. Esta aplicación está bien definida porque si dos secciones tienen el mismo germen, en particular todos los representantes de una están relacionados con todos los de la otra, luego son la misma sección, de lo cual se deduce también la inyectividad. La sobreyectividad es evidente. Con lo cual hemos definido un isomorfismo de haces. 
+
+Ahora probamos que existe el morfismo $(f,f^{\sharp}):X_{red}\to X$ del enunciado. Como hemos visto en la primera parte de este apartado, los espacios topológicos de $X_{red}$ y de $X$ son los mismos, por lo que definimos $f=Id$, que es claramente homeomorfismo. Definimos ahora $f^{\sharp}:\OO_{X}\to Id_*\OO_{X_{red}}=\OO_{X_{red}}$, que la definimos como el paso al cociente $\OO_{X}(U)\to\OO_{X_{red}}(U)$. Es decir, dada $s\in \OO_X(U)$, la podemos ver como la aplicación de su germen $s\mapsto s_{\p}$, luego basta tomar la clase de $s_{\p}$ en $\OO_{X_{red}, \p}=(\OO_{X,\p})_{red}$.
+Por tanto, los elementos de $\OO_{\spec(R_{red})}(U)$ son elementos de $s:\prod_{\p\in U}(R_{\p})_{red}$ con las propiedades de la definición $\OO_{\spec(R_{red})}$. Por otro lado, los elementos de $(\OO_{\spec(R)})_{red}(U)$ son funciones $t:U\to \coprod_{\p\in U}(\OO_{\spec(R),\p})_{red}$.
+
+\item Definimos $g=f$ como aplicación entre espacios topológicos, con lo cual es claro que como aplicación entre espacios topológicas es única, ya que la aplicación natural $Y_{red}\to Y$ es la identidad entre los espacios. Ahora, definimos $g^{\sharp}$ como $(f^{\sharp})_{red}$, es decir, la aplicación definida en las secciones como el paso al cociente de $f^{\sharp}$ (similar a como definimos en el apartado anterior $f^{\sharp}$, solo que ahora tomaríamos la clase de $f^{\sharp}(s)_{\p}$). Esta aplicación está bien definida porque al ser $X$ reducido, los elementos nilpotentes de $\OO_Y(U)$ se mapean al 0. Que esta $g^{\sharp}$ verifica las condiciones del enunciado es una sencilla comprobación. La unicidad se tiene del resultado de álgebra conmutativa de que una aplicación de un anillo cualquiera $A$ a un anillo reducido $R$ factoriza de modo único a través de $A_{red}$. 
+\end{enumerate}
+\end{solucion}
+
+\newpage
+
+
+
+
 %
 %
 %
@@ -152,7 +70,7 @@
 %\newpage
 %
 \begin{ejercicio}{2.16}
-Sea $X$ un esquema, sea $f\in\Gamma(X,\OO_X)$, y se define $X_f$ como el subconjunto de puntos $x\in X$ tales que la fibra $f_x$ de $f$ en $x$ no está contenida en el ideal maximal $\mm_x$ del anillo local $\OO_{X,x}$. 
+Sea $X$ un esquema, sea $f\in\Gamma(X,\OO_X)$, y se define $X_f$ como el subconjunto de puntos $x\in X$ tales que la fibra $f_x$ de $f$ en $x$ no está contenida en el ideal maximal $\mm_x$ del anillo local $\OO_{x}$. 
 \begin{enumerate}[(a)]
 \item Si $U=\spec(B)$ es un subesquema afín abierto de $X$, y si $\overline{f}\in B=\Gamma(U,\OO_X|_U)$ es la restricción de $f$, probar que $U\cap X_f=D(\overline{f})$. Concluir que $X_f$ es un subconjunto abierto de $X$. 
 \item Supongamos que $X$ es quasi-compacto\footnote{Todo recubrimiento abierto admite un refinamiento finito.}. Sea $A=\Gamma(X,\OO_X)$, y sea $a\in A$ un elemento cuya restricción a $X_f$ es 0. Probar que para algún $n>0$, $f^na=0$. [Pista: usar un recubrimiento afín de $X$.]
@@ -162,15 +80,17 @@ Sea $X$ un esquema, sea $f\in\Gamma(X,\OO_X)$, y se define $X_f$ como el subconj
 \end{ejercicio}
 \begin{solucion}\
 \begin{enumerate}[(a)]
-\item
-\item
-\item
-\item 
+\item Para $x\in\spec(B)$, $f=\overline{f}$ en un entorno de $x$, luego $f_x=\overline{f}_x$. Además recordemos que el anillo maximal de $B_x$ es $xB_x$. Así que $U\cap X_f=\{x\in\spec(B)\mid\overline{f}_x\notin xB_x\}$. Basta ahora probar que este conjunto es el mismo que $D(\overline{f})$, para lo cual probamos que $\overline{f}_x\notin xB_x$ si y solo si $\overline{f}\notin x$. Eso se deduce del hecho de que $\overline{f}_x\notin xB_x$ si y solo si $\overline{f}_x$ es invertible en $B_x$, lo cual es equivalente a que $\overline{f}\notin x$. Esto prueba que $U\cap X_f=D(\overline{f})$, que es abierto de $X$ por definición. Ahora bien, como $X$ se puede recubrir por abiertos afines, $X_f=\bigcup_{U\subseteq X} U\cap X_f$ es unión de abiertos y por tanto abierto. 
+\item Sea un $U_i=\spec(B_i)$, $i=1,\dots, k$ un recubrimiento afín finito de $X$, que existe por quasi-compacidad. Denotamos $a_i=a|_{U_i}$ y $f_i=f|_{U_i}$. Por el apartado anterior, $U_i\cap X_f=D(f_i)$, por lo que $a_i=0$ en $D(f_i)$, que por la proposición 2.2 esto es equivalente a que $a_i=0\in (B_i)_{f_i}$, lo que significa que existe $n_i>0$ tal que $f_i^{n_i}a_i=0$. Sea $n=\max_i n_i>0$. Por las propiedades de los haces, podemos encontrar una sección global $f^na$ que se restrinja en cada $U_i$ a $f_i^{n_i}a_i$, ya que en las intersecciones todos se anulan. En particular, $f^na=0$ en cada $U_i$ y por tanto $f^na=0$ de nuevo por las propiedades de los haces. 
+
+\item Sea $U_i=\spec(B_i)$, el recubrimiento finito del enunciado. Escribimos $b|_{U_i}=\frac{b_i}{f_i^{d_i}}\in (B_i)_{f_i}$. Sea $d=\sum d_i$ y $b_i'=f^{d-d_i}b_i\in\Gamma(U_i,\OO_{U_i})$. Ahora, como $b'_i|_{X_f}=f^{d-d_i}f^{d_i}b=f^db$, $(b'_i-b'_j)|_{U_i\cap U_j\cap X_f}=0$. Al ser $U_i\cap U_j$ quasi-compacto, podemos aplicar el apartado b) y obtenemos que existe $d_{ij}>0$ tal que $f^{d_{ij}}(b'_i-b'_j)|_{U_i\cap U_j}=0\in\Gamma(U_i\cap U_j,\OO_{U_i\cap U_j})$. Para $D=\max d_{ij}$ tenemos que los $f^Db_i'\in\Gamma(U_i,\OO_{U_i})$ son compatibles en las intersecciones, por lo que usando los axiomas de haz, encontramos $a\in \Gamma(X, \OO_X)$ que los extiende. Ahora, $a|_{U_i\cap X_f}=f^Df^db=f^{D+d}b$. Como este resultado no depende de $i$ y podemos cubrir $X_f$ con los $U_i$, obtenemos que $a|_{X_f}=f^{D+d}b$, luego $n=D+d$. 
+
+\item Sea $A_f\to\Gamma(X_f,\OO_{X_f})$ la aplicación definida como $\frac{a}{f^k}\mapsto\frac{a|_{X_f}}{f|_{X_f}^k}$. Esta aplicación está bien definida porque $f$ es unidad en $\Gamma(X_f,\OO_{X_f})$. En efecto, con la notación de los apartados anteriores, $f|_{U_i\cap X_f}\in \Gamma(U_i\cap X_f,\OO_{U_i\cap X_f})=\Gamma(D(f_i), \OO_{D(f_i)})=(B_i)_{f_i}$ es una unidad para todo $i$, y por tanto $f|_{X_f}$ es unidad con inversa obtenida al pegar las inversas en cada $U_i\cap X_f$. La aplicación definida es un homomorfismo porque las restricciones lo son. Es inyectiva porque si $\frac{a|_{X_f}}{f^k}=0\in \Gamma(X_f,\OO_{X_f})$, como $f|_{X_f}$ es unidad, esto significa que $a|_{X_f}=0$ y por tanto por b) existe $n>0$ tal que $f^na=0$, con lo que $\frac{a}{f^k}=0\in A_f$. La sobreyectividad se obtiene del apartado c) y por tanto esta aplicación es un isomorfismo.
 \end{enumerate}
 
 \end{solucion}
 %
-%\newpage
+\newpage
 %
 \begin{ejercicio}{Lema de Yoneda}
 $h_*:\CC\to \mathrm{Fun}(\CC^{op}, \mathrm{Set})$ es plenamente fiel, es decir, para todo $X,X'\in Ob(\CC)$ la aplicación $\alpha\in\Hom_{\CC}(X,X')\mapsto h_{\alpha}\in \mathrm{Nat}(h_X,h_{X'})$ es un isomorfismo. 

@@ -530,11 +530,11 @@ Un $CW$-complejo es un espacio topológico $X$ equipado con una filtración $X^0
 \item $X^{n+1}$ se construye a partir de $X^n$ ($n$-esqueleto) del siguiente como el pushout siguiente
 \[
 \begin{tikzcd}
-\coprod_{\alpha}S^n_{\alpha}\arrow[r, hookrightarrow]\arrow[d, "f=(f_{\alpha})"] & \coprod_{\alpha}D^{n+1}_{\alpha}\arrow[d, "\overline{f}"]\\
+\coprod_{\alpha}S^n_{\alpha}\arrow[r, hookrightarrow]\arrow[d, "\phi=(\phi_{\alpha})"] & \coprod_{\alpha}D^{n+1}_{\alpha}\arrow[d, "\overline{\phi}"]\\
 X^n\arrow[r, hookrightarrow] & X^{n+1}
 \end{tikzcd}
 \]
-Aquí $f_\alpha=f|_{S^n_{\alpha}}$. Tenemos que $\overline{f}$ es homeomorfismo sobre el interior de $D_{\alpha}^{n+1}$. Su imagen se denota $e^n_{\alpha}$ y se denomina \emph{celda abierta}. Se llaman \emph{celdas cerradas} son las clausuras $\overline{e}^n_{\alpha}\subseteq X$.  Los puntos son celdas abiertas y cerradas. 
+Aquí $\phi_\alpha=\phi|_{S^n_{\alpha}}$. Tenemos que $\overline{\phi}$ es homeomorfismo sobre el interior de $D_{\alpha}^{n+1}$. Su imagen se denota $e^n_{\alpha}$ y se denomina \emph{celda abierta}. Se llaman \emph{celdas cerradas} son las clausuras $\overline{e}^n_{\alpha}\subseteq X$.  Los puntos son celdas abiertas y cerradas. 
 \item $X=\bigcup_{n\geq 0} X^n$ con la topología débil, es decir, un subconjunto es cerrado si y solo si su intersección con todos los esqueletos es cerrado. 
 \end{enumerate}
 \end{defi}
@@ -619,7 +619,7 @@ Si $X$ es un CW-complejo:
 \end{enumerate}
 \end{prop}
 
-\begin{lemma}
+\begin{lemma}\label{lemacw}
 Sea $X$ un CW-complejo.
 \begin{enumerate}
 \item $H_k(X^n,X^{n-1})\cong\begin{cases}
@@ -643,15 +643,76 @@ Sea $X$ un CW-complejo.
 \end{dem}
 \end{lemma}
 
-
-
 \begin{prop}
 Los pares $(X,A)$ de CW-complejos verifican la propiedad de extensión de homotopía. 
 \end{prop}
 
 
+\begin{defi}
+El complejo de cadenas \emph{celulares} de $X$ es $C_n^{CW}(X)=H_n(X^n,X^{n-1})$ (que sabemos que es libre con base las $n$-células de $X$) y $d:C_{n+1}^{CW}(X)=H_{n+1}(X^{n+1},X^n)\xrightarrow{\partial}H_n(X^n)\to H_n(X^n, X^{n-1})=C_n^{CW}(X)$, donde las flechas vienen de las correspondientes sucesiones exactas largas de homología relativa.
+\end{defi}
 
+\begin{prop}
+$C_*^{CW}(X)$ es un complejo de cadenas.
+\end{prop}
+\begin{dem}
+Para la composición tenemos el diagrama
+\[
+\begin{tikzcd}[column sep={80,between origins}]
+&                                             H_n(X^n)\arrow[dr, "j_n"] &           						& &\\
+H_{n+1}(X^{n+1},X^n)\arrow[rr, "d_{n+1}"]\arrow[ur, "\partial_{n+1}"] & & H_n(X^n,X^{n-1})\arrow[rr, "d_n"]\arrow[dr,"\partial_n"] & & H_{n-1}(X^{n-1}, X^{n-2})\\
+&                                                                       &                                   & H_{n-1}(X^{n-1})\arrow[ur, "j_{n-1}"]&
+\end{tikzcd}
+\]
+Como la diagonal proviene de una sucesión exacta, la composición en ella es 0, luego también $d_nd_{n+1}=0$. 
+\end{dem}
 
+La homología \emph{celular} de un CW-complejo $X$ es $H_n^{CW}=H_n(C_*^{CW}(X))$, $n\in\Z$. Hay algunas propiedades evidentes de esta homología, por ejemplo que $H_n^{CW}(X)=0$ si $n<0$, si $n>\dim X$ o si $X$ no tiene celdas de dimensión $n$. Los complejos simpliciales son CW-complejos, luego $C_*^{\Delta}=C_*^{CW}(X)$ y además se puede comprobar que los operadores borde son los mismos, luego $H_*^{\Delta}(X)=H_*^{CW}(X)$. Más aún, 
+
+\begin{teorema}
+$H_*^{CW}(X)\cong H_*(X)$. 
+\end{teorema}
+\begin{dem}
+Observemos el siguiente siguiente diagrama
+\[
+\begin{tikzcd}[column sep={80,between origins}]
+&																		& H_n(X^{n+1})\cong H_n(X) & &\\
+&   H_n(X^n)\arrow[dr, rightarrowtail, "j_n"]\arrow[ur,twoheadrightarrow]\arrow[r,twoheadrightarrow]  & \Ima{j_n}=\ker{\partial_n}\arrow[d, hookrightarrow]\arrow[r, hookrightarrow]& \ker{d_n}\arrow[dl, hookrightarrow] &\\
+H_{n+1}(X^{n+1},X^n)\arrow[rr, "d_{n+1}"]\arrow[ur, "\partial_{n+1}"] & & H_n(X^n,X^{n-1})\arrow[rr, "d_n"]\arrow[dr,"\partial_n"] & & H_{n-1}(X^{n-1}, X^{n-2})\\
+&                                                                       &                    & H_{n-1}(X^{n-1})\arrow[ur, rightarrowtail, "j_{n-1}"]&
+\end{tikzcd}
+\]
+El isomorfismo $H_n(X^{n+1})\cong H_n(X)$ lo da el lema \ref{lemacw}. También las sobreyecciones e inyecciones no obvias, puesto que provienen de que la sucesión exacta continuaría con 0. Usamos el primer teorema de isomorfía para obtener $ H_n(X^n)/\Ima{\partial_{n+1}}\cong H_n(X)$, con isomorfismo $[x]\mapsto i_*(x)$. 
+
+Queremos probar que $H_n(X)\cong \ker d_n/\Ima{d_{n+1}}=H_n^{CW}(X)$. Por el diagrama $\Ima(d_{n+1})=j_n(\Ima\partial_1)$. Podemos definir entonces $[x]\mapsto [j_n(x)]$, que está bien definido porque $j_n(\Ima\partial_{n+1})\subseteq\ker d_n$. 
+
+Si $[j_n(x)]=0\in H_n(X^n,X^{n-1})$, por exactitud, existe $y\in H_{n+1}(X^{n+1}, X^n)$ que va a $j_n(x)$. Entonces consideramos $\partial_{n+1}(y)$, que por conmutatividad verifica $j_n(\partial_{n+1}(y))=j_n(x)$. Como $j_n$ es inyectiva, $\partial_{n+1}(y)=x$, luego $x\in\Ima\partial_{n+1}$, con lo que la aplicación es inyectiva.
+
+Sea ahora $z\in\ker d_n$ Obsérvese que como $j_{n-1}$ es inyectiva, $\ker d_n=\ker\partial_n=\Ima j_n$, luego existe $x$ tal que $z=j_n(x)$ y la aplicación es sobreyectiva.
+\end{dem}
+
+\begin{ej}
+$S^n$ como CW-complejo formado por una 0-célula y una $n$-célula nos da un complejo con 0 en todas partes menos en dimensión $n$ y $0$ que hay $\Z$. La homología sale igual. Si utilizamos la estructura dada por los dos hemisferios, obtendríamos el mismo resultado pero necesitaríamos calcular los bordes. 
+\end{ej}
+
+\begin{ej}
+$\C P^n$ se construye con una celda en cada dimensión par hasta $2n$. Por el complejo de cadenas que sale, $H_{2k}(\C P^n)=\Z$ si $0\leq k\leq n$ y en el resto de grados es 0. 
+\end{ej}
+
+\begin{ej}
+En $\R P^n$ tenemos una célula en cada dimensión desde 0 hasta $n$. Para este caso tenemos que calcular la diferencial. Recordemos que $H_n(X^n, X^{n-1})\cong H_n(X^n/X^{n-1},*)$, y $X^n/X^{n-1}=\bigvee_{\alpha} S_{\alpha}^n$, $*=[X^{n-1}]$, $\alpha$ indexa las $n$-células $e_{\alpha}^n$ de $X$. Por otro lado $C_{n+1}^{CW}(X)$ tiene base las $(n+1)$-células $e_{\beta}^{n+1}$ de $X$. La aplicación característica $f_\beta:D^n\to X^{n+1}$ de $e_{\beta}^n$ verifica $f_\beta(S^n)\subseteq X^n$. Tenemos entonces la aplicación $H_{n+1}(D^{n+1},S^n)\cong \widetilde{H}_n(S^n)\to H_{n+1}(X^{n+1},X^n)$, de modo que $1\in\Z\mapsto e^{n+1}_{\beta}$, donde identificamos esta célula con la clase de la aplicación $\Delta^{n+1}\cong D^{n+1}\xrightarrow{f_\beta}X^{n+1}$. Y además $\widetilde{H}_n(S^n)\to H_n(X^n)$ está inducida por la aplicación de pegamiento $f_{\beta}|_{S^n}=f_\beta:S^n\to X^n$. Basta ahora componer esta apliación con la proyección al cociente $X^n/X^{n-1}$, lo que nos dará una aplicación $\widetilde{H}_n(S^n)\to \widetilde{H}_n(\bigvee_\alpha S^n_{\alpha})\cong\oplus_\alpha\widetilde{H}_n(S^n_{\alpha})$. Para calcularla basta calcular las proyecciones a cada $\widetilde{H}_n(S^n_{\alpha})\cong\Z$, que proviende de la aplicación que colapsa todas las esferas salvo la de índice $\alpha$. Esto nos da una aplicación $g_{\beta\alpha}:S^n\to S^n_{\alpha}$, por lo que la aplicación en homología es la que determina $\deg(g_{\beta\alpha})$. 
+
+Volvamos ahora a $C_{k+1}(\R P^n)\to C_k(\R P^n)$. Sabemos que $C_{k+1}(\R P^n)\cong\Z\cong C_k(\R P^n)$ y esta aplicación es el grado de una cierta $g$. Tenemos la composición de la aplicación de pegamiento de la $k+1$ celda de $\R P^n$ y el cociente $g:S^k\to \R P^k\to \R P^k/\R P^{k-1}\cong S^k$. Vamos a calcular el grado de $g$. Podemos ver $\R P^{k-1}\subset \R P^k$ fijando la coordenada $k$-ésima igual a 0. Tenemos que describir la aplicación de pegamiento. $(x_0,\dots, x_{k-1})\mapsto (x_0,\dots,x_{k-1})$, que está bien definido porque si la norma es 1 no pueden ser todas las coordenadas 0. En el $\R P^k/\R P^{k-1}$ las imágenes de los puntos del ecuador (los que tienen $x_k=0$) se colapsan, y cada punto que no se colapsa tiene una única preimagen en cada hemisferio. En un hemisferio la aplicación a este cociente es la identidad y en el otro es la antipodal. Entonces $\deg(g)=\deg(Id)+\deg(a)=1+(-1)^{k+1}$. 
+
+Esto nos da un complejo de cadenas donde las diferenciales $C_{k+1}(\R P^n)\to C_k(\R P^n)\equiv Z\to\Z$ alternan entre multiplicar por 2 en $k+1$ par y la aplicación nula en $k+1$ impar. Con lo que
+\[
+H_k(\R P^n)=\begin{cases}
+\Z & k=0, k=n\text{ impar}\\
+\Z_2 & k\text{ impar y }0<k<n\\
+0 & c.c.
+\end{cases}
+\]
+\end{ej}
 
 
 
