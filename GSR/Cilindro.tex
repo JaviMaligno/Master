@@ -294,12 +294,12 @@ Vamos a dar dos ejemplos de curvas que luego veremos que son geodésicas y uno q
 
 \begin{enumerate}
 \item La curva $\gamma(t)=(\cos t, \sin t, t)$ con $t\in\R$ es una curva diferenciable sobre el cilindro. Podemos interpretarla como la imagen de una espiral mediante la carta $\psi$. Efectivamente, $\psi(\gamma(t))=(\cos t e^t, \sin t e^t)$, que es la espiral siguiente:
-
 \begin{figure}[h!]
 \includegraphics[scale=0.3]{espiral}
 \end{figure}
 
 
+\newpage
 Sea $p=(1,0,0) =\gamma(0)$. Entonces el campo $\gamma'(0)$ tiene coordenadas $\gamma'(0)(x_1)$ y $\gamma'(0)(x_2)$. Vamos a calcularlas. 
 \[
 \gamma'(0)(x_1)=\left.\frac{d(x_1\circ\gamma)}{dt}\right|_{t=0}=\left.\frac{d(\cos(t)e^t)}{dt}\right|_{t=0}=(-\sin(t)e^t+\cos(t)e^t)_{t=0}=1
@@ -332,7 +332,7 @@ Entonces el vector es $\beta'(1)=e\left(\parcial{}{x_1}\right)_p$.
 \section{El cilindro es subvariedad regular de $\R^3$ con la inclusión}
 
 
-Sea $i:C\hookrightarrow \R^3$ la inclusión. Tal como hemos definido $C$, tiene la topología relativa de $\R^3$, por lo que en virtud de la proposición 4.2.2 de la asignatura Variedades Diferenciables, es suficiente probar que $(C,i)$ es subvariedad de $\R^3$. Para ello probaremos que $i$ es una inmersión inyectiva. Que es inyectiva es evidente, y para que sea inmersión necesitamos que su diferencial lo sea, así que calculamos la matriz de la aplicación $i_{*p}$ para un punto $p\in C$ genérico, que coincide con la matriz jacobiana de la aplicación $i\circ \varphi^{-1}_i$, donde $\varphi_i$ proviniene de la carta que contiene a $p$. Suponemos $i=1$ y el resto de casos son análogos. Por tanto, obtenemos la matriz
+Sea $i:C\hookrightarrow \R^3$ la inclusión. Tal como hemos definido $C$, tiene la topología relativa de $\R^3$, por lo que en virtud de la proposición 4.2.2 de la asignatura Variedades Diferenciables, es suficiente probar que $(C,i)$ es subvariedad de $\R^3$. Para ello probaremos que $i$ es una inmersión inyectiva. Que es inyectiva es evidente, y para que sea inmersión necesitamos que su diferencial lo sea, así que calculamos la matriz de la aplicación $i_{*p}$ para un punto $p\in C$ genérico, que coincide con la matriz jacobiana de la aplicación $i\circ \varphi^{-1}_i$, donde $\varphi_i$ proviene de la carta que contiene a $p$. Suponemos $i=1$ y el resto de casos son análogos. Por tanto, obtenemos la matriz
 \[
 \begin{pmatrix}
 -\sin\theta & 0 \\
@@ -371,8 +371,30 @@ Como hemos visto anteriormente, $(C,i)$ es una subvariedad regular de $\R^3$. En
 
 
 \section{Ejemplos de geodésicas}
+En esta sección vamos a dar algunos ejemplos de geodésicas de entre las curvas que hemos presentado anteriormente en el trabajo. Para comprobar que efectivamente son geodésicas necesitaremos calcular previamente los símbolos de Christoffel, por lo que empezaremos con ello.
+
+\subsection{Cálculo de los símbolos de Christoffel}
+Sea $m=i^*g$ la métrica que hemos definido sobre el cilindro. Calculamos en primer lugar los coeficientes $m_{ij}$ para un punto $p=(\cos\theta,\sin\theta, t)$ en la carta $(C_1\times\R,\varphi_1)$ por sencillez, y para el resto se hace de forma análoga. Calculamos en primer lugar $i_{*p}\left(\parcial{}{x_i}\right)_p$, $i=1,2$, dando coordenadas $x,y,z$ a $\R^3$.
+\[
+i_{*p}\left(\parcial{}{x_1}\right)_p= -\sin\theta \left(\parcial{}{x}\right)_p+\cos\theta\left(\parcial{}{y}\right)_p
+\]
+\[
+i_{*p}\left(\parcial{}{x_2}\right)_p= \left(\parcial{}{z}\right)_p
+\]
+Así que usando la definición de $g$ podemos ahora calcular los coeficientes $m_{ij}$:
+\[
+m_{11}=g_{11}\left(-\sin\theta \left(\parcial{}{x}\right)_p+\cos\theta\left(\parcial{}{y}\right)_p, -\sin\theta \left(\parcial{}{x}\right)_p+\cos\theta\left(\parcial{}{y}\right)_p\right)=\sin^2\theta+\cos^2\theta=1
+\]
+\[
+m_{12}=m_{21}=g_{12}\left(-\sin\theta \left(\parcial{}{x}\right)_p+\cos\theta\left(\parcial{}{y}\right)_p, \left(\parcial{}{z}\right)_p\right)=0
+\]
+\[
+m_{22}=g_{22}\left(\left(\parcial{}{z}\right)_p,\left(\parcial{}{z}\right)_p\right)=1
+\]
+Con este cálculo obtenemos fácilmente que $m^{ij}=m_{ij}$. Como además los $m_{ij}$ son todos constantes, todos los símbolos de Christoffel $\Gamma^k_{ij}=0$. 
 
 
+\subsection{Geodésicas}
 
 
 \section{Curvatura escalar del cilindro}
