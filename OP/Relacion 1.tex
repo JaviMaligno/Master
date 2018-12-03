@@ -207,7 +207,7 @@ s.a.:&\;x+\lambda d\geq 0\\
 $$
 (x-1)^2 + (y-1)^2 = 1
 $$
-a mitad de camino entra $x^k$ y $(0,1)'$. Sea $d^k=\frac{x_{k+1}-x_k}{\norm{x_{k+1}-x_k}}$. Tomando la función $f(x,y)= (x+2)^2+(y-2)^2$, probar
+a mitad de camino entre $x^k$ y $(0,1)'$. Sea $d^k=\frac{x_{k+1}-x_k}{\norm{x_{k+1}-x_k}}$. Tomando la función $f(x,y)= (x+2)^2+(y-2)^2$, probar
 \begin{itemize}
 \item La sucesión $\{x_k\}$ converge a $x^*=(0,1)'$.
 \item La sucesión $\{d_k\}$ converge a $d^*=(0,1)'$.
@@ -218,8 +218,42 @@ a mitad de camino entra $x^k$ y $(0,1)'$. Sea $d^k=\frac{x_{k+1}-x_k}{\norm{x_{k
 \begin{solucion}
 \begin{enumerate}
 \item[]
-\item 
+\item Claramente la aplicación no puede ser cerrada si aceptamos la posibilidad de $d = 0$. En ese caso tenemos
 \end{enumerate}
 \end{solucion}
 \newpage
+\begin{ejercicio}{6}
+Consideren el conjunto de puntos $D = \{a_1, \dotsc, a_n\} \subset \R^2$. Formular como problema cónico el problema de encontrar el punto $x \in \R^2$ que minimiza la máxima distancia en norma euclídea a los puntos en $D$. Comprobar que se cumplen las condiciones que aseguran la existencia de un problema dual exacto y formularlo explícitamente.
+\end{ejercicio}
+\begin{solucion}
+Planteamos el problema como
+\begin{align*}
+\min_{x\in\R^2} \max_{i=1,\dotsc,n}\langle x-a_i,x-a_i\rangle = \min_{x\in\R^2} \max_{i=1,\dotsc,n}\norm{x-a_i}^2
+\end{align*}
+Dado que el máximo es una función convexa, así como la distancia euclídea, en $\R^n$, el problema es equivalente a 
+\begin{align*}
+\min &\; z\\
+s.a.& \;z\geq \max_{i=1,\dotsc,n}\norm{x-a_i}^2\\
+&(z,x)\in \R^3
+\end{align*}
+Por tanto, esto es equivalente a 
+\begin{align*}
+\min &\; a\\
+s.a.:& \;z\geq \norm{x-a_i} \quad \forall i = 1,\dotsc,n\\
+&\;(a,x)\in \R^3
+\end{align*}
+Finalmente, podemos escribir el problema como un SOCP. Sea 
+$$
+A=\begin{pmatrix}
+0 & 1 & 0\\
+0 & 0 & 1
+\end{pmatrix}
+$$
+Entonces escribimos finalmente nuestro problema como un problema de optimización convexa sobre un cono
+\begin{align*}
+\min &\; e_1 z \\
+s.a.:& \; \norm{Az-a_i}\leq e_1 z \quad \forall i = 1,\dotsc,n\\
+&\;z\in \R^3
+\end{align*}
+\end{solucion}
 \end{document}
