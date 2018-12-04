@@ -228,18 +228,19 @@ Consideren el conjunto de puntos $D = \{a_1, \dotsc, a_n\} \subset \R^2$. Formul
 \begin{solucion}
 Planteamos el problema como
 \begin{align*}
-\min_{x\in\R^2} \max_{i=1,\dotsc,n}\langle x-a_i,x-a_i\rangle = \min_{x\in\R^2} \max_{i=1,\dotsc,n}\norm{x-a_i}^2
+\min &\; \max_{i=1,\dotsc,n}\norm{x-a_i}_2\\
+s.a.&\; x \in \R^2
 \end{align*}
 Dado que el máximo es una función convexa, así como la distancia euclídea, en $\R^n$, el problema es equivalente a 
 \begin{align*}
-\min &\; z\\
-s.a.& \;z\geq \max_{i=1,\dotsc,n}\norm{x-a_i}^2\\
-&(z,x)\in \R^3
+\min &\; a\\
+s.a.& \;a\geq \max_{i=1,\dotsc,n}\norm{x-a_i}_2\\
+&(a,x)\in \R^3
 \end{align*}
-Por tanto, esto es equivalente a 
+Lo cual es equivalente a
 \begin{align*}
 \min &\; a\\
-s.a.:& \;z\geq \norm{x-a_i} \quad \forall i = 1,\dotsc,n\\
+s.a.:& \;z\geq \norm{x-a_i}_2 \quad \forall i = 1,\dotsc,n\\
 &\;(a,x)\in \R^3
 \end{align*}
 Finalmente, podemos escribir el problema como un SOCP. Sea 
@@ -252,8 +253,15 @@ $$
 Entonces escribimos finalmente nuestro problema como un problema de optimización convexa sobre un cono
 \begin{align*}
 \min &\; e_1 z \\
-s.a.:& \; \norm{Az-a_i}\leq e_1 z \quad \forall i = 1,\dotsc,n\\
+s.a.:& \; \norm{Az-a_i}_2\leq e_1 z \quad \forall i = 1,\dotsc,n\\
 &\;z\in \R^3
+\end{align*}
+Por tanto, el dual es
+\begin{align*}
+\max &\; \sum_{i=1}^n a_i'u_i  \\
+s.a.:& \; e_1 + \sum_{i=1}^n A'u_i + e_1 v_i\\
+&\;\norm{u_i}\leq v_i\\
+&\;u_i\in \R^2,\; v_i \in \R
 \end{align*}
 \end{solucion}
 \end{document}
