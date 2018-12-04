@@ -466,6 +466,71 @@ Vamos ahora al caso general. Denotamos $p:X\to S$ y $q:Y\to S$. Consideramos las
 
 Sea $S$ un esquema y $x\in S$. Consideremos el anillo local $\OO_{S,x}$ con ideal maximal $\m_{S,x}$ que da lugar al cuerpo residual $\OO_{S,x}/\m_{S,x}=k(x)$. Podemos considerar $\spec(k(x))$, como hemos hecho en general con cualquier cuerpo. Vemos que además un morfismo $\spec(k(x))\to S$. Recordemos que$\spec(k(x))=(\{0\},k(x))$. Definimos $f(\{0\})=x$, que es claramente continua. Ahora tenemos que definir $\OO_S\to f_*k(x)$, o lo que es lo mismo, $f^{-1}\OO_S\to k(x)$. Como $f$ es una aplicación de un solo punto, $f^{-1}\OO_S$ es un anillo sobre un punto, así que es su fibra $(f^{-1}\OO_S)_{\{0\}}=\OO_{S,x}$. Y aquí tenemos un morfismo obvio $\OO_{S,x}\to k(x)$ dado por la proyección al cociente. 
 
+\begin{ej}
+En la categoría de conjuntos, el producto fibrado $X\times_{S} Y=\{(x,y)\in X\times Y\mid \alpha(x)=\beta(y)\}$. Esto se puede ver, porque si consideramos el producto $X\times Y$, sabemos que para cada $Z$ existe un único $h:Z\to X\times Y$. Llamamos $h(z)=(f(z),g(z))=(x,y)$. Entonces, para que esta aplicación verifique el diagrama del producto fibrado tendríamos que $\alpha(x)=\alpha(f(z))=\beta(g(z))=\beta(y)$. AÑADIR ALGUNOS DIAGRAMAS Y ESCRIBIR ALPHA Y BETA.
+\end{ej}
+
+\begin{ej}
+Sea $k$ un cuerpo que vamos a suponer algebraicamente cerrado aunque no sería estrictamente necesario y pensamos en una parábola $x=y^2$. Llamamos $X=\spec(k[x,y]/\gene{x-y^2})$. Sea $S=\spec(k[x])=\A_k^1$. Vamos a dar un morfismo $X\to S$. Para ello basta dar un morfismo de anillos, $k[x]\to k[x,y]/\gene{x-y^2}$, que será la inclusión. Lo que vamos a hacer ahora es general. Si tomamos $y\in S$ da lugar a $k(y)=\OO_{S,y}/\m_y$ y tenemos $\spec(k(y))\to S$ enviando el único punto del espacio a $y$, y en los haces se corresponde con la proyección $\OO_{S,y}\to k(y)$. Con esto obtenemos una familia de esquemas al variar $y$, que es justamente $X_y=\spec(k(y))\times_S X$, llamada fibra de $S$ sobre el punto $y$, de donde obtenemos el cuadrado cartesiano (diagrama de producto fibrado, a veces denotado con un cuadrado en medio)
+\[
+\begin{tikzcd}
+X_y\arrow[r]\arrow[d] & X\arrow[d]\\
+\spec(k(y))\arrow[r] & S
+\end{tikzcd}
+\]
+Volvamos al ejemplo concreto. Distinguimos dos casos de $y\in S$: que sea $y=\{0\}$ el punto genérico o que sea $y$ un punto cerrado si y solo si es ideal maximal. Esto último quiere decir que $y=\gene{x-\alpha}$, $\alpha\in k$. Veamos quien es la fibra. Tenemmos que $k(y)=k[x]_y/\m_y$, que en el caso de que $y$ sea un punto cerrado $k(y)=k[x]_y/\gene{x-\alpha}=k[x]/\gene{x-\alpha}=k$. Con esto hemos obtenido que $\spec(k(y))=\spec(k)$. Esto nos permite construir un diagrama
+\[
+\begin{tikzcd}
+X=\spec(k[x,y]/\gene{x-y^2})\arrow[d] & X_y\arrow[d]\arrow[l]\\
+S\spec(k[x])& \spec(k(y))=\spec(k)
+\end{tikzcd}
+\]
+
+Llevándonos este diagrama a la categoría de anillos 
+\[
+\begin{tikzcd}
+k[x,y]/\gene{x-y^2}\arrow[r] & k[x]/\gene{x-\alpha}\otimes_{k[x]}k[x,y]/\gene{x-y^2}=k[x,y]/\gene{x-\alpha,x-y^2}\\
+k[x]\arrow[u]\arrow[r] & k=k[x]/\gene{x-\alpha}\arrow[u]
+\end{tikzcd}
+\]
+
+Por las propiedades del producto tensorial, el producto tensorial del cociente es el producto tensorial de los numeradores cocientado por el ideal extendido de la suma de los numeradores, de ahí la igualdad.
+
+ Ahora, si $\alpha\neq 0$, $\alpha\neq 0$, $y^2-\alpha=(y-\sqrt{\alpha})(y+\sqrt{\alpha})$, con lo que $X_y=\spec(k[y]/\gene{(y-\sqrt{\alpha})(y+\sqrt{\alpha})})$. Si suponemos $char(k)\neq 2$, $-a$ y $a$ no son asociados, así que usando el teorema chino del resto, $X_y=\spec(k[y]/\gene{Y-\sqrt{\alpha}}\times k[y]/\gene{y+\sqrt{\alpha}})$. Como $\spec$ es contravariante, la iamgen del producto es el coproducto $\spec(k[y]/\gene{y-\sqrt{\alpha}})\coprod \spec(k[y]/\gene{y+\sqrt{\alpha}})$. El coproducto en la categoría de espacios anillados es hacer la unión disjunta de los espacios topológicos, y el haz de anillos es simplemente el que en cada abierto de cada espacio vale lo que valía inicialmente, y en un abierto que interseque varios espacios, es simplemente el producto. Ahora, $\spec(k[y]/\gene{y-\sqrt{\alpha}})=\spec(k)$. Así que en este caso obtenemos dos puntos, uno por cada raíz. 
+ 
+Si $\alpha=0$ el razonamiento es análogo hasta obtener $X_y=\spec(k[y]/\gene{y^2})$. El anillo tiene solo un ideal primo generado por $y$, luego el espacio tiene un único punto. Además existen puntos nilpotentes, lo que se entiende como que este punto es un ``punto doble''. Esto nos denota que hay una tangencia en este punto. 
+
+El caso de característica 2 es más complicado. Aquí $y^2-\alpha=(y-\sqrt{\alpha})^2$, con lo que tendríamos toda una recta de puntos dobles, aunque estos puntos tienen una diferencia con el punto doble del caso anterior, solo que para estudiarlos necesitaremos los invariantes difereniales.
+
+Ya solo nos falta estudiar el caso de que $y=\{0\}$. Ahora $k(y)=k[x]_{(0)}=K(x)$ (cuerpo de fracciones). Tendríamos la inclusión $k[x]\hookrightarrow K(X)$ y en el resto del diagrama bastaría sustituir los corchetes de $x$ por paréntesis, con lo que $X_y=\spec(K(x)[y]/\gene{x-y^2})$. Como $x$ no tiene raíces en $K(x)$, $\gene{x-y^2}$ es irreducible en $K(x)[y]$ visto como anillo de polinomios en una variable. Este cociente es entonces un cuerpo por ser cociente de un DIP por un irreducible. La fibra entonces sería un único punto. Si consideramos $K(x)[y]/\gene{x-y^2}$ como extensión de $K(x)$ el grado es 2, esto se traduce geométricamente, entre otras cosas, en que el la mayoría de los puntos (genéricamente) los puntos se transforman en 2, que serían las raíces cuadradas.
+\end{ej}
+
+\begin{ej}
+Consideremos ahora $\spec(\Z[i])\to \spec(\Z)$. Recordamos que $\Z[i]=\Z[y]/\gene{y^2+1}$, que es algo parecido a una parábola. Sea $p$ primo y consideramos $k(\gene{p})$. Tenemos el diagrama 
+\[
+\begin{tikzcd}
+\Z[i]\arrow[r] & \F_p[y]/\gene{y^2+1}\\
+\Z\arrow[u]\arrow[r] & \F_p=\Z/\Z p\arrow[u]
+\end{tikzcd}
+\]
+que nos lo podemos llevar a esquemas como
+\[
+\begin{tikzcd}
+\spec(\Z[i])\arrow[d] & X_y=\spec(\F_p[y]/\gene{y^2+1})\arrow[d]\arrow[l]\\
+y=\spec(\Z) & \spec(\F_p)\arrow[l]
+\end{tikzcd}
+\]
+El polinomio $y^2+1$ será irreducible si $-1$ no es un cuadrado $\F_p$, que esto es equivalente por aritmética modular a que $p\equiv -1\mod 4$. En estos casos, $X_y$ es el espectro de un cuerpo que es una extensión de grado 2 de $\F_p$. Esto en el caso de las parábolas no ocurre, porque o no teníamos un cuerpo o había elementos nilpotentes. Pero sí se parece a la situación genérica del ejemplo anterior. En este caso $\gene{p}$ es primo también en $\Z[i]$. 
+
+Supongamos ahora que $y^2+1$ es reducible en $\F_p[y]$, luego $-1=\alpha^2$ y descomponemos $y^2+1=(y-\alpha)(y+\alpha)$ y estamos en la misma situación que en la mayoría de los puntos de la parábola anterior, esto es, $p$ da lugar a dos puntos. En característica 2 es claro que $y^2+1=(y+1)^2$ es reducible y tendríamos lo análogo al vértice de la parábola. 
+
+
+ESTE CASO EL PRÓXIMO DÍA LO EXPLICA BIEN
+En el caso $p\equiv 1\mod 4$, entonces $p\neq 2$, $\alpha\neq-\alpha\in\Z[i]$, $\alpha^2+1\equiv 0\mod p$ y ocurre que $p=(m+ni)(m-ni)$, que son dos primos de $\Z[i]$. El extendido de $\gene{p}$ es en general $p\Z[i]$, que en este caso no sería primo. Tenemos que $\F_p[y]/\gene{y^2+1}=\Z[y]/\gene{y^2+1,p}$ y que $p|\alpha^2+1$. El ideal $\gene{p,\alpha+1}$ es principal en $\Z[i]$ por lo que tiene un solo generador.
+
+%Si levantamos $\alpha^2$ a $\Z[i]$ obtendríamos $i$, porque es la raíz cuadrada de $-1$.
+\end{ej}
+
 
 
 

@@ -348,7 +348,7 @@ Damos tres ejemplos de campos de vectores diferenciables sobre el cilindro. Para
 
 \begin{enumerate}
 \item
- Recordemos la curva $\beta(t)=(1,0,t)$, que es una recta vertical con $t\in\R$. Podemos cubrir el cilindro si hacemos girar esta recta mediante un parámetro $\theta\in[0,2\pi)$, de modo que obtenemos la familia $\beta_\theta(t)=(\cos\theta,\sin\theta, t)$. Para cada punto $p\in C$, existe un único par  $(\theta_0,t_0)$ tal que $p=\beta_{\theta_0}(t_0)$, por lo que definimos el campo $X:C\to TC$ como $X_p=\beta'_{\theta_0}(t_0)$.
+ Recordemos la curva $\beta(t)=(1,0,t)$, que es una recta vertical con $t\in\R$. Podemos cubrir el cilindro si hacemos girar esta recta mediante un parámetro $\theta\in[0,2\pi)$, de modo que obtenemos la familia $\beta_\theta(t)=(\cos\theta,\sin\theta, t)$. Para cada punto $p\in C$, existe un único par  $(\theta_0,t_0)$ tal que $p=\beta_{\theta_0}(t_0)$, por lo que definimos el campo $X:C\to TC$ como $X_p=\beta'_{\theta_0}(t_0)$. HACER EL CÁLCULO PORQUE EN EL EJEMPLO TENÍA SOLO EL DE THETA=0
  
 \item Hacemos ahora lo propio con la familia de circunferencias $\gamma_h(t)=(\cos t,\sin t, h)$ para $t\in (0,2\pi)$ y $h$ variando en $\R$. La diferencia ahora es que esta familia no cubre por completo el cilindro, pero podemos definir el campo de vectores sobre la recta que queda sin cubrir simplemente tomando límite. Es decir, como tenemos que $\lim_{t\to 0^+}\gamma'_h(t)=\lim_{t\to 2\pi^-}\gamma'_h(t)=-e^h\left(\parcial{}{x_2}\right)_p$, donde $p=(1,0,h)$, tenemos un vector tangente para cada punto de dicha recta, al que denotaremos $\gamma'_h(0)$. Así, definimos el campo $Y:C\to TC$ como $Y_p=\gamma'_{h_0}(t_0)$, donde $(h_0, t_0)$ es el único par tal que o bien $\gamma_{h_0}(t_0)=p$ o bien $t=0$ y $p=(1,0,h_0)$. 
 
@@ -360,7 +360,7 @@ que para $i=1$ nos da $xe^z$ y para $i=2$, $ye^z$. Es decir, para un punto $q=(x
 \[
 xe^z\left(\parcial{}{x_1}\right)_q+ye^z\left(\parcial{}{x_2}\right)_q.
 \]
-Esto en realidad es el campo de vectores de posición del cilindro, ya que $xe^z=x_1(q)$ y $ye^z=x_2(q)$. 
+Esto en realidad es el campo de vectores de posición del cilindro, ya que $xe^z=x_1(q)$ y $ye^z=x_2(q)$. COMENTAR QUE SALE LO MISMO QUE CON EL DE LAS VERTICALES Y SI SE TOMA EL CAMPO DE CIRCUNFERENCIAS SALE EL DE LAS CIRCUNFERENCIAS DEL CILINDRO
 
 %no tengo claro cómo sacar a partir de esto la interpretación de que los vectores del plano se convierten en vectores verticales, porque las coordenadas de este saldrían una combianción de dos vectores que en el cilindro se ven verticales
 \end{enumerate}
