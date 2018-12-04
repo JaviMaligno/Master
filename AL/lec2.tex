@@ -15,10 +15,10 @@ El análisis asintótico consiste en el estudio de la eficiencia de un algoritmo
 Supongamos que tenemos un inventario, que para poder leerlo necesitamos 10000 milisegundos (ms) y 10 ms en procesar una transacción (por ejemplo clasificar un libro). Entonces, el tiempo de $n$ transacciones será $T(n)=10000+10n$. Cuando $n>>0$, el término que domina es $10n$. 
 \end{ej}
 
-La notación que usamos es la llamada Big-o (o grande): si $n$ es el tamaño de la entrada, $T(n)$ es una función de complejidad temporal (running time) y supongamos que existe una función conocida $f(n)$, decimos que $T(n)\in O(f(n))$ si $T(n)\leq c f(n)$ para alguna constante $c$ a partir de un $n$ suficientemente grande (se dice que $T$ es de orden $f(n)$). $O(f(n))$ es el conjunto de funciones que cumplen la propiedad que acabamos de definir.
+La notación que usamos es la llamada Big-O (o grande): si $n$ es el tamaño de la entrada, $T(n)$ es una función de complejidad temporal (running time) y supongamos que existe una función conocida $f(n)$, decimos que $T(n)\in O(f(n))$ si $T(n)\leq c f(n)$ para alguna constante $c$ a partir de un $n$ suficientemente grande (se dice que $T$ es de orden $f(n)$). $O(f(n))$ es el conjunto de funciones que cumplen la propiedad que acabamos de definir.
 
 \begin{ej}
-$T(n)=10^6n\in O(n)$. Podemos tomar $C=10^6$ y $n_0=1$, de modo que para todo $n\geq n_0$ se cumple la definición. Se observa con este ejemplo que la notación $O(\cdot)$ prescinde de las constantes.
+$T(n)=10^6n\in O(n)$. Podemos tomar $c=10^6$ y $n_0=1$, de modo que para todo $n\geq n_0$ se cumple la definición. Se observa con este ejemplo que la notación $O(\cdot)$ prescinde de las constantes.
 \end{ej}
 \begin{ej}
 $T(n)=n\in O(n^k)$ para todo $k\geq 1$. $T(n)=n^3+n^2+n\in O(n^3)$, por ejemplo con $c=3$ y $n_0=1$.
@@ -33,7 +33,7 @@ $O(\cdot)$ no da toda la información. El algoritmo de búsqueda binaria tiene u
 \end{ej}
 
 \begin{ej}
-$e^{3}\notin O (e^n)$ pues $e^{3n}=e^{2n}e^n$, luego no se puede minorar por una constante (se puede probar usando límites). $10^n\notin O(2^n)$ por una razón similar. 
+$e^{3n}\notin O (e^n)$ pues $e^{3n}=e^{2n}e^n$, luego no se puede minorar por una constante (se puede probar usando límites). $10^n\notin O(2^n)$ por una razón similar.
 \end{ej}
 
 \begin{ej}
