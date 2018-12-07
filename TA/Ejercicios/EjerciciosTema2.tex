@@ -83,6 +83,9 @@ para algún $r$ entero. La matriz $\binom{n}{r}$ se puede reducir a $\binom{d}{0
 Sea $f:S^n\to S^n$ una aplicación de grado cero. Probar que existen puntos $x,y\in S^n$ con $f(x)=x$ y $f(y)=-y$. Usar esto para probar que si $F$ es un campo vectorial continuo en la bola unidad $D^n$ en $\R^n$ tal que $F(x)\neq 0$ para todo $x$, entonces existe un punto en $\partial D^n$ donde $F$ apunta radialmente hacia fuera y otro punto en $\partial D^n$ donde $F$ apunta radialmente hacia dentro.
 \end{ejercicio}
 \begin{solucion}
+La aplicación $f$ tiene puntos fijos, pues de lo contrario tendría grado $(-1)^{n+1}$, así que existe $x\in S^n$ con $f(x)=x$. Si consideramos ahora la antipodal $a:S^n\to S^n$, $\deg(a\circ f)=0$, luego también tiene puntos fijos, esto es, existe $y\in S^n$ con $a(f(y))=y$, con lo que $f(y)=-y$. 
+
+Dado un campo vectorial continuo $F$ sobre la bola unidad $D^n$ tal que $F(x)\neq 0$ para todo $x$, podemos considerar el vector $F(x)$ como vector en el origen y normalizarlo, de modo que nos da una aplicación continua que también denotaremos $F:D^n\to S^{n-1}$. En particular, podemos considerar la restricción $f=F|_{\partial D^n}:S^{n-1}\to S^{n-1}$, que como se extiende de forma continua a $D^n$, es homotópicamente nula y por tanto tiene grado 0. Podemos aplicar ahora el resultado probado antes, de modo que existen $x,y\in S^{n-1}$ tales que $f(x)=x$ y $f(y)=-y$. El vector $F(x)$ apunta hacia fuera porque sigue el sentido del origen a $x$ y el vector $F(y)$ apunta hacia adentro porque sigue el sentido de $y$ a su antipodal.
 \end{solucion}
 
 \newpage
@@ -91,6 +94,32 @@ Sea $f:S^n\to S^n$ una aplicación de grado cero. Probar que existen puntos $x,y
 Sea $X$ el espacio cociente de $S^2$ bajo las identificaciónes $x\sim-x$ para $x$ en el ecuador $S^1$. Calcular los grupos homología $H_i(X)$. Hacer lo mismo para $S^3$ con puntos antipodales del ecuador $S^2\subset S^3$ identificados. 
 \end{ejercicio}
 \begin{solucion}
+En el primer caso consideremos la estructura celular de $S^2$ obtenida con una 0-célula, una 1-célula y dos 2-células. El espacio cociente tiene la misma cantidad de células en cada dimensión, ya que se trata simplemente de dos copias de $\R P^2$ unidas por $\R P^1\cong S^1$, de modo que el complejo de cadenas tiene la forma
+\[
+0\to \Z\oplus\Z\xrightarrow{d_2}\Z\xrightarrow{d_1}\Z\to 0
+\]
+Como $X$ es conexo sabemos que $H_0(X)=\Z$ y por tanto $d_1=0$. Calculamos ahora $d_2$. Como el borde cada 2-célula se ``enrolla'' dos veces alreadedor de $S^1$, si denotamos $(a,b)$ a un elemento de $\Z\oplus\Z$, eligiendo adecuadamente los generadores obtenemos $d_2(a,b)=2a+2b$. Esto se puede ver también a partir de que el grado de la antipodal en $S^1$ es 1, con lo que las dos preimágenes de cada punto a las que da lugar el cociente tienen grado local 1, por lo que el grado total es 2. Así que $H_1(X)=\ker{d_1}/\Ima{d_2}\cong\Z_2$. Además, $H_2(X)=\ker{d_2}\cong\Z$. En definitiva,
+\[
+H_i(X)=\begin{cases}
+\Z & i=0,2\\
+\Z_2 & i=1\\
+0 & c.c.
+\end{cases}
+\]
+
+En el segundo caso, el $X$ es $\R P^2$ (que se puede obtener con una 0-célula, una 1-célula y una 2-célula) unido a dos 3-células con el borde identificado antipodalmente, es decir, $\R P^3$. Tenemos ahora el complejo de cadenas
+\[
+0\to\Z\oplus\Z\xrightarrow{d_3}\Z\xrightarrow{d_2}\Z\xrightarrow{d_1}\Z\to 0
+\]
+Igual que antes, $H_0(X)=\Z$ y $d_1=0$. Podemos calcular $d_2$ análogamente a como lo hicimos antes pero en este caso solo hay una célula, luego si denotamos $a$ al generador de $\Z$, $d_2(a)=2a$, de donde $H_1(X)\cong\Z_2$. Como $d_2$ es inyectiva, se tiene además que $H_2(X)=0$. Por último, $d_3=0$, pues la aplicación $S^2_{\beta}\to X^2/X^1=S^2_{\alpha}$ da para cada punto $x\in S^2_{\alpha}$ dos preimágenes, cada una en un hemisferio de $S^2_{\beta}$, en una el grado local es 1 porque la aplicación localemente es la identidad y en otra el grado es $-1$ porque la aplicación es localmente la antipodal, con lo que los grados locales se cancelan. Esto nos da $H_3(X)=\Z\oplus\Z$. En resumen,
+\[
+H_i(X)=\begin{cases}
+\Z & i=0\\
+\Z_2 & i=1\\
+\Z\oplus\Z & i=3\\
+0 & cc
+\end{cases}
+\]
 \end{solucion}
 
 \newpage
