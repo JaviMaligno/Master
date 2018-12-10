@@ -1,0 +1,191 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{array,multirow}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{floatrow}
+\usepackage{makeidx}
+\usepackage[tocflat]{tocstyle}
+\usetocstyle{standard}
+\usepackage{subfiles}
+\usepackage{color}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,citecolor=red, linkcolor=blue}
+\usepackage[]{graphicx, cutwin}
+\usepackage{pgf,tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{babel}
+\usetikzlibrary{arrows}
+\usetikzlibrary{trees}
+\usetikzlibrary{cd}
+
+\newtheorem{ejer}{Ejercicio}
+\newtheorem{lemma}{Lema}
+\newtheorem{coro}{Corolario}
+\newtheorem{prop}{Proposici\'on}
+\newtheorem*{defi}{Definici\'on}
+\newtheorem*{sol}{Soluci\'on}
+\newtheorem{ejercicioaux}{Ejercicio}
+\newenvironment{ejercicio}[1]
+  {\renewcommand\theejercicioaux{#1}\ejercicioaux\label{ejer:#1}}
+  {\endejercicioaux}
+\newcounter{ejercounter}[section]
+\setcounter{ejercounter}{\value{ejercicioaux}}
+\newenvironment{solucion}{\begin{trivlist}
+ \item[\hskip \labelsep {\textit{Soluci\'on}.}\hskip \labelsep]}{\end{trivlist}}
+\setlength{\parindent}{0pt}
+\newtheorem{nota}{Nota}
+
+\renewcommand{\baselinestretch}{1,4}
+\setlength{\oddsidemargin}{0.5in}
+\setlength{\evensidemargin}{0.5in}
+\setlength{\textwidth}{5.4in}
+\setlength{\topmargin}{-0.25in}
+\setlength{\headheight}{0.5in}
+\setlength{\headsep}{0.6in}
+\setlength{\textheight}{8in}
+\setlength{\footskip}{0.75in}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+\title{Miner\'ia Estad\'istica de Datos}
+\author{Rafael Gonz\'alez L\'opez}
+\maketitle
+\begin{ejercicio}{1}
+Se desean estudiar los datos contenidos en el fichero \emph{incendios.csv} utilizando un modelo de regresi\'on log\'istica. En este fichero se han recogido datos correspondientes a $300$ municipios que, teniendo en cuenta datos hist\'oricos, se clasifican en:
+\begin{itemize}
+\item Municipios con alta incidencia de fuego ($Y=1$)
+\item Municipios con baja incidencia de fuego ($Y=0$)
+\end{itemize}
+\textbf{Descripci\'on del resto de las variables incluidas en el fichero.} 
+\begin{itemize}
+\item maquin\_d: Densidad de maquinaria agr\'icola sobre superficie municipal.
+\item gan\_for: Densidad de ganado en r\'egimen extensivo sobre la sup. forestal.
+\item paro: Tasa de paro.
+\item roadmu\_d: Densidad de carreteras por superficie municipal.
+\item frag7x7: Media municipal del \'indice de fragmetaci\'on. 
+\item prestur: Presi\'on tur\'istica $Si=1$; $No=0$.
+\end{itemize}
+Considerar $\alpha=0.05$ para responder a los siguientes apartados.
+
+Antes de comenzar con las cuestiones del problema, realizamos una breve presentaci\'on de de nuestro conjunto de datos.
+<<>>=
+datos <- read.csv("incendios.csv", header=TRUE ,sep=";")
+head(datos)
+@
+Para utilizar las funciones involucradas es conveniente que pasemos algunas variables
+como factores y presentamos un resumen decriptivo de las variables
+<<>>=
+datos$Y <- as.factor(datos$Y)
+datos$prestur =as.factor(datos$prestur)
+summary(datos)
+@
+
+\begin{itemize}
+\item[a)] Ajusta un modelo de regresi\'on log\'istica m\'ultiple para relacionar la variable $Y$ con las restantes variables incluidas en el fichero.
+\\
+Construimos el modelo de regresi\'on log\'istica, es decir,
+$$
+\ln \left(\frac{\pi(\underline{x})}{{1-\pi(\underline{x})}}\right) = \beta_0 X_0 + \dotsc \beta_p X_p
+$$
+y presentamos el sumario del mismo
+<<>>=
+Yobj.rl2 = glm(Y~.,data=datos,family=binomial)
+@
+\item[b)] ?`El modelo ajustado es adecuado? Responde a esta pregunta bas\'andote en el contraste fundamental.
+\\
+La funci\'on glm contiene muchos atributos que pueden ser \'utiles
+<<>>=
+names(Yobj.rl2)
+@
+Con algunos de esos atributos podemos construir el contraste fundamental para evaluar la adecuaci\'on del modelo.
+<<>>=
+Estad.G = Yobj.rl2$null.deviance - Yobj.rl2$deviance
+gl.G = Yobj.rl2$df.null - Yobj.rl2$df.residual;
+pvalor = 1- pchisq(Estad.G,gl.G)
+pvalor 
+@
+Que el $p$-valor sea $0$ nos dice que el modelo no est\'a bien ajustado, luego ser\'a necesario hacer un an\'alisis para corregir los defectos que pueda tener.
+\item[c)] Interpretar los resultados obtenidos en los contrastes individuales de los coeficientes. ?`Qu\'e modelo final propondr\'ias?
+\\
+Veamos un sumario del modelo donde podemos ver los constrastes individuales. En funci\'on de los $p$-valores asociados a cada variable decidiremos cu\'ales de ellas pueden ser excluidas del modelo.
+<<>>=
+summary(Yobj.rl2)
+@
+Del sumario se desprende que, trabajando con nuestro nivel de significaci\'on, no es necesario tener en cuenta las variables paro y frag7x7. Por tanto, volvemos a construir el modelo despreciando las mismas
+<<>>=
+fmla = Y~maquin_d + gan_for + roadmu_d+prestur
+Yobj.rl = glm(fmla,data=datos,family=binomial)
+summary(Yobj.rl)
+@
+Luego, en nuestro modelo, $p=4$ y 
+\begin{align*}
+\hat{\beta_1} & = 0.0116 &  X_1 & = maquin\_d\\
+\hat{\beta_2} & = -0.0090 & X_2 & = gan\_for\\
+\hat{\beta_3} & = 0.0034 &  X_3 & = roadmu\_d\\
+\hat{\beta_4} & = 1.8901 &  X_4 & = prestur1
+\end{align*}
+
+\item[d)] Realizar una predicci\'on razonada de la probablidad de fuego de un municpio en que propongas unos ciertos valores para las variables explicativas que se deben consdierar en este estudio.
+\\
+Escogemos ciertas cantidades sobre la media y predecimos con respecto al modelo.
+<<>>=
+ejemplo = data.frame(450.922,0.13,0.203,388.23,0.023,as.factor(1),as.factor(0))
+names(ejemplo)<-names(datos)
+# Estimaci\'on de las probabilidades de que la respuesta sea igual a 1
+predict(Yobj.rl,type="response",se = T,ejemplo)
+@
+Nuestra predicci\'on es que el municipio tiene alta incidencia de fuego.
+
+\item[e)] Calcular un IdC al $95\%$ para las odds ratio de las variables significativas del modelo. Interpretar los resultados obtenidos para las variables densidad de ganado ($gan\_for$), y presi\'on tur\'istica ($prestur$).
+\\
+Contru\'imos directamente una tabla con las odds ratio y el intervalo de confianza para las variables significativas del modelo.
+<<>>=
+t=cbind(exp(Yobj.rl$coefficients), exp(confint(Yobj.rl)))
+colnames(t)=c("Odds ratio", "Lim Inf (2.5%)","Lim Sup (97.5%)")
+t
+@
+Observamos que exste una relaci\'on entre incidencia de fuego y la presi\'on tur\'istica, de manera que un aumento en la presi\'on tur\'istica deviene en un correspondiente y significativo aumento en la probabilidad de tener una alta incidencia de fuego. El odd ratio de la densidad de ganado es $0.9909963$, cuyo rec\'iproco es $1.009$. Se infiere que no existe una relaci\'on intensa entre las variables, aunque un aumento en la densidad de ganado tiene un efecto ligeramente positivo sobre la incidencia de fuego, pues el odd ratio es menor que $1$.
+\end{itemize}
+\end{ejercicio}
+\newpage
+
+\begin{ejercicio}{2}
+Considerad los datos recogidos en el fichero "binary.txt". En este fichero se tiene para una muestra de estudiantes de USA, si han sdo admitidios o no en ciertos estudios de postgrado (variable \textbf{admit}), y otras variables tales como la varaibles \textbf{GRE} (puntuaci\'on obtenida en el examen de ingreso en el centro), \textbf{GPA} (media obtenida en los estudios de grado realizados), y \textbf{RANK} (presigo en que realizaron sus estudios de grado, de forma que se ha asignado $1$, a la instituci\'on de mayor prestigio, y as\'i sucesivamente). Ajustad un modelo de regresi\'o log\'istica para explicar la variable admision (admit) en funci\'on de las restantes.
+\\
+Antes de comenzar con las cuestiones del problema, realizamos una breve presentaci\'on de de nuestro conjunto de datos.
+<<>>=
+datos = read.delim("binary.txt")
+head(datos)
+@
+An\'alogamente al caso anterior,para utilizar las funciones involucradas es conveniente que pasemos algunas variables como factores y, adem\'as, presentamos un resumen decriptivo de las variables
+<<>>=
+datos$admit <- as.factor(datos$admit)
+datos$rank <- ordered(as.factor(datos$rank))
+summary(datos)
+@
+\newpage
+\begin{itemize}
+\item[a)] Discutid si el modelo ajustado es adecuado.\\
+El primer paso es construir el modelo. 
+<<>>=
+modelo = glm(admit~gre + gpa + rank,data=datos,family=binomial)
+summary(modelo)
+@
+Con algunos de esos atributos podemos construir el contraste fundamental para evaluar la adecuaci\'on del modelo.
+<<>>=
+Estad.G = modelo$null.deviance - modelo$deviance
+gl.G = modelo$df.null - modelo$df.residual;
+pvalor = 1- pchisq(Estad.G,gl.G)
+pvalor 
+@
+\item[b)] Predecid la probabilidad de que sea admitido un alumno cuya putuaci\'on en el examen de ingreso fue $525$, su media en el grado es $3.1$, y estudi\'o en una instituci\'on cuyo rango es $3$.
+\item[c)] Hallad IdC al $95\%$ para las odds ratio de las variables significativas del modelo. Interpreta los resultados obtenidos.
+\end{itemize}
+\end{ejercicio}
+\end{document}
