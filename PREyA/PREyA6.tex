@@ -1,0 +1,95 @@
+\documentclass[PREyA.tex]{subfiles}
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\begin{document}
+
+\chapter{Cadenas de Markov en tiempo continuo}
+\section{Introducción}
+\begin{defi}
+Se dice que una cadena en tiempo continuo es de Markov si verifica la propiedad de Markov, es decir, si $\forall n \geq 2$ $\forall 0\leq t_1 < \dotsc < t_n$ y $\forall i_1,\dotsc,i_n\in S$ se verifica
+$$
+P[X_{t_n} = i_n \mid X_{t_1}=i_1,\dotsc,X_{t_{n-1}}=i_{n-1}] = P[X_{t_n} = i_n \mid X_{t_{n-1}} = i_{n-1}]
+$$
+\end{defi}
+\begin{defi}
+A los valores $i_1,\dotsc,i_{n-1}$ se les denomina \textbf{historia} y, en particular, $i_{n-1}$ es el \textbf{pasado inmediato}.
+\end{defi}
+\begin{example}
+El proceso de Poisson verifica la propiedad markoviana. Se deduce trivialmente a partir de incrementos independientes.
+\end{example}
+\begin{defi}
+Podemos considerar $p_{ij}^{(s,t)}$ a la probabilidad de que el proceso en el instante $t$ esté en $j$ condicionado a que en el instante $s$ estaba en $i$, es decir,
+$$
+p_{ij}^{(s,t)} = P[X_t =j \mid X_s = i]
+$$
+Luego podemos considerar $P_{st} = (p_{ij}^{(s,t)})$ con $i,j \in S$ y para $0\leq s \leq t$.
+\end{defi}
+\begin{nota}
+Supondremos en adelante que se verifica la propiedad de homogeneidad en el tiempo, es decir, que las $p_{ij}^{(s,t)}$ son funciones de la diferencia en el tiempo $t-s$. 
+\end{nota}
+\begin{nota}
+Bajo la asunción anterior podemos escribir simplemente $P_t = (p_{ij}^{(0,t)})$, pues
+$$
+P[X(t+s)=j \mid X(s)=i] = P[X(t)=j\mid X(0)=i]
+$$
+\end{nota}
+\newpage
+\begin{prop}
+Se verifican las siguientes propiedades
+\begin{itemize}
+\item $P_0 = I_{|S|\times |S|}$.
+\item $P_t$ es una matriz estocástica.
+\item Verifica las ecuaciones de Chapman Kolmogorov, es decir
+$$
+P_{t+s}=P_tP_s \quad \forall s,t\geq 0
+$$
+\end{itemize}
+\end{prop}
+\begin{dem} Tenemos
+\begin{itemize}
+\item $p_{ij}(0) = P[X(0)=j\mid X(0)=i]$.
+\item Sumamos directamente
+\begin{align*}
+1 &= P[X(t)\in S \mid X(0)=i] \\
+&= \sum_{j \in S} P[X(t)=j \mid X(0)=i]\\
+&=\sum_{j\in S} p_{ij}(t)
+\end{align*}
+\item 
+\begin{align*}
+p_{ij}(t+s) &= P[X(t+s) =j \mid X(0)=i]\\
+& = P[X(t+s)=j, X(t)\in S \mid X(0)=i]\\
+&=\sum_{k \in S} P[X(t+s)=j, X(t)=k \mid X(0)=i]\\
+&=\sum_{k\in S} P[X(t) = k  \mid X(0)=i] P[X(t+s) = j \mid X(0)=i, X(t)=k]\\
+&=\sum_{k\in S} P[X(t) = k  \mid X(0)=i] P[X(t+s) = j \mid  X(t)=k]\\
+&=\sum_{k\in S} p_{ik}(t) P[X(s) = i \mid  X(0)=k]\\
+&=\sum_{k\in S} p_{ik}(t) p_{kj}(s) 
+\end{align*}
+Por tanto, $P_{t+s} = P_t P_s$.
+\end{itemize}
+
+\end{dem}
+\begin{prop}
+El conjunto $\{P_t\}_{t\geq 0}$ tiene estructura de semigrupo con la operación producto.
+\end{prop}
+\begin{nota}
+Vamos a suponer por simplicidad que todos los semigrupos son standar, es decir, 
+$$
+\lim_{t\to0} P_t = I
+$$
+\end{nota}
+
+\begin{nota}
+Describir una cadena de Markov a partir de sus matrices de probabilidad y el estado inicial puede ser costoso en la práctica.
+\end{nota}
+\begin{defi}
+Definimos la matriz de generadores siempre que tenga sentido
+$$
+G:= \lim_{h\to 0^+} \frac{P_h -I }{h} 
+$$
+\end{defi}
+\begin{prop}
+Bajo la hipótesis de que los semigrupos son standar, se tiene que
+$$
+G= (p_{ij}'(0))
+$$
+\end{prop}
+\end{document}
