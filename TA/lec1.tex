@@ -503,7 +503,7 @@ H_n(S^n, S^n-x_i) & H_n(S^n, S^n-f^{-1}(y))\arrow[l, "p_i"]\arrow[r, "f_*"] & H_
 & H_n(S^n)\arrow[ul, "\cong"]\arrow[u, "j"']\arrow[r, "f_*"] & H_n(S^n)\arrow[u, "\cong"']
 \end{tikzcd}
 \]
-Las aplicaciones $p_i$ y $k_i$ están inducidas por inclusiones. Los isomorfismos de abajo provienen de la sucesión exacta larga del par y los de arriba de la excisión. El de abajo a la izquierda es de nuevo por la pareja y el de encima por excisión también. Llamamos \emph{grado local} de $f$ en $x_i$ a $\deg((f|_{U_i})_*)=\deg(f)|_{x_i}$. Si $f$ es homeomorfismo de $U_i$ en $V$, entonces $\deg(f)|_{x_i}=\pm 1$. En particular, si $f$ es homeomorfismo global, $y$ puede ser cualquier punto, que tendrá un solo punto preimagen $x_i$, con lo que $\deg(f)|_{x_i}=\deg(f)=\pm 1$.
+Las aplicaciones $p_i$ y $k_i$ están inducidas por inclusiones. Los isomorfismos de abajo provienen de la sucesión exacta larga del par y los de arriba de la excisión. El de abajo a la izquierda es de nuevo por la pareja y el de encima por excisión también. Llamamos \emph{grado local} de $f$ en $x_i$ a $\deg(f|_{U_i})=\deg(f)|_{x_i}$. Si $f$ es homeomorfismo de $U_i$ en $V$, entonces $\deg(f)|_{x_i}=\pm 1$. En particular, si $f$ es homeomorfismo global, $y$ puede ser cualquier punto, que tendrá un solo punto preimagen $x_i$, con lo que $\deg(f)|_{x_i}=\deg(f)=\pm 1$.
 
 \begin{prop}
 $\deg(f)=\sum_i \deg(f)|_{x_i}$. 
@@ -722,15 +722,15 @@ S^{n-1}_{\beta}\arrow[r, "\phi_{\beta}"]\arrow[urr, bend left=10, "\Delta_{\alph
 \end{tikzcd}
 \]
 \begin{ej}
-Sea $M_g$ una superficie orientable de género $g$, cuyo complejo de cadenas es el siguiente
+Sea $M_g$ una superficie orientable de género $g$ expresada como diagrama poligonal, cuyo complejo de cadenas es el siguiente
 \[
 0\to \Z\xrightarrow{d_2}\bigoplus_{i=1}^g(\Z\oplus\Z)\xrightarrow{d_1}\Z\to 0
 \]
-Como $M_g$ es conexa, $H_0(M_g)=\Z$ y por tanto $d_1=0$. Necesitamos entonces la imagen de $d_2$. La aplicación $\phi_{e^2}:S^1\to X^1=\bigvee_{i=1}^g(S_{a_i}\vee S_{b_i})$ se compone con el colapso a cada una de las circunferencias. Los grados locales son 1 o $-1$ en función de la orientación de la $S ^1$ que queda sin colapsar. Como hay tantas orientaciones en un sentido como en otro, estas se cancelan y $d_22$ es el homomorfismo nulo. Así que la homología $M_g$ es la misma que el complejo de cadenas.
+Como $M_g$ es conexa, $H_0(M_g)=\Z$ y por tanto $d_1=0$. Necesitamos entonces la imagen de $d_2$. La aplicación $\phi_{e^2}:S^1\to X^1=\bigvee_{i=1}^g(S_{a_i}\vee S_{b_i})$ se compone con el colapso a cada una de las circunferencias. Los grados locales son 1 o $-1$ en función de la orientación de la $S ^1$ que queda sin colapsar. Como hay tantas orientaciones en un sentido como en otro, estas se cancelan y $d_2$ es el homomorfismo nulo. Así que la homología $M_g$ es la misma que el complejo de cadenas.
 \end{ej}
 
 \begin{ej}
-Sea $N_g$ la superficie no orientable de género $g$. De nuevo $H_0(N_g)=\Z$ y $d_1=0$. El razonamiento para calcular $d_2$ es análogo, pero en esta ocasión los grados locales se suman y obtenemos $d_{2i}=\deg(\Delta_{2i})=2$, con lo que $d(1)=(2,\dots, 2)$ (alguna coordenada podría ser $-2$, pero podemos elegir orientaciones de modo que sea positivo), donde 1 representa a la célula $e^2$ y las coordenadas se toman con respecto a $e_i^1$. Como $d_2$ es inyectiva, $H_2(N_g)=0$. La imagen de $d_2$ es el subgrupo abeliano generado por $2(1,\dots, 1)$. Entonces $H_1(N_g)=\oplus_{1}^g\Z/\gene{(2,\dots, 2)}$. Para expresar este cociente de una forma más sencilla, hacemos un cambio de generadores, de modo que el $g$-ésimo generador lo sustituimos por $(1,\dots, 1)$. Con esto obtenemos que $H_1(N_g)\cong \Z^{g-1}\oplus\Z_2$.
+Sea $N_g$ la superficie no orientable de género $g$ expresada como diagrama poligonal. De nuevo $H_0(N_g)=\Z$ y $d_1=0$. El razonamiento para calcular $d_2$ es análogo, pero en esta ocasión los grados locales se suman y obtenemos $d_{2i}=\deg(\Delta_{2i})=2$, con lo que $d(1)=(2,\dots, 2)$ (alguna coordenada podría ser $-2$, pero podemos elegir orientaciones de modo que sea positivo), donde 1 representa a la célula $e^2$ y las coordenadas se toman con respecto a $e_i^1$. Como $d_2$ es inyectiva, $H_2(N_g)=0$. La imagen de $d_2$ es el subgrupo abeliano generado por $2(1,\dots, 1)$. Entonces $H_1(N_g)=\oplus_{1}^g\Z/\gene{(2,\dots, 2)}$. Para expresar este cociente de una forma más sencilla, hacemos un cambio de generadores, de modo que el $g$-ésimo generador lo sustituimos por $(1,\dots, 1)$. Con esto obtenemos que $H_1(N_g)\cong \Z^{g-1}\oplus\Z_2$.
 \end{ej}
 
 \begin{ej}[Espacio acíclico no contráctil]
@@ -738,17 +738,21 @@ Un espacio \emph{acíclico} es un espacio $X$ cumpliendo que $\widetilde{H}_*(X)
 \[
 0\to \Z\oplus\Z\xrightarrow{d_2}\Z\oplus\Z\xrightarrow{d_1}\Z\to 0
 \]
-Por conexión, $H_0(X)\cong\Z$, con lo que $d_1=0$. Por las reglas de pegado abelianizadas, $d_2(e^2_1)=5e^1_a-3e_b^1$ y $d_2(e^2_2)=-2e_a^1+e^1b$. Con esto obtenemos la matriz $\begin{vmatrix}
+Por conexión, $H_0(X)\cong\Z$, con lo que $d_1=0$. Por las reglas de pegado abelianizadas, $d_2(e^2_1)=5e^1_a-3e_b^1$ y $d_2(e^2_2)=-2e_a^1+e^1b$. Con esto obtenemos la matriz $\begin{pmatrix}
 5 & -2\\
 -3 & 1
-\end{vmatrix}$, que es de rango máximo porque su determinante es no nulo. Así que $d_2$ es isomorfismo sobre su imagen. De aquí obtenemos que $H_1(X)=0$. Por el mismo motivo $H_2(X)=0$. 
+\end{pmatrix}$, que es de rango máximo porque su determinante es no nulo. Así que $d_2$ es isomorfismo sobre su imagen. De aquí obtenemos que $H_1(X)=0$. Por el mismo motivo $H_2(X)=0$. 
 
-Para ver que este espacio no es contráctil vemos que su grupo fundamental no es trivial, el cual tiene presentación $\gene{a,b\mid a^5b^{-3}, b^3(ab)^{-2}}$, del cual existe un homomorfismo $\rho$ no nulo al grupo $G$ de simetrías rotacionales de un dodecaedro regular. COPIAR DEMOSTRACIÓN DE HATCHER EJEMPLO 2.38. 
+Para ver que este espacio no es contráctil vemos que su grupo fundamental no es trivial, el cual tiene presentación $\gene{a,b\mid a^5b^{-3}, b^3(ab)^{-2}}$, del cual existe un homomorfismo $\rho$ no nulo al grupo $G$ de simetrías rotacionales de un dodecaedro regular, enviando $a$ a la rotación $\rho_a$ de ángulo $\frac{2\pi}{5}$ sobre el eje que atraviesa el centro de una cara pentagonal, y $b$ a la rotación $\rho_b$ de ángulo $\frac{2\pi}{3}$ sobre el eje que pasa por un vértice de dicha cara. La composición $\rho_a\rho_b$ es una rotación de ángulo $\pi$ sobre el punto medio de una arista incidente en el vértice anterior. Por tanto, las relaciones $a^5=a^3=(ab)^2$ que definen $\pi_1(X)$ se convierten en $\rho_a^5=\rho_b^3=(\rho_a\rho_b)^2=1$ en $G$, lo cual quiere decir que hay un homomorfismo bien definido $\rho:\pi_1(X)\to G$ tal como lo hemos descrito. No es difícil probar que $G$ está generado por $\rho_a$ y $\rho_b$, por lo que $\rho$ es sobreyectivo. También se puede probar que el núcleo es $\Z_2$ generado por el elemento $a^5=b^3=(ab)^2$, y este $\Z_2$ es de hecho el centro de $\pi_1(X)$. En particular, $\pi_1(X)$ tiene orden 120 al tener $G$ orden 60.  
 \end{ej}
 
 
 \begin{ej}
-Sea $T^3=S^1\times S^1\times S^1$ con las identificaciones de la siguiente figura AÑADIR IZQUIERDA DE LA IMAGEN
+Sea $T^3=S^1\times S^1\times S^1$ con las identificaciones de la siguiente figura 
+
+\begin{figure}[h!]
+\includegraphics[scale=0.7]{izquierda}
+\end{figure}
 
 Como complejo celular hay una 3-célula, tres 2-células (contadas en el cociente, aunque en el dibujo parezcan 6), tres 1-células y una 1-célula. Ahora el complejo de cadenas es
 \[
@@ -758,9 +762,14 @@ De nuevo $H_0(T^3)=\Z$ y $d_1=0$. También tenemos que $d_2=0$ porque sobre cada
 \end{ej}
 
 \begin{ej}
-Sea $K\times S^1$ tal como muestra la figura PONER LA OTRA PARTE DE LA IAMGEN DE 2.39
+Sea $K\times S^1$ tal como muestra la figura 
 
-Obtenemos $d_1=0$ de forma análoga al ejemplo anterior. En el caso de $d_2$, como $B$ y $C$ son toros, $d_2(B)=d_2(C)=0$. En cambio, $d_2(A)=2b$ por la orientación. Vemos ahora que pasa con $d_3$. Sobre $B$ y $C$ ocurre lo mismo que en el ejemplo anterior. Para $A$ volvemos a fijar el homeomorfismo $L\to S^2_A$ de grado 1. Para conseguir $R\to S^2_A$ basta rotar $L$ con respecto a un eje horizontal, (ESTA ES LA CARA FRONTAL, COMPROBAR QUE HATCHER TAMBIÉN LO HACE ASÍ) que tien grado 1, con lo que el grado total es 2, así que $d_3=2C$. Tenemos entonces que $H_1(K\times S^1)=\Z_a\oplus \Z_b\oplus \Z_c/\gene{2b}\cong\Z\oplus\Z\oplus\Z/2\Z$ y $H_2(K\times S^1)=\Z_B\oplus\Z_C/\gene{2C}=\Z\oplus\Z/2\Z$. Por otra parte, $H_3(K\times S^1)=0$ porque $d_3$ es inyectivo.  
+\begin{figure}[h!]
+\includegraphics[scale=0.7]{derecha}
+\end{figure}
+
+
+Obtenemos $d_1=0$ de forma análoga al ejemplo anterior. En el caso de $d_2$, como $B$ y $C$ son toros, $d_2(B)=d_2(C)=0$. En cambio, $d_2(A)=2b$ por la orientación. Vemos ahora que pasa con $d_3$. Sobre $B$ y $C$ ocurre lo mismo que en el ejemplo anterior. Para $A$ volvemos a fijar el homeomorfismo $L\to S^2_A$ de grado 1. Para conseguir $R\to S^2_A$ basta rotar $L$ con respecto a un eje horizontal, que tien grado 1, con lo que el grado total es 2, así que $d_3=2C$. Tenemos entonces que $H_1(K\times S^1)=\Z_a\oplus \Z_b\oplus \Z_c/\gene{2b}\cong\Z\oplus\Z\oplus\Z/2\Z$ y $H_2(K\times S^1)=\Z_B\oplus\Z_C/\gene{2C}=\Z\oplus\Z/2\Z$. Por otra parte, $H_3(K\times S^1)=0$ porque $d_3$ es inyectivo.  
 \end{ej}
 
 \begin{ej}[Espacios de Moore]

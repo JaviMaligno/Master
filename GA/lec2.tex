@@ -464,25 +464,32 @@ Luego podemos introducir $\spec(A\otimes_C B)$ en el primer diagrama, haciendo q
 Vamos ahora al caso general. Denotamos $p:X\to S$ y $q:Y\to S$. Consideramos las ternas $(U,V,W)$ de abiertos afines $U\subseteq X, V\subseteq Y, W\subseteq S$, $p(U),Q(V)\subseteq W$. Siempre se pueden encontrar ternas de este tipo que recubran todos los espacios, pues podemos recubrir $S$ por abiertos $W_i$ y considerar $p^{-1}(W_i)$, que son abiertos de $X$ y se pueden recubrir con abiertos afines (y lo mismo para $Y$). En cada abierto afín tenemos definidos los coproductos, de modo que tenemos que ``pegarlos''. Demostración detallada en la pagina 16 de LAS NOTAS ESAS QUE TENGO QUE AÑADIR A LA BIBLIOGRAFÍA. 
 \end{dem}
 
-Sea $S$ un esquema y $x\in S$. Consideremos el anillo local $\OO_{S,x}$ con ideal maximal $\m_{S,x}$ que da lugar al cuerpo residual $\OO_{S,x}/\m_{S,x}=k(x)$. Podemos considerar $\spec(k(x))$, como hemos hecho en general con cualquier cuerpo. Vemos que además un morfismo $\spec(k(x))\to S$. Recordemos que$\spec(k(x))=(\{0\},k(x))$. Definimos $f(\{0\})=x$, que es claramente continua. Ahora tenemos que definir $\OO_S\to f_*k(x)$, o lo que es lo mismo, $f^{-1}\OO_S\to k(x)$. Como $f$ es una aplicación de un solo punto, $f^{-1}\OO_S$ es un anillo sobre un punto, así que es su fibra $(f^{-1}\OO_S)_{\{0\}}=\OO_{S,x}$. Y aquí tenemos un morfismo obvio $\OO_{S,x}\to k(x)$ dado por la proyección al cociente. 
+Sea $S$ un esquema y $x\in S$. Consideremos el anillo local $\OO_{S,x}$ con ideal maximal $\m_{S,x}$ que da lugar al cuerpo residual $\OO_{S,x}/\m_{S,x}=\K(x)$. Podemos considerar $\spec(\K(x))$, como hemos hecho en general con cualquier cuerpo. Vemos que además un morfismo $\spec(\K(x))\to S$. Recordemos que $\spec(\K(x))=(\{0\},\K(x))$. Definimos $f(\{0\})=x$, que es claramente continua. Ahora tenemos que definir $\OO_S\to f_*\K(x)$, o lo que es lo mismo, $f^{-1}\OO_S\to \K(x)$. Como $f$ es una aplicación de un solo punto, $f^{-1}\OO_S$ es un anillo sobre un punto, así que es su fibra $(f^{-1}\OO_S)_{\{0\}}=\OO_{S,x}$. Y aquí tenemos un morfismo obvio $\OO_{S,x}\to \K(x)$ dado por la proyección al cociente. 
 
 \begin{ej}
-En la categoría de conjuntos, el producto fibrado $X\times_{S} Y=\{(x,y)\in X\times Y\mid \alpha(x)=\beta(y)\}$. Esto se puede ver, porque si consideramos el producto $X\times Y$, sabemos que para cada $Z$ existe un único $h:Z\to X\times Y$. Llamamos $h(z)=(f(z),g(z))=(x,y)$. Entonces, para que esta aplicación verifique el diagrama del producto fibrado tendríamos que $\alpha(x)=\alpha(f(z))=\beta(g(z))=\beta(y)$. AÑADIR ALGUNOS DIAGRAMAS Y ESCRIBIR ALPHA Y BETA.
+En la categoría de conjuntos, el producto fibrado $X\times_{S} Y=\{(x,y)\in X\times Y\mid \alpha(x)=\beta(y)\}$, donde $\alpha:X\to S$ y $\beta:Y\to S$. Esto se puede ver, porque si consideramos el producto $X\times Y$, sabemos que para cada $Z$ existe un único $h:Z\to X\times Y$. Llamamos $h(z)=(f(z),g(z))=(x,y)$. Entonces, para que esta aplicación verifique el diagrama del producto fibrado tendríamos que $\alpha(x)=\alpha(f(z))=\beta(g(z))=\beta(y)$. 
+\[
+\begin{tikzcd}
+Z\arrow[dr, dashed, "h"]\arrow[drr, bend left=10, "f"]\arrow[ddr, bend right=10, "g"'] & &\\ 
+& X\times Y\arrow[r]\arrow[d] & X\arrow[d, "\alpha"]\\
+& Y\arrow[r, "\beta"'] & S
+\end{tikzcd}
+\]
 \end{ej}
 
 \begin{ej}
-Sea $k$ un cuerpo que vamos a suponer algebraicamente cerrado aunque no sería estrictamente necesario y pensamos en una parábola $x=y^2$. Llamamos $X=\spec(k[x,y]/\gene{x-y^2})$. Sea $S=\spec(k[x])=\A_k^1$. Vamos a dar un morfismo $X\to S$. Para ello basta dar un morfismo de anillos, $k[x]\to k[x,y]/\gene{x-y^2}$, que será la inclusión. Lo que vamos a hacer ahora es general. Si tomamos $y\in S$ da lugar a $k(y)=\OO_{S,y}/\m_y$ y tenemos $\spec(k(y))\to S$ enviando el único punto del espacio a $y$, y en los haces se corresponde con la proyección $\OO_{S,y}\to k(y)$. Con esto obtenemos una familia de esquemas al variar $y$, que es justamente $X_y=\spec(k(y))\times_S X$, llamada fibra de $S$ sobre el punto $y$, de donde obtenemos el cuadrado cartesiano (diagrama de producto fibrado, a veces denotado con un cuadrado en medio)
+Sea $k$ un cuerpo que vamos a suponer algebraicamente cerrado aunque no sería estrictamente necesario y pensamos en una parábola $x=y^2$. Llamamos $X=\spec(k[x,y]/\gene{x-y^2})$. Sea $S=\spec(k[x])=\A_k^1$. Vamos a dar un morfismo $X\to S$. Para ello basta dar un morfismo de anillos, $k[x]\to k[x,y]/\gene{x-y^2}$, que será la inclusión. Lo que vamos a hacer ahora es general. Si tomamos $y\in S$ da lugar a $\K(y)=\OO_{S,y}/\m_y$ y tenemos $\spec(\K(y))\to S$ enviando el único punto del espacio a $y$, y en los haces se corresponde con la proyección $\OO_{S,y}\to \K(y)$. Con esto obtenemos una familia de esquemas al variar $y$, que es justamente $X_y=\spec(\K(y))\times_S X$, llamada fibra de $S$ sobre el punto $y$, de donde obtenemos el cuadrado cartesiano (diagrama de producto fibrado, a veces denotado con un cuadrado en medio)
 \[
 \begin{tikzcd}
 X_y\arrow[r]\arrow[d] & X\arrow[d]\\
-\spec(k(y))\arrow[r] & S
+\spec(\K(y))\arrow[r] & S
 \end{tikzcd}
 \]
-Volvamos al ejemplo concreto. Distinguimos dos casos de $y\in S$: que sea $y=\{0\}$ el punto genérico o que sea $y$ un punto cerrado si y solo si es ideal maximal. Esto último quiere decir que $y=\gene{x-\alpha}$, $\alpha\in k$. Veamos quien es la fibra. Tenemmos que $k(y)=k[x]_y/\m_y$, que en el caso de que $y$ sea un punto cerrado $k(y)=k[x]_y/\gene{x-\alpha}=k[x]/\gene{x-\alpha}=k$. Con esto hemos obtenido que $\spec(k(y))=\spec(k)$. Esto nos permite construir un diagrama
+Volvamos al ejemplo concreto. Distinguimos dos casos de $y\in S$: que sea $y=\{0\}$ el punto genérico o que sea $y$ un punto cerrado si y solo si es ideal maximal. Esto último quiere decir que $y=\gene{x-\alpha}$, $\alpha\in k$. Veamos quien es la fibra. Tenemmos que $\K(y)=k[x]_y/\m_y$, que en el caso de que $y$ sea un punto cerrado $\K(y)=k[x]_y/\gene{x-\alpha}=k[x]/\gene{x-\alpha}=k$. Con esto hemos obtenido que $\spec(\K(y))=\spec(k)$. Esto nos permite construir un diagrama
 \[
 \begin{tikzcd}
 X=\spec(k[x,y]/\gene{x-y^2})\arrow[d] & X_y\arrow[d]\arrow[l]\\
-S\spec(k[x])& \spec(k(y))=\spec(k)
+S=\spec(k[x])& \spec(\K(y))=\spec(k)\arrow[l]
 \end{tikzcd}
 \]
 
@@ -502,7 +509,7 @@ Si $\alpha=0$ el razonamiento es análogo hasta obtener $X_y=\spec(k[y]/\gene{y^
 
 El caso de característica 2 es más complicado. Aquí $y^2-\alpha=(y-\sqrt{\alpha})^2$, con lo que tendríamos toda una recta de puntos dobles, aunque estos puntos tienen una diferencia con el punto doble del caso anterior, solo que para estudiarlos necesitaremos los invariantes difereniales.
 
-Ya solo nos falta estudiar el caso de que $y=\{0\}$. Ahora $k(y)=k[x]_{(0)}=K(x)$ (cuerpo de fracciones). Tendríamos la inclusión $k[x]\hookrightarrow K(X)$ y en el resto del diagrama bastaría sustituir los corchetes de $x$ por paréntesis, con lo que $X_y=\spec(K(x)[y]/\gene{x-y^2})$. Como $x$ no tiene raíces en $K(x)$, $\gene{x-y^2}$ es irreducible en $K(x)[y]$ visto como anillo de polinomios en una variable. Este cociente es entonces un cuerpo por ser cociente de un DIP por un irreducible. La fibra entonces sería un único punto. Si consideramos $K(x)[y]/\gene{x-y^2}$ como extensión de $K(x)$ el grado es 2, esto se traduce geométricamente, entre otras cosas, en que el la mayoría de los puntos (genéricamente) los puntos se transforman en 2, que serían las raíces cuadradas.
+Ya solo nos falta estudiar el caso de que $y=\{0\}$. Ahora $\K(y)=k[x]_{(0)}=k(x)$ (cuerpo de fracciones). Tendríamos la inclusión $k[x]\hookrightarrow k(x)$ y en el resto del diagrama bastaría sustituir los corchetes de $x$ por paréntesis, con lo que $X_y=\spec(k(x)[y]/\gene{x-y^2})$. Como $x$ no tiene raíces en $k(x)$, $\gene{x-y^2}$ es irreducible en $k(x)[y]$ visto como anillo de polinomios en una variable. Este cociente es entonces un cuerpo por ser cociente de un DIP por un irreducible. La fibra entonces sería un único punto. Si consideramos $k(x)[y]/\gene{x-y^2}$ como extensión de $k(x)$ el grado es 2, esto se traduce geométricamente, entre otras cosas, en que el la mayoría de los puntos (genéricamente) los puntos se transforman en 2, que serían las raíces cuadradas.
 \end{ej}
 
 \begin{ej}
