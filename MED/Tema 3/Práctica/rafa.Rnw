@@ -110,7 +110,7 @@ gl.G = Yobj.rl2$df.null - Yobj.rl2$df.residual;
 pvalor = 1- pchisq(Estad.G,gl.G)
 pvalor 
 @
-Que el $p$-valor sea $0$ nos indica que de manera significativa alguno de los valores $\beta_i \neq 0$. Por tanto, el modelo es válido. Sin embargo, puede ser necesario hacer un an\'alisis para corregir los defectos que pueda tener.
+Que el $p$-valor sea $0$ nos indica que de manera significativa alguno de los valores $\beta_i \neq 0$. Por tanto, el modelo es v\'alido. Sin embargo, puede ser necesario hacer un an\'alisis para corregir los defectos que pueda tener.
 \item[c)] Interpretar los resultados obtenidos en los contrastes individuales de los coeficientes. ?`Qu\'e modelo final propondr\'ias?
 \\
 Veamos un sumario del modelo donde podemos ver los constrastes individuales. En funci\'on de los $p$-valores asociados a cada variable decidiremos cu\'ales de ellas pueden ser excluidas del modelo.
@@ -177,7 +177,7 @@ El primer paso es construir el modelo.
 modelo = glm(admit~gre + gpa + rank,data=datos,family=binomial)
 summary(modelo)
 @
-Observamos que al trabajar con factores ordenados en la variable $rank$, se nos presenta un efecto lineal, cuadrático y cúbico en la relación de los distintos valores del factor. En este caso, observamos que la relación es mayormente lineal. Con los atributos del modelo podemos construir el contraste fundamental para evaluar la adecuaci\'on del modelo.
+Observamos que al trabajar con factores ordenados en la variable $rank$, se nos presenta un efecto lineal, cuadr\'atico y c\'ubico en la relaci\'on de los distintos valores del factor. En este caso, observamos que la relaci\'on es mayormente lineal. Con los atributos del modelo podemos construir el contraste fundamental para evaluar la adecuaci\'on del modelo.
 <<>>=
 Estad.G = modelo$null.deviance - modelo$deviance
 gl.G = modelo$df.null - modelo$df.residual;
@@ -200,9 +200,9 @@ t=cbind(exp(modelo$coefficients), exp(confint(modelo)))
 colnames(t)=c("Odds ratio", "Lim Inf (2.5%)","Lim Sup (97.5%)")
 t
 @
-La interpretación de las odd ratio es la siguiente. Sabemos que si es mayor que $1$, entonces un aumento en la variable debe conllevar aparejado un aumento en nuestra variable predictora o, en este caso, en la probabildiad de que un alumno sea admitido. Si es menor que $1$ entonces ocurre la situación opuesta. 
+La interpretaci\'on de las odd ratio es la siguiente. Sabemos que si es mayor que $1$, entonces un aumento en la variable debe conllevar aparejado un aumento en nuestra variable predictora o, en este caso, en la probabildiad de que un alumno sea admitido. Si es menor que $1$ entonces ocurre la situaci\'on opuesta. 
 
-En nuestro caso particular tenemos que la variable GRE apenas tienen asociación. La variable GPA está más intensamente relacionada, pues un aumento en una unidad de GPA suponiendo el resto constante se traduce en un aumento de la odd ratio en $2.23$. 
+En nuestro caso particular tenemos que la variable GRE apenas tienen asociaci\'on. La variable GPA est\'a m\'as intensamente relacionada, pues un aumento en una unidad de GPA suponiendo el resto constante se traduce en un aumento de la odd ratio en $2.23$. 
 \end{itemize}
 \end{ejercicio}
 \end{document}

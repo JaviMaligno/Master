@@ -1,0 +1,111 @@
+---
+title: "Regresión con regularización"
+author: "Rafael González López"
+date: "11 de diciembre de 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(kableExtra)
+library(dplyr)
+library(usdm)
+```
+
+
+## Carga, análisis y limpieza de datos
+
+Comenzamos nuestra trabajo para la asignatura de Modelado y Predicción Estadística cargando el fichero de datos `dataworkMASTER.csv`. Dado que mi DNI termina en 8124, eliminamos las variables (por ejemplo), $14,18,21$ y $34$. Además, aunque la función `glmnet` estandariza los datos, no ocurre así con la función `lm`, luego los estandarizamos
+
+```{r cars}
+datos = read.csv("dataworkMASTER.csv",sep=";",header=TRUE) # read csv file
+datos=datos[,-1] # Eliminación de la variable código Cod_Id
+elim = c(14,18,21,34)
+datos=datos[,-elim]
+datos[,2:37] = scale(datos[,2:37])
+```
+
+## Obtener el modelo de regresión múltiple de la variable varobj frente al resto de variables. Analizr el problema de la multicolinealidad.
+
+Construimos el modelo clásco de una variable frente al resto
+```{r pressure}
+modelo1 <- lm(varobj ~ ., datos)
+summary(modelo1)
+plot(modelo1)
+```
+
+Observamos que existen numerosas variables para los que el contraste individual es significativo. Esto se refleja en el siguiente análisis, donde se muestra una fuerte multicolinealidad. A continuación utilizamos algunas medidas para la comprobación. En primer lugar, el determinante de la matriz de correlación. El hecho de que este sea prácticamente nulo nos indica un posible problema de multicolinealidad.
+
+```{r}
+det(cor(datos))
+```
+```{r}
+vif(datos[,-1]) %>%
+  arrange(desc(VIF)) %>%
+  head(n=10) %>%
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),full_width = F)
+```
+
+En segundo lugar, calculamos el factor inflactor de la varianza. El coeficiente VIF de una variable predictora es funcion del cuadrado del coeficiente de correlación múltiple respecto del resto de predictoras. Así, si VIF es alto (superior a 10) se dice que hay multicolinealidad. En nuestro caso particular, hemos calculado el VIF de las variables y las hemos ordenado de forma decreciente. Presentamos las 10 primeras filas de la tabla, donde se observa que al menos tres variables tienen un VIF superior a 10.
+
+Además, podemos dar una medida más para el objeto `modelo1`. La función `vcov` devuelve la matriz de varianzas covarianzas para un `fitted model object`. En este caso, se advierte al igual que en el resto de medidas la presencia de multicolinealidad.
+
+```{r}
+det(vcov(modelo1))
+```
+
+## Aplicar la técnica de regularización elasticnet a través de la librería `glmnet`, así como regularización LASSO y RIDGE.
+
+En primer lugar, tenemos que cambiar la estructura de los datos. Actualmente tienen formato `dataframe`y para el uso de la librería deben estar en formato de matriz.
+```{r, message = F}
+library(glmnet)
+mx=as.matrix(datos[,2:37])
+my=as.matrix(datos[,1])
+```
+Pasamos a construir los modelos. Utilizamos la función `cv.glmnet` para encontrar el mejor valor de lambda en cada caso usando validación cruzada.
+```{r}
+lambda0 = cv.glmnet(mx,my,alpha=0)
+modLASSO = glmnet(x=mx,y=my,alpha=0,lambda=lambda0$lambda.1se)
+summary(modLASSO)
+plot(lambda0)
+```
+```{r}
+lambda1 = cv.glmnet(mx,my,alpha=1)
+modRIDGE = glmnet(x=mx,y=my,alpha=1,lambda=lambda1$lambda.1se)
+summary(modRIDGE)
+plot(lambda1)
+```
+```{r}
+lambda12 = cv.glmnet(mx,my,alpha=1/2)
+modelastic = glmnet(x=mx,y=my,alpha=1/2,lambda=lambda12$lambda.1se)
+summary(modelastic)
+plot(lambda12)
+```
+
+## Realizar un análisis comparativo entre los cuatro modelos obtenidos
+
+Calculamos el MSE para los cuatro modelos y los presentamos en formato tabla.
+
+```{r}
+mse1 = mean((datos[,1]-predict(modelo1))^2)
+mse2 = mean((datos[,1]-predict(modLASSO,newx=mx))^2)
+mse3 = mean((datos[,1]-predict(modRIDGE,newx=mx))^2)
+mse4 = mean((datos[,1]-predict(modelastic,newx=mx))^2)
+```
+```{r}
+
+data.frame(MSE = c(mse1,mse2,mse3,mse4),row.names = c("General","LASSO","RIDGE","Elastic")) %>%
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),full_width = F)
+```
+
+
+
+
+
+
+
+
+
