@@ -382,100 +382,62 @@ P[N(t+s)=j\mid N(s)=i] &= \frac{P[N(t+s)=j,  N(s)=i]}{P[N(s)=i]}\\
 \newpage
 
 \begin{ejercicio}{11}
-Probar que la variable $X_{t}$ es un proceso de Poisson no homogéneo de parámetro $\lambda(t)$ tiene una distribución de parámetro $\Lambda(t)$, donde
-	$$ \Lambda(t) = \int_{0}^{t} \lambda(s) ds$$	
+Probar que Ppra un proceso de Poisson no homogéneo, la variable incremento $X_{t+s}-X_{s}$ tiene una distribución de Poisson de parámetro $$\Lambda(t+s)-\Lambda(s)$$	
 \end{ejercicio}
 \begin{solucion}
-Sea $p_{n}(t) = P(X_{t} = n ) $ y sea $h>0$. Denotemos por $p_{n} (t,t+h] =P(X_{t+h}-X_{t}=n)$. Por independencia para $ t \geq 0$ y $h$ decreciente a 0
+Sea $p_{n}(s,t) = P(X_{t}-X_s = n ) $ para $n\geq 0$ y $t\geq s$. Sea $h\geq 0$.  Por independencia para $ t \geq 0$ y $h$ decreciente a 0
 \begin{align*}
-p_{0}(t+h)&= p_{0}(t) p_{0}(t,t+h]\\
-& = p_{0}(t)[1- \lambda(t)h +o(h)]\\
-p_0(t+h)-p_0(t) &= -\lambda(t)h + o(h)
+p_{0}(s,s+t+h)&= P[X_{s+t+h}-X_s = 0]\\
+& P[X_{s+t}-X_s = 0]P[X_{s+t+h}-X_{s+t}=0]\\
+& = p_{0}(s,s+t)[1- \lambda(s+t)h +o(h)]\\
+p_{0}(s,s+t+h)-p_0(s,s+t) &= p_{0}(s,s+t)[-\lambda(t)h + o(h)]
 \end{align*}
-Si dividimos por $h$ y hacemos $h\to 0$, se obtiene que $p_{0}'(t) = -\lambda(t)p_{0}(t)$, cuya solución es $p_{0}(t)=e^{-\Lambda(t)}$ con la condición inicial de que $p_0(0)=1$. Calculemos ahora $p_{n}(t)$ para $n \geq 1$. Por independencia, para $t \geq 0$
+Si dividimos por $h$ y hacemos $h\to 0$, se obtiene que $p_{0}'(s,s+t) = -\lambda(t+s)p_{0}(s,s+t)$, cuya solución es $p_{0}(s,s+t)=e^{-(\Lambda(s+t)-\Lambda(s))}$ con la condición inicial de que $p_0(s,s)=1$. Calculemos ahora $p_{n}(s,s+t)$ para $n \geq 1$. Por independencia, para $t \geq 0$
 \begin{align*}
-p_n(t+h)&=P[X_{t+h}=n]\\
-&=\sum_{i=0}^n p_i(t)p_{n-i}(t,t+h]\\
-&= p_n(t)p_0(t,t+h] + p_{n-1}(t)p_1(t,t+h]+o(h)\\
-&= p_{n}(t) [1- \lambda(t)h +o(h)] + p_{n-1}(t)[\lambda(t)h+o(h)] \\
-p_n(t+h) - p_n(t) &= p_n(t)[-\lambda(t)h+o(h)]+p_{n-1}(t)[\lambda(t)h+o(h)]\\
-p_n'(t)&=\lambda(t)(p_n(t)+p_{n-1}(t))
+p_n(s,s+t+h)&=P[X_{s+t+h}-X_s=n]\\
+&=\sum_{i=0}^n p_i(s,s+t)p_{n-i}(s+t,s+t+h)\\
+&= p_n(s,s+t)p_0(s+t,s+t+h) + p_{n-1}(s,s+t)p_1(s+t,s+t+h)+o(h)\\
+&= p_{n}(t) [1- \lambda(s+t)h +o(h)] + p_{n-1}(t)[\lambda(s+t)h+o(h)] + o(h)\\
+p_n(s,s+t+h) - p_n(s,s+t) &= -p_n(s,s+t)\lambda(s+t)h+p_{n-1}(s,s+t)\lambda(t)h + o(h)\\
+p_n'(s,s+t)&=\lambda(s+t)(-p_n(s,s+t)+p_{n-1}(s+t))
 \end{align*}
 Ahora bien, manipulando algebraicamente la ecuación anterior, podemos escribir
 $$
-\frac{d}{dt}\left(e^{\Lambda(t)}p_n(t)\right) = \lambda(t)e^{\Lambda(t)}p_{n-1}(t)
+\frac{d}{dt}\left(e^{\Lambda(s+t)}p_n(s,s+t)\right) = \lambda(s+t)e^{\Lambda(s+t)}p_{n-1}(s,s+t)
 $$
 A continuación vamos a probar el resultado por inducción. Para $n=0$ lo hemos visto antes. Nuestra hipótesis de inducción es que
 $$
-p_n(t)=e^{-\Lambda(t)}\frac{\Lambda(t)^n}{n!}
+p_n(s+t)=e^{-(\Lambda(s+t)-\Lambda(s))}\frac{(\Lambda(s+t)-\Lambda(s))^n}{n!}
 $$
 Por tanto
 \begin{align*}
-\frac{d}{dt}\left(e^{\Lambda(t)}p_{n+1}(t)\right) &= \lambda(t)e^{\Lambda(t)}p_{n}(t)\\
-&= \lambda(t)e^{\Lambda(t)}e^{-\Lambda(t)}\frac{\Lambda(t)^n}{n!}\\
-&=\lambda(t)\frac{\Lambda(t)^n}{n!}\\
-e^{\Lambda(t)}p_{n+1}(t) &= \frac{\Lambda(t)^{n+1}}{(n+1)!}\\
-p_{n+1}(t)&=e^{-\Lambda(t)}\frac{\Lambda(t)^{n+1}}{(n+1)!}
+\frac{d}{dt}\left(e^{\Lambda(s+t)}p_{n+1}(s,s+t)\right) &= \lambda(s+t)e^{\Lambda(s+t)}p_{n}(s,s+t)\\
+&= \lambda(s+t)e^{\Lambda(s+t)}e^{-(\Lambda(s+t)-\Lambda(s))}\frac{(\Lambda(s+t)-\Lambda(s))^n}{n!}\\
+\frac{d}{dt}\left(e^{\Lambda(s+t)-\Lambda(s)}p_{n+1}(s,s+t)\right) &= \lambda(s+t)\frac{(\Lambda(s+t)-\Lambda(s))^n}{n!}\\
+e^{\Lambda(s+t)-\Lambda(s)}p_{n+1}(s,s+t) &= C + \frac{(\Lambda(s+t)-\Lambda(s))^{n+1}}{(n+1)!}
 \end{align*}
+Tomando $t=0$ es claro que $C=0$. Por tanto, despejando obtenemos
+$$
+p_{n+1}(s,s+t) = e^{-(\Lambda(s+t)-\Lambda(s))} \frac{(\Lambda(s+t)-\Lambda(s))^{n+1}}{(n+1)!}
+$$
 \end{solucion}
 \newpage
 
 
 \begin{ejercicio}{12}
-Probar que el proceso de Poisson compuesto cumple las siguientes propiedades:
-	\begin{enumerate}
-		\item Tiene incrementos independientes y estacionarios.
-		
-		\item $E(X_{t}) = \lambda t E(Y)$
-		
-		\item $Var(X_{t}) = \lambda t E(Y^{2})$
-		
-		\item $cov(X_t, X_s) = \lambda E(Y^{2}) min\{s,t\}$
-		
-		\item $m_{X_{t}} (u) = exp[\lambda (t) (M_{Y} (u) -1)]$
-	\end{enumerate}
+Sea un proceso de Poisson no homogéneo $\{X_{t} \}$ de parámetro $\lambda(t)$. Probar que el proceso $\{X_{\Lambda^{-1}}\}_{ t \geq 0}$  es un proceso de Poisson homogéneo de parámetro $1$ si $\Lambda(t)$ es estrictamente creciente.
 \end{ejercicio}
+Vamos a probarlo usando la definición de proceso de Poisson. Denotemos $Y_t = X_{\Lambda^{-1}(t)}$.
+\begin{itemize}
+\item En primer lugar, sabemos que $\Lambda(0)=0$, por tanto $\inf\{u\geq 0 \mid \Lambda(u) \geq 0\} = 0$. En particular, 
+$$
+Y_0 = X_{\Lambda^{-1}(0)} = X_0 = 0
+$$
+Por ser $\{X_t\}$ proceso de Poisson.
+\end{itemize} 
 
 \begin{solucion}
-Veamos las demostraciones.
-\begin{enumerate}
-\item Para probar los incrementos independientes sabemos que basta considerar el caso $t_1<t_2\leq t_3 <t_4$. Tenemos que
-$$
-X_{t_2}-X_{t_1} = \sum_{i=N(t_1)+1}^{N(t_2)} Y_i \qquad X_{t_4}-X_{t_3} = \sum_{i=N(t_3)+1}^{N(t_4)} Y_i
-$$
-El número de sumandos se distribuye según $N(t_2)-N(t_1) \sim N(t_2-t_1)$ y $N(t_4)-N(t_3)$. La propiedad de incrementos independientes del proceso de Poisson asegura que estas variables son independientes. Dado que las variables $Y_i$ son independientes entre sí, se tiene el resultado.
-\item Aplicando la Ley de la Probabilidad total
-\begin{align*}
-E[X_t] &= E_{N_t}\left[E\left[ X_t \mid N_t = n\right]\right] \\
-&=E_{N_t}\left[E\left[\sum_{i=0}^{N_t} Y_i \mid N_t = n\right]\right]\\
-&=E[N_T]E[Y]\\
-&=\lambda tE[Y]
-\end{align*}		
-\item Utilizamos la Ley de la Varianza Total
-\begin{align*}
-Var(X_t) &= E[Var(X_t\mid N_t)]+V(E[X_t\mid N_t)]\\
-&=E[N(t)Var(Y)]+Var(N(t)E[Y])\\
-&=\lambda t Var(Y)+ E[Y]^2 \lambda t\\
-&=\lambda t E[Y^2]
-\end{align*}
-\item Sea $m=\min\{s,t\}$.
-\begin{align*}
-cov(X_t,X_s)&=cov\left(\sum_{i=0}^{N(t)} Y_i,\sum_{i=0}^{N(s)} Y_i\right)\\
-&= Var\left(\sum_{i=1}^{N(m)} Y_i\right)\\
-&=\lambda m E[Y^2] 
-\end{align*}
-\item La función generatriz de momentos
-\begin{align*}
-E[e^{sX_t}] &=\sum_i e^{si}P[X_t = i]\\
-&=\sum_i e^{si}\sum_{n=0}^\infty P[X_t = i\mid N_t =n ] P[N_t = n]\\
-&=\sum_{n=0} P[N_t=n]\sum_i  e^{si} P[Y_1+ \dotsc Y_n = i ]\\
-&=\sum_{n=0} P[N_t=n] M_Y(s)^n\\
-&= \sum_{n=0} P[N_t=n]e^{n\log(M_Y(s))} \\
-&= M_{N_t}(\log(M_Y(s)))\\
-&=e^{\lambda(M_Y(s)-1)}
-\end{align*}
 
-\end{enumerate}
 \end{solucion}
 
 \end{document}

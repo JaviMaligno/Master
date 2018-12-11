@@ -214,7 +214,7 @@ P(X_{t+h} - X_{t} \geq 2) &= o(h)
 \begin{align*}
 p_{0}(t+h)&= p_{0}(t) p_{0}(t,t+h]\\
 & = p_{0}(t)[1- \lambda(t)h +o(h)]\\
-p_0(t+h)-p_0(t) &= -\lambda(t)h + o(h)
+p_0(t+h)-p_0(t) &= p_{0}(t)[-\lambda(t)h + o(h)]
 \end{align*}
 Si dividimos por $h$ y hacemos $h\to 0$, se obtiene que $p_{0}'(t) = -\lambda(t)p_{0}(t)$, cuya solución es $p_{0}(t)=e^{-\Lambda(t)}$ con la condición inicial de que $p_0(0)=1$. Calculemos ahora $p_{n}(t)$ para $n \geq 1$. Por independencia, para $t \geq 0$
 \begin{align*}
@@ -223,7 +223,7 @@ p_n(t+h)&=P[X_{t+h}=n]\\
 &= p_n(t)p_0(t,t+h] + p_{n-1}(t)p_1(t,t+h]+o(h)\\
 &= p_{n}(t) [1- \lambda(t)h +o(h)] + p_{n-1}(t)[\lambda(t)h+o(h)] \\
 p_n(t+h) - p_n(t) &= p_n(t)[-\lambda(t)h+o(h)]+p_{n-1}(t)[\lambda(t)h+o(h)]\\
-p_n'(t)&=\lambda(t)(p_n(t)+p_{n-1}(t))
+p_n'(t)&=\lambda(t)(-p_n(t)+p_{n-1}(t))
 \end{align*}
 Ahora bien, manipulando algebraicamente la ecuación anterior, podemos escribir
 $$
@@ -252,11 +252,11 @@ e^{\Lambda(t)}p_{n+1}(t) &= \frac{\Lambda(t)^{n+1}}{(n+1)!}
 \item Si $\Lambda(t)$ es continua, entonces es derivable y $\Lambda'(t)=\lambda(t)$ y a la función $\Lambda(t)$ se le llama \textit{función de intensidad}.
 \item Si $\Lambda(t)$ es un proceso estocástico entonces se dice que el proceso de Poisson no homogéneo es de \textit{Cox}.
 \item Se define
-	$$ \Lambda^{-1}(t) = inf \{ u \geq 0: \Lambda(u) \geq t \}$$ 
+	$$ \Lambda^{-1}(t) = \inf \{ u \geq 0: \Lambda(u) \geq t \}$$ 
 \end{itemize}
 \end{nota}
 \begin{prop}
-	Sea un proceso de Poisson no homogéneo $\{X_{t} \}$ de parámetro $\lambda(t)$. Entonces el proceso $\{X_{\Lambda^{-1}}\}_{ t \geq 0}$  es un proceso de Poisson homogéneo de parámetro $1$ si $\Lambda(t)$ es estrictamente creciente.
+	Sea un proceso de Poisson no homogéneo $\{X_{t} \}$ de parámetro $\lambda(t)$. Entonces el proceso $\{X_{\Lambda^{-1}(t)}\}_{ t \geq 0}$  es un proceso de Poisson homogéneo de parámetro $1$ si $\Lambda(t)$ es estrictamente creciente.
 \end{prop}
 
 
@@ -326,6 +326,4 @@ E[e^{sX_t}] &=\sum_i e^{si}P[X_t = i]\\
 \end{enumerate}
 \end{dem}
 
-
-\section{Algunos Procesos de Poisson Generalizados}
 \end{document}
