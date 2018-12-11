@@ -1,0 +1,257 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usetheme{Berlin}
+\usepackage[spanish]{babel}
+\usepackage{multirow}
+%\usepackage{estilo-apuntes}
+\usepackage[]{graphicx}
+\usepackage{svg}
+\usepackage{multicol}
+\theoremstyle{definition}
+
+\newtheorem{teorema}{Teorema}
+\newtheorem{defi}{Definición}
+\newtheorem{prop}{Proposición}
+\newtheorem{coro}{Corolario}
+\newtheorem{ejem}{Ejemplo}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+
+\providecommand{\conv}[1]{\overset{#1}{\longrightarrow}}
+\providecommand{\convcs}{\xrightarrow{CS}}
+\providecommand{\gene}[1]{\langle{#1}\rangle}
+\providecommand{\posi}[1]{\left[#1\right]^+}
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+\setbeamercolor{footline}{fg=black}
+\setbeamerfont{footline}{series=\bfseries}
+
+%-----------------------------------------------------------
+
+\title{Modelado y Predicción Estadística\\
+Estimación núcleo de la curva de \\regresión mediante k-NN}
+\author{Rafael González López 
+}
+
+\institute{
+Universidad de Sevilla}
+\date{}
+ 
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Tabla de contenidos}
+\tableofcontents
+\end{frame}
+
+\section{Introducción}
+
+\begin{frame}
+\frametitle{Introducción}
+\begin{itemize}
+\item Sea $(X,Y)$ un vector aleatorio continuo con función de densidad $f(x,y)$ y sea $f_X(x)$ la fdd marginal de $X$. Sabemos que el mejor predictor de $Y$ conocido $X$, en sentido de mínimos cuadrados, es la curva de regresión
+$$
+m(x)=E[Y\mid X=x]
+$$
+\item \textbf{Objetivo}. Estimar la curva de regresión a partir de una muestra aleatoria.
+\item \textbf{Enfoque}. Utilizaremos el método no paramétrico conocido como $k$-\textit{nearest neighbour} o $k$-vecino más cercano.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Diferencias con el estimador núcleo}
+\begin{itemize}
+\item El estimador núcleo estaba definido como la media ponderada de los valores de la variable $Y$. Estas ponderaciones son dependientes del valor del parámetro ventana $h$ y naturalmente de la variable predictora $X$.
+\item El estimador k-NN también es una media ponderada de los valores de $Y$. En este caso, la ponderación depende de ciertos conjuntos denominados entorno (\textit{neighborhood}). 
+\item Estos a su vez están definidos mediante los $k$-vecinos más cercanos usando la distancia euclídea.
+\end{itemize}
+\end{frame}
+\begin{frame}
+\frametitle{k-NN}
+\begin{defi}
+Sea $k$ un entero positivo. Sea $X_1,\dotsc,X_n$ y sea $x$. Diremos que $X_{i_1},\dotsc,X_{i_k}$ son los $k$-vecinos más cercanos a $x$ si son los más próximos, en el sentido dado por la distancia euclídea, a $x$ entre los $X_1,\dotsc,X_n$.
+\end{defi}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ejemplo}
+\begin{ejem}
+Sea $\{X_i\}_{i=1}^6 = \{2,4,5,5.5,7,8\}$, $x=4$ y $k=3$. En ese caso los $3$-vecinos más cercanos son
+$$
+\{2,4,5\}
+$$
+y la menor distancia de $x$ al conjunto es $1$.
+\end{ejem}
+\end{frame}
+
+\section{Estimador k-NN}
+\begin{frame}
+\frametitle{Un posible estimador}
+Sea una muestra aleatoria de tamaño $n$ para el vector aleatorio $(X,Y)$ y sea $k$ entero positivo. El estimador que proponemos para la curva de regresión $m(x)$ es
+$$
+\hat{m}(x)=\frac{1}{n}\sum_{i=1}^n W_{k,i}(x)Y_i
+$$
+donde 
+$$
+W_{k,i}(x) = \begin{cases}
+\frac{n}{k} & \text{si $X_i$ es uno de los k-NN de $x$}\\
+0 & \text{caso contrario}
+\end{cases}
+$$
+\end{frame}
+
+\begin{frame}
+\frametitle{Acerca del estimador}
+\begin{itemize}
+\item El parámetro $k$ actúa regulando la suavidad del estimador. Por tanto, cumple un papel análogo al parámetro ventana del estimador núcleo.
+\item Si pensásemos en un caso donde $n$ sea fijo y $k$ sea mayor que $n$, entonces simplemente tendremos la suma de las variables respuestas divida por $k$.
+\item En general, para evitar ruido el parámetro de suavidad $k$ se elige como función de $n$ o incluso en función de los datos. Además, con el fin de reducir el sesgo, suele tomarse $k$ como función de $n$ de manera que $k_n/n\to 0$.
+\item En general, no podremos alcanzar simultáneamente ambos objetivos.
+\end{itemize}
+\end{frame}
+\begin{frame}
+\frametitle{Alternativas dentro del k-NN}
+Stone sugirió utilizar otros pesos de manera alternativa a los $W_{i,k}$, a saber
+$$
+W_{i,R}(x)=\frac{1}{\hat{f}(x)}K\left(\frac{x-X_i}{R_n(x)}\right)
+$$
+
+donde $R_n(x)$ es la distancia euclídea entre $x$ y el $k$-ésimo vecino más cercano suyo entre los $X_i$, $K(\cdot)$ es una función núcleo y $\hat{f}(x)$ 
+$$
+\hat{f}(x) = \frac{1}{nR_n(x)}\sum_{i=1}^n K\left(\frac{x-X_i}{R_n(x)}\right)
+$$
+es un estimador de la función de densidad basado en el k-NN, cuyos detalles pueden consultarse en el apéndice de este mismo trabajo. 
+\end{frame}
+
+\begin{frame}
+\begin{theorem}[Lai, 1997] 
+Sea $k\to \infty$, $k/n\to 0$ y $n\to \infty$. Entonces el sesgo y la varianza del estimador k-NN $\hat{m}_k$ que hemos definido vienen dados por
+\begin{align*}
+E[\hat{m}_k(x)]-m(x) &\approx \frac{m''(x)f(x)+2m'(x)f(x)}{24f(x)^3}\left(\frac{k}{n}\right)^2\\
+Var[\hat{m}_k(x)] &\approx \frac{\sigma^2(x)}{k}
+\end{align*}
+
+\end{theorem}
+\end{frame}
+
+
+
+\section{Regresión lineal local}
+\begin{frame}
+
+\end{frame}
+\section{Aplicación computacional}
+
+\begin{frame}
+
+\end{frame}
+
+\section{Apéndice}
+
+\begin{frame}
+\begin{center}
+\huge{Apéndice. Estimador de la función de densidad mediante métodos de k-vecinos más cercanos}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Resultados anteriores}
+\begin{teorema}
+Supongamos que $X_1,\dotsc,X_n$ son v.a. continuas con i.i.d fdd $f$ donde $f\in \mathcal{F}$, la familia de todas las funciones de densidad continuas definidas sobre $\R$. Entonces $\not\exists\hat{f}$ tal que $\hat{f}\in \mathcal{F}$ y 
+$$
+E_f[\hat{f}(x)]=f(x) \quad \forall x \in \R, \quad \forall f \in\mathcal{F}
+$$
+\end{teorema}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Resultados anteriores}
+
+\begin{teorema}[Glivenko-Cantelli]
+Supongamos que $X_1,\dotsc,X_n$ son v.a. continuas con i.i.d con FdD $F(x)$. Sea además $F_n(x)$ la función de distribución empírica asociada a la muestra. Entonces
+$$
+\sup_{x\in \R}\lvert F_n(x)-F(x)\rvert \overset{c.s.}{\longrightarrow} 0
+$$
+\end{teorema}
+\end{frame}
+
+\begin{frame}
+\frametitle{Estimador k-NN de la fdd}
+Sean $X_1,\dotsc,X_n$ v.a. i.i.d. con función de densidad continua y acotada $f(x)$. Consideramos entonces el estimador de $f(x)$ dado por
+$$
+\hat{f}(x) = \frac{1}{nR_n(x)}\sum_{i=1}^n K\left(\frac{x-X_i}{R_n(x)}\right)
+$$
+donde $R_n(x)$ es la distancia euclídea entre $x$ y el $k$-ésimo vecino más cercano de $x$ entre los $X_i$, con $k=k(n)$  enteros tales que $k\to\infty$ y $k/n\to 0$, y $K(\cdot)$ es una función núcleo tal que 
+$$
+\int K(u)du=1
+$$
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Medidas de bondad de ajuste}
+Consideremos las siguientes medidas sobre nuestro estimador
+$$
+Bias(\hat{f}(x)) = E[\hat{f}(x)]-f(x) \qquad Var(\hat{f}(x)) = E\left[\left(E[\hat{f}(x)]-\hat{f}(x)\right)\right]
+$$
+$$
+MSE(\hat{f}(x)) = E\left[(\hat{f}(x)-f(x))^2\right] = Bias(\hat{f}(x))^2 + Var(\hat{f}(x))
+$$
+$$
+MISE = \int MSE(\hat{f}(x)) 
+$$
+Consideramos además el AMISE como el \textit{asymptotic} MISE.
+\end{frame}
+
+
+\begin{frame}
+\begin{teorema}[Mack and Rossenblatt] Sea $f$ fdd acotada. Supongamos que la función núcleo verifica
+$$
+\int |x|^2 |K(x)|dx < \infty \qquad \int |x|K(x) dx = 0
+$$
+Además, sea $x$ un punto donde $f(x)>0$ y supongamos que $f$ es $\mathcal{C}^2$ en un entorno de $x$. Entonces
+$$
+Bias(\hat{f}(x)) = \frac{1}{2^3}\left(\frac{k}{n}\right)^2\mu_2(K)\frac{f''(x)}{f^2(x)}+o\left(\left(\frac{k}{n}\right)^2+\frac{1}{k}\right)
+$$
+$$
+Var(\hat{f}(x)) = \frac{2f(x)^2}{k}\int K(x)^2 dx+o\left(\frac{1}{k}\right)
+$$
+\end{teorema}
+\end{frame}
+
+
+
+\begin{frame}
+\begin{coro}
+En las condiciones del teorema anterior, tenemos que
+$$
+MSE(\hat{f}(x))\to 0
+$$
+y, por tanto,
+$$
+\hat{f}(x)\overset{P}{\longrightarrow}f(x)
+$$
+\end{coro}
+\end{frame}
+\cite{Knearestneighbourkerneldensityestimationthechoiceofoptimalk}
+\begin{frame}
+\frametitle{Bibliografía}
+\begin{enumerate}
+\item Härdle, W. (1990). Applied Nonparametric Regression (Econometric Society Monographs). Cambridge: Cambridge University Press. doi:10.1017/CCOL0521382483
+\item Orava, J. (n.d. ). K-nearest neighbour kernel density estimation, the choice of optimal k, Tatra Mountains Mathematical Publications, 50(1), 39-50. doi: https://doi.org/10.2478/v10127-011-0035-z
+\end{enumerate}
+
+\end{frame}
+
+\end{document}
