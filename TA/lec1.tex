@@ -775,9 +775,40 @@ Obtenemos $d_1=0$ de forma análoga al ejemplo anterior. En el caso de $d_2$, co
 \begin{ej}[Espacios de Moore]
 Dado un grupo abeliano $G$, un espacio de Moore $M(n,G)$ es tal que $\widetilde{H}_i(M(n,G))=G$ si $i=n$ y 0 en cualquier otro caso. Sea $G=\Z_m$. Construimos $X=S^n\cup_{\phi}e^{n+1}$ con $\deg\phi=m$, lo cual sabemos que podemos hacerlo. El complejo de cadenas tiene $\Z$ en todas las dimensiones desde 0 hasta $n+1$ y 0 en el resto, siendo las aplicaciones borde todas nulas salvo la de dimensión más alta, que es multiplicación por $m$. Así que la homología es la que buscábamos.
 
-Si $G$ es un grupo abeliano libre, basta tomar un wedge de $n$ copias de $S^n$. Por el teorema de estructuras, cualquier grupo abeliano finitamente presentado es unas una suma directa de grupos libres abelianos y grupos de torsión. Por tanto, para obtener un espacio de Moore cualquiera, basta tomar wedge de los espacios que hemos visto, pues la homología del wedge es la suma directa de las homologías.
+Si $G$ es un grupo abeliano libre, basta tomar un wedge de $n$ copias de $S^n$. Por el teorema de estructuras, cualquier grupo abeliano finitamente presentado es unas una suma directa de grupos libres abelianos y grupos de torsión. Por tanto, para obtener un espacio de Moore con homología dada por un grupo abeliano finitamente generado, basta tomar wedge de los espacios que hemos visto, pues la homología reducida del wedge es la suma directa de las homologías. 
+
+Si $G$ no es finitamente generado, entonces existe $F\to G$ donde $F$ es abeliano libre con base $\{x_\alpha\}_{\alpha\in I}$. Entonces $K=\ker(F\to G)$ es abeliano libre con base $\{y_{\beta}\}_{\beta\in J}$ por ser subgrupo de $F$ y además $G\cong F/K$. Podemos expresar $y_\beta=\sum_{\alpha}d_{\beta\alpha}x_\alpha$. Definimos el $n$-esqueleto $X^n=\bigvee_{\alpha\in I} S^n_{\alpha}$ y pegamos $e^{n+1}_{\beta}$ a $X^n$ siguiendo una aplicación $f_\beta:S^n_{\beta}\to X^n$ tal que $\deg(\Delta_{\beta\alpha})=\deg(f_{\beta})|_{\alpha}=d_{\beta\alpha}$. También hay que definir $X^0$, que lo hacemos como una sola 0-célula (el resto son vacíos). Tenemos entonces $d_{n+1}:\oplus_{\beta}\Z=K\to \oplus_{\alpha}\Z=F$ definida como $y_\beta\mapsto \sum_{\alpha}d_{\beta\alpha}$, que es claramente inyectiva. Así que que $\widetilde{H}_q(X)=G$ si $q=n$ y 0 en otro caso. 
+
+Esta contrucción también sirve para generar aplicaciones de grado arbitrario. Dado $\beta$, $S^n_{\beta}$ y elegidas $\sum_{\alpha}|d_{\alpha\beta}|$ discos abiertos disjuntos sobre $S^n_{\beta}$, enviamos el complementario de estos discos al puntos wedge de $\bigvee_\alpha S^n_{\alpha}$ y sobre cada $S^n_{\alpha}$ enviamos $|d_{\beta\alpha}|$ discos mediante homeomorfismo de grado 1 si $d_{\alpha\beta}>0$ y de grado $-1$ si $d_{\alpha\beta}<0$ (o mantener las de grado 1 y componer al final con una reflexión).
+
+También podemos construir un espacio $M=M(G_{i_1},\dots, G_{i_n})$ tal que $\widetilde{H}_q(M)=G_{i_j}$ si $q=i_j$ y 0 en caso contrario. Para ello basta hacer wedge de los anteriores.
 \end{ej}
 
+\begin{ej}[Espacios de lentes]
+Dado un entero $m>1$, construimos espacios $L_m(l_1,\dots, l_n)$ donde $l_i\leq m$ son enteros tales que $\gcd(l_i,m)=1$. Algunos de estos espacios nos darán ejemplos de espacios homotópicamente equivalentes que no son homeomorfos porque no son equivalentes mediante homotopía \emph{simple} (homotopía de colapsos como en complejos simpliciales pero en CW-complejos). Sea $\Z_m$ actuando sobre $S^{2n-1}\subseteq\C^n$ mediante la rotación $\rho(z_1,\dots, z_n)=(e^{2\pi il_1/m}z_1,\dots, e^{2\pi il_n/m}z_n)$ en cada coordenada $z_j$, es decir, una rotación de ángulo $2\pi l_j/m$. Como $\gcd(l_j,m)=1$, la acción de $\rho$ es libre. Se puede probar que $S^{2n-1}=S^1*\cdots S^1$ ($n$ veces el joint) y en general por indución $S^n*S^m=S^{n+m+1}$, así que podemos interpretar la rotación como una rotación en cada $S^1$ sobre un segmento. Definimos $L_m(l_1,\dots, l_n)$ como $S^{2m-1}/\Z_m$. Veremos que el espacio de lentes tiene una estructura de CW-complejo con una célula en cada dimensión hasta $2n-1$ y aplicaciones borde $d_=0$ para $k$ impar y multiplicación por $m$ para $k$ par. Esto nos da la homología 
+$$H_k(L_m(l_1,\dots, l_n))=\begin{cases}
+\Z & k=0,2n-1\\
+\Z_m & k\text{ impar } 0<k<2n-1\\
+0 & c.c
+\end{cases}$$
+
+Para obtener la estructura de CW complejo, empezamos tomando vértices en $S^1$ definidos $v_j=e^{2\pi i j/m}$ para $j=1,\dots, m-1$ y segmentos entre los vértices, que denotamos $I_j=[v_j,v_{j+1}]$. En el hiperplano $\C^{n-1}$ tenemos $S^{n-3}$ perpendicular a $S^1$ donde suponemos que ya hemos dotado de estructura (habría que hacerlo inductivamente, pero para $S^0$ y $S^1$ es trivial). Podemos hacer el joint (que va a ser un cono) $v_j*S^{2n-3}=B_j^{2n-2}$ y el joint $I_j*S^{2n-3}=B_j^{2n-1}$. Con esto tenemos cubierta la esfera $S^{2n-1}$ (ver figura \ref{lens}).  
+
+
+Se comprueba que $\rho$ lleva $S^{2n-3}$ en sí misma y rota $S^1\subseteq \C$ por un giro de ángulo $2\pi l_n/m$, luego $\rho$ permuta $B^{2n-2}$ y $B^{2n-1}_j$ entre sí. Como $l_n$ es primo con $m$, existe $r$ tal que $rl_n\equiv 1\mod m$, luego $\rho^r$ tiene orden $m$ y generará $\Z_m$ (sobre $S^1$). Además $\rho^r(B_j^{2n-2}=B_{j+1}^{2n-2}$ y $\rho^r(B_j^{2n-1})=B_{j+1}^{2n-1}$. Concluimos que $\rho^r$ permuta las $(2n-1)$-células y las $(2n-2)$-células entre sí, por lo que existe una única $(2n-1)$-célula y una única $(2n-2)$-célula en $L_m(l_1,\dots, l_m)=S^{2n-1}/\Z_m$. 
+
+\begin{figure}[h!]
+\includegraphics[scale=0.7]{lens}
+\caption{Ejemplo donde en el plano tenemos $S^1$ y $S^{2n-3}=S^0$ está situada en el eje vertical, con lo que unimos $S^0$ a cada vértice $v_j$.}\label{lens}
+\end{figure}
+
+
+Veamos ahora que las diferenciales son las que decíamos. Tenemos que ver el grado de la la aplicación $S^{2n-2}\to X^{2n-2}\to X^{2n-2}/X^{2n-1}=S^{2n-2}_{e^{2n-1}}$. Para pasar de $B_j$ a $B_{j+1}$ hay que hacer una reflexión, y en el cociente la diferencia es una rotación, por lo que el grado local de un $B_j$ se cancela con el de $B_{j+1}$, obteniendo $d_{2n-1}=0$. 
+
+Vemos el grado ahora de $S^{2n-3}\to X^{2n-3}=S^{2n-3}/\Z_m\to S^{2n-3}=L_m^{2n-3}/L_m^{2n-4}$. Observamos que la aplicación de pegamiento es la identidad en $S^{2n-3}$. Como inductivamente habíamos dividido $S^{2n-3}$ en $m$ células que se identifican en el cociente, hay $m$ preimágenes de grado 1, así que $d_{2n-2}=m$. 
+
+Inductivamente se deducen el de $d_k$ en dimensiones inferiores.
+\end{ej}
 
 
 

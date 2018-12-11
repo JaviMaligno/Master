@@ -4,7 +4,34 @@
 
 
 %\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
-\chapter{Coloración de grafos}
+\chapter{Coloración de grafos y Flujo}
 \section{Polinomio cromático}
 En la diapo 76 sale eso porque el primer caso es ponerle a los dos esquinas el mismo o ponerles uno distinto. En la 84 selecciona una arista $e$ concreta, y recursivamente se van eligiendo las otras. $G/e$ denota la contracción de la arista. Para ver el caso 1 pensar en $C_4$. 
+
+\section{Flujo}
+Recordar: un grafo contiene un ciclo euleriano si y solo si todo vértice tiene grado par. 
+
+\begin{teorema}
+Dado $G$ un grafo, $G$ admite un nowhere zero $\Z_k$-flujo si y solo si admite nowhere zero $k$-flujo.
+\end{teorema}
+\begin{dem}
+La implicación de derecha a izquierda es evidente porque la suma pasa al cociente. Supongamos entonces que tenemos un $\Z_k$-flujo nowhere zero $\phi$. Denotamos $$e(v)=\sum_{e\in E^+(v)}\phi(e)-\sum_{e\in E^-(v)}\phi(e).$$
+Por definición, $e(v)=0\mod k$. Podemos asumir que $\sum_{v\in V}e(v)=0$, porque si fuera un múltiplo de $k$, podríamos añadírselo o quitárselo a alguna arista. Vamos a probar que $\sum_{v\in V}|e(v)|=0$, de donde deduciremos que $e(v)=0$ para todo $v$ y tendremos un $k$-flujo. Supongamos por el contrario que $\sum_{v\in V}|e(v)|>0$. Vamos a suponer además que $\phi$ es la que minimiza esta cantidad. Definimos $S=\{v\in V\mid e(v)>0\}$ y $T=\{v\in V\mid e(v)<0\}$. Ninguno de los conjuntos es vacío porque la suma de los módulos es positiva pero sin los módulos es 0. Definimos $U$ como el conjunto de vértices alcanzables desde $S$, que son los vértices hasta los que existe un camino dirigido desde $S$ y no se puede avanzar más. Si $U\cap T=\emptyset$, entonces $0<\sum_{u\in U}e(u))=\sum_{e\in E^+}\phi(e)-\sum_{e\in E^-}\phi(e)$, pero como están en $T$, $E^+=\emptyset$ y la suma debería ser negativa. Así que $U\cap T\neq\emptyset$. Sea $P$ un camino desde $s\in S$ a $t\in T$. Definimos
+\[
+\phi'(e)=\begin{cases}
+\phi(e) & e\notin P\\
+k-\phi(e) & e\in P
+\end{cases}
+\]
+Vamos a probar que $\sum_{v\in V}|e'(v)|<\sum_{v\in V}|e(v)|$, dándonos una contradicción. Si $v\notin P$, entonces $e(v)=e'(v)$. Si $v\in P-\{s,t\}$, tenemos algo de la forma $\xrightarrow{e_1}v\xrightarrow{e_2}$, con lo que $$e(v)=\sum_{e\in E^+,e\notin P}\phi(e)-\sum_{e\in E^-, e\notin P}\phi(e)+\phi'(e_2)-\phi'(e_1)$$
+Como $\phi'(e_2)-\phi'(e_1)=k-\phi(e_2)-k-\phi(e_1)$, $e'(v)=e(v)$. Calculamos ahora
+\[
+e'(s)=\sum_{e\in E^+, e\notin P}\phi(e)-\sum_{e\in E^-, e\notin P}\phi(e)+\phi'(e_1)=e(s)-k
+\]
+Análogamente, $e'(t)=e(s)+k$. Ahora tengamos en cuenta que $e(v)$ es siempre múltiplo de $k$, y que por estar $s\in S$, $e(s)>0$ y por $t\in T$, $e(t)<0$, con lo que $e(s)-k>0$ y $e(t)+k<0$. Así que
+\[
+\sum_{v\in V}|e'(v)|=\sum_{v\neq s,t}|e(v)|+|e(s)-k|+|e(t)+k|<\sum_{v\in V}|e(v)|.
+\]
+\end{dem}
+
 \end{document}
