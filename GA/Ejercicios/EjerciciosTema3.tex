@@ -1,0 +1,119 @@
+	\documentclass[twoside]{article}
+\usepackage{../../estilo-ejercicios}
+\renewcommand{\baselinestretch}{1,4}
+%--------------------------------------------------------
+\begin{document}
+
+\title{Ejercicios de Algebraic Geometry, Capítulo 2, Sección 3}
+\author{Javier Aguilar Martín}
+\maketitle
+
+
+%\begin{ejercicio}{1.1}
+
+%\end{ejercicio}
+%\begin{solucion}
+%
+%\end{solucion}
+%
+%\newpage
+%
+%
+%\begin{ejercicio}{1.2}
+%
+%\end{ejercicio}
+%\begin{solucion}
+%
+%\end{solucion}
+%
+%\newpage
+%
+\begin{ejercicio}{3.1}
+Probar que un morfismo $f:X\to Y$ es localmente de tipo finito si y solo si para \emph{todo} abierto afín $V=\spec(B)$ de $Y$, $f^{-1}(V)$ puede ser por abiertos afines $U_j=\spec(A_i)$, donde cada $A_j$ es una $B$-álgebra finitamente generada. 
+\end{ejercicio}
+\begin{solucion}
+Una de las implicaciones es trivial, así que supongamos que $f:X\to Y$ es localmente de tipo finito.
+\end{solucion}
+
+\newpage
+
+
+
+
+%
+%
+%
+%
+%\end{solucion}
+%
+%\newpage
+%
+%\begin{ejercicio}{2.16}
+%Sea $X$ un esquema, sea $f\in\Gamma(X,\OO_X)$, y se define $X_f$ como el subconjunto de puntos $x\in X$ tales que la fibra $f_x$ de $f$ en $x$ no está contenida en el ideal maximal $\mm_x$ del anillo local $\OO_{x}$. 
+%\begin{enumerate}[(a)]
+%\item Si $U=\spec(B)$ es un subesquema afín abierto de $X$, y si $\overline{f}\in B=\Gamma(U,\OO_X|_U)$ es la restricción de $f$, probar que $U\cap X_f=D(\overline{f})$. Concluir que $X_f$ es un subconjunto abierto de $X$. 
+%\item Supongamos que $X$ es quasi-compacto\footnote{Todo recubrimiento abierto admite un refinamiento finito.}. Sea $A=\Gamma(X,\OO_X)$, y sea $a\in A$ un elemento cuya restricción a $X_f$ es 0. Probar que para algún $n>0$, $f^na=0$. [Pista: usar un recubrimiento afín de $X$.]
+%\item Supongamos ahora que $X$ tiene un recubrimiento finito de abiertos afines $U_i$ tal que cada intersección $U_i\cap U_j$ es quasi-compacta. (Esta hipótesis se satisface, por ejemplo, si $\spec(X)$ es noetheriano.) Sea $b\in\Gamma(X_f,\OO_{X_f})$. Probar que para algún $n>0$, $f^nb$ es la restricción de un elemento de $A$.
+%\item Con las hipótesis de (c), concluir que $\Gamma(X_f,\OO_{X_f})\cong A_f$.
+%\end{enumerate}
+%\end{ejercicio}
+%\begin{solucion}\
+%\begin{enumerate}[(a)]
+%\item Para $x\in\spec(B)$, $f=\overline{f}$ en un entorno de $x$, luego $f_x=\overline{f}_x$. Además recordemos que el anillo maximal de $B_x$ es $xB_x$. Así que $U\cap X_f=\{x\in\spec(B)\mid\overline{f}_x\notin xB_x\}$. Basta ahora probar que este conjunto es el mismo que $D(\overline{f})$, para lo cual probamos que $\overline{f}_x\notin xB_x$ si y solo si $\overline{f}\notin x$. Eso se deduce del hecho de que $\overline{f}_x\notin xB_x$ si y solo si $\overline{f}_x$ es invertible en $B_x$, lo cual es equivalente a que $\overline{f}\notin x$. Esto prueba que $U\cap X_f=D(\overline{f})$, que es abierto de $X$ por definición. Ahora bien, como $X$ se puede recubrir por abiertos afines, $X_f=\bigcup_{U\subseteq X} U\cap X_f$ es unión de abiertos y por tanto abierto. 
+%\item Sea un $U_i=\spec(B_i)$, $i=1,\dots, k$ un recubrimiento afín finito de $X$, que existe por quasi-compacidad. Denotamos $a_i=a|_{U_i}$ y $f_i=f|_{U_i}$. Por el apartado anterior, $U_i\cap X_f=D(f_i)$, por lo que $a_i=0$ en $D(f_i)$, que por la proposición 2.2 esto es equivalente a que $a_i=0\in (B_i)_{f_i}$, lo que significa que existe $n_i>0$ tal que $f_i^{n_i}a_i=0$. Sea $n=\max_i n_i>0$. Por las propiedades de los haces, podemos encontrar una sección global $f^na$ que se restrinja en cada $U_i$ a $f_i^{n_i}a_i$, ya que en las intersecciones todos se anulan. En particular, $f^na=0$ en cada $U_i$ y por tanto $f^na=0$ de nuevo por las propiedades de los haces. 
+%
+%\item Sea $U_i=\spec(B_i)$, el recubrimiento finito del enunciado. Escribimos $b|_{U_i}=\frac{b_i}{f_i^{d_i}}\in (B_i)_{f_i}$. Sea $d=\sum d_i$ y $b_i'=f^{d-d_i}b_i\in\Gamma(U_i,\OO_{U_i})$. Ahora, como $b'_i|_{X_f}=f^{d-d_i}f^{d_i}b=f^db$, $(b'_i-b'_j)|_{U_i\cap U_j\cap X_f}=0$. Al ser $U_i\cap U_j$ quasi-compacto, podemos aplicar el apartado b) y obtenemos que existe $d_{ij}>0$ tal que $f^{d_{ij}}(b'_i-b'_j)|_{U_i\cap U_j}=0\in\Gamma(U_i\cap U_j,\OO_{U_i\cap U_j})$. Para $D=\max d_{ij}$ tenemos que los $f^Db_i'\in\Gamma(U_i,\OO_{U_i})$ son compatibles en las intersecciones, por lo que usando los axiomas de haz, encontramos $a\in \Gamma(X, \OO_X)$ que los extiende. Ahora, $a|_{U_i\cap X_f}=f^Df^db=f^{D+d}b$. Como este resultado no depende de $i$ y podemos cubrir $X_f$ con los $U_i$, obtenemos que $a|_{X_f}=f^{D+d}b$, luego $n=D+d$. 
+%
+%\item Sea $A_f\to\Gamma(X_f,\OO_{X_f})$ la aplicación definida como $\frac{a}{f^k}\mapsto\frac{a|_{X_f}}{f|_{X_f}^k}$. Esta aplicación está bien definida porque $f$ es unidad en $\Gamma(X_f,\OO_{X_f})$. En efecto, con la notación de los apartados anteriores, $f|_{U_i\cap X_f}\in \Gamma(U_i\cap X_f,\OO_{U_i\cap X_f})=\Gamma(D(f_i), \OO_{D(f_i)})=(B_i)_{f_i}$ es una unidad para todo $i$, y por tanto $f|_{X_f}$ es unidad con inversa obtenida al pegar las inversas en cada $U_i\cap X_f$. La aplicación definida es un homomorfismo porque las restricciones lo son. Es inyectiva porque si $\frac{a|_{X_f}}{f^k}=0\in \Gamma(X_f,\OO_{X_f})$, como $f|_{X_f}$ es unidad, esto significa que $a|_{X_f}=0$ y por tanto por b) existe $n>0$ tal que $f^na=0$, con lo que $\frac{a}{f^k}=0\in A_f$. La sobreyectividad se obtiene del apartado c) y por tanto esta aplicación es un isomorfismo.
+%\end{enumerate}
+%
+%\end{solucion}
+%%
+%\newpage
+%%
+%\begin{ejercicio}{Lema de Yoneda}
+%$h_*:\CC\to \mathrm{Fun}(\CC^{op}, \mathrm{Set})$ es plenamente fiel, es decir, para todo $X,X'\in Ob(\CC)$ la aplicación $\alpha\in\Hom_{\CC}(X,X')\mapsto h_{\alpha}\in \mathrm{Nat}(h_X,h_{X'})$ es un isomorfismo. 
+%\end{ejercicio}
+%\begin{solucion}
+%%https://math.stackexchange.com/questions/94007/proof-of-yoneda-lemma
+%Supongamos que existen $\alpha,\alpha'\in\Hom(X,X')$ tales que $h_\alpha=h_{\alpha'}$. Tenemos entonces, un diagrama conmutativo
+%\[
+%\begin{tikzcd}
+%h_X(X)\arrow[r, "h_\alpha=h_{\alpha'}"]\arrow[d, "h_X(Id)"'] & h_{X'}(X)\arrow[d, "h_{X'}(Id)"]\\
+%h_X(X)\arrow[r, "h_\alpha=h_{\alpha'}"'] & h_{X'}(X)
+%\end{tikzcd}
+%\]
+%Dada una flecha $f\in h_X(X)$, $$h_{X'}\circ h_{\alpha}(f)=\alpha\circ f\circ Id=\alpha\circ f$$
+%$$h_{X'}\circ h_{\alpha'}(f)=\alpha'\circ f\circ Id=\alpha'\circ f$$
+%En particular, para $f=Id:X\to X$, obtenemos $\alpha=\alpha'$, y con ello la inyectividad. 
+%
+%Sea ahora $\tau:h_X\to h_{X'}$ una transformación natural cualquiera, de modo que tenemos el diagrama conmutativo para todo $U,V\in Ob(\CC)$  y $f\in\Hom_{\CC^{op}}(U,V)$ 
+%\[
+%\begin{tikzcd}
+%h_X(U)\arrow[r, "\tau(U)"] \arrow[d, "h_X(f)"']& h_{X'}(U)\arrow[d, "h_{X'}(f)"]\\
+%h_X(V)\arrow[r, "\tau(V)"'] & h_{X'}(V)
+%\end{tikzcd}
+%\]
+%donde $h_X(f)$ se debe interpretar como $h_X(f^{op})$. En particular, para $U=X$ tenemos por el diagrama que $\tau(U)\circ h_X(f)=h_{X'}(f)\circ\tau(X)$. Definimos $\alpha=\tau(X)(Id)\in h_{X'}(X)=\Hom(X,X')$. Sustituyendo $Id$ en el lado izquierdo de la ecuación de conmutatividad obtenemos
+%\[
+%\tau(U)\circ h_X(f)(Id)=\tau(U)( f^{op})
+%\]
+%y en el lado derecho
+%\[
+%h_{X'}(f)\circ\tau(X)(Id)=h_{X'}(f)(\alpha)=\alpha\circ f^{op}=h_\alpha(f^{op})
+%\]
+%Como esto se tiene para toda $f$, obtenemos que $h_\alpha=\tau(U)$, y como esta igualdad es para todo $U$, deducimos que $\tau=h_{\alpha}$, lo que nos da la sobreyectividad. 
+%\end{solucion}
+%
+%\newpage
+%
+%\begin{ejercicio}{1.12}
+%
+%\end{ejercicio}
+%\begin{solucion}
+%
+%\end{solucion}
+
+
+
+\end{document}

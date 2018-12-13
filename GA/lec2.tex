@@ -478,65 +478,168 @@ Z\arrow[dr, dashed, "h"]\arrow[drr, bend left=10, "f"]\arrow[ddr, bend right=10,
 \end{ej}
 
 \begin{ej}
-Sea $k$ un cuerpo que vamos a suponer algebraicamente cerrado aunque no sería estrictamente necesario y pensamos en una parábola $x=y^2$. Llamamos $X=\spec(k[x,y]/\gene{x-y^2})$. Sea $S=\spec(k[x])=\A_k^1$. Vamos a dar un morfismo $X\to S$. Para ello basta dar un morfismo de anillos, $k[x]\to k[x,y]/\gene{x-y^2}$, que será la inclusión. Lo que vamos a hacer ahora es general. Si tomamos $y\in S$ da lugar a $\K(y)=\OO_{S,y}/\m_y$ y tenemos $\spec(\K(y))\to S$ enviando el único punto del espacio a $y$, y en los haces se corresponde con la proyección $\OO_{S,y}\to \K(y)$. Con esto obtenemos una familia de esquemas al variar $y$, que es justamente $X_y=\spec(\K(y))\times_S X$, llamada fibra de $S$ sobre el punto $y$, de donde obtenemos el cuadrado cartesiano (diagrama de producto fibrado, a veces denotado con un cuadrado en medio)
+Sea $k$ un cuerpo que vamos a suponer algebraicamente cerrado aunque no sería estrictamente necesario y pensamos en una parábola $X=Y^2$. Llamamos $X=\spec(k[X,Y]/\gene{X-Y^2})$. Sea $S=\spec(k[X])=\A_k^1$. Vamos a dar un morfismo $X\to S$. Para ello basta dar un morfismo de anillos, $k[X]\to k[X,Y]/\gene{X-Y^2}$, que será la inclusión. Lo que vamos a hacer ahora es general. Si tomamos $y\in S$ da lugar a $\K(y)=\OO_{S,y}/\m_y$ y tenemos $\spec(\K(y))\to S$ enviando el único punto del espacio a $y$, y en los haces se corresponde con la proyección $\OO_{S,y}\to \K(y)$. Con esto obtenemos una familia de esquemas al variar $y$, que es justamente $X_y=\spec(\K(y))\times_S X$, llamada fibra de $S$ sobre el punto $y$, de donde obtenemos el cuadrado cartesiano (diagrama de producto fibrado, a veces denotado con un cuadrado en medio)
 \[
 \begin{tikzcd}
 X_y\arrow[r]\arrow[d] & X\arrow[d]\\
 \spec(\K(y))\arrow[r] & S
 \end{tikzcd}
 \]
-Volvamos al ejemplo concreto. Distinguimos dos casos de $y\in S$: que sea $y=\{0\}$ el punto genérico o que sea $y$ un punto cerrado si y solo si es ideal maximal. Esto último quiere decir que $y=\gene{x-\alpha}$, $\alpha\in k$. Veamos quien es la fibra. Tenemmos que $\K(y)=k[x]_y/\m_y$, que en el caso de que $y$ sea un punto cerrado $\K(y)=k[x]_y/\gene{x-\alpha}=k[x]/\gene{x-\alpha}=k$. Con esto hemos obtenido que $\spec(\K(y))=\spec(k)$. Esto nos permite construir un diagrama
+Volvamos al ejemplo concreto. Distinguimos dos casos de $y\in S$: que sea $y=\{0\}$ el punto genérico o que sea $y$ un punto cerrado si y solo si es ideal maximal. Esto último quiere decir que $Y=\gene{X-\alpha}$, $\alpha\in k$. Veamos quien es la fibra. Tenemmos que $\K(y)=k[X]_y/\m_y$, que en el caso de que $y$ sea un punto cerrado y $\K(y)=k[X]_y/\gene{X-\alpha}=k[X]/\gene{X-\alpha}=k$. Con esto hemos obtenido que $\spec(\K(y))=\spec(k)$. Esto nos permite construir un diagrama
 \[
 \begin{tikzcd}
-X=\spec(k[x,y]/\gene{x-y^2})\arrow[d] & X_y\arrow[d]\arrow[l]\\
-S=\spec(k[x])& \spec(\K(y))=\spec(k)\arrow[l]
+X=\spec(k[X,Y]/\gene{X-Y^2})\arrow[d] & X_y\arrow[d]\arrow[l]\\
+S=\spec(k[X])& \spec(\K(Y))=\spec(k)\arrow[l]
 \end{tikzcd}
 \]
 
 Llevándonos este diagrama a la categoría de anillos 
 \[
 \begin{tikzcd}
-k[x,y]/\gene{x-y^2}\arrow[r] & k[x]/\gene{x-\alpha}\otimes_{k[x]}k[x,y]/\gene{x-y^2}=k[x,y]/\gene{x-\alpha,x-y^2}\\
-k[x]\arrow[u]\arrow[r] & k=k[x]/\gene{x-\alpha}\arrow[u]
+k[X,Y]/\gene{X-Y^2}\arrow[r] & k[X]/\gene{X-\alpha}\otimes_{k[X]}k[X,Y]/\gene{X-Y^2}=k[X,Y]/\gene{X-\alpha,X-Y^2}\\
+k[X]\arrow[u]\arrow[r] & k=k[X]/\gene{X-\alpha}\arrow[u]
 \end{tikzcd}
 \]
 
 Por las propiedades del producto tensorial, el producto tensorial del cociente es el producto tensorial de los numeradores cocientado por el ideal extendido de la suma de los numeradores, de ahí la igualdad.
 
- Ahora, si $\alpha\neq 0$, $\alpha\neq 0$, $y^2-\alpha=(y-\sqrt{\alpha})(y+\sqrt{\alpha})$, con lo que $X_y=\spec(k[y]/\gene{(y-\sqrt{\alpha})(y+\sqrt{\alpha})})$. Si suponemos $char(k)\neq 2$, $-a$ y $a$ no son asociados, así que usando el teorema chino del resto, $X_y=\spec(k[y]/\gene{Y-\sqrt{\alpha}}\times k[y]/\gene{y+\sqrt{\alpha}})$. Como $\spec$ es contravariante, la iamgen del producto es el coproducto $\spec(k[y]/\gene{y-\sqrt{\alpha}})\coprod \spec(k[y]/\gene{y+\sqrt{\alpha}})$. El coproducto en la categoría de espacios anillados es hacer la unión disjunta de los espacios topológicos, y el haz de anillos es simplemente el que en cada abierto de cada espacio vale lo que valía inicialmente, y en un abierto que interseque varios espacios, es simplemente el producto. Ahora, $\spec(k[y]/\gene{y-\sqrt{\alpha}})=\spec(k)$. Así que en este caso obtenemos dos puntos, uno por cada raíz. 
+ Ahora, si $\alpha\neq 0$, $\alpha\neq 0$, $Y^2-\alpha=(Y-\sqrt{\alpha})(Y+\sqrt{\alpha})$, con lo que $X_y=\spec(k[Y]/\gene{(Y-\sqrt{\alpha})(Y+\sqrt{\alpha})})$. Si suponemos $char(k)\neq 2$, $-a$ y $a$ no son asociados, así que usando el teorema chino del resto, $X_y=\spec(k[Y]/\gene{Y-\sqrt{\alpha}}\times k[Y]/\gene{Y+\sqrt{\alpha}})$. Como $\spec$ es contravariante, la imagen del producto es el coproducto $\spec(k[Y]/\gene{Y-\sqrt{\alpha}})\coprod \spec(k[Y]/\gene{Y+\sqrt{\alpha}})$. El coproducto en la categoría de espacios anillados es hacer la unión disjunta de los espacios topológicos, y el haz de anillos es simplemente el que en cada abierto de cada espacio vale lo que valía inicialmente, y en un abierto que interseque varios espacios, es simplemente el producto. Ahora, $\spec(k[Y]/\gene{Y-\sqrt{\alpha}})=\spec(k)$. Así que en este caso obtenemos dos puntos, uno por cada raíz. 
  
-Si $\alpha=0$ el razonamiento es análogo hasta obtener $X_y=\spec(k[y]/\gene{y^2})$. El anillo tiene solo un ideal primo generado por $y$, luego el espacio tiene un único punto. Además existen puntos nilpotentes, lo que se entiende como que este punto es un ``punto doble''. Esto nos denota que hay una tangencia en este punto. 
+Si $\alpha=0$ el razonamiento es análogo hasta obtener $X_y=\spec(k[Y]/\gene{Y^2})$. El anillo tiene solo un ideal primo generado por $Y$, luego el espacio tiene un único punto. Además existen puntos nilpotentes, lo que se entiende como que este punto es un ``punto doble''. Esto nos denota que hay una tangencia en este punto. 
 
 El caso de característica 2 es más complicado. Aquí $y^2-\alpha=(y-\sqrt{\alpha})^2$, con lo que tendríamos toda una recta de puntos dobles, aunque estos puntos tienen una diferencia con el punto doble del caso anterior, solo que para estudiarlos necesitaremos los invariantes difereniales.
 
-Ya solo nos falta estudiar el caso de que $y=\{0\}$. Ahora $\K(y)=k[x]_{(0)}=k(x)$ (cuerpo de fracciones). Tendríamos la inclusión $k[x]\hookrightarrow k(x)$ y en el resto del diagrama bastaría sustituir los corchetes de $x$ por paréntesis, con lo que $X_y=\spec(k(x)[y]/\gene{x-y^2})$. Como $x$ no tiene raíces en $k(x)$, $\gene{x-y^2}$ es irreducible en $k(x)[y]$ visto como anillo de polinomios en una variable. Este cociente es entonces un cuerpo por ser cociente de un DIP por un irreducible. La fibra entonces sería un único punto. Si consideramos $k(x)[y]/\gene{x-y^2}$ como extensión de $k(x)$ el grado es 2, esto se traduce geométricamente, entre otras cosas, en que el la mayoría de los puntos (genéricamente) los puntos se transforman en 2, que serían las raíces cuadradas.
+Ya solo nos falta estudiar el caso de que $y=\{0\}$. Ahora $\K(y)=k[x]_{(0)}=k(x)$ (cuerpo de fracciones). Tendríamos la inclusión $k[x]\hookrightarrow k(x)$ y en el resto del diagrama bastaría sustituir los corchetes de $x$ por paréntesis, con lo que $X_y=\spec(k(X)[Y]/\gene{X-Y^2})$. Como $X$ no tiene raíces en $k(X)$, $\gene{X-Y^2}$ es irreducible en $k(X)[Y]$ visto como anillo de polinomios en una variable. Este cociente es entonces un cuerpo por ser cociente de un DIP por un irreducible. La fibra entonces sería un único punto. Si consideramos $k(X)[Y]/\gene{X-Y^2}$ como extensión de $k(X)$ el grado es 2, esto se traduce geométricamente, entre otras cosas, en que el la mayoría de los puntos (genéricamente) los puntos se transforman en 2, que serían las raíces cuadradas.
 \end{ej}
 
 \begin{ej}
-Consideremos ahora $\spec(\Z[i])\to \spec(\Z)$. Recordamos que $\Z[i]=\Z[y]/\gene{y^2+1}$, que es algo parecido a una parábola. Sea $p$ primo y consideramos $k(\gene{p})$. Tenemos el diagrama 
+Consideremos ahora $\spec(\Z[i])\to \spec(\Z)$. Recordamos que $\Z[i]=\Z[Y]/\gene{Y^2+1}$, que es algo parecido a una parábola. Sea $p$ primo y consideramos $k(\gene{p})$. Tenemos el diagrama 
 \[
 \begin{tikzcd}
-\Z[i]\arrow[r] & \F_p[y]/\gene{y^2+1}\\
+\Z[i]\arrow[r] & \F_p[Y]/\gene{Y^2+1}\\
 \Z\arrow[u]\arrow[r] & \F_p=\Z/\Z p\arrow[u]
 \end{tikzcd}
 \]
 que nos lo podemos llevar a esquemas como
 \[
 \begin{tikzcd}
-\spec(\Z[i])\arrow[d] & X_y=\spec(\F_p[y]/\gene{y^2+1})\arrow[d]\arrow[l]\\
+\spec(\Z[i])\arrow[d] & X_y=\spec(\F_p[Y]/\gene{Y^2+1})\arrow[d]\arrow[l]\\
 y=\spec(\Z) & \spec(\F_p)\arrow[l]
 \end{tikzcd}
 \]
-El polinomio $y^2+1$ será irreducible si $-1$ no es un cuadrado $\F_p$, que esto es equivalente por aritmética modular a que $p\equiv -1\mod 4$. En estos casos, $X_y$ es el espectro de un cuerpo que es una extensión de grado 2 de $\F_p$. Esto en el caso de las parábolas no ocurre, porque o no teníamos un cuerpo o había elementos nilpotentes. Pero sí se parece a la situación genérica del ejemplo anterior. En este caso $\gene{p}$ es primo también en $\Z[i]$. 
+El polinomio $Y^2+1$ será irreducible si $-1$ no es un cuadrado $\F_p$, que esto es equivalente por aritmética modular a que $p\equiv -1\mod 4$. En estos casos, $X_y$ es el espectro de un cuerpo que es una extensión de grado 2 de $\F_p$. Esto en el caso de las parábolas no ocurre, porque o no teníamos un cuerpo o había elementos nilpotentes. Pero sí se parece a la situación genérica del ejemplo anterior. En este caso $\gene{p}$ es primo también en $\Z[i]$. 
 
-Supongamos ahora que $y^2+1$ es reducible en $\F_p[y]$, luego $-1=\alpha^2$ y descomponemos $y^2+1=(y-\alpha)(y+\alpha)$ y estamos en la misma situación que en la mayoría de los puntos de la parábola anterior, esto es, $p$ da lugar a dos puntos. En característica 2 es claro que $y^2+1=(y+1)^2$ es reducible y tendríamos lo análogo al vértice de la parábola. 
+Supongamos ahora que $Y^2+1$ es reducible en $\F_p[Y]$, luego $-1=\alpha^2$ y descomponemos $Y^2+1=(Y-\alpha)(Y+\alpha)$ y estamos en la misma situación que en la mayoría de los puntos de la parábola anterior, esto es, $p$ da lugar a dos puntos. En característica 2 es claro que $Y^2+1=(Y+1)^2$ es reducible y tendríamos lo análogo al vértice de la parábola. En particular, $\F_p[Y]/\gene{Y^2+1}$ no es reducido porque $Y^2+1=(Y+1)^2$ y tenemos un elemento nilpotente.
 
 
-ESTE CASO EL PRÓXIMO DÍA LO EXPLICA BIEN
-En el caso $p\equiv 1\mod 4$, entonces $p\neq 2$, $\alpha\neq-\alpha\in\Z[i]$, $\alpha^2+1\equiv 0\mod p$ y ocurre que $p=(m+ni)(m-ni)$, que son dos primos de $\Z[i]$. El extendido de $\gene{p}$ es en general $p\Z[i]$, que en este caso no sería primo. Tenemos que $\F_p[y]/\gene{y^2+1}=\Z[y]/\gene{y^2+1,p}$ y que $p|\alpha^2+1$. El ideal $\gene{p,\alpha+1}$ es principal en $\Z[i]$ por lo que tiene un solo generador.
+
+En el caso $p\neq 2$, $Y^2+1$ es reducible en $\F_p[Y]$ si y solo si $-1$ es un cuadrado en $\F_p$ si y slo si $p\equiv 1\mod 4$. En ese caso $X_y=\spec(\F_p[Y]/\gene{Y^2+1})=\spec(\F_p)\coprod\spec(\F_p)$. Si no se da este caso, entonces $\F_p[Y]/\gene{Y^2+1}$ es un cuerpo, en concreto, una extensión de grado 2 de $\F_p$. Esto generaliza el ejemplo de la parábola a un cuerpo cualquiera (no algebraicamente cerrado). Haciendo clausura algebraica de hecho tendremos dos raíces de $Y^2+1$ y obtendremos dos puntos distintos, pero mientras no sea algebraicamente cerrado el espectro tendrá un solo punto. 
+
+
 
 %Si levantamos $\alpha^2$ a $\Z[i]$ obtendríamos $i$, porque es la raíz cuadrada de $-1$.
 \end{ej}
+
+\begin{nota}
+El hecho de que $-1$ sea un cuadrado, es decir, $\exists\alpha\in\F_p\mid \alpha^2=-1$ está relacionado con el hecho de que $p=m^2+n^2$. Sea $\alpha\in\Z$ que levanta a la raíz de $-1$, entonces $\alpha^2+1\in\gene{p}$. Consideramos el ideal $\gene{p,\alpha\pm i}\in\Z[i]$ (uno de los dos signos). Como $\Z[i]$ es un dominio de ideales principales, $\gene{p,m\pm ni}$. Si hacemos la contracción con $\Z$, es decir, $\gene{m\pm ni}\cap\Z=\gene{m^2+n^2}$ y $\gene{p,\alpha\pm i}\cap\Z=\gene{p}$. Como $p$ y $m^2+n^2$ son positivos, $p=m^2+n^2$. 
+\end{nota}
+
+\begin{ej}
+Vamos a generalizar el ejemplo de la parábola a un cuerpo algebraicamente cerrado. Para ello tenemos que considerar ahora otro punto cerrado de $\spec(k[X])$, $\spec(k[X]/\gene{f(X)})=\spec(K)$ con $f(x)$ irreducible y $f(x)\neq x$ (porque el caso $\spec(k[X](\gene{X})=k$ ya lo habíamos tratado). Ahora $X_y=\spec(K[Y]/\gene{Y^2-X})$, y ahora tendríamos que distinguir si el anillo es reducido o no (en principio no podemos decir si $Y^2-X$ tiene raíces en $K$). Si $char(k)\neq 2$, $K[Y]/\gene{Y^2-X}$ es reducido y siempre tenemos dos puntos en la parábola salvo en el vértice. Si $char(k)=2$, para $x=0$ seguiríamos viendo el mismo punto doble del vértice, y para el resto de valores de $x$ hay puntos dobles que posiblemente solo se distingan en una extensión. Esto es porque si $\beta^2=\alpha$, entonces $Y^2-\alpha=Y^2+\alpha=Y^2+\beta^2=(Y+\beta)^2$, luego siempre hay raíces dobles, aunque no estén en el cuerpo que hemos elegido. 
+
+Vamos a ver ahora qué ocurre en el punto genérico $\zeta=\{0\}\in S=\spec(Z)$. El cuerpo residual en este ideal es $\Q$ y tendríamos el siguiente diagrama
+\[
+\begin{tikzcd}
+\spec(\Z[i])\arrow[d] & \spec(\Q[i])\arrow[l]\arrow[d]\\
+\spec(Z) & \spec(\Q)\arrow[l]
+\end{tikzcd}
+\]
+La aplicación $\Q\to\Q[i]$ es una extensión de cuerpos de característica 0 de grado 2. Aquí vemos que si hacemos una extensión donde $-1$ tenga dos raíces (por ejemplo $\C$), obtenemos un punto doble (sus dos raíces).
+
+Si ahora hacemos esto en $\spec(k[X])$, el punto genérico es el mismo, y ahora el cuerpo residual es $k(X)$. En características distinta de 2, $X$ no tiene raíces múltiples (si tiene, tiene una y su opuesta), pero en característica 2, si tiene raíz, será doble como hemos visto antes.
+\[
+\begin{tikzcd}
+\spec(k[X,Y]/\gene{Y^2-X})\arrow[d] & \spec(k(X)[Y]/\gene{Y^2-X})\arrow[d]\arrow[l]\\
+\spec(k[X])& \arrow[l]\spec(k(X))
+\end{tikzcd}
+\]
+El comportamiento en el punto genérico refleja el comportamiento en todos los puntos cerrados salvo un número finito. 
+\end{ej}
+
+\begin{nota}
+Hemos expresado analogías entre $\spec(Z)$ y $\spec(k[X])$, pero también cabe destacar algunas diferencias. $k\subset k[X]$, luego todos los cuerpos residuales contienen a $k$. En el caso de $\Z$ nos aparecen todos los cuerpos $\F_p$. Esta diferencia se hace especialmente acusada cuando $k$ es algebraicamente cerrado, porque tenemos automorfismos de $k[X]$ que nos llevan ideales maximales en ideales maximales mediante $X\mapsto X+\beta$. Pero $\Z$ solo tiene el automorfismo identidad, por lo que no obtenemos más información a partir de dos primos $p,q$ a partir de los automorfismos. Sin embargo podemos hacer lo siguiente: dado $f\in\F_p[X]$ podemos levantarlo a $F(X)\in\Z[X]$, de donde obtenemos el diagrama
+\[
+\begin{tikzcd}
+\spec(\F_p[X]/\gene{f})\arrow[r]\arrow[d]\ &\spec(\Z[X]/\gene{F})\arrow[d]\\
+\spec(\F_p)\arrow[r] & \spec(\Z)
+\end{tikzcd}
+\]
+De hecho podríamos considerar $\spec(\Q)\to\spec(\Z)$ y completar el diagrama. Estudiar qué propiedades se pueden estudiar haciendo esta extensión es un problema abierto. 
+\end{nota}
+
+\section{Propiedades de esquemas y morfismos}
+
+\subsection{Propiedades de esquemas}
+
+\begin{defi}
+Un esquema es \emph{conexo} si su espacio topológico es conexo. Lo mismo para irreducible. 
+\end{defi}
+
+\begin{defi}
+Un esquema $X$ se dice \emph{reducido} si $\OO_X(U)$ es reducido para todo $U$ abierto de $X$ (se prueba que esto es equivalente a que $\OO_{X,x}$ es reducido $\forall x\in X$. 
+\end{defi}
+
+\begin{defi}
+Un esquema $X$ es \emph{íntegro} si $\OO_X(U)$ es dominio de integridad para todo $U\subset X$ abierto.
+\end{defi}
+
+\begin{prop}
+Un esquema es íntegro si y solo si es reducido e irreducible.
+\end{prop}
+\begin{dem}
+Claramente un esquema íntegro es reducido. Si $X$ no es irreducible, entonces podemos encontrar dos abiertos disjuntos $U_1$ y $U_2$. Entonces $\OO(U_1\cup U_2)=\OO(U_1)\times\OO(U_2)$, que no es un dominio de integridad. Por tanto, íntegro implica irreducible.
+
+Recríprocamente, supongamos que $X$ es reducido e irreducible. Sea $U\subseteq X$ un abierto y supongamos que hay elementos $f,g\in\OO(U)$ con $fg=0$. Sea $Y=\{x\in U\mid f_x\in\m_x\}$ y sea $Z=\{x\in U\mid g_x\in\m_x\}$. Entonces $Y$ y $Z$ son cerrados por el ejercicio 2.16a, y $Y\cup Z=U$. Pero $X$ es irreducible, así que $U$ es irreducible, por lo que uno entre $Y$ y $Z$ es igual a $U$, digamos $Y=U$. Pero entonces la restricción de $f$ a cualquier abierto afín de $U$ sería nilpotente por el ejercicio 2.18a, por tanto es cero, con lo que $f$ es cero. Esto prueba que $X$ es íntegro. 
+\end{dem}
+
+\begin{defi}
+$X$ es localmente noetheriano si $X$ es unión de abiertos afines $U_i=\spec(A_i)$ de manera que $A_i$ es noetheriano. Se dice que es noetheriano si es localmente noetheriano y cuasi-compacto (la compacidad de siempre, pero en algunos contextos se dice compacto si además es Hausdorff). 
+\end{defi}
+
+\begin{defi}
+Un espacio topológico $X$ se dice \emph{noetheriano} si satisface la condición de cadena descendente para cerrados. 
+\end{defi}
+
+\begin{nota}
+Si $X$ es un esquema noetheriano, entonces $\spec(X)$ es noetheriano como espacio topolótico, pero el recíproco no es cierto.
+\end{nota}
+
+\begin{prop}
+$X$ es localmente noetheriano si y solo si para todo $U=\spec(A)$ abierto afín de $X$, $A$ es noetheriano. 
+\end{prop}
+
+
+\subsection{Propiedades de morfismos}
+
+\begin{defi}
+$f:X\to Y$ es localmente de tipo finito si existe un recubrimiento de $Y$ por abiertos afines $V_i=\spec(B_i)$ tal que para cada $i$, $f^{-1}(V_i)$ puede ser recubierto por abiertos afines $U_{ij}=\spec(A_{ij})$, donde cada $A_{ij}$ es una $B_i$-álgebra finitamente generada. El morfismo $f$ es de tipo finito si además la cantidad de $U_{ij}$ se puede tomar finita para cada $i$. 
+\end{defi}
+
+\begin{observacion}
+La aplicación $\spec(A_{ij})\subset f^{-1}(V_i)\to \spec(B_i)$ induce un homomorfismo de anillos que convierte a $A_{ij}$ en una $B_i$-álgebra, y de ahí la condición de la definición. 
+\end{observacion}
+
+\begin{defi}
+$f:X\to Y$ es afín si se puede recubrir $Y$ con abiertos afines $V_i=\spec(B_i)$ tales que $f^{-1}(V_i)=\spec(A_i)$ (también la preimagen es afín). Se dice que $f:X\to Y$ es finito si además $A_i$ es un $B_i$-módulo finitamente generado. Evidentemente, finito implica de tipo finito (ser un módulo es más exigente que ser un álgebra).
+\end{defi}
+
+Nótese en cada una de estas definiciones que una propiedad de un morfismo $f:X\to Y$ se define mediante la existencia de un recubrimiento por abiertos afines de $Y$ con ciertas propiedades. En realidad en cada caso es equivalente a pedir que la propiedad se cumpla para todo abierto afín de $Y$. 
+
+
+\begin{defi}
+Un subesquema abierto de $X$ es un esquema $U$ cuyo espacio topológico es un abierto de $X$ y su haz estructural es la restricción $\OO_{X}|_{U}$. Un subesquema cerrado de $X$ es un esquema $Y$ de modo que su espacio topológico es cerrado en $X$ y la aplicación inducida por la inclusión $\OO_X\to i_*\OO_Y$ es sobreyectiva.
+\end{defi}
+
 
 
 
@@ -550,6 +653,16 @@ Probar que el prehaz $\calF(U)=\prod_{x\in U} A_x$ es un haz para $X$ con la top
 \end{ejer}
 \begin{ejer}
 Probar el lema de Yoneda. 
+\end{ejer}
+\begin{ejer}
+Consideramos $\Z[\frac{1}{2}]\hookrightarrow\Z[\frac{1}{2},i]$ (recordemos que 2 era el punto que daba problemas en la construcción del producto fibrado). Sea $C$ un anillo y $N$ un ideal tal que $N^2=0$. Supongamos que tenemos un diagramas conmutativos
+\[
+\begin{tikzcd}
+\Z[i]\arrow[r, "\beta"] & C/N & & \Z[\frac{1}{2},i]\arrow[r] & C/N\\
+\Z\arrow[u, hookrightarrow]\arrow[r, "\alpha"] & C\arrow[u, "p"'] & & \Z[\frac{1}{2}]\arrow[u]\arrow[r] & C\arrow[u]
+\end{tikzcd}
+\]
+Comprobar que no siempre es posible levantar conmutativamente $\beta$ a $\Z[i]\to C$ pero siempre se puede hacer de manera única en el diagrama de la derecha con $\Z[\frac{1}{2},i]\to C$. Observar que $\alpha$ ya nos da a dónde tiene que ir $\Z$ luego tenemos que enviar $i$ a algo que respete $i^2+1=0$. 
 \end{ejer}
 
 \end{document}
