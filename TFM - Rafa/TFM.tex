@@ -1,0 +1,1139 @@
+\documentclass[twoside,a4paper,openright,12pt]{book}
+\usepackage{makeidx}
+\usepackage{capt-of}
+\usepackage[T1]{fontenc}
+\usepackage{amsfonts}
+\usepackage{mathtools,amscd,amsthm}
+\usepackage{tabularx}
+\usepackage{amssymb,eucal,bezier,graphicx}
+\usepackage{times}
+\usepackage{subfig}
+\usepackage[svgnames]{xcolor}
+\usepackage{fancybox}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{array}
+\usepackage{comment}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{anysize}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{listingsutf8}
+\usepackage{etoolbox}
+% \usepackage{slashbox}
+% \usepackage{verbatim}
+% \usepackage[font=small]{caption}
+% \usepackage{framed}
+% \usepackage{cancel}
+% \usepackage{tikz}
+% \usepackage{epstopdf}
+% \usepackage{float}
+% Plantillas de código
+\newcommand{\rstyle}{\lstset{ 
+  language=R,                     % the language of the code
+  basicstyle=\small\ttfamily, % the size of the fonts that are used for the code
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\tiny\color{Blue},  % the style that is used for the line-numbers
+  stepnumber=1,                   % the step between two line-numbers. If it is 1, each line
+                                  % will be numbered
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  keywordstyle=\color{RoyalBlue},      % keyword style
+  commentstyle=\color{YellowGreen},   % comment style
+  stringstyle=\color{ForestGreen},     % string literal style
+     literate=%
+         {á}{{\'a}}1
+         {í}{{\'i}}1
+         {é}{{\'e}}1
+         {ý}{{\'y}}1
+         {ú}{{\'u}}1
+         {ó}{{\'o}}1
+         {ñ}{{\~n}}1}}
+         
+\lstnewenvironment{erre}[1][]
+{
+\rstyle
+\lstset{#1}
+}
+{}         
+
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+\newtoggle{InString}{}% Keep track of if we are within a string
+\togglefalse{InString}% Assume not initally in string
+\definecolor{majo}{HTML}{CD2626}
+\newcommand*{\ColorIfNotInString}[1]{\iftoggle{InString}{#1}{\color{majo}#1}}%
+\newcommand*{\ProcessQuote}[1]{#1\iftoggle{InString}{\global\togglefalse{InString}}{\global\toggletrue{InString}}}%
+
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{11}  % for normal
+
+\newcommand{\pythonstyle}{\lstset{
+  language=Python,                     % the language of the code
+  basicstyle=\small\ttm, % the size of the fonts that are used for the code
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\tiny\color{DarkBlue},  % the style that is used for the line-numbers
+  stepnumber=1,                   % the step between two line-numbers. If it is 1, each line
+                                  % will be numbered
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  emph={range,len,print},          
+  emphstyle=\ttb\color{deepred},
+  keywordstyle=\color{RoyalBlue},      % keyword style
+  commentstyle=\color{Grey},   % comment style
+  stringstyle=\color{LimeGreen},     % string literal style
+     literate=%
+         {á}{{\'a}}1
+         {í}{{\'i}}1
+         {é}{{\'e}}1
+         {ý}{{\'y}}1
+         {ú}{{\'u}}1
+         {ó}{{\'o}}1
+         {ñ}{{\~n}}1
+         {"}{{{\ProcessQuote{"}}}}1% Disable coloring within double q
+         {'}{{{\ProcessQuote{'}}}}1% Disable coloring within single 
+         {0}{{{\ColorIfNotInString{0}}}}1
+    	 {1}{{{\ColorIfNotInString{1}}}}1
+   	 	 {2}{{{\ColorIfNotInString{2}}}}1
+   		 {3}{{{\ColorIfNotInString{3}}}}1
+   		 {4}{{{\ColorIfNotInString{4}}}}1
+   		 {5}{{{\ColorIfNotInString{5}}}}1
+   		 {6}{{{\ColorIfNotInString{6}}}}1
+   		 {7}{{{\ColorIfNotInString{7}}}}1
+   		 {8}{{{\ColorIfNotInString{8}}}}1
+   		 {9}{{{\ColorIfNotInString{9}}}}1
+  }}
+         
+\lstnewenvironment{pythone}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}  
+
+\marginsize{3.25cm}{3.25cm}{3cm}{3cm}
+
+\newtheorem{defi}{Definici\'on}[section]
+\newtheorem{ej}{Ejemplo}[section]
+\newtheorem{ejs}{Ejemplos}[section]
+\newtheorem{prop}{Proposici\'on}[section]
+\newtheorem{nota}{Nota}[section]
+\newtheorem{notac}{Notación}[section]
+\newtheorem{rem}{Observaci\'on}[section]
+\newtheorem{thm}{Teorema}[section]
+\newtheorem{cor}{Corolario}[section]
+\newtheorem{lem}{Lema}[section]
+\newtheorem*{dem}{Demostración}
+
+\providecommand{\abs}[1]{\left|{#1}\right|}
+\providecommand{\conv}[1]{\overset{#1}{\longrightarrow}}
+\providecommand{\convcs}{\xrightarrow{CS}}
+\providecommand{\conve}{\xrightarrow{e}}
+\providecommand{\func}[2]{\colon{#1}\longrightarrow{#2}}
+\newcommand{\efe}{\hat{f}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\fn}{\hat{f}_{0N}}
+\newcommand{\X}{\overline{X}}
+\newcommand{\dis}{\displaystyle}
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+\providecommand{\posi}[1]{\left[#1\right]^+}
+
+% IRENITA--------------------------------
+\renewcommand{\headrulewidth}{0.4pt} 
+\fancyhead[RO,LE]{\thepage} 
+\fancyhead[LO]{\nouppercase{\leftmark}}
+\fancyhead[RE]{\nouppercase{\rightmark}}
+\fancyfoot{}
+\newcommand{\va}{\hat{\vartheta}_N}
+\pagestyle{fancy}
+% --------------------------------------
+
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+\begin{document}
+% ---------------------PORTADA
+\begin{titlepage}
+
+\vspace*{1in}
+\begin{center}
+\vspace*{-1in}
+\begin{figure}[htb]
+\begin{center}
+\begin{large}
+TRABAJO FIN DE MÁSTER\\
+\end{large}
+\rule{80mm}{0.1mm}\\
+\vspace*{0.1in}
+\end{center}
+\end{figure}
+\begin{large}
+\end{large}
+
+\vspace*{0.2in}
+\begin{Large}
+{\huge \bfseries El problema paramétrico del emparejamiento en grafos y
+problema de emparejamiento con dos objetivos}\\[2cm]
+\end{Large}
+
+\begin{center} \Large
+\emph{Presentado por:}\\
+\textsc{ \bf{Rafael González López}}
+\end{center}
+
+\vspace*{0.2in}
+\begin{center} \large
+\emph{Supervisado por:} \\
+\textsc{Dr.~Justo Puerto Albondoz}\\
+\end{center}
+\vspace*{0.2in}
+
+\centering
+\includegraphics[width =7cm]{logo}
+
+
+
+\begin{large}
+\centering
+FACULTAD DE MATEMÁTICAS \\
+\end{large} 
+
+\begin{large}
+Departamento de Estadística e Investigación Operativa\\
+\end{large}
+
+
+\begin{large}
+\centering
+Sevilla, Junio 2018\\
+ \end{large}
+\end{center}
+
+
+\end{titlepage}
+
+\newpage
+\thispagestyle{empty}
+%------------------------------------------------------------------------
+
+\tableofcontents
+\newpage
+\thispagestyle{empty}
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+The sample average approximation (SAA) method is an approach for solving stochastic optimization problems by using Monte Carlo simulation. The basic idea of such method is that we can approximate the expected objetive function by the corresponding sample average function using a random sample. We solve the obtained sample average approximating problem by deterministic optimization techniques, and the process is repeated several times with different samples to obtain candidate solutions along with statistical estimates of their optimality gaps until a stopping criterion is satisfied.
+
+
+In section 1 we describe the expected value and sample average approximation problems and give a few examples of real cases in which it can be useful. In section 2 we show many results related to convergence of estimators (objective value, optimal solution, etc) under certain assumptions. In section 3  we discuss convergence rates of objetive values. In section 4 we implement the method to study two problems (that involve different random variables) to illustrate the power of the method.
+\newpage
+\thispagestyle{empty}
+
+\chapter*{Introducci\'on}\label{cap.introduccion}
+\addcontentsline{toc}{chapter}{Introducción}
+En ocasiones, cuando tratamos de resolver problemas de programación estocástica que involucran valores esperados, tenemos que lidiar un tamaño del espacio muestral excesivamente grande o con cálculos de esperanzas que pueden ser tremendamente costosos desde un punto de vista computacional. En este trabajo desarrollamos una técnica que nos permite en una gran variedad de casos aproximar estos problemas mediante mediante el método de Monte Carlo. Esta técnica se conoce como Método de aproximación por media muestral.
+
+Tras una presentación inicial del método, proseguiremos dando resultados relacionados con la convergencia, bajo hipótesis adecuadas, de las soluciones, valor objetivo y otros estimadores de los problemas muestrales a los correspondientes del problema real, así como una primera aproximación al orden de convergencia del método. 
+
+Finalmente, ejemplificaremos la eficacia del método con experimentos reales. Expondremos dos casos donde utilizaremos una normal multivariante y una mixtura de normales para tener una primera impresión sobre la capacidad de aproximación del método y la utilidad para casos donde, amén de heurística, resulta infactible resolver los problemas por fuerza bruta.
+
+
+\newpage
+\thispagestyle{empty}
+%\pagenumbering{arabic} % para empezar la numeración con números
+\chapter{Planteamiento teórico del problema}
+\section{Formulación}
+Dado que nuestro objetivo es el estudio paramétrico del problema del emparejamiento y la versión multiobjetivo del mismo, comenzamos este trabajo exponiendo en qué consiste el problema del ejemparejamiento o problema del \textit{matching}. Para ello, comenzamos definiendo qué entendemos por grado de un subconjunto de vértices
+\begin{defi}
+Sea $G=(V,E)$ un grafo y sea $S \subset V$, denominamos \textbf{grado} de $S$ y denotamos por $\delta(S)$ al número de aristas incidentes en algún vértice de $S$. En el caso de un conjunto unitario $\{i\}$, denotamos $\delta(i):=\delta(\{i\})$. 
+\end{defi}
+El problema del \textit{matching} consiste en encontrar un subconjunto $M\subset E$ con la propiedad de que en el subgrafo inducido $G(M)=(V,M)$ ningún vértice tenga grado mayor que $1$, es decir, que ninguna arista tenga vértices en común. Naturalmente, este problema es fácilmente generalizable al problema del $b$-emparejamiento o $b$-\textit{matching}, en el cual cada vértice $i$ debe tener un grado no mayor que $b_i$, donde $b_i$ es un entero positivo. El problema original pasaría a ser el caso particular en el que $b_i = 1$ $\forall i \in V$.
+
+\begin{defi}
+Sea $G=(V,E)$ un grafo y sea $M\subset E$ un $b$-emparejamiento. Diremos que $M$ es un \textbf{emparejamiento perfecto} si $\delta(v_i)=b_i$ $\forall i \in V$, es decir, si las restricciones se verifican con igualdad.
+\end{defi}
+\begin{align}
+\min_{x} &f_0(x)  \nonumber\\ 
+s.a.\;  &  f_i(x)\leq 0 \quad i=1,\dotsc,q \tag{1} \label{eq:1}\\
+& x\in\chi \nonumber
+\end{align}
+
+La particularidad que caracteriza a este problema frente a otros que hemos estudiado a lo largo del Grado en Matemáticas es que, en nuestro caso, tanto la función objetivo como las restricciones no serán necesariamente determinísticas, sino que ambas pueden estar dadas por esperanzas de variables aleatorias:
+$$ 
+f_i(x):=\E[F_i(x,\xi)] \quad i=0,\dotsc,q
+$$
+
+En la formulación (\ref{eq:1}) $\chi\subset \R^n$ es un conjunto determinístico, $\xi\in\R^d$ es un vector que representa unos parámetros indeterminados del problema y $F_i$ son funciones explícitas con imagen real. Es importante notar que en esta formulación asumimos que el vector $\xi$ está modelado por una variable aleatoria con una distribución de probabilidad $P$ y que las esperanzas las calcularemos con respecto a esta distribución. Recordemos que los estas esperanzas están dadas por
+$$
+\E[F_i(x,\xi)]=\int F_i(x,\xi)dP(\xi)
+$$
+Cuando $P$ sea una variable aleatoria discreta, con $\xi$ tomando valores en $\{\xi_1,\dotsc,\xi_K\}$ y probabilidades (respectivamente) $p_1,\dotsc,p_K$, la integral anterior puede escribirse como
+$$
+\E[F_i(x,\xi)] = \sum_{k=1}^K p_k F_i(x,\xi)
+$$
+
+Una referencia básica a problemas de optimización como (\ref{eq:1}) es Rubistein y Shapiro \cite{shapiro}. 
+
+Veamos que esta formulación es lo suficientemente versátil como para formular el problema de restricciones probabilísticas. Restringir el espacio de soluciones factibles con restricciones de la forma $G_i(x,\xi)\leq 0$ $\forall \xi\in\Xi$ puede puede introducir un número excesivo de restricciones de manera que no haya solución. En su lugar se pueden tomar unas condiciones menos restrictivas
+$$
+P[G_i(x,\xi)\leq 0]\geq 1-\alpha
+$$
+con $\alpha\in (0,1)$. Este tipo de restricciones son denominadas \textit{restricciones probabilísticas} y $1-\alpha$ es usualmente referido como \textit{nivel de confianza} (confidence level). Tal y como vemos en \cite{chance} el problema puede describirse de la siguiente forma. Definimos $$G(x,\xi):=\max_{1\leq i\leq q}G_i(x,\xi)$$
+Esto nos permite formular las restricciones como una única restricción equivalente
+$$
+P[G(x,\xi)> 0]\leq \alpha
+$$
+Además, como una probabilidad $p_A$ puede verse como una esperanza utilizando una función indicatriz, tomamos $1_{(0,\infty)}(t)$ la función indicatriz de $(0,\infty)$. Como la $\E[c]=c$ y la espereza es lineal, nuestro problema puede escribirse como
+\begin{align*}
+\min_{x} &f_0(x)\\
+s.a.\;  & f_1(x)= \E[1_{(0,\infty)}(G(x,\xi))-\alpha]\leq 0 \tag{2} \label{eq:2}\\
+&x\in\chi
+\end{align*}
+
+Por tanto, el problema de restricciones de probabilidad puede ser formulado como un problema cuyas restricciones son funciones dadas por esperanzas.
+
+
+\subsection*{Inconvenientes de la formulación}
+Un claro inconveniente de la formulación anterior es que las funciones $f_i$ pueden no tener buenas propiedades desde el punto de vista de la la optimización. Por ejemplo, en el caso discreto cuando $K$ tome valores grandes (exponencial en el tamaño de la muestra), su cálculo puede no ser directo. Supongamos que las componentes del vector $\xi$ están distribuidas de manera que son independientes entre sí y utilizamos $r$ puntos para la discretización de la distribución marginal de cada componente de $\xi$. Por tanto, el número total de puntos será $r^d$, número que crece rápidamente si aumentamos la dimensión $d$ de $\xi$ incluso para valores moderados de $r$. En el caso de tener distribuciones continuas, las esperanzas estarán dadas por integrales múltiples que rara vez podrán ser evaluadas con una forma cerrada, por lo que tendríamos aproximarlas numéricamente.
+
+
+\section{Método de aproximación por media muestral}
+
+El método de aproximación por media muestral, SAA, por sus siglas en inglés de Sample Average Approximation, consiste en aproximar el problema de optimización estocástica (\ref{eq:1}) por un problema determinístico obtenido aplicando el método de Montecarlo para aproximar las funciones $f_i$, $i=0,\dotsc,q$.
+
+Más precisamente, se genera una muestra aleatoria $\xi_1,\dotsc,\xi_N$, idénticamente distribuidas a $\xi$, y se estima por el método de los momentos cada $f_i(x)=E[F_i(x,\xi)]$, de manera que 
+$$
+\hat{f}_{iN}(x)=\frac{1}{N}\sum_{k=1}^N F_i(x,\xi_k)
+$$
+y se aproximará el problema (\ref{eq:1}) mediante el problema de optimización
+\begin{align}
+\min_{x} &\hat{f}_{0N}(x)  \nonumber\\ 
+s.a.\;  & \hat{f}_{iN}(x)\leq 0 \quad i=1,\dotsc,q \tag{3} \label{eq:3}\\
+& x\in\chi \nonumber
+\end{align}
+
+En el caso particular en el que las condiciones son de la forma $P[(G_i(x,\xi)\leq 0]\geq 1-\alpha$, tal y como vimos en (\ref{eq:2}), podemos dar una formulación 
+$$
+\hat{f}_{1N}(x) =\frac{1}{N}\sum_{k=1}^N 1_{(0,\infty)}(G(x,\xi_k))  -\gamma
+$$
+donde $\gamma$ es el nivel de confianza asociado al problema muestral. Notemos que el nivel de confianza del problema SAA puede ser diferente del nivel de confianza del problema real. Finalmente, si escribimos
+$$
+P_N:=\frac{1}{N}\sum_{k=1}^N \Delta(\xi_k) \qquad 
+$$
+entonces el problema SAA puede escribirse como
+\begin{align*}
+\min_{x} &f_0(x)  \nonumber\\ 
+s.a.\;  & \hat{f}_{1N} (x) = \E_{P_N}[1_{(0,\infty)}(G(x,\xi))  -\gamma]\leq 0\\
+& x\in\chi \nonumber
+\end{align*}
+\newpage
+\section{Ejemplos}\label{sec:unotres}
+A continuación se presentarán algunos ejemplos de problemas de optimización estocástica y se describe su SAA asociado.
+\subsection{Problema de la cartera restringida}
+Consideremos el problema de maximización sujeto a una única restricción
+\begin{align*}
+\max_{x} &\;\E[r^Tx] \\ 
+s.a.\;  &  P[r^Tx\geq v]\geq 1-\alpha \tag{4} \label{eq:4}\\
+& x\in X
+\end{align*}
+donde $x\in\R^n$ es un vector de variables de decisión, $r$ es un vector de datos aleatorio con distribución de probabilidad conocida, $v\in\R^n$ y $\alpha\in(0,1)$ son constantes y
+$$
+X:=\{x\in\R^n \mid \sum_{i=1}^n x_i=1,x\geq 0\}
+$$
+Naturalmente, por propiedades básicas de la esperanza, si denotamos $\overline{r}= E[r]$ entonces $\E[r^Tx]=\overline{r}^Tx$.
+
+La motivación para estudiar este problema podemos encontrarla en Markowitz \cite{portfolio}. El vector $x$ representa el porcentaje de un total de riqueza de una unidad monetaria (u.m.) invertida en cada una de los $n$ activos disponibles, $r$ es el vector de rendimientos aleatorios de esas inversiones y deseamos maximizar el rendimiento sujeto a tener rendimiento medio mayor o igual a un nivel deseado $v$ con probabilidad al menos $1-\alpha$. Obviamente, el problema (\ref{eq:4}) no es realista, pues no tiene en cuenta características fundamentales del mercado como: costes de transacción, ventas en corto, límites inferiores o superiores de almacenamiento, etc. Sin embargo, sirve como un sencillo ejemplo de aplicación SAA.
+
+\subsubsection*{Aplicación del SAA}
+
+Supongamos que $r$ se distribuye según una normal multivariante con media $\overline{r}$ y matriz de covarianzas $\Sigma$, es decir, $r\sim N(\overline{r},\Sigma)$. Por propiedades de la distribución normal, $r^Tx \sim N(\overline{r}^Tx,x^T\Sigma x)$. En este caso podemos encontrar una forma explícita para la restricción en \cite{convexop}, aunque en general esto no va a ser posible Entonces el problema SAA puede ser escrito como
+
+\begin{align*}
+\max_{x}&\,{ \overline{r}^Tx}  \nonumber\\ 
+s.a.\;  & \E_{P_N}[1_{(0,\infty)}(v-r^Tx)  -\gamma]\leq 0\\
+& x\in X \nonumber
+\end{align*}
+
+
+\newpage
+\subsection{Problemas de asignación de recursos}
+
+Un agente tiene que escoger, de entre $k$ proyectos, un subconjunto de ellos. Para este propósito dispone de una cantidad conocida de recursos $q$ para asignar a los distintos proyectos. Cualquier otra cantidad de recursos adicional puede obtenerse con un coste de $c$, más alto, por unidad de recurso. La cantidad de recurso $W_i$ requerida para emprender cada proyecto no es conocida, pero suponemos que nuestro agente tiene una estimación de cómo se distribuye $W=(W_1,\dotsc,W_k)$. Denotamos $\posi{x}=\max\{x,0\}$. Si para cada proyecto $i$ denotamos $r_i$ como la diferencia entre los ingresos y los costes, entonces, como el consumo de recursos extra es $c\left[W'x-q\right]^+$, el beneficio neto es la v.a. 
+$$
+r'x + c\left[W'x-q\right]^+
+$$
+Por tanto, el beneficio neto esperado, a maximizar, es
+\begin{align*}	
+\max_x&\; r'x  -c\E\posi{W'x-q}\tag{5}\label{eq:5}\\
+s.a.& \; x\in\{0,1\}^k
+\end{align*}
+
+Elegimos presentar este problema en los ejemplos por varias razones. Por ejemplo, muchos problemas interesantes como el problema de la tripulación (una aproximación probabilística a este problema puede verse en \cite{avion}) o la versión estocástica del problema del camino más corto en un grafo, que detallaremos más adelante, tienen funciones objetivos parecidas a la de este ejemplo en términos de valores esperados.
+
+Otra razón para su estudio es que en la función objetivo encontramos términos de la forma $\E\posi{\sum_i W_ix_i-q}$. En muchos problemas de programación estocástica se pueden obtener soluciones muy buenas si sustituimos las variables aleatorias implicadas en el problema por sus medias y resolviendo el problema determinístico tal y como podemos ver en \cite{cita1}. Sin embargo, es fácil ver que en general cuando tenemos este tipo de valores esperados no tiene por qué ocurrir así. Dada una solución $x$, este término puede ser grande y, a pesar de ello, volverse muy pequeño si sustituimos cada $W_i$ por su esperanza. 
+
+Finalmente, hemos de tener en cuenta el interés que puede tener este problema en sí mismo. Aplicaciones de este problema pueden ser la toma de decisiones por parte de un contratista que provee a varios usuarios de manera simultánea, como una compañía eléctrica o una empresa de construcción. La cantidad de trabajo que requerirá para cada contrato es desconocida cuando el contrato es firmado, los materiales tienen un bajo costo y si la cantidad de trabajo requerida con un alto coste.
+\subsubsection*{Aplicación del SAA}
+Denotaremos por $W^i_j$ $j=1,\dotsc,N$, la muestra aleatoria de $W_i$, $i=1,\dotsc,k$. Por tanto, podemos formular la aplicación del SAA del problema \ref{eq:5} como
+\begin{align*}	
+\max_{x,z}&\; r^Tx  -\frac{c}{N}\sum_{i=1}^N z_i \\\
+s.a.
+& \; z_j \geq \sum_{i=1}^kW_i^jx_i - q  & j=1,\dotsc,N\\ 
+&\; z_j\geq 0 &j=1,\dotsc,N  \\
+& \; x\in\{0,1\}^k\\
+\end{align*}
+Este problema puede ser resuelto por el método de ramificación y acotación, usando el problema lineal relajado para tener cotas superiores.
+\subsection{Problemas de mezclas probabilístico}
+Vamos a considerar otro ejemplo de problema de restricciones probabilísticas. Supongamos que un granjero desea fertilizar sus cultivos con el fin de aumentar su producción. Él decide utilizar una ciertas cantidades $v_1,\dotsc,v_k$ de $k$ nutrientes. El granjero tiene a su disposición en el mercado $h$ fertilizantes disponibles, de manera que cada fertilizante $i$ contiene $\omega_{ij}$ gramos del nutriente $j$, $1\leq i \leq k$, $1 \leq j \leq h$. Precisamente serán ciertos $\omega_{ij}$ los que normalmente en este y otros problemas análogos sean parámetros desconocidos distribuidos según alguna variable aleatoria.
+
+Existen muchas formas de modelar el problema de mezclas. Una exposición detallada de las mismas puede encontrarse en \cite{mixing}. Si denotamos por $x_i$ la cantidad de fertilizante $i$ que compramos a un precio $p_i$, entonces podemos considerar la formulación
+\begin{align*}	
+\min_{x_i} &\; \sum_{i=1}^h p_ix_i 
+\\\
+s.a.
+& \; P\left[\sum_{i=1}^h \omega_{ij}x_i \geq v_j \quad \forall j=1,\dotsc,k\right]\geq 1-\alpha &\tag{6}\label{eq:6}\\
+& \; x_i\in\R_{\geq 0} & i=1,\dotsc,h\\
+\end{align*}
+Notemos que el problema (\ref{eq:6}) no está escrito en la forma \ref{eq:2}. Sin embargo, si denotamos 
+$$
+G(x_1,\dotsc,x_h)=\min_{1\leq j \leq k}-v_j + \sum_{i=1}^h \omega_{ij}x_i
+$$
+podemos escribir (\ref{eq:6}) como 
+\begin{align*}	
+\min_{x_i} &\; \sum_{i=1}^h p_ix_i 
+\\\
+s.a.
+& \; P[G(x_1,\dotsc,x_h,\xi)>0]\leq \alpha\\
+& \; x_i\in\R_{\geq 0} & i=1,\dotsc,h\\
+\end{align*}
+Procediendo de manera análoga al desarrollo teórico podemos encontrar el problema SAA asociado.
+\chapter{Convergencia}
+
+\section{Definiciones y resultados previos}
+\
+Vamos a dar algunas definiciones y resultados de teoría de la probabilidad que serán necesarios para comprender o demostrar los enunciados propios de nuestro trabajo.
+\begin{notac}
+Notaremos por $\vartheta^*$ y $\hat{\vartheta}_N$ los valores óptimos del problema real (\ref{eq:1}) y el problema SAA (\ref{eq:2}) respectivamente. De la misma forma, $S$ y $\hat{S}_N$ para el conjunto de soluciones óptimas del problema real y el SAA respectivamente y $X$ y $\hat{X}_N$ para referirnos a los conjuntos factibles, es decir
+\begin{gather*}
+X=\chi\cap\{x\mid f_i(x)\leq 0 \;\forall i=1,\dotsc,q\}\\
+\hat{X}_N=\chi\cap\{x\mid \hat{f}_{iN}(x)\leq 0 \;\forall i=1,\dotsc,q\}
+\end{gather*} 
+Observamos que $X$ y $S$ son subconjuntos de $\R^n$, mientra que $\hat{x}_N$ y $\hat{S}_N$, como dependen del espacio probabilístico, son conjuntos aleatorios.
+ Además, dado $\varepsilon\geq 0$ diremos que $x$ es un solución $\varepsilon$-óptima si $f_0(x)\leq \vartheta^*+\varepsilon$. El conjunto de las soluciones $\varepsilon$-óptimas del problema real y el SAA será denotado por $S^\varepsilon$ y $\hat{S}^\varepsilon_N$.
+\end{notac}
+\begin{defi}
+Una sucesión de variables aleatorias $\{X_N\}$ definida sobre un espacio probabilístico $(\Omega,A,P)$ converge de manera casi segura a X o con probabilidad 1, lo cual notaremos $X_N \convcs X$, si se verifica que:
+\begin{gather*}
+P\left(\{\omega\in\Omega \mid X_N(\omega)\longrightarrow X(\omega)\}\right)=1
+\end{gather*}
+\end{defi}
+\begin{defi}
+Una sucesión de variables aleatorias $\{X_N\}$ definida sobre un espacio probabilístico $(\Omega,A,P)$ converge en probabilidad a X, que notaremos ${X_N \conv{P} X}$ si se verifica:
+\begin{gather*}
+\lim_{N\to\infty}P\left(\{\omega\in\Omega \mid \abs{X_N(\omega)-X(\omega)}\leq \varepsilon \}\right)=1
+\end{gather*}
+\end{defi}
+\begin{defi}
+Una sucesión de variables aleatorias $\{X_N\}$ definida sobre un espacio probabilístico $(\Omega,A,P)$ con funciones de distribución $F_{X_N}$ converge en Ley a X, lo cual notaremos $X_N \conv{L} X$ si se verifica que:
+\begin{gather*}
+F_{X_N}(x)\longrightarrow F_X(x)\text{ $\forall x$ punto de continuidad de $F_X$}
+\end{gather*}
+\end{defi}
+\begin{prop}
+La convergencia casi segura implica convergencia en probabilidad, y esta implica la convergencia en Ley.
+\end{prop}
+\begin{defi}
+Una sucesión de funciones $f_N\func{\chi\times\Omega}{\R}$ con $(\Omega,A,P)$ espacio probabilistico, converge uniformemente de manera casi segura a la función $f\func{\chi\times\Omega}{\R}$ si 
+$$
+P(\{\omega\in\Omega \mid \sup_{x\in\chi}\abs{f_N(x,\omega)-f(x,\omega)}\to 0\}=1
+$$
+\end{defi}
+\begin{thm}[Ley fuerte de los grandes números]\label{grandesnumeros}
+Sea $\{X_N\}$ una sucesión de variables aleatorias independientes e idénticamente distribuidas (i.i.d) con esperanza finita. Sea $\mu = E[X_N]$ entonces:
+\begin{gather*}
+\frac{1}{N} \sum_{i=1}^N X_i \convcs \mu
+\end{gather*}
+\end{thm}
+\begin{thm}[Teorema central del límite]
+Sea $\{X_N\}$ una sucesión de variables aleatorias i.i.d con varianza finita y no nula. Sean $\mu = E[X_N]$ y $\sigma^2 = V[X_N]$ entonces:
+\begin{gather*}
+\sqrt{N}\frac{\frac{1}{N} \sum_{i=1}^N X_i-\mu}{\sigma} \conv{L} N(0,1)
+\end{gather*}
+donde $N(0,1)$ denota la distribución normal de media $0$ y varianza $1$.
+\end{thm}
+\begin{defi}
+Sea $f\func{\R^n\times \Xi}{\R}$. Diremos que $f(x,y)$ es una función de Carathéodory si $f(x,\cdot)$ es medible para cada $x\in\R^n$ y $f(\cdot,y)$ es continua para cada $y\in\Xi$.
+\end{defi}
+\begin{defi}
+Sea una sucesión de funciones $f_N \func{\chi\subset \R^n}{\overline{\R}}$. Diremos que $\{f_N(x)\}$ epiconverge a $f(x)$ y denotaremos $f_N\conve f$ si se verifica
+\begin{itemize}
+\item Para cada sucesión $\{x_N\}$ tal que $x_N\to x$ 
+$$
+\liminf_{N\to\infty} f_N(x_N)\geq f(x)
+$$
+\item Existe $\{x_N\}$ tal que $x_N \to x$ y tal que
+$$
+\limsup_{N\to\infty} f_N(x_N)\leq f(x)
+$$
+\end{itemize}
+\end{defi}
+
+\begin{defi}
+Sea $f\func{\chi}{\overline{\R}}$. Diremos que $f$ es semicontinua inferiormente en $x_0$ si 
+$$
+\liminf_{x\to x_0}f(x)\geq f(x_0)
+$$
+Análogamente $f$ se dice semicontinua superiormente en  en $x_0$ si
+$$
+\limsup_{x\to x_0}f(x)\leq f(x_0)$$
+\end{defi}
+\begin{defi}
+Sea $f\func{\chi}{\overline{\R}}$. Para cada $\alpha\in\R$ definimos los conjuntos de nivel inferiores como $\{x\in \chi\mid f(x)\leq \alpha\}$.  
+\end{defi}
+\begin{prop}\label{level}
+Una función es semicontinua inferiormente si y solo si los conjuntos de nivel inferiores son cerrados.
+\end{prop}
+\begin{defi}
+Sean $A,B\subset \R^n$. Definimos la distancia de $x\in\R^n$ a $A$ como
+$$
+dist(x,A):=\inf_{y\in A}||x-y||
+$$
+y la desviación del conjunto $A$ del conjunto $B$ como
+$$
+\mathbb{D}(A,B):=\sup_{x\in A}dist(x,B)
+$$
+Por convenio, diremos $dist(x,\emptyset)=\infty
+$. 
+\end{defi}
+\section{Valor y soluciones óptimas}
+\subsection{Caso general}
+Primeramente veremos un teorema que nos asegure convergencia del valor óptimo y del conjunto de soluciones factibles en la formulación general del problema.
+\begin{thm}
+Supongamos que $X$, conjunto factible de (\ref{eq:1}) es cerrado y que existe un compacto de $C\subset \R^n$ tal que 
+\begin{enumerate}
+\item El conjunto $S$ de soluciones óptimas de (\ref{eq:1}) es no vacío y está contenido en $C$.
+\item La función $f_0(x)$ tiene imagen finita y es continua en $C$.
+\item $\hat{f}_{0N}\convcs f_0$ uniformemente en $C$ cuando $N\to \infty$.
+\item Con probabilidad 1 para $N$ suficientemente grande $\hat{S}_{N}$ es no vacío y $\hat{S}_N\subset C$
+\item Para toda sucesión $\{x_N\}$ con $x_N\in \hat{X}_N$ y $x_N\convcs  x$, entonces $x\in X$. 
+\item $\exists x\in S$ tal que $\exists\{x_N\}$ con $ x_N \in \hat{X}_N$ tal que $x_N\convcs x$. 
+\end{enumerate}
+Entonces $\va\to \vartheta^*$ y $\mathbb{D}(\hat{S}_N,S)\to 0$  con probabilidad 1 cuando $N\to \infty$.
+\end{thm}
+Una prueba de este teorema puede encontrarse en \cite{lecture}.
+
+\subsection{Restricciones determinísticas}
+Veamos algunos resultados para el caso en el que $\hat{X}_N=X$, es decir, cuando las restricciones son determinísticas. Vamos a enunciar algunos resultados con características sobre $X$, que bien podrían ser enunciados sobre $\chi$, pero sería claramente innecesario.
+\begin{nota}
+Si las restricciones del problema son determinísticas, entonces las dos últimas condiciones del Teorema 2.2.1 son innecesarias y se tiene el mismo resultado.
+\end{nota}
+\begin{prop} Supongamos que $\hat{f}_{0N}(x)$ converge a $f_0(x)$ con probabilidad 1 cuando $N\to \infty$ uniformemente en $X$. Entonces $\va$ converge con probabilidad 1 a $\vartheta^*$ cuando $N\to \infty$.
+\end{prop}
+\begin{dem}
+Aunque lo omitamos, la función $\hat{f}_{0N}$ es aleatoria, pues depende de la muestra, es decir $\hat{f}_{0N}(x)=\hat{f}_{0N}(x,\omega)$. La convergencia uniforme con probabilidad 1 nos dice que $\forall \varepsilon >0$ y para casi todo $\omega \in \Xi$ $\exists N^*=N^*(\varepsilon,\omega)$ tal que, $\forall N\geq N^*$
+$$
+\sup_{x\in X}\abs{\hat{f}_{0N}(x,\omega)-f_0(x)}\leq \varepsilon
+$$
+Se sigue inmediatamente que $\abs{\va-\vartheta^*}\leq\varepsilon$ para todo $N\geq N^*$. \qed
+\end{dem}
+\begin{prop}\label{desi} Si $X$ es compacto y las funciones involucradas son continuas, entonces
+$$
+\abs{\va-\vartheta^*}\leq \delta_N:= \max_{x\in X}\abs{\hat{f}_{0N}(x)-f_0(x)}
+$$
+\end{prop}
+\begin{nota}
+El resultado se seguiría manteniendo de manera trivial si prescindimos de las hipótesis sobre las funciones pero imponemos que el conjunto $X$ sea finito.
+\end{nota}
+\begin{dem}
+La hipótesis de compacidad se usa para garantizar la existencia de máximos y mínimos
+$$
+-\max_{x\in X}|f(x)| = \min_{x\in X}-|f(x)| \leq \min_{x\in X}f(x)
+$$
+Se tiene
+\begin{align*}
+\min_{x\in X}\hat{f}_{0N}(x) &= \min_{x\in X}(\hat{f}_{0N}(x)+f_0(x)-f_0(x)) \\
+&\geq \min_{x\in X}(\hat{f}_{0N}(x)-f_0(x))+\min_{x\in X}f_0(x)\\
+&\geq -\max_{x\in X}\abs{\hat{f}_{0N}(x)-f_0(x)}+\min_{x\in X}f_0(x)
+\end{align*}
+Por lo que
+$$
+\delta_N \geq \va-\vartheta^*
+$$
+La otra desigualdad se deduce del siguiente razonamiento
+\begin{align*}
+\min_{x\in X}{f}_{0}(x) &= \min_{x\in X}(f_0(x)-\fn(x)+\fn(x)) \\
+&\geq \min_{x\in X}(f_0(x)-\hat{f}_{0N}(x))+\min_{x\in X}\fn(x)\\
+&\geq -\max_{x\in X}\abs{\hat{f}_{0N}(x)-f_0(x)}+\min_{x\in X}\fn(x)
+\end{align*}
+Por tanto
+$$
+\delta_N\geq \vartheta^*-\va
+$$ \qed
+\end{dem}
+\subsubsection*{Conjunto factible finito}
+Si mantenemos que $X=\hat{X}_N$ y además imponemos que $X$ sea conjunto finito, podemos mejorar algunos resultados.
+\begin{prop}
+Se tienen las siguientes propiedades
+\begin{itemize}
+\item $\va\convcs \vartheta^*$ cuando $N\to \infty$.
+\item Para todo $\varepsilon\geq 0$ el suceso $\{\hat{S}^\varepsilon_N\subset S^\varepsilon\}$ ocurre con probabilidad 1 para $N$ suficientemente grande.
+\end{itemize}
+\end{prop}
+\begin{dem}
+\begin{itemize}
+\item[]
+\item Se sigue de manera inmediata a partir de la ley fuerte de los grandes números (Teorema \ref{grandesnumeros}) que para cada $x\in S$, $\fn(x)$ converge de manera casi segura a $f_{0}(x)$. Dado que que $X$ es finito y la unión finita de conjuntos de medida nula es de medida nula, tenemos que $\fn(x)$ converge de manera uniforme $f_0(x)$, es decir,
+$$
+\max_{x\in X}\abs{\hat{f}_{0N}(x)-f_0(x)}\convcs 0 \qquad N\to \infty
+$$
+Junto a la Proposición~\ref{desi} se tiene el primer punto.
+\item Dado un $\varepsilon\geq 0$ podemos considerar
+$$
+\rho(\varepsilon):=\min_{x\in X\setminus S^\varepsilon}f_{0}(x)-\vartheta^*-\varepsilon
+$$
+Dado cualquier $x\in X\setminus S^\varepsilon$, por definición $f_0(x)>\vartheta^*+\varepsilon$ y siendo $X$ un conjunto finito, se sigue que $\rho(\varepsilon)>0$. Luego, $\forall x \in X$ $f_0(x)\geq \vartheta^* +\varepsilon+\rho(\varepsilon)$.
+
+Sea $N$ lo suficientemente grande como para asegurar que $\delta_N<\rho(\varepsilon)/2$. En particular, tenemos que $\hat{f}_{0N}(x) > f_0(x)-\rho(\varepsilon)/2$ $\forall x \in X$. Si $x\in \X\setminus S^\varepsilon$, tenemos además 
+$$
+\hat{f}_{0N}(x)> f_0(x)-\rho(\varepsilon)/2 \geq  \vartheta^* +\varepsilon+\rho(\varepsilon) - \rho(\varepsilon)/2 =  \vartheta^* +\varepsilon+\rho(\varepsilon)/2
+$$
+Usando la Proposición 2.2.2 tenemos que $\hat{\vartheta}_N-\vartheta^*\leq \delta_N < \rho(\varepsilon)/2$, Por tanto, si $x\in X\setminus S^\varepsilon$ entonces tenemos
+$$
+\hat{f}_{0N}(x)> \vartheta^* +\varepsilon+\rho(\varepsilon)/2 > \hat{\vartheta}_N + \varepsilon
+$$
+Por lo que $x\in X\setminus \hat{S}^\varepsilon_N$, de donde se deduce el resultado.
+\end{itemize} 
+\qed
+\end{dem}
+\section{Restricciones de probabilidad}
+Veamos algunos resultados referentes al problema (\ref{eq:2}). En esta sección supondremos que $\chi$ es cerrado. 
+\begin{prop}
+Sea $G(x,\xi)$ una función de Carathéodory. Entonces $\hat{f}_{1N}(x) $ y $f_1(x)$ son semicontinuas inferiormente y $\hat{f}_{1N}(x)\conve f_1(x)$ con probabilidad 1. Es más, si $\forall x\in \chi$ $G(x,\xi)\neq 0$ con probabilidad 1, entonces $\hat{f}_{1N}(x)$ es continua en $\chi$ y converge a $f_1(x)$ uniformemente en cada compacto $C\subset \chi$.
+\end{prop}
+Una demostración de este resultado puede encontrarse en \cite{chance}.
+\begin{prop}
+Supongamos que el nivel de confianza de SAA y el problema real es el mismo ($\alpha=\gamma$), $\chi$ es compacto y la función $f(x)$ es continua, $G(x,\xi)$ es una función de Carathéodory y se verifica la siguiente condición
+\begin{itemize}
+\item[(A)] Hay una solución $x^*$ del problema real tal que para todo $\varepsilon>0$ existe $x\in \chi$ tal que $\norm{x^*-x}\leq \varepsilon$ y $f_1(x)<\alpha$.
+\end{itemize}
+Entonces $\va\to\vartheta^*$ y $\D(\hat{S}_N,S)\to\infty$ con probabilidad 1 cuando $N\to\infty$.
+\end{prop}
+\begin{dem}
+Por la condición (A) el conjunto $S$ es no vacío y 
+existe un $x'$ tal que $f_1(x')<\alpha$. Que $\hat{f}_{1N}(x') \convcs f_1(x')$ se tiene por la ley fuerte de los grandes números. Por tanto, con probabilidad 1 y para $N$ suficientemente grande $\hat{f}_{1N}(x')<\alpha$ y el problema SAA tiene solución factible. De hecho, $x'\in X_N$ para $N$ suficientemente grande con probabilidad 1. Además, usando la semicontinuidad inferior de $\hat{f}_{1N}$, el conjunto factible del problema SAA $\hat{X}_N$ es compacto (es la intersección de un compacto y un cerrado [Proposición \ref{level}]) y, por tanto, por continuidad de $f_0$, $\hat{S}_N$ es no vacío con probabilidad 1 para $N$ suficientemente grande. Si $x_N\in \hat{X}_N$, entonces $f_0(x_N)\geq \va$. Utilizando $(A)$ y el razonamiento anterior podemos considerar una sucesión $x_N$ con $x_N\in \hat{X}_N$ con probabilidad 1 para $N$ suficientemente grande, tal que converge a $x^*$. Usando que $f$ es continua, tenemos que con probabilidad 1
+$$
+\limsup_{N\to\infty} \va \leq \limsup_{N\to \infty} f(x_N)=  f(x^*)=  \vartheta^*$$ 
+Sea ahora $x_N\in \hat{S}_N$. Dado que $\chi$ es compacto, renombrando una subsucesión si fuera necesario, tenemos una sucesión $x_N$ converge a un punto $\bar{x}\in \chi$ con probabilidad 1. Junto con el hecho de que $\hat{f}_{1N}\conve f_1(x)$ con probabilidad 1, tenemos que con probabilidad 1
+$$
+\liminf_{N\to\infty} \hat{f}_{1N}(x_N) \geq f_1(\bar{x})
+$$
+Se sigue que $f_1(\bar{x})\leq \alpha$ y, por tanto, $\bar{x}$ es punto factible del problema real, por lo que $f_0(\bar{x})\geq\vartheta^*$. Como también se tiene que $f(x_N)\convcs f(\bar{x})$, tenemos con probabilidad 1 que
+$$
+\liminf_{N\to\infty}\va\geq \vartheta^*
+$$
+Por tanto, $\va\to \vartheta^*$ con probabilidad 1. Además, $\bar{x}$ es solución óptima del problema real, luego $\D(\hat{S}_N,S)\to\infty$ con probabilidad 1. \qed
+\end{dem}
+\begin{nota}
+Notemos que la condición (A) es esencial para probar la convergencia casi segura de $\va$ y $\hat{S}_N$. Pensemos, por ejemplo, en una situación donde las restricciones del problema dejen un único punto factible $\bar{x}$ tal que $f_0(\bar{x})=\alpha$. Cualquier perturbación arbitrariamente pequeña en la restricción $\hat{f}_{1N}(x)\leq \alpha$ puede provocar que el conjunto factible del problema SAA sea vacío.
+\end{nota}
+\begin{nota}
+Observemos además que no hemos usado la condición (A) para probar 
+$$
+\liminf_{N\to\infty}\va\geq \vartheta^*
+$$
+\end{nota}
+\chapter{Tasa de convergencia}
+En el capítulo anterior hemos probado la consistencia de los estimadores del problema SAA bajo ciertas hipótesis. El hecho que estos converjan al menos en probabilidad asegura que el error en la estimación de los parámetros se aproxima a cero cuando el tamaño de la muestra crece. A pesar de la importancia desde un punto de vista teórico, dada una muestra no tenemos ninguna indicación de la magnitud del error que podemos estar cometiendo. 
+\begin{defi}
+Diremos que un estimador $X_n$ está estocásticamente acotado por la sucesión $\{a_n\}$ y notaremos $X_n = O_p(a_n)$ si $\forall \varepsilon>0$ $\exists M,N>0$ finitos tales que
+$$
+P(|X_n/a_n|>M)<\varepsilon \quad \forall n>N
+$$
+\end{defi}
+\begin{prop}
+Consideremos el problema (\ref{eq:1}). Si la varianza $V[F_0(x,\xi)]$ es finita y $N$ es el tamaño de la muestra, entonces $f_{0N}(x)=O_p(N^{-1/2})$.
+\end{prop} 
+\begin{dem}
+Por el Teorema Central del Límite sabemos que $\forall x \in \chi$
+$$
+\sqrt{N}\frac{\hat{f}_{0N}(x)-f_0(x)}{\sigma} \conv{L} N(0,1)$$
+donde $\sigma^2 = V[F_0(x,\xi)]$. Esto significa que $\hat{f}_{0N}(x)$ está asintóticamente distribuida como una normal $N(f_0(x),\sigma^2/N)$. Por tanto, tenemos un intervalo de confianza asintótico al $100(1-\alpha)\%$ para $f_0(x)$ dado por
+$$
+\left[ \hat{f}_{0N}(x)-\frac{z_{\alpha/2}\hat{\sigma}(x)}{\sqrt{N}},\hat{f}_{0N}(x)+\frac{z_{\alpha/2}\hat{\sigma}(x)}{\sqrt{N}} \right]
+$$
+donde $z_{\alpha/2}=\Phi^{-1}(1-\alpha/2)$, $\Phi(\cdot)$ es la función de distribución de la normal estándar y $\hat{\sigma}^2(x)$ es la cuasivarianza muestral dada por
+$$
+\hat{\sigma}^2(x) = \frac{1}{N-1}\sum_{j=1}^N\left(F(x,\xi)-\hat{f}_{0N}(x)\right)^2
+$$
+De aquí se sigue el resultado. \qed
+\end{dem}
+\newpage
+\section{Restricciones determinísticas}
+Volvamos a considerar el caso donde $X_N=X$. Sabemos que en estos casos podemos hablar indistintamente de $\chi$ o $X$, renombrando $\chi:=X$ si hiciera falta.
+
+\begin{prop}
+Se verifica 
+$$
+\vartheta^* \geq \E[\va]
+$$
+\end{prop}
+\begin{dem}
+Claramente, $\forall x' \in X$ tenemos que $\hat{f}_{0N}(x')\geq \inf_{x\in X} \hat{f}_{0N}(x)$. Ahora podemos tomar esperanza a ambos lados y tomar ínfimo en el izquierdo, obteniendo así
+$$
+\inf_{x\in X}\E\left[\hat{f}_{0N}(x)\right]\geq \E\left[\inf_{x\in X}\hat{f}_{0N}(x)\right]
+$$
+Dado que $\E[\hat{f}_{0N}(x)]=f_0(x)$ y además $\inf_{x\in X}\hat{f}_{0N}(x)=\va$ obtenemos 
+$$
+\hat{f}_{0N}(x) \geq \vartheta^* \geq \E[\va]
+$$\qed
+\end{dem}
+\begin{prop}
+Para todo $n\in \N$ se verifica
+$$
+\E[\va]\leq \E[\hat{\vartheta}_{N+1}]\leq \vartheta^*
+$$
+\end{prop}
+\begin{dem}
+Es inmediato por la proposición anterior que $\E[\hat{\vartheta}_{N+1}]\leq \vartheta^*$. Podemos escribir
+$$
+\hat{f}_{0N+1}(x)=\frac{1}{N+1}\sum_{i=1}^{N+1}\left[\frac{1}{N}\sum_{j\neq i} F_0(x,\xi^j)\right]
+$$
+Se sigue 
+\begin{align*}
+\E[\hat{\vartheta}_{N+1}] &= \E\left[\inf_{x\in X}\hat{f}_{0N+1}(x)\right]\\
+&=\E\left[\inf_{x\in X}\frac{1}{N+1}\sum_{i=1}^{N+1}\left(\frac{1}{N}\sum_{j\neq i} F_0(x,\xi^j)\right)\right]\\
+&\geq \E\left[\frac{1}{N+1}\sum_{i=1}^{N+1}\left(\inf_{x\in X}\frac{1}{N}\sum_{j\neq i} F_0(x,\xi^j)\right)\right]\\
+&=\frac{1}{N+1}\sum_{i=1}^{N+1}\E\left[\inf_{x\in X}\frac{1}{N}\sum_{j\neq i} F_0(x,\xi^j)\right]\\
+&=\frac{1}{N+1}\sum_{i=1}^{N+1}\E[\va]\\
+&=\E[\va]
+\end{align*}\qed
+\end{dem}
+\newpage
+\begin{prop}
+Supongamos que $X$ es compacto y se verifican las condiciones
+\begin{itemize}
+\item[(A1)] Existe algún $\bar{x}\in X$ tal que $\E[F(\bar{x},\xi)^2]$ es finito.
+\item[(A2)] Existe una función medible $C\func{\Xi}{\R_+}$ tal que $\E[C(\xi)^2]$ es finito y 
+$$\abs{F_0(x,\xi)-F_0(x',\xi)}\leq C(\xi)\norm{x-x'}
+$$
+para todo $x,x'\in X$ y casi todo $\xi\in\Xi$.
+\end{itemize}
+entonces se tiene:
+\begin{gather*}
+\va=\inf_{x\in S}\hat{f}_N(x)+O_p(N^{-1/2})
+\end{gather*}
+Si $S=\{\bar{x}\}$ es un conjunto unitario, entonces
+$$
+N^{1/2}\left(\va-\vartheta^*\right)\conv{L} N(0,\sigma^2(\bar{x}))
+$$
+\end{prop}
+Una demostración de esta proposición puede encontrarse en \cite{lecture}
+
+%
+\chapter{Experimentos}
+Con el fin de ilustrar el potencial del método, vamos a aplicarlo a dos experimentos y presentaremos los resultados. Para modelar y resolver los problemas utilizaremos el software Gurobi (v. 8.0.0) con una interfaz de Python (v. 3.6.2).
+
+Nuestro objetivo será minimizar los costes al elegir dentro de una determinada gama de $n$ proyectos, imponiendo que la probabilidad de que el rendimiento se mayor o igual que una cierta constante $v$ sea mayor o igual que una cierta probabilidad $1-\alpha$. Aceptar el proyecto $i$ implica asumir un coste $c_i$ fijo y proporciona un rendimiento aleatorio $w_i$. Denotemos $W=(w_1,\dotsc,w_n)$, vector aleatorio de marginales independientes. De esta forma, el problema de optimización considerado es
+\begin{align*}
+\min_{x}&\;\sum_{i=1}^n c_i x_i\\
+s.a.&\; P\left[\sum_{i=1}^n w_i x_i \geq v\right]\geq 1-\alpha\\
+&\; x \in \{0,1\}^n
+\end{align*}
+Para la distribución de los rendimientos plantearemos los casos. En primer lugar que $W$ es un vector normal multivariante, y en el segundo una mixtura de normales independientes.
+
+En cualquier caso, el problema real induce un problema SAA que tenemos que resolver. Sea $W_1,\dotsc,W_N$ una muestra de tamaño $N$ del vector aleatorio $W$. Dadas las limitaciones que tenemos para resolver problemas de programación entera con restricciones cuadráticas es necesario que hagamos uso de una constante auxiliar $K>0$ que nos permita formular el problema, que puede formularse de la siguiente forma 
+\begin{align*}
+\min_{x,z}&\;\sum_{i=1}^n c_i x_i\\
+s.a.&\; W_i'x-v\geq - K(1-z_i) \quad \forall i =1,\dotsc,N\\
+& \frac{1}{N}\sum_{i=1}^Nz_i \geq 1-\alpha \\
+&\; x \in \{0,1\}^n\\
+&\; z\in \{0,1\}^N
+\end{align*}
+Expliquemos esta formulación. Cuando tratamos de traducir la restricción probabilística a una que pueda implementarse en nuestro software aparece de manera natural unas ciertas variables $z_i$ que deben contar el número de veces que la muestra verifica la desigualdad deseada. Si $z_i=1$ entonces la restricción $W_i'x - v$ se verifica mientras que si $z_i=0$ entonces no se impone nada sobre su cumplimiento, pues tomamos $K$ tal que $\forall x$ $P[W'x-v\leq -K]$ sea despreciable.
+
+\section{Normal multivariante}
+Para el caso práctico supondremos que $n=17$, $1-\alpha = 0.	95$, $v=18$ y vector de costes
+\begin{gather*}
+c_{1:9} = \left(\begin{array}{ccccccccc}
+0.55& 0.57& 0.46& 0.02&0.25& 0.34& 0.89& 0.49 &0.50\end{array}\right)\\
+c_{10:18}=\left(\begin{array}{ccccccccc}
+0.91 & 0.52& 0.4& 0.6& 0.2&0.225& 0.344& 0.9& 0.45
+\end{array}\right)
+\end{gather*}
+Los parámetros de las variables los generaremos de manera aleatoria pero con una semilla fija. 
+
+
+Comencemos generando los datos del problema. En este caso, utilizamos una semilla fija para asegurar la reproducibilidad del experimento.
+\begin{erre}
+set.seed(481516)
+mu = abs(round(rnorm(17,1.5,1),2))
+# Imponemos que mu sea un vector de números positivos
+# pues suponemos que son rendimientos económicos de los
+# distintos proyectos.
+sigma = abs(round(rnorm(17,0,0.3),2))
+\end{erre}
+
+Ahora que ya tenemos todos los datos del problema, vamos a resolverlo en R por enumeración completa. Esto nos facilitará posteriormente una primera impresión sobre la capacidad del método.
+\newpage
+\begin{erre}
+#########################################
+#                                       #
+#  Scripts para solucionar el problema  #
+#     real por enumeración completa     #
+#                                       #
+#########################################
+
+# Unos comandos para limpiar el entorno
+closeAllConnections()
+rm(list=ls())
+
+# Dimensión del problema
+n = 17
+
+# Con el siguiente comando obtenemos una enumeración
+# completa de {0,1}^n
+
+A <-expand.grid(rep(list(0:1),n))
+colnames(A)<-NULL
+B = as.matrix(A)
+
+# Escribimos el vector de costes
+c = c(0.55, 0.57, 0.46, 0.02,0.25, 0.34, 0.89, 0.49 ,0.50,
+	  0.91, 0.52, 0.4, 0.6, 0.2,0.225, 0.344, 0.9)
+
+# Fijamos la constante del rendimiento
+v = 18
+
+# Y finalmente el parámetro de probabilidad 1-alfa
+alfa = 0.05
+beta = 1-alfa
+
+# Distribución normal
+#####################
+
+# Como suponemos independencia, calculamos la probabilidad
+# de una normal univariante de media c'mu y varianza
+# (c^2)'sigma^2, donde mu y sigma son los vectores de 
+# las respctivas medias y desviaciones.
+
+set.seed(481516)
+mu = abs(round(rnorm(17,1.5,1),2))
+sigma = abs(round(rnorm(17,0,0.3),2))
+
+# Con la siguiente función calculamos el valor de la restricción
+normi <- function(q){
+  mus = t(q)%*%mu;
+  sigmas = sqrt((t(q)%*%sigma^2)); 
+  # La desviación típica de la suma es la raíz de la suma de las varianzas.
+  a = 1-pnorm(v,mean = mus, sd = sigmas)
+  return(a)}
+
+# Este método nos devuelve las posibilidades que verifican la restricción
+m = c();
+for (i in 1:2^n){
+  if (normi(B[i,])<beta){
+    m = append(m,i)}
+}
+if (length(m)==0){
+  D = B
+  }else
+  {
+D = B[-m,]}
+head(D)
+
+# A continuación minimizamos 
+
+obje <- function(q){
+  t(c)%*%q
+  }
+H = apply(D,1,obje)
+head(H)
+
+# Obtenemos la/s solución/es 
+S = D[which(H==min(H)),]
+S
+
+# Y el valor objetivo
+nu = min(H)
+nu  
+\end{erre}
+\begin{erre}
+> S
+ [1] 0 1 0 1 1 1 0 0 0 0 1 1 1 1 1 0 1
+> nu
+ [1] 4.369
+\end{erre}
+Por tanto, tenemos solución única con valor objetivo $4.369$. A continuación vamos a presentar un script, también en R, para generar un conjunto de muestras de una normal 10-variante con los parámetros anteriores (las componentes se suponen independientes). En nuestro experimento vamos a resolver, para cada tamaño muestral considerado, 20 problemas y considerar la solución media como solución asociada a dicho tamaño muestral. 
+
+
+\begin{erre}
+###################################
+#                                 #
+#  Scripts para generar muestras  #
+#                                 #
+###################################
+
+# Unos comandos para limpiar el entorno
+closeAllConnections()
+rm(list=ls())
+
+# Número de problemas que vamos a resolver para cada tamño muestral
+M = 20;
+
+library(mvtnorm)
+
+# Fijamos la semilla
+set.seed(481516)
+medias = abs(round(rnorm(17,1.5,1),2))
+desvi = abs(round(rnorm(17,0,0.3),2))
+matcov<-diag(desvi^2)
+
+# Generamos las muestras de normal multivariante N(mu,sigma) 
+# de tamaño 7*i cuyas componentes son independientes entre sí. 
+set.seed(123456)
+dir = paste(getwd(),"/muestreo",sep="")
+for (i in 1:40) {
+  direc = paste(dir,"/datos",i,".txt",sep = "")
+  direc
+  data = rmvnorm(M*7*i,mean=medias,sigma=matcov)
+  write.table(data,direc, row.names=F,sep="\t")
+}
+\end{erre}
+Finalmente, resolvemos usando Gurobi (con interfaz de Python 3.6) los problemas muestrales. Notemos que el código que hemos utilizado para la resolución en Python, así como el planteamiento del problema muestral, naturalmente es independiente de la distribución que siga $W$, por lo que no necesitamos volver a citarlo en un caso posterior.
+
+\newpage 
+\begin{pythone}# Comenzamos el código para resolver los problemas de programación entera.
+# Utilizamos como interfaz para el software Gurobi.
+
+from gurobipy import *
+import numpy as np
+
+# Leemos todas las muestras.
+datos = [np.loadtxt("muestreo/datos" + str(i) + ".txt", skiprows=1) for i in range(1,41)]
+
+# Aunque nuestro tamaño muestra varía, vamos a resolver siempre "20" problemas.
+# Es decir, cada elemento de datos es una lista con "20*(7*i)" listas de 10 elementos.
+
+# Con la siguiente función resolvemos un único problema asociado a una muestra
+# W1,...,Wn.
+def problema(w):
+    
+    # Dimensión
+    n = 17
+    N = len(w)
+    # Creamos un modelo
+    m = Model("escenarios");
+    
+    # Vector de costes
+    c = [0.55, 0.57, 0.46, 0.02,0.25, 0.34, 0.89, 0.49 ,0.50, 0.91,
+      0.52, 0.4, 0.6, 0.2,0.225, 0.344, 0.9]
+    
+    # Parámetro de rendimiento
+    v = 18
+    
+    # Probabilidad
+    alfa = 0.05
+    beta = 1 - alfa
+
+    # Creamos las variables. El tipo puede ser 
+    # 'C' para continuas, 'B' para binarias, 'I' para enteras,
+    # 'S' para semicontinuas, or 'N' for semienteras.
+    x = m.addVars(range(n), vtype='B', name="x");
+    z = m.addVars(range(N), vtype='B', name="z")
+    
+    
+    # Definimos un producto escalar 
+    def productx(v):
+        k = 0
+        for i in range(len(v)):
+            k = k + v[i]*x[i]
+        return(k)    
+                
+    # Definimos la función objetivo y queremos maximizar/minimizar.
+    m.setObjective(productx(c), GRB.MINIMIZE);
+                
+    # Añadimos las restricciones
+    def productz(v):
+        k = 0
+        for i in range(len(v)):
+            k = k + v[i]*z[i]
+        return(k)   
+        
+    unos = np.repeat(1,N)
+    m.addConstr(productz(unos) >= N*beta, "c0");
+    
+    for i in range(N):
+        m.addConstr(productx(w[i])-v >= -100*(1-z[i]), "cad");
+                         
+    m.optimize();      
+       
+    for v in m.getVars():
+        print(v.varName, v.x)
+    return(m.objVal)  
+
+# Hemos exportado las 20 muestras, para cada tamaño muestral, todas 
+# juntas, por lo que es necesario dividirlas en paquetes de tamaño adecuado.
+def divide(v,n):
+    return([v[x:x+n] for x in range(0, len(v), n)])
+    
+# Utilizamos este comando para ver la solución más repetida en cada caso y tomarla como solución asociada al tamaño muestral.
+def modaux(L):
+  SL = sorted((x, i) for i, x in enumerate(L))
+  groups = itertools.groupby(SL, key=operator.itemgetter(0))
+  def _auxfun(g):
+    item, iterable = g
+    count = 0
+    min_index = len(L)
+    for _, where in iterable:
+      count += 1
+      min_index = min(min_index, where)
+    return count, -min_index
+  return max(groups, key=_auxfun)[0]
+  
+# Finalmente, utilizamos este método para calcular la media y la mediana
+# truncadas con 3 decimales, así como la solución modal asociada.
+def resuelve(w):
+    N = len(w)//15
+    a = divide(w,N)
+    s = []
+    p = []
+    for i in range(len(a)):
+        try:
+            kr= problema(a[i])[0]
+            kp = problema(a[i])[1]
+            s.append(kr)
+            p.append(kp)
+        except GurobiError as e:
+            print('Error code ' + str(e.errno) + ": " + str(e))
+        except AttributeError:
+            print('Encountered an attribute error ')
+    mean = np.mean(s)
+    med = np.median(s)
+    k = np.round(mean,3)
+    l = np.round(med,3)
+    lp = modaux(p)
+    return([[k,l],lp])
+\end{pythone}
+\newpage 
+\subsubsection*{Resultados numéricos}
+Comencemos por el estudio de la solución óptima. Con la enumeración completa observamos que el problema tiene solución única asociada al vector $x^*$
+\begin{erre}
+> x^*
+ [1] 0 1 0 1 1 1 0 0 0 0 1 1 1 1 1 0 1
+\end{erre} 
+Aunque en principio podríamos asignar una interpretación a la solución media de cada uno de los veinte problemas asociados a cada tamaño muestral, vamos a asociar como solución óptima a cada tamaño muestral la solución modal de los problemas asociados. No necesitamos hacer ningún otro tipo de análisis en este caso, pues, obtenemos para todos los tamaños muestrales la misma solución modal, que coincide con $x^*$.
+
+Sin embargo, si la cantidad de problemas que resolvemos no es demasiado grande, una muestra atípica puede afectar a la media. Por ejemplo, estudiemos los Problemas 39 y 40. El valor objetivo del Problema 39 es $4.39$, mientras que el del Problema 40 coincide con el valor objetivo del problema real. Si hacemos un análisis de las correlaciones entre las $i$-ésimas componentes de los datos, observamos que hay algunas donde las mismas son menores que $0.9$. Veamos a continuación un histograma comparativo de una de ellas. 
+
+
+Notemos que los datos del Problema 39 se encuentran más alejados de los valores centrales que los del Problema 40, lo que puede explicar el valor atípico asociado a estas muestras. En general, dado que el muestreo puede proporcionar de manera aleatoria datos que pudieran ser engañosos, es interesante comprobar además la solución mediana asociada a cada tamaño muestral. 
+
+
+Desde la segunda muestra (tamaño 20) obtenemos el resultado exacto. Gracias al uso de la mediana podemos corregir en parte el problema de tener muestras que se desvíen razonablemente de las respectivas medias.
+\newpage
+
+\section{Mixtura de normales}
+
+Vamos a estudiar un caso donde $W$ se distribuye según una mixtura de normales. En este caso no podemos resolver el problema por enumeración completa, pues tomaremos una $n$ relativamente alta, lo suficiente para que con nuestros medios podamos computar el SAA en un tiempo razonable pero no la enumeración. Comencemos con adjuntando el código con el que hemos generado todos los parámetros involucrados en R.
+
+\begin{erre}
+###################################
+#                                 #
+#  Scripts para generar muestras  #
+#                                 #
+###################################
+
+# Unos comandos para limpiar el entorno
+closeAllConnections()
+rm(list=ls())
+
+# Número de problemas que vamos a resolver para cada tamaño muestral
+M = 8
+
+# Dimensión del problema
+n = 25
+
+# Construímos el vector de costes
+c = abs(round(rnorm(n,1,0.5),2))
+
+# Escojamos los parámetros de la convinación convexa.
+# Elejimos 2*15 parámetros y el restante será 1 - la 
+# suma de dos de ellos.
+set.seed(2342)
+
+# Como tenemos una mixtura de 3 normales, necesitamos 3*n
+# medias y varianzas y realizar la suma convexa.
+mediaux = abs(round(rnorm(3*n,1.5,1),2))
+desviaux = abs(round(rnorm(3*n,0,2),2))
+medias = matrix(mediaux,nrow=n)
+desvi = matrix(desviaux, nrow=n)
+
+# Generemos la probabilidad de tomar cada normal en los
+# distintos casos
+lista = 1:50/100
+paraux = sample(lista,n*2,replace=TRUE)
+
+# Generamos la matriz de parámetros de la mixtura
+comp = c()
+for (j in 1:n) {
+  probaux = paraux[(2*j-1):(2*j)]
+  probi = append(probaux,1-sum(probaux))
+  comp = rbind(comp, probi)
+}
+row.names(comp) <- NULL
+
+# Por tanto, la variable i-ésima es una mixtura de 3 normales 
+# con medias: medias[i,] y sd: desvi[i,], dadas por la suma 
+# convexa con componentes comp[i,]. Vamos a construir una 
+# función que para cada i nos dé una muestra de tamaño i
+muestra <- function(N){
+  s = c()
+  for (i in 1:n){
+    compo <- sample(1:3,prob=comp[i,],size=N,replace=TRUE)
+    samples <- rnorm(n=N,mean=medias[i,][compo],
+                     sd=desvi[i,][compo])
+    s = cbind(s,samples)  }
+  colnames(s) <- NULL
+  return(s)}
+
+# Con el siguiente script generamos y exportamos las muestras
+dir = paste(getwd(),"/muestreoM",sep="")
+for (i in 1:50) {
+  tam = 8*i*M
+  direc = paste(dir,"/datos",i,".txt",sep = "")
+  write.table(muestra(tam),direc, row.names=F,sep="\t")
+  }
+\end{erre}
+\addcontentsline{toc}{chapter}{Bibliografía}
+\bibliographystyle{plain}
+\bibliography{BibliografiaCristina}
+\end{document} 
