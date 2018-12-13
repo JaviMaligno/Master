@@ -1,5 +1,6 @@
 \documentclass{beamer}
 \usepackage[utf8]{inputenc}
+\usepackage{listings}
 \usetheme{Berlin}
 \usepackage[spanish]{babel}
 \usepackage{multirow}
@@ -32,6 +33,32 @@
 }
 \setbeamercolor{footline}{fg=black}
 \setbeamerfont{footline}{series=\bfseries}
+
+
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+\newtoggle{InString}{}% Keep track of if we are within a string
+\togglefalse{InString}% Assume not initally in string
+\definecolor{majo}{HTML}{CD2626}
+\newcommand*{\ColorIfNotInString}[1]{\iftoggle{InString}{#1}{\color{majo}#1}}%
+\newcommand*{\ProcessQuote}[1]{#1\iftoggle{InString}{\global\togglefalse{InString}}{\global\toggletrue{InString}}}%
+
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{11}  % for normal
+
+\lstset{language=R,
+    basicstyle=\small\ttfamily,
+    stringstyle=\color{DarkGreen},
+    otherkeywords={0,1,2,3,4,5,6,7,8,9},
+    morekeywords={TRUE,FALSE},
+    deletekeywords={data,frame,length,as,character},
+    keywordstyle=\color{blue},
+    commentstyle=\color{DarkGreen},
+}
 
 %-----------------------------------------------------------
 
@@ -144,15 +171,80 @@ Var[\hat{m}_k(x)] &\approx \frac{\sigma^2(x)}{k}
 \end{frame}
 
 
-
-\section{Regresión lineal local}
-\begin{frame}
-
-\end{frame}
 \section{Aplicación computacional}
 
 \begin{frame}
+\frametitle{El paquete FNN}
+Aunque la librería CLASS es popular dentro del análisis de datos para utilizar KNN, la función \textit{knn} de este paquete sirve solo para clasificación. En su lugar utilizaremos la función \textit{knn.reg} de la librería FNN. 
+\newline
+\\
+\textcolor{red}{knn.reg(train, test = NULL, y, k =3 , \\ \qquad algorithm=c("kd\_ tree", 
+''cover\_ tree", "brute"))}
+\newline
+\\
 
+\end{frame}
+
+\begin{frame}
+\frametitle{El paquete FNN}
+
+Los parámetros de esta función son \textit{train}, la matriz o data.frame del conjunto de entrenamiento; \textit{test}, el conjunto test si lo hubiera; \textit{k}, el número de vecinos a considerar; y \textit{algorithm}, el algoritmo para el cálculo de los vecinos más cercanos.
+\newline
+\\
+De cara a realizar una validación cruzada para elegir el parámetro $k$, el objeto creado por \textit{knn.reg} contiene varias componentes.  Entre ellas, \textit{PRESS} es la suma de los errores al cuadrado (siempre que no se haya introducido nada en \textit{test}).
+
+\end{frame}
+\begin{frame}
+\frametitle{Ejemplo: el conjunto de datos \textit{cars}}
+Utilizaremos el conjunto de datos \textit{cars} que trae R. Estos son los datos de la velocidad y las distancia que les demoró pararse a 50 coches en 1920. Por tanto, tenemos dos variables \textit{speed} y \textit{dist}.
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrr}
+  \hline
+ & speed & dist \\ 
+  \hline
+1 & 4.00 & 2.00 \\ 
+  2 & 4.00 & 10.00 \\ 
+  3 & 7.00 & 4.00 \\ 
+  4 & 7.00 & 22.00 \\ 
+  5 & 8.00 & 16.00 \\ 
+  6 & 9.00 & 10.00 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Representación de los datos}
+\begin{figure}[h!]
+\includegraphics[scale=0.5]{myfile}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Representación de \textit{PRESS} en función de $k$}
+\begin{figure}[h!]
+\includegraphics[scale=0.5]{myfile2}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Parece claro que debemos tomar $k=2$ en nuestro modelo.
+\item El mínimo se alcanza para $8926.750$.
+\item Si representamos el conjunto de datos y superponemos los datos predichos por el modelo como un plot lineal.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Conjunto de datos frente a curva de regresión obtenida}
+\begin{figure}[h!]
+\includegraphics[scale=0.5]{myfile3}
+\end{figure}
 \end{frame}
 
 \section{Apéndice}
@@ -244,7 +336,6 @@ $$
 $$
 \end{coro}
 \end{frame}
-\cite{Knearestneighbourkerneldensityestimationthechoiceofoptimalk}
 \begin{frame}
 \frametitle{Bibliografía}
 \begin{enumerate}

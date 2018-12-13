@@ -427,16 +427,29 @@ $$
 \begin{ejercicio}{12}
 Sea un proceso de Poisson no homogéneo $\{X_{t} \}$ de parámetro $\lambda(t)$. Probar que el proceso $\{X_{\Lambda^{-1}}\}_{ t \geq 0}$  es un proceso de Poisson homogéneo de parámetro $1$ si $\Lambda(t)$ es estrictamente creciente.
 \end{ejercicio}
-Vamos a probarlo usando la definición de proceso de Poisson. Denotemos $Y_t = X_{\Lambda^{-1}(t)}$.
-\begin{itemize}
-\item En primer lugar, sabemos que $\Lambda(0)=0$, por tanto $\inf\{u\geq 0 \mid \Lambda(u) \geq 0\} = 0$. En particular, 
-$$
-Y_0 = X_{\Lambda^{-1}(0)} = X_0 = 0
-$$
-Por ser $\{X_t\}$ proceso de Poisson.
-\end{itemize} 
-
 \begin{solucion}
+Sabemos que $X_t \sim Poi(\Lambda(t))$. Suponremos en adelante que nuestro dominio es $t\geq 0$. Dado que $\Lambda(t)$ es estrictamente creciente, es inyectiva. Además $\lambda(t)\geq 0$, luego $\Lambda(t)\geq 0$. En particular la inversa de $\Lambda(t)$ está bien definida y es estrictamente creciente y coincide con
+$$
+\inf \{u \mid u \geq 0 , \Lambda(u)\geq t\}
+$$ 
+En particular, $X_{\Lambda^{-1}(t)} \sim Poi(t)$. Denotemos por $Y_t = X_{\Lambda^{-1}(t)}$. Veamos que $\{Y_t\}$ es un proceso de Poisson de parámetro 1. 
+\begin{itemize}
+\item Dado que $\Lambda(0)=0$, $\Lambda^{-1}(0)=0$. Xado que $\{X_t\}$ es proceso de Poisson, $X_0=0$. Por tanto,
+$$
+Y_0 = X_{\Lambda^{-1}(0)}= X_0 = 0
+$$
+\item Sean $t_1 < t_2 \leq t_3 < t_4$. Como $\Lambda^{-1}(t)$ es estrictamente creciente, tenemos que 
+$$
+\Lambda^{-1}(t_1)<\Lambda^{-1}(t_2)\leq \Lambda^{-1}(t_3) < \Lambda^{-1}(t_4)
+$$
+Como $\{X_t\}$ es proceso de Poisson, tenemos que $X_{\Lambda^{-1}(t_4)}- X_{\Lambda^{-1}(t_3)}$ es independiente de $X_{\Lambda^{-1}(t_2)}- X_{\Lambda^{-1}(t_1)}$, luego $\{Y_t\}$ tiene incrementos independientes.
+\item Finalmente, tal y como hemos probado en el ejercicio anterior
+$$
+Y_t - Y_s = X_{\Lambda^{-1}(t)}-X_{\Lambda^{-1}(s)} \sim Poi(\Lambda(\Lambda^{-1}(t))-\Lambda(\Lambda^{-1}(s))) = Poi(t-s)
+$$
+\end{itemize} 
+Dado que se verifican las tres propiedades, $\{Y_t\}$ es proceso de Poisson.
+
 
 \end{solucion}
 

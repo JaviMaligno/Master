@@ -1,4 +1,5 @@
 \documentclass[PREyA.tex]{subfiles}
+
 \begin{document}
 
 \chapter{Repaso al Cálculo de Probabilidades}
@@ -90,5 +91,55 @@ P_X(B)=P(X^{-1}(B)) \; \forall B \in \mathcal{B}(\mathbb{R})
 \end{prop}
 
 \section{Esperanzas y momentos}
+
+\begin{defi}Sea X una variable aleatoria discreta se dice que existe la \textbf{esperanza de X}, notada $E[X]$, si $\sum_n \abs{x_n}P[X=x_n]<\infty$. En este caso, la esperanza viene dada por:
+\begin{equation*}
+E[X]=\sum_n (x_n)P[X=x_n]
+\end{equation*}
+En el caso continuo, se tendr\'ia que la esperanza existe  si $\int_{-\infty}^{\infty}\abs{x}f(x)dx <\infty$ y la esperanza viene dada por
+\begin{equation*}
+E[X]=\int_{-\infty}^{\infty}xf(x)dx
+\end{equation*}
+\end{defi}
+
+\begin{prop}Veamos algunas propiedades de la esperanza. Sea X v.a.
+\begin{enumerate}
+\item Si $X=I_A$ entonces $E[X]=P(A)$
+\item Si X es discreta y acotada, es decir $P[\abs{X}<M]=1$, entonces existe $E[X]$
+\item Si X es no negativa, $P[X>0]=1$, entonces $E[X]\geq 0$.
+\item Si $P[a\leq x \leq b]=1$ y existe $E[X]$, entonces $a\leq E[X] \leq b$
+\item Existe $E[X]$ si y s\'olo si existe $E[\abs{X}]$
+\item $\abs{E[X]}\leq E[\abs{X}]$
+\item Si X=c, P[X=c]=1 entonces E[X]=c
+\item Sea Y=a+bX, entonces E[Y]=a+bE[X]
+\end{enumerate}
+\end{prop}
+\newpage
 \section{Funciones generatrices}
+
+\begin{defi}Sea X una variable aleatoria real, se define, si existe en un entorno de $t=0$, la funci\'on generatriz de momentos como
+\begin{equation*}
+M_X(t)=E[e^{tX}]
+\end{equation*}
+Para el caso discreto y absolutamente continuo:
+\begin{gather*}
+M_X(t)=\sum_{x_k}e^{tx_k}P[X=x]=E[e^{tX}]\\
+M_X(t)=\int_{-\infty}^\infty e^{tx}f(x)dx =E[e^{tX}]
+\end{gather*}
+\end{defi}
+\begin{prop}Veamos algunas propiedades que se extraen de la definici\'on
+\begin{enumerate}
+\item $M_X(0)=1$
+\item La derivada en\'esima del funci\'on nos da el momento en\'esimo
+\begin{gather*}
+M'_X(t)=\sum_{x_k}x_k e^{tx_k}P[X=x] \rightarrow M'_{x}(0)= E[X]\\
+M''_X(t)=\sum_{x_k}x_k^2 e^{tx_k}P[X=x] \rightarrow M''_{x}(0)= E[X^2]\\
+M^{(n)}_X(t)=\sum_{x_k}x_k^n e^{tx_k}P[X=x] \rightarrow M^{(n)}_{X}(0)= E[X^n]
+\end{gather*}
+Al existir todas las derivadas podemos expresar la funci\'on generatriz como una serie de Taylor
+\begin{gather*}
+M_X(t)=\sum_{r=0}^\infty \frac{E[X^r]}{r!}t^r
+\end{gather*}
+\end{enumerate}
+\end{prop}
 \end{document}
