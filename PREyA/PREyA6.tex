@@ -1,4 +1,7 @@
 \documentclass[PREyA.tex]{subfiles}
+
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning}
 \providecommand{\abs}[1]{\left\lvert#1\right\rvert}
 \begin{document}
 
@@ -92,4 +95,55 @@ $$
 G= (p_{ij}'(0))
 $$
 \end{prop}
+
+\begin{prop}[Interpretación de $G$] 
+\begin{itemize}
+\item[]
+\item Elementos diagonales $g_{ii}$. Sea $T_i$ el tiempo de permanencia en un estado $i$. Entonces $T_i \sim Exp(-g_ii)$
+\item Elementos extradiagonales $g_{ij}$ $i\neq j$. 
+\end{itemize}
+\end{prop}
+\begin{dem}
+Por la homogeneidad en el tiempo podemos suponer que estamos en el instante $t=0$. Para la primera part vamos a calcular el complementario la función de distribución
+\begin{align*}
+P[T_i > t] &\approx P[X_{i/N} =i \colon \forall i = 1,\dotsc tN, \forall N \mid X_0 = i]\\
+&= \prod_{i=1}^{Nt} P[X_{i/N}=i\mid X_{(i-1)/N}=i]\\
+&= p_{ii}\left(\frac{1}{N}\right)^{tN} \\
+&= \left(1+\frac{g_{ii}}{N}+o(1/N)\right)^{tN} \longrightarrow e^{-g_{ii} t}
+\end{align*}
+Para la segunda parte consideramos
+\begin{align*}
+P[N(t+h) = j \mid N(t)=i \text{ y hay salto}] &= \frac{P[N(t+h) = j, N(t)=i \text{ y hay salto}]}{P[N(t)=i \text{ y hay salto}]}\\
+&=\frac{P[N(t)=i]P[N(t+h)=j\mid N(t)=i,\;i\neq j}{P[N(t)=i]P[\text{Hay salto}\mid N(t)=i]}\\
+&=\frac{P[N(t)=i]p_{ij}(h)}{P[N(t)=i]\sum_{k\neq i} P[N(t+h)=k\mid N(t)=i]}\\
+&=\frac{p_{ij}(h)}{\sum_{k\neq i} p_{ik}(h)}\\
+&= \frac{g_{ij}h+o(h)}{\sum_{k\neq i} g_{ik}h+o(h)}\\
+&\overset{h\to 0}{\approx} -\frac{g_{ij}}{g_{ii}}
+\end{align*}
+Hemos calculado la probabilidad de saltar al estado $j$ suponiendo que estamos en $i$.
+\end{dem} 
+\begin{nota}
+La representación de una cadena de Markov en tiempo continuo a través de un grafo se realiza escribiendo sobre las flechas los elementos de $G$, salvo los loops que no se escriben. 
+
+Por ejemplo, sea una cadena de Markov dada por la matriz
+$$
+G= 
+\begin{pmatrix}
+-a & a\\
+b & -b
+\end{pmatrix}
+$$
+Entonces el grafo asociado es
+\begin{center}
+\begin{tikzpicture}
+	% Draw the states
+	\node[state]             (1) {$0$};
+	\node[state, right=of 1] (2) {$1$};
+    % Connect the states with arrows
+	\draw[every loop]
+		(1) edge[bend left, auto=left] node {$a$} (2)
+		(2) edge[bend left, auto=left] 	   node {$b$} (1);
+\end{tikzpicture}
+\end{center}
+\end{nota}
 \end{document}
