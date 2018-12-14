@@ -89,18 +89,75 @@ $$
 G:= \lim_{h\to 0^+} \frac{P_h -I }{h} 
 $$
 \end{defi}
+\begin{nota}
+Otra forma de expresar la idea anterior es
+\begin{align*}
+g_{ij}h &= p_{ij}(h) - o(h)\\
+g_{ii}h &= p_{ii}(h) - o(h) -1
+\end{align*}
+O, equivalentemente
+\begin{align*}
+p_{ij}(h) &= g_{ij}h + o(h)\\
+p_{ii}(h) &= 1+ g_{ii}h + o(h) 
+\end{align*}
+\end{nota}
 \begin{prop}
 Bajo la hipótesis de que los semigrupos son standar, se tiene que
 $$
 G= (p_{ij}'(0))
 $$
 \end{prop}
-
+\begin{prop}
+Se verifican las siguientes propiedades
+\begin{enumerate}
+\item $g_{ij}\geq 0$ $\forall i \neq j$
+\item $g_{ii} \leq 0$ 
+\item $\sum_{j} g_{ij} = 0$ $\forall i$
+\end{enumerate}
+\end{prop}
+\begin{dem}
+\begin{enumerate}
+\item[]
+\item Sabemos que $p_{ij}(h)>0$ $\forall h$, luego
+$$
+g_{ij}=\lim_{h\to0^+}\frac{p_{ij}(h)}{h}\geq 0
+$$
+\item Análogamente
+$$
+g_{ij}=\lim_{h\to0^+}\frac{p_{ij}(h)}{h}\leq 0
+$$
+\item Dado que $P_t$ es una matriz estocástica, se verifica
+$$
+\sum_{j}p_{ij}(t)=1
+$$
+Derivando y haciendo $t\to 0$ obtenemos
+$$
+0 = \sum_j p'_{ij}(t)_{t\to 0} = \sum_j p'_{ij}(0) = \sum_j g_{ij}
+$$
+\end{enumerate}
+\end{dem}
+\begin{prop}[Ecuaciones backward y forward]
+Sea $P_0 =I$. Entonces $P_t' = GP_t = P_tG$.
+\end{prop}
+\begin{dem}
+La demostración se tiene directamente
+$$
+P_t' = \lim_{h\to0}\frac{P_{t+h}-P_t}{h} \lim_{h\to0}\frac{P_{h}P_t-P_t}{h} = \lim_{h\to0}\frac{(P_h-I)P_t}{h}=G P_t
+$$
+La otra igualdad es análoga.
+\end{dem}
+\begin{nota}
+Notemos que, en particular, $P_t$ verifica la ecuación diferencial matricial $y=cy'$. Por tanto, $P_t = \exp(Gt)$, donde para cualquier matriz $A$ cuadrada
+$$
+\exp(A)=\sum_{i=0}^\infty \frac{A^n}{n!}
+$$
+Esta función verifica la siguiente propiedad: Si $A$ y $B$ conmutan ($AB=BA$), entonces $\exp(A+B)=\exp(A)\exp(B)$. Si $A$ se descompone en su forma canónica de Jordan $PJP^{-1}$, entonces se verifica $\exp(A)=P\exp(J)P^{-1}$.
+\end{nota}
 \begin{prop}[Interpretación de $G$] 
 \begin{itemize}
 \item[]
 \item Elementos diagonales $g_{ii}$. Sea $T_i$ el tiempo de permanencia en un estado $i$. Entonces $T_i \sim Exp(-g_ii)$
-\item Elementos extradiagonales $g_{ij}$ $i\neq j$. 
+\item Elementos extradiagonales $g_{ij}$ $i\neq j$.  La probabilidad de saltar al estado $j$ suponiendo que estamos en $i$ es $-g_{ij}/g_{ii}$.
 \end{itemize}
 \end{prop}
 \begin{dem}
@@ -116,11 +173,9 @@ Para la segunda parte consideramos
 P[N(t+h) = j \mid N(t)=i \text{ y hay salto}] &= \frac{P[N(t+h) = j, N(t)=i \text{ y hay salto}]}{P[N(t)=i \text{ y hay salto}]}\\
 &=\frac{P[N(t)=i]P[N(t+h)=j\mid N(t)=i,\;i\neq j}{P[N(t)=i]P[\text{Hay salto}\mid N(t)=i]}\\
 &=\frac{P[N(t)=i]p_{ij}(h)}{P[N(t)=i]\sum_{k\neq i} P[N(t+h)=k\mid N(t)=i]}\\
-&=\frac{p_{ij}(h)}{\sum_{k\neq i} p_{ik}(h)}\\
-&= \frac{g_{ij}h+o(h)}{\sum_{k\neq i} g_{ik}h+o(h)}\\
+&=\frac{p_{ij}(h)}{\sum_{k\neq i} p_{ik}(h)}= \frac{g_{ij}h+o(h)}{\sum_{k\neq i} g_{ik}h+o(h)}\\
 &\overset{h\to 0}{\approx} -\frac{g_{ij}}{g_{ii}}
 \end{align*}
-Hemos calculado la probabilidad de saltar al estado $j$ suponiendo que estamos en $i$.
 \end{dem} 
 \begin{nota}
 La representación de una cadena de Markov en tiempo continuo a través de un grafo se realiza escribiendo sobre las flechas los elementos de $G$, salvo los loops que no se escriben. 
