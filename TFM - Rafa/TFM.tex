@@ -272,20 +272,30 @@ Finalmente, ejemplificaremos la eficacia del método con experimentos reales. Ex
 %\pagenumbering{arabic} % para empezar la numeración con números
 \chapter{Planteamiento teórico del problema}
 \section{Formulación}
+\subsection{El problema del $b$-emparejamiento}
 Dado que nuestro objetivo es el estudio paramétrico del problema del emparejamiento y la versión multiobjetivo del mismo, comenzamos este trabajo exponiendo en qué consiste el problema del ejemparejamiento o problema del \textit{matching}. Para ello, comenzamos definiendo qué entendemos por grado de un subconjunto de vértices
 \begin{defi}
 Sea $G=(V,E)$ un grafo y sea $S \subset V$, denominamos \textbf{grado} de $S$ y denotamos por $\delta(S)$ al número de aristas incidentes en algún vértice de $S$. En el caso de un conjunto unitario $\{i\}$, denotamos $\delta(i):=\delta(\{i\})$. 
 \end{defi}
-El problema del \textit{matching} consiste en encontrar un subconjunto $M\subset E$ con la propiedad de que en el subgrafo inducido $G(M)=(V,M)$ ningún vértice tenga grado mayor que $1$, es decir, que ninguna arista tenga vértices en común. Naturalmente, este problema es fácilmente generalizable al problema del $b$-emparejamiento o $b$-\textit{matching}, en el cual cada vértice $i$ debe tener un grado no mayor que $b_i$, donde $b_i$ es un entero positivo. El problema original pasaría a ser el caso particular en el que $b_i = 1$ $\forall i \in V$.
+En adelante consideramos siempre $G=(V,E)$ un grafo no dirigido. El problema del \textit{matching} consiste en encontrar un subconjunto $M\subset E$ con la propiedad de que en el subgrafo inducido $G(M)=(V,M)$ ningún vértice tenga grado mayor que $1$, es decir, que ninguna arista tenga vértices en común. Naturalmente, este problema es fácilmente generalizable al problema del $b$-emparejamiento o $b$-\textit{matching}, en el cual cada vértice $i$ debe tener un grado no mayor que $b_i$, donde $b_i$ es un entero positivo. El problema original pasaría a ser el caso particular en el que $b_i = 1$ $\forall i \in V$.
 
 \begin{defi}
 Sea $G=(V,E)$ un grafo y sea $M\subset E$ un $b$-emparejamiento. Diremos que $M$ es un \textbf{emparejamiento perfecto} si $\delta(v_i)=b_i$ $\forall i \in V$, es decir, si las restricciones se verifican con igualdad.
 \end{defi}
+Para cada $e\in E$ podemos considerar el peso $c_e$ asociado. Dependiendo del contexto en el que estemos trabajando estos pesos pueden ser números reales, reales positivos, enteros no negativos, etc. Dado un conjunto de aristas $M$, tiene sentido considerar
+$$
+c(M)=\sum_{e\in M} c_e
+$$
+El problema del $b$-emparejamiento de peso máximo \textit{weighted $b$-matching problem} consiste en encontrar el $b$-emparejamiento que maximiza la función $c(\cdot)$. Si nos ceñimos únicamente a los emparejamientos perfectos, también tiene sentido considerar el problema de encontrar el que tiene peso mínimo. En general, cuando $c_e=1$ $\forall e\in E$, el problema se denomina de cardinalidad o \textit{cardinality problem}. Este puede ser formulado como un problema de programación entera
 \begin{align}
-\min_{x} &f_0(x)  \nonumber\\ 
-s.a.\;  &  f_i(x)\leq 0 \quad i=1,\dotsc,q \tag{1} \label{eq:1}\\
-& x\in\chi \nonumber
+\max_{x} &\; cx  \nonumber\\ 
+s.a.\;  &  Ax\leq b \tag{1} \label{eq:1}\\
+& x\in\{0,1\}^n\nonumber
 \end{align}
+donde $c$ es el vector de pesos, $A$ es la matriz de incidencia del grafo, $|E|=n$ y la variable $x_e=1$ si la arista $e$ está en el emparejamiento y $0$ en caso contrario. Nótese que si $G$ es un grafo bipartito entonces $A$ es una matriz totalmente unimodular y, en ese caso, los puntos extremos del poliedro $\{x \in \R^n_+\mid Ax\leq b\}$ son precisamente los $b$-emparejamientos.
+
+\newpage
+
 
 La particularidad que caracteriza a este problema frente a otros que hemos estudiado a lo largo del Grado en Matemáticas es que, en nuestro caso, tanto la función objetivo como las restricciones no serán necesariamente determinísticas, sino que ambas pueden estar dadas por esperanzas de variables aleatorias:
 $$ 
