@@ -16,7 +16,7 @@ Dado $G$ un grafo, $G$ admite un nowhere zero $\Z_k$-flujo si y solo si admite n
 \end{teorema}
 \begin{dem}
 La implicación de derecha a izquierda es evidente porque la suma pasa al cociente. Supongamos entonces que tenemos un $\Z_k$-flujo nowhere zero $\phi$. Denotamos $$e(v)=\sum_{e\in E^+(v)}\phi(e)-\sum_{e\in E^-(v)}\phi(e).$$
-Por definición, $e(v)=0\mod k$. Podemos asumir que $\sum_{v\in V}e(v)=0$, porque si fuera un múltiplo de $k$, podríamos añadírselo o quitárselo a alguna arista. Vamos a probar que $\sum_{v\in V}|e(v)|=0$, de donde deduciremos que $e(v)=0$ para todo $v$ y tendremos un $k$-flujo. Supongamos por el contrario que $\sum_{v\in V}|e(v)|>0$. Vamos a suponer además que $\phi$ es la que minimiza esta cantidad. Definimos $S=\{v\in V\mid e(v)>0\}$ y $T=\{v\in V\mid e(v)<0\}$. Ninguno de los conjuntos es vacío porque la suma de los módulos es positiva pero sin los módulos es 0. Definimos $U$ como el conjunto de vértices alcanzables desde $S$, que son los vértices hasta los que existe un camino dirigido desde $S$ y no se puede avanzar más. Si $U\cap T=\emptyset$, entonces $0<\sum_{u\in U}e(u))=\sum_{e\in E^+}\phi(e)-\sum_{e\in E^-}\phi(e)$, pero como están en $T$, $E^+=\emptyset$ y la suma debería ser negativa. Así que $U\cap T\neq\emptyset$. Sea $P$ un camino desde $s\in S$ a $t\in T$. Definimos
+Por definición, $e(v)=0\mod k$. Podemos asumir que $\sum_{v\in V}e(v)=0$, porque si fuera un múltiplo de $k$, podríamos añadírselo o quitárselo a alguna arista. Vamos a probar que $\sum_{v\in V}|e(v)|=0$, de donde deduciremos que $e(v)=0$ para todo $v$ y tendremos un $k$-flujo. Supongamos por el contrario que $\sum_{v\in V}|e(v)|>0$. Vamos a suponer además que $\phi$ es la que minimiza esta cantidad. Definimos $S=\{v\in V\mid e(v)>0\}$ y $T=\{v\in V\mid e(v)<0\}$. Ninguno de los conjuntos es vacío porque la suma de los módulos es positiva pero sin los módulos es 0. Definimos $U$ como el conjunto de vértices alcanzables desde $S$, que son los vértices hasta los que existe un camino dirigido desde $S$. Si $U\cap T=\emptyset$, entonces $0<\sum_{u\in U}e(u))=\sum_{e\in E^+(U)}\phi(e)-\sum_{e\in E^-(U)}\phi(e)$, donde $E^+(U)$ son aristas que salen de $U$ y $E^-(U)$ aristas que entran en $U$, porque las que entre las se quedan en $U$ se cancelan las que entran en el vértices con las que salen. $E^+(U)=\emptyset$, porque si sale una aritas de $U$, el vértice al que llega también es alcanzable, luego estaría en $U$ y la suma debería ser negativa. Así que $U\cap T\neq\emptyset$. Sea $P$ un camino desde $s\in S$ a $t\in T$. Definimos
 \[
 \phi'(e)=\begin{cases}
 \phi(e) & e\notin P\\
@@ -34,4 +34,14 @@ Análogamente, $e'(t)=e(s)+k$. Ahora tengamos en cuenta que $e(v)$ es siempre m�
 \]
 \end{dem}
 
+\section{Polinomio de Tutte}
+$m$ son aristas y $n$ son aristas cuando no aparece dicho. 
+
+$P(G;\lambda)=(-1)^{n-1}\lambda T(G;1-\lambda,0)$, $F(G,\lambda)=(-1)^{m-n+1}T(G;0,1-\lambda)$, $T(G;x,y)=T(G^*;y,x)$. Con esto y algunas relaciones entre $G$ y $G^*$ vamos a probar $P(G^*,\lambda)=\lambda F(G;\lambda)$. 
+\[
+P(G^*;\lambda)=(-1)^{n^*-1}\lambda T(G^*;1-\lambda,0)=(-1)^{n^*-1}\lambda T(G;0,1-\lambda)=(-1)^{n^*-1}\lambda (-1)^{m-n+1}F(G^*,\lambda)
+\]
+Ahora, $m=m^*$, y para cualquier grafo planar y $n^*$ es el número de caras $f$ del grafo original. De la fórmula de Euler, $f=m-n+2$. Sustituyendo obtenemos el resultado. 
+
+El polinomio de Tutte de la unión disjunta es el mismo que el de la unión puntual que es el producto de los polinomios de Tutte.
 \end{document}

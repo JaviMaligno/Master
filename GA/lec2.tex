@@ -637,10 +637,77 @@ Nótese en cada una de estas definiciones que una propiedad de un morfismo $f:X\
 
 
 \begin{defi}
-Un subesquema abierto de $X$ es un esquema $U$ cuyo espacio topológico es un abierto de $X$ y su haz estructural es la restricción $\OO_{X}|_{U}$. Un subesquema cerrado de $X$ es un esquema $Y$ de modo que su espacio topológico es cerrado en $X$ y la aplicación inducida por la inclusión $\OO_X\to i_*\OO_Y$ es sobreyectiva.
+Un \emph{subesquema abierto} de $X$ es un esquema $U$ cuyo espacio topológico es un abierto de $X$ y su haz estructural es la restricción $\OO_{X}|_{U}$. Un \emph{subesquema cerrado} de $X$ es un esquema $Y$ de modo que su espacio topológico es cerrado en $X$ y la aplicación inducida por la inclusión $\OO_X\to i_*\OO_Y$ es sobreyectiva.
 \end{defi}
 
+\begin{ej}
+Sea $X=\spec(A)$ y sea $I\subset A$ un ideal. La aplicación cociente $A\to A/I$ induce $\spec(A/I)\hookrightarrow \spec(A)$ y además $\spec(A/I)=V(I)$. El morfismo de anillos es sobreyectivo porque es básicamente localizar. 
+\end{ej}
+\begin{ej}
+Siguiendo el ejemplo anterior, puede haber varios ideales que tengan el mismo espacio topológico $V(I)$. Sea $A=k[x]$ con $k$ un cuerpo y sea $I=\gene{x}$, de modo que $A/I=k$. Esto nos daría el subesquema cerrado $\spec(k)\hookrightarrow\spec(A)$. También podríamos haber elegido $J=\gene{x^2}$, y se tiene que $V(I)=V(J)$, pero el haz estructural es distintos, porque el morfismo es $\spec(k[x]/\gene{x^2})\to \spec(A)$. Fijado $I$, $V(I)=V(\sqrt{I})$ y $A/\sqrt{I}$ es reducido, por lo que denominamos \emph{estructura reducida} al que tiene este haz estructural. MIRAR EJEMPLO 3.2.6
+\end{ej}
 
+\begin{defi}
+La dimensión de un esquema es $\dim(X,\OO_X)=\dim X$ como espacio topológico (dimensión de Krull), esto es el mayor $n$ tal que existe una cadena de subespacios irreducibles $X_0\subsetneq X_1\subsetneq \cdots \subsetneq X_n$. 
+\end{defi}
+
+\begin{defi}
+Un espacio topológico se dice \emph{sobre} si todo cerrado irreducible tiene un único punto genérico (cuya clausura es todo el espacio). 
+\end{defi}
+Dado un espacio topológico $X$ se puede construir $X\to X^{sob}$ donde $X^{sob}$ es el espacio sobre más pequeño que contiene a $X$. Los puntos de $X^{sob}$ son los conjuntos cerrados irreducibles de $X$ y se define la aplicación $x\mapsto \overline{\{x\}}$. La topología en $X^{sob}$ es la topología final de esta aplicación. Cualquier otra aplicación de $X$ en un espacio sobre factoriza de manera única a través de $X^{sob}$, y si $X$ es sobre $X=X^{sob}$ (la mayoría de espacios estudiados en topología cumplen esta propiedad). Se verifica además que hay una biyección entre los abiertos de $X$ y los de $X^{sob}$ dada por la preimagen. Esto hace que los haces sobre $X$ sean iguales a los haces en $X^{sob}$. 
+
+\begin{prop}
+Si $X=\spec(A)$, entonces $\dim X=\dim_{Krull}A$. 
+\end{prop}
+
+\begin{ej}
+Sea $X=\spec(k[x,y,t]/\gene{ty-x^2})$. Sea $Y=\spec(k[t])$ y $f:X\to Y$ determinado por el morfismo natural $k[t]\to k[x,y,t]/\gene{ty-x^2}$. Llamamos $y=\gene{t-\alpha}\in\spec(k[t])$. Tenemos además que $k[t]/\gene{t-\alpha}\otimes k[x,y,t]/\gene{ty-x^2}=k[x,y]/\gene{\alpha y-x^2}$ y tenemos
+\[
+\begin{tikzcd}
+X_y=\spec(k[x,y]/\gene{\alpha y-x^2})\arrow[r] \arrow[d]  & X\arrow[d, "f"]\\
+\spec(k[t]/\gene{t-\alpha})\arrow[r] & Y
+\end{tikzcd}
+\]
+Para $\alpha\neq 0$ tenemos una parábola. En la geometría clásica, esto se correspondería con
+\[
+\begin{tikzcd}
+\pi^{-1}(\alpha)\arrow[d]\arrow[r, hookrightarrow] & V(ty-x^2)\arrow[r, hookrightarrow]\arrow[d,"\pi"] & \A^3_k\arrow[dl]\\
+\{\alpha\} \arrow[r, hookrightarrow] & \A^1_k & 
+\end{tikzcd}
+\]
+Tenemos que $\pi^{-1}(\alpha)$ es el conjunto de puntos $(t,x,y)\in\A_k^3$ tales que $ty-x^2=0$ y $t=\alpha$. Para $\alpha=0$ obtenemos los puntos $(\alpha,0,y)$, que es una recta. Esto nos da la imagen geométrica siguiente COPIAR IMAGEN DE HARTSHORNE 3.3.1 
+
+Pero desde el punto de vista esquemático, $X_0=\spec(k[x,y]/\gene{x^2})$ nos da que la recta donde degeneran las parábolas es doble por los elementos nilpotentes. 
+\end{ej}
+
+COPIAR 3.3.2
+
+
+\section{Ecualizador y coecualizador}
+PENSAR SI PONER ESTO EN OTRA parte DEPENDIENDO DE LO QUE VEAMOS DESPUÉS
+
+Sea $\CC$ una categoría. Se dice que el objeto $Eq$ DEFINICIÓN DE ECUALIZADOR.
+
+\begin{ej}
+En la categoría de conjuntos, dadas $\alpha, \alpha': A\to B$, el equalizador es el subconjunto $Eq(\alpha,\alpha')=\{a\in A\mid \alpha(a)=\alpha'(a')\}$. 
+\end{ej}
+Obsérvese que en una categoría aditiva, donde podemos sumar y restar morfismos, $Eq(\alpha,\alpha')=\ker(\alpha-\alpha')$. Dualmente se define el \emph{coecualizador} DEFINICIÓN DE COECUALIZADOR
+El coecualizador verifica la relación análoga con el conúcleo.
+\begin{ej}
+El coecualizador en la categoría de conjuntos, el coecualizador es el cociente $B/\sim$, donde $\sim$ es la relación generada por $\alpha(x)\sim\alpha'(x)$. 
+\end{ej}
+\begin{ej}
+En $\mathrm{Top}$ tenemos los mismos ecualizadores y coecualizadores con las topologías inducidas correspondientes. 
+\end{ej}
+
+Sea $X=\bigcup_{i\in I}U_i$ un recubrimiento abierto del espacio $X$ y consideremos el coproducto $\coprod_{i\in I}U_i$. Tenemos el siguiente diagrama conmutativo PREGUNTAR CÓMO HACER PARA QUE EL ALPHA Y EL ALPHA' QUEDEN ENCIMA Y DEBAJO RESPECTIVAMENTE
+\[
+\begin{tikzcd}
+\coprod_{(i,j)\in I^2}\in U_i\cap U_j\arrow[r, shift left, "\alpha"]\arrow[r, shift right,"\alpha'"']&\coprod_{i\in I}U_i\arrow[r, "\sigma"] & X\\
+&U_i\arrow[u]\arrow[ur,hookrightarrow]&
+\end{tikzcd}
+\]
+donde $\alpha$ es la inclusión con respecto al índice $i$ y $\alpha'$ con respecto al índice $j$. Se tiene entonces que $X=Coeq(\alpha,\alpha')$. Tenemos que probar que para todo espacio topológico $Z$ y para todo $h:\coprod U_i\to Z$ tal que $h\circ\alpha=h\circ\alpha'$, existe un único $\tilde{h}: X\to Z$ tal que $\tilde{h}\circ\sigma=h$. La aplicación $h$ está determinada por cada $h_i:U_i\to Z$, por lo que $h\circ \alpha=h\circ\alpha'$ si y solo si $h_i|_{U_i\cap U_j}=h_j|_{U_i\cap U_j}$, luego definimos $\tilde{h}$ pegando las $h_i$, que se pegan con continuidad porque coinciden en las intersecciones.
 
 
 
