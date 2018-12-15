@@ -9,10 +9,37 @@
 \maketitle
 
 
-\begin{ejercicio}{Lineal SMS}
+\begin{ejercicio}{SMS Lineal}
 Resolver el problema de la subsecuencia de máxima suma en $O(n)$.
 \end{ejercicio}
 \begin{solucion}
+Sea $a_1,\dots, a_n$ la secuencia en cuestión. Si $a_i\leq 0$ para todo $i$, entonces es claro que la subsecuencia de máxima suma será la subsecuencia unitaria formada el mayor elemento. Así que primero escaneamos la secuencia para comprobar si hay algún elemento positivo ($O(n)$) y si no es así, calculamos el máximo ($O(n)$). 
+
+
+%En el caso de que haya algún positivo, si hemos encontrado la subsecuencia de suma máxima hasta la posición $i$, digamos $M_i$, subsecuencia que da la suma $M_{i+1}$ o bien contiene a la subsecuencia anterior como prefijo o no contiene nada de ella, pues si solo contuviera una parte podría extenderse añadiendo términos positivos a la suma hasta completarla, así que $M_{i+1}=\max(M_i+a_{i+1},a_{i+1})$. Si $M_{i+1}=M_i+a_{i+1}$ es porque hemos extendido la subsecuencia que nos daba $M_i$ hasta $a_{i+1}$ y si $M_{i+1}=a_{i+1}$ es porque vamos a empezar a sumar de nuevo, así que en cualquiera de los casos podemos obtener los índices de las posiciones. Por otra parte, si $M_{i+1}=a_{i+1}$, entonces $M_i\leq 0$, por lo que en la subsecuencia de suma máxima no se añadiría ningún elemento $a_j$ con $j<i+1$, porque necesariamente serán no positivos. Observemos que este razonamiento hace que no aparezcan nunca números negativos al principio de una subsecuencia (lo cual es evidentemente correcto cuando hay algún elemento positivo) y por ello no podemos aplicarlo al caso de que la secuencia sea solo de números negativos (siempre nos daría el último elemento). Tenemos que justificar también que si la secuencia que da la suma $M_{i+1}$, digamos $B_{i+1}$, contiene a $B_i$ como prefijo, la suma es exactamente $M_i+a_{i+1}$. 
+%
+%Sea $a_j$ el último elemento de $B_i=B_j$ $(j<i)$. Entonces $a_{j+1}\leq 0$ y por tanto $M_{j+1}=M_j$. Después, $a_{j+2}\leq |a_{j+1}|$ y sucesivamente $a_{j+l}\leq |\sum_{k=1}^{l-1}a_{j+k}|$ para $l\leq i-j$. 
+
+Vamos entonces al caso en el que al menos hay un elemento positivo. En este caso sabemos que la máxima suma tiene que ser positiva, luego en nuestro algoritmo, si vamos calculando sucesivamente las sumas que surgen al añadir un elemento nuevo, el momento en el que la suma llegue a 0, sabemos que debemos empezar de nuevo a partir de ese punto, porque cualquier subsecuencia que venga a continuación tendrá igual o mejor suma que si no tenemos en cuenta lo anterior, por lo que bastará conservar los índices que nos dieron la mejor suma antes de que empezara a descender hacia 0 para compararla con las futuras mejores sumas que aparezcan. Mientras esta suma sea positiva, aunque vaya descendiendo, si encontramos un número positivo, la suma será mejor que si empezáramos en este número, por lo que tiene sentido seguir haciendo comparaciones con las sumas obtenidas hasta el momento.
+
+Con estas idea desarrollamos el siguiente algoritmo:
+\begin{enumerate}
+\item Inicializamos las variables $bl, bh=1,bs=0$ (\emph{best low}, \emph{best high}, \emph{best sum}), $cl,ch=1,cs=0$ (\emph{current low}, \emph{current high}, \emph{current sum}). 
+\item Para cada $i=1,\dots, n$ hacer:
+\begin{itemize}
+\item $ch=ch+1$
+\item $cs=cs+a_{i}$
+\item Si $cs\leq 0$: $cl=ch$, $cs=0$. Si $cs>bs$: $bl=cl$, $bh=ch-1$, $bs=cs$.
+\end{itemize}
+\item Devolver $bl,bh,bs$. 
+\end{enumerate}
+
+
+El algoritmo es correcto porque sigue el procedimiento que hemos explicado al principio. Además tiene complejidad $O(n)$ porque solo cuenta con un bucle. Obtendríamos así que la subsecuencia de máxima suma es $a_{bl},\dots, a_{bh}$, con suma $bs$. En el condicional hay que definir $bh=ch-1$ porque por ahorrar escritura aumentamos $ch$ al principio del bucle en lugar de en el condicional. 
+%VIENE MUY BIEN DESCRITO EN WIKIPEDIA, SOLO TENGO QUE MODIFICARLO PARA QUE DÉ LOS ÍNDICES, COMPROBAR SI ME VALE TAMBIÉN PARA EL CASO NEGATIVO \url{https://en.wikipedia.org/wiki/Maximum_subarray_problem}
+%
+%\url{https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/}
+%\url{https://stackoverflow.com/questions/1706529/subsequence-with-maximum-sum-in-array-of-ints}
 
 \end{solucion}
 
