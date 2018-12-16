@@ -567,7 +567,7 @@ El comportamiento en el punto genérico refleja el comportamiento en todos los p
 \end{ej}
 
 \begin{nota}
-Hemos expresado analogías entre $\spec(Z)$ y $\spec(k[X])$, pero también cabe destacar algunas diferencias. $k\subset k[X]$, luego todos los cuerpos residuales contienen a $k$. En el caso de $\Z$ nos aparecen todos los cuerpos $\F_p$. Esta diferencia se hace especialmente acusada cuando $k$ es algebraicamente cerrado, porque tenemos automorfismos de $k[X]$ que nos llevan ideales maximales en ideales maximales mediante $X\mapsto X+\beta$. Pero $\Z$ solo tiene el automorfismo identidad, por lo que no obtenemos más información a partir de dos primos $p,q$ a partir de los automorfismos. Sin embargo podemos hacer lo siguiente: dado $f\in\F_p[X]$ podemos levantarlo a $F(X)\in\Z[X]$, de donde obtenemos el diagrama
+Hemos expresado analogías entre $\spec(\Z)$ y $\spec(k[X])$, pero también cabe destacar algunas diferencias. $k\subset k[X]$, luego todos los cuerpos residuales contienen a $k$. En el caso de $\Z$ nos aparecen todos los cuerpos $\F_p$. Esta diferencia se hace especialmente acusada cuando $k$ es algebraicamente cerrado, porque tenemos automorfismos de $k[X]$ que nos llevan ideales maximales en ideales maximales mediante $X\mapsto X+\beta$. Pero $\Z$ solo tiene el automorfismo identidad, por lo que no obtenemos más información a partir de dos primos $p,q$ a partir de los automorfismos. Sin embargo podemos hacer lo siguiente: dado $f\in\F_p[X]$ podemos levantarlo a $F(X)\in\Z[X]$, de donde obtenemos el diagrama
 \[
 \begin{tikzcd}
 \spec(\F_p[X]/\gene{f})\arrow[r]\arrow[d]\ &\spec(\Z[X]/\gene{F})\arrow[d]\\
@@ -644,7 +644,7 @@ Un \emph{subesquema abierto} de $X$ es un esquema $U$ cuyo espacio topológico e
 Sea $X=\spec(A)$ y sea $I\subset A$ un ideal. La aplicación cociente $A\to A/I$ induce $\spec(A/I)\hookrightarrow \spec(A)$ y además $\spec(A/I)=V(I)$. El morfismo de anillos es sobreyectivo porque es básicamente localizar. 
 \end{ej}
 \begin{ej}
-Siguiendo el ejemplo anterior, puede haber varios ideales que tengan el mismo espacio topológico $V(I)$. Sea $A=k[x]$ con $k$ un cuerpo y sea $I=\gene{x}$, de modo que $A/I=k$. Esto nos daría el subesquema cerrado $\spec(k)\hookrightarrow\spec(A)$. También podríamos haber elegido $J=\gene{x^2}$, y se tiene que $V(I)=V(J)$, pero el haz estructural es distintos, porque el morfismo es $\spec(k[x]/\gene{x^2})\to \spec(A)$. Fijado $I$, $V(I)=V(\sqrt{I})$ y $A/\sqrt{I}$ es reducido, por lo que denominamos \emph{estructura reducida} al que tiene este haz estructural. MIRAR EJEMPLO 3.2.6
+Siguiendo el ejemplo anterior, puede haber varios ideales que tengan el mismo espacio topológico $V(I)$. Sea $A=k[x]$ con $k$ un cuerpo y sea $I=\gene{x}$, de modo que $A/I=k$. Esto nos daría el subesquema cerrado $\spec(k)\hookrightarrow\spec(A)$. También podríamos haber elegido $J=\gene{x^2}$, y se tiene que $V(I)=V(J)$, pero el haz estructural es distintos, porque el morfismo es $\spec(k[x]/\gene{x^2})\to \spec(A)$. Fijado $I$, $V(I)=V(\sqrt{I})$ y $A/\sqrt{I}$ es reducido, por lo que denominamos \emph{estructura reducida} al que tiene este haz estructural. 
 \end{ej}
 
 \begin{defi}
@@ -675,12 +675,17 @@ Para $\alpha\neq 0$ tenemos una parábola. En la geometría clásica, esto se co
 \{\alpha\} \arrow[r, hookrightarrow] & \A^1_k & 
 \end{tikzcd}
 \]
-Tenemos que $\pi^{-1}(\alpha)$ es el conjunto de puntos $(t,x,y)\in\A_k^3$ tales que $ty-x^2=0$ y $t=\alpha$. Para $\alpha=0$ obtenemos los puntos $(\alpha,0,y)$, que es una recta. Esto nos da la imagen geométrica siguiente COPIAR IMAGEN DE HARTSHORNE 3.3.1 
+Tenemos que $\pi^{-1}(\alpha)$ es el conjunto de puntos $(t,x,y)\in\A_k^3$ tales que $ty-x^2=0$ y $t=\alpha$. Para $\alpha=0$ obtenemos los puntos $(\alpha,0,y)$, que es una recta. Esto nos da la imagen geométrica siguiente
+\begin{figure}[h!]
+\includegraphics[scale=0.5]{3-3-1}
+\end{figure}
 
 Pero desde el punto de vista esquemático, $X_0=\spec(k[x,y]/\gene{x^2})$ nos da que la recta donde degeneran las parábolas es doble por los elementos nilpotentes. 
 \end{ej}
 
-COPIAR 3.3.2
+\begin{ej}
+De forma similar, si $X=\spec(k[x,y,t]/\gene{xy-t})$, obtenemos una familia cuyo miembto general $X_a$ es una hipérbola irreducible $xy=a$ cuando $a\neq 0$, pero cuyo miembro especial $X_0$ es el esquema reducible $xy=0$ consistente en dos rectas.
+\end{ej}
 
 
 \section{Ecualizador y coecualizador}
