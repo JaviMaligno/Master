@@ -461,7 +461,41 @@ Luego podemos introducir $\spec(A\otimes_C B)$ en el primer diagrama, haciendo q
 
 \end{proof}
 
-Vamos ahora al caso general. Denotamos $p:X\to S$ y $q:Y\to S$. Consideramos las ternas $(U,V,W)$ de abiertos afines $U\subseteq X, V\subseteq Y, W\subseteq S$, $p(U),Q(V)\subseteq W$. Siempre se pueden encontrar ternas de este tipo que recubran todos los espacios, pues podemos recubrir $S$ por abiertos $W_i$ y considerar $p^{-1}(W_i)$, que son abiertos de $X$ y se pueden recubrir con abiertos afines (y lo mismo para $Y$). En cada abierto afín tenemos definidos los coproductos, de modo que tenemos que ``pegarlos''. Demostración detallada en la pagina 16 de LAS NOTAS ESAS QUE TENGO QUE AÑADIR A LA BIBLIOGRAFÍA. 
+Vamos ahora al caso general. Denotamos $f:X\to S$ y $g:Y\to S$. Consideramos las ternas $(U,V,W)$ de abiertos afines $U\subseteq X, V\subseteq Y, W\subseteq S$, $p(U),Q(V)\subseteq W$. Siempre se pueden encontrar ternas de este tipo que recubran todos los espacios, pues podemos recubrir $S$ por abiertos $S_i$ y considerar $f^{-1}(S_i)$, que son abiertos de $X$ y se pueden recubrir con abiertos afines (y lo mismo para $Y$). En cada abierto afín tenemos definidos los coproductos, de modo que tenemos que ``pegarlos''. 
+
+Demostración detallada en la pagina 16 de LAS NOTAS ESAS QUE TENGO QUE AÑADIR A LA BIBLIOGRAFÍA. 
+
+\begin{lemma}
+Si $U\subseteq S$ es abierto, entonces existe $X\times_S U=f^{-1}(U)$. 
+\end{lemma}
+\begin{proof}
+La prueba es topológica (incluso conjuntista), el producto fibrado es simplemente
+\[
+\begin{tikzcd}
+f^{-1}(U)\arrow[r, hookrightarrow] \arrow[d, "f|_{f^{-1}(U)}"] & X\arrow[d, "f"]\\
+U\arrow[r, hookrightarrow] & S
+\end{tikzcd}
+\]
+Cuando $U$ abierto, entonces es un subesquema abierto de $X$ y este producto tensorial es aplicable.
+\end{proof}
+Supongamos que existe $X\times_S Y$ cuando $S$ es afín, probamos que entonces existe siempre. Sean $X_i=f^{-1}(S_i)$, $Y_i=g^{-1}(S_i)$. Por hipótesis existen los productos fibrados
+\[
+\begin{tikzcd}
+X_i\times_{S_i} Y_i\arrow[r]\arrow[d] & X_i\arrow[d, "f_i"]\\
+Y_i\arrow[r, "g_i"] & S_i
+\end{tikzcd}
+\]
+Además este diagrama es compatible con las inclusiones $S_i\hookrightarrow S$, $X_i\hookrightarrow X$, $Y_i\hookrightarrow Y$. Consideramos el abierto $S_{ij}=S_i\cap S_i$, que puede ser recubierto por abiertos afines $S_{ij}^k$. Denotamos $X_{ij}=f^{-1}(S_{ij})=X_i\cap X_j$, $Y_{ij}=g^{-1}(S_{ij})=Y_i\cap Y_j$, $X_{ij}^k=f^{-1}(S_{ij}^k)$. Existe por hipótesis el producto fibrado $X_{ij}^k\times_{S_{ij}} Y_{ij}^k$. 
+
+\begin{lemma}
+Existe $X_{ij}\times_{S_{ij}} Y_{ij}$. 
+\end{lemma}
+\begin{proof}
+Este lema es cierto por pegamiento de $X_{ij}^k\times_{S_{ij}^k} Y_{ij}$. Se deja como ejercicio probar que se verifican las condiciones de pegamiento del ejercicio 1.22.
+\end{proof}
+El producto fibrado $X\times_S Y$ se obtiene por pegamiento de $\{X_i\times_{S_i}Y_i\}$, que se pueden pegar porque por el lema anterior las intersecciones son compatibles. Este procedimiento que hemos seguido es \emph{local en la base}, porque hemos partido de abiertos afines de $S$. Así que nos queda probar que para el caso de que $S$ sea afín el producto fibrado existe. 
+
+Veamos que podemos reducirnos al caso de $Y$ afín expresando $Y=\cup Y_i$ como unión de abiertos afines, así que vamos a suponer primero que para $Y_i$ existe el producto. Podemos considerar entonces $X\times_S Y_i$, que de nuevo se pegan después de estudiar las intersecciones $Y_i\cap Y_j$. Análogamente se hace con $X$. 
 \end{dem}
 
 Sea $S$ un esquema y $x\in S$. Consideremos el anillo local $\OO_{S,x}$ con ideal maximal $\m_{S,x}$ que da lugar al cuerpo residual $\OO_{S,x}/\m_{S,x}=\K(x)$. Podemos considerar $\spec(\K(x))$, como hemos hecho en general con cualquier cuerpo. Vemos que además un morfismo $\spec(\K(x))\to S$. Recordemos que $\spec(\K(x))=(\{0\},\K(x))$. Definimos $f(\{0\})=x$, que es claramente continua. Ahora tenemos que definir $\OO_S\to f_*\K(x)$, o lo que es lo mismo, $f^{-1}\OO_S\to \K(x)$. Como $f$ es una aplicación de un solo punto, $f^{-1}\OO_S$ es un anillo sobre un punto, así que es su fibra $(f^{-1}\OO_S)_{\{0\}}=\OO_{S,x}$. Y aquí tenemos un morfismo obvio $\OO_{S,x}\to \K(x)$ dado por la proyección al cociente. 
@@ -714,6 +748,29 @@ Sea $X=\bigcup_{i\in I}U_i$ un recubrimiento abierto del espacio $X$ y considere
 \]
 donde $\alpha$ es la inclusión con respecto al índice $i$ y $\alpha'$ con respecto al índice $j$. Se tiene entonces que $X=Coeq(\alpha,\alpha')$. Tenemos que probar que para todo espacio topológico $Z$ y para todo $h:\coprod U_i\to Z$ tal que $h\circ\alpha=h\circ\alpha'$, existe un único $\tilde{h}: X\to Z$ tal que $\tilde{h}\circ\sigma=h$. La aplicación $h$ está determinada por cada $h_i:U_i\to Z$, por lo que $h\circ \alpha=h\circ\alpha'$ si y solo si $h_i|_{U_i\cap U_j}=h_j|_{U_i\cap U_j}$, luego definimos $\tilde{h}$ pegando las $h_i$, que se pegan con continuidad porque coinciden en las intersecciones.
 
+\begin{nota}
+La condición de haz se puede expresar en una categoría más general (como la de conjuntos) como que $\calF(U)\to\prod_{i\in I}\calF(U_i\rightrightarrows \prod_{(i,j)}\calF(U_i\cap U_j)$ es un ecualizador, lo cual en cierto sentido se puede ver como una sucesión exacta. Además esto proviene del coecualizador $\coprod U_i\cap U_j\rightrightarrows \coprod U_i\to U$. En abiertos de un espacio $X$ se tiene además que $U_i\cap U_j$ es el producto fibrado $U_i\times_X U_j$. Con esto se consigue que si $F(X)=\Hom_{Top}(X,Z)$, entonces $F(X)\to \Hom_{Top}(\coprod X_i, Z)=\prod\Hom_{Top}(X_i,Z)\rightrightarrows \prod\Hom_{Top}(X_i\cap X_j,Z)$
+\end{nota}
+
+\begin{defi}[Topología sobre una categoría]
+Una topología en $\CC$ es una familia $Cov=\{X_i\to X\}_{i\in I}$ tal que
+\begin{enumerate}
+\item $\{Id:X\to X\}\in Cov$
+\item  Si $\{X_i\to X\}, \{X_{ij}\to X_i\}\in Cov$, entonces $\{X_{ij}\to X\}\in Cov$.
+\item Si $\{X_i\to X\}\in Cov$ y $Y\to X$, entonces $\{X_i\times_X Y\to Y\}\in Cov$. 
+\end{enumerate} 
+\end{defi}
+Ejemplo de esto serían todas las familias de recubrimientos abiertos, ya sean de espacios topológicos sin más o esquemas (que sabemos que forman una categoría). Utilizando esta definición podemos definir haces sobre categorías. Un caso concreto muy importante es la topología \emph{Étale} sobre $\mathrm{Sch}_S$, donde las flechas de la definición tienen que ser morfismos étale:
+\begin{defi}
+Sabemos que para $f:A\to B$ y pra cualquier anillo $A\to C$ con un ideal $N^2=0$, tenemos el diagrama conmutativo
+\[
+\begin{tikzcd}
+B \arrow[r, "\beta"] & C/N\\
+A\arrow[u, "f"]\arrow[r, "\alpha"] & C\arrow[u, "\pi"]
+\end{tikzcd}
+\]
+Decimos que $f$ es \emph{étale} si existe un único $\tilde{\beta}:B\to C$ que haga conmutar el diagrama. 
+\end{defi}
 
 
 \section{Ejercicios}
@@ -734,7 +791,7 @@ Consideramos $\Z[\frac{1}{2}]\hookrightarrow\Z[\frac{1}{2},i]$ (recordemos que 2
 \Z\arrow[u, hookrightarrow]\arrow[r, "\alpha"] & C\arrow[u, "p"'] & & \Z[\frac{1}{2}]\arrow[u]\arrow[r] & C\arrow[u]
 \end{tikzcd}
 \]
-Comprobar que no siempre es posible levantar conmutativamente $\beta$ a $\Z[i]\to C$ pero siempre se puede hacer de manera única en el diagrama de la derecha con $\Z[\frac{1}{2},i]\to C$. Observar que $\alpha$ ya nos da a dónde tiene que ir $\Z$ luego tenemos que enviar $i$ a algo que respete $i^2+1=0$. 
+Comprobar que no siempre es posible levantar conmutativamente $\beta$ a $\Z[i]\to C$ pero siempre se puede hacer de manera única en el diagrama de la derecha con $\Z[\frac{1}{2},i]\to C$. Observar que $\alpha$ ya nos da a dónde tiene que ir $\Z$ luego tenemos que enviar $i$ a algo que respete $i^2+1=0$. Este ejercicio es equivalente a probar que $\Z\to\Z[i]$ no es étale pero $\Z[1/2]\to \Z[i,1/2]$ sí. 
 \end{ejer}
 
 \end{document}

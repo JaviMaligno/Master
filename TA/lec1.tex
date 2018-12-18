@@ -830,7 +830,44 @@ La primera aplicación no nula viene dada por $((i_1)_\sharp, (i_2)_\sharp)$ don
 El teorema también es cierto si $X$ es un $CW$-complejo y $A,B\subseteq X$ son subcomplejos tales que $X=A\cup B$, porque hay abiertos $U_A$ y $U_B$ que contienen respectivamente a $A$ y $B$ como retracto de deformación y tales que $A\cap B\subseteq U_A\cap U_B$ también como retracto de deformación. Para verlo, si consideramos una celda de $X$ pegada a $A$, basta tomar una corona abierta de esa celda y unirla a $A$, que se puede retraer sobre $A$. Esto también podemos hacerlo en $B$, con lo cual también se hace sobre la intersección. 
 \end{nota}
 
-La sucesión de Mayer-Vietoris también tiene una versión reducida aumentando con $0\xrightarrow{\binom{1}{1}}\Z\oplus\Z\xrightarrow{(1,-1)}\Z\to 0$. 
+La sucesión de Mayer-Vietoris también tiene una versión reducida aumentando con $\Z\xrightarrow{\binom{1}{1}}\Z\oplus\Z\xrightarrow{(1,-1)}\Z\to 0$. 
+
+
+\begin{ej}
+Sea $K$ la botella de Klein expresada como unión de dos bandas de Möbius $M_1$ y $M_2$, que podemos consideraras como subcomplejos de $K$. Aplicamos Mayer-Vietoris reducida. Tenemos que $M_1\cap M_2\cong S^1\simeq M_1\simeq M_2$. Tenemos entonces la sucesión exacta
+\[
+0\to H_2(K)\to H_1(M_1\cap M_2)=\Z\xrightarrow{i_*} H_1(M_1)\oplus H_1(M_2)=\Z\oplus \Z\to H_1(K)\to 0
+\]
+El generador de $M_1\cap M_2$ está dado por la circunferencia del borde de la banda, que es homólogo a recorrer 2 veces la circunferencia central (una por arriba y otra por abajo), que es la que genera cada $H_1(M_i)$, por lo que $i_*(1)=(2,-2)$. Como $i_*$ es inyectivo, la exactitud nos da $H_2(K)=0$. Obtenemos también que $H_1(K)=\Z\oplus\Z/\gene{(2,-2)}\cong \Z\oplus \Z_2$. 
+\end{ej}
+
+\begin{ej}
+Sean $f,g:X\to Y$ y hacemos el cociente $Z=(X\times I)\sqcup Y/\sim$ por la relación $(x,0)\sim f(x), (x,1)\sim g(x)$. Consideramos las sucesines de homología de los pares $(X\times I,X\times\partial I)$ y $(Z,Y)$, que conmutan mediante la aplciación $q$ de paso al cociente.
+\[
+\begin{tikzcd}
+H_{n+1}(X\times I,X\times\partial I)\arrow[r,"\Delta"]\arrow[d, "q_*"] & H_n(X\times\partial I)\arrow[r]\arrow[d, "q_*"] & H_n(X\times I)\arrow[r]\arrow[d, "q_*"] & H_n(X\times I,X\times\partial I)\arrow[d, "q_*"]\\
+ H_{n+1}(Z,Y)\arrow[r,"\Delta"] & H_n(Y)\arrow[r] & H_n(Z)\arrow[r] & H_n(Z,Y)
+\end{tikzcd}
+\]
+
+
+
+
+Ahora, $X\times I\simeq X\times\{0\}$, por lo que $i_*$ es sobreyectiva. Eso quiere decir que $\Delta$ es inyectivo, porque el resto de aplicaciones son 0. Además, $\ker i_*\subseteq H_n(X\times\{0\})\oplus H_n(X\times\{1\})$ consiste en los pares $([\alpha],-[\alpha])$, que es un grupo isomorfo a $H_n(X)$ porque todas sus clases están representadas.  Por tanto. $H_{n+1}(X\times I,X\times\partial I)\cong H_n(X)$. 
+
+Dada una clase $[z]\in H_n(X)$, por el isomorfismo que hemos dado antes, $\Delta([z])=([\alpha],-[\alpha])$, que en el cociente se identifica con $f^*\alpha-g^*\alpha$, por lo que $q_*\Delta=f_*-g_*$. Todas las parejas que estamos considerando son buenas parejas, por lo que $\widetilde{H}_{n+1}(X\times I/X\times\partial I)\cong H_{n+1}(X\times I,X\times\partial I)\underset{q_*}{\cong} \widetilde{H}_n(Z/Y)\cong \widetilde{H}_{n+1}(Z/Y)$. 
+
+Deducimos entonces $H_{n+1}(Z,Y)\cong H_n(X)$. Obtenemos entonces la sucesión exacta larga
+\[
+\cdots H_n(X)\xrightarrow{f_*-g_*}H_n(Y)\xrightarrow{i_*} H_n(Z)\to H_{n-1}(X)\to\cdots
+\]
+Esto es una generalización de Mayer-Vietoris en el siguiente sentido: Consideramos las inclusiones $f:A\cap B\to A\to A\sqcup B$ y $g:A\cap B\to B\to A\sqcup B$ como en Mayer-Vietoris. La anterior sucesión exacta se traduce entonces como
+\[
+H_n(A\cap B)\xrightarrow{i_*} H_n(A)\oplus H_n(B)\to H_n(A\cup B)
+\]
+\end{ej}
+
+
 
 \section{Homología con coeficientes}
 Sea $G$ un grupo abeliano con notación aditiva. El complejo de cadenas singulares de un espacio $X$ con coeficientes en $G$ se define como $C_*(X;G)=\{\sum_{\sigma:\Delta^n}\to X g_{\sigma}\sigma\mid g\in G$ casi todos nulos$\}$, que es un grupo abeliano sumando coeficiente a coeficiente. En particular $C_n(X)=C_n(X;\Z)$. La diferencial se define exactamente igual, ya que multiplicar por 1 es dejarlo igual y multiplicar por $-1$ es tomar el opuesto. Así que la homología con coeficientes en $G$ es simplemente $H_n(X;G)=H_n(C_*(X;G))$. Se puede definir el complejo de cadenas como $C_n(X)\otimes_{\Z}G$, con la diferencial $d\otimes Id_G$, siendo $d$ la diferencial usual. Sin embargo $H_n(X;G)\not\cong H_n(X)\otimes_{\Z}G$ porque el producto tensorial no respeta sucesiones exactas ni núcleos. 
@@ -848,7 +885,7 @@ Sea $G$ un grupo abeliano con notación aditiva. El complejo de cadenas singular
 Un homomorfismo de grupos abelianos $\varphi:G\to H$  induce $\varphi_\sharp:C_*(X;G)\to C_*(X;H)$, simplemente sustituyendo cada coeficiente por su imagen mediante $\varphi$, con lo que se induce $\varphi_*:H_*(X;G)\to H_*(X;H)$ con la misma functorialidad y naturalidad con respecto a las aplicaciones inducidas por $f:X\to Y$ de las aplicaciones inducidas habituales, es decir, conmutas los diagramas de la forma
 \[
 \begin{tikzcd}
-C_*(X;G)\arrow[r, "\varphi_\sharp"]\arrow[d, "f_\sharp"] & C_*(X;H)\\
+C_*(X;G)\arrow[r, "\varphi_\sharp"]\arrow[d, "f_\sharp"] & C_*(X;H)\arrow[d, "f_\sharp"]\\
 C_*(Y;G)\arrow[r, "\varphi_\sharp"] & C_*(Y;H)
 \end{tikzcd}
 \]
@@ -874,6 +911,34 @@ Sea $X=\R P^{\infty}$, con $C_n^{CW}=G$ para todo $n$. Las diferenciales son igu
 \end{ej}
 
 
+\section{Característica de Euler}
+\begin{defi}
+Sea $X$ un CW-complejo finito. Se define la característica de Euler de $X$ como $\chi(X)=\sum_{n\geq 0}(-1)^nc_n$, donde $c_n$ es el número de $n$-células de $X$. Se tiene que $c_n=rg(C_n^{CW}(X))=rg(H_n(X^n,X^{n-1})$ como grupo abeliano libre finitamente generado. 
+\end{defi}
+\begin{nota}
+El rango de un grupo abeliano finitamente $G$ generado se puede definir como la dimensión del $\Q$-espacio vectorial $G\otimes_{\Z} G$, porque esto elimina la parte de torsión.
+\end{nota}
+
+\begin{prop}
+Si $0\to A\to B\to C\to 0$ es una sucesión exacta corta de grupos abelianos finitamente generados, entonces $rg(B)=rg(A)+rg(C)$.
+\end{prop}
+Esta proposición se puede probar haciendo producto tensorial por $\Q$, porque aunque el producto tensorial en general no es exacto, al hacerlo por $\Q$ sí. Existen otras pruebas más elementales pero más costosas. Podemos aplicar esto a las sucesiones exactas
+\[
+0\to B_n\to Z_n\to H_n\to 0
+\]
+\[
+0\to Z_n\to C_n\to B_{n-1}\to 0
+\]
+De la primera, $rg(Z_n)=rg(B_n)+rg(H_n)$ y de la segunda $rg(C_n)=rg(Z_n)+rg(B_{n-1})$. Sustituyendo obtenemos $rg(C_n)=rg(B_n)+rg(H_n)+rg(B_{n-1})$. De aquí deducimos que $\chi(X)=\sum_{n\geq 0}(-1)^nrg(C_n)$. 
+
+\begin{ej}
+$\chi(M_g)=1-2g+1=2-2g$, $\chi(N_g)=0-(g-1)+1=2-g$. 
+\end{ej}
+
+\section{Propiedad de Extensión de Homotopía}
+
+
+COPIAR LO DE LAS DIAPOSITIVAS
 
 \section{Ejercicios}
 \begin{ejer}
