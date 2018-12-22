@@ -191,8 +191,17 @@ Vamos a darle primero la estructura de variedad diferenciable como variedad prod
 \varphi_2:C_4\times\R\to\left(\frac{\pi}{2},\frac{3\pi}{2}\right)\times\R; \varphi(x,y,z)=(\arcsin(y)+\pi,z)
 \]
 
-donde $C_1$ es la semicircunferencia abierta superior, $C_2$ la derecha, $C_3$ la inferior y $C_4$ la izquierda. Es sencillo probar que las cartas efectivamente están relacionadas.
+donde $C_1$ es la semicircunferencia abierta superior, $C_2$ la derecha, $C_3$ la inferior y $C_4$ la izquierda. Es sencillo probar que las cartas efectivamente están relacionadas usando las inversas 
+\[
+\varphi_1^{-1}:(0,\pi)\times\R\to C_1\times\R; \varphi_1^{-1}(x,z)=(\cos(x),\sin(x),z)
+\]
+\[
+\varphi_2^{-1}:\left(-\frac{\pi}{2},\frac{\pi}{2}\right)\times\R\to C_2\times\R; \varphi_1^{-1}(x,z)=(\cos(x),\sin(x),z)
+\]
+\[\varphi_3^{-1}:(-\pi,0)\times\R\to C_3\times\R; \varphi_3^{-1}(x,z)=(\cos(x),\sin(x), z)\] 
+\[\varphi_4^{-1}:\left(\frac{\pi}{2},\frac{3\pi}{2}\right)\to C_4\times\R;\varphi_4^{-1}(x,z)=(\cos(x),\sin(x),z)\]
 
+Observamos que las inversas tienen todas la misma expresión, que es la de la carta del cilindro como superficie de revolución. Aunque parezca extraño podemos ver que esto es en realidad así, por ejemplo fijándonos en $\varphi_3^{-1}$. Dado un ángulo $\alpha\in (-\pi,0)$, al calcular $\arccos(\cos(\alpha))-\pi$, como $\arccos(\alpha)\in (0,\pi)$, al restar $\pi$ obtenemos de nuevo el ángulo $\alpha$ y análogamente la composición inversa, y de manera similar usando el seno para $\varphi_4$. Es evidente además que $\varphi_i^{\pm 1}\circ\varphi_j^{\mp 1}\in C^{\infty}$ para todo $i,j=1,\dots, 4$.
 \begin{figure}[h!]
 \definecolor{ffdxqq}{rgb}{1.,0.8431372549019608,0.}
 \definecolor{qqqqff}{rgb}{0.,0.,1.}
@@ -228,7 +237,7 @@ y
 \[
 \psi\circ\varphi_1^{-1} : \varphi_1(C_1\times\R)\to \psi(C_1\times\R)
 \]
-tienen coordenadas definidas como composición de funciones diferenciables en los dominios correspondientes como vamos a ver. Por lo que son diferenciables. 
+tienen coordenadas definidas como composición de funciones diferenciables en los dominios correspondientes como vamos a ver, por lo que son diferenciables. 
 %Notar que x/raiz <= 1
 \[
 \varphi_1\circ \psi^{-1}(x,y)=\varphi_1\left(\frac{x}{\sqrt{x^2+y^2}},\frac{y}{\sqrt{x^2+y^2}}, \log\sqrt{x^2+y^2} \right)=\left(\arccos\left(\frac{x}{\sqrt{x^2+y^2}}\right),  \log\sqrt{x^2+y^2} \right)

@@ -725,12 +725,24 @@ De forma similar, si $X=\spec(k[x,y,t]/\gene{xy-t})$, obtenemos una familia cuyo
 \section{Ecualizador y coecualizador}
 PENSAR SI PONER ESTO EN OTRA parte DEPENDIENDO DE LO QUE VEAMOS DESPUÉS
 
-Sea $\CC$ una categoría. Se dice que el objeto $Eq$ DEFINICIÓN DE ECUALIZADOR.
+Sea $\CC$ una categoría y sean $f,g:X\to Y$ morfismos. Se dice que $e:Eq\to X$ satisfaciendo $f\circ eq= f\circ eq$ es un \emph{ecualizador} si para todo $m:Z\to X$ con $f \circ m=g\circ m$ existe un único $u:Z\to E$ tal que $eq\circ u=m$
+\[
+\begin{tikzcd}
+E\arrow[r, "eq"] & X\arrow[r, shift left, "f"]\arrow[r, shift right, "g"'] & Y\\
+Z\arrow[u, dashed, "u"]\arrow[ur, "m"] & 
+\end{tikzcd}
+\] 
 
 \begin{ej}
 En la categoría de conjuntos, dadas $\alpha, \alpha': A\to B$, el equalizador es el subconjunto $Eq(\alpha,\alpha')=\{a\in A\mid \alpha(a)=\alpha'(a')\}$. 
 \end{ej}
-Obsérvese que en una categoría aditiva, donde podemos sumar y restar morfismos, $Eq(\alpha,\alpha')=\ker(\alpha-\alpha')$. Dualmente se define el \emph{coecualizador} DEFINICIÓN DE COECUALIZADOR
+Obsérvese que en una categoría aditiva, donde podemos sumar y restar morfismos, $Eq(\alpha,\alpha')=\ker(\alpha-\alpha')$. Dualmente se define el \emph{coecualizador} $Coeq$ mediante el siguiente diagrama
+\[
+\begin{tikzcd}
+X\arrow[r, shift left, "f"]\arrow[r, shift right, "g"'] & Y\arrow[r, "q"] \arrow[dr, "q'"]& Coeq\arrow[d,dashed, "u"]\\
+& & Z
+\end{tikzcd}
+\]
 El coecualizador verifica la relación análoga con el conúcleo.
 \begin{ej}
 El coecualizador en la categoría de conjuntos, el coecualizador es el cociente $B/\sim$, donde $\sim$ es la relación generada por $\alpha(x)\sim\alpha'(x)$. 
@@ -739,7 +751,7 @@ El coecualizador en la categoría de conjuntos, el coecualizador es el cociente 
 En $\mathrm{Top}$ tenemos los mismos ecualizadores y coecualizadores con las topologías inducidas correspondientes. 
 \end{ej}
 
-Sea $X=\bigcup_{i\in I}U_i$ un recubrimiento abierto del espacio $X$ y consideremos el coproducto $\coprod_{i\in I}U_i$. Tenemos el siguiente diagrama conmutativo PREGUNTAR CÓMO HACER PARA QUE EL ALPHA Y EL ALPHA' QUEDEN ENCIMA Y DEBAJO RESPECTIVAMENTE
+Sea $X=\bigcup_{i\in I}U_i$ un recubrimiento abierto del espacio $X$ y consideremos el coproducto $\coprod_{i\in I}U_i$. Tenemos el siguiente diagrama conmutativo 
 \[
 \begin{tikzcd}
 \coprod_{(i,j)\in I^2}\in U_i\cap U_j\arrow[r, shift left, "\alpha"]\arrow[r, shift right,"\alpha'"']&\coprod_{i\in I}U_i\arrow[r, "\sigma"] & X\\
@@ -752,7 +764,7 @@ donde $\alpha$ es la inclusión con respecto al índice $i$ y $\alpha'$ con resp
 La condición de haz se puede expresar en una categoría más general (como la de conjuntos) como que $\calF(U)\to\prod_{i\in I}\calF(U_i\rightrightarrows \prod_{(i,j)}\calF(U_i\cap U_j)$ es un ecualizador, lo cual en cierto sentido se puede ver como una sucesión exacta. Además esto proviene del coecualizador $\coprod U_i\cap U_j\rightrightarrows \coprod U_i\to U$. En abiertos de un espacio $X$ se tiene además que $U_i\cap U_j$ es el producto fibrado $U_i\times_X U_j$. Con esto se consigue que si $F(X)=\Hom_{Top}(X,Z)$, entonces $F(X)\to \Hom_{Top}(\coprod X_i, Z)=\prod\Hom_{Top}(X_i,Z)\rightrightarrows \prod\Hom_{Top}(X_i\cap X_j,Z)$
 \end{nota}
 
-\begin{defi}[Topología sobre una categoría]
+\begin{defi}[Topología de Grothendieck sobre una categoría]
 Una topología en $\CC$ es una familia $Cov=\{X_i\to X\}_{i\in I}$ tal que
 \begin{enumerate}
 \item $\{Id:X\to X\}\in Cov$

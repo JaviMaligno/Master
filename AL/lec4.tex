@@ -1,5 +1,6 @@
 \documentclass[AL.tex]{subfiles}
-
+\usepackage{eurosym}
+\usepackage{lmodern,textcomp}
 \begin{document}
 
 
@@ -178,5 +179,82 @@ Fib(n-1)+Fib(n-2) & c.c.
 y se puede demostrar que $T(n)\in\Omega(2^{n/2})$, que es exponencial. Efectivamente, $T(n)\geq 2T(n-2)$, y podemos reiterar este proceso hasta obtener $T(n)\geq 2^kT(n-2k)$. Esto termina cuando $k=\frac{n}{2}$, en cuyo caso $T(n)\geq 2^{n/2}T(0)\in\Omega(2^{n/2})$. 
 \end{nota}
 
+\subsection{Algoritmos voraces (Greedy Algorithms)}
+Supongamos que tenemos 56.18€  y queremos pagar usando la menor cantidad de billetes y monedas posibles. Lo habitual es empezar con un billete de 50, después uno de 5, después una moneda de 1 euro, una de 10 céntimos, de 5 céntimos, de 2 céntimos y de 1 céntimo. Este es un procedimiento voraz. 
+
+En general, si tenemos una cantidad $M$ y un conjunto de valores $\{v_1,\dots, v_n\}$, buscaríamos el primer $v_i\leq M$. Si $v_i<M$ y $v_i+v_{i+1}<M$ volvemos a sumar $v_{i+1}$ y hacer la comparación, si no, pasaríamos al siguiente elemento. Por ejemplo, para $M=83$ y $\{50,20,3\}$ saldría la cantidad exacta, $50+20+3$. Si en cambio tenemos $M=15$ y $\{11,5,1\}$, el algoritmo voraz daría $11+1+1+1+1$, pero esta no es la solución que usa menos sumandos, pues $5+5+5$ también da el resultado. Esto muestra que el algoritmo voraz no garantiza la solución óptima en todos los casos. Un caso en el que si es en el que tenemos un número $p>1$ y los elementos del conjunto son $1,p,p^2,\dots, p^n$, $n>0$. 
+
+\begin{ej}[Mochila (Knapsack)]
+Tenemos $n$ artículos con valores $v_1,\dots, v_n$ y un peso $w_1,\dots, w_n$. Queremos introducir artículos en una mochila que soporta un peso máximo $w$ de modo que la suma de los valores sea máxima. Este problema se puede modelar definiendo una variable binaria $x_i\in\{0,1\}$, que vale 1 si y solo si $v_i$ se elige. Por tanto, tendríamos el problema $\max\sum_i x_iv_i$ sujeto a $\sum_ix_iw_i\leq w$. Este problema tiene también una versión continua cuando los artículos son divisibles, para lo cual basta definir $x_i\in[0,1]$. 
+
+Para el problema continuo tenemos el siguiente algoritmo voraz:
+\begin{enumerate}
+\item Empezamos con $x_i=0$ para todo $i=1,\dots, n$ y el $peso$ de la mochila es 0. 
+\item mientras el $peso<w$, escogemos el ``mejor $i$''
+\item si $peso+w_i\leq w$, entonces $x_i=1$, si no $x_i=\frac{w-peso}{w_i}$ y $peso=w$.
+\end{enumerate}
+
+Para la elección del mejor $i$ podemos previamente reordenar los artículos por orden no creciente de valor. Otra estrategia es ordenarlos según un orden no decreciente de peso. Una tercera opción es ordenar los cocientes $\frac{v_i}{w_i}$ de modo no creciente (similarmente $\frac{w_i}{v_i}$ no decreciente). Esta tercera opción es la única de las opciones que garantiza la corrección del algoritmo, como probaremos a continuación. Esta ordenación junto con el bucle del algoritmo da una solución al problema de la mochila continua en tiempo $O(n\log n)$. 
+
+\end{ej}
+
+\begin{teorema}
+Si se escogen los objetos por orden no creciente de cocientes $\frac{v_i}{w_i}$, entonces el algoritmo voraz conduce a la solución óptima.
+\end{teorema}
+\begin{dem}
+Sea $\Delta=(\delta_1,\dots, \delta_n)$ la $n$-upla de valores que toman los $x_i$, esto es $x_i=\delta_i$ para cada $i=1,\dots, n$ al obtener la solución por el algoritmo voraz. Sea $j$ el menor entero tal que $\delta_j<1$ (esto significa que $\delta_i=1$ para $i<j$ y $\delta_i=0$ para $i>j$). Es claro que $w(\Delta)=\sum w_i\delta_i=w$. Denotamos $v(\Delta)=\sum v_i\delta_i$. 
+
+Supongamos que tenemos una solución factible $\Lambda=(\lambda_1,\dots,\lambda_n)$, esto es, $w(\Lambda)\leq w$. Consideramos $\sum(\delta_i-\lambda_i)w_i=w(\Delta)-w(\Lambda)>0$ porque $\Delta$ completa todo el peso. Por otra parte, $v(\Delta)-v(\Lambda)=\sum(\delta_i-\lambda_i)v_i$. Vamos a analizar los coeficientes de esta suma para los distintos valores de $i$. Para $i<j$, $\delta_i-\lambda_i\geq 0$ y si $i>j$, $\delta_i-\lambda_i\leq 0$. Para $i=j$ no tenemos información adicional. Tenemos por la ordenación que hemos establecido, $(\delta_i-\lambda_i)\frac{v_i}{w_i}\geq (\delta_i-\lambda_i)\frac{v_j}{w_j}$ y $(\delta_i-\lambda_j)\frac{v_i}{w_i}\geq (\delta_i-\lambda_j)\frac{v_j}{w_j}$ (en este caso sale la misma desigualdad por el cambio de signo), dándose la igualdad en $i=j$ de forma trivial. Tenemos entonces
+\[
+v(\Delta)-v(\Lambda)=\sum_{i<j}(\delta_i-\lambda_i)v_i+(\delta_j-\lambda_j)v_j+\sum_{i>j}(\delta_i-\lambda_i)v_i=
+\]
+\[
+\sum_{i<j}(\delta_i-\lambda_i)w_i\frac{v_i}{w_i}+(\delta_j-\lambda_j)\frac{v_j}{w_j}+\sum_{i>j}(\delta_i-\lambda_i)\frac{v_i}{w_i}\geq
+\]
+\[
+\frac{v_j}{w_j}\left(\sum_{i<j}(\delta_i-\lambda_i)w_i+(\delta_j-\lambda_j)w_j+\sum_{i>j}(\delta_i-\lambda_i)w_i\right)=\frac{v_j}{w_j}(w(\Delta)-w(\Lambda))\geq 0
+\]
+lo que prueba el resultado. 
+\end{dem}
+Esta prueba no es válida para el caso discreto, porque no podemos fraccionar los artículos. Veamos de hecho un contraejemplo. 
+
+\begin{ej}
+Sean $w=10$, $w_1=6$, $w_2=5$, $w_3=5$, $v_1=8$, $v_2=5$, $v_3=5$. La ordenación del algoritmo voraz para el caso continuo nos da el orden $\frac{8}{5}\geq 1\geq 1$, por lo que $x_1=1$. Como $x_i\in\{0,1\}$, $x_2=x_3=0$. Esto nos da un valor total de 8, pero la solución $(0,1,1)$ nos daría el valor de 10. 
+\end{ej}
+
+
+Los algoritmos voraces constan de los siguientes elementos:
+\begin{enumerate}
+\item Un conjunto de candidatos $C$.
+\item
+ Una partición $C_1\cup C_2=C$, los candidatos que se eligen y los que no.
+ \item  Una función $f_1$ de comprobación, que comprueba si la solución es óptima..
+ \item Una función $f_2$ de factibilidad.
+ \item Una función $f_3$ de selección del elemento más prometedor.
+ \item La función objetivo $f$.
+ \end{enumerate}
+ 
+ 
+\begin{ej}
+Dado un grafo con pesos $G=(V,E)$, el problema de encontrar un árbol spanning de peso mínimo. Este problema admite un algoritmo voraz conocido como algoritmo de Kruskal. 
+\end{ej}
+
+\begin{defi}
+Una \emph{matroide} es un par ordenado $M=(S,l)$, donde $S\neq\emptyset$ es un conjunto finito y $l$ es una familia de subconjuntos de $S$ (cuyos elementos se llaman \emph{conjuntos independientes}) verificando
+\begin{enumerate}[a)]
+\item si $B\in l$ y $A\subseteq B$, entonces $A\in l$ (propiedad hereditaria),
+\item si $A,B\in l$, $|A|<|B|$ entonces $s\in B\setminus A$; $A\cup\{s\}\in l$ (propiedad de intercambio).
+\end{enumerate}
+Una matroide \emph{ponderada} es un par $(M,W)$ donde $M$ es una matroide y $w:S\to\R^+$ es una función de pesos.
+\end{defi}
+
+
+\begin{ej}
+Un espacio vectorial y la familia de subconjuntos linealmente independientes es una matroide. Un grafo y la familia de subgrafos de tipo árbol es una matroide.
+\end{ej}
+
+\begin{teorema}
+Si $M$ es una matroide ponderada, entonces el algoritmo voraz devuelve un subconjunto óptimo para el problema $\min_{A\in l}\sum_{s\in A}w(s)$. 
+\end{teorema}
 
 \end{document}
