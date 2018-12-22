@@ -201,4 +201,135 @@ Entonces el grafo asociado es
 \end{tikzpicture}
 \end{center}
 \end{nota}
+
+\section{Cadena de Markov en tiempo discreto}
+Sabemos que en $t_0$ $X(0)$ es el primer valor de la cadena. Entonces podemos definir 
+$$
+W_1 = \sup\{t>0 \mid X(t)=X(0)\}
+$$
+y se sigue
+$$
+W_j = \sup\{t>0\mid X(t) = X(W_{j-1})\}
+$$
+Definimos para un nuevo proceso discreto $Y_n$ dado por $Y_n = X(W_n)$. Este es proceso es una cadena de Markov de parámetro discreto. Además su matriz de transición es una matriz con diagonal nula y el resto de elementos son $-g_{ij}/g_{ii}$. 
+\section{Distribuciones condicionadas}
+\begin{defi}
+Se dice que una distribución de probabilidad $\pi$ con $\pi_i \geq 0$ y $\sum_i \pi_i = 1$ es una distribución estacionaria si verifica que
+$$
+\pi = \pi P_t \quad \forall t
+$$
+En caso de existir, no depende del tiempo. Su cálculo puede ser complicado.
+\end{defi}
+\begin{prop}
+Una distribución $\pi$ es estacionaria si y solo si $\pi G = 0$.
+\end{prop}
+\begin{dem}
+Si $\pi$ es estacionaria, entonces $\pi P_t = \pi$. Por tanto
+$$
+\pi G = \pi \lim_{t\to 0} \frac{P_t - I}{t} = \lim_{t\to 0} \frac{\pi P_t - \pi}{t} = \lim_{t\to 0} 0 = 0
+$$
+Si $\pi G = 0$, entonces considerems $P_t = \exp(tG) = \sum_{k=0}^\infty (tG)^k/k!$. Entonces
+$$
+\pi P_t = \pi  \sum_{k=0}^\infty (tG)^k/k! = \pi +  \sum_{k=1}^\infty t^k\pi G^k/k! = \pi
+$$
+\end{dem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage 
+\begin{center}
+21-12-2018
+\end{center}
+
+\begin{theorem}
+Sean $X_1,\dotsc,X_n$ independientes y $X_i \sim Exp(\lambda_i)$, $i=1,\dotsc,n$. Entonces
+\begin{itemize}
+\item 
+$$
+\min_{i=1,\dotsc,n} X_i  \sim Exp\left(\sum_{i=1}^n\lambda_i\right)
+$$
+\item
+$$
+P\left[\min_{i=1,\dotsc,n} X_i = X_j\right] = \frac{\lambda_j}{\sum_{i=1}^n \lambda_j}
+$$
+\end{itemize}
+\end{theorem}
+\begin{nota}
+Si ponemos a competir dos temporizadores aleatorios, de manera que gana el que salte antes, entonces $Z_i \sim Exp(\lambda_i)$ $i=1,2$. Aplicando el teorema anterior, la probabilidad de que gane $X_i$ es $\lambda_i / (\lambda_1 + \lambda_2)$.
+\end{nota}
+
+\begin{prop}
+Consideremos $\rho_k(t)= P[X(t)=k]$. Sea además $\rho_t = (\rho_i(t))_{i \in \mathbb{N}\cup\{0\}}$. Entonces
+$$
+\rho_t'=\rho_t G
+$$
+\end{prop}
+\begin{dem}
+Sabemos que $\rho_t = \rho_0 P_t$ y que la ecuación forward que verifica $P_t$ es $P_t' = P_t G$. Entonces
+\begin{align*}
+\rho_t' = \rho_0P_t' = \rho_0 P_t G = \rho_t G
+\end{align*}
+\end{dem}
+
+\begin{nota}
+Sea una distribución estacionaria $\pi = (\pi_i)_{i \in \mathbb{N}\cup\{0\}}$. Para calcularla, podemos utilizar que $\pi_i\geq 0$ y $\sum_i \pi_i =1$. Además $\pi G = 0$.
+
+
+\begin{center}
+\begin{tikzpicture}
+	% Draw the states
+	\node[state]             (1) {$0$};
+	\node[state, right=of 1] (2) {$1$};
+	\node[state, right=of 2] (3) {$2$};
+    % Connect the states with arrows
+	\draw[every loop]
+		(1) edge[bend left, auto=left] node {$\lambda_0$} (2)
+		(2) edge[bend left, auto=left] node {$\mu_0$} (1)
+		(2) edge[bend left, auto=left] node {$\lambda_1$} (3)
+		(3) edge[bend left, auto=left] node {$\mu_1$} (2);
+\end{tikzpicture} $\cdots$
+
+\end{center}
+Entonces $\pi_{i+1}\mu_{i+1} + \pi_{i-1}\lambda_{i-1} = \pi_i (\lambda_i+\mu_i)$. De manera que
+$$
+\pi_k = \frac{\lambda_0 \cdots \lambda_{k-1}}{\mu_1 \cdots \mu_k } \pi_0
+$$
+
+\end{nota}
+
+\begin{defi} Ejemplos de Procesos de Nacimiento y Muerte.
+\begin{itemize}
+\item \textbf{Proceso de Poisson}. En estos procesos $\lambda_i = \lambda$ y $\mu_i = 0$. A partir de aquí calcular la matriz $G$ es sencillo, pues la supra diagonal es siempre $\lambda$ y la diagonal $-\lambda$. Usando un teorema anterior, podemos calcular los $\rho_t$. Entonces
+$$
+\rho_0(t)=-\lambda \rho_0 (t)  \Rightarrow \rho_0(t) = ke^{-\lambda t}
+$$
+La segunda ecuación es
+$$
+\rho_1'(t) = \lambda \rho_0(t) - \lambda \rho_1(t)
+$$
+Resolvemos la ecuación homogénea y por método de variación de constantes. Obtenemos, finalmente, $\rho_k(t) = e^{-\lambda t} \frac{(\lambda t)^k}{k!}$. Para ver si es estacionario,
+$$
+\pi G = 0
+$$
+Tenemos que $\pi_{i-1} \lambda = \pi_i \lambda$. Por tanto, $\pi_i = c$ $\forall i$. Dado que $\sum \pi_i = 1$ tenemos que no puede existir.
+\item \textbf{Proceso de Yule}. En este proceso no hay un caso $0$, empezamos en $1$. En este caso $\mu_i = 0$ y $\lambda_i =i \lambda $. Este proceso también se conoce como nacimiento puro lineal.
+\item \textbf{Proceso de muerte pura}. Consideramos $N$ indidividuos con tiempo de vida exponencial con misma tasa de muerte $\mu$. Por tanto, pasamos del estado $N$ a $N-1$ con tasa $N\mu$. De $N-1$ a $N-2$ con $(N-1)\mu$ y así.
+$$
+P[X(t)=k] = \binom{N}{k}e^{-k\mu t} (1-e^{-\mu t})^N
+$$
+\item \textbf{Proceso de inmigración y muerte pura}. La población crece desde $0$ con tasa $\lambda$ y mueren con $\mu_i = i \mu$.
+\item Existe otro proceso donde $\lambda_i = \lambda$ y $\mu_i = \mu$.
+
+\end{itemize}
+\end{defi}
 \end{document}
