@@ -15,14 +15,6 @@
 \usepackage{subfiles}
 \usepackage{color}
 \usepackage{hyperref}
-\hypersetup{colorlinks=true,citecolor=red, linkcolor=blue}
-\usepackage[]{graphicx, cutwin}
-\usepackage{pgf,tikz}
-\usepackage{tikz-cd}
-\usetikzlibrary{babel}
-\usetikzlibrary{arrows}
-\usetikzlibrary{trees}
-\usetikzlibrary{cd}
 
 \newtheorem{ejer}{Ejercicio}
 \newtheorem{lemma}{Lema}
@@ -177,7 +169,7 @@ El primer paso es construir el modelo.
 modelo = glm(admit~gre + gpa + rank,data=datos,family=binomial)
 summary(modelo)
 @
-Observamos que al trabajar con factores ordenados en la variable $rank$, se nos presenta un efecto lineal, cuadr\'atico y c\'ubico en la relaci\'on de los distintos valores del factor. En este caso, observamos que la relaci\'on es mayormente lineal. Con los atributos del modelo podemos construir el contraste fundamental para evaluar la adecuaci\'on del modelo.
+Observamos que al trabajar con factores ordenados en la variable $rank$, se nos presenta un efecto lineal, cuadr\'atico y c\'ubico en la relaci\'on de los distintos valores del factor. Si los contrastes no lineales nos indicasen que no podemos suponer de dichos efectos, no podríamos precisar qué relación existe entre la variable explicativa y la predictora. En este caso, observamos que la relaci\'on es mayormente lineal. Con los atributos del modelo podemos construir el contraste fundamental para evaluar la adecuaci\'on del modelo.
 <<>>=
 Estad.G = modelo$null.deviance - modelo$deviance
 gl.G = modelo$df.null - modelo$df.residual;
@@ -202,7 +194,7 @@ t
 @
 La interpretaci\'on de las odd ratio es la siguiente. Sabemos que si es mayor que $1$, entonces un aumento en la variable debe conllevar aparejado un aumento en nuestra variable predictora o, en este caso, en la probabildiad de que un alumno sea admitido. Si es menor que $1$ entonces ocurre la situaci\'on opuesta. 
 
-En nuestro caso particular tenemos que la variable GRE apenas tienen asociaci\'on. La variable GPA est\'a m\'as intensamente relacionada, pues un aumento en una unidad de GPA suponiendo el resto constante se traduce en un aumento de la odd ratio en $2.23$. 
+En nuestro caso particular tenemos que la variable GRE apenas tienen asociaci\'on. La variable GPA est\'a m\'as intensamente relacionada, pues un aumento en una unidad de GPA suponiendo el resto constante se traduce en un aumento de la odd ratio en $2.23$. En cambio, la interacci\'on lineal de la variable rank (que es la \'unica que importa) es $0.3044$. Por tanto, aumentar en una unidad de rank hace que el odd ratio la probabilidad de ser admitido.
 \end{itemize}
 \end{ejercicio}
 \end{document}
