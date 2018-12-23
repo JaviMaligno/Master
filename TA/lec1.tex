@@ -811,6 +811,382 @@ Inductivamente se deducen el de $d_k$ en dimensiones inferiores.
 \end{ej}
 
 
+\section{Suciones de Mayer-Vietoris}
+\begin{teorema}
+Dado un espacio $X$ y $A,B\subseteq X$ subespacios cuyos interiores recubren $X$, entonces hay una sucesióne xacta larga
+\[
+\cdots\to H_n(A\cap B)\to H_n(A)\oplus H_n(B)\to H_n(X)\to H_{n-1}(A\cap B)\to\cdots
+\]
+\end{teorema}
+\begin{dem}
+ Tomamos $\UU=\{A,B\}$, y por el lema \ref{peque}, $C^{\UU}_*(X)\hookrightarrow C_*(X)$ induce isomorfismo en homología. Vemos que tenemos una sucesión exacta corta de complejos de cadenas
+ \[
+ 0\to C_*(A\cap B)\to C_*(A)\oplus C_*(B)\to C_*^{\UU}(X)\to 0
+ \]
+La primera aplicación no nula viene dada por $((i_1)_\sharp, (i_2)_\sharp)$ donde $i_1:A\cap B\hookrightarrow A$, $i_2:A\cap B\hookrightarrow B$, que es claramente inyectiva. La segunda aplicación viene dada por $(j_1)_\sharp-(j_2)_\sharp$, donde $j_1:A\hookrightarrow X$, $j_2:B\hookrightarrow X$, que es sobreyectiva porque $C_*^{\UU}(X)$ es el complejo subordinado a $\UU$, luego los símplices singulares están contenidos en $A$ o en $B$. La exactitud es sencilla porque $j_1i_1=j_2i_2$, y además si $(j_1)_\sharp(x)-(j_2)_\sharp(y)=0$, entonces $(j_1)_\sharp(x)=(j_2)_\sharp(y)$, entonces $x=y$ ya demás $x\in A\cap B$ (dos simplices singulares en el complejo subordinados son iguales si y solo si tienen los mismo coeficientes y están en el mismo conjunto), por lo que está en la imagen de $C_*(A\cap B)$. De esta sucesión exacta corta se deriva la larga de la forma habitual.
+\end{dem}
+
+\begin{nota}
+El teorema también es cierto si $X$ es un $CW$-complejo y $A,B\subseteq X$ son subcomplejos tales que $X=A\cup B$, porque hay abiertos $U_A$ y $U_B$ que contienen respectivamente a $A$ y $B$ como retracto de deformación y tales que $A\cap B\subseteq U_A\cap U_B$ también como retracto de deformación. Para verlo, si consideramos una celda de $X$ pegada a $A$, basta tomar una corona abierta de esa celda y unirla a $A$, que se puede retraer sobre $A$. Esto también podemos hacerlo en $B$, con lo cual también se hace sobre la intersección. 
+\end{nota}
+
+La sucesión de Mayer-Vietoris también tiene una versión reducida aumentando con $\Z\xrightarrow{\binom{1}{1}}\Z\oplus\Z\xrightarrow{(1,-1)}\Z\to 0$. 
+
+
+\begin{ej}
+Sea $K$ la botella de Klein expresada como unión de dos bandas de Möbius $M_1$ y $M_2$, que podemos consideraras como subcomplejos de $K$. Aplicamos Mayer-Vietoris reducida. Tenemos que $M_1\cap M_2\cong S^1\simeq M_1\simeq M_2$. Tenemos entonces la sucesión exacta
+\[
+0\to H_2(K)\to H_1(M_1\cap M_2)=\Z\xrightarrow{i_*} H_1(M_1)\oplus H_1(M_2)=\Z\oplus \Z\to H_1(K)\to 0
+\]
+El generador de $M_1\cap M_2$ está dado por la circunferencia del borde de la banda, que es homólogo a recorrer 2 veces la circunferencia central (una por arriba y otra por abajo), que es la que genera cada $H_1(M_i)$, por lo que $i_*(1)=(2,-2)$. Como $i_*$ es inyectivo, la exactitud nos da $H_2(K)=0$. Obtenemos también que $H_1(K)=\Z\oplus\Z/\gene{(2,-2)}\cong \Z\oplus \Z_2$. 
+\end{ej}
+
+\begin{ej}
+Sean $f,g:X\to Y$ y hacemos el cociente $Z=(X\times I)\sqcup Y/\sim$ por la relación $(x,0)\sim f(x), (x,1)\sim g(x)$. Consideramos las sucesines de homología de los pares $(X\times I,X\times\partial I)$ y $(Z,Y)$, que conmutan mediante la aplciación $q$ de paso al cociente.
+\[
+\begin{tikzcd}
+H_{n+1}(X\times I,X\times\partial I)\arrow[r,"\Delta"]\arrow[d, "q_*"] & H_n(X\times\partial I)\arrow[r]\arrow[d, "q_*"] & H_n(X\times I)\arrow[r]\arrow[d, "q_*"] & H_n(X\times I,X\times\partial I)\arrow[d, "q_*"]\\
+ H_{n+1}(Z,Y)\arrow[r,"\Delta"] & H_n(Y)\arrow[r] & H_n(Z)\arrow[r] & H_n(Z,Y)
+\end{tikzcd}
+\]
+
+
+
+
+Ahora, $X\times I\simeq X\times\{0\}$, por lo que $i_*$ es sobreyectiva. Eso quiere decir que $\Delta$ es inyectivo, porque el resto de aplicaciones son 0. Además, $\ker i_*\subseteq H_n(X\times\{0\})\oplus H_n(X\times\{1\})$ consiste en los pares $([\alpha],-[\alpha])$, que es un grupo isomorfo a $H_n(X)$ porque todas sus clases están representadas.  Por tanto. $H_{n+1}(X\times I,X\times\partial I)\cong H_n(X)$. 
+
+Dada una clase $[z]\in H_n(X)$, por el isomorfismo que hemos dado antes, $\Delta([z])=([\alpha],-[\alpha])$, que en el cociente se identifica con $f^*\alpha-g^*\alpha$, por lo que $q_*\Delta=f_*-g_*$. Todas las parejas que estamos considerando son buenas parejas, por lo que $\widetilde{H}_{n+1}(X\times I/X\times\partial I)\cong H_{n+1}(X\times I,X\times\partial I)\underset{q_*}{\cong} \widetilde{H}_n(Z/Y)\cong \widetilde{H}_{n+1}(Z/Y)$. 
+
+Deducimos entonces $H_{n+1}(Z,Y)\cong H_n(X)$. Obtenemos entonces la sucesión exacta larga
+\[
+\cdots H_n(X)\xrightarrow{f_*-g_*}H_n(Y)\xrightarrow{i_*} H_n(Z)\to H_{n-1}(X)\to\cdots
+\]
+Esto es una generalización de Mayer-Vietoris en el siguiente sentido: Consideramos las inclusiones $f:A\cap B\to A\to A\sqcup B$ y $g:A\cap B\to B\to A\sqcup B$ como en Mayer-Vietoris. La anterior sucesión exacta se traduce entonces como
+\[
+H_n(A\cap B)\xrightarrow{i_*} H_n(A)\oplus H_n(B)\to H_n(A\cup B)
+\]
+\end{ej}
+
+
+
+\section{Homología con coeficientes}
+Sea $G$ un grupo abeliano con notación aditiva. El complejo de cadenas singulares de un espacio $X$ con coeficientes en $G$ se define como $C_*(X;G)=\{\sum_{\sigma:\Delta^n}\to X g_{\sigma}\sigma\mid g\in G$ casi todos nulos$\}$, que es un grupo abeliano sumando coeficiente a coeficiente. En particular $C_n(X)=C_n(X;\Z)$. La diferencial se define exactamente igual, ya que multiplicar por 1 es dejarlo igual y multiplicar por $-1$ es tomar el opuesto. Así que la homología con coeficientes en $G$ es simplemente $H_n(X;G)=H_n(C_*(X;G))$. Se puede definir el complejo de cadenas como $C_n(X)\otimes_{\Z}G$, con la diferencial $d\otimes Id_G$, siendo $d$ la diferencial usual. Sin embargo $H_n(X;G)\not\cong H_n(X)\otimes_{\Z}G$ porque el producto tensorial no respeta sucesiones exactas ni núcleos. 
+
+ También existe la homología relativa del par $(X,A)$ con coeficientes en $G$ denotada $H_n(X,A;G)$ de forma absolutamente análoga. El complejo aumentado se puede construir con $C_0(X;G)\xrightarrow{\varepsilon}G\to 0$ con $\varepsilon$ definido como suma de los coeficientes, por lo que también tenemos la homología reducida $\widetilde{H}_n(X;G)$. Todos los resultados que hemos visto para homología en $\Z$ se tienen con coeficientes en $G$ con las mismas pruebas.
+ 
+ \begin{ej}
+ Calculamos $\widetilde{H}_*(S^n;G)$ por inducción en $n$. Para $n=0$, $\widetilde{H}_0(S^0;G)=G$ y 0 para el resto. Suponemos que $\widetilde{H}_n(S^n;G)=G$ y para cualquier otro grado es 0. Consideramos ahora el par $(D^{n+1}, S^n)$. Como $(D^{n+1}, S^n)$ es un buen par, $\widetilde{H}_{m+1}(D^{n+1},S^n;G)\cong \widetilde{H}_{m+1}(S^{n+1};G)$, y la sucesión de homología relativa reducida del par nos da $\widetilde{H}_{m+1}(D^{n+1},S^n;G)\cong \widetilde{H}_m(S^n;G)$. 
+ \end{ej}
+ Si $X$ es un CW-complejo, se puede definir $C_n^{CW}(X;G)=H_n(X^n,X^{n-1};G)$, que ahora es el grupo formado por las combinaciones con coeficientes en $G$ de las $n$-células de $X$ (identificamos cada célula con su aplicación característica). La definición de la diferencial es análoga, y tendríamos lo siguiente, donde $d'$ denota la diferencial para el caso entero
+ \[
+ d(\sum_\alpha g_\alpha e_{\alpha}^n)=\sum_{\alpha}g_\alpha d'(e_{\alpha}^n)=\sum_{\alpha}g_\alpha(\sum_{\beta}n_{\alpha\beta}e_{\beta}^{n-1})=\sum_{\alpha,\beta}(g_\alpha n_{\alpha\beta})e^{n-1}_{\beta}
+ \]
+ 
+Un homomorfismo de grupos abelianos $\varphi:G\to H$  induce $\varphi_\sharp:C_*(X;G)\to C_*(X;H)$, simplemente sustituyendo cada coeficiente por su imagen mediante $\varphi$, con lo que se induce $\varphi_*:H_*(X;G)\to H_*(X;H)$ con la misma functorialidad y naturalidad con respecto a las aplicaciones inducidas por $f:X\to Y$ de las aplicaciones inducidas habituales, es decir, conmutas los diagramas de la forma
+\[
+\begin{tikzcd}
+C_*(X;G)\arrow[r, "\varphi_\sharp"]\arrow[d, "f_\sharp"] & C_*(X;H)\arrow[d, "f_\sharp"]\\
+C_*(Y;G)\arrow[r, "\varphi_\sharp"] & C_*(Y;H)
+\end{tikzcd}
+\]
+y esta conmutatividad se transmite a la homología.
+ 
+ \begin{prop}
+ Dada $f:S^n\to S^n$, la aplicación inducida $f_*:\widetilde{H}_n(S^n;G)\to\widetilde{H}_n(S^n;G)$ es la multiplicacón por $\deg(f)$. 
+ \end{prop}
+\begin{dem}
+Fijado $g\in G$, tomamos el homomorfismo $\widetilde{H}_n(S^n,\Z)=\Z to G=\widetilde{H}_n(S^n;G)$ dado por $1\mapsto g$. Tenemos el diagrama conmutativo
+\[
+\begin{tikzcd}
+\Z=\widetilde{H}_n(S^n;\Z)\arrow[r, "f_*=\deg(f)"]\arrow[d, "\varphi_*"] & \widetilde{H}_n(S^n;\Z)=\Z\arrow[d, "\varphi_*"]\\
+G=\widetilde{H}_n(S^n;G)\arrow[r, "f_*"] &\widetilde{H}_n(S^n;G)
+\end{tikzcd}
+\]
+de donde se deduce el resultado.
+\end{dem}
+
+
+\begin{ej}
+Sea $X=\R P^{\infty}$, con $C_n^{CW}=G$ para todo $n$. Las diferenciales son iguales que en el caso de $\Z$, entiendiendo la multiplicación por 2 como sumar un elemento consigo mismo. Si tomamos $G=\Z_2$, la multiplicación por 2 es el homomorfismo nulo, por lo que $H_*(\R P^{\infty};\Z_2)$ es isomorfo al complejo de cadenas. Si tomamos $G$ un cuerpo ($\Q$ o $\R$ por ejemplo), la multiplicación por 2 es isomorfismo, con lo que la homología es 0 en todos los grados salvo en 0, que es igual a $G$. 
+\end{ej}
+
+
+\section{Característica de Euler}
+\begin{defi}
+Sea $X$ un CW-complejo finito. Se define la característica de Euler de $X$ como $\chi(X)=\sum_{n\geq 0}(-1)^nc_n$, donde $c_n$ es el número de $n$-células de $X$. Se tiene que $c_n=rg(C_n^{CW}(X))=rg(H_n(X^n,X^{n-1})$ como grupo abeliano libre finitamente generado. 
+\end{defi}
+\begin{nota}
+El rango de un grupo abeliano finitamente $G$ generado se puede definir como la dimensión del $\Q$-espacio vectorial $G\otimes_{\Z} G$, porque esto elimina la parte de torsión.
+\end{nota}
+
+\begin{prop}
+Si $0\to A\to B\to C\to 0$ es una sucesión exacta corta de grupos abelianos finitamente generados, entonces $rg(B)=rg(A)+rg(C)$.
+\end{prop}
+Esta proposición se puede probar haciendo producto tensorial por $\Q$, porque aunque el producto tensorial en general no es exacto, al hacerlo por $\Q$ sí. Existen otras pruebas más elementales pero más costosas. Podemos aplicar esto a las sucesiones exactas
+\[
+0\to B_n\to Z_n\to H_n\to 0
+\]
+\[
+0\to Z_n\to C_n\to B_{n-1}\to 0
+\]
+De la primera, $rg(Z_n)=rg(B_n)+rg(H_n)$ y de la segunda $rg(C_n)=rg(Z_n)+rg(B_{n-1})$. Sustituyendo obtenemos $rg(C_n)=rg(B_n)+rg(H_n)+rg(B_{n-1})$. De aquí deducimos que $\chi(X)=\sum_{n\geq 0}(-1)^nrg(C_n)$. 
+
+\begin{ej}
+$\chi(M_g)=1-2g+1=2-2g$, $\chi(N_g)=0-(g-1)+1=2-g$. 
+\end{ej}
+
+\section{Propiedad de Extensión de Homotopía y CW-complejos}
+
+
+\begin{defi}
+Diremos que $(X,A)$ verifica la \emph{propiedad de extensión de homotopía} (HEP) si dadas $f:X\to Y$ y $H:A\times I\to Y$ con $H_0=f|_{A}$, entonces existe $K:X\times I$ tal que $K|_{A\times I}=H$.
+\[
+\begin{tikzcd}
+X\times\{0\}\sqcup A\times I\arrow[r, hookrightarrow]\arrow[d, bend left, shift left=5, end anchor={[xshift=-7]}, start anchor={[yshift=2]},  "H"]\arrow[d, bend right, shift right,"f"] & X\times I\arrow[dl, bend left, dashed, "K"]\\
+Y &
+\end{tikzcd}
+\]
+
+\begin{figure}[h!]
+\includegraphics[scale=0.6]{HEP}
+\end{figure}
+\end{defi}
+
+\begin{prop}
+Una pareja $(X,A)$ verifica la HEP si y solo si $X\times\{0\}\cup A\times I$ es retracto de deformación fuerte de $X\times I$. 
+\end{prop}
+El resultado es cierto en general (ver apéndice de Hatcher, proposición A.18), aunque asumiendo $A$ cerrado es fácil
+
+\[
+\begin{tikzcd}[column sep=tiny]
+Y=X\times\{0\}\sqcup A\times I\arrow[dd, "Id"']\arrow[dr, hookrightarrow] & & & X\times\{0\}\sqcup A\times I\arrow[dd, "Id"']\arrow[dr, hookrightarrow]& &\\
+& X\times I\arrow[dr, dashed, "K=r"] & & & X\times I\arrow[ dl, "r"']\arrow[dr, dashed, "K"] &\\
+X\times\{0\}\cup A\times I\arrow[rr, "Id_X\cup Id_{A\times I}"'] & &Y & X\times\{0\}\cup A\times I\arrow[rr, "f\cup H"'] & &Y
+\end{tikzcd}
+\]
+Al ser la intersección de los dominios de las funciones de abajo cerrados, se puede hacer la unión de forma continua. A la izquierda estamos suponiendo que $(X,A)$ verifica la HEP y a la derecha la implicación recíproca. 
+
+
+\begin{coro}
+Si $(X,A)$ tiene la HEP, entonces $(X\times Z, A\times Z)$ también la tiene.
+\end{coro}
+
+\begin{coro}
+Si $(X,A)$ tiene la HEP y $X$ es Hausdorff, entonces $A$ es cerrado en $X$. 
+\end{coro}
+Este corolario se tiene porque si $X$ es Hausdorff, entonces $X\times I$ lo es, y entonces cualquier retracto de deformación fuerte suyo es cerrado. Otra idea es que si $X$ es Hausdorff entonces $X\times I$ también, y  entonces la diagonal $\Delta\subseteq (X\times I)\times(X\times I)$ también lo es. Se puede definir $f=(r,Id):X\times I\to  (X\times I)\times(X\times I)$, de modo que $f^{-1}(\Delta)=\{(x,t)\mid r(x,t)=(x,t)\}=X\times\{0\}\cup A\times I\subseteq X\times I$ es cerrado. La intersección de este espacio con $X\times\{1/2\}$ es cerrada y homeomorfa a $A$, por lo que $A$ es cerrado. 
+
+\begin{ej}
+\definecolor{qqffqq}{rgb}{0.,1.,0.}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-2.6426666666666674,-0.7) rectangle (8.952,3.05333333333333);
+\fill[line width=2.pt,color=qqffqq,fill=qqffqq,fill opacity=0.10000000149011612] (0.,0.) -- (5.,0.) -- (5.,3.) -- (0.,3.) -- cycle;
+\draw [line width=2.pt,color=qqffqq] (0.,0.)-- (5.,0.);
+\draw [line width=2.pt,color=qqffqq] (5.,0.)-- (5.,3.);
+\draw [line width=2.pt,color=qqffqq] (5.,3.)-- (0.,3.);
+\draw [line width=2.pt,color=qqffqq] (0.,3.)-- (0.,0.);
+\draw [line width=2.pt] (0.,3.)-- (0.,0.);
+\draw [line width=2.pt] (5.,3.)-- (5.,0.);
+\draw [line width=2.pt] (2.4933333333333336,0.)-- (2.506666666666667,3.);
+\draw [line width=2.pt] (1.3066666666666666,0.)-- (1.3066666666666666,3.);
+\draw [line width=2.pt] (0.6,0.)-- (0.6,3.);
+\draw (4.9093333333333335,0.028) node[anchor=north west] {$1$};
+\draw (2.4133333333333336,0.0813333333333357) node[anchor=north west] {$\frac{1}{2}$};
+\draw (0.5253333333333331,0.10266666666666902) node[anchor=north west] {$\frac{1}{8}$};
+\draw (1.2186666666666666,0.10266666666666902) node[anchor=north west] {$\frac{1}{4}$};
+\draw (-0.5,0.04933333333333573) node[anchor=north west] {$0$};
+\draw (-2.7,1.852) node[anchor=north west] {$(X\times I, A\times I)$};
+\begin{scriptsize}
+\draw [fill=black] (0.12,1.5) circle (1.0pt);
+\draw [fill=black] (0.40444444444444444,1.4928888888888896) circle (1.0pt);
+\draw [fill=black] (0.26222222222222225,1.4928888888888896) circle (1.0pt);
+\draw [fill=black] (0.2977777777777778,-0.2422222222222205) circle (1.0pt);
+\draw [fill=black] (0.46133333333333343,-0.2422222222222205) circle (1.0pt);
+\draw [fill=black] (0.10933333333333305,-0.24933333333333138) circle (1.0pt);
+\end{scriptsize}
+\end{tikzpicture}
+
+Como $X\times\{0\}\cup A\times I$ no es retracto de deformación fuerte de $X\times I$, este par no cumple la HEP.
+\end{ej}
+
+
+\subsection{Mapping Cylinder Neighborhood}
+\begin{defi}
+El cilindro de una aplicación (mapping cylinder) $f:X\to Y$ es el espacio $M_f=(([0,1]\times X)\cup Y)/sim$ donde la relación de equivalencia está generada por $(0,x)\sim f(x)$. 
+\end{defi}
+
+\begin{prop}
+Si $A$ tiene un entorno que es un cilindro de una aplicación, entonces $(X,A)$ tiene la HEP. 
+\end{prop}
+
+Sea $(N,B)\subseteq X$ un entorno cerrado de $A$ tal que $N-B$ es entorno abierto de $A$, existe $f:B\to A$ y $(N;A,B)\cong_h (M_f;A,B)$ son homeomorfos con $h|_A=Id_A$ y $h|_B=Id_B$. 
+
+Tenemos la retracción $r:I\times I\to I\times\{0\}\cup \partial I\times I$, por lo que $(I\times I,\partial I\times I)$ tiene la HEP, porlo que también se sigue teniendo al multiplicar por $B$, lo que nos da $Id_B\times r:B\times I\times I\to B\times(I\times \{0\}\cup\partial I\times I)$. Esta aplicación induce otra en el cociente $M_f\times I=(B\times I\cup_f A)\times I\to M_f\times\{0\}\cup(A\cup B)\times I$. Así, $(M_f,A\cup B)$ tiene la HEP, y por tanto, $(N,A\cup B)$ también.
+
+\begin{figure}[h!]
+\includegraphics[scale=0.5]{mpc}
+\end{figure}
+
+\begin{prop}
+Si $(X,A)$ es una pareja de CW-complejos, entonces tienen la HEP. 
+\end{prop}
+\begin{dem}
+Como $D^n\times I$ se retrae sobre $D^n\times\{0\}\cup\partial D^n\times I$, entonces para cada $n$ existen retracciones 
+\[
+\begin{tikzcd}
+X^n\times I=X^n\times\{0\}\cup (X^{n-1}\cup A)\times I\cup_{\sqcup \partial D^n\times I}(\sqcup D^n\times I)\arrow[d, "r_n"]\\
+X^n\times\{0\}\cup (X^{n-1}\cup A)\times I
+\end{tikzcd}
+\]
+Obtenemos una retracción $r:X\times I \to X\times\{0\}\cup A\times I$ ensamblando $r_n$ reparametrizada en $\left[\frac{1}{2^{n+1}},\frac{1}{2^{n}}\right]$.
+\end{dem}
+
+\begin{prop}
+Si $(X,A)$ tiene la HEP y $A$ es contráctil, entonces $q:X\to X/A$ es una equivalencia de homotopía. 
+\end{prop}
+\begin{dem}
+Dada la contracción $h:A\times I\to A$ con $h_0=Id_A$ y $h_1=c_*$ y, usando HEP, tenemos
+\[
+\begin{tikzcd}
+X\times\{0\}\cup A\times I\arrow[r, "Id\cup h"]\arrow[d, hookrightarrow] & X\times I\arrow[r, "q\times Id"] & X/A\times I\\
+X\times I\arrow[ur, dashed, "F=\{f_t\}"] \arrow[r, "q\times Id"]& X/A\times I\arrow[ur, dashed, "\overline{F}=\{\overline{f}_t\}"]
+\end{tikzcd}
+\]
+Ahora, $f_1(A)=*$ induce $g:X/A\to X$.
+\[
+\begin{tikzcd}
+X\arrow[r, "f_1"]\arrow[d, "q"'] \arrow[dr, phantom, "(1)", very near start] & X\arrow[d, "q"]\\
+X/A\arrow[ur, dashed, "g"]\arrow[r,"\overline{f}_1"'] & X/A\arrow[ul, phantom, "(2)", very near start]{tiny} 
+\end{tikzcd}
+\]
+Como $(1)$ conmuta, $qg([x])=qgq(x)=qf_1(x)=\overline{f}_1q(x)=\overline{f}_1([x])$, por lo que $(2)$ conmuta. Así, $qg=f_1\simeq_F f_0=Id_X$; $qg=\overline{f}_1\simeq_{\overline{F}}\overline{f}_0=Id_{X/A}$, luego $q$ y $g$ son equivalencias de homotopía. 
+\end{dem}
+
+\begin{prop}
+Si $(X,A)$ es una pareja de CW-complejos y $f\simeq g:A\to X_0$, entonces $X\cup_f X_0$ y $X\cup_g X_0$ son homotópicamente equivalentes. 
+\end{prop}
+\begin{dem}
+Sea $F:A\times I\to X_0$ la homotopía $F_0=f\simeq g=F_1$. Consideramos el pushout
+\[
+\begin{tikzcd}
+A\times I\arrow[d,hookrightarrow]\arrow[r, "F"] & X_0\arrow[d]\\
+X\times I\arrow[r] & X_0\cup_F (X\times I)
+\end{tikzcd}
+\]
+que contiene a $X_0\cup_f X$ y a $X_0\cup_g X$.
+
+\begin{figure}[h!]
+\includegraphics[scale=0.5]{retract}
+\end{figure}
+
+$X\times I$ se retrae sobre $X\times\{0\}\cup A\times I$ y también sobre $X\times\{1\}\cup A\times I$ por ser CW-complejos. Por tanto, $X_0\cup_F(X\times I)$ se retrae tanto sobre $X_0\cup_f X$ como sobre $X_0\cup_g X$, luego son homotópicamente equivalente relativos a $A$.
+\end{dem}
+
+\begin{prop}
+Si $(X,A)$ e $(Y,A)$ son parejas de CW-complejos y $f:X\to Y$ es una equivalencia de homotopía con $f|_{A}=Id_A$, entonces $f$ es equivalencia de homotopía relativa a $A$.
+\end{prop}
+\begin{dem}
+Tenemos $f:X\to Y$ con $A\subseteq X\cap Y$ y $f|_{A}=Id_A$. Dada $g:Y\to X$ con $gf\simeq_H Id_X$, aplicamos la HEP y obtenemos $g_1:Y\to X$ con la extensión $G$ de $H$. 
+
+\begin{figure}[h!]
+\includegraphics[scale=0.6]{extension}
+\end{figure}
+Obtenemos una homotopía $K:g_1f\simeq Id_X: X\times I\to X$. Denotamos con signo menos recorrer el intervalo $[0,1]$ en sentido contrario (ver figuras).
+
+\begin{figure}[h!]
+\includegraphics[scale=0.6]{k}
+\end{figure}
+
+Nótese que sobre $A$, $K_t=K_{1-t}$. Modificamos la homotopía $K$ sobre $A$ con un \emph{track} (2-homotopía, homotopía de homotopía) $\widehat{K}:A\times I\times I\to X$.
+
+\begin{figure}[h!]
+\includegraphics[scale=0.5]{tilde}
+\end{figure}
+
+Aplicamos la HEP a $(X\times I, A\times I)$ y obtenemos $g_1f\simeq Id_X\ rel\ A$. 
+\begin{figure}[h!]
+\includegraphics[scale=0.5]{rel}
+\end{figure}
+
+Como $g_1\simeq g$, entonces $fg_1\simeq fg\simeq Id_Y$. Es decir, $fg_1\simeq Id_Y$ y $g_1|_{A}=Id_A$. Podemos pues aplicar el proceso anterior a $g_1$, obteniendo $f_1:X\to Y$ con $f_1|_{A}=Id_A$ verificando $f_1g_1\simeq Id_A\ rel\ A$. Ahora, $f_1\simeq f_1(g_1g)=(f_1g_1)f\simeq f\ rel A$ y entonces $fg_1\simeq_{rel\ A}f_1g_1\simeq_{rel\ A}Id_Y$. 
+\end{dem}
+
+
+\begin{coro}
+Si $(X,A)$ tiene la HEP y $A\hookrightarrow X$ es una equivalencia de homotopía, entonces $A$ es retracto de deformación fuerte de $X$. 
+\end{coro}
+\begin{coro}
+Una aplicación $f:X\to Y$ es una equivalencia de homotopía si y solo si $X$ es retracto de deformación fuerte de $M_f$. Así, $X$ e $Y$ son homotópicamente equivalentes si y solo si existe $Z\supseteq X,Y$ teniéndolos como retractos de deformación fuerte.
+\end{coro}
+\begin{dem}
+Tenemos 
+\[
+\begin{tikzcd}[row sep=28]
+X\arrow[r, "f"] \arrow[dr, hookrightarrow, "i"']& Y\arrow[d, bend right, "j"']\\
+& M_f\arrow[u, bend right, "r"']
+\end{tikzcd}
+\]
+Como $r$ y $j$ son equivalencias de homotopías, $f=ri$ y $i\simeq jf$, entonces $f$ es equivalencia de homotopía si y solo si $i$ lo es. Como $X$ tiene un entorno cilíndrico en $M_f$, por ejemplo $X\times[0,1/3)$, $(M_f,X)$ tiene la HEP y como $X\hookrightarrow M_f$ es equivalencia de homotopía, entonces por el corolario anterior es retracto de deformación. 
+\end{dem}
+
+
+\section{Axiomas en homología}
+Una \emph{teoría de homología reducida} es una familia de functores covariantes $\tilde{h}_*=\{\tilde{h}_n\}_{n\in\Z}:CW\to Ab$ satisfaciendo los siguientes axiomas
+\begin{enumerate}
+\item si $f\simeq g$, entonces $\tilde{h}_*(f)=f_*=g_*=\tilde{h}_*(g)$;
+\item existen transformaciones naturales $\partial:\tilde{h}_n(X/A)\to\tilde{h}_{n-1}(A)$ tal que para parejas $(X,A)$ de CW se obtiene una sucesión exacta larga
+\[
+\cdots\to \tilde{h}_n(X)\xrightarrow{q_*}\tilde{h}_n(X/A)\xrightarrow{\partial}\tilde{h}_{n-1}(A)\xrightarrow{i_*}\tilde{h}_{n-1}(X)\to\cdots
+\]
+\item si $X=\bigvee_\alpha X_\alpha$ entonces las inclusiones $i_\alpha:X_\alpha\to X$ inducen isomorfismos $$\oplus_\alpha i_{\alpha*}:\oplus_\alpha\tilde{h}_n(X_\alpha)\to \tilde{h}_n(X).$$
+
+\end{enumerate}
+
+El último axioma se puede deducir para el caso finito de los dos anteriores, pero no para el caso infinito. Obsérvese que es posible que haya valores no nulos en dimensiones negativas. También se puede definir la homología no reducida $h_*:CW-pairs\to Ab$ definiendo $h_*(X)=h_*(X,\emptyset)$ satisfaciendo:
+\begin{enumerate}
+\item si $f\simeq g$ mediante una homotopía de pares, entonces $f_*=g_*$;
+\item existencia de sucesiones exactas largas con operador borde asociadas a parejas y de isomorfismo de escisión $h_*(X,A)\cong h_*(X/A,A/A)$. 
+\item si $X=\sqcup_\alpha X_\alpha$ entonces las inclusiones $i_\alpha:X_\alpha\to X$ inducen isomorfismos $$\oplus_\alpha i_{\alpha*}:\oplus_\alpha\tilde{h}_n(X_\alpha)\to \tilde{h}_n(X).$$
+\end{enumerate}
+
+Las teorías reducidas y no reducidas están relacionadas. Dada una no reducida $h_*$ podemos obtener una reducida $\tilde{h}_*(X)=\ker\{h_*(X)\to h_*(pto)\}$. Recíprocamente, dada una reducida $\tilde{h}_*$, entonces obtenemos $h_*(X)=\tilde{h}_*(X\sqcup\{pto\})$.
+
+Nótese que $\tilde{h}_*(pto)=0$, como se puede ver mirando la sucesión exacta larga de homología reducida del par $(x_0,x_0)$, teniendo en cuenta que las aplicaciones inducidas son 0 por estar inducidas por constantes (el único homomorfismo de grupso constante es la aplicación nula). 
+
+Se llaman \emph{coeficientes de la teoría de homología} a $h_*(pto)=\tilde{h}_*(S^0)$. Si $h$ es una teoría de homología definida sobre pares de CW con $h_0(pto)=G$ y nula en otro caso, existen isomorfismos naturales $h_*(X,A)\cong H_*(X,A;G)$ (teorema 4.59 de Hatcher). 
+
+Toda teoría de homología sobre CW-complejos tiene una sucesión de Mayer-Vietoris. Para un CW-complejo $X=A\cup B$ con $A$ y $B$ subcomplejos, la inclusión $(B,A\cap B)\hookrightarrow (X,A)$ induce un diagrama conmutativo de sucesiones exactas 
+\[
+\begin{tikzcd}
+\cdots\to h_{n+1}(B,A\cap B)\arrow[r]\arrow[d, "\cong"] & h_n(A\cap B)\arrow[d]\arrow[r] & h_n(B)\arrow[r]\arrow[d] & h_{n}(B,A\cap B)\arrow[d, "\cong"]\to\cdots\\
+\cdots\to h_{n+1}(X,A)\arrow[r] & h_n(A)\arrow[r] & h_n(X)\arrow[r] & h_n(X,A)\to\cdots
+\end{tikzcd}
+\]
+Los isomorfismos provienen de que $B/(B\cap A)=X/A$. Por el ejercicio 38 de la página 159 de Hatcher se deduce la sucesión exacta de Mayer-Vietoris.
+
+De forma clásica (P. May, \emph{A Concise Course in Algebraic Topology}) se tiene el siguiente teorema, que contiene los axiomas de Eilenberg-Steenrod para describir una teoría de homología:
+\begin{teorema}
+Para cada entero $q$ y grupo abeliano $\pi$, existen functores $H_q(X,A;\pi)$ entre la categoría homotópica de pares de espacios topológicos a la categoría de grupos abelianos junto con transformaciones naturales $\partial:H_q(X,A;\pi)\to H_{q-1}(A;\pi)$, donde $H_{q-1}(A;\pi)=H_{q-1}(A,\emptyset;\pi)$. Estos functores y transformaciones naturales verifican y están caracterizados por lo siguientes axiomas:
+\begin{itemize}
+\item Dimensión: si $X$ es un punto, entonces $H_0(X;\pi)=\pi$ y $H_q(X;\pi)=0$ para $q\neq 0$. 
+\item Exactitud: la siguiente sucesión es exacta, donde las flechas sin etiquetas están inducidas por las inclusiones $A\to X$ y $(X,\emptyset)\to(X,A)$
+\[
+\cdots\to H_q(A;\pi)\to H_q(X;\pi)\to H_q(X,A;\pi)\xrightarrow{\partial}H_{q-1}(A;\pi)\to\cdots
+\]
+\item Excisión: si $(X;A,B)$ es una triada excisiva, esto es, $X$ es la unión de los interiores de $A$ y $B$, la inclusión $(A,A\cap B)\to (X,B)$ induce un isomorfismo $H_*(A,A\cap B;\pi)\to H_*(X,B;\pi)$.
+\item Aditividad: si $(X,A)$ es unión disjunta de un conjunto de parejas $(X_i,A_i)$, las inclusiones $(X_i,A_i)\to (X,A)$ inducen un isomorfismo
+$\oplus_iH_*(X_i,A_i;\pi)\to H_*(X,A;\pi)$.
+\item Equivalencia débil: si $f:(X,A)\to (Y,B)$ es una equivalencia débil, entonces $f_*:H_*(X,A;\pi)\to H_*(Y,B;\pi)$ es un isomorfismo.
+\end{itemize}
+ 
+\end{teorema}
+
+Una equivalencia débil entre espacios topológicos es una aplicación $f:X\to Y$ que induce isomorfismos en homotopía. Una aplicación de pares es una equivalencia débil si lo es en cada coordenada. En el caso de CW-complejos este último axioma es redundante, ya que por el teorema de Whitehead, cualquier equivalencia débil entre CW-complejos es equivalencia de homotopía, por lo que se puede excluir del teorema en este caso, como también observa May, quedando la teoría de CW-complejos determinada por y determinando la teoría general. También se puede prescindir en general del axioma de dimensión, que da lugar a las conocidas como teorías \emph{extraordinarias} de homología. 
+
+
+ALOMEJOR PONER LO DE BORSUK-ULAM EN ALGÚN LAO
+%XFIG PROGRAMA (EN PRINCIPIO PARA LINUX, GENERA EPS) REQUIERE PAQUETE PSFRAC, HAY QUE CARGARLO EN UN ORDEN ESPECIAL. 
+
 
 \section{Ejercicios}
 \begin{ejer}
@@ -827,6 +1203,16 @@ Asociada a esta sucesión exacta corta tenemos la sucesión exacta larga de homo
 Si $\CC$ y $\CC'$ son complejos de cadenas libres (todos los elementos son grupos abelianos libres), probar que entonces se verifica que $f_*$ es isomorfismo si y solo si $f$ es equivalencia de homotopía de complejos de cadenas.  Pista: para encontrar la homotopía, descomponer $D_q=\ker d\oplus D_{q-1}$ que se puede hacer porque las sucesiones exactas cortas escinden. 
 
 \end{ejer}
+\begin{ejer}
+Probar que un retracto de deformación fuerte de un espacio Hausdorff es cerrado.
+\end{ejer}
 
+\begin{ejer}
+Probar que la forma de obtener una homología reducida a partir de una no reducida es inversa a la forma de obtenerla en dirección contraria y que $h_n(X)=\tilde{h}_n(X)\oplus\tilde{h}_n(x)$ para cualquier $x\in X$.
+\end{ejer}
+
+\begin{ejer}
+EL EJERCICIO 38 DE HATCHER QUE MENCIONA EN LOS AXIOMAS
+\end{ejer}
 
 \end{document}
