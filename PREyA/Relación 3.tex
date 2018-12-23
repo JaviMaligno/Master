@@ -128,11 +128,11 @@ Tenemos un proceso de nacimiento lineal sin muerte. Lo único que puede ocurrir 
 $$
 \rho_k(t)' = (k-1)\lambda\rho_{k-1}(t)-k\lambda\rho_k(t)
 $$
-Vamos a probar el resultado por inducción. Para $k=1$ ya lo tenemos. Supongamos que es cierto para $k-1$. Entonces
+Vamos a probar el resultado por inducción. Para $k=1$ ya lo tenemos, $\rho_1(t)=e^{-\lambda t}$. Supongamos que es cierto para $k-1$. Entonces, aplicando la hipótesis de inducción a la ecuación diferencial
 $$
 \rho_k(t)' = (k-1)\lambda e^{-\lambda t}(1-e^{-\lambda t})^{k-2}-k\lambda\rho_k(t)
 $$
-Puede comprobarse fácilmente que la solución general para $k$ verifica la ecuación diferencial.
+La solución general de dicha ecuación es
 $$
 Ce^{-k\lambda t} + e^{-\lambda t}(1-e^{-\lambda t})^{k-1}
 $$
@@ -201,7 +201,7 @@ G=
 \end{pmatrix}
 $$
 Es claro que el proceso es de la siguiente manera. Si partimos de un estado $i$, solo podemos pasar a tener un individuo más en el grupo, o esperar que alguno de los ya existentes muera. 
-\item Sabemos por teoría que si existe la distribución estacionaria, entonces $\pi G  = 0$. Deducimos que
+\item Sabemos por teoría que si existe la distribución estacionaria, entonces $\pi G  = 0$. Si $\mu \neq 0$, entonces
 $$
 \pi_k = \frac{\lambda_0 \cdots \lambda_{k-1}}{\mu_1 \cdots \mu_n }\pi_0 = \frac{\lambda^k}{\mu^k k!}\pi_0
 $$
@@ -209,12 +209,15 @@ Tenemos que imponer que la suma sea $1$, luego
 $$
 1 =  \pi_0 \sum_{k=0}^\infty \frac{\lambda^k}{\mu^k k!} = \pi_0 e^{\lambda/\mu}
 $$
-Dado que $\pi_0  = e^{-\lambda / \mu}\leq 1$, luego $-\lambda/\mu \leq 0$. Por tanto, dado que $\lambda,\mu \geq 0$, basta imponer que $\mu >0$. Si $\mu = 0$ entonces tenemos un proceso de nacimiento sin muerte. En este caso, claramente no hay distribución estacionaria.
+Dado que $\pi_0  = e^{-\lambda / \mu}\leq 1$, luego $-\lambda/\mu \leq 0$. Por tanto, dado que $\lambda,\mu \geq 0$, basta imponer que $\mu >0$. Si $\mu = 0$ entonces tenemos un proceso de nacimiento sin muerte. En este último caso, claramente no hay distribución estacionaria.
 \item El caso en el que no hay distribución estacionaria es en que $\mu =0$, pero entonces lo que tenemos es, precisamente, un proceso de Poisson homogéneo de parámetro $\lambda$. En ese caso
 $$
 P[X(t)=k] = \frac{(\lambda t)^k}{k!}e^{-\lambda t} \rightarrow 0
 $$
-
+En el caso de que exista la distribución estacionaria, sabemos por teoría que
+$$
+P[X(t)=k] \rightarrow \pi_k = \frac{\lambda^k}{\mu^k k!}e^{-\lambda/\mu}
+$$
 \end{enumerate}
 \end{solucion}
 \end{document}
