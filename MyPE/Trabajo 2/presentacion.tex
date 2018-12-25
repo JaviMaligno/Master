@@ -253,7 +253,19 @@ Usando la Asunción 1 y el Lema anterior
 
 \begin{frame}
 \begin{dem}
-Vamos ahora con el término de la varianza.
+Vamos ahora con el término de la varianza. Sea $S_n = \sum_i W_{i,n} \varepsilon_i$. Consideremos $\norm{S_n} - E[\norm{S_n}]$. En [3] podemos encontrar la demostración extensa y detallada de que $$\norm{S_n} - E[\norm{S_n}]=O((\log n)^{1/2}\norm{W_n}_2)$$
+Nosotros vamos a probar simplemente que $E[\norm{S_n}]=O(\norm{W_n}_2)$, con lo cuál puede despejarse $\norm{S_n}$ y el Teorema de se sigue trivialmente.
+\end{dem}
+\end{frame}
+\begin{frame}
+\begin{dem}
+\begin{align*}
+E[\norm{S_n}]&=E[\norm{\sum_{i}W_{n,i}\varepsilon_i}]\\
+&\leq \sqrt{E\langle \sum_{i}W_{n,i}\varepsilon_i,\sum_{i}W_{n,i}\varepsilon_i\rangle}\\
+&=O\left(\sqrt{\sum_i W_{n,i}^2}\right)\\
+&=O(\norm{W_n}_2)
+\end{align*}
+
 \end{dem}
 \end{frame}
 \section{Aplicación computacional}
