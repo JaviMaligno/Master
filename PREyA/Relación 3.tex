@@ -150,7 +150,7 @@ Dado que $i\lambda > 0$, tenemos que $\pi_1 = 0$. Por inducción es claro que $\
 \newpage
 
 \begin{ejercicio}{3}
-Sea $X(t)$ un proceso de nacimiento y muerte con estados $S=\{0,1,\dotsc\}$, con $\lambda_i = \lambda$, $i\geq 0$ y $\mu_i = \mu i$ $i\geq 1$ $(\mu_0 = 0)$.
+Sea $X(t)$ un proceso de nacimiento y muerte con estados $S=\{0,1,\dotsc\}$, con $\lambda_i = \lambda$, $i\geq 0$ y $\mu_i = \mu $ $i\geq 1$ $(\mu_0 = 0)$.
 \begin{enumerate}[a)]
 \item Dibujar el grafo asociado al proceso.
 \item Escribir razonadamente la matriz de generadores, $G$ y a partir de la misma describir como evoluciona el proceso.
@@ -177,11 +177,11 @@ Sea $X(t)$ un proceso de nacimiento y muerte con estados $S=\{0,1,\dotsc\}$, con
 		(1) edge[bend left, auto=left] node {$\lambda$} (2)
 		(2) edge[bend left, auto=left] node {$\mu $} (1)
 		(2) edge[bend left, auto=left] node {$\lambda$} (3)
-		(3) edge[bend left, auto=left] node {$2\mu$} (2)
+		(3) edge[bend left, auto=left] node {$\mu$} (2)
 		(3) edge[bend left, auto=left] node {$\lambda$} (4)
-		(4) edge[bend left, auto=left] node {$3\mu$} (3)
+		(4) edge[bend left, auto=left] node {$\mu$} (3)
 		(4) edge[bend left, auto=left] node {$\lambda$} (5)
-		(5) edge[bend left, auto=left] node {$4\mu$} (4)
+		(5) edge[bend left, auto=left] node {$\mu$} (4)
 		(5) edge[bend left, auto=left, dashed] node {} (6)
 		(6) edge[bend left, auto=left, dashed] node {} (5);
 ;
@@ -193,31 +193,28 @@ G=
 \begin{pmatrix}
 -\lambda & \lambda & 0 &  \cdots & 0 & 0 & 0 & \cdots \\
 \mu & -(\lambda + \mu) & \lambda &  \cdots& 0 & 0 & 0 &\cdots \\
-0 & 2\mu & -(\lambda + 2\mu)  & \cdots & 0 & 0 & 0 &\cdots \\
-0 & 0 & 3 \mu & \cdots & 0 & 0& 0 & \cdots\\
+0 & \mu & -(\lambda + \mu)  & \cdots & 0 & 0 & 0 &\cdots \\
+0 & 0 &  \mu & \cdots & 0 & 0& 0 & \cdots\\
 \vdots & \vdots& \vdots & & \vdots & \vdots & \vdots\\
-0 & 0 & 0 & \cdots & i\mu  & -(\lambda + i \mu) & \lambda & \cdots\\
+0 & 0 & 0 & \cdots & \mu  & -(\lambda +  \mu) & \lambda & \cdots\\
 \vdots & \vdots & \vdots & & \vdots & \vdots & \vdots
 \end{pmatrix}
 $$
 Es claro que el proceso es de la siguiente manera. Si partimos de un estado $i$, solo podemos pasar a tener un individuo más en el grupo, o esperar que alguno de los ya existentes muera. 
 \item Sabemos por teoría que si existe la distribución estacionaria, entonces $\pi G  = 0$. Si $\mu \neq 0$, entonces
 $$
-\pi_k = \frac{\lambda_0 \cdots \lambda_{k-1}}{\mu_1 \cdots \mu_n }\pi_0 = \frac{\lambda^k}{\mu^k k!}\pi_0
+\pi_k = \frac{\lambda_0 \cdots \lambda_{k-1}}{\mu_1 \cdots \mu_n }\pi_0 = \frac{\lambda^k}{\mu^k}\pi_0
 $$
 Tenemos que imponer que la suma sea $1$, luego
 $$
-1 =  \pi_0 \sum_{k=0}^\infty \frac{\lambda^k}{\mu^k k!} = \pi_0 e^{\lambda/\mu}
+1 =  \pi_0 \sum_{k=0}^\infty \frac{\lambda^k}{\mu^k } = \pi_0 \frac{1}{1-\lambda/\mu}
 $$
-Dado que $\pi_0  = e^{-\lambda / \mu}\leq 1$, luego $-\lambda/\mu \leq 0$. Por tanto, dado que $\lambda,\mu \geq 0$, basta imponer que $\mu >0$. Si $\mu = 0$ entonces tenemos un proceso de nacimiento sin muerte. En este último caso, claramente no hay distribución estacionaria.
-\item El caso en el que no hay distribución estacionaria es en que $\mu =0$, pero entonces lo que tenemos es, precisamente, un proceso de Poisson homogéneo de parámetro $\lambda$. En ese caso
+Por tanto, $\pi_0 = 1-\lambda/\mu$. Dado que $\lambda,\mu \geq 0$, basta imponer que $\lambda \leq \mu$. Si $\mu = 0$ entonces tenemos un proceso de nacimiento sin muerte. En este último caso, claramente no hay distribución estacionaria.
+\item Por teoría, sabemos que si existe la distribución estacionaria
 $$
-P[X(t)=k] = \frac{(\lambda t)^k}{k!}e^{-\lambda t} \rightarrow 0
+P[X(t)=k] \rightarrow \pi_k = \frac{\lambda^k}{\mu^k}(1-\lambda/\mu)
 $$
-En el caso de que exista la distribución estacionaria, sabemos por teoría que
-$$
-P[X(t)=k] \rightarrow \pi_k = \frac{\lambda^k}{\mu^k k!}e^{-\lambda/\mu}
-$$
+En otro caso, el límite es $0$.
 \end{enumerate}
 \end{solucion}
 \end{document}

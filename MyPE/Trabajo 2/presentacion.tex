@@ -12,15 +12,19 @@
 
 \newtheorem{teorema}{Teorema}
 \newtheorem{defi}{Definición}
+\newtheorem{lema}{Lema}
 \newtheorem{prop}{Proposición}
 \newtheorem{coro}{Corolario}
 \newtheorem{ejem}{Ejemplo}
+\newtheorem{dem}{Demostración}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\D}{\mathbb{D}}
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\R}{\mathbb{R}}
 
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
 \providecommand{\conv}[1]{\overset{#1}{\longrightarrow}}
 \providecommand{\convcs}{\xrightarrow{CS}}
 \providecommand{\gene}[1]{\langle{#1}\rangle}
@@ -160,17 +164,98 @@ es un estimador de la función de densidad basado en el k-NN, cuyos detalles pue
 \end{frame}
 
 \begin{frame}
-\begin{theorem}[Lai, 1997] 
+\begin{teorema}[Lai, 1997] 
 Sea $k\to \infty$, $k/n\to 0$ y $n\to \infty$. Entonces el sesgo y la varianza del estimador k-NN $\hat{m}_k$ que hemos definido vienen dados por
 \begin{align*}
 E[\hat{m}_k(x)]-m(x) &\approx \frac{m''(x)f(x)+2m'(x)f(x)}{24f(x)^3}\left(\frac{k}{n}\right)^2\\
 Var[\hat{m}_k(x)] &\approx \frac{\sigma^2(x)}{k}
 \end{align*}
 
-\end{theorem}
+\end{teorema}
 \end{frame}
 
 
+\begin{frame}
+\frametitle{Formulación general}
+De manera más general podemos definir el estimador de la siguiente forma
+$$
+\hat{m}(x)=\sum_{i=1}^n W_{n,i} Y_i
+$$
+donde $(W_{n,1},\dotsc,W_{n,n})$ es un vector (posiblemente aleatorio) de probabilidad. 
+\end{frame}
+
+\begin{frame}
+\frametitle{Notas}
+\begin{itemize}
+\item Si tomamos $W_{n,i} = 1/k$ si $X_i$ es uno de los $k$-vecinos más cercanos y $0$ en otro caso, tenemos el primer estimador propuesto.
+\item Tomando los pesos como en la diapositiva $9$, es claro que esta formulación generaliza la estimación núcleo del $k$-NN.
+\end{itemize}
+\end{frame}
+\begin{frame}
+\frametitle{Asunciones para los resultados}
+Para probar algunos enunciados necesitamos algunas hipótesis adicionales.
+\begin{enumerate}
+\item La función $m(\cdot)$ es acotada y lipschitziana en $x$, es decir, $||m(x)-m(x')|| \leq M||x-x'||^\alpha$.
+\item Supongamos que $\sum_{i=k+1}^n W_{n,i} = O(b_n)$. Asumimos que $b_n$ y $||W_n||_2$ convergen casi seguro a $0$. Además, $k/n\to 0$ y $k/\log n \to \infty$. 
+\item $E[|Y-m(X)|^r]<\infty$ para algún $r>2$.
+\end{enumerate}
+Además, los resultados están en términos de una cantidad 
+$$
+\phi(h) = P[|x-x'|<h]
+$$
+\end{frame}
+
+\begin{frame}
+\begin{teorema}
+Supongamos que se dan las asunciones anteriores y además
+$$
+\sum_{n=1}^\infty (\log n)^{(r-2)/2}\left(\frac{||W_n||_r}{||W_n||_2}\right)^r < \infty
+$$
+Entonces, de manera casi segura
+$$
+||\hat{m}(x)-m(x)|| = O(b_n + [\phi^{-1}(2k/n)]^\alpha + (\log n)^{1/2}||W_n||_2)
+$$
+donde
+$$
+\phi^{-1}(x):= \inf\{h \mid \phi(h)\geq x\}%%
+$$\end{teorema}
+\end{frame}
+
+
+\begin{frame}
+
+Comenzamos asumiendo un pequeño lema técnico.
+\begin{lema}
+Supongamos que $k/n\to 0$ y $k/\log n \to \infty$. Sea $H(x)$ la distancia entre $x$ y el $k$-ésimo vecino más cercano. Entonces de manera casi segura
+$$
+P[H\geq \phi^{-1}(2k/n), i.o.] \to 0
+$$
+donde i.o. quiere decir infinitas veces.
+\end{lema}
+
+\end{frame}
+
+\begin{frame}
+Pasemos a la demostración del teorema.
+\begin{dem}
+Comenzamos separando el error en el sesgo y la varianza. Si $Y=m(X)+\varepsilon$ entonces
+$$
+\norm{m(x)-\hat{m}(x)} \leq \norm{\sum_i W_{n,i}(m(X_i)-m(x))} + \norm{\sum_i W_{i,n} \varepsilon_i}
+$$
+Usando la Asunción 1 y el Lema anterior
+\begin{align*}
+\norm{\sum_i W_{n,i}(m(X_i)-m(x))}  & \leq 2B\sum_{i=k+1}^n + \norm{\sum_{i=1}^k W_{n,i}(m(X_i)-m(x))}\\
+&= O(b_n + [\phi^{-1}(2k/n)]^\alpha)
+\end{align*}
+
+\end{dem}
+\end{frame}
+
+\begin{frame}
+\begin{dem}
+Vamos ahora con el término de la varianza.
+\end{dem}
+\end{frame}
 \section{Aplicación computacional}
 
 \begin{frame}
@@ -341,6 +426,7 @@ $$
 \begin{enumerate}
 \item Härdle, W. (1990). Applied Nonparametric Regression (Econometric Society Monographs). Cambridge: Cambridge University Press. doi:10.1017/CCOL0521382483
 \item Orava, J. (n.d. ). K-nearest neighbour kernel density estimation, the choice of optimal k, Tatra Mountains Mathematical Publications, 50(1), 39-50. doi: https://doi.org/10.2478/v10127-011-0035-z
+\item Lian, Heng. (2011). Convergence of functional k-nearest neighbor regression estimate with functional responses. Electronic Journal of Statistics. 5. 10.1214/11-EJS595. 
 \end{enumerate}
 
 \end{frame}
