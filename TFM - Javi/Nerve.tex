@@ -5,6 +5,9 @@
 %\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
 \chapter{Simplicial Sets, Geometric Realization and Classifying Space}
 
+
+
+
 \url{https://en.wikipedia.org/wiki/Simplicial_set} FORMAL DEFINITION Y LAS APLICACIONES FACE Y DEGENERANCY (REPETIR EL VÉRTICE SE TRADUCE EN COORDENADAS COMO PONERLE UN 0 AL SIGUIENTE)
 
 TAMBIÉN ME GUSTA AQUÍ \url{https://ncatlab.org/nlab/show/simplicial+set} VIENE EL NERVE TAMBIÉN EN LOS DOS, AUNQUE QUIZÁ MEJOR COGERLO DE HATCHER
@@ -17,11 +20,49 @@ COMENTAR SIMPLICIAL OBJECT EN GENERAL, QUEDA MUY BIEN EL CASO DE AB DE MAY
 
 
 \section{Simplicial Sets}
-\begin{ej}[Nerve of a Category]
-\end{ej}
-\subsection{Simplicial Objects}
+
+Let $\mathbf{\Delta}$ denote the \emph{simplex category}, whose objects are ordered sets of the form $[n]=\{0<1<\dots< n\}$ and whose morphisms are monotonic functions. 
+
+\begin{defi}
+A \emph{simplicial set} $X$ is a functor $X:\mathbf{\Delta}^{op}\to\Set$ from the opposite category of $\mathbf{\Delta}$ to the category of sets. The category of such functors is usually denoted $\SSet$. 
+\end{defi}
+
+We can make this definition more explicit by looking at the image of the functor $X$. First, consider the unique injection $\delta_i:[n-1]\to[n]$ such that $i$ is not in its image and the unique surjection $\sigma_i:[n+1]\to [n]$ that hits $i$ twice, for $0\leq i\leq n$. It is easily seen that every other morphism of $\mathbf{\Delta}$ can be expressed in terms of such maps. Note that the following relations between $\delta_i$ and $\sigma_i$ hold:
+\begin{itemize}
+\item $\delta_j\circ\delta_i=\delta_i\circ \delta_{j-1}$ if $i<j$,
+\item $\sigma_j\circ \sigma_i=\sigma_{i-1}\circ \sigma_j$ if $i>j$,
+\item $\sigma_j\circ\delta_i=\begin{cases}
+\delta_i\circ \sigma_{j-1} &\text{if } i<j\\
+Id & \text{if } i=j\text{ or }i=j+1\\
+\delta_{i-1}\circ \sigma_j & \text{if }i>j+1
+\end{cases}$
+\end{itemize}
+Here, by abuse of notation, we're identifying $\delta_i$ with any map $[n]\to[m]$ that is equal to $\delta_i$ on the subset $[n-1]\subseteq [m]$ and the identity on the rest, and similarily with $\sigma_i$. Hence, we can define a simplicial set $X$ by giving the following data:
+\begin{enumerate}
+\item for each $n\in\N$, a set $X_n$ called the set of \emph{$n$-simplices};
+\item for each $\delta_i:[n-1]\to[n]$ a map $d_i:X_n\to X_{n-1}$ called the \emph{$i$-th face map};
+\item for each $\sigma_i:[n]\to[n-1]$ a map $s_i:X_n\to X_{n+1}$ called the \emph{$i$-th degenerancy map}.
+\end{enumerate} 
+These maps are required to satisfy the following equations:
+\begin{itemize}
+\item $d_i \circ d_j  = d_{j-1} \circ d_i$ if $i<j$,
+\item $s_i \circ s_j  = s_j \circ s_{i-1}$ if $i>j$,
+\item $d_i \circ s_j =  \begin{cases} s_{j-1} \circ d_i &  \text{if }  i < j \\ Id & \text{if }  i = j \text{ or } i = j+1 \\ s_j \circ d_{i-1} &  \text{if }i > j+1  \end{cases}$
+\end{itemize}
+\begin{ex}[Nerve of a Category]
+
+LA CATEGORÍA DE CADENAS DE MORFISMOS ES NATURALMENTE ISOMORFA A LA SIMPLICIAL
+\end{ex}
+
+\begin{ex}
+CASE OF A GROUP. ESTO NO SÉ SI PONERLO YA EN LA SIGUIENTE PARA CONTINUAR CON SU REALIZACIÓN GEOMÉTRICA
+\end{ex}
+
 
 \section{Geometric Realization}
+\begin{ex}[Clasifying space]
+
+\end{ex}
 
 \section{Classifying Spaces}
 EN VERDAD ESTO NO SÉ SI DA PARA UNA SECCIÓN PROPIA O VA CON EL NERVIO 
