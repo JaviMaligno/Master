@@ -8,15 +8,14 @@
 
 
 
-\url{https://en.wikipedia.org/wiki/Simplicial_set} FORMAL DEFINITION Y LAS APLICACIONES FACE Y DEGENERANCY (REPETIR EL VÉRTICE SE TRADUCE EN COORDENADAS COMO PONERLE UN 0 AL SIGUIENTE)
+
 
 TAMBIÉN ME GUSTA AQUÍ \url{https://ncatlab.org/nlab/show/simplicial+set} VIENE EL NERVE TAMBIÉN EN LOS DOS, AUNQUE QUIZÁ MEJOR COGERLO DE HATCHER
 
 
-DEBERÍA COMPROBAR QUE LAS APLICACIONES DE LAS QUE SON IMAGENES LAS CARAS Y DEGENERACIÓN CUMPLEN LAS RELACIONES DUALES PARA QUE SEA VERDAD QUE ESTAS CUMPLEN LAS IDENTIDADES SIMPLICIALES
 
 
-COMENTAR SIMPLICIAL OBJECT EN GENERAL, QUEDA MUY BIEN EL CASO DE AB DE MAY
+
 
 
 \section{Simplicial Sets}
@@ -49,6 +48,10 @@ These maps are required to satisfy the following equations:
 \item $s_i \circ s_j  = s_j \circ s_{i-1}$ if $i>j$,
 \item $d_i \circ s_j =  \begin{cases} s_{j-1} \circ d_i &  \text{if }  i < j \\ Id & \text{if }  i = j \text{ or } i = j+1 \\ s_j \circ d_{i-1} &  \text{if }i > j+1  \end{cases}$
 \end{itemize}
+
+
+More generally, one can also define a \emph{simplicial object} in a category $\CC$ as a functor $X:\mathbf{\Delta}^{op}\to\CC$. 
+QUEDA MUY BIEN EL CASO DE AB DE MAY. AÑADIR MAY A LA BIBLIOGRAFÍA
 \begin{ex}[Nerve of a Category]
 
 LA CATEGORÍA DE CADENAS DE MORFISMOS ES NATURALMENTE ISOMORFA A LA SIMPLICIAL
@@ -60,6 +63,20 @@ CASE OF A GROUP. ESTO NO SÉ SI PONERLO YA EN LA SIGUIENTE PARA CONTINUAR CON SU
 
 
 \section{Geometric Realization}
+
+Denote by $\Delta_n$ the topological $n$-simplex, $\Delta_n=\{(t_0,\dots, t_n)\mid 0\leq t_i\leq 1, \sum_i t_i=1\}\subseteq\R^{n+1}$. We define maps $\delta_i:\Delta_{n-1}\to\Delta_n$ and $\sigma_i:\Delta_{n+1}\to\Delta_n$ by
+\[
+\delta_i(t_0,\dots, t_{n-1})=(t_0,\dots, t_{i-1},0,t_i,\dots, t_{n-1}),
+\]
+\[\sigma_i(t_0,\dots, t_{n+1})=(t_0,\dots, t_{i-1},t_i+t_{i+1},t_{i+2},\dots, t_{n+1}).\]
+
+Let $X$ be a simplicial set. Give $X$ the discrete topology and form the disjoint union $\overline{X}=\coprod_{n\geq 0}(X_n\times\Delta_n)$. Define an equivalence relation $\sim$ in $\overline{X}$ by
+\[(d_ix_n,u_{n-1})\sim(x_n,\delta_i u_{n-1}),\ x_n\in X_n, u_{n-1}\in\Delta_{n-1},\]
+\[(s_ix_n,u_{n+1})\sim(x_n,\sigma_iu_{n+1},\ x_n\in X_n, u_{n+1}\in\Delta_{n+1}.\]
+The identification space $T(X)=\overline{X}/\sim$ is called the \emph{geometric realization} of $X$. DECIR QUE ES UN $N$-SÍMPLICE POR CADA CONJUNTO Y LOS BORDES FORMALES SE IDENTIFICAN CON LOS BORDES SIMPLICIALES.
+
+DECIR ANTES LO QUE ES UNA APLICACIÓN SIMPLICIAL PARA USARLA AHORA.
+
 \begin{ex}[Clasifying space]
 
 \end{ex}

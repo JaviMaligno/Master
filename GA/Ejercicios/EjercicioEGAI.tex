@@ -56,6 +56,8 @@ Para todo objeto $T\in\CC$, $U\mapsto\Hom(T,\calF(U))$ es un haz de conjuntos. %
 Explícitamente, esta condición significa que para todo recubrimiento $(U_\alpha)$ de un abierto $U$ de $X$ por abiertos contenidos en $U$, si denotamos $\rho_\alpha:\calF(U)\to\calF(U_\alpha)$ y $\rho_{\alpha\beta}:\calF(U_\alpha)\to\calF(U_\alpha\cap U_\beta)$ a los morfismos de restricción, entonces la aplicación que a todo $f\in\Hom(T,\calF(U))$ le hace corresponder la familia $(\rho_\alpha\circ f)\in \prod_\alpha\Hom(T,\calF(U_\alpha))$ es una biyección entre $\Hom(T,\calF(U))$ y las $(f_\alpha)$ tales que $\rho_{\alpha\beta}\circ f_\alpha=\rho_{\beta\alpha}\circ f_\beta$ para toda pareja de índices $(\alpha,\beta)$. 
 
 %SI EN LA CATEGORÍA EXISTEN PRODUCTOS SE PUEDE HACER LO DEL ECUALIZADOR Y LA EXACTITUD QUE VIMOS EN CLASE
+
+ESCRIBIR LO DEL ECUALIZADOR, PORQUE ME HACE FALTA LUEGO
 \end{defi}
 
 
@@ -156,7 +158,9 @@ Con esto, dado un para todo prehaz $F:\Sch^{op}\to \Set$, podemos considerar su 
 F\mapsto F|_{\Aff^{op}}
 \end{equation}
 es un functor de $\Hom(\Sch^{op},\Set)$ en $\Hom(\Aff^{op},\Set)$. Vamos a ver que la restricción de este functor a la subcategoría plena $\Sh_{\Sch}$ (\ref{prehaz}) de $\Hom(\Sch^{op},\Set)$ define de hecho una equivalencia de categorías 
-\[\Sh_{\Sch}\cong\Sh_{\Aff}\]
+\begin{equation}\label{equivalencia}
+Sh_{\Sch}\cong\Sh_{\Aff}
+\end{equation}
 Es claro que la imagen de $\Sh_{\Sch}$ por \ref{functor} es una subcategoría de $\Sh_{\Aff}$ en virtud de 0-3.2.2 Y COMPROBAR QUE SE CUMPLE
 
 Mostramos en primer lugar que la restricción de \ref{functor} a $\Sh_{\Aff}$ es plenamente fiel. Esto resulta por un lado de que si $F\in \Sh_{\Sch}$ y $X$ es un esquema, dar $F(V)$ para los abiertos afines de $X$ determina enteramente los $F(U)$ para todo abierto $U$ de $X$ mediante $F(U)=\varprojlim F(U_\alpha)$, donde $(U_\alpha)$ es el conjunto parcialmente ordenado de los abiertos afines contenidos en $U$ (\ref{prehaztop}); TENGO QUE PENSAR PARA QUÉ ES EL PASO ANTERIOR
@@ -165,8 +169,17 @@ Mostramos en primer lugar que la restricción de \ref{functor} a $\Sh_{\Aff}$ es
  Falta ver que todo functor $G\in\Sh_{\Aff}$ es de la forma $F|_{\Aff^{op}}$ para un $F\in \Sh_{\Sch}$. Para ello, definimos para todo esquema $X$, $F(X)$ como el límite proyectivo de $G(U_\alpha)$ donde $(U_\alpha)$ es el sistema proyectivo de abiertos afines de $X$; y para todo morfimo de esquemas $u:X\to Y$ definimos $F(u)$ como el límite proyectivo de las aplicaciones $G(u_{\alpha\beta}):G(V_\beta)\to G(U_\alpha)$, siendo $(V_\beta)$ el sitema proyectivo de abiertos afines de $Y$, y las parejas $(\alpha,\beta)$ son solamente aquellas tales que $u(U_\alpha)\subseteq V_\beta$ y $u_{\alpha\beta}:U_\alpha\to V_\beta$ es la restricción de $u$. Verificar que $F$ es un functor es inmediato INTENTARLO. Finalmente, el hecho de que $F$ sea un haz se deduce del hecho de que los abiertos afines de $X$ forman una base para la topología de $X$ y de \ref{haztop} COMPROBAR ESTO ÚLTIMO.
  
  
- PARA LO QUE VIENE DESPUÉS: $D(fg)=D(f)\cap D(g)$ y $\bigcup D(f_i)=\spec(A)$ equivale a $\sum \gene{f_i}=\sum Af_i =A$ tomando complementario en Hartshorne Lema 2.1(b) Lo de fijarse en finitas no es por na, es simplemente que si con una cantidad finita cubres A po está bien
- 
+ Vimos que la categoría $\Aff^{op}$ es canónicamente equivalente a la categoría $\mathrm{\mathbf{Ring}}$ de anillos. Esta equivalencia define también una equivalencia de categorías $\Hom(\Aff^{op},\Set)\cong \Hom(\mathrm{\mathbf{Ring}},\Set)$. Diremos por abuso de lenguaje que que un functor (covariante) $\mathrm{\mathbf{Ring}}\to\Set$ es un \emph{haz} si su imagen por la equivalencia anterior es un haz sobre $\Aff$. Notamos por $\Sh_{\mathrm{\mathbf{Ring}}}$ a la categoría de estos haces. Teniendo en cuenta que, para todo anillo $A$, el conjunto de abiertos afines $D(f)=\spec(A_f)$ forma una base de la topología de $\spec(A)$, podemos además, en virtud de \ref{haztop} DICE 3.2.2 PERO CREO QUE ES LO QUE TENGO MÁS ARRIBA, expresar que el functor $F:\mathrm{\mathbf{Ring}}\to\Set$ pertenece a $\Sh_{\mathrm{\mathbf{Ring}}}$ diciendo que, para toda familia $(f_i)_{i\in I}$ de elementos de $A$ tales que $\sum_i \gene{f_i}=A$, el diagrama de conjuntos
+ \[F(A)\to\prod_i F(A_{f_i})\rightrightarrows F(A_{f_if_j})\]
+es exacto. Este diagrama proviene del diagrama exacto
+\[
+D(f_i)\cap D(f_j)=D(f_if_j)\rightrightarrows \prod_i D(f_i)\to \spec(A).
+\] 
+Recordemos también que $\bigcup_i D(f_i)=\spec(A)$ implica que $\sum_i\gene{f_i}=A$ a partir de que $V(\sum_i I_i)=\bigcap_i V(I_i)$ por el lema 2.1(b) de Hartshorne. Podemos además fijarnos en este enunciado en las familias finitas $(f_i)_{i\in I}$ que engendran $A$. %SIEMPRE EXISTE ALGUNA PORQUE CON EL 1 SE GENERA
+Así, hemos caracterizado la categoría $\Sh_{\mathrm{\mathbf{Ring}}}$ sin utilizar la noción de esquema. 
+
+
+Recordemos que cada esquema $X$ define un functor contravariante $h_X:Y\to\Hom(Y,X)$ de $\Sch$ en $\Set$, que hemos visto en \ref{representable} que es un haz sobre $\Sch$. Sabemos además que $X\mapsto h_X$ es un functor plenamente fiel de $\Sch$ en $\Sh_{\Sch}$. En virtud de la equivalencia \ref{equivalencia} y de la definición de $\Sh_{\mathrm{\mathbf{Ring}}}$, podemos entonces identificar canónicamente la categoría $\Sch$ con una subcategoría plena de la categoría $\Sh_{\mathrm{\mathbf{Ring}}}$, siendo cada esquema $X$ identificado con un haz $A\mapsto \Hom(\spec(A),X)$ sobre $\mathrm{\mathbf{Ring}}$. De todos modos, debemos tener en cuenta que tener en cuenta que hay functores de $\Sh_{\mathrm{\mathbf{Ring}}}$ que no son isomorfos a haces provinientes de esquemas. 
  
  BUSCAR EJEMPLO PARA LA ÚLTIMA FRASE
 \end{document}
