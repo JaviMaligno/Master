@@ -75,7 +75,7 @@ donde $\pi_{\alpha\beta}$ es la proyección $\prod_{\alpha,\beta}\calF(U_\alpha\
 \calF(U)\arrow[r, "r"]&\prod_\alpha\calF(U_\alpha)\arrow[r, shift left, "r'"]\arrow[r, shift right, "r''"'] &\prod_{\alpha,\beta}\calF(U_\alpha\cap U_\beta)
 \end{tikzcd}
 \]
-es exacto, es decir, que $r$ es un monomorfismo (que lo es) y $\calF(U)=Eq(r',r'')$. 
+es exacto, es decir, que $r$ es un monomorfismo y $\calF(U)=Eq(r',r'')$. %r es monomorfismo en el caso de las restricciones por la condición de haz
 \end{observacion}
 
 
@@ -96,7 +96,27 @@ Supongamos que $f_i:\calG\to\calF_i$ es una familia de morfismos compatible con 
 \subsection{Prehaces sobre una base de abiertos}
 
 \begin{ej}[EGA, 0-3.2.1]\label{prehaztop}%RECUPERAR LA NOCIÓN HABITUAL DE PREHAZ A PARTIR DE LA CATEGÓRICA, GROTHENDIECK HACE HINCAPIÉ EN EL CASO DE X NOETHERIANO
-Sea $X$ un espacio topológico y $\BB$ una base de abiertos para la topología de $X$. Dotamos a esta familia de estructura de categoría considerando un morfismo por cada relación de inclusión. Consideramos entonces un prehaz $\calF:\BB^{op}\to\CC$ con valores en una categoría $\CC$. Podemos asociarle un prehaz con valores en $\CC$ en el sentido habitual, $U\mapsto \calF'(U)$ tomando para todo abierto $U$, $\calF'(U)=\varprojlim\calF(V)$, donde $V$ recorre el conjunto $\BB$ parcialmente ordenado por la inclusión para $V\subseteq U$. Sean $U,U'$ abiertos con $U\subseteq U'$ y denotamos $\rho_{VW}:\calF(V)\to\calF(W)$ las restricciones dadas por $\calF$ para $W\subseteq V$ abiertos básicos. ESTAS COSAS LAS TENGO QUE HACER Y COMPROBAR CON UN DIAGRAMA PARA VER QUE LAS COSAS VAN BIEN Definimos entonces $\rho'_{U'U}$ como el límite proyectivo (para $V\subseteq U$) de los morfimos canónicos $\calF(U)\to\calF(V)$, o lo que es lo mismo, el único morfismo $\calF'(U')\to\calF(U)$ que compuesto con los morfismos canónicos $\calF'(U)\to\calF(V)$ da los morfismos canónicos $\calF'(U')\to\calF(V)$. La verificación de la transitividad de $\rho'_{U'U}$ es inmediata. Además, si $U\in\BB$, el morfismo canónico $\calF'(U)\to\calF(U)$ es isomorfismo, permitiéndonos identificar estos dos objetos.
+Sea $X$ un espacio topológico y $\BB$ una base de abiertos para la topología de $X$. Dotamos a esta familia de estructura de categoría considerando un morfismo por cada relación de inclusión. Consideramos entonces un prehaz $\calF:\BB^{op}\to\CC$ con valores en una categoría $\CC$. Podemos asociarle un prehaz con valores en $\CC$ en el sentido habitual, $U\mapsto \calF'(U)$ tomando para todo abierto $U$, $\calF'(U)=\varprojlim\calF(V)$, donde $V$ recorre el conjunto $\BB$ parcialmente ordenado por la inclusión para $V\subseteq U$. Sean $U,U'$ abiertos con $U\subseteq U'$ y denotamos $\rho_{VW}:\calF(V)\to\calF(W)$ las restricciones dadas por $\calF$ para $W\subseteq V$ abiertos básicos.
+
+Si consideramos el sistema inductivo de abiertos básico para $U$, $(U_\alpha)$ y el sistema inductivo de abiertos básicos para $U'$, $(U'_\beta)$, como $U\subseteq U'$, para todo $U_\alpha$ existe $\beta$ tal que $U_\alpha=U'_\beta$, lo que nos da diagramas de inclusiones
+\[
+\begin{tikzcd}
+U_\alpha\arrow[rr, hookrightarrow]\arrow[ddr, hookrightarrow]\arrow[dr, hookrightarrow]& & U_\beta\arrow[dl, hookrightarrow]\arrow[ddl,hookrightarrow]\\
+& U\arrow[d, hookrightarrow]& \\
+& U' &
+\end{tikzcd}
+\]
+Lo que, en el sistema proyectivo asociado $(\calF(U_\alpha))$, nos da diagramas conmutativos de la forma
+\[
+\begin{tikzcd}
+\calF(U_\alpha)& & \calF(U_\beta)\arrow[ll, "\rho_{U_\beta U_\alpha}"']\\
+& \calF'(U)=\varprojlim\calF(U_\alpha)\arrow[ur]\arrow[ul]& \\
+& \calF'(U')=\varprojlim\calF(U'_\alpha)\arrow[u, dashed, "\rho'_{U'U}"]\arrow[uul,bend left=10] \arrow[uur,bend right=10]&
+\end{tikzcd}
+\]
+Donde $\rho'_{U'U}$ existe y es único por definición del límite proyectivo, así que definimos de esa forma las restricciones del prehaz $\calF'$.
+
+%Definimos entonces $\rho'_{U'U}$ como el límite proyectivo (para $V\subseteq U$) de los morfimos canónicos $\calF(U)\to\calF(V)$, o lo que es lo mismo, el único morfismo $\calF'(U')\to\calF(U)$ que compuesto con los morfismos canónicos $\calF'(U)\to\calF(V)$ da los morfismos canónicos $\calF'(U')\to\calF(V)$. La verificación de la transitividad de $\rho'_{U'U}$ es inmediata. Además, si $U\in\BB$, el morfismo canónico $\calF'(U)\to\calF(U)$ es isomorfismo, permitiéndonos identificar estos dos objetos.
 \end{ej}
 \begin{prop}[EGA, 0-3.2.2]\label{haztop}
 Para que el prehaz $\calF'$ definido en el ejemplo anterior, es necesaria y suficiente la siguiente condición sobre $\calF$:
