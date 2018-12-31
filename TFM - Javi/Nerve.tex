@@ -40,7 +40,7 @@ Here, by abuse of notation, we're identifying $\delta_i$ with any map $[n]\to[m]
 \begin{enumerate}
 \item for each $n\in\N$, a set $X_n$ called the set of \emph{$n$-simplices};
 \item for each $\delta_i:[n-1]\to[n]$ a map $d_i:X_n\to X_{n-1}$ called the \emph{$i$-th face map};
-\item for each $\sigma_i:[n]\to[n-1]$ a map $s_i:X_n\to X_{n+1}$ called the \emph{$i$-th degenerancy map}.
+\item for each $\sigma_i:[n]\to[n-1]$ a map $s_i:X_n\to X_{n+1}$ called the \emph{$i$-th degeneracy map}.
 \end{enumerate} 
 These maps are required to satisfy the following equations:
 \begin{itemize}
@@ -49,6 +49,14 @@ These maps are required to satisfy the following equations:
 \item $d_i \circ s_j =  \begin{cases} s_{j-1} \circ d_i &  \text{if }  i < j \\ Id & \text{if }  i = j \text{ or } i = j+1 \\ s_j \circ d_{i-1} &  \text{if }i > j+1  \end{cases}$
 \end{itemize}
 
+
+\begin{defi}
+A \emph{simplicial map} is a morphism between simplicial sets $X$ and $Y$, i.e., a natural transformation $f: X\to Y$.
+\end{defi}
+
+Again, we can express this concept in terms of the families $X_n$ and $Y_n$. A simiplicial map $f:X\to Y$ consists of a family $f_n:X_n\to Y_n$ that commutes with the face and degeneracy maps:
+\[f_n\circ d_i=d_i\circ f_{n+1}\]
+\[f_n\circ s_i=s_i\circ f_{n-1}\]
 
 More generally, one can also define a \emph{simplicial object} in a category $\CC$ as a functor $X:\mathbf{\Delta}^{op}\to\CC$. 
 QUEDA MUY BIEN EL CASO DE AB DE MAY. AÑADIR MAY A LA BIBLIOGRAFÍA
@@ -72,10 +80,10 @@ Denote by $\Delta_n$ the topological $n$-simplex, $\Delta_n=\{(t_0,\dots, t_n)\m
 
 Let $X$ be a simplicial set. Give $X$ the discrete topology and form the disjoint union $\overline{X}=\coprod_{n\geq 0}(X_n\times\Delta_n)$. Define an equivalence relation $\sim$ in $\overline{X}$ by
 \[(d_ix_n,u_{n-1})\sim(x_n,\delta_i u_{n-1}),\ x_n\in X_n, u_{n-1}\in\Delta_{n-1},\]
-\[(s_ix_n,u_{n+1})\sim(x_n,\sigma_iu_{n+1},\ x_n\in X_n, u_{n+1}\in\Delta_{n+1}.\]
-The identification space $T(X)=\overline{X}/\sim$ is called the \emph{geometric realization} of $X$. DECIR QUE ES UN $N$-SÍMPLICE POR CADA CONJUNTO Y LOS BORDES FORMALES SE IDENTIFICAN CON LOS BORDES SIMPLICIALES.
+\[(s_ix_n,u_{n+1})\sim(x_n,\sigma_iu_{n+1}),\ x_n\in X_n, u_{n+1}\in\Delta_{n+1}.\]
+The identification space $T(X)=\overline{X}/\sim$ is called the \emph{geometric realization} of $X$. Geometrically, there is one $n$-simplex for each $X_n$ and we identify the face and degeneracy maps of the simplicial set with the usual geometric face and degeneracy maps of simplicial complexes. 
 
-DECIR ANTES LO QUE ES UNA APLICACIÓN SIMPLICIAL PARA USARLA AHORA.
+
 
 \begin{ex}[Clasifying space]
 
