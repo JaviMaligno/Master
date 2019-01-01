@@ -6,9 +6,44 @@
 %\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
 
 \chapter{Cohomología}
-\section{}
+\section{Teorema de coeficientes universales}
+Sea $\CC$ un complejo de cadenas de grupos abelianos 
+\[
+\cdots\to C_{n+1}\xrightarrow{\partial} C_n\xrightarrow{\partial} C_{n-1}\to\cdots
+\]
+Dualizamos este complejo con un grupo abeliano $G$ sustituyendo cada $C_n$ por su dual $C_n^*=\Hom(C_n,G)$ y los homomorfismos de grupos $\partial:C_n\to C_{n-1}$ por sus duales $\delta=\partial^*:C_{n-1}^*\to C_n^*$. En general, para un homomorfismo de grupos $\alpha:A\to B$, el homomorfismo dual $\alpha^*:\Hom(B,G)\to\Hom(A,G)$ está definido como $\alpha^*(\varphi)=\varphi\alpha$. Al complejo de cadenas resultante se le suele llamar complejo de \emph{cocadenas} y a la aplicación $\delta$ aplicación \emph{coborde}. Claramente la dualización es un functor y por tanto podemos definir la homología de este complejo de cocadenas, $H^*(\CC;G)=\ker\delta/\Ima\delta$, donde cada $H^n(\CC;G)$ se denomina \emph{grupo de cohomología}.
 
+Nuestro objetivo es probar que el grupo de cohomología $H^n(\CC;G)$ está completamente determinado por $G$ y por el grupo de homologí a$H_n(\CC;G)$. Hay un homomorfismo natural $h:H^n(\CC;G)\to\Hom(H_n(\CC),G)$ definido como sigue. Denotamos los ciclos y bordes por $Z_n=\ker\partial\subseteq C_n$ y $B_n=\Ima\partial\subseteq C_n$. Una clase en $H^n(\CC;G)$ está representada por un homomorfismo $\varphi:C_n\to G$ tal que $\delta\varphi=0$, es decir, $\varphi\partial=0$, o en otras palabras, $\varphi$ se anula en $B_n$. La restricción $\varphi_0=\varphi|_{Z_n}$ induce entonces un homomorfismo $\overline{\varphi}_0:Z_n/B_n\to G$, un elemento de $\Hom(H_n(\CC),G)$. Si $\varphi\in\Ima\delta$, digamos $\varphi=\delta\psi=\psi\partial$, entonces $\varphi$ se anula en $Z_n$, por lo que $\varphi_0=0$ y por tanto $\overline{\varphi}_0=0$. Así que hay un homomorfismo bien definido $h:H^n(\CC;G)\to\Hom(H_n(\CC),G)$ enviando la clase de cohomología de $\varphi$ a $\overline{\varphi}_0$.
 
+Veamos que $h$ es sobreyectiva. La sucesión exacta 
+\[0\to Z_n\to C_n\xrightarrow{\partial}B_{n-1}\to 0\]
+escinde por ser $B_{n-1}$ libre al ser subgrupo del grupo abeliano libre $C_{n-1}$. Por lo tanto hay un homomorfismo $p:C_n\to Z_n$ que es la identidad en $Z_n$. Componer con $p$ nos permite extender los homomorfismo $\varphi_0:Z_n\to G$ a homomorfismos $\varphi=\varphi_0p:C_n\to G$. En particular, esto extiende homomorfismos $Z_n\to G$ que se anulan en $B_n$ a homomorfismos $C_n\to G$ que se siguen anulando en $B_n$, o en otras palabras, extiende homomorfismos $H_n(\CC)\to G$ a elementos de $\ker\delta$. Por lo tanto tenemos un homomorfismo $\Hom(H_n(\CC),G)\to\ker\delta$. Componiendo esto con la aplicación cociente $\ker\delta\to H^n(\CC;G)$ obtenemos un homomorfismo $\Hom(H_n(\CC),G)\to H^n(\CC;G)$. Si tras este homomorfismo aplicamos $h$, obtenemos la identidad en $\Hom(H_n(\CC),G)$, ya que componer con $h$ simplemente deshace la extensión por $p$. Esto prueba que $h$ es sobreyectiva. De hecho hemos probado que tenemos una sucesión exacta corta escindible
+\[
+0\to\ker h\to H^n(\CC;G)\xrightarrow{h}\Hom(H_n(\CC),G)\to 0
+\] 
+donde la escisión está inducida por $p:C_n\to Z_n$ (y por tanto no es canónica). 
+
+Nos queda analizar $\ker h$. Una manera conveniente de hacerlo es considerando primero el diagrama conmutativo de sucesiones exactas cortas
+\begin{equation}\label{i}
+\begin{tikzcd}
+0\arrow[r]& Z_{n+1}\arrow[r]\arrow[d, "0"] & C_{n+1}\arrow[d, "\partial"]\arrow[r, "\partial"] & B_n\arrow[d, "0"]\arrow[r]& 0\\
+0\arrow[r]& Z_{n}\arrow[r] & C_{n}\arrow[r, "\partial"] & B_{n-1}\arrow[r]& 0
+\end{tikzcd}
+\end{equation}
+donde las aplicaciones verticales en $Z_{n+1}$ y $B_n$ son las restricciones del operador borde y por tanto 0. Dualizando obtenemos un diagrama conmutativo 
+\begin{equation}\label{ii}
+\begin{tikzcd}
+0& Z_{n+1}^*\arrow[l] & C_{n+1}^*\arrow[l] & B_n\arrow[l]& 0\arrow[l]\\
+0&\to Z_{n}\arrow[l]\arrow[u] & C_{n}\arrow[l]\arrow[u] & \arrow[l]B_{n-1}&\arrow[l] 0
+\end{tikzcd}
+\end{equation}
+Las filas son exactas porque como ya habíamos notado antes, las filas de \ref{i} escinden y el dual de una sucesión exacta corta escindible es una sucesión exacta corta escindible por el isomorfismo natural $\Hom(A\oplus B,G)\cong\Hom(A,G)\oplus\Hom(B,G)$. 
+
+Podemos ver tanto \ref{i} como \ref{ii} como parte de una sucesión exacta corta de complejos de cadenas. Como los operadores coborde en $Z_n^*$ y $B_n^*$ son 0, la sucesión exacta larga asociada es de la forma
+\begin{equation}
+\cdots\leftarrow B_n^*\xleftarrow{\Delta} Z_n^*\leftarrow H^n(\CC;G)\leftarrow B_{n-1}^*\leftarrow Z_{n-1}^*\leftarrow\cdots
+\end{equation}
+Los operadores $\Delta:Z_n^*\to B_n^*$ son de hecho las aplicaciones $i_n^*$ duales de las inclusiones $i_n:B_n\to Z_n$ si recordamos cómo estas aplicaciones estaban definidas en general para la sucesión exacta larga de homología: SEGUIR 192 DESPUÉS DE III
 
 
 \end{document}
