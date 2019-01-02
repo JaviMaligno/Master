@@ -6,9 +6,121 @@
 %\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
 
 \chapter{Cohomología}
-\section{}
+\section{Teorema de coeficientes universales}
+Sea $\CC$ un complejo de cadenas de grupos abelianos 
+\[
+\cdots\to C_{n+1}\xrightarrow{\partial} C_n\xrightarrow{\partial} C_{n-1}\to\cdots
+\]
+Dualizamos este complejo con un grupo abeliano $G$ sustituyendo cada $C_n$ por su dual $C_n^*=\Hom(C_n,G)$ y los homomorfismos de grupos $\partial:C_n\to C_{n-1}$ por sus duales $\delta=\partial^*:C_{n-1}^*\to C_n^*$. En general, para un homomorfismo de grupos $\alpha:A\to B$, el homomorfismo dual $\alpha^*:\Hom(B,G)\to\Hom(A,G)$ está definido como $\alpha^*(\varphi)=\varphi\alpha$. Al complejo de cadenas resultante se le suele llamar complejo de \emph{cocadenas} y a la aplicación $\delta$ aplicación \emph{coborde}. Claramente la dualización es un functor y por tanto podemos definir la homología de este complejo de cocadenas, $H^*(\CC;G)=\ker\delta/\Ima\delta$, donde cada $H^n(\CC;G)$ se denomina \emph{grupo de cohomología}.
 
+Nuestro objetivo es probar que el grupo de cohomología $H^n(\CC;G)$ está completamente determinado por $G$ y por el grupo de homologí a$H_n(\CC;G)$. Hay un homomorfismo natural $h:H^n(\CC;G)\to\Hom(H_n(\CC),G)$ definido como sigue. Denotamos los ciclos y bordes por $Z_n=\ker\partial\subseteq C_n$ y $B_n=\Ima\partial\subseteq C_n$. Una clase en $H^n(\CC;G)$ está representada por un homomorfismo $\varphi:C_n\to G$ tal que $\delta\varphi=0$, es decir, $\varphi\partial=0$, o en otras palabras, $\varphi$ se anula en $B_n$. La restricción $\varphi_0=\varphi|_{Z_n}$ induce entonces un homomorfismo $\overline{\varphi}_0:Z_n/B_n\to G$, un elemento de $\Hom(H_n(\CC),G)$. Si $\varphi\in\Ima\delta$, digamos $\varphi=\delta\psi=\psi\partial$, entonces $\varphi$ se anula en $Z_n$, por lo que $\varphi_0=0$ y por tanto $\overline{\varphi}_0=0$. Así que hay un homomorfismo bien definido $h:H^n(\CC;G)\to\Hom(H_n(\CC),G)$ enviando la clase de cohomología de $\varphi$ a $\overline{\varphi}_0$.
 
+Veamos que $h$ es sobreyectiva. La sucesión exacta 
+\[0\to Z_n\to C_n\xrightarrow{\partial}B_{n-1}\to 0\]
+escinde por ser $B_{n-1}$ libre al ser subgrupo del grupo abeliano libre $C_{n-1}$. Por lo tanto hay un homomorfismo $p:C_n\to Z_n$ que es la identidad en $Z_n$. Componer con $p$ nos permite extender los homomorfismo $\varphi_0:Z_n\to G$ a homomorfismos $\varphi=\varphi_0p:C_n\to G$. En particular, esto extiende homomorfismos $Z_n\to G$ que se anulan en $B_n$ a homomorfismos $C_n\to G$ que se siguen anulando en $B_n$, o en otras palabras, extiende homomorfismos $H_n(\CC)\to G$ a elementos de $\ker\delta$. Por lo tanto tenemos un homomorfismo $\Hom(H_n(\CC),G)\to\ker\delta$. Componiendo esto con la aplicación cociente $\ker\delta\to H^n(\CC;G)$ obtenemos un homomorfismo $\Hom(H_n(\CC),G)\to H^n(\CC;G)$. Si tras este homomorfismo aplicamos $h$, obtenemos la identidad en $\Hom(H_n(\CC),G)$, ya que componer con $h$ simplemente deshace la extensión por $p$. Esto prueba que $h$ es sobreyectiva. De hecho hemos probado que tenemos una sucesión exacta corta escindible
+\[
+0\to\ker h\to H^n(\CC;G)\xrightarrow{h}\Hom(H_n(\CC),G)\to 0
+\] 
+donde la escisión está inducida por $p:C_n\to Z_n$ (y por tanto no es canónica). 
 
+Nos queda analizar $\ker h$. Una manera conveniente de hacerlo es considerando primero el diagrama conmutativo de sucesiones exactas cortas
+\begin{equation}\label{i}
+\begin{tikzcd}
+0\arrow[r]& Z_{n+1}\arrow[r]\arrow[d, "0"] & C_{n+1}\arrow[d, "\partial"]\arrow[r, "\partial"] & B_n\arrow[d, "0"]\arrow[r]& 0\\
+0\arrow[r]& Z_{n}\arrow[r] & C_{n}\arrow[r, "\partial"] & B_{n-1}\arrow[r]& 0
+\end{tikzcd}
+\end{equation}
+donde las aplicaciones verticales en $Z_{n+1}$ y $B_n$ son las restricciones del operador borde y por tanto 0. Dualizando obtenemos un diagrama conmutativo 
+\begin{equation}\label{ii}
+\begin{tikzcd}
+0& Z_{n+1}^*\arrow[l] & C_{n+1}^*\arrow[l] & B_n\arrow[l]& 0\arrow[l]\\
+0&\to Z_{n}\arrow[l]\arrow[u] & C_{n}\arrow[l]\arrow[u] & \arrow[l]B_{n-1}&\arrow[l] 0
+\end{tikzcd}
+\end{equation}
+Las filas son exactas porque como ya habíamos notado antes, las filas de \ref{i} escinden y el dual de una sucesión exacta corta escindible es una sucesión exacta corta escindible por el isomorfismo natural $\Hom(A\oplus B,G)\cong\Hom(A,G)\oplus\Hom(B,G)$. 
+
+Podemos ver tanto \ref{i} como \ref{ii} como parte de una sucesión exacta corta de complejos de cadenas. Como los operadores coborde en $Z_n^*$ y $B_n^*$ son 0, la sucesión exacta larga asociada es de la forma
+\begin{equation}\label{iii}
+\cdots\leftarrow B_n^*\xleftarrow{\Delta} Z_n^*\leftarrow H^n(\CC;G)\leftarrow B_{n-1}^*\leftarrow Z_{n-1}^*\leftarrow\cdots
+\end{equation}
+Los operadores $\Delta:Z_n^*\to B_n^*$ son de hecho las aplicaciones $i_n^*$ duales de las inclusiones $i_n:B_n\to Z_n$ si recordamos cómo estas aplicaciones estaban definidas en general para la sucesión exacta larga de homología: en \ref{ii} se elige un elemento de $Z_n^*$, se lleva a $C_n^*$ por sobreyectividad, luego se le aplica $\delta$ para llevarlo a $C_{n+1}^*$ y se lleva por exactitud a $B_n^*$. El primero de estos pasos extiende un homomorfismo $\varphi_0:Z_n\to G$ a $\varphi:C_n\to G$, el segundo paso compone este $\varphi$ con $\partial$, y el tercer paso deshace esta composición y restringe $\varphi$ a $B_n$. El efecto neto es simplemente restringir $\varphi_0$ de $Z_n$ a $B_n$.
+
+Una sucesión exacta larga siempre se puede romper en sucesiones exactas cortas, y hacer esto en \ref{iii} da lugar a las sucesiones exactas cortas
+\begin{equation}\label{iv}
+0\leftarrow \ker i_n^*\leftarrow H^n(\CC;G)\leftarrow\coker i_{n-1}^*\leftarrow 0
+\end{equation}
+El grupo $\ker i_n^*$ se puede identificar naturalmente con $\Hom(H_n(\CC),G)$ puesto que los elementos de $\ker i_n^*$ son homomorfismos $Z_n\to G$ que se anula en el subgrupo $B_n$, y tales homomorfismos son homomorfismos $Z_n/B_n\to G$. Bajo esta identificación de $\ker i_n^*$ con $\Hom(H_n(\CC),G)$, la aplicación $H^n(\CC;G)\to\ker i_n^*$ en \ref{iv} se convierte en la aplicación $h$ considerada anteriormente. Por tanto, podemos reescribir \ref{iv} como la sucesión escindible
+\begin{equation}\label{v}
+0\to\coker i_n^*\to H^n(\CC;G)\xrightarrow{h}\Hom(H_n(\CC),G)\to 0
+\end{equation}
+Nuestro objetivo ahora es mostrar que $\coker i_n^*$ solo depende de $H_{n-1}(\CC)$ y $G$ de una manera functorial.  Primero observamos que $\coker i_{n-1}^*$ sería 0 si fuera siempre cierto que el dual de una sucesión exacta corta fuera exaca, ya que el dual de la sucesión exacta corta 
+\begin{equation}\label{vi}
+0\to B_n\xrightarrow{i_{n-1}}Z_{n-1}\to H_{n-1}(\CC)\to 0
+\end{equation} 
+es la sucesión
+\begin{equation}\label{vii}
+0\leftarrow B_{n-1}^*\xleftarrow{i_{n-1}^*}Z_{n-1}^*\leftarrow H_{n-1}(\CC)^*\leftarrow 0
+\end{equation}
+y si esta fuera exacta en $B_{n-1}^*$, entonces $i_{n-1}^*$ sería sobreyectiva, con lo que $\coker i_{n-1}^*$ sería 0. Este argumento es aplicable si $H_{n-1}(\CC)$ es libre, ya que \ref{vi} escinde en ese caso, lo que implica que \ref{vii} también escinde. Así que en este caso $h$ es un isomorfismo en \ref{v}. Sin embargo, en general es fácil encontrar sucesiones exactas cortas cuyos duales no son exactos. Por ejemplo, si dualizamos $0\to\Z\xrightarrow{n}\Z\to\Z_n\to 0$ aplicando $\Hom(-,\Z)$ obtenemos $0\leftarrow\Z\xleftarrow{n}\Z\leftarrow 0\leftarrow 0$, cuya exactitud falla en el $\Z$ de la izquierda, precisamente el lugar en el que estamos interesados para $\coker i_{n-1}^*$. Se puede probar que de hecho el único lugar en el que puede fallar la exactitud es en el final izquierdo, lo cual se deja como ejercicio que no necesitaremos en lo que sigue.
+
+La sucesión exacta \ref{vi} tiene la particularidad de que tanto $B_{n-1}$ como $Z_{n-1}$ son libres, así que \ref{vi} puede ser vista como una resolución libre de $H_{n-1}(\CC)$, donde una \emph{resolución libre} de un grupo abeliano $H$ es una sucesión exacta
+\[
+\cdots\to F_2\xrightarrow{f_2} F_1\xrightarrow{f_1} F_0\xrightarrow{f_0} H\to 0
+\]
+donde cada $F_n$ es libre. Si dualizamos esta resolución libre aplicando $\Hom(-,G)$ puede que perdamos la exactitud, pero obtenemos un complejo de (co)cadenas. Este complejo dual es de la forma
+\[
+\cdots\leftarrow F_2^*\xleftarrow{f_2^*} F_1^*\xleftarrow{f_1^*} F_0\xleftarrow{f_0^*} H^*\leftarrow 0
+\]
+Usamos la notación $H^n(F;G)$ para el grupo de homología $\ker f_{n+1}^*/\Ima f_n^*$. Nótese que el grupo $\coker i_{n-1}^*$ en el que estamos interesados es $H^1(F;G)$ donde $F$ es la resolución libre en \ref{vi}. El apartado (b) del siguiente lema muestra que $\coker i_{n-1}^*$ depende solo de $H_{n-1}(\CC)$ y $G$.
+
+\begin{lemma}\
+\begin{enumerate}[(a)]
+\item Ddas resoluciones libres $F$ y $F'$ de grupos abelianos $H$ y $H'$, entonces todo homomorfismo $\alpha:H\to H'$ puede ser extendido a una aplicación de complejos de cadenas de $F$ a $F'$:
+\[
+\begin{tikzcd}
+\cdots\arrow[r]& F_2\arrow[r, "f_2"]\arrow[d, "\alpha_2"] & F_1\arrow[r, "f_1"]\arrow[d, "\alpha_1"] & F_0\arrow[r, "f_0"]\arrow[d, "\alpha_0"]&H\arrow[d, "\alpha"]\arrow[r] & 0\\
+\cdots\arrow[r]& F_2'\arrow[r, "f_2'"] & F_1'\arrow[r, "f_1'"] & F_0'\arrow[r, "f_0'"]&H'\arrow[r] & 0
+\end{tikzcd}
+\]
+Además, dos tales aplicaciones de complejos de cadenas cualesquiera son homotópicamente equivalentes.
+
+\item Para cualesquiera dos resoluciones libres $F$ y $F'$ de $H$, hay isomorfismos canónicos $H^n(F;G)\cong H^n(F';G)$ para todo $n$. Por tanto, podemos llamar $H^n(H;G)$ a la homología de cualquier resolución libre de $H$.
+\end{enumerate}
+\end{lemma}
+La prueba se puede consultar en Hatcher (lema 3.1). Para cualquier grupo abeliano $H$ se puede construir resoluciones libres de la siguiente forma: $F_0$ es el grupo libre generado por los mismos generadores que $H$, lo cual nos da un homomorfismo canónico sobreyectivo $\varphi:F_0\to H$. Por ser $F_0$ libre, $\ker\varphi$ es libre, luego tomamos $F_1=\ker\varphi$. A continuación, podemos terminar la resolución con un 0 o bien podemos extenderla: consideramos un grupo libre $L_2$ generado por los generadores de $F_1$ y el homomorfismo canónico $\varphi_2:L_2\to F_1$, entonces basta tomar $F_2=\ker\varphi_2$. Podemos continuar extendiéndolo de esta forma indefinidamente, aunque nos interesa más el caso finito $0\to F_1\to F_0\xrightarrow{\varphi} H\to 0$. Dualizando obtenemos el complejo $0\leftarrow F_1^*\leftarrow F_0^*\leftarrow H^*\leftarrow 0$, de donde se deduce que $H^n(F;G)=0$ para $n\neq 1$ y $H^1(F;G)$ en general no tiene por qué ser 0. Tradicionalmente, se denota $H^1(F;G)=\mathrm{Ext}(H;G)$, que está en biyección con el conjunto de sucesiones exactas cortas de la forma $0\to G\to J\to H\to 0$ llamadas extensiones (véase Hilton-Stambach AÑADIR ESTO A LA BIBLIOGRAFÍA, HATCHER LO MENCIONA EN LA PÁGINA 195).
+
+En resumen, hemos establecido el siguiente resultado:
+\begin{teorema}[de los coeficientes universales]
+Si $\CC$ es un complejo de cadenas de grupos abelianos libres con homología $H_n(\CC)$, entonces los grupos de cohomología $H^n(\CC;G)$ del complejo de cocadenas $\Hom(C_n,G)$ está determinada por las sucesiones exactas cortas escindibles
+\[
+0\to \mathrm{Ext}(H_{n-1}(\CC),G)\to H^n(\CC;G)\xrightarrow{h}\Hom(H_n(\CC),G)\to 0
+\]
+
+Calcular $\mathrm{Ext}(H,G)$ para un grupo abeliano finitamente generado $H$ no es difícil usando las siguientes propiedades:
+\begin{itemize}
+\item $\Ext(H\oplus H',G)\cong\Ext(H,G)\oplus\Ext(H',G)$.
+\item $\Ext(H,G)=0$ si $H$ es libre.
+\item $\Ext(\Z_n,G)\cong G/nG$.
+\end{itemize}
+\end{teorema}
+El primero de los resultados se puede obtener usando la suma directa de resoluciones libres de $H$ y $H'$ como resolución libre de $H\oplus H'$. Si $H$ es libre, la resolución libre $0\to H\to H\to 0$ da lugar a la segunda propiedad, mientras que la tercera se obtiene de dualizar la resolución libre $0\to\Z\xrightarrow{n}\Z\to\Z_n\to 0$ para producir una sucesión exacta
+\[
+\begin{tikzcd}
+0 & \Ext(\Z_n,G)\arrow[l]\arrow[d,equals] & \Hom(\Z,G)\arrow[l]\arrow[d, equals] &\Hom(\Z,G)\arrow[l, "n"] & \Hom(\Z_n,G)\arrow[l] & 0\arrow[l]\\
+& G/nG &G\arrow[l] & G\arrow[l, "n"]
+\end{tikzcd}
+\]
+En particular, estas tres propiedades implican que $\Ext(H,\Z)$ es isomorfo al subgrupo de torsión de $H$ si $H$ es finitamente generado. Como $\Hom(H,\Z)$ es isomorfo a la parte libre de $H$ si $H$ es finitamente generado, tenemos
+\begin{coro}
+Si $H_n$ es la homología del complejo de cadenas de grupos abelianos finitamente generados $\CC$ y $T_n\subseteq H_n$ es el subgrupo de torsión, entonces
+\[
+H^n(\CC;\Z)\cong (H_n/T_n)\oplus T_{n-1}.
+\]
+\end{coro} 
+
+\section{Ejercicios}
+\begin{ejer}
+Si $A\to B\to C\to 0$ es exacta, entonces dualizar aplicando $\Hom(-,G)$ da lugar a una sucesión exacta $A^*\leftarrow B^*\leftarrow C*\leftarrow 0$.
+\end{ejer}
 
 \end{document}

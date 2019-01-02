@@ -1,5 +1,7 @@
 	\documentclass[twoside]{article}
 \usepackage{../../estilo-ejercicios}
+\setcounter{section}{0}
+\newtheorem{defin}{Definición}[section]
 \renewcommand{\baselinestretch}{1,4}
 %--------------------------------------------------------
 \begin{document}
@@ -14,8 +16,7 @@
 
 \subsection{Límite proyectivo}
 
-PROBABLEMENTE PONDRÉ EN NEGRITA LAS CATEGORÍAS, PARA ESO TENGO QUE METERLO COMO mathrm{mathbf{Aff}} NO COMO MATHOPERATOR, TAMBIÉN HACERLO CON HOM CUANDO REPRESENTA UNA CATEGORÍA Y NO AL CONJUNTO HOM
-\begin{defi}[EGA, 0-1.1.9]
+\begin{defin}[EGA, 0-1.1.9]
 En una categoría $\CC$, dado un conjunto parcialmente ordenado $I$, se define un \emph{sistema proyectivo} como una familia $(A_\alpha)_{\alpha\in I}$ de objetos de $\CC$ y para cada par $(\alpha,\beta)$ tal que $\alpha\leq\beta$ un morfismo $u_{\alpha\beta}:A_\beta\to A_\alpha$ cumpliendo $u_{\alpha\gamma}=u_{\alpha\beta}\circ u_{\beta\gamma}$ para $\alpha\leq\beta\leq\gamma$. Un \emph{límite proyectivo} de un sistema proyectivo está formado por un objeto $B\in\CC$ (denotado $\varprojlim A_\alpha$), y para cada $\alpha\in I$, un morfismo $u_\alpha:B\to A_\alpha$ tales que: 
 \begin{enumerate}
 \item $u_\alpha=u_{\alpha\beta}u_{\beta}$ para $\alpha\leq\beta$;
@@ -29,14 +30,14 @@ X\arrow[drrr, bend left=20, "v_\gamma"']\arrow[drr, bend left=15, "v_\beta"']\ar
 \]
 \end{enumerate}
 Decimos que $\CC$ \emph{admite límites proyectivos} si siempre existen límites proyectivos de sistemas proyectivos en $\CC$. 
-\end{defi}
+\end{defin}
 
 Se prueba fácilmente que el límite proyectivo es único salvo isomorfismo único. SI ME DA TIEMPO PROBARLO
 
 %EN TOP ES INTERSECCIÓN CON TOPOLOGÍA INICIAL (LA QUE CON MENOS ABIERTOS HACE CONTINUAS A TODAS LAS FLECHAS AL SISTEMA PROJECTIVO) POR EL EJERCICIO 1.12 DE HARTSHORNE EL LÍMITE INVERSO DE HACES ES HAZ
 %EL LÍMITE INVERSO EN ESPACIOS TOPOLÓGICOS POR SI ME HACE FALTA, DE TODOS MODOS EN SET SEGURAMENTE SÍ ME HAGA FALTA\url{https://math.stackexchange.com/questions/711334/inverse-limit-of-an-inverse-system-of-topological-spaces}
 
-\begin{ej}[$\mathrm{Set}$ admite límites proyectivos]\label{set}
+\begin{ej}[$\Set$ admite límites proyectivos]\label{set}
 Sea $\{A_i\}_{i\in I}$ un sistema proyectivo de conjuntos con aplicaciones $f_{ji}:A_j\to A_{i}$. Construimos $A=\{(a_i)_{i\in I}\in \prod_i A_i\mid f_{ji}(a_j)=a_i, i\leq j\}$ y afirmamos que $A=\varprojlim A_i$. Es claro que existen aplicaciones $f_i:A \to A_i$ tales que $a_i\mapsto a_i$ compatibles con el sistema proyectivo por definición.
 
 Sea $X$ otro conjunto con aplicaciones $g_i:X\to A_i$ compatibles con el sistema inverso. Sea $x\in X$ con imagen $g_i(x)=a_i\in A_i$. Definimos entonces $g:X\to A$ como $g(x)=(g_i(x))_{i\in I}$, que está bien definida porque los $g_i$ son compatibles con el sistema proyectivo y claramente conmuta con las aplicaciones del sistema. Supongamos ahora que existe otra aplicación $h:X\to A$ compatible con el sistema inverso, en particular $f_jh=g_j$ para todo $j\in I$. Cada $f_jh(x)$ son las coordenadas de $h(x)$ en $A$, que son justamente $g_j(x)=a_j$, luego en realidad $h=g$. 
@@ -46,7 +47,7 @@ Esta misma construcción con estructura adicional sirve para probar la existenci
 
 \subsection{Haces con valores en una categoría}
 
-\begin{defi}\label{axioma}
+\begin{defin}[EGA, 0-3.1.1]\label{axioma}
 Dado un espacio topológico $X$, denotamos por $\OO(X)$ a la categoría cuyos objetos son los abiertos de $X$ y donde, para dos abiertos $U$ y $V$, $\Hom(U,V)=\emptyset$ si $U\not\subseteq V$ y si $U\subseteq V$ tiene un solo elemento asociado a la inclusión. Podemos decir entonces, que un \emph{prehaz sobre $X$ con valores en $\CC$} es un functor contravariante $\calF:\OO(X)\to\CC$. Diremos que un prehaz $\calF$ sobre $X$ con valores en $\CC$ es un \emph{haz} si verifica el axioma siguiente:
 
 \begin{verse}
@@ -54,11 +55,28 @@ Para todo objeto $T\in\CC$, $U\mapsto\Hom(T,\calF(U))$ es un haz de conjuntos. %
 \end{verse}
 
 Explícitamente, esta condición significa que para todo recubrimiento $(U_\alpha)$ de un abierto $U$ de $X$ por abiertos contenidos en $U$, si denotamos $\rho_\alpha:\calF(U)\to\calF(U_\alpha)$ y $\rho_{\alpha\beta}:\calF(U_\alpha)\to\calF(U_\alpha\cap U_\beta)$ a los morfismos de restricción, entonces la aplicación que a todo $f\in\Hom(T,\calF(U))$ le hace corresponder la familia $(\rho_\alpha\circ f)\in \prod_\alpha\Hom(T,\calF(U_\alpha))$ es una biyección entre $\Hom(T,\calF(U))$ y las $(f_\alpha)$ tales que $\rho_{\alpha\beta}\circ f_\alpha=\rho_{\beta\alpha}\circ f_\beta$ para toda pareja de índices $(\alpha,\beta)$. 
+\end{defin}
 
-%SI EN LA CATEGORÍA EXISTEN PRODUCTOS SE PUEDE HACER LO DEL ECUALIZADOR Y LA EXACTITUD QUE VIMOS EN CLASE
-
-ESCRIBIR LO DEL ECUALIZADOR, PORQUE ME HACE FALTA LUEGO
-\end{defi}
+\begin{observacion}\label{ecualizador}
+Cuando en la categoría $\CC$ existen los productos, la condición anterior se expresa de la manera siguiente: sean
+\[
+r=(\rho_\alpha):\calF(U)\to\prod_\alpha\calF(U_\alpha)
+\]
+y sean
+\[
+r':\prod_\alpha\calF(U_\alpha)\to\prod_{\alpha,\beta}\calF(U_\alpha\cap U_\beta)\text{ tal que }\pi_{\alpha\beta}\circ r'=\rho_{\alpha\beta}\circ \pi_{\alpha}
+\]
+\[
+r'':\prod_\alpha\calF(U_\alpha)\to\prod_{\alpha,\beta}\calF(U_\alpha\cap U_\beta)\text{ tal que }\pi_{\alpha\beta}\circ r''=\rho_{\alpha\beta}\circ \pi_{\beta}
+\]
+donde $\pi_{\alpha\beta}$ es la proyección $\prod_{\alpha,\beta}\calF(U_\alpha\cap U_\beta)\to \calF(U_\alpha\cap U_\beta)$. Entonces podemos decir que $\calF$ es un haz si el diagrama
+\[
+\begin{tikzcd}
+\calF(U)\arrow[r, "r"]&\prod_\alpha\calF(U_\alpha)\arrow[r, shift left, "r'"]\arrow[r, shift right, "r''"'] &\prod_{\alpha,\beta}\calF(U_\alpha\cap U_\beta)
+\end{tikzcd}
+\]
+es exacto, es decir, que $r$ es un monomorfismo y $\calF(U)=Eq(r',r'')$. %r es monomorfismo en el caso de las restricciones por la condición de haz
+\end{observacion}
 
 
 \begin{prop}[EGA, 0-3.2.6]\label{limite}
@@ -78,7 +96,27 @@ Supongamos que $f_i:\calG\to\calF_i$ es una familia de morfismos compatible con 
 \subsection{Prehaces sobre una base de abiertos}
 
 \begin{ej}[EGA, 0-3.2.1]\label{prehaztop}%RECUPERAR LA NOCIÓN HABITUAL DE PREHAZ A PARTIR DE LA CATEGÓRICA, GROTHENDIECK HACE HINCAPIÉ EN EL CASO DE X NOETHERIANO
-Sea $X$ un espacio topológico y $\BB$ una base de abiertos para la topología de $X$. Dotamos a esta familia de estructura de categoría considerando un morfismo por cada relación de inclusión. Consideramos entonces un prehaz $\calF:\BB^{op}\to\CC$ con valores en una categoría $\CC$. Podemos asociarle un prehaz con valores en $\CC$ en el sentido habitual, $U\mapsto \calF'(U)$ tomando para todo abierto $U$, $\calF'(U)=\varprojlim\calF(V)$, donde $V$ recorre el conjunto $\BB$ parcialmente ordenado por la inclusión para $V\subseteq U$. Sean $U,U'$ abiertos con $U\subseteq U'$ y denotamos $\rho_{VW}:\calF(V)\to\calF(W)$ las restricciones dadas por $\calF$ para $W\subseteq V$ abiertos básicos. ESTAS COSAS LAS TENGO QUE HACER Y COMPROBAR CON UN DIAGRAMA PARA VER QUE LAS COSAS VAN BIEN Definimos entonces $\rho'_{U'U}$ como el límite proyectivo (para $V\subseteq U$) de los morfimos canónicos $\calF(U)\to\calF(V)$, o lo que es lo mismo, el único morfismo $\calF'(U')\to\calF(U)$ que compuesto con los morfismos canónicos $\calF'(U)\to\calF(V)$ da los morfismos canónicos $\calF'(U')\to\calF(V)$. La verificación de la transitividad de $\rho'_{U'U}$ es inmediata. Además, si $U\in\BB$, el morfismo canónico $\calF'(U)\to\calF(U)$ es isomorfismo, permitiéndonos identificar estos dos objetos.
+Sea $X$ un espacio topológico y $\BB$ una base de abiertos para la topología de $X$. Dotamos a esta familia de estructura de categoría considerando un morfismo por cada relación de inclusión. Consideramos entonces un prehaz $\calF:\BB^{op}\to\CC$ con valores en una categoría $\CC$. Podemos asociarle un prehaz con valores en $\CC$ en el sentido habitual, $U\mapsto \calF'(U)$ tomando para todo abierto $U$, $\calF'(U)=\varprojlim\calF(V)$, donde $V$ recorre el conjunto $\BB$ parcialmente ordenado por la inclusión para $V\subseteq U$. Sean $U,U'$ abiertos con $U\subseteq U'$ y denotamos $\rho_{VW}:\calF(V)\to\calF(W)$ las restricciones dadas por $\calF$ para $W\subseteq V$ abiertos básicos.
+
+Si consideramos el sistema inductivo de abiertos básico para $U$, $(U_\alpha)$ y el sistema inductivo de abiertos básicos para $U'$, $(U'_\beta)$, como $U\subseteq U'$, para todo $U_\alpha$ existe $\beta$ tal que $U_\alpha=U'_\beta$, lo que nos da diagramas de inclusiones
+\[
+\begin{tikzcd}
+U_\alpha\arrow[rr, hookrightarrow]\arrow[ddr, hookrightarrow]\arrow[dr, hookrightarrow]& & U_\beta\arrow[dl, hookrightarrow]\arrow[ddl,hookrightarrow]\\
+& U\arrow[d, hookrightarrow]& \\
+& U' &
+\end{tikzcd}
+\]
+Lo que, en el sistema proyectivo asociado $(\calF(U_\alpha))$, nos da diagramas conmutativos de la forma
+\[
+\begin{tikzcd}
+\calF(U_\alpha)& & \calF(U_\beta)\arrow[ll, "\rho_{U_\beta U_\alpha}"']\\
+& \calF'(U)=\varprojlim\calF(U_\alpha)\arrow[ur]\arrow[ul]& \\
+& \calF'(U')=\varprojlim\calF(U'_\alpha)\arrow[u, dashed, "\rho'_{U'U}"]\arrow[uul,bend left=10] \arrow[uur,bend right=10]&
+\end{tikzcd}
+\]
+Donde $\rho'_{U'U}$ existe y es único por definición del límite proyectivo, así que definimos de esa forma las restricciones del prehaz $\calF'$.%A ESTO QUE HE HECHO YO LE VEO MÁS SENTIDO, NO SÉ SI ES ESO LO QUE QUERÍA DECIR GROTHENDIECK
+
+%Definimos entonces $\rho'_{U'U}$ como el límite proyectivo (para $V\subseteq U$) de los morfimos canónicos $\calF(U)\to\calF(V)$, o lo que es lo mismo, el único morfismo $\calF'(U')\to\calF(U)$ que compuesto con los morfismos canónicos $\calF'(U)\to\calF(V)$ da los morfismos canónicos $\calF'(U')\to\calF(V)$. La verificación de la transitividad de $\rho'_{U'U}$ es inmediata. Además, si $U\in\BB$, el morfismo canónico $\calF'(U)\to\calF(U)$ es isomorfismo, permitiéndonos identificar estos dos objetos.
 \end{ej}
 \begin{prop}[EGA, 0-3.2.2]\label{haztop}
 Para que el prehaz $\calF'$ definido en el ejemplo anterior, es necesaria y suficiente la siguiente condición sobre $\calF$:
@@ -117,7 +155,7 @@ Ahora, sea $U$ un abierto cualquiera de $X$, $(U_\alpha)$ un recubrimiento de $U
  \subsection{Caso de espacios anillados}
 
 \begin{remarque}{4.5.6}\label{prehaz}
-Llamamos \emph{prehaz} sobre una categoría $\CC$ a un functor $F:\CC^{op}\to\mathrm{Set}$. Denotamos por $\mathrm{Top}_{Ring}|_S$ a la categoría de espacios anillados sobre un espacio anillado fijo $S$, esto es la categoría cuyos objetos son morfismos en $\mathrm{Top}_{Ring}$ de la forma $X\to S$ (a los que llamamos $S$-espacios) y los morfismos son morfismos $X\to Y$ (llamados $S$-morfismos) en $\mathrm{Top}_{Ring}$ que hacen conmutativo el diagrama
+Llamamos \emph{prehaz} sobre una categoría $\CC$ a un functor $F:\CC^{op}\to\Set$. Denotamos por $\Top_{\Ring}|_S$ a la categoría de espacios anillados sobre un espacio anillado fijo $S$, esto es la categoría cuyos objetos son morfismos en $\Top_{\Ring}$ de la forma $X\to S$ (a los que llamamos $S$-espacios) y los morfismos son morfismos $X\to Y$ (llamados $S$-morfismos) en $\Top_{\Ring}$ que hacen conmutativo el diagrama
 \[
 \begin{tikzcd}
 X\arrow[r]\arrow[dr] & Y\arrow[d]\\
@@ -127,15 +165,15 @@ X\arrow[r]\arrow[dr] & Y\arrow[d]\\
 
 Un prehaz 
 \begin{equation}\label{representable}
-F:(\mathrm{Top}_{Ring}|_S)^{op}\to\mathrm{Set}
+F:(\Top_{\Ring}|_S)^{op}\to\Set
 \end{equation}
- nos da para todo $S$-espacio $X$ un prehaz de conjuntos $U\to F(U)$ sobre $X$, ya que los abiertos de $X$ tienen una estructura inducida de $S$ espacio. Cuando para todo $S$-spacio $X$ este prehaz es un haz, decimos que $F$ es un \emph{haz sobre la categoría} $\mathrm{Top}_{Ring}|_S$, noción que se puede generalizar a cualquier categoría usando la topología de Grothendieck de una categoría, aunque no la necesitaremos para nuestros propósitos. Estos functores forman una subcategoría plena de $\Hom((\mathrm{Top}_{Ring}|_S)^{op},\mathrm{Set})$ denotada $\Sh_{\mathrm{Top}_{Ring}|_S}$. Si añadimos a esto la proposición \ref{limite} y el ejemplo \ref{set}, resulta que $\Sh_{\mathrm{Top}_{Ring}|_S}$ admite límites proyectivos de sistemas proyectivos de functores que son haces sobre un mismo espacio $X$  %COGE COMO ESPACIO EL LÍMITE INVERSO COMO DIGO ARRIBA Y EL HAZ TAMBIÉN LÍMITE INVERSO. %NO SÉ SI ME HARÁ FALTA QUE EXISTAN PARA ESPACIOS DISTINTOS
+ nos da para todo $S$-espacio $X$ un prehaz de conjuntos $U\to F(U)$ sobre $X$, ya que los abiertos de $X$ tienen una estructura inducida de $S$ espacio. Cuando para todo $S$-spacio $X$ este prehaz es un haz, decimos que $F$ es un \emph{haz sobre la categoría} $\Top_{\Ring}|_S$, noción que se puede generalizar a cualquier categoría usando la topología de Grothendieck de una categoría, aunque no la necesitaremos para nuestros propósitos. Estos functores forman una subcategoría plena de $\HOM((\Top_{\Ring}|_S)^{op},\Set)$ denotada $\Sh_{\Top_{\Ring}|_S}$. Si añadimos a esto la proposición \ref{limite} y el ejemplo \ref{set}, resulta que $\Sh_{\Top_{\Ring}|_S}$ admite límites proyectivos de sistemas proyectivos de functores que son haces sobre un mismo espacio $X$  %COGE COMO ESPACIO EL LÍMITE INVERSO COMO DIGO ARRIBA Y EL HAZ TAMBIÉN LÍMITE INVERSO. %NO SÉ SI ME HARÁ FALTA QUE EXISTAN PARA ESPACIOS DISTINTOS
 
 %RECUERDA LA DEFINICIÓN DE FUNCTOR REPRESENTABLE, EN ESTE CASO EL FUNCTOR ES REPRESENTABLE PORQUE DE HECHO ES UN ELEMENTO DE HOM(A,-)
 
 Un functor representable como \ref{representable} es siempre un haz: es claro que en efecto el prehaz $U\mapsto\Hom_S(U,Z)$ sobre un espacio anillado $X$ es un haz, ya que para todo recubrimiento abierto $(U_\alpha)$ de un abierto $U\subseteq X$, dar un $S$-morfismo de $U\to Z$ equivale a dar una familia de $S$-morfismos $f_\alpha:U_\alpha\to Z$ tales que para toda pareja de índices $(\alpha,\beta)$ las restricciones de $f_\alpha$ y $f_\beta$ a $U_\alpha\cap U_\beta$ coincidan.
 
-Por el lema de Yoneda podemos decir además que tenemos un functor plenamente fiel $Z\to h_Z$ de la categoría $\mathrm{Top}_{Ring}|_S$ a la categoría $\Sh_{\mathrm{Top}_{Ring}|_S}$, que nos permite identificar la primera categoría con una subcategoría plena de la segunda %COMO UN FUNCTOR REPRESENTABLE ES SIEMPRE UN HAZ, LA IMAGEN ESENCIAL DE FUNCTOR H_Z CAE EN SH
+Por el lema de Yoneda podemos decir además que tenemos un functor plenamente fiel $Z\to h_Z$ de la categoría $\Top_{\Ring}|_S$ a la categoría $\Sh_{\Top_{\Ring}|_S}$, que nos permite identificar la primera categoría con una subcategoría plena de la segunda %COMO UN FUNCTOR REPRESENTABLE ES SIEMPRE UN HAZ, LA IMAGEN ESENCIAL DE FUNCTOR H_Z CAE EN SH
 
 
 \end{remarque}
@@ -151,15 +189,15 @@ Los resultados anterioes son válidos también en la categoría de espacios loca
 
 Notamos en primer lugar que \ref{prehaz} es válida sustituyendo la categoría de espacios anillados sobre $S$ por la categoría $\Sch|_{S}$ de esquemas sobre $S$ (donde $S$ es un esquema cualquiera) gracias a \ref{localmente}, ya que un esquema es en particular un espacio localmente anillado que puede ser obtenido por pegamiento de esquemas afines. Por tanto también es válida para la categoría $\Sch$ de todos los esquemas, que es equivalente a $\Sch_{\spec(\Z)}$. %TENDRÍA QUE DECIR QUE PEGANDO EL RECUBRIMIENTO AFÍN SALE EL ESQUEMA
 
-Consideremos por otra parte la subcategoría plena $\mathrm{\mathbf{Aff}}$ de $\Sch$ formada por los esquemas afines. Si $G:\Aff^{op}\to\Set$ es un prehaz de categorías, para todo esquema afín $X$ podemos considerar la aplicación $U\mapsto G(U)$ para todo abierto afín $U$ de $X$. Como estos abiertos forman una base $\BB_X$ de la topología de $X$ (por ejemplo tomando los de la forma $D(f)$ para $f\in A$, donde $U=\spec(A)$). La aplicación $U\mapsto G(U)$ es un prehaz sobre $\BB_X$ con valores en $\Set$, viendo $\BB_X$ como una categoría con las inclusiones de abiertos como morfismos (\ref{prehaztop}). Cuando, para todo esquema afín $X$, $U\mapsto G(U)$ es un haz sobre $\BB_X$ en el sentido de \ref{haztop} diremos entonces que $G$ es un \emph{haz} sobre la categoría $\Aff$. Los functores con esta propiedad forman una subcategoría plena de la categoría $\Hom(\Aff^{op},\Set)$ denotada $\Sh_{\Aff}$. 
+Consideremos por otra parte la subcategoría plena $\mathrm{\mathbf{Aff}}$ de $\Sch$ formada por los esquemas afines. Si $G:\Aff^{op}\to\Set$ es un prehaz de categorías, para todo esquema afín $X$ podemos considerar la aplicación $U\mapsto G(U)$ para todo abierto afín $U$ de $X$. Como estos abiertos forman una base $\BB_X$ de la topología de $X$ (por ejemplo tomando los de la forma $D(f)$ para $f\in A$, donde $U=\spec(A)$). La aplicación $U\mapsto G(U)$ es un prehaz sobre $\BB_X$ con valores en $\Set$, viendo $\BB_X$ como una categoría con las inclusiones de abiertos como morfismos (\ref{prehaztop}). Cuando, para todo esquema afín $X$, $U\mapsto G(U)$ es un haz sobre $\BB_X$ en el sentido de \ref{haztop} diremos entonces que $G$ es un \emph{haz} sobre la categoría $\Aff$. Los functores con esta propiedad forman una subcategoría plena de la categoría $\HOM(\Aff^{op},\Set)$ denotada $\Sh_{\Aff}$. 
 
 Con esto, dado un para todo prehaz $F:\Sch^{op}\to \Set$, podemos considerar su restricción $F|_{\Aff^{op}}:\Aff^{op}\to\Set$. Es claro que
 \begin{equation}\label{functor}
 F\mapsto F|_{\Aff^{op}}
 \end{equation}
-es un functor de $\Hom(\Sch^{op},\Set)$ en $\Hom(\Aff^{op},\Set)$. Vamos a ver que la restricción de este functor a la subcategoría plena $\Sh_{\Sch}$ (\ref{prehaz}) de $\Hom(\Sch^{op},\Set)$ define de hecho una equivalencia de categorías 
+es un functor de $\HOM(\Sch^{op},\Set)$ en $\HOM(\Aff^{op},\Set)$. Vamos a ver que la restricción de este functor a la subcategoría plena $\Sh_{\Sch}$ (\ref{prehaz}) de $\HOM(\Sch^{op},\Set)$ define de hecho una equivalencia de categorías 
 \begin{equation}\label{equivalencia}
-Sh_{\Sch}\cong\Sh_{\Aff}
+\Sh_{\Sch}\cong\Sh_{\Aff}
 \end{equation}
 Es claro que la imagen de $\Sh_{\Sch}$ por \ref{functor} es una subcategoría de $\Sh_{\Aff}$ en virtud de 0-3.2.2 Y COMPROBAR QUE SE CUMPLE
 
@@ -169,7 +207,7 @@ Mostramos en primer lugar que la restricción de \ref{functor} a $\Sh_{\Aff}$ es
  Falta ver que todo functor $G\in\Sh_{\Aff}$ es de la forma $F|_{\Aff^{op}}$ para un $F\in \Sh_{\Sch}$. Para ello, definimos para todo esquema $X$, $F(X)$ como el límite proyectivo de $G(U_\alpha)$ donde $(U_\alpha)$ es el sistema proyectivo de abiertos afines de $X$; y para todo morfimo de esquemas $u:X\to Y$ definimos $F(u)$ como el límite proyectivo de las aplicaciones $G(u_{\alpha\beta}):G(V_\beta)\to G(U_\alpha)$, siendo $(V_\beta)$ el sitema proyectivo de abiertos afines de $Y$, y las parejas $(\alpha,\beta)$ son solamente aquellas tales que $u(U_\alpha)\subseteq V_\beta$ y $u_{\alpha\beta}:U_\alpha\to V_\beta$ es la restricción de $u$. Verificar que $F$ es un functor es inmediato INTENTARLO. Finalmente, el hecho de que $F$ sea un haz se deduce del hecho de que los abiertos afines de $X$ forman una base para la topología de $X$ y de \ref{haztop} COMPROBAR ESTO ÚLTIMO.
  
  
- Vimos que la categoría $\Aff^{op}$ es canónicamente equivalente a la categoría $\mathrm{\mathbf{Ring}}$ de anillos. Esta equivalencia define también una equivalencia de categorías $\Hom(\Aff^{op},\Set)\cong \Hom(\mathrm{\mathbf{Ring}},\Set)$. Diremos por abuso de lenguaje que que un functor (covariante) $\mathrm{\mathbf{Ring}}\to\Set$ es un \emph{haz} si su imagen por la equivalencia anterior es un haz sobre $\Aff$. Notamos por $\Sh_{\mathrm{\mathbf{Ring}}}$ a la categoría de estos haces. Teniendo en cuenta que, para todo anillo $A$, el conjunto de abiertos afines $D(f)=\spec(A_f)$ forma una base de la topología de $\spec(A)$, podemos además, en virtud de \ref{haztop} DICE 3.2.2 PERO CREO QUE ES LO QUE TENGO MÁS ARRIBA, expresar que el functor $F:\mathrm{\mathbf{Ring}}\to\Set$ pertenece a $\Sh_{\mathrm{\mathbf{Ring}}}$ diciendo que, para toda familia $(f_i)_{i\in I}$ de elementos de $A$ tales que $\sum_i \gene{f_i}=A$, el diagrama de conjuntos
+ Vimos que la categoría $\Aff^{op}$ es canónicamente equivalente a la categoría $\mathrm{\mathbf{Ring}}$ de anillos. Esta equivalencia define también una equivalencia de categorías $\HOM(\Aff^{op},\Set)\cong \HOM(\mathrm{\mathbf{Ring}},\Set)$. Diremos por abuso de lenguaje que que un functor (covariante) $\mathrm{\mathbf{Ring}}\to\Set$ es un \emph{haz} si su imagen por la equivalencia anterior es un haz sobre $\Aff$. Notamos por $\Sh_{\mathrm{\mathbf{Ring}}}$ a la categoría de estos haces. Teniendo en cuenta que, para todo anillo $A$, el conjunto de abiertos afines $D(f)=\spec(A_f)$ forma una base de la topología de $\spec(A)$, podemos además, en virtud de \ref{haztop} y la observación \ref{ecualizador}, expresar que el functor $F:\mathrm{\mathbf{Ring}}\to\Set$ pertenece a $\Sh_{\mathrm{\mathbf{Ring}}}$ diciendo que, para toda familia $(f_i)_{i\in I}$ de elementos de $A$ tales que $\sum_i \gene{f_i}=A$, el diagrama de conjuntos
  \[F(A)\to\prod_i F(A_{f_i})\rightrightarrows F(A_{f_if_j})\]
 es exacto. Este diagrama proviene del diagrama exacto
 \[

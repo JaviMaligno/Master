@@ -1183,8 +1183,45 @@ $\oplus_iH_*(X_i,A_i;\pi)\to H_*(X,A;\pi)$.
 
 Una equivalencia débil entre espacios topológicos es una aplicación $f:X\to Y$ que induce isomorfismos en homotopía. Una aplicación de pares es una equivalencia débil si lo es en cada coordenada. En el caso de CW-complejos este último axioma es redundante, ya que por el teorema de Whitehead, cualquier equivalencia débil entre CW-complejos es equivalencia de homotopía, por lo que se puede excluir del teorema en este caso, como también observa May, quedando la teoría de CW-complejos determinada por y determinando la teoría general. También se puede prescindir en general del axioma de dimensión, que da lugar a las conocidas como teorías \emph{extraordinarias} de homología. 
 
+\section{Aplicaciones clásicas}
 
-ALOMEJOR PONER LO DE BORSUK-ULAM EN ALGÚN LAO
+Recordemos que un \emph{embedding} es una aplicación que es homeomorfismo sobre su imagen.
+
+\begin{prop}\
+\begin{enumerate}[(a)]
+\item
+ Para un embedding $h:D^k\to S^n$, $\widetilde{H}_i(S^n-h(D^k))=0$ para todo $i$.
+\item 
+ Para un embedding $h:S^k\to S^n$, $k<n$, $\widetilde{H}_i(S^n-h(S^k))$ es $\Z$ para $i=n-k-1$ y 0 en otro caso.
+\end{enumerate}
+\end{prop}
+\begin{dem}\
+\begin{enumerate}[(a)]
+\item Lo probamos por inducción en $k$. Para $k=0$, $S^n-h(D^0)$ es homeomorfo a $\R^n$, por lo que este caso es trivial. Para el paso inductivo reemplazamos $D^k$ por el cubo $I^k$. Sea $A=S^n-h(I^{k-1}\times[0,1/2])$ y sea $B=S^n-h(I^{k-1}\times[1/2,1])$, de modo que $A\cap B=S^n-h(I^k)$ y $A\cup B=S^n-h(\{1/2\})$. Por hipótesis de inducción $\widetilde{H}_i(A\cup B)=0$ para todo $i$, por lo que la sucesión de Mayer-Vietoris da isomorfismos $\phi:\widetilde{H}_i(S^n-h(I^k))\to \widetilde{H}_i(A)\oplus\widetilde{H}_i(B)$ para todo $i$. Módulo signos, las dos componentes de $\phi$ están inducidas por las inclusiones $S^n-h(I^k)\hookrightarrow A$ y $S^n-h(I^k)\hookrightarrow B$, por lo que si existe un ciclo $i$-dimensional $\alpha$ en $S^n-h(I^k)$ que no es un borde en $S^n-h(I^k)$, entonces $\alpha$ tampoco es un borde en al menos uno de entre $A$ y $B$ (cuando $i=0$, nos referimos a ciclo del complejo aumentado porque estamos en homología reducida). Entonces podemos producir iterativamente una sucesión anidada de intervalos cerrados $I_1\supset I_2\supset\cdots$ aplastando la última coordenada a un punto $p\in I$, de modo que $\alpha$ no es un borde en $S^n-h(I^{k-1}\times I_m)$ para ningún $m$. Por otro lado, por inducción en $k$ sabemos que $\alpha$ es borde de una cadena $\beta$ en $S^n-h(I^{k-1}\times\{p\})$. Este $\beta$ es una combinación lineal finita de simplices singulares con imagen compacta en $S^n-h(I^{k-1}\times\{p\})$. La unión de estas imágenes queda cubierta por la sucesión anidada de abiertos $S^n-h(I^{k-1}\times I_m)$, así que por compacidad $\beta$ debe ser en realidad una cadena en $S^n-h(I^{k-1}\times I_m)$ para algún $m$. Esta contradicción muestra que $\alpha$ debe ser un borde en $S^n-h(I^k)$, lo que finaliza el paso de inducción.
+
+\item Lo probamos también por inducción en $k$. En el caso $k=0$, $S^n-h(S^0)$ es homeomorfo a $S^{n-1}\times\R$, por lo que es trivial. Para el paso inductivo, descomponemos $S^k$ como unión de hemisferios $D^k_+$ y $D^k_-$ intersecando en $S^{k-1}$. La sucesión de Mayer-Vietoris para $A=S^n-h(D^k_+)$ y $B=S^n-h(D^k_-)$, que tienen ambos homología reducida trivial por (a), nos da isomorfismos $\widetilde{H}_i(S^n-h(S^k))\cong\widetilde{H}_{i+1}(S^n-h(S^{k-1})$. 
+\end{enumerate}
+\end{dem}
+
+Si aplicamos la prueba de (b) al caso $n=k$, es decir, a un embedding $h:S^n\to S^n$, la sucesión de Mayer-Vietoris aparentemente terminaría con $\widetilde{H}_0(A)\oplus \widetilde{H}_0(B)\to \widetilde{H}_0(S^n-h(S^{n-1}))\to 0$, implicando que $\widetilde{H}_0(S^n-h(S^{n-1}))=0$, una contradicción con que tiene dos componentes conexas por caminos. La única forma de salir de esta contradicción es que $h$ sea sobreyectiva, de modo que $A\cap B=\emptyset$ y por tanto la sucesión acaba en $\widetilde{H}_{-1}(\emptyset)=\Z$. En particular, esto prueba que $S^n$ no puede ser embebida en $\R^n$, puesto que esto daría lugar a un embedding no sobreyectivo en $\R^n$.
+
+
+\begin{ej}[Esfera cornuda de Alexander]
+Este es un espacio $S\subseteq\R^3$ homeomorfo a $S^2$ tal que la componente no acotada de $\R^3-S$ no es simplemente conexa, al contrario de lo que ocurre con $S^2$. Construimos $S$ definiendo una sucesión de subespacios compactos $X_0\supset X_1\supset\cdots$ en $\R^3$ cuya intersección es homeomorfa a una bola, y entonces $S$ será su borde. 
+
+Empezamos con $X_0$ un toro sólido $S^1\times D^2$ obtenido a partir de una bola $B_0$ pegándole un mango $I\times D^2$ entorno a $\partial I\times D^2$. En la figura este mango se muestra como la unión de dos ``cuernos'' pegados a la bola, junto con un cilindro dibujado con líneas discontinuas.
+
+\begin{figure}
+\includegraphics[scale=0.6]{horned}
+\end{figure}
+
+Para formar el espacio $X_1\subset X_0$ borramos parte del cilindro discontinuo, de modo que lo que queda es un par de mangos entrelazados pegados a una bola $B_1$  que es la unión de $B_0$ con los dos cuernos. Para construir $X_2$ repetimos el proceso en cada uno de los mangos que surgen. De la misma forma se construye $X_n$ a partir de $X_{n-1}$. Por tanto, $X_n$ es una bola $B_n$ con $2^n$ mangos pegados, y $B_n$ se obtiene de $B_{n-1}$ pegándole $2^n$ cuernos. Hay homeomorfismos $h_n:B_{n-1}\to B_n$ que son la identidad fuera de un pequeño entorno de $B_n-B-{n-1}$. A medida que $n$ va a infinito, la composición $h_n\cdots h_1$ se aproxima a una aplicación $f:B_0\to\R^3$ que es continua ya que la convergencia es uniforme. El conjunto de puntos de $B_0$ donde $f$ no es igual a $h_n\cdots h_1$ para $n$ grande es un conjunto de Cantor, cuya imagen mediante $f$ es la intersección de todos los mangos. No es difícil ver que $f$ es inyectiva. Por compacidad se sigue que $f$ es un homeomorfismo sobre su imagen\footnote{\url{https://proofwiki.org/wiki/Continuous_Bijection_from_Compact_to_Hausdorff_is_Homeomorphism}}, una bola $B\subset\R^3$ cuyo borde $f(\partial B_0)$ es la esfera cornuda de Alexander $S$.
+
+
+LA PRUEBA DE QUE NO ES SIMPLEMENTE CONEXO ME GUSTARÍA AÑADIRLA SI TENGO TIEMPO, SI NO DE TODOS MODOS CITARLA  
+\end{ej}
+
+ALOMEJOR PONER LO DE BORSUK-ULAM EN ALGÚN LAO. LO DE DIVISION ÁLGEBRAS ESTÁ GUAY, DEBERÍA PONERLO ALGÚN DÍA
 %XFIG PROGRAMA (EN PRINCIPIO PARA LINUX, GENERA EPS) REQUIERE PAQUETE PSFRAC, HAY QUE CARGARLO EN UN ORDEN ESPECIAL. 
 
 
