@@ -73,7 +73,7 @@ donde cada $F_n$ es libre. Si dualizamos esta resolución libre aplicando $\Hom(
 \]
 Usamos la notación $H^n(F;G)$ para el grupo de homología $\ker f_{n+1}^*/\Ima f_n^*$. Nótese que el grupo $\coker i_{n-1}^*$ en el que estamos interesados es $H^1(F;G)$ donde $F$ es la resolución libre en \ref{vi}. El apartado (b) del siguiente lema muestra que $\coker i_{n-1}^*$ depende solo de $H_{n-1}(\CC)$ y $G$.
 
-\begin{lemma}\
+\begin{lemma}\label{3.1}\
 \begin{enumerate}[(a)]
 \item Ddas resoluciones libres $F$ y $F'$ de grupos abelianos $H$ y $H'$, entonces todo homomorfismo $\alpha:H\to H'$ puede ser extendido a una aplicación de complejos de cadenas de $F$ a $F'$:
 \[
@@ -106,8 +106,8 @@ Calcular $\mathrm{Ext}(H,G)$ para un grupo abeliano finitamente generado $H$ no 
 El primero de los resultados se puede obtener usando la suma directa de resoluciones libres de $H$ y $H'$ como resolución libre de $H\oplus H'$. Si $H$ es libre, la resolución libre $0\to H\to H\to 0$ da lugar a la segunda propiedad, mientras que la tercera se obtiene de dualizar la resolución libre $0\to\Z\xrightarrow{n}\Z\to\Z_n\to 0$ para producir una sucesión exacta
 \[
 \begin{tikzcd}
-0 & \Ext(\Z_n,G)\arrow[l]\arrow[d,equals] & \Hom(\Z,G)\arrow[l]\arrow[d, equals] &\Hom(\Z,G)\arrow[l, "n"] & \Hom(\Z_n,G)\arrow[l] & 0\arrow[l]\\
-& G/nG &G\arrow[l] & G\arrow[l, "n"]
+0 & \Ext(\Z_n,G)\arrow[l]\arrow[d,equals] & \Hom(\Z,G)\arrow[l]\arrow[d, equals] &\Hom(\Z,G)\arrow[l, "n"' ] & \Hom(\Z_n,G)\arrow[l] & 0\arrow[l]\\
+& G/nG &G\arrow[l] & G\arrow[l, "n"']\arrow[u, equals]
 \end{tikzcd}
 \]
 En particular, estas tres propiedades implican que $\Ext(H,\Z)$ es isomorfo al subgrupo de torsión de $H$ si $H$ es finitamente generado. Como $\Hom(H,\Z)$ es isomorfo a la parte libre de $H$ si $H$ es finitamente generado, tenemos
@@ -117,6 +117,31 @@ Si $H_n$ es la homología del complejo de cadenas de grupos abelianos finitament
 H^n(\CC;\Z)\cong (H_n/T_n)\oplus T_{n-1}.
 \]
 \end{coro} 
+
+Es útil saber que las sucesiones exactas en el teorema de coeficientes universales son naturales en el sentido de que un morfismo de complejos de cadenas de grupos abelianos libres $\alpha:\CC\to\CC'$ induce un diagrama conmutativo
+\[
+\begin{tikzcd}
+0\arrow[r] & \Ext(H_{n-1}(\C),G)\arrow[r] & H^n(\CC;G)\arrow[r, "h"] & \Hom(H_n(\CC),G)\arrow[r] & 0\\
+0\arrow[r] & \Ext(H_{n-1}(\C),G)\arrow[u, "(\alpha_\sharp)^*"]\arrow[r] & H^n(\CC;G)\arrow[u, "\alpha^*"]\arrow[r] & \Hom(H_n(\CC),G)\arrow[u, "(\alpha_\sharp)^*"]\arrow[r] & 0
+\end{tikzcd}
+\]
+Recordemos que los extremos son respectivamente $\coker i_{n-1}^*$ y $\ker i_n^*$ en cada complejo de cadenas. La identificación $\ker i_n^*=\Hom(H_n(\CC),G)$ es natural, y la prueba del lema \ref{3.1} muestra que $\Ext(H,G)$ depende naturalmente de $H$. Sin embargo, la escisión depende de la elección de las proyecciones $p:C_n\to Z_n$ y de hecho no se puede hacer natural.
+
+La naturalidad junto con el lema de los cinco prueba:
+\begin{coro}
+Si $\alpha:\CC\to\CC'$ es un morfismo de complejos de cadenas de grupos libres abelianos que induce isomorfismos en homología, entonces $\alpha$ induce isomorfismos en cohomología con coeficientes en cualquier grupo $G$.
+\end{coro}
+
+Podemos generalizar estos resultados a $R$-módulos cuando $R$ es dominio de ideales principales (DIP), pues en tal caso los submódulos de un módulo libre son de nuevo libres. Ejemplos de DIP son los cuerpos, $\Z$ y $\Z G$ para cualquier grupo finitamente presentado $G$ ¿QUÉ SIGNIFICA AQUÍ ESO ÚLTIMO, ¿GROUP ALGEBRA?
+
+Siguiendo la construcción hecha anteriormente obtenemos sucesiones exactas cortas escindibles
+\[
+0\to\Ext_R(H_{n-1}(\CC),G)\to H^n(\CC;G)\xrightarrow{h}\Hom_R(H_n(\CC),G)\to 0
+\]
+donde $\CC$ es un complejo de cadenas de $R$-módulos libres finitamente generados y homomorfismos de $R$-módulos con bordes. El grupo de coeficientes es también un $R$-módulo. Si $R$ es cuerpo, todos los $R$-módulos son libres y por tanto $\Ext_R$ es siempre 0 porque podemos elegir resoluciones libres de la forma $0\to F_0\to H\to 0$, con lo que en este caso $H^n(\CC,G)\cong\Hom_R(H_n(\CC),G)$.
+
+Es interesante notar que la prueba del lema \ref{3.1} es válida para cualquier anillo $R$. Además, todo $R$-módulo tiene una resolución libre que puede ser construida de la misma forma que lo hicimos para grupos abelianos. Denotando $\Ext^n_R(H,G)$ a $H^n(F;G)$ donde $F$ es cualquier resolución libre de $H$, para algunos anillos $\Ext^n_R(H,G)$ puede ser no trivial para $n>1$. Sin embargo, como $\Ext^0_R(H,G)$ sería automáticamente 0 por la exactitud a la derecha, se suele definir $H^n(F;G)$ como la $n$-ésima homología del complejo $\cdots\leftarrow F_1^*\leftarrow F_0^*\leftarrow 0$, omitiendo el término $H^*$. Esto se puede ver como definir $H^n(F;G)$ como el grupo de homología no reducida. Con esta definición tenemos $\Ext^0_R(H,G)=H^0(F;G)=H^*=\Hom_R(H,G)$ por la exactitud de $\cdots\leftarrow F_1^*\leftarrow F_0^*\leftarrow H^*\leftarrow 0$. 
+
 
 \section{Ejercicios}
 \begin{ejer}
