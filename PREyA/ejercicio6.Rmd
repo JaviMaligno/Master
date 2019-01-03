@@ -50,7 +50,6 @@ $$
 dado que R no nos permite trabajar con variables genéricas, vamos a crear una función que nos dé para cada valor de $q$ la cadena de markov correspondiente. 
 
 ```{r pressure, message=FALSE}
-
 matrizp = function(q) {
   estados <- c("1", "2", "3","4")
   cmatrix <- matrix(data = c(1-q,q,0,0,0,0,q,1-q,0,1,0,0,1-q,0,0,q),
@@ -59,7 +58,6 @@ matrizp = function(q) {
   mclist<-new("markovchainList",markovchains=list(maquina),name="list")
   return(maquina)
 }
-
 ```
 Usando el comando plot de R podemos generar algunas visualizaciones del diagrama de transición para distintos valores de $q$. Sin embargo, es claro que la conectividad entre los ditintos estados no cambia, pues no ninguna entrada de la matriz de transición es un u polinomio en $q$ con raíces en $(0,1)$, luego basta con que representemos el caso $q=1/2$.
 ```{r lars, echo = FALSE}
