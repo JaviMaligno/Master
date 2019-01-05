@@ -111,7 +111,7 @@ El primero de los resultados se puede obtener usando la suma directa de resoluci
 \end{tikzcd}
 \]
 En particular, estas tres propiedades implican que $\Ext(H,\Z)$ es isomorfo al subgrupo de torsión de $H$ si $H$ es finitamente generado. Como $\Hom(H,\Z)$ es isomorfo a la parte libre de $H$ si $H$ es finitamente generado, tenemos
-\begin{coro}
+\begin{coro}\label{3.3}
 Si $H_n$ es la homología del complejo de cadenas de grupos abelianos finitamente generados $\CC$ y $T_n\subseteq H_n$ es el subgrupo de torsión, entonces
 \[
 H^n(\CC;\Z)\cong (H_n/T_n)\oplus T_{n-1}.
@@ -142,6 +142,27 @@ donde $\CC$ es un complejo de cadenas de $R$-módulos libres finitamente generad
 
 Es interesante notar que la prueba del lema \ref{3.1} es válida para cualquier anillo $R$. Además, todo $R$-módulo tiene una resolución libre que puede ser construida de la misma forma que lo hicimos para grupos abelianos. Denotando $\Ext^n_R(H,G)$ a $H^n(F;G)$ donde $F$ es cualquier resolución libre de $H$, para algunos anillos $\Ext^n_R(H,G)$ puede ser no trivial para $n>1$. Sin embargo, como $\Ext^0_R(H,G)$ sería automáticamente 0 por la exactitud a la derecha, se suele definir $H^n(F;G)$ como la $n$-ésima homología del complejo $\cdots\leftarrow F_1^*\leftarrow F_0^*\leftarrow 0$, omitiendo el término $H^*$. Esto se puede ver como definir $H^n(F;G)$ como el grupo de homología no reducida. Con esta definición tenemos $\Ext^0_R(H,G)=H^0(F;G)=H^*=\Hom_R(H,G)$ por la exactitud de $\cdots\leftarrow F_1^*\leftarrow F_0^*\leftarrow H^*\leftarrow 0$. 
 
+
+\section{Cohomología de espacios}
+
+Dado un espacio $X$ y un grupo abeliano $G$, definimos el grupo $C^n(X;G)$ de \emph{$n$-cocadenas singulares con coeficientes en $G$} como el grupo dual $\Hom(C_n(X),G)$ del grupo de cadenas singulares $C_n(X)$. PREGUNTAR COMO AFECTA LA HOMOLOGÍA CON COEFICIENTES A TODO ESTO. El operador \emph{coborde} $\delta:C^n(X;G)\to C^{n+1}(X;G)$ es el dual $d^*$ de $d:C_{n+1}(X)\to C_n(X)$, es decir, para cada $\varphi\in C^n(X;G)$, $\delta\varphi=\varphi d$. Es inmediato a partir de esto que $\delta^2=0$, ya que $\delta^2$ es el dual de $d^2=0$. Por tanto, definimos el \emph{grupo de cohomología} $H^n(X;G)$ \emph{con coeficientes en $G$} como el cociente $\ker\delta/\Ima\delta$ en grado $n$, es decir, en $C^{n-1}(X;G)\to C^n(X;G)\to C^{n+1}(X;G)$.
+
+Los elementos de $\ker\delta$ se llaman \emph{cociclos} y los elementos de $\Ima\delta$ \emph{cobordes}. Que un elemento $\varphi$ sea un cociclo significa que $\delta\varphi=\varphi d=0$, o en otras palabras, que $\varphi$ se anule en los bordes.
+
+Como los grupos $C^n(X)$ son libres, el teorema de coeficientes universales es aplicable y obtenemos las sucesiones exactas cortas escindibles
+\[0\to \Ext(H_{n-1}(X),G)\to H^n(X;G)\to\Hom(H_n(X),G)\to 0\]
+
+Si los grupos de homología de $X$ están finitamente generados, entonces el corolario \ref{3.3} nos dice cómo calcular los grupos de cohomología $H^n(X;\Z)$ a partir de los grupos de homología.
+
+Cuando $n=0$, no hay término con $\Ext$, y el teorema de los coeficientes universales se reduce a un isomorfismo $H^0(X;G)\cong \Hom(H_0(X),G)$. Esto se puede ver también directamente de la definición. Como los 0-símplices singulares son simplemente puntos de $X$, una cocadena en $C^0(X;G)$ es una función arbitraria $\varphi:X\to G$. Que sea un cociclo significa que para cada 1-símplice singular $\sigma:[v_0,v_1]\to X$, tenemos que $\delta\varphi(\sigma)=\varphi(d\sigma)=\varphi(\sigma(v_1))-\varphi(\sigma(v_0))=0$. Esto es equivalente a decir que $\varphi$ es constante en cada componente conexa por caminos de $X$. Por tanto, $H^0(X;G)$ es el conjunto de todas las funciones de componetes conexas de $X$ en $G$, que es lo mismo que $\Hom(H_0(X),G)$. 
+
+Del mismo modo, en el caso de $H^1(X;G)$ el teorema de coeficientes universales da un isomorfismo $H^1(X;G)\cong\Hom(H_1(X),G)$ al ser $\Ext(H_0(X),G)=0$ por ser $H_0(X)$ libre. Si $X$ es conexo po rcaminos, $H_1(X)$ es la abelianización de $\pi_1(X)$ y podemos identificar $\Hom(H_1(X),G)$ con $\Hom(\pi_1(X),G)$ al ser $G$ abeliano.
+
+El teorema de los coeficientes universales tiene una forma más simple con coeficientes en un cuerpo $F$ tanto para homología como para cohomología. En el anterior capítulo definimos los grupos de cohomología $H_n(X;F)$ como los grupos de homología del comlejo de cadenas de $F$-módulos libres $C_n(X;F)$, donde $C_n(X;F)$ tiene como base los $n$-símplices singulares en $X$. El complejo dual $\Hom_F(C_n(X;F),F)$ de homomorfismos de $F$-módulos es lo mismo que $\Hom(C_n(X),F)$, ya que ambos pueden ser identificados con las funciones de $n$-símplices singulares a $F$. Por tanto, lso grupos de homología del complejo dual son los grupso de cohomología $H^n(X;F)$. En la generalización del teorema de coeficientes universales al caso de módulos sobre un dominio de ideales principales, $\Ext_F$ se anula al ser $F$ un cuerpo, por lo que obtenemos isomorfismos
+\[
+H^n(X;F)\cong \Hom_F(H_n(X;F),F)
+\]
+Por tanto, con coeficientes sobre un cuerpo, la cohomología es exactamente el dual de la homología. Nótese que cuando $F=\Z_p$ o $\Q$, se tiene que $\Hom_F(H,G)=\Hom(H,G)$ (homomorfismos de grupos) para $F$-módulos arbitrarios $G$ y $H$. ESTO ME GUSTARÍA SABER POR QUÉ, PENSARLO SI TENGO TIEMPO 
 
 \section{Ejercicios}
 \begin{ejer}
