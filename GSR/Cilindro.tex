@@ -129,6 +129,7 @@
 \lhead{Curso 2018/2019}
 
 \begin{document}
+
 \begin{titlepage}
 	\centering
 	{\huge\bfseries Geometría Semi-Riemanniana \par}
@@ -139,11 +140,15 @@
 	\vspace{1cm}
 	{\large \today\par}
 	\vspace{1cm}
+	\includegraphics[width=13cm]{cilindro.png}
 
 \begin{abstract}
 \normalsize
 Este trabajo consiste en desarrollar un ejemplo en el que se repasan los principales conceptos sobre Variedades Diferenciables y Geometría Riemanniana, concretamente el cilindro. 
 \end{abstract}
+
+
+
 
 	\vfill
 	{\small Esta obra está licenciada bajo la Licencia Creative Commons Atribución 3.0 España. Para ver una copia de esta licencia, visite \url{http://creativecommons.org/licenses/by/3.0/es/} o envíe una carta a Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
@@ -172,7 +177,7 @@ Bajo las condiciones siguientes:
 
 \section{Dos estructuras de variedad diferenciable compatibles}
 
-Definimos el cilindro de radio $r$ como el subespacio euclídeo $C=\{(x,y,z)\in\R^3\mid x^2+y^2=r^2\}$. En este trabajo nos vamos a quedar en el caso $r=1$ por sencillez, pero todos los resultados son análogos para cualquier $r>0$. Vamos a ver que podemos dotar al cilindro de al menos dos estructuras diferenciables compatibles. Será útil recordar que hay una parametrización del cilindro $p:(0,2\pi)\times\R\to C$ dada por $p(\theta,t)=(\cos\theta,\sin\theta, t)$ y que podemos cubrir el cilindro por completo añadiendo otra parametrización igual cambiando el intervalo $(0,2\pi)$ por $(-\pi,\pi)$. 
+Definimos el cilindro de radio $r$ como el subespacio euclídeo $C=\{(x,y,z)\in\R^3\mid x^2+y^2=r^2\}$. Con esta definición obtenemos que el cilindro es un espacio topológico T2 y 2º Numerable, al heredar estas propiedades de $\R^3$.  En este trabajo nos vamos a quedar en el caso $r=1$ por sencillez, pero todos los resultados son análogos para cualquier $r>0$. Vamos a ver que podemos dotar al cilindro de al menos dos estructuras diferenciables compatibles. Será útil recordar que hay una parametrización del cilindro $p:(0,2\pi)\times\R\to C$ dada por $p(\theta,t)=(\cos\theta,\sin\theta, t)$ y que podemos cubrir el cilindro por completo añadiendo otra parametrización igual cambiando el intervalo $(0,2\pi)$ por $(-\pi,\pi)$. 
 
 \subsection{Primera estructura}
 %Como sabemos por los cursos del Grado y además es fácil comprobar, el cilindro $C$ está parametrizado por $\varphi^{-1}:(-\pi,\pi)\times\R\to C$, donde $\varphi^{-1}(\theta,t)=(\cos\theta,\sin\theta, t)$. Para cubrir todo el cilindro necesitamos otra parametrización más, $\psi^{-1}:(0,2\pi)\times\R\to C$ definida de la misma forma que $\varphi^{-1}$. Por tanto, para dotar al cilindro de estructura de variedad diferenciable basta tomar las inversas de estas parametrizaciones. Denotamos $r_\varphi$ y $r_\psi$ respectivamente a las rectas verticales que dejan sin cubrir las parametrizaciones $\varphi^{-1}$ y $\psi^{-1}$. Sea entonces $\varphi:C\setminus r_\varphi\to(-\pi,\pi)\times\R$ dada por $\varphi(x,y,z)=(\arccos x-\pi, z)$ y $\psi:C\setminus r_\psi\to(0,2\pi)\times\R$ dada por $\psi(x,y,z)=(\arccos x, z)$. Las cartas están claramente relacionadas, ya que el cambio de cartas es simplemente el desfase de ángulo entre una y otra. 
@@ -224,7 +229,7 @@ Observamos que las inversas tienen todas la misma expresión, que es la de la ca
 
 %Obsérvese que la estructura de variedad diferenciable anterior que le hemos dado al cilindro coincide salvo elección de dominio con las estructuras que tiene como variedad producto $S^1\times \R$, como superficie de revolución generada por la recta $\alpha(t)=(1,0,t)$ y como superficie reglada generada por la curva $\alpha(\theta)=(\cos\theta,\sin\theta, 0)$ y el vector $(0,0,1)$. Así que podríamos dar cualquiera de estas estructuras y sería trivialmente compatible con la anterior. De modo que vamos a dar otra diferente que no sea tan trivial.
 
-Consideremos la aplicación $\psi^{-1}:\R^2 \setminus\{0\}\to C$ dada por $$\psi^{-1}(x,y)=\left(\frac{x}{\sqrt{x^2+y^2}},\frac{y}{\sqrt{x^2+y^2}}, \log\sqrt{x^2+y^2} \right),$$ consistente en transformar las semirrectas que parten del origen de $\R^2$ en las líneas verticales del cilindro. Esta aplicación es claramente diferenciable como aplicación $\R^2\to\R^3$, y vamos a ver que tiene una inversa diferenciable, que será la carta que formará el nuevo atlas diferenciable. Basta tomar $\psi:C\to\R^2\setminus\{0\}$ definida como $$\psi(x,y,z)=(xe^z,ye^z).$$ 
+Consideremos la aplicación $\psi^{-1}:\R^2 \setminus\{0\}\to C$ dada por $$\psi^{-1}(x,y)=\left(\frac{x}{\sqrt{x^2+y^2}},\frac{y}{\sqrt{x^2+y^2}}, \log\sqrt{x^2+y^2} \right),$$ consistente en transformar las semirrectas que parten del origen de $\R^2$ en las líneas verticales del cilindro. Esta aplicación es claramente diferenciable como aplicación $\R^2\{0\}\to\R^3$, y vamos a ver que tiene una inversa diferenciable, que será la carta que formará el nuevo atlas diferenciable. Basta tomar $\psi:C\to\R^2\setminus\{0\}$ definida como $$\psi(x,y,z)=(xe^z,ye^z).$$ 
 
 \subsection{Compatibilidad}
 
@@ -257,7 +262,7 @@ Damos dos ejemplos de aplicaciones diferenciables del cilindro en sí mismo y ot
 
 \item La primera es la que ``le da la vuelta'' al cilindro, es decir, $f:C\to C$ descrita como $f(x,y,z)=(x,y,-z)$. Esta aplicación se puede describir como $Id_{S^1}\times -Id_{\R}:S^1\times\R\to S^1\times\R$. Como cada componente es claramente diferenciable, $f$ es diferenciable. 
 
-\item El segundo ejemplo será una rotación de ángulo $\alpha$, la cual viene dada por la aplicación $g:C\to C$, $g(\cos\theta,\sin\theta, t)=(\cos(\theta+\alpha), \sin(\theta+\alpha), t)$. Se comprueba que al hacer la composición $\psi\circ g\circ \psi^{-1}$ el resultado es diferenciable por ser las componentes producto y composición de funciones diferenciables. 
+\item El segundo ejemplo será una rotación de ángulo $\alpha$, la cual viene dada por la aplicación $g:C\to C$, $g(\cos\theta,\sin\theta, t)=(\cos(\theta+\alpha), \sin(\theta+\alpha), t)$. Se comprueba que al hacer la composición $\varphi_j\circ g\circ \varphi^{-1}_i$ el resultado es diferenciable por ser las componentes producto y composición de funciones diferenciables para cualesquiera $i,j\in\{1,2,3,4\}$. El hecho de que no sea el mismo índice para las dos cartas se debe a que la rotación puede cambiar la carta donde se encontraba el punto antes de la rotación. 
 
 \item Para esta última aplicación sea $K$ el cono (sin vértice) cuya ecuación implícita es $$x^2+y^2=z^2$$ para $z\neq 0$. Damos la aplicación $h:K\to C$ definida por $x\mapsto \frac{x}{z}, y\mapsto \frac{y}{z}, z\mapsto z$. Es claro que la aplicación está bien dedinida y la imagen está contenida en el cilindro. Ahora, para que tenga sentido hablar de diferenciabilidad, convertimos el cono en una variedad diferenciable mediante las parametrizaciones $\widetilde{\psi}_1^{-1}:(0,2\pi)\times\R^*\to K$ y $\widetilde{\psi}_2^{-1}:(-\pi,\pi)\times\R^*\to K$ definidas ambas por la correspondencia $(s,t)\mapsto (t\cos s, t\sin s, t)$. Vemos que, en el dominio correspondiente, la composición $\psi\circ h\circ \widetilde{\psi}_i^{-1}$ tiene para $i=1,2$  la expresión $(\cos(s)e^t, \sin(s)e^t, e^t)$, que es claramente diferenciable. 
 
@@ -287,7 +292,7 @@ Damos ahora también dos ejemplos de funciones diferenciables.
 
 
 
-Vamos a dar dos ejemplos de curvas que luego veremos que son geodésicas y uno que se verá que no es geodésica, y calcularemos vectores tangentes a la variedad en puntos por los que pasan estas curvas. Usaremos el sistema de coordenadas de una sola carta $(C, \psi=(x_1,x_2))$ para calcular las coordenadas de los vectores tangentes mediante su expresión local.
+Vamos a dar dos ejemplos de curvas que luego veremos que son geodésicas y uno que se verá que no es geodésica (aunque no lo probaremos), y calcularemos vectores tangentes a la variedad en puntos por los que pasan estas curvas. Usaremos el sistema de coordenadas de una sola carta $(C, \psi=(x_1,x_2))$ para calcular las coordenadas de los vectores tangentes mediante su expresión local.
 
 %\begin{enumerate}
 %
