@@ -240,7 +240,7 @@ s.a.& \;a\geq \max_{i=1,\dotsc,n}\norm{x-a_i}_2\\
 Lo cual es equivalente a
 \begin{align*}
 \min &\; a\\
-s.a.:& \;z\geq \norm{x-a_i}_2 \quad \forall i = 1,\dotsc,n\\
+s.a.:& \;a\geq \norm{x-a_i}_2 \quad \forall i = 1,\dotsc,n\\
 &\;(a,x)\in \R^3
 \end{align*}
 Finalmente, podemos escribir el problema como un SOCP. Sea 
@@ -259,8 +259,8 @@ s.a.:& \; \norm{Az-a_i}_2\leq e_1 z \quad \forall i = 1,\dotsc,n\\
 Por tanto, el dual es
 \begin{align*}
 \max &\; \sum_{i=1}^n a_i'u_i  \\
-s.a.:& \; e_1 + \sum_{i=1}^n A'u_i + e_1 v_i\\
-&\;\norm{u_i}\leq v_i\\
+s.a.:& \; e_1 + \sum_{i=1}^n (A'u_i + e_1 v_i) = 0\\
+&\;\norm{u_i}_2\leq v_i\\
 &\;u_i\in \R^2,\; v_i \in \R
 \end{align*}
 \end{solucion}
