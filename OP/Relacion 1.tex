@@ -260,8 +260,16 @@ Por tanto, el dual es
 \begin{align*}
 \max &\; \sum_{i=1}^n a_i'u_i  \\
 s.a.:& \; e_1 + \sum_{i=1}^n (A'u_i + e_1 v_i) = 0\\
-&\;\norm{u_i}_2\leq v_i\\
-&\;u_i\in \R^2,\; v_i \in \R
+&\;\norm{u_i}_2\leq v_i \quad i=1,\dotsc,n\\
+&\;u_i\in \R^2,\; v_i \in \R \quad i=1,\dotsc,n
 \end{align*}
+%Dado que $A'u_i = (0,u_{i1},u_{i2})'$ podemos escribir
+% \begin{align*}
+%\max &\; \sum_{i=1}^n a_i'u_i  \\
+%s.a.:& \; \sum_{i=1}^n  v_i = -1\\
+%&\;  \sum_{i=1}^n u_i  = 0\\
+%&\;\norm{u_i}_2\leq v_i \quad i=1,\dotsc,n\\
+%&\;u_i\in \R^2,\; v_i \in \R \quad i=1,\dotsc,n
+%\end{align*}
 \end{solucion}
 \end{document}
