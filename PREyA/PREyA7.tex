@@ -1,0 +1,57 @@
+\documentclass[PREyA.tex]{subfiles}
+
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning}
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\begin{document}
+
+\chapter{Procesos de renovación}
+\section{Introducción}
+\begin{defi}Seam $X_i$ v.a. independientes e idénticamente distribuidas.
+\end{defi}
+\begin{defi}
+Consideremos $p_{ij}=P[X=x_i,Y=y_j]$. Entonces definimos la probablidad condicionada de $Y$ a $X=x_i$ como
+$$
+P[Y=y_i \mid X=x_i] = \frac{p_{ij}}{P[X=x_i]}
+$$
+Si consideramos la esperanza de $Y$ condicionado a $X=x_i$ 
+$$
+E[Y\mid X=x_i] = \sum_j y_j P[Y=y_j \mid X=x_i]
+$$
+\end{defi}
+\begin{defi}
+Definimos la esperanza de $Y$ condicionada a $X$ como
+$$
+E[Y\mid X]:= g(X)
+$$
+donde $g$ es la función
+$$
+g(x)=\begin{cases}
+E[Y\mid X=x] & P[X=x]>0\\
+0 & P[X=x]=0
+\end{cases}
+$$
+\end{defi}
+Los conceptos anteriores pueden definirse análogamente para el caso absolutamente continuo. En tal caso tendríamos una función de densidad $f(x,y)$.
+\begin{defi}
+Definimos la funcion de densidad de $Y$ a $X=x_i$ como
+$$
+f_{Y|X=x}(y)=\frac{f(x,y)}{f_X(x)}
+$$
+Si consideramos la esperanza de $Y$ condicionado a $X=x_i$ 
+$$
+E[Y\mid X=x_i] = \int y \frac{f(x,y)}{f_X(x)} dy
+$$
+\end{defi}
+La definición de la esperanza de $Y$ condicionada a $X$ es exactamente la misma.
+\subsection{Suma de v.a. independientes}
+La función de probabilidad y de densidad (caso discreto y continuo) es simplemente la convolución. En el caso continuo
+$$
+f_Z(x)=f_X * f_Y (z) = \int f_X(z-y)f_Y(y)dy = \int f_X(x)f_Y(z-x)dx
+$$
+En el caso discreto
+$$
+P[Z=z] = \sum_k P[X=k]P[Y=z-k]
+
+$$
+\end{document}
