@@ -119,7 +119,7 @@
 	\textsc{ANA MARÍA BERMUDO MARTOS}\\
 	\textsc{PAULA SARAVIA GARRIDO}\\
 	\textsc{JOAQUÍN ELOY VARGAS MAGÁN}\\
-	\textsc{JAVIER AGUILAR MARTIN}\\
+	\textsc{JAVIER AGUILAR MARTÍN}\\
 	\textsc{LUIS DAVID PASCUAL CALLEJO}\\
 	\textsc{ANTONIO JES\'US SIERRA COLLADO}\\
     \textsc{FARUK TOY}\\
@@ -129,9 +129,9 @@
 \textbf{Resumen}\\
 
 
-El objetivo de este estudio es proponer un modelo de programaci\'on lineal (LP) que proporcione una respuesta a  qu\'e carreteras deber\'ian ser mejoradas para construir una red de carreteras robusta frente a los desastres de cortes de carretera en tiempo de desastres. Con este prop\'osito, se supone que una ruta normal es la ruta más corta, en primer lugar se proporciona una definición rigurosa de una ruta alternativa[1].
+El objetivo de este estudio es proponer un modelo de programaci\'on lineal (LP) que proporcione una respuesta a  qu\'e carreteras deber\'ian ser mejoradas para construir una red de carreteras robusta frente a los desastres de cortes de carretera en tiempo de desastres. Con este prop\'osito, se supone que una ruta normal es la ruta más corta. En primer lugar se proporciona una definición rigurosa de una ruta alternativa [1].
  
- Una red de carreteras se representa mediante un par $B\left( G, l\right)$ de un grafo dirigido $G\left( N, E\right)$ y un extremo de longitud positiva $l:E\longrightarrow R$. La longitud del extremo mide  el tiempo en pasar a través de la carretera correspondiente. Para un subconjunto $E'$ de $E$, la suma $\sum_{e\in E '}l\left( e\right)$ se representa mediante $l\left( E' \right)$. Una ruta $R$ es un camino dirigido en $G$ como un conjunto  de aristas y el  comienzo y fin se representa mediante $s_{R}$ y $t_{R}$, respectivamente. Sea $P \subseteq N \times N$ un conjunto de pares origenes y destinos (OD). Para cada par OD $p = \left( s, t\right) \in P$, $S_{p}\left( = S_{\left( s, t\right)}\right)$ representa la ruta más corta (y única) desde $s$ a $t$. Usando un parámetro $r_{1}\in \left[ 0, 1\right)$ y una función monótonamente decreciente $\epsilon \left( \cdot \right): R \longrightarrow \left[ 0,1\right]$, se define una ruta alternativa como sigue. Para un par OD $p=\left( s, t \right)$, una ruta $R_{p}$ desde $s$ a $t$ es una ruta alternativa a $S_{p}$ si $R_{p}$ satisface las dos condiciones siguientes:
+ Una red de carreteras se representa mediante un par $\left( G, l\right)$ compuesto de un grafo dirigido $G=\left( N, E\right)$ y un extremo de longitud positiva $l:E\longrightarrow \mathbb{R}_{\geq 0}$. La longitud del extremo mide  el tiempo en pasar a través de la carretera correspondiente. Para un subconjunto $E'$ de $E$, la suma $\sum_{e\in E '}l\left( e\right)$ se representa mediante $l\left( E' \right)$. Una ruta $R$ es un camino dirigido en $G$, representado como un conjunto  de aristas, donde el  comienzo y fin se representan mediante $s_{R}$ y $t_{R}$, respectivamente. Sea $P \subseteq N \times N$ un conjunto de pares orígenes y destinos (OD). Para cada par OD $p = \left( s, t\right) \in P$, $S_{p}\left( = S_{\left( s, t\right)}\right)$ representa la ruta más corta (y única) desde $s$ a $t$. Usando un parámetro $r_{1}\in \left[ 0, 1\right)$ y una función monótonamente decreciente $\epsilon \left( \cdot \right): \mathbb{R}_{\geq 0} \longrightarrow \left[ 0,1\right]$, se define una ruta alternativa como sigue. Para un par OD $p=\left( s, t \right)$, una ruta $R_{p}$ desde $s$ a $t$ es una ruta alternativa a $S_{p}$ si $R_{p}$ satisface las dos condiciones siguientes:
 
 
 \begin{enumerate}[(a)]
@@ -140,19 +140,20 @@ El objetivo de este estudio es proponer un modelo de programaci\'on lineal (LP) 
 	            {l\left(S_{s_{R},t_{R}}\right)} \leq 1 + \epsilon \left( l \left( S_{\left( S_{R},t_{R}\right)} \right)  \right)$, para todas las subrutas de $R$.
 \end{enumerate}
 
-Nótese que $r_{1}$ da un límite superior de todas las longitudes de las carreteras entre $R_{p}$ y $S_{p}$ para este $S_{p}$ y $1+\epsilon \left( \cdot \right) $ proporciona un límite superior, el cual depende de $lS_{S_{R},t_{R}}$,  del tramo de $R$ a $S_{S_{R},t_{R}}$. Mediante la condición (a), una ruta alternativa debería compartir pocas carreteras con la ruta más corta. La condición (b) necesita que el tiempo del trayecto más largo en una ruta normal sea, lo más cercano a su tiempo de viaje a lo largo de la ruta alternativa que debiera ser.
-Por tanto, una red de carreteras que tenga muchas rutas alternativas tal y como se define arriba se considera robusta frente a cortes de carretera, y el modelo LP se formula usando los dos siguientes valores $\alpha_{e,p}$ y   $\beta_{e,p}$ para cada arista $e \in E$ y el par OD $p \in P$. El valor de $\alpha_{e,p}$ se define como el mínimo valor de $\lambda$ tal que $S_{p}$ continue siendo la ruta más corta en $G\left( G, l'\right)$ con respecto a $p$ donde $l': E \longrightarrow R$ está dado por $l'\left( e\right) = \lambda$ y $l'\left( e'\right) =  l\left( e'\right)$ para todo $e' \in E$ con $e'\neq e$. Incluso en caso de que no aparezca una nueva ruta más corta, si la longitud de una arista $e$ es igual a $0$, el valor $\alpha_{e,p}$ está definido para que sea 0. El valor de $\alpha_{e,p}$ puede calcularse mediante el algoritmo propuesto por Ramaswamy [2].
+Nótese que $r_{1}$ da un límite superior de todas las longitudes de las carreteras entre $R_{p}$ y $S_{p}$ para este $S_{p}$ y $1+\epsilon \left( \cdot \right) $ proporciona un límite superior, el cual depende de $l(S_{S_{R},t_{R}})$,  del tramo de $R$ a $S_{S_{R},t_{R}}$. Mediante la condición (a), una ruta alternativa debería compartir pocas carreteras con la ruta más corta. La condición (b) necesita que el tiempo del trayecto más largo en una ruta normal sea, lo más cercano a su tiempo de viaje a lo largo de la ruta alternativa que debiera ser.
+Por tanto, una red de carreteras que tenga muchas rutas alternativas tal y como se define arriba se considera robusta frente a cortes de carretera, y el modelo LP se formula usando los dos siguientes valores $\alpha_{e,p}$ y   $\beta_{e,p}$ para cada arista $e \in E$ y el par OD $p \in P$. El valor de $\alpha_{e,p}$ se define como el mínimo valor de $\lambda$ tal que $S_{p}$ continúe siendo la ruta más corta en $\left( G, l'\right)$ con respecto a $p$ donde $l': E \longrightarrow \mathbb{R}_{\geq 0} $ está dado por $l'\left( e\right) = \lambda$ y $l'\left( e'\right) =  l\left( e'\right)$ para todo $e' \in E$ con $e'\neq e$. %Incluso en caso de que no aparezca una nueva ruta más corta, si la longitud de una arista $e$ es igual a $0$, el valor $\alpha_{e,p}$ está definido para que sea 0. 
+Si para ningún valor positivo de $\lambda$ para el cual $S_p$ deje de ser la ruta más corta, se define $\alpha_{e,p}=0$. El valor de $\alpha_{e,p}$ puede calcularse mediante el algoritmo propuesto por Ramaswamy [2].
 
-El valor de $\beta_{e,p}$ se define como se especifica a continuación. Usando un parámetro $r_{2} \in \left[ 0,1 \right]$, se supone que una mejora de una arista (carretera) $e$ que acorta $e$ mediante al menos $r_{2}l\left( e\right)$.
+El valor de $\beta_{e,p}$ se define como se especifica a continuación. Usando un parámetro $r_{2} \in \left[ 0,1 \right]$, se supone que una mejora de una arista (carretera) $e$ acorta $e$ mediante al menos $r_{2}l\left( e\right)$.
 
-Para $e = \left( i , j\right)$ y $p = \left( s , t\right)$, $T_{e,p}$ representa la ruta $S_{\left(s, i\right)} \cup \left\{ \left(i,j \right) \right]\cup S_{\left(j, t\right)} $, lo cual es la ruta más corta desde $s$ a $t$ a través de $e = \left(i,j \right)$. Para esto $T_{e,p}$, $\gamma\left(T_{e,p}\right)$  está dado por
+Para $e = \left( i , j\right)$ y $p = \left( s , t\right)$, $T_{e,p}$ representa la ruta $S_{\left(s, i\right)} \cup \left\{ \left(i,j \right) \right\}\cup S_{\left(j, t\right)} $, lo cual es la ruta más corta desde $s$ a $t$ a través de $e = \left(i,j \right)$. Para este $T_{e,p}$, $\gamma\left(T_{e,p}\right)$  está dado por
 
 $$
 \gamma\left(T_{e,p}\right) = \left( 1 - r_{2} \right) l \left(T_{e,p} \setminus S_{p} \right) + 
 l \left(T_{e,p}  \cap   S_{p} \right)
 $$
  
-esto es la longitud de $T_{e,p}$ si cada arista en $T_{e,p} \setminus S_{p}$ es lo más corto posible. Entonces,
+esto es la longitud de $T_{e,p}$ si cada arista en $T_{e,p} \setminus S_{p}$ es lo más corta posible. Entonces,
 
 $\beta_{e,p} = \frac{l \left( T_{e,p}  \cap   S_{p}  \right)}    {l \left( S_{p} \right)}$ si $\frac{\gamma\left(T_{e,p}\right)}{l \left( S_{p} \right)} \leq 1 + \epsilon  \left( l  \left( S_{p}   \right) \right) $ \\
 y \\
@@ -169,8 +170,9 @@ Para obtener una red de carretera con muchas rutas alternativas, para cada arist
 
 El modelo LP se formula como sigue:\\
 minimizar $\sum_{e \in F, p \in P } \sum_{\beta_{e,p} \leq r_{1}}   \left( l \left( e \right) - x_{e} - \alpha_{e,p}\right) $ \\
-sujeto a $\sum_{e\in F} b_{e}x_{e} \leq B$ \\
+sujeto a
 
+$\sum_{e\in F} b_{e}x_{e} \leq B$ \\
 $l \left( e \right) - x_{e} \geq \alpha_{e,p}$,    $\left( e  \in F, p \in P\right)$\\
 $x_{e} \leq  r_{2}l  \left( e \right)$ , $\left( e  \in F\right)$\\
 $x_{e} \geq 0$ ,                         $\left( e  \in F\right)$
@@ -179,7 +181,7 @@ Ya que $r_{1} < 1$ y la suma es tomada sobre todos los $p \in P$ con $\beta_{e,p
 
 Además, el modelo LP puede ser reescrito como un problema del knapsack continuo, el cual explícitamente muestra la prioridad de la carretera a mejorar.
 
-Para una arista $e \in F$, el número de pares OD p con $\beta_{e,p} \leq r_{1}$ es representado por $\#\left\{ p \in P | \beta_{e,p} \leq r_{1} \right \}$. 
+Para una arista $e \in F$, el número de pares OD $p$ con $\beta_{e,p} \leq r_{1}$ es representado por $\#\left\{ p \in P | \beta_{e,p} \leq r_{1} \right \}$. 
 Entonces la función objetivo  (1) es equivalente a la siguiente:
 
 $$
@@ -188,16 +190,16 @@ $$
 
 donde $C$ es una constante.
 
-A partir de aquí, se puede observar el modelo LP es el problema de la mochila de formra contínua. Además, el modelo LP es un algoritmo solucionable voraz, es decir, una solución óptima está dada por, en orden descendente  por
+A partir de aquí, se puede observar el modelo LP es el problema de la mochila de forma continua. Además, el modelo LP es un algoritmo solucionable voraz, es decir, una solución óptima está dada por, en orden descendente  por
 $$
 \frac{\#\left\{ p \in P | \beta_{e,p} \leq r_{1} \right\}}{b_{e}}
 $$
 
-permitiendo que $x_{e}$ sea tan grande como sea posible tal que las restricciones (2), (3), (4), y (5) sean cumplidas.\\
+permitiendo que $x_{e}$ sea tan grande como sea posible tal que las restricciones del problema original sean cumplidas.\\
 
 Se espera que el terremoto Tokai cases un gran daño para el área de Tokai incluye la prefactura de Aichi.
 
-Y de esta forma), se aplica el modelo LP al problema con pares OD de (i) las prefacturas de Aichi y Osada y ii)  ciudades más grandes en las prefacturas de Aichi y Shizouka.
+Por ello, se aplica el modelo LP al problema con pares OD de (i) las prefacturas de Aichi y Osada y (ii)  ciudades más grandes en las prefacturas de Aichi y Shizouka.
 
 En ambos casos, se buscan todas las carreteras como carreteras candidatas para ser mejoradas, es decir, $F=E$.
 Para cada vértices $e \in F$ su coste unidad $b_{e}$ es un número aleatorio entre 10 y 20 millones de JPY/segundo. El presupuesto total es 3 billones de JPY en el caso (i), y 15 millones  JPY en el caso (ii).
@@ -209,9 +211,13 @@ Para el caso de (ii), se hizo una red carreteras usando los datos de 2003.  Como
 Debería notarse que muchos de las aristas en la prefactura de Shizuoka están al menos 25 km lejos de la línea de la costa.
 
 Por tanto $\beta_{e,p}$ para estas aristas debería se próximo a 1.
-Además, es difícil de obtener rutas alternativas de otros pares OD. De esta forma, el resultado de este caso (ii)  está fuertemente afectado por la estructura de la red de carreteras en la prefactura de Shi zuoka. Se considera que este resultado sugiere la necesidad de una drástica mejora de la red de carreteras en la prefactura de Shizuoka.
+Además, es difícil de obtener rutas alternativas de otros pares OD. De esta forma, el resultado de este caso (ii)  está fuertemente afectado por la estructura de la red de carreteras en la prefactura de Shi zuoka. Se considera que este resultado sugiere la necesidad de una drástica mejora de la red de carreteras en la prefactura de Shizuoka.\\
 
+\textbf{Referencias}\\
 
+[1] Ramaswamy, R., Orlin, J. $\&$ Chakravarti, N. Math. Program. (2005) 102: 355. https://doi.org/10.1007/s10107-004-0517-8
+
+[2] Abraham I., Delling D., Goldberg A.V., Werneck R.F. (2010) Alternative Routes in Road Networks. In: Festa P. (eds) Experimental Algorithms. SEA 2010. Lecture Notes in Computer Science, vol 6049. Springer, Berlin, Heidelberg
 
 
 
