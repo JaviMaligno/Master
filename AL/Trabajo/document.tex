@@ -122,6 +122,7 @@
 	\textsc{JAVIER AGUILAR MARTÍN}\\
 	\textsc{LUIS DAVID PASCUAL CALLEJO}\\
 	\textsc{ANTONIO JES\'US SIERRA COLLADO}\\
+	\textsc{GEMA TERR\'ON MEJ\'IAS}\\
     \textsc{FARUK TOY}\\
 	10 de Enero de 2019.
 	\noindent\rule{15.3cm}{0.4pt}
@@ -154,14 +155,21 @@ l \left(T_{e,p}  \cap   S_{p} \right)
 $$
  
 esto es la longitud de $T_{e,p}$ si cada arista en $T_{e,p} \setminus S_{p}$ es lo más corta posible. Entonces,
+$$
+\left\lbrace
+\begin{array}{ll}
+\beta_{e,p} = \frac{l \left( T_{e,p}  \cap   S_{p}  \right)}    {l \left( S_{p} \right)}$ si $\frac{\gamma\left(T_{e,p}\right)}{l \left( S_{p} \right)} \leq 1 + \epsilon  \left( l  \left( S_{p}   \right) \right) \\
+\beta_{e,p} = 1 \hspace{0.5cm} \text{de otra forma}.
+\end{array}
+\right.
+$$
 
-$\beta_{e,p} = \frac{l \left( T_{e,p}  \cap   S_{p}  \right)}    {l \left( S_{p} \right)}$ si $\frac{\gamma\left(T_{e,p}\right)}{l \left( S_{p} \right)} \leq 1 + \epsilon  \left( l  \left( S_{p}   \right) \right) $ \\
-y \\
-$\beta_{e,p} = 1$ de otra forma.
+
+
  
 Notar que si $\gamma \left( T_{e,p} \right) / l \left( S_{p} \right) <1 +  \epsilon  \left( l  \left( S_{p}   \right) \right)$, entonces por la condición (b), $ T_{e,p}$ no puede ser una ruta alternativa con respecto a $p$.
 
-Sea $F \subseteq E$ el conjunto de aristas que corresponden con el carretera candidata para ser mejorada.
+Sea $F \subseteq E$ el conjunto de aristas que corresponden con la carretera candidata para ser mejorada.
 Para cada arista $e \in F$, $b_{e}$ representa el coste unidad (el coste por segundo) para mejorar la arista $e$.
 
 Se tiene un total de presupuesto de $B$.
@@ -169,23 +177,27 @@ Se tiene un total de presupuesto de $B$.
 Para obtener una red de carretera con muchas rutas alternativas, para cada arista $e \in F$, se acorta la arista $e$ mediante $x_{e}$, que es una variable de decisión.
 
 El modelo LP se formula como sigue:\\
-minimizar $\sum_{e \in F, p \in P } \sum_{\beta_{e,p} \leq r_{1}}   \left( l \left( e \right) - x_{e} - \alpha_{e,p}\right) $ \\
-sujeto a
 
-$\sum_{e\in F} b_{e}x_{e} \leq B$ \\
-$l \left( e \right) - x_{e} \geq \alpha_{e,p}$,    $\left( e  \in F, p \in P\right)$\\
-$x_{e} \leq  r_{2}l  \left( e \right)$ , $\left( e  \in F\right)$\\
-$x_{e} \geq 0$ ,                         $\left( e  \in F\right)$
+\begin{equation}\label{LP}
+\text{minimizar} \sum_{e \in F, p \in P } \sum_{\beta_{e,p} \leq r_{1}}   \left( l \left( e \right) - x_{e} - \alpha_{e,p}\right)
+\end{equation}
+sujeto a
+\begin{align*}
+&\sum_{e\in F} b_{e}x_{e} \leq B\\
+&l \left( e \right) - x_{e} \geq \alpha_{e,p},  \left( e  \in F, p \in P\right)\\
+&x_{e} \leq  r_{2}l  \left( e \right), \left( e  \in F\right)\\
+&x_{e} \geq 0, \left( e  \in F\right)
+\end{align*}
 
 Ya que $r_{1} < 1$ y la suma es tomada sobre todos los $p \in P$ con $\beta_{e,p}  \leq r_{1}$, no se toman las rutas $T_{e,p}$ que no pueden ser rutas alternativas.
 
 Además, el modelo LP puede ser reescrito como un problema del knapsack continuo, el cual explícitamente muestra la prioridad de la carretera a mejorar.
 
 Para una arista $e \in F$, el número de pares OD $p$ con $\beta_{e,p} \leq r_{1}$ es representado por $\#\left\{ p \in P | \beta_{e,p} \leq r_{1} \right \}$. 
-Entonces la función objetivo  (1) es equivalente a la siguiente:
+Entonces la función objetivo  (\ref{LP}) es equivalente a la siguiente:
 
 $$
-maximizar \sum_{e \in F} \#\left\{ p \in P | \beta_{e,p} \leq r_{1} \right\} x_{e} + C
+\text{maximizar} \sum_{e \in F} \#\left\{ p \in P | \beta_{e,p} \leq r_{1} \right\} x_{e} + C
 $$
 
 donde $C$ es una constante.
@@ -197,20 +209,20 @@ $$
 
 permitiendo que $x_{e}$ sea tan grande como sea posible tal que las restricciones del problema original sean cumplidas.\\
 
-Se espera que el terremoto Tokai cases un gran daño para el área de Tokai incluye la prefactura de Aichi.
+Se espera que el terremoto Tokai cause un gran daño para el área de Tokai incluyendo la prefactura de Aichi.
 
 Por ello, se aplica el modelo LP al problema con pares OD de (i) las prefacturas de Aichi y Osada y (ii)  ciudades más grandes en las prefacturas de Aichi y Shizouka.
 
 En ambos casos, se buscan todas las carreteras como carreteras candidatas para ser mejoradas, es decir, $F=E$.
 Para cada vértices $e \in F$ su coste unidad $b_{e}$ es un número aleatorio entre 10 y 20 millones de JPY/segundo. El presupuesto total es 3 billones de JPY en el caso (i), y 15 millones  JPY en el caso (ii).
 
-Para el caso (i), se han realizado una red de carreteras usando los datos de la carretera de 1995. La ruta más corta entre las prefacturas  del gobierno de Aichi y Osaka es la ruta através de la autopista de Meihin. Como resultado, se obtiene una ruta alternativa similar para la autopista de Shinmeishin, la cual se abrió en 2005 y es actualmente una alternativa para la autopista de Meishin.
-Por tanto, we considera que este resultado indica la efectividad del modelo LP.
+Para el caso (i), se han realizado una red de carreteras usando los datos de la carretera de 1995. La ruta más corta entre las prefacturas  del gobierno de Aichi y Osaka es la ruta a través de la autopista de Meihin. Como resultado, se obtiene una ruta alternativa similar para la autopista de Shinmeishin, la cual se abrió en 2005 y es actualmente una alternativa para la autopista de Meishin.
+Por tanto, consideramos que este resultado indica la efectividad del modelo LP.
 
 Para el caso de (ii), se hizo una red carreteras usando los datos de 2003.  Como resultado, se obtiene una ruta alternativa solo entre Tyohashi y Hammatsu.
 Debería notarse que muchos de las aristas en la prefactura de Shizuoka están al menos 25 km lejos de la línea de la costa.
 
-Por tanto $\beta_{e,p}$ para estas aristas debería se próximo a 1.
+Por tanto $\beta_{e,p}$ para estas aristas debería ser próximo a 1.
 Además, es difícil de obtener rutas alternativas de otros pares OD. De esta forma, el resultado de este caso (ii)  está fuertemente afectado por la estructura de la red de carreteras en la prefactura de Shi zuoka. Se considera que este resultado sugiere la necesidad de una drástica mejora de la red de carreteras en la prefactura de Shizuoka.\\
 
 \textbf{Referencias}\\

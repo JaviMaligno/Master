@@ -1,8 +1,9 @@
 \documentclass[AL.tex]{subfiles}
+
 \begin{document}
 \chapter{Paradigmas algorítmicos}
-\section{Técnicas algorítmicas}
-Vamos a ver las siguientes técnicas algorítmicas.
+
+Vamos a ver algunas de las siguientes técnicas algorítmicas habituales.
 \begin{itemize}
 \item Incremental
 \item Divide y vencerás
@@ -14,7 +15,7 @@ Vamos a ver las siguientes técnicas algorítmicas.
 \item etc.
 \end{itemize}
 
-\subsection{Algoritmo Incremental}
+\section{Algoritmo Incremental}
 Consiste en un caso base que resuelve el problema para $[a_1,\dots, a_c]$ con $c$ pequeño y paso inductivo que extiende la solución de $[a_1,\dots, a_{i-1}]$ a $[a_1,\dots, a_i]$. 
 \begin{ejs}
 \begin{enumerate}
@@ -23,7 +24,42 @@ Consiste en un caso base que resuelve el problema para $[a_1,\dots, a_c]$ con $c
  
  \item Insertion-Sort (con dos bucles).
  
- \item Cálculo de la envolvente convexa en $\R^2$. Consideramos como caso base la envolutra convexa de $n=3$ puntos, que es simplemente el triángulo que determinan. Supongamos que tenemos calculada la envolvente convexa de un conjunto de $i-1$ puntos. Si añadimos un punto $p_i$ exterior, calculamos las tangentes superior e inferior al polígono convexo que pasan por $p_i$. HACER UN DIBUJO
+ \item Cálculo de la envolvente convexa en $\R^2$. Consideramos como caso base la envolutra convexa de $n=3$ puntos, que es simplemente el triángulo que determinan. Supongamos que tenemos calculada la envolvente convexa de un conjunto de $i-1$ puntos. Si añadimos un punto $p_i$ exterior, calculamos las tangentes superior e inferior al polígono convexo que pasan por $p_i$. 
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-5,0.125) rectangle (5.755,3);
+
+\fill[line width=1.pt,dash pattern=on 2pt off 2pt,color=red,fill=red,fill opacity=0.10000000149011612] (2.715,2.055) -- (2.845,1.025) -- (1.015,0.615) -- (4.,1.) -- cycle;
+
+\fill[line width=2.pt,fill=black,fill opacity=0.10000000149011612] (1.015,0.615) -- (0.225,1.795) -- (1.215,2.545) -- (2.715,2.055) -- (2.845,1.025) -- cycle;
+\draw [line width=2.pt] (1.015,0.615)-- (0.225,1.795);
+\draw [line width=2.pt] (0.225,1.795)-- (1.215,2.545);
+\draw [line width=2.pt] (1.215,2.545)-- (2.715,2.055);
+\draw [line width=2.pt] (2.715,2.055)-- (2.845,1.025);
+\draw [line width=2.pt] (2.845,1.025)-- (1.015,0.615);
+%\draw [line width=2.pt,dash pattern=on 2pt off 2pt] (4.,1.)-- (2.715,2.055);
+%\draw [line width=2.pt,dash pattern=on 2pt off 2pt] (4.,1.)-- (1.015,0.615);
+\draw (4.155,1.185) node[anchor=north west] {$p_i$};
+%\draw [line width=2.pt,dash pattern=on 2pt off 2pt,color=zzttqq] (2.715,2.055)-- (2.845,1.025);
+%\draw [line width=2.pt,dash pattern=on 2pt off 2pt,color=zzttqq] (2.845,1.025)-- (1.015,0.615);
+\draw [line width=2.pt,dash pattern=on 1pt off 3pt,color=red] (1.015,0.615)-- (4.,1.);
+\draw [line width=2.pt,dash pattern=on 1pt off 3pt,color=red] (4.,1.)-- (2.715,2.055);
+\begin{scriptsize}
+\draw [fill=black] (1.015,0.615) circle (2.5pt);
+\draw [fill=black] (0.225,1.795) circle (2.5pt);
+\draw [fill=black] (1.215,2.545) circle (2.5pt);
+\draw [fill=black] (2.715,2.055) circle (2.5pt);
+\draw [fill=black] (2.845,1.025) circle (2.5pt);
+\draw [fill=black] (1.315,1.445) circle (2.5pt);
+\draw [fill=black] (2.135,1.655) circle (2.5pt);
+\draw [fill=black] (1.205,1.985) circle (2.5pt);
+\draw [fill=black] (1.275,1.045) circle (2.5pt);
+\draw [fill=black] (1.715,1.225) circle (2.5pt);
+\draw [fill=black] (1.635,1.725) circle (2.5pt);
+\draw [fill=black] (0.735,1.645) circle (2.5pt);
+\draw [fill=black] (4.,1.) circle (2.5pt);
+\end{scriptsize}
+\end{tikzpicture}
  
  Para ello vamos a pensar la envoltura convexa como una lista ordenada de puntos. Usamos la primitiva $$Orient(p,q,r)=\begin{vmatrix}
  1 & p_x & q_x\\
@@ -40,7 +76,7 @@ Consiste en un caso base que resuelve el problema para $[a_1,\dots, a_c]$ con $c
 \end{enumerate}
 \end{ejs}
 
-\subsection{Divide y vencerás (DAC)}
+\section{Divide y vencerás (DAC)}
 Consiste en dividir el problema en subproblemas de aproximadamente el mismo tamaño y resolver cada subproblema recursivamente, de modo que la solución global se obtiene al combinar (hacer ``merging'') las soluciones de los subproblemas. El esquema de esta técnica sería algo similar a el siguiente grafo
 \[
 \begin{tikzcd}
@@ -173,7 +209,7 @@ Fib(n-1)+Fib(n-2) & c.c.
 y se puede demostrar que $T(n)\in\Omega(2^{n/2})$, que es exponencial. Efectivamente, $T(n)\geq 2T(n-2)$, y podemos reiterar este proceso hasta obtener $T(n)\geq 2^kT(n-2k)$. Esto termina cuando $k=\frac{n}{2}$, en cuyo caso $T(n)\geq 2^{n/2}T(0)\in\Omega(2^{n/2})$. 
 \end{nota}
 
-\subsection{Algoritmos voraces (Greedy Algorithms)}
+\section{Algoritmos voraces (Greedy Algorithms)}
 Supongamos que tenemos 56.18€  y queremos pagar usando la menor cantidad de billetes y monedas posibles. Lo habitual es empezar con un billete de 50, después uno de 5, después una moneda de 1 euro, una de 10 céntimos, de 5 céntimos, de 2 céntimos y de 1 céntimo. Este es un procedimiento voraz. 
 
 En general, si tenemos una cantidad $M$ y un conjunto de valores $\{v_1,\dots, v_n\}$, buscaríamos el primer $v_i\leq M$. Si $v_i<M$ y $v_i+v_{i+1}<M$ volvemos a sumar $v_{i+1}$ y hacer la comparación, si no, pasaríamos al siguiente elemento. Por ejemplo, para $M=83$ y $\{50,20,3\}$ saldría la cantidad exacta, $50+20+3$. Si en cambio tenemos $M=15$ y $\{11,5,1\}$, el algoritmo voraz daría $11+1+1+1+1$, pero esta no es la solución que usa menos sumandos, pues $5+5+5$ también da el resultado. Esto muestra que el algoritmo voraz no garantiza la solución óptima en todos los casos. Un caso en el que si es en el que tenemos un número $p>1$ y los elementos del conjunto son $1,p,p^2,\dots, p^n$, $n>0$. 
@@ -250,5 +286,106 @@ Un espacio vectorial y la familia de subconjuntos linealmente independientes es 
 \begin{teorema}
 Si $M$ es una matroide ponderada, entonces el algoritmo voraz devuelve un subconjunto óptimo para el problema $\min_{A\in l}\sum_{s\in A}w(s)$. 
 \end{teorema}
+
+%La siguiente técnica que estudiaremos será la programación dinámica, la cual tiene entidad suficiente como para dedicarle un capítulo aparte. 
+
+\section{Programación Dinámica}
+
+Consideremos la siguiente definición recursiva del coeficiente binomial $c(n,k)=\binom{n}{k}$.
+\[
+\binom{n}{k}=\begin{cases}
+1 & k=0,n\\
+\binom{n-1}{k-1}+\binom{n-1}{k} &0<k<n\\
+0 & c.c
+\end{cases}
+\]
+Tenemos entonces la definición recursiva $c(n,0)=c(n,n)=1$ y $c(n,k)=c(n-1,k-1)+c(n-1,k)$. Por ejemplo, $c(6,4)=c(5,3)+c(5,4)$. A continuación, $c(5,3)=c(4,2)+c(4,3)$ y $c(5,4)=c(4,3)+c(4,4)$, y así sucesivamente. Obsérvese que el triángulo 
+\begin{center}
+\begin{tikzpicture}
+\foreach \n in {0,...,3} {
+  \foreach \k in {0,...,\n} {
+    \node at (\k-\n/2,-\n) {${\n \choose \k}$};
+  }
+}
+\end{tikzpicture}
+\end{center}
+
+Es exactamente el triángulo de Pascal (Tartaglia). Si lo escribimos como la parte no nula de una matriz triangular inferior obtenemos
+\[
+\begin{matrix}
+1 &   &   & \\
+1 & 1 &   & \\
+1 & 2 & 1 & \\
+1 & 3 & 3 & 1
+\end{matrix}
+\]
+por lo que que $c(n,k)$ es justamente el elemento $(n,k)$ de esta matriz, que se obtiene sumando el elemento de la posición $(n-1,k-1)$ con el de la posición $(n-1,k)$. En cualquier caso, hemos descompuesto el problema en subproblemas más simples. Esta descomposición debe seguir el \emph{principio de optimalidad de Bellman}:
+
+\begin{verse}
+Todos los subproblemas deben tener solución óptima.
+
+\end{verse} 
+\subsection{Pseudocódigo}
+Presentamos el pseudocódigo general de un algoritmo que use la técnica de programación dinámica, consistente en romper el problema en subproblemas y dar la solución óptima del problema original en función de la solución óptima de los subproblemas.
+\begin{enumerate}
+\item[Paso 1] (Estructura):
+\begin{itemize}
+\item Caracterizar la estructura de la solución óptima.
+\item Descomponer en problemas más pequeños.
+\item Encontrar la relación entre la estructura de la solución óptima del problema original y las de los subproblemas.
+\end{itemize}
+\item[Paso 2] (Principio de Optimalidad):
+\begin{itemize}
+\item Definir recursivamente el valor de la solución óptima en función de las soluciones óptimas de los subproblemas. 
+\end{itemize}
+\item[Paso 3]:
+\begin{itemize}
+\item Computación de la tabla de soluciones.
+\end{itemize}
+\item[Paso 4]:
+\begin{itemize}
+\item Construir la solución óptima. 
+\end{itemize}
+\end{enumerate}
+
+\begin{ej}[Problema discreto de la mochila]
+Veamos cómo podemos aplicar la técnica descrita anteriormente para resolver el problema discreto de la mochila. Consideremos los pares $(v_i,w_i)$ siguientes, que representan el valor y el peso de cada objeto que podríamos introducir en la mochila: $(1,1),(6,2),(18,5),(22,6),(28,7)$. Supongamos que el peso máximo que soporta la mochila es $w=11$. A simple vista observamos que la solución óptima es la que introduce $(18,5)$ y $(22,6)$. 
+
+Para resolverlo mediante programación dinámica definimos $v(i,j)$ como el valor máximo que se puede introducir en la mochila utilizando solo los primeros $i$ objetos y con un peso máximo de $j$. Es claro que $v(0,j)=0$ para $j=0,\dots, 2$. Por conveniencia definimos $v(i,j)=-\infty$ para $j<0$. Observamos además que se verifica la ecuación $v(i,j)=\max\{v(i-1,j), v(i-1,j-w_i)+v_i\}$. Con esto, hemos subdividido el problema de calcular $v(i,j)$ es los subproblemas siguientes:
+
+\begin{align*}
+\max&\sum_{k=1}^{i-1}v_kx_k &  \max&\sum_{k=1}^{i-1}v_kx_k  \\
+sa:& \sum_{k=1}^{i-1}w_kx_k\leq j &  sa:& \sum_{k=1}^{i-1}w_kx_k\leq j-w_i\\
+   & x_k\in\{0,1\}, x_i=0 &     &x_k\in\{0,1\}, x_i=1\\   
+\end{align*}
+
+Podemos obtener la tabla 
+
+\vspace{0.5cm}
+
+\begin{tabular}{c|cccccccccccc}
+\backslashbox{Objeto}{Peso máx} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
+\hline
+1 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1\\
+2 & 0 & 1 & 6 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7\\
+3 & 0 & 1 & 6 & 7 & 7 & $\circled{18}$ & 19 & 24 & 24 & 25 & 25 & 25\\
+4 & 0 & 1 & 6 & 7 & 7 & 18 & 22 & 24 & 28 & 29 & 29 & 40\\
+5 & 0 & 1 & 6 & 7 & 7 & 18 & 22 & 28 & 29 & 34 & 35 & 40 
+\end{tabular}
+
+Fijémonos por ejemplo en $v(3,5)$, que se corresponde con el elemento rodeado en la tabla. Este se obtiene como $v(3,5)=\max\{v(2,5),v(2,5-5)+18\}=\max\{7,18\}=18$.
+
+Vamos a definir ahora una nueva variable
+\[
+A(i,j)=\begin{cases}
+1 & \text{en }v(i,j)\text{ se elige el artículo }i\\
+0 & c.c.
+\end{cases}
+\] 
+
+Si $A(n,w)=1$, tendríamos que calcular a continuación el valor de $A(n-1, w-w_n)$ para ver si se eligió el elemento $n-1$ y si $A(n,w)=0$ calcularíamos $A(n-1,w)$. En nuestro caso, $w(5, 11)=0$ porque no hemos incluido el objeto 5: $v(5,11)=\max\{v(4,11),v(4,4)+28\}=\max\{40,7+28\}=40$. Es decir, el objeto $5$ no pertenece a la solución. Como $A(5,11)=0$, calculamos ahora $v(4,11)=\max\{v(3,11), v(3,5)+22\}=\max\{25, 18+22\}=40$. Vemos que hemos tenido que introducir el objeto 4, por lo que $A(4,11)=1$ y 4 pertenece a la solución.
+
+La complejidad del algoritmo es entonces $O(nw)+O(n)=O(nw)$. 
+\end{ej}
 
 \end{document}
