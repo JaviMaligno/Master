@@ -1,0 +1,66 @@
+\documentclass[GA.tex]{subfiles}
+
+\begin{document}
+
+
+%\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
+
+\chapter{Morfismos propios y separados}
+
+La noción de morfismo propio en esquemas es la habitual de espacios topológicos, es decir, la preimagen de un compacto es compacta. El concepto de morfismo separado sin embargo tendrá que ser refinado. En topología general una aplicación es separada si la preimagen de cada punto es un espacio Hausdorff, pero esta condición es demasiado fuerte en los espacios que atañen a la geometría algebraica. 
+
+
+PONER DE PRELIMINARES LAS COSAS QUE APARECEN EN AGII 4. LO DEL VALUATIVE ESTÁ EN 6 PERO VIENE DISTINTO (SEGURAMENTE MEJOR)
+\section{Morfismos separados}
+
+
+\begin{defi}
+Sea $f:X\to Y$ un morfismo de esquemas. El morfismo \emph{diagonal} es el único morfismo $\Delta:X\to X\times_Y X$ cuya composición con ambas proyecciones $p_1,p_2:X\times_Y X\to X$ es la identidad $X\to X$. Decimos que el morfismo $f$ es \emph{separado} si $\Delta$ es una inmersión cerrada. También decimos que $X$ es \emph{separado} sobre $Y$. Un esquema $X$ es \emph{separado} si lo es sobre $\spec(\Z)$.  
+\end{defi}
+
+SERÍA BUENA IDEA INTENTAR ENTENDER EL EJEMPLO 4.0.1
+
+\begin{prop}
+Si $f:X\to Y$ es un morfismo de esquemas afines, entonces $f$ es separado.
+\end{prop}
+\begin{dem}
+Sea $X=\spec(A)$, $Y=\spec(B)$. Entonces $A$ es una $B$-álgebra y $X\times_Y X$ es también afín, dado por $\spec(A\otimes_B A)$. El morfismo diagonal $\Delta$ viene del homomorfismo diagonal $A\otimes_B A\to A$ dado por $a\otimes a'\mapsto aa'$. Este es un homomorfismo de anillos sobreyectivo, y por tanto $\Delta$ es una inmersión cerrada (ejercicio 3.12) AÑADIRLO A LA RELACIÓN DE EJERCICIOS.
+\end{dem}
+
+\begin{coro}
+Un morfismo $f:X\to Y$ es separado si y solo si la imagen del morfismo diagonal es un subconjunto cerrado de $X\times_Y X$.
+\end{coro}
+\begin{dem}
+Una implicación es obvia, así que solo tenemos que probar que si $\Delta(X)$ es un subconjunto cerrado, entonces $\Delta:X\to X\times_Y X$ es una inmersión cerrada. En otras palabras, tenemos que comprobar que $\Delta:X\to \Delta(X)$ es un homeomorfismo y que el morfismo de haces $\OO_{X\times_Y X}\to\Delta_*\OO_X$ es sobreyectivo. Sea $p_1:X\times_Y X\to X$ la primera proyección. Como $p_1\circ\Delta=Id_X$, se sigue que $\Delta$ da un homeomorfismo sobre su imagen. Ver que el morfismo de haces $\OO_{X\times_Y X}\to\Delta_*\OO_X$ es sobreyectivo es una cuestión local. Para cualquier punto $P\in X$, sea $U$ un abierto afín con $P\in U$ lo bastante pequeño como para que $f(U)$ esté contenido en un abierto afín $V$ de $Y$. Entonces $U\times_V U$ is un entorno abierto afín de $\Delta(P)$, y por la proposición, $\Delta:U\to U\times_V U$ es una inmersión cerrada, por lo que la aplicación de haces es sobreyectiva en un entorno de $P$ por definición de inmersión cerrada, lo que completa la prueba.  
+\end{dem}
+
+\begin{teorema}[Criterio Valuativo de Separación]
+Sea $f:X\to Y$ un morfismo de esquemas y supongamos que $X$ es noetheriano. Entonces $f$ es separado si y solo si la siguiente condición se cumple. Para cualquier cuerpo $K$ y para cualquier anillo de valuación\footnote{\url{https://en.wikipedia.org/wiki/Valuation_ring}} $R$ con cuerpo de fracciones $K$, sean $T=\spec(R)$, $U=\spec(K)$ y sea $i:U\to T$ el morfismo inducido por la inclusión $R\subseteq K$. Dado un morfismo $T\to Y$ y dado un morfismo $U\to X$ haciendo conmutativo el cuadrado del diagrama
+\[
+\begin{tikzcd}
+U\arrow[r]\arrow[d, "i"'] & X\arrow[d, "f"]\\
+T\arrow[r]\arrow[ur, dashed] & Y
+\end{tikzcd}
+\]
+hay a lo sumo un morfismo $T\to X$ que hace conmutar todo el diagrama. 
+\end{teorema}
+
+Necesitaremos dos lemas.
+
+\begin{lemma}
+Sea $R$ un anillo de valuación de un cuerpo $K$. Sea $T=\spec(R)$ y sea $U=\spec(K)$. Dar un morfismo de $U$ a un esquema $X$ es equivalente a dar un punto $x_1\in X$ y una inclusión de cuerpos $k(x_1)\subseteq K$. Dar un morfismo de $T$ a $X$ es equivalente a dar dos puntos $x_0,x_1\in X$, con $x_0$ una \emph{especialización } (ver ejercicio 3.17) de $x_1$, y una inclusión de cuerpos $k(x_1)\subseteq K$ tal que $R$ domina el anillo local $\OO$ de $x_0$ en el subesquema $Z=\overline{\{x_1\}}$ (clausura) de $X$ con su estructura reducida inducida. 
+\end{lemma}
+\begin{proof}
+
+\end{proof}
+
+
+\begin{lemma}
+Sea $f:X\to Y$ un morfismo quasi-compacto de esquemas (ver ejercicio 3.2). Entonces el subconjunto $f(X)$ de $Y$ es cerrado si y solo si es estable bajo especialización (ver ejercicio 3.17e). AÑADIR AL DOCUMENTO DE EJERCICIOS LOS QUE ESTOY REFERENCIANDO QUE NO HE HECHO
+\end{lemma}
+\begin{proof}
+
+\end{proof}
+
+\end{document}
+
