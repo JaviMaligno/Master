@@ -388,4 +388,49 @@ Si $A(n,w)=1$, tendríamos que calcular a continuación el valor de $A(n-1, w-w_
 La complejidad del algoritmo es entonces $O(nw)+O(n)=O(nw)$. 
 \end{ej}
 
+\subsection{Problema del camino más largo}
+Este problema no tiene subestructura óptima como vemos en el siguiente ejemplo
+
+\begin{figure}[h!]
+\includegraphics[scale=0.6]{caminolargo}
+\end{figure}
+Un camino $u\to s$ se puede descomponer como $u\to v\to s$, pero $u\to v$ se puede descomponer a su vez como $u\to w\to s\to v$. Así que no podemos usar programación dinámica.
+
+\subsection{Problema del camino más corto}
+Este problema sí tiene subestructura óptima. Sea $(V,A)$ un grafo y $u,v\in V$. Llamamos $p$ al camino más corto entre de $u$ a $v$.  Sea $w\in p$ distinto de $u$ y de $v$. Entonces $p$ es la unión del camino más corto entre $u$ y $w$ con el camino más corto entre $w$ y $v$. 
+
+Veamos un algoritmo para resolver este problema. Sea $N=(V,A,l)$ donde $l:A\to\R^+$ es la función de longitud. Para un camino $c$, $l(c)=\sum_{a\in c}l(a)$. Denotamos $l_{ij}$ a la longitud de la arista $(v_i,_j)$. Dados $u,v\in V$ buscamos $c$ entre $u$ y $v$ tal que $l(c)\leq l(c')$ para cualquier otro camino $c'$ entre $u$ y $v$. Consideramos $\Gamma:V\to \mathcal{P}(V)$ dada por $\Gamma(v_i)=\{v_j\in V\mid \exists(v_i,v_j)\in A\}$. Definimos también $\Gamma^{-1}:V\to\mathcal{P}(V)$ como $\Gamma(v_i)=\{v_j\in V\mid \exists(v_j,v_i)\in A\}$. Dado un camino $c$, definimos $\Gamma^{-1}_c(v_i)=\Gamma^{-1}(v_i)\cap c$. 
+
+Supongamos que $U\subseteq V$. Denotamos $\overline{U}=V\setminus U$ y sea $v\in V$. Definimos $d_U(v,v_i)$ como la longitud del camino más corto de $v$ a $v_i$ si $v_i\in U$, es decir
+\[
+d_U(v,v_i)=\begin{cases}
+\min\{d_U(v,v_j)+l_{ji}\} & v_i\in U, v_j\in U\cap \Gamma^{-1}(v_i)\\
++\infty &  U\cap \Gamma^{-1}(v_i)=\emptyset
+\end{cases}
+\]
+
+\begin{teorema}
+Sea $v_j\in\overline{U}$ y $d_U(v,v_j)=\min\{d_U(v,v_i), v_i\in\overline{U}\}$. Entonces $d_U(v,v_j)$ es la longitud del camino más corto de $v$ a $v_j$. 
+\end{teorema}
+\begin{dem}
+Sea $c$ el camino más corto entre $u$ y $v$. Consideramos $v_t\in U$ y $v_s\in\overline{U}$ de modo que la arista $(v_t,v_s)\in A$. Denotamos $c_1$ al camino entre $v$ y el último vértice antes de salir de $U$, $v_t$. Tenemos que $v_t\in \Gamma^{-1}_{c_1}(v_s)$. Entonces $l(c)\geq l(c_1)=d_U(v_i, v_t)+l_{ts}\geq d_U(v,v_s)\geq d_U(v,v_j)$.
+\end{dem}
+
+\subsubsection{Algoritmo de Dijkstra}
+Fijamos el vértice de origen $v$. 
+\begin{enumerate}
+\item[Paso 1:] $\overline{U}=V\setminus\{v\}$. $$d(v_i)=\begin{cases}
+0 & v_i=v\\
+l_{v,v_i} & v_i\in\Gamma(v)\\
++\infty & v_i\notin\Gamma(v)
+\end{cases}$$
+$$\Gamma^{-1}_c(v_i)=\begin{cases}
+v & v_i\in\Gamma(v)\\
+0 & v_i\in\Gamma(v)
+\end{cases}$$
+\item[Paso 2:] Hallar $v_j$ con $d(v_j)=\min\{d(v_i), v_i\in U\}$ ($O(n)$) y actualizar $\overline{U}=\overline{U}\setminus\{v_j\}$.
+\item[Paso 3:] $v_i\in \Gamma(v_j)\cap\overline{U}$, $t_i=d(v_j)+l_{ji}$ si $t_i<d(v_i)$ ($O(n)$). Hacer $d(v_i)=t_i$ y $\Gamma^{-1}_c(v_i)=v_j$.
+\item[Paso 4:] Si $|\overline{U}|>0$ ir al paso 2, en caso contrario parar. 
+\end{enumerate}
+Por tanto, la complejidad del algoritmo es $O(n^2)$. En el caso de calcular el menor de todos los caminos desde $v$ a todos los demás sería $O(n^3)$. 
 \end{document}

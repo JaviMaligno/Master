@@ -1,0 +1,506 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usetheme{Copenhagen}
+\usepackage[spanish]{babel}
+\usepackage{multirow}
+%\usepackage{estilo-apuntes}
+\usepackage{braids}
+\usepackage[]{graphicx}
+\usepackage{rotating}
+\usepackage{pgf,tikz}
+\usepackage{pgfplots}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows}
+\usetikzlibrary{cd}
+\usetikzlibrary{babel}
+\pgfplotsset{compat=1.13}
+\usetikzlibrary{decorations.shapes}
+\pgfkeyssetvalue{/tikz/braid height}{1cm} %no parece hacer nada
+\pgfkeyssetvalue{/tikz/braid width}{1cm}
+\pgfkeyssetvalue{/tikz/braid start}{(0,0)}
+\pgfkeyssetvalue{/tikz/braid colour}{black}
+
+\theoremstyle{definition}
+
+\newtheorem{teorema}{Teorema}
+\newtheorem{defi}[teorema]{Definición}
+\newtheorem{prop}[teorema]{Proposición}
+\newtheorem{ej}[teorema]{Ejemplo}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\providecommand{\gene}[1]{\langle{#1}\rangle}
+
+
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+\setbeamercolor{footline}{fg=black}
+\setbeamerfont{footline}{series=\bfseries}
+
+%-----------------------------------------------------------
+
+\title{Computation of words satisfying the “rhythmic oddity property”}
+\author{Javier Aguilar Martín}
+\institute{Universidad de Sevilla}
+\date{}
+ 
+\begin{document}
+\frame{\titlepage}
+%\begin{frame}
+%
+%
+%\title[About Beamer] %optional
+%{About the Beamer class in presentation making}
+% 
+%\subtitle{A short story}
+% 
+%\author[Arthur, Doe] % (optional, for multiple authors)
+%{A.~B.~Arthur\inst{1} \and J.~Doe\inst{2}}
+% 
+%\institute[VFU] % (optional)
+%{
+%  \inst{1}%
+%  Faculty of Physics\\
+%  Very Famous University
+%  \and
+%  \inst{2}%
+%  Faculty of Chemistry\\
+%  Very Famous University
+%}
+% 
+%\date[VLC 2013] % (optional)
+%{Very Large Conference, April 2013}
+
+
+%\end{frame}
+\setbeamercovered{highly dynamic}
+
+\newcounter{saveenumi}
+\newcommand{\seti}{\setcounter{saveenumi}{\value{enumi}}}
+\newcommand{\conti}{\setcounter{enumi}{\value{saveenumi}}}
+
+\resetcounteronoverlays{saveenumi}
+%\AtBeginSection[]{
+%\begin{frame}
+%\frametitle{Tabla de contenidos}
+%\tableofcontents
+%\end{frame}
+%}
+%\begin{frame}
+%\begin{enumerate}
+%\item Saludo, agradecimientos, decir que tenía tantas ganas de presentarlo que he venido desde Madrid
+%\item Presentarlo, decir que explicaré brevemente el problema de la palabra, daré varias visiones de los grupos de trenzas y varios algoritmos (muy por encima) para resolver el problema en estos grupos
+%\item Problema de la palabra: explicación, no siempre se puede resolver pero vamos a ver unos grupos donde sí
+%\seti
+%\end{enumerate}
+%\end{frame}
+%\begin{frame}
+%\begin{enumerate}
+%\conti
+%\item Trenzas: decir que son grupos importantes no solo por esto. idea intuitiva de trenza (incluyendo trenzas puras) y concatenación. Esto da un grupo de clases de homotopía relativa.
+%\item Espacios de configuración: n puntos distintos moviéndose en un espacio sin chocarse, si no importa el orden de los puntos hacemos el cociente. Las trenzas (puras) serían grupo fundamental de estos en C o R2 da lo mismo. 
+%\item Mapping class group: automorfismos del disco deforman lazos y esto hacen el efecto de cruce de puntos, que se corresponde con los cruces de cuerdas (Poner imagen de automorfismos del grupo libre) salvo isotopía
+%\item Presentación del grupo: generadores son cruces, también tenemos presentación para las trenzas puras con generadores de Birman (dibujo)
+%\seti
+%\end{enumerate}
+%\end{frame}
+%\begin{frame}
+%\begin{enumerate}
+%\conti
+%\item Automorfismos del grupo libre :Con la imagen y la expresión de la representación, aquí usamos los mapping class groups, y asociamos un automorfismo del grupo libre a cada generador. Esta representación es fiel y en el grupo libre se puede resolver el problema de la palabra. 
+%\item Peinado de trenzas: Usamos una propiedad de los grupos de trenzas puras, que es que son isomorfos a un producto semidirecto de grupos libres y entonces basta resolver en cada factor el problema. Para expresarlo se usan los generadores de Birman. Para una trenza general primero se comprueba si es pura. (Imagen de peinada, cada cuerda se corresponde a uno) (Producto semidirecto: extensión escindida de grupos)
+%\seti
+%
+%\end{enumerate}
+%\end{frame}
+%\begin{frame}
+%\begin{enumerate}
+%\conti
+%\item Forma normal: Monoide de trenzas positivas: trenzas que tienen exponentes positivas. Aquí existe un orden parcial que admite mínimo común múltiplo y máximo común divisor. Existe un elemento especial que es el mínimo común múltiplo de los generadores. A partir de esto llegamos a una forma normal (la forma normal de Garside) y ya dos palabras representan el mismo elemento si y solo si tienen la misma forma normal. 
+%(Si tengo que poner en la misma diapositiva el monoide y el Delta hacer para que no salgan a la vez, posiblemente con itemize haciendo que no salga el bullet) BN+ misma presentación con un +
+%\item Representaciones lineales: se intenta representar las trenzas en un grupo lineal (en este caso sobre anillos de polinomios). Enumerar las que menciono en el trabajo diciendo que la de Burau no se sabe si es fiel para n=4 pero las otras sí. 
+%\item Finalización: y con esto hemos visto los principales algoritmos. Agradecimiento y preguntas. 
+%\end{enumerate}
+%\end{frame}
+%
+%\begin{frame}
+%BOTELLA DE AGUA
+%
+%PUNTERO PARA PASAR DIAPOSITIVAS
+%\end{frame}
+
+
+\section{Introduction}
+
+\begin{frame}
+\frametitle{Introduction}
+%\begin{figure}[h!]
+%\includegraphics[scale=0.5]{Imagenes/hilos}
+%\caption{Una trenza geométrica pura y una trenza geométrica no pura.}
+%\end{figure}
+\end{frame}
+
+%\begin{frame}
+%\frametitle{Concatenación}
+%\begin{figure}[h!]
+%\includegraphics[scale=0.5]{Imagenes/Diapconca}
+%\caption{Concatenación de trenzas.}
+%\end{figure}
+%Esta operación induce un producto entre las clases de homotopía.
+%\end{frame}
+
+\begin{frame}
+
+
+\end{frame}
+
+\section{The rythmic oddity property}
+
+\begin{frame}
+\frametitle{The rythmic oddity property}
+
+\end{frame}
+
+\begin{frame}
+
+
+\end{frame}
+
+\section{Construction of asymmetric pairs}
+
+%\begin{frame}
+%\frametitle{Mapping class groups}
+%\begin{defi}
+%Una \textbf{isotopía} entre dos espacios topológicos $X$ e $Y$ es una familia continua de homeomorfismos $h_t:X\to Y$ con $0\leq t\leq 1$. Dos homeomorfismos $f,g:X\to Y$ son \textbf{isotópicos} si existe una isotopía $h_t:X\to Y$ con $h_0=f$ y $h_1=g$. 
+%\end{defi}
+%Sea $Homeo^+(\D_n)$ el conjunto de homeomorfismos que preservan la orientación de $\D_n$ en sí mismo, fijando los puntos del borde. 
+%\end{frame}
+
+
+\begin{frame}
+\frametitle{Construction of asymmetric pairs}
+%Consideraremos que dos automorfismos son iguales si pueden ser transformados el uno en el otro mediante una isotopía de $\D_n$ en sí mismo que fije el borde y los agujeros.
+
+\end{frame}
+\begin{frame}
+%\begin{figure}[h!]
+%\includegraphics[scale=0.6]{Imagenes/twist}
+%\caption{Los cruces de puntos representan cruces de cuerdas.}
+%\end{figure}
+\end{frame}
+
+\section{Counting the solutions}
+
+
+
+\begin{frame}
+\frametitle{Counting the solutions}
+%\begin{teorema}
+%\[
+%B_n=\left\langle\begin{array}{c| c c}
+%\multirow{2}{*}{$\sigma_1,\dots,\sigma_{n-1}$} & \sigma_i\sigma_j=\sigma_j\sigma_i, & |i-j|>1\\
+%& \sigma_i\sigma_j\sigma_i=\sigma_j\sigma_i\sigma_j, & |i-j|=1
+%\end{array}\right\rangle
+%\]
+%\end{teorema}
+%\begin{itemize}
+%%\item<1->[]
+%\item<2->[]
+%\begin{figure}[h!]
+%\resizebox{10cm}{2.3cm}{
+%\begin{tikzpicture}
+%\fill[black] ( 6.7 , -0.5 ) circle ( 1 pt ) ;
+%\fill[black] ( 7 , -0.5 ) circle ( 1 pt ) ;
+%\fill[black] ( 7.3 , -0.5 ) circle ( 1 pt ) ;
+%
+%\fill[black] ( 1.7 , -0.5 ) circle ( 1 pt ) ;
+%\fill[black] ( 2 , -0.5 ) circle ( 1 pt ) ;
+%\fill[black] ( 2.3 , -0.5 ) circle ( 1 pt ) ;
+%\braid[ number of strands=8, %lower bound
+% border height=2pt,style strands={8}{line width=2pt}, style strands={7}{draw=none},style strands={6}{line width=2pt},style strands={5}{line width=2pt},style strands={4}{line width=2pt},style strands={3}{line width=2pt}, style strands={2}{draw=none},style strands={1}{line width=2pt}] (braid) at (1,0)%optional, it's a name
+%          a_4^{-1};
+%          \node[ at=(braid-4-s),  label=north :  $i$ ] {} ;
+%\node[ at=(braid-5-s),  label=north : $i+1$ ] {} ;
+%\draw (4.5,-2) node[anchor=south] {$\sigma_i$};
+%\end{tikzpicture}
+%\qquad
+%\begin{tikzpicture}
+%\fill[black] ( 6.7 , -0.5 ) circle ( 1 pt ) ;
+%\fill[black] ( 7 , -0.5 ) circle ( 1 pt ) ;
+%\fill[black] ( 7.3 , -0.5 ) circle ( 1 pt ) ;
+%
+%\fill[black] ( 1.7 , -0.5 ) circle ( 1 pt ) ;
+%\fill[black] ( 2 , -0.5 ) circle ( 1 pt ) ;
+%\fill[black] ( 2.3 , -0.5 ) circle ( 1 pt ) ;
+%\braid[ number of strands=8, %lower bound
+% border height=2pt,style strands={8}{line width=2pt}, style strands={7}{draw=none},style strands={6}{line width=2pt},style strands={5}{line width=2pt},style strands={4}{line width=2pt},style strands={3}{line width=2pt}, style strands={2}{draw=none},style strands={1}{line width=2pt}] (braid) at (1,0)%optional, it's a name
+%          a_4;
+%          \node[ at=(braid-4-s),  label=north :  $i$ ] {} ;
+%\node[ at=(braid-5-s),  label=north : $i+1$ ] {} ;
+%\draw (4.5,-2) node[anchor=south] {$\sigma_i^{-1}$};
+%\end{tikzpicture}
+%}
+%\caption{Cruce positivo y cruce negativo.}
+%\end{figure}
+%\end{itemize}
+\end{frame}
+
+%\begin{frame}[fragile]
+%
+%\begin{figure}[h!]
+%\resizebox{11cm}{2.5cm}{
+%\begin{tikzpicture}
+%\fill[black] ( 6.7 , -0.5 ) circle ( 1 pt ) ;
+%\fill[black] ( 7 , -0.5 ) circle ( 1 pt ) ;
+%\fill[black] ( 7.3 , -0.5 ) circle ( 1 pt ) ;
+%
+%\fill[black] ( 1.7 , -0.5 ) circle ( 1 pt ) ;
+%\fill[black] ( 2 , -0.5 ) circle ( 1 pt ) ;
+%\fill[black] ( 2.3 , -0.5 ) circle ( 1 pt ) ;
+%\braid[ number of strands=8, %lower bound
+% border height=2pt,style strands={8}{line width=2pt}, style strands={7}{draw=none},style strands={6}{line width=2pt},style strands={5}{line width=2pt},style strands={4}{line width=2pt},style strands={3}{line width=2pt}, style strands={2}{draw=none},style strands={1}{line width=2pt}] (braid) at (1,0)%optional, it's a name
+%          a_4^{-1};
+%          \node[ at=(braid-4-s),  label=north :  $i$ ] {} ;
+%\node[ at=(braid-5-s),  label=north : $i+1$ ] {} ;
+%\draw (4.5,-2) node[anchor=south] {$\sigma_i$};
+%\end{tikzpicture}
+%\qquad
+%\begin{tikzpicture}
+%\fill[black] ( 6.7 , -0.5 ) circle ( 1 pt ) ;
+%\fill[black] ( 7 , -0.5 ) circle ( 1 pt ) ;
+%\fill[black] ( 7.3 , -0.5 ) circle ( 1 pt ) ;
+%
+%\fill[black] ( 1.7 , -0.5 ) circle ( 1 pt ) ;
+%\fill[black] ( 2 , -0.5 ) circle ( 1 pt ) ;
+%\fill[black] ( 2.3 , -0.5 ) circle ( 1 pt ) ;
+%\braid[ number of strands=8, %lower bound
+% border height=2pt,style strands={8}{line width=2pt}, style strands={7}{draw=none},style strands={6}{line width=2pt},style strands={5}{line width=2pt},style strands={4}{line width=2pt},style strands={3}{line width=2pt}, style strands={2}{draw=none},style strands={1}{line width=2pt}] (braid) at (1,0)%optional, it's a name
+%          a_4;
+%          \node[ at=(braid-4-s),  label=north :  $i$ ] {} ;
+%\node[ at=(braid-5-s),  label=north : $i+1$ ] {} ;
+%\draw (4.5,-2) node[anchor=south] {$\sigma_i^{-1}$};
+%\end{tikzpicture}
+%}
+%\caption{Cruce positivo y cruce negativo.}
+%\end{figure}
+%\end{frame}
+
+%\begin{frame}
+%\begin{figure}[h!]
+%\includegraphics[scale=0.6]{Imagenes/Diapplana}
+%\caption{Representación plana de una trenza.}
+%\end{figure}
+%\end{frame}
+
+
+
+
+
+
+
+\begin{frame}[fragile]
+%\frametitle{Generadores del grupo de trenzas puras}
+%%\begin{figure}[h!]
+%%\includegraphics[scale=0.5]{Imagenes/birman}
+%%\caption{Generador de Birman $A_{ij}$.}
+%%\end{figure}
+%\begin{figure}[h!]
+%\centering
+%\tikzset{decorate sep/.style 2 args=
+%{decorate,decoration={shape backgrounds,shape=circle,shape size=#1,shape sep=#2}}}
+%\resizebox{9cm}{4cm}{%
+%\begin{tikzpicture}
+%
+%\node[anchor=south] at (0,2.1) {$j$};
+%\foreach \x in {-7,-4,-2,-1,1,4}{
+%\draw[white,double=black,very thick,-] (\x,-2) -- (\x,2);
+%}
+%\draw[white,double=black,very thick,-] (-3,0) -- (-3,2);
+%\draw[smooth,white,double=black,line width=2mm,-] plot[variable=\x,domain=-2:2] ({-3.5*exp(-1.4*\x*\x)},{\x});
+%\draw[white,double=black,very thick,-] (-3,-2) -- (-3,0);
+%\node[anchor=south] at (-3,2.1) {$i$};
+%\draw[decorate sep={0.5mm}{9mm},fill] (-6.5,0) -- (-4.5,0);
+%\draw[decorate sep={0.5mm}{9mm},fill] (1.5,0) -- (3.5,0);
+%\draw[-] (-8,2) -- (5,2);
+%\draw[-] (-8,-2) -- (5,-2);
+%\end{tikzpicture}
+%}
+%\caption{Generador de Birman $A_{ij}$.}
+%\end{figure}
+\end{frame}
+
+
+\begin{frame}
+%\frametitle{Automorfismos del grupo libre}
+
+%\begin{figure}[h!]
+%\includegraphics[scale=0.7]{Imagenes/Disco.png}
+%\caption{Los lazos $x_1,\dots,x_n$ son generadores de $\pi_1(\D_n)\cong F_n$.}
+%\end{figure}
+\end{frame}
+
+%\begin{frame}
+%\begin{align*}
+%\rho: & B_n \to Aut(F_n)\\
+%      & \beta\ \ \mapsto\ \ \rho_\beta
+%\end{align*}
+%
+%$$\rho_{\sigma_i}(x_i)=x_{i+1},\quad \rho_{\sigma_i}(x_{i+1})=x_{i+1}^{-1}x_ix_{i+1},\quad \rho_{\sigma_i}(x_j)=x_j\ (j\neq i,i+1)$$
+%
+%$$\rho^{-1}_{\sigma_i}(x_i)=x_ix_{i+1}x_i^{-1},\quad \rho^{-1}_{\sigma_i}(x_{i+1})=x_i,\quad \rho^{-1}_{\sigma_i}(x_j)=x_j\ (j\neq i,i+1)$$
+%\end{frame}
+
+\begin{frame}
+%\begin{figure}[h!]
+%\includegraphics[scale=0.5]{Imagenes/auto.png}
+%\caption{Acción de $\sigma_i$ sobre los generadores $x_i$ y $x_{i+1}$.}
+%\end{figure}
+\end{frame}
+
+%\begin{frame}
+%\frametitle{Solución al problema de la palabra}
+%\begin{teorema}
+%La representación anterior es fiel, es decir, dos trenzas están representadas por el mismo automorfismo si y solo si son la misma.
+%\end{teorema}
+%
+%\begin{itemize}
+%\item Dadas $\beta_1,\beta_2\in B_n$, 
+%$$\beta_1=\beta_2\Leftrightarrow \rho_{\beta_1}(x_i)=\rho_{\beta_2}(x_i)\ \forall x_i$$
+%\end{itemize}
+%\end{frame}
+
+%\begin{frame}[fragile]
+%\frametitle{Peinado de trenzas}
+%\[
+%\begin{tikzcd}
+%1\arrow[r]& PB_n\arrow[r, "i"] & B_n\arrow[r,"\eta"]& \Sigma_n\arrow[r] & 1
+%\end{tikzcd}
+%\]
+%
+%\[
+%\begin{tikzcd}
+%1\arrow[r]& F_n\arrow[r, "\iota"] & PB_{n+1}\arrow[r,"\rho", shift left]& \arrow[l,"s",shift left]PB_n\arrow[r] & 1
+%\end{tikzcd}
+%\]
+%\end{frame}
+
+\begin{frame}
+%Inductivamente, combinando $PB_{n+1}\cong F_n\rtimes PB_n$ y $PB_2\cong F_1$ obtenemos:
+%\frametitle{Peinado de trenzas}
+%\begin{block}{Resultado}
+%%$$PB_{n+1}\cong F_n\rtimes (F_{n-1} \rtimes\dots\rtimes (F_3\rtimes (F_2\rtimes F_1))\cdots))$$
+%$$PB_{n+1}\cong ((\cdots ((F_1\ltimes F_2)\ltimes F_3)\ltimes\dots\ltimes F_{n-1})\ltimes F_n.$$
+%\end{block}
+%
+%\begin{enumerate}
+%\item<2-> La trenza trivial es pura.
+%\item<3-> Un elemento de un producto semidirecto es trivial si y solo si lo es cada una de sus coordenadas.
+%\end{enumerate}
+\end{frame}
+
+%\begin{frame}
+%\frametitle{Solución al problema de la palabra}
+%\begin{enumerate}
+%\item<1-> Comprobar si $\beta$ es pura calculando la permutación inducida.
+%\item<2-> Si no es pura, no es trivial. Si es pura, expresarla como elemento del producto semidirecto usando los generadores $A_{ij}$. A esto se le llama ``peinar la trenza''.
+%\end{enumerate}
+%
+%\end{frame}
+
+\begin{frame}
+
+
+%\begin{figure}
+%\begin{turn}{1.5}
+%\includegraphics[scale=0.4]{Imagenes/peinado}
+%\end{turn}
+%\caption{Trenza peinada.}
+%\end{figure}
+
+\end{frame}
+
+
+
+
+\begin{frame}
+%\frametitle{Formas normales}
+%\begin{defi}[Monoide de trenzas positivas]
+%\[
+%B_n^+=\left\langle\begin{array}{c| c c}
+%\multirow{2}{*}{$\sigma_1,\dots,\sigma_{n-1}$} & \sigma_i\sigma_j=\sigma_j\sigma_i, & |i-j|>1\\
+%& \sigma_i\sigma_j\sigma_i=\sigma_j\sigma_i\sigma_j, & |i-j|=1
+%\end{array}\right\rangle^+
+%\]
+%\end{defi}
+%\begin{defi}[Orden parcial de prefijos]
+%Dadas $a,b\in B_n^+$, $a\preccurlyeq b$ si $ac=b$ para alguna $c\in B_n^+$. Decimos en ese caso que $a$ es un \textbf{prefijo} de $b$. %Escribimos $a\prec b$ si $c$ no es trivial. Si además $a\neq 1$, decimos que $a$ es un \emph{prefijo propio} de $b$. 
+%\end{defi}
+\end{frame}
+
+\begin{frame}
+
+%\begin{defi}[Trenza funtamental]
+%$$\Delta=\sigma_1(\sigma_2\sigma_1)\cdots(\sigma_{n-1}\cdots\sigma_1)$$
+%\end{defi} 
+%\begin{figure}[h!]
+%\centering
+%\begin{tikzpicture}
+%\braid[rotate=90,width=.6cm,height=0.7cm,line width=1.5pt] s_1^{-1} s_2^{-1} s_1^{-1} s_3^{-1} s_2^{-1} s_1^{-1} s_4^{-1} s_3^{-1} s_2^{-1} s_1^{-1};
+%\end{tikzpicture}
+%\caption{La trenza fundamental para $n=5$.}
+%\end{figure}
+%\end{frame}
+%
+%\begin{frame}
+%\frametitle{Forma normal de Garside}
+%
+%\begin{teorema}
+%Todo elemento $w\in B_n$ se puede escribir \emph{de forma única} como $$w=\Delta^pA$$ donde $p\in\Z$, $A\in B_n^+$ y $\Delta\not\preccurlyeq A$. 
+%\end{teorema}
+%
+%%\begin{itemize}
+%%\item Para averiguar si dos trenzas $\beta_1,\beta_2\in B_n$ representan el mismo elemento, basta calcular sus formas normales de Garside y comprobar si coinciden. 
+%%\end{itemize}
+%\end{frame}
+%
+%
+%
+%%\begin{frame}
+%%\frametitle{Representaciones lineales}
+%%\end{frame}
+%
+%\begin{frame}
+%\frametitle{Representaciones lineales}
+%\begin{block}{Objetivo}
+%Representar los grupos de trenzas en grupos lineales. 
+%\end{block}
+%\begin{enumerate}
+%\item<2-> Representación de Krammer
+%\item<3-> Representación de Bigelow
+%\item<4-> Representación de Burau
+%\item<5->[] \begin{alertblock}{Problema abierto}
+%Descubrir si la representación de Burau es fiel para $B_4$. 
+%\end{alertblock}
+%\end{enumerate}
+
+
+\end{frame}
+
+
+\begin{frame}
+\begin{center}
+\begin{Huge}
+¡Gracias!
+\end{Huge}
+\end{center}
+\end{frame}
+
+
+
+
+\end{document}
