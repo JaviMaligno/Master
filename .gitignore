@@ -49,3 +49,6 @@ rsconnect/
 *.fdb_latexmk
 *.idx
 *.Rhistory
+*.nav
+*.snm
+*.vrb
