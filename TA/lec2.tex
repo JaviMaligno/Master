@@ -145,7 +145,7 @@ Es interesante notar que la prueba del lema \ref{3.1} es válida para cualquier 
 
 \section{Cohomología de espacios}
 
-Dado un espacio $X$ y un grupo abeliano $G$, definimos el grupo $C^n(X;G)$ de \emph{$n$-cocadenas singulares con coeficientes en $G$} como el grupo dual $\Hom(C_n(X),G)$ del grupo de cadenas singulares $C_n(X)$. PREGUNTAR COMO AFECTA LA HOMOLOGÍA CON COEFICIENTES A TODO ESTO. El operador \emph{coborde} $\delta:C^n(X;G)\to C^{n+1}(X;G)$ es el dual $d^*$ de $d:C_{n+1}(X)\to C_n(X)$, es decir, para cada $\varphi\in C^n(X;G)$, $\delta\varphi=\varphi d$. Es inmediato a partir de esto que $\delta^2=0$, ya que $\delta^2$ es el dual de $d^2=0$. Por tanto, definimos el \emph{grupo de cohomología} $H^n(X;G)$ \emph{con coeficientes en $G$} como el cociente $\ker\delta/\Ima\delta$ en grado $n$, es decir, en $C^{n-1}(X;G)\to C^n(X;G)\to C^{n+1}(X;G)$.
+Dado un espacio $X$ y un grupo abeliano $G$, definimos el grupo $C^n(X;G)$ de \emph{$n$-cocadenas singulares con coeficientes en $G$} como el grupo dual $\Hom(C_n(X),G)$ del grupo de cadenas singulares $C_n(X)$. PREGUNTAR COMO AFECTA LA HOMOLOGÍA CON COEFICIENTES A TODO ESTO \url{https://en.wikipedia.org/wiki/Tensor-hom_adjunction}. El operador \emph{coborde} $\delta:C^n(X;G)\to C^{n+1}(X;G)$ es el dual $d^*$ de $d:C_{n+1}(X)\to C_n(X)$, es decir, para cada $\varphi\in C^n(X;G)$, $\delta\varphi=\varphi d$. Es inmediato a partir de esto que $\delta^2=0$, ya que $\delta^2$ es el dual de $d^2=0$. Por tanto, definimos el \emph{grupo de cohomología} $H^n(X;G)$ \emph{con coeficientes en $G$} como el cociente $\ker\delta/\Ima\delta$ en grado $n$, es decir, en $C^{n-1}(X;G)\to C^n(X;G)\to C^{n+1}(X;G)$.
 
 Los elementos de $\ker\delta$ se llaman \emph{cociclos} y los elementos de $\Ima\delta$ \emph{cobordes}. Que un elemento $\varphi$ sea un cociclo significa que $\delta\varphi=\varphi d=0$, o en otras palabras, que $\varphi$ se anule en los bordes.
 
@@ -233,7 +233,7 @@ Esta es la sucesión exacta larga asociada a la sucesión exacta corda de comple
 \[
 0\to C^n(A+B;G)\xrightarrow{\psi}C^n(A;G)\oplus C^n(B;G)\xrightarrow{\phi} C^n(A\cap B;G)\to 0
 \]
-donde $C^n(A+B;G)=\Hom(C_n(A+B),G)$. La inclusión $C_n(A+B)\subseteq C_n(X)$ es una equivalencia de homotopía por la proposición 2.21 BUSCAR CUÁL ES, así que la restricción dual $C^n(X;G)\to C^n(A+B;G)$ es también una equivalencia de homotopía, y por tanto induce isomorfismos en cohomología. La aplicación $\psi$ tiene como coordenadas las dos restricciones a $A$ y a $B$, y $\phi$ lleva la diferencia de estas restricciones a $A\cap B$, por lo que es obvio que $\phi$ es sobreyectiva con núcleo la imagen de $\psi$. 
+donde $C^n(A+B;G)=\Hom(C_n(A+B),G)$. La inclusión $C_n(A+B)\subseteq C_n(X)$ es una equivalencia de homotopía por la proposición 2.21 BUSCAR CUÁL ES, así que la restricción dual $C^n(X;G)\to C^n(A+B;G)$ es también una equivalencia de homotopía, y por tanto induce isomorfismos en cohomología. La aplicación $\psi$ tiene como coordenadas las dos restricciones a $A$ y a $B$, y $\phi$ lleva la diferencia de estas restricciones a $A\cap B$, por lo que es obvio que $\phi$ es sobreyectiva con núcleo la imagen de $\psi$ (las cadenas que tengan imagen en $A\cup B$ tienen que coincidir en la intersección). 
 
 La versión relativa de Mayer-Vietoris para un par $(X,Y)=(int A\cup int B, int C\cup int D)$ es
 \[
@@ -250,7 +250,6 @@ Aquí, $C^n(A+B,C+D;G)$ está definido como el núcleo de $C^n(A+B;G)\to C^n(C+D
 \[
 0\to C^n(A+B,C+D;G)\xrightarrow{\psi} C^n(A,C;G)\oplus C^n(B,D;G)\xrightarrow{\phi} C^n(A\cap B, C\cap D;G)\to 0
 \]
-QUÉ RELACIÓN TIENE ESTO CON LO QUE HA HECHO JUSTO ANTES
 
 que es exacta por ser dual de la sucesión exacta corta escindible
 \[
@@ -279,7 +278,7 @@ La relación entre teorías reducidas y no reducidas de cohomología es la misma
 Si $(X,A)$ es un par de complejos simpliciales, podemos tomar los grupos $\Delta^n(X,A;G)=\Hom(\Delta_n(X,A),G)$, y los resultantes grupos de cohomología son por definición los grupos de cohomología simplicial. Como las inclsiones $\Delta_n(X,A)\subseteq C_n(X,A)$ inducen isomorfismos en homología, por el teorema de coeficientes universales $C^n(X,A;G)\to \Delta^n(X,A;G)$ los induce en cohomología.
 
 \subsubsection{Cohomología celular}
-Para un CW-complejo $X$, la cohomología celular está definida mediante el complejo de cocadenas celulares formado por la sucesión horizontal en el siguiente diagrama, donde el grupo de coeficientes se sobreentiende, y los cobordes celulares $d_n$ son las composiciones $\delta_nj_n$, haciendo que los triángulos conmuten. Nótese que $d_nd_{n-1}=j_n\delta_{n-1}=0$. ¿POR QUÉ ESTO ES 0?
+Para un CW-complejo $X$, la cohomología celular está definida mediante el complejo de cocadenas celulares formado por la sucesión horizontal en el siguiente diagrama, donde el grupo de coeficientes se sobreentiende, y los cobordes celulares $d_n$ son las composiciones $\delta_nj_n$, haciendo que los triángulos conmuten. Nótese que $d_nd_{n-1}$ ya que $j_n\delta_{n-1}=0$ por exactitud. 
 \[
 \begin{tikzcd}[column sep=-13]                                                                      & H^{n-1}(X^{n-1})\arrow[dr, "\delta_{n-1}"] & & & \\
 \cdots\to H^{n-1}(X^{n-1},X^{n-2})\arrow[rr, "d_{n-1}"]\arrow[ur, twoheadrightarrow, "j_{n-1}"] & & H^n(X^n,X^{n-1})\arrow[dr, twoheadrightarrow, "j_n"]\arrow[rr, "d_n"] & & H^{n+1}(X^{n+1}, X^n)\to\cdots\\
@@ -290,7 +289,7 @@ Para un CW-complejo $X$, la cohomología celular está definida mediante el comp
 $H^n(X;G)\cong\ker d_n/\Ima d_{n-1}$. Además, el complejo de cocadenas celulares $\{H^n(X^n,X^{n-1};G),d_n\}$ es isomorfo al complejo dual del complejo de cadenas celulares obtenido aplicando $\Hom(-,G)$.
 \end{teorema}
 \begin{dem}
-El teorema de coeficientes universales implica que $H^k(X^n,X^{n-1};G)=0$ para $k\neq n$. La sucesión exacta larga del par $(X^n,X^{n-1})$ entonces da isomorfismos $H^k(X^n;G)\cong H^k(X^{n-1};G)$ para $k\neq n,n-1$. Por inducción en $n$ obtenemos $H^k(X^n;G)=0$ si $k>n$. Entonces, las sucesiones diagonales del diagrama anterior son exactas. El teorema de coeficientes universales también da $H^k(X,X^{n+1};G)=0$ para $k\leq n+1$, asi´que $H^n(X;G)\cong H^n(X^{n+1};G)$. El diagrama entonces da lugar a isomorfismos
+El teorema de coeficientes universales implica que $H^k(X^n,X^{n-1};G)=0$ para $k\neq n$ porque $H_{n-1}(X^n,X^{n-1})=0$ y $H_n(X^n,X^{n-1})$ es libre con rango el número de $n$-células. La sucesión exacta larga del par $(X^n,X^{n-1})$ entonces da isomorfismos $H^k(X^n;G)\cong H^k(X^{n-1};G)$ para $k\neq n,n-1$. Por inducción en $n$ obtenemos $H^k(X^n;G)=0$ si $k>n$ (bajando $n$ hasta llegar al 0-esqueleto, donde claramente es 0). Entonces, las sucesiones diagonales del diagrama anterior son exactas. El teorema de coeficientes universales también da $H^k(X,X^{n+1};G)=0$ para $k\leq n+1$, así que $H^n(X;G)\cong H^n(X^{n+1};G)$. El diagrama entonces da lugar a isomorfismos
 \[
 H^n(X;G)\cong H^n(X^{n+1};G)\cong\ker\delta_n\cong\ker d_n/\Ima\delta_{n-1}\cong\ker d_n/\Ima d_{n-1}
 \]
@@ -301,13 +300,66 @@ H^k(X^k,X^{k-1};G)\arrow[r]\arrow[d, "h"] & H^k(X^k;G)\arrow[r, "\delta"]\arrow[
 \Hom(H_k(X^k,X^{k-1}),G)\arrow[r] & \Hom(H_k(X),G)\arrow[r, "\partial^*"] & \Hom(H_{k+1}(X^{k+1}, X^k),G)
 \end{tikzcd}
 \]
-El operador coborde celular es la composición de arriba, y queremos comprobar qu eesto es lo mismo que la composición de abajo. El primer y el tercer homomorfismo vertical es isomorfismo por el teorema de coeficientes niversales, por lo que basta probar que el diagrama conmuta. El primer cuadrado conmuta por la naturalidad de $h$, y la conmutatividad del segundo cuadrado se probó en la discusión sobre la sucesión exacta larga de grupos de cohomología del par $(X,A)$. 
+El operador coborde celular es la composición de arriba, y queremos comprobar que esto es lo mismo que la composición de abajo. El primer y el tercer homomorfismo vertical es isomorfismo por el teorema de coeficientes niversales, por lo que basta probar que el diagrama conmuta. El primer cuadrado conmuta por la naturalidad de $h$, y la conmutatividad del segundo cuadrado se probó en la discusión sobre la sucesión exacta larga de grupos de cohomología del par $(X,A)$. 
+
+Hemos obtenido que, al ser la composición de arriba $d_n$, la de abajo es $d_n^*$, así que el complejo de cocadenas celulares es exactamente el dual del complejo de cadenas celulares. 
 \end{dem}
+
+\section{Producto cup}
+
+Para definir el \emph{producto cup} (o cup-producto) consideramos cohomología con coeficientes en un anillo $R$. Para cocadenas $\varphi\in C^k(X;R)$ y $\psi\in C^l(X;R)$, el producto cup $\varphi\smile\psi\in C^{k+l}(X;R)$ es la cocadena cuyo valor en un simplíce singular $\sigma:\Delta^{k+l}\to X$ está dado por la fórmula
+\[
+(\varphi\smile\psi)(\sigma)=\varphi(\sigma|_{[v_0,\dots, v_k]})\psi(\sigma|_{[v_k,\dots, v_{k+1}]})
+\]
+donde el producto de la derecha es el producto de $R$. Para ver que el producto cup de cocadenas induce un producto cup en cohomología necesitamos el siguiente lema:
+
+\begin{lemma}
+$\delta(\varphi\smile\psi)=\delta\varphi\smile\psi+(-1)^k\varphi\smile\delta\psi$ para $\varphi\in C^k(X;R)$ y $\psi\in C^l(X;R)$. 
+\end{lemma}
+\begin{proof}
+Para $\sigma:\Delta^{k+l+1}\to X$ tenemos
+\[
+\delta\varphi\smile\psi=\sum_{i=0}^{k+1}(-1)^i\varphi(\sigma|_{[v_0,\dots, \hat{v}_i,\dots, v_{k+1}]})\psi(\sigma|_{[v_{k+1},\dots, v_{k+l+1}]})
+\]
+\[
+(-1)^k(\varphi\smile\delta\psi)=\sum_{i=k}^{k+l+1}(-1)^i\varphi(\sigma|_{[v_0,\dots, v_k]})\psi(\sigma|_{[v_k,\dots, \hat{v}_i,\dots, v_{k+l+1}]})
+\]
+Al sumar estas dos expresiones, el último término de la primera suma se cancela con el primer término de la segunda, y el resto de términos son exactamente $\delta(\varphi\smile\psi)=(\varphi\smile\psi(\partial\sigma)$. 
+\end{proof}
+De la fórmula del lema anterior es evidente que el producto cup de dos cociclos es de nuevo un cociclo. Además, el producto de un cociclo y un coborde (en el orden que sea) es un coborde. Se sigue que hay un producto cup inducido en cohomología 
+\[
+H^k(X;R)\times H^l(X;R)\to H^{k+l}(X;R). 
+\]
+Este producto es asociativo y distributivo ya que claramente lo es al nivel de cocadenas. Si $R$ tiene elemento unidad, entonces también lo hay para el producto cup, la clase de $1\in H^0(X;R)$ definida por el 0-cociclo que toma el valor 1 en cada 0-símplice singular. 
+
+De forma similar se puede definir un producto cup para la cohomología simplicial, por lo que los isomorfismos canónicos entre cohomología singular y cohomología simplicial respetan los productos cup. 
+
+\begin{ej}[Cohomología de una superficie orientable]
+Sea $M_g$ una superficie orientable de género $g\geq 0$. Teníamos $$H_q(M_g)=\begin{cases}
+0 & q\geq 3\\
+\Z & q=2\\
+\Z^{2g} & q=1\\
+\Z & q=0
+\end{cases}$$
+Entonces $H^q(M_g)\cong \Hom(H_q(M_g),\Z)$ son exactamente los mismos grupos en las mismas dimensiones. Veamos cómo funciona el cup-producto $H^q(M_g)\times H^l(M_g)\to H^{q+l}(M_g)$. El único caso no trivial es $q=l=1$. Veamos los generadores de $H^1(M_g)$. Teníamos en $H_1(M_g)$ los generadores $a_i,b_i$ para $1\leq i\leq g$. Tendremos en $H^1(M_g)$ generadores $\alpha_i=[\varphi_i]$ tales que $h(\alpha_i)=[a_i]^*$ y $\beta_i=[\psi_i]$ tales que $h(\beta_i)=[b_i]^*$. Entonces $h(\alpha_i)([a_j])=\delta_{ij}$ y $h(\alpha_i)([b_j])=0$ para todo $j$. Por otra parte, por la definición de $h$, $h(\alpha_i)([a_j])=\varphi_i(a_j)$ y similarmente con $b_j$. Recordemos que $\varphi_i,\psi_j:C_1(M_g)\to \Z$. 
+
+\begin{figure}[h!]
+\includegraphics[scale=0.7]{cup}
+\caption{Ejemplo del 2-toro.}
+\end{figure}
+
+Damos estructura de CW-complejo para calcular cuánto valen estas funciones sobre las células. La orientación de los 2-símplices es antihoraria. Tenemos que encontrar el valor de $\varphi_1$ en los 1-símplices interiores. Tenemos en cuenta que $\delta\varphi_1=0$, es decir, para todo triángulo $t_i$, $\delta\varphi_1(t_1)=\varphi_1(\partial t_i)=\varphi_1([v_0,v_1]+[v_1,v_2]-[v_0,v_2])=\varphi_1([v_0,v_1])+\varphi_1([v_1,v_2])-\varphi_1([v_0,v_2])=0$. Sobre el triángulo que contiene a $a_1$, la arista que está bien orientada valdrá 0 y la que no 1. En el de la derecha obtenemos que el segmento que queda libre debe valer 1 y así el siguiente triángulo,q ue de nuevo contiene a $a_1$ pero está orientado al contrario, está bien evaluado. 
+
+En la figura anterior se trazan curvas que unen un generador consigo mismo y en cada corte con un 1-símplice se da el valor 1 o $-1$ según la orientación. Esta interpretación cobrará más sentido con la dualidad de Poincaré. 
+
+\end{ej}
+
 
 
 \section{Ejercicios}
 \begin{ejer}
 Si $A\to B\to C\to 0$ es exacta, entonces dualizar aplicando $\Hom(-,G)$ da lugar a una sucesión exacta $A^*\leftarrow B^*\leftarrow C^*\leftarrow 0$.
 \end{ejer}
+
 
 \end{document}

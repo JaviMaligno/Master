@@ -139,10 +139,11 @@
 
 \begin{frame}
 \frametitle{Introduction}
-%\begin{figure}[h!]
-%\includegraphics[scale=0.5]{Imagenes/hilos}
-%\caption{Una trenza geométrica pura y una trenza geométrica no pura.}
-%\end{figure}
+Aka Pygmies rythmic pattern: 32222322222
+\begin{figure}[h!]
+\includegraphics[scale=0.5]{circulo}
+\caption{No breaking point giving two parts of equal length.}
+\end{figure}
 \end{frame}
 
 %\begin{frame}
@@ -154,32 +155,80 @@
 %Esta operación induce un producto entre las clases de homotopía.
 %\end{frame}
 
-\begin{frame}
 
-
-\end{frame}
 
 \section{The rythmic oddity property}
 
 \begin{frame}
-\frametitle{The rythmic oddity property}
-
+\frametitle{Words}
+\begin{itemize}
+\item<1-> Alphabet $A=\{2,3\}$, $A^*=$words over $A$, $\varepsilon=$empty word. 
+\item<2-> $A^*$ is a monoid under concatenation.
+\item<3-> For $w\in A^*$, $|w|=$lenght of $w$, $|w|_x=$number of symbols in $w$ equal to $x$.
+\item<4-> $u$ is a \textbf{prefix} of $w$ is $w=uy$ for some $y\in A^*$.
+\item<5-> $u$ is a \textbf{suffix} of $w$ is $w=yu$ for some $y\in A^*$.
+\end{itemize}
 \end{frame}
 
 \begin{frame}
+\frametitle{Cyclic shifts}
+Let $\delta$ be a permutation of $A^*$ defined by $\delta(\varepsilon)=\varepsilon$, $\delta(au)=ua$ for $a\in A$ and $u\in A^*$.
+
+The \textbf{cyclic shifs} of $w$ are the words of the form $\delta^k(w)$ for any integer $k$. 
+
+\begin{block}{Example}
+$w=2223$ has cyclic shifts $2223$, $2232$, $2322$, $3222$.  
+\end{block}
+The \textbf{height} is a morphism $h:A^*\to\mathbb{N}$ defined by $h(u)=$sum of its symbols. 
+\end{frame}
+
+\begin{frame}
+\frametitle{The rythmic oddity property}
+\begin{block}{Definition}
+A word $w$ satisfies the \textbf{rythmic oddity property} if and only if
+\begin{itemize}
+\item $h(w)$ is even and
+\item no cyclic shift of $w$ can be factorized into words $uv$ such that $h(u)=h(v)$. 
+\end{itemize}
+\end{block}
+\begin{block}{Example}
+For the Aka Pygmies $32222322222$, $h(w)=24$ and any factorization of cyclic shifts gives $h(u)=11$ and $h(v)=13$ or viceversa. 
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Proposition 1}
+If $w$ satisfies the rythmic oddity property, then at least one of the following conditions is
+satisfied:
+\begin{itemize}
+\item there exists a unique pair $(u,v)$ with $h(v)=h(u)+2$ such that $w=uv$, or 
+\item there exists a unique pair $(u,v)$ with $h(v)=h(u)+2$ such that$w=vu$. 
+\end{itemize}
+\end{block}
+
 
 
 \end{frame}
+\begin{frame}
+\frametitle{Asymmetric pairs}
+A pair $(u,v)$ is called \textbf{asymmetric} if no pair of prefixes $(u',v')$ exists such that $h(v')=h(u')+1$. For instance $(33222,32322)$ is an asymmetric pair but $(3322,32232)$ is not because $h(322)=h(33)+1$. 
+
+\begin{block}{Proposition 2}
+A word $w$ satisfies the rythmic oddity property if and only if there exists an assymetric pair $(u,v)$ such that $w=uv$ or $w=vu$ with $h(v)=h(u)+2$. 
+\end{block}
+\end{frame}
+
 
 \section{Construction of asymmetric pairs}
 
-%\begin{frame}
-%\frametitle{Mapping class groups}
-%\begin{defi}
-%Una \textbf{isotopía} entre dos espacios topológicos $X$ e $Y$ es una familia continua de homeomorfismos $h_t:X\to Y$ con $0\leq t\leq 1$. Dos homeomorfismos $f,g:X\to Y$ son \textbf{isotópicos} si existe una isotopía $h_t:X\to Y$ con $h_0=f$ y $h_1=g$. 
-%\end{defi}
-%Sea $Homeo^+(\D_n)$ el conjunto de homeomorfismos que preservan la orientación de $\D_n$ en sí mismo, fijando los puntos del borde. 
-%\end{frame}
+\begin{frame}
+\frametitle{Construction of asymmetric pairs}
+Consider $a,b:A^*\times A^*\to A^*\times A^*$ defined by $a(u,v)=(3u,3v)$ and $b(u,v)=(v,2u)$. 
+
+\begin{block}{Proposition 3}
+The set of asymmetric pairs is equal to the smallest set of pairs of words containing $\varepsilon\times A^*$ and $A^*\times\varepsilon$ and closed under $a$ and $b$. 
+\end{block}
+\end{frame}
 
 
 \begin{frame}
