@@ -18,13 +18,15 @@ PONER DE PRELIMINARES LAS COSAS QUE APARECEN EN AGII 4.
 Sea $f:X\to Y$ un morfismo de esquemas. El morfismo \emph{diagonal} es el único morfismo $\Delta:X\to X\times_Y X$ cuya composición con ambas proyecciones $p_1,p_2:X\times_Y X\to X$ es la identidad $X\to X$. Decimos que el morfismo $f$ es \emph{separado} si $\Delta$ es una inmersión cerrada. También decimos que $X$ es \emph{separado} sobre $Y$. Un esquema $X$ es \emph{separado} si lo es sobre $\spec(\Z)$.  
 \end{defi}
 
-SERÍA BUENA IDEA INTENTAR ENTENDER EL EJEMPLO 4.0.1
+\begin{ej}
+Sea $k$ un cuerpo y $X$ la recta afín con doble origen. Entonces $X$ no es separado sobre $k$. Si $U$ y $V$ son las dos rectas afines pegadas por el complementario del origen, entonces $U\cap V$ es justamente el complementario del origen y $U\times V$ es el producto de dos rectas afines. Claramente la imagen de $\Delta:U\cap V\to U\times V$ no es cerrada.\footnote{\url{https://math.stackexchange.com/questions/490674/hartshorne-example-ii-4-0-1}}\footnote{\url{https://math.stackexchange.com/questions/322188/how-to-compute-the-topological-space-of-fibered-product-of-schemes}}
+\end{ej}
 
 \begin{prop}
 Si $f:X\to Y$ es un morfismo de esquemas afines, entonces $f$ es separado.
 \end{prop}
 \begin{dem}
-Sea $X=\spec(A)$, $Y=\spec(B)$. Entonces $A$ es una $B$-álgebra y $X\times_Y X$ es también afín, dado por $\spec(A\otimes_B A)$. El morfismo diagonal $\Delta$ viene del homomorfismo diagonal $A\otimes_B A\to A$ dado por $a\otimes a'\mapsto aa'$. Este es un homomorfismo de anillos sobreyectivo, y por tanto $\Delta$ es una inmersión cerrada (ejercicio 3.12) AÑADIRLO A LA RELACIÓN DE EJERCICIOS.
+Sea $X=\spec(A)$, $Y=\spec(B)$. Entonces $A$ es una $B$-álgebra y $X\times_Y X$ es también afín, dado por $\spec(A\otimes_B A)$. El morfismo diagonal $\Delta$ viene del homomorfismo diagonal $A\otimes_B A\to A$ dado por $a\otimes a'\mapsto aa'$. Este es un homomorfismo de anillos sobreyectivo, y por tanto $\Delta$ es una inmersión cerrada (ejercicio 3.12).
 \end{dem}
 
 \begin{coro}
@@ -45,22 +47,18 @@ T\arrow[r]\arrow[ur, dashed] & Y
 hay a lo sumo un morfismo $T\to X$ que hace conmutar todo el diagrama. 
 \end{teorema}
 
-Necesitaremos dos lemas.
+Para la prueba de este teorema se necesitan dos lemas.
 
 \begin{lemma}
 Sea $R$ un anillo de valuación de un cuerpo $K$. Sea $T=\spec(R)$ y sea $U=\spec(K)$. Dar un morfismo de $U$ a un esquema $X$ es equivalente a dar un punto $x_1\in X$ y una inclusión de cuerpos $k(x_1)\subseteq K$. Dar un morfismo de $T$ a $X$ es equivalente a dar dos puntos $x_0,x_1\in X$, con $x_0$ una \emph{especialización } (ver ejercicio 3.17) de $x_1$, y una inclusión de cuerpos $k(x_1)\subseteq K$ tal que $R$ domina el anillo local $\OO$ de $x_0$ en el subesquema $Z=\overline{\{x_1\}}$ (clausura) de $X$ con su estructura reducida inducida. 
 \end{lemma}
-\begin{proof}
 
-\end{proof}
 
 
 \begin{lemma}
-Sea $f:X\to Y$ un morfismo quasi-compacto de esquemas (ver ejercicio 3.2). Entonces el subconjunto $f(X)$ de $Y$ es cerrado si y solo si es estable bajo especialización (ver ejercicio 3.17e). AÑADIR AL DOCUMENTO DE EJERCICIOS LOS QUE ESTOY REFERENCIANDO QUE NO HE HECHO
+Sea $f:X\to Y$ un morfismo quasi-compacto de esquemas (ver ejercicio 3.2). Entonces el subconjunto $f(X)$ de $Y$ es cerrado si y solo si es estable bajo especialización (ver ejercicio 3.17e). 
 \end{lemma}
-\begin{proof}
 
-\end{proof}
 
 \end{document}
 

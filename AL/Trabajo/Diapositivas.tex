@@ -176,24 +176,24 @@ Let $\delta$ be a permutation of $A^*$ defined by $\delta(\varepsilon)=\varepsil
 
 The \textbf{cyclic shifs} of $w$ are the words of the form $\delta^k(w)$ for any integer $k$. 
 
-\begin{block}{Example}
+\begin{example}
 $w=2223$ has cyclic shifts $2223$, $2232$, $2322$, $3222$.  
-\end{block}
+\end{example}
 The \textbf{height} is a morphism $h:A^*\to\mathbb{N}$ defined by $h(u)=$sum of its symbols. 
 \end{frame}
 
 \begin{frame}
 \frametitle{The rythmic oddity property}
-\begin{block}{Definition}
+\begin{alertblock}{Definition}
 A word $w$ satisfies the \textbf{rythmic oddity property} if and only if
 \begin{itemize}
 \item $h(w)$ is even and
 \item no cyclic shift of $w$ can be factorized into words $uv$ such that $h(u)=h(v)$. 
 \end{itemize}
-\end{block}
-\begin{block}{Example}
+\end{alertblock}
+\begin{example}
 For the Aka Pygmies $32222322222$, $h(w)=24$ and any factorization of cyclic shifts gives $h(u)=11$ and $h(v)=13$ or viceversa. 
-\end{block}
+\end{example}
 \end{frame}
 
 \begin{frame}
@@ -211,8 +211,11 @@ satisfied:
 \end{frame}
 \begin{frame}
 \frametitle{Asymmetric pairs}
-A pair $(u,v)$ is called \textbf{asymmetric} if no pair of prefixes $(u',v')$ exists such that $h(v')=h(u')+1$. For instance $(33222,32322)$ is an asymmetric pair but $(3322,32232)$ is not because $h(322)=h(33)+1$. 
+A pair $(u,v)$ is called \textbf{asymmetric} if no pair of prefixes $(u',v')$ exists such that $h(v')=h(u')+1$. 
 
+\begin{example}
+$(33222,32322)$ is an asymmetric pair but $(3322,32232)$ is not because $h(322)=h(33)+1$. 
+\end{example}
 \begin{block}{Proposition 2}
 A word $w$ satisfies the rythmic oddity property if and only if there exists an assymetric pair $(u,v)$ such that $w=uv$ or $w=vu$ with $h(v)=h(u)+2$. 
 \end{block}
@@ -232,16 +235,53 @@ The set of asymmetric pairs is equal to the smallest set of pairs of words conta
 
 
 \begin{frame}
-\frametitle{Construction of asymmetric pairs}
-%Consideraremos que dos automorfismos son iguales si pueden ser transformados el uno en el otro mediante una isotopía de $\D_n$ en sí mismo que fije el borde y los agujeros.
+Let $B=\{a,b\}$ and consider the free monoid $B^*$. 
 
+\begin{block}{Proposition 4}
+Let $(u,v)=\alpha(\varepsilon,\varepsilon)$ for $\alpha\in B^*$. If $|\alpha|_b$ is even, then $h(v)=h(u)$, and if $|\alpha|_b$ is even, then $h(v)=h(u)+2$. 
+\end{block}
+\begin{block}{Proposition 5}
+If $|\alpha|_b$ is even, then $\alpha(r,s)=\alpha(\varepsilon,\varepsilon)(r,s)$, and if $|\alpha|_b$ is odd, then $\alpha(r,s)=\alpha(\varepsilon,\varepsilon)(s,r)$.
+\end{block}
+
+{
+\setbeamercolor{block title}{bg=green, fg=white}
+\begin{block}{Corollary 6}
+A word $w$ satisfies the rythmic oddity property if and only if there exists a word $\alpha\in B^*$ with $|\alpha|_b$ being odd, such that $w=uv$ or $w=vu$ with $(u,v)=\alpha(\varepsilon,\varepsilon)$.
+\end{block}
+}
 \end{frame}
 \begin{frame}
-%\begin{figure}[h!]
-%\includegraphics[scale=0.6]{Imagenes/twist}
-%\caption{Los cruces de puntos representan cruces de cuerdas.}
-%\end{figure}
+Let $D=\{w=uv, \exists\alpha\in B^*, |\alpha|_b$ odd, $(u,v)=\alpha(\varepsilon,\varepsilon)\}\subset A^*$
+
+\begin{block}{Lemma}
+A word $w$ satisfies the rythmic oddity property if anf only if $w$ is a cyclic shift of an element of $D$. 
+\end{block} 
+
+For $w\in D$ define $f:D\to B^*$ by $f(w)=\alpha$ ($\alpha$ is unique). $f$ is injective and $f(D)$ consists of the words of $\alpha\in B^*$ with $|\alpha|_b$ odd. 
+
+\begin{block}{Proposition 7}
+For any $w,w'\in D$, $f(w')$ is a cyclic shift of $f(w)$ if and only if $w'$ is a cyclic permutation of $w$.
+\end{block}
 \end{frame}
+
+\begin{frame}
+\begin{example}
+Computation of $f(w)$ where $w=332232322$. Factorization $w=uv$ such that $h(v)=h(u)+2$ gives $u=3322$ and $v=32322$. Then 
+\begin{align*}
+(u, v) &= (3322, 32322)\\
+&= a(322, 2322)\\
+&= ab(322, 322)\\
+&= aba(22, 22)\\
+&= abab(2, 22)\\
+&= ababb(2, 2)\\
+&= ababbb(\varepsilon, 2)\\
+&= ababbbb(\varepsilon, \varepsilon),
+\end{align*}
+which gives $f(332232322)= ababbbb$.
+\end{example}
+\end{frame}
+
 
 \section{Counting the solutions}
 
