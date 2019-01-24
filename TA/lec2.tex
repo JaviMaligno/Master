@@ -354,8 +354,79 @@ En la figura anterior se trazan curvas que unen un generador consigo mismo y en 
 
 \end{ej}
 
+El cup producto también se restringe a las cadenas relativas $C^*(X,A)\subseteq C^*(X)$ para un subespacio $A\subseteq X$. Si $\varphi\in C^*(X,A)$ y $\sigma$ es un símplice singular cuya imagen está contenida en $A$, su restricción también está contenida en $A$, luego $\varphi(\sigma|)=0$, con lo que $(\varphi\smile\psi)(\sigma)=0$, con lo que $\varphi\smile\psi\in C^*(X,A)$. Nótese que no hemos necesitado que $\psi$ sea una cocadena relativa, luego tenemos cup-productos tanto $C^*(X,A)\times C^*(X)\to C^*(X,A)$ como $C^*(X,A)\times C^*(X,A)\to C^*(X,A)$. La misma prueba que en el caso no relativo sirve para inducir un cup producto en homología. Además tenemos inclusiones $C^*(X,A)\times C^*(X,A)\hookrightarrow C^*(X,A)\times C^*(X)\hookrightarrow C^*(X)\times C^*(X)$.  Así que los cup productos son compatibles con la sucesión exacta larga de cohomología a través del diagrama conmutativo
+\[
+\begin{tikzcd}
+H^p(X,A;R)\times H^q(X;R)\arrow[r]\arrow[d, "j\times Id"] & H^{p+q}(X,A;R)\arrow[d, "j"]\\
+H^p(X;R)\times H^q(X;R)\arrow[r] & H^{p+q}(X;R)
+\end{tikzcd}
+\]
+Si llamamos $j$ a la aplicación $H^n(X,A;R)\to H^n(X;R)$ en la sucesión exacta larga de cohomología relativa y tomamos un par $([\varphi],[\psi])\in H^p(X,A;R)\times H^q(X;R)$ tenemos que $j([\varphi]\smile [\psi])=j([\varphi])\smile[\psi]$. Análogamente podríamos poner la cohomología relativa en la izquierda en lugar de en la derecha. 
+
+\begin{lemma}
+Sea $f:X\to Y$, $\varphi,\psi\in C^*(Y)$. Entonces la aplicación $f^\sharp:C^*(Y)\to C^*(X)$ verifica $f^\sharp(\varphi\smile\psi)=f^\sharp(\varphi)\smile f^\sharp(\psi)\in C^{p+q}(X;R)$ (es un homomorfismo de anillos).
+\end{lemma}
+\begin{proof}
+Sea $\sigma:\Delta^{p+q}\to X$. Entonces
+\[
+f^\sharp(\varphi\smile\psi)(\sigma)=(\varphi\smile\psi)(f\sigma)=\varphi(f\sigma|_{[v_0,\dots, v_p]})\psi(f\sigma|_{[v_p,\dots, v_{p+q}]})=\]
+\[
+=f^\sharp(\varphi)(\sigma_{[v_0,\dots, v_p]}) f^\sharp(\psi)(\sigma_{[v_p,\dots, v_{p+q}]})=(f^\sharp(\varphi)\smile f^\sharp(\psi))(\sigma)
+\]
+Como esta igualdad se verifica para todos los elementos de la base, se verifica para todo el espacio. 
+\end{proof}
+Entonces $f^*:H(Y)\to H^*(X)$ preserva el producto cup y análogamente con el complejo relativo. En particular esto se verifica para $i^*$ en la sucesión exacta larga de cohomología de un par. Nos falta ver la relación con el homomorfismo de conexión de la sucesión exacta larga. 
+
+BUSCAR RELACIÓN. EL PRODUCTO DE UN ELEMENTO DE $H^{n+1}(X,A;R)$ CON UNO DE $H^n(X;R)$
+
+Sean $A,B\subseteq X$ abiertos. Veamos que existe también un cup producto $H^*(X;A;R)\times H^*(X,B;R)\to H^*(X,A\cup B;R)$. Desgraciadamente, el producto de una cocadena en $C^*(X,A;R)$ con una de $C^*(X,B;R)$ no está en general en $C^*(X,A\cup B;R)$. Recordemos la equivalencia homotópica $C_*(A+B)\hookrightarrow C_*(A\cup B)$. Aplicando el functor $\Hom(-,R)$ obtenemos la equivalencia $C^*(A\cup B;R)\twoheadrightarrow C^*(A+B;R)$. Además tenemos el diagrama conmutativo
+\[
+\begin{tikzcd}
+C^*(A+B;R) & C^*(A\cup B;R)\arrow[l, twoheadrightarrow]\\
+C^*(X;R)\arrow[u, twoheadrightarrow]\arrow[r, equals] & C^*(X;R)\arrow[u, twoheadrightarrow]\\
+C^*(X,A+B;R)\arrow[u, hookrightarrow] & C^*(X,A\cup B;R)\arrow[l, hookrightarrow]\arrow[u, hookrightarrow]
+\end{tikzcd}
+\]
+El término de abajo a la izquierda no es más que notación para el núcleo de la aplicación superior. Aplicando el lema de los cinco al morfismo entre sucesiones exactas largas de cohomología de estas sucesiones exactas cortas, encontramos que la aplicación de abajo induce isomorfismo en cohomología. 
+
+Con esto tenemos un cup producto $C^*(X,A;R)\times C^*(X,B;R)\to C^*(X,A+B;R)$, que induce un cup producto en cohomología, que por lo anterior nos da el cup producto que queríamos. 
+
+\begin{teorema}
+Sea $X$ un espacio topológico y $\alpha,\beta\in H^*(X)$ con $|\alpha|=p$ y $|\beta|=q$ (los grados en cohomología). Entonces $\alpha\smile \beta=(-1)^{pq}\beta\smile\alpha$. 
+\end{teorema}
+\begin{dem}
+Sean $\alpha=[\varphi]$ y $\beta=[\psi]$. Nótese que a nivel de cocadenas la conmutatividad no se verifica en general porque cada restricción se hace sobre distintas caras del símplice singular. Vamos a ver que podemos cambiar el orden de los vértices sin que esto afecte a la cohomología. Denotamos $\Delta^n:[v_0,\dots, v_n]$. Dado $\sigma:\Delta^n\to X$ definimos $\overline{\sigma}:\Delta^n\to\Delta^n\to X$, donde la primera aplicación es un isomorfismo lineal $v_i=v_{n-i}$. El signo de esta permutación de los índices es $(-1)^{\sum_{i=0}^ni}=(-1)^{\frac{n(n+1)}{2}}=\varphi_n$. Definimos $\rho:C_*(X)\to C_*(X)$ como $\sigma\mapsto\varepsilon_n\overline{\sigma}$. Vamos a ver que esto es un morfismo de complejos de cadenas. 
+
+Tenemos que $d(\sigma)=\sum_{i=0}^n(-1)^i\sigma|_{[v_0,\dots, \hat{v}_i,\dots, v_n]}$. Entonces 
+\[
+\rho d(\sigma)=\varepsilon_{n-1}\sum_{i=0}^n(-1)^i\overline{\sigma|_{[v_0,\dots, \hat{v}_i,\dots, v_n]}}.
+\]
+Por otro lado
+\[
+d\rho(\sigma)=\varepsilon_nd(\overline{\sigma})=\varepsilon_n\sum_{i=0}^n(-1)^i\overline{\sigma}|_{[v_0,\dots, \hat{v}_i,\dots, v_n]}
+\]
+La diferencia entre restringir antes o después de aplciarle el isomorfismo lineal es que en lugar de omitir $i$ se omite $n-i$, luego bata comprobar que el signo en cada uno es el mismo. Como $\varepsilon_{n-1}(-1)^i=\varepsilon_n(-1)^{n-i}=\varepsilon_n(-1)^n(-1)^i$, basta comprobar que $\varepsilon_{n-1}=\varepsilon_n(-1)^n$. Efectivamente, $\varepsilon_n=(-1)^{\sum_{i=0}^{n-1}i}(-1)^n=\varepsilon_{n-1}(-1)^n=\varepsilon_n$. 
+
+Veamos ahora que $\rho\simeq Id$. Sea $I=[0,1]$ y consideremos $\Delta^n\times I$. Identificamos $\Delta^n\times\{0\}=\Delta^n$ y a los vértices de $\Delta^n\times\{0\}$ los denotamos $w_0,\dots, w_n$. Sabemos que $\Delta^n\times I$ es un complejo simplicial de dimension $n+1$ con caras de la forma $[v_0,\dots, v_i,w_i,\dots, w_n]$ para $i=0,\dots, n$. Denotamos $\pi:\Delta^n\times I\to \Delta^n$. Vamos a definir una homotopía $P:C_n(X)\to C_{n+1}$ que nos de $dP+Pd=\rho-Id$ mediante $P(\sigma)=\sum_{i=0}^n(-1)^i\sigma\pi|_{[v_0,\dots, v_i,w_n,\dots,w_i]}$. Ahora
+\[
+dP(\sigma)=\sum_{i=0}^n(-1)^i\left[\sum_{j=0}^i(-1)^j\sigma\pi|_{[v_0,\dots,\hat{v}_j,\dots,  v_i,w_n,\dots,w_i]}+\sum_{j=i}^n(-1)^{n-j+i+1}\sigma\pi|_{[v_0,\dots, v_i,w_n,\dots,\hat{w}_j,\dots, w_i]}\right]
+\]
+Por otro lado
+\[
+Pd(\sigma)=\sum_{i=0}^n(-1)^i\left[\sum_{j=0}^{i-1}(-1)^j\sigma\pi|_{[v_0,\dots, v_j,w_n,,\dots,\dots,w_i]}\right]
+\]
+CORREGIR Y COMPLETAR CON HATCHER
 
 
+Aplicando $\Hom(-,R)$, $\rho$ induce $\rho^*$ en las cocadenas que también es homotópico a la identidad. Entonces $$\rho^*(\varphi\smile\psi)(\sigma)=(\varphi\smile\psi)(\rho(\sigma))=(\varphi\smile\psi)(\varepsilon_{p+q}\overline{\sigma})=\varepsilon_{p+q}\varphi(\overline{\sigma}|_{[v_0, v_p]})\psi(\overline{\sigma}|_{[v_p,v_{p+q}]}.$$ 
+Por otra parte, 
+
+$$
+(\rho^*(\psi)\smile\rho^*(\varphi))(\sigma)=\rho^*(\psi)(\sigma|_{[v_0,\dots, v_q]})\rho^*(\varphi)(\sigma|_{[v_0,\dots,v_{p+q}]})=\varepsilon_q\psi(\overline{\sigma|_{[v_0,\dots, v_q]}})\varphi(\overline{\sigma|_{[v_q, \dots,v_{p+q}]}})
+$$
+
+Como $\rho^*\simeq Id$, $\alpha=[\rho^*(\varphi)]$ y $\beta=[\rho^*(\psi)]$, luego $\alpha\cup\beta=[\rho^*(\varphi\smile\psi)]$, y como $\varepsilon_{p+q}=\varepsilon_p\varepsilon_q(-1)^{pq}$, se tiene el resultado. 
+\end{dem}
 \section{Ejercicios}
 \begin{ejer}
 Si $A\to B\to C\to 0$ es exacta, entonces dualizar aplicando $\Hom(-,G)$ da lugar a una sucesión exacta $A^*\leftarrow B^*\leftarrow C^*\leftarrow 0$.

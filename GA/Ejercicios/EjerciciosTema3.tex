@@ -142,7 +142,10 @@ Un morfismo de esquemas $f:X\to Y$ es \emph{quasi-compacto} si existe un recubri
 \newpage
 %
 \begin{ejercicio}{3.12}\emph{Subesquemas cerrados de $\proj(S)$}
-
+\begin{enumerate}
+\item[(a)]Sea $\varphi:S\to T$ un homomorfismo sobreyectivo de anillos graduados preservando grados. Probar que el abierto $U$ del ejercicio 2.14 es igual a $\proj(T)$, y que el morfismo $f:\proj(T)\to\proj(S)$ es una inmersión cerrada.
+\item[(b)] Si $I\subseteq S$ es un ideal homogéneo, sea $T=S/I$ y sea $Y$ un subesquema cerrado de $X=\proj(S)$ definido como la imagen de la inmersión cerrada $\proj(S/I)\to X$. Probar que diferentes ideales homogéneos pueden dar lugar al mismo subesquema cerrado. Por ejemplo, sea $d_0$ un entero y sea $I'=\bigoplus_{d\geq d_0}I_d$. Probar que $I$ e $I'$ determinan el mismo subesquema cerrado.
+\end{enumerate}
 \end{ejercicio}
 \begin{solucion}
 \end{solucion}
@@ -155,6 +158,24 @@ Un morfismo de esquemas $f:X\to Y$ es \emph{quasi-compacto} si existe un recubri
 %
 \end{solucion}
 
+\newpage
 
+\begin{ejercicio}{3.22}\emph{Dimensión de las fibras de un morfismo.} Sea $f:X\to Y$ un morfismo dominante de esquemas íntegros de tipo finito sobre un cuerpo $k$. 
+\begin{enumerate}[(a)]
+\item Sea $Y'$ un subconjunto cerrado irreducible de $Y$, cuyo punto genérico $\eta'$ está contenido en $f(X)$. Sea $Z$ una componente irreducible de $f^{-1}(Y)$ tal que $\eta'\in f(Z)$. Probar que $\mathrm{codim}(Z,X)\leq \mathrm{codim}(Y',Y)$. 
+\item Sea $e=\dim(X)-\dim(Y)$ la \emph{dimensión relativa} de $X$ sobre $Y$. Para cualquier punto $y\in f(X)$, probar que toda componente irreducible de la fibra $X_y$ riwnw dimensión $\geq e$. [Pista: sea $Y'=\overline{\{y\}}$ y usar (a) y el ejercicio 3.20b]
+\item Probar que existe un abierto denso $U\subseteq X$ tal que para cualquier $y\in f(U)$, $\dim(U_y)=e$[Pista: primero reducir al caso en el que $X$ e $Y$ son afines, digamos $X=\spec(A)$ e $Y=\spec(B)$. Entonces $A$ es una $B$-álgebra finitamente generada. Tomar $t_1,\dots, t_e\in A$ que forman una base de transcendencia de $K(X)$ sobre $K(Y)$, y sea $X_1=\spec(B[t_1,\dots, t_e]$. Entonces $X_1$ es isomorfo al $e$-espacio afín sobre $Y$, y el morfismo $X\to X_1$ es generalmente finito. Ahora usar el ejercicio 3.7]
+\item Volviendo al morfismo original $fX\to Y$, para cualquier entero $h$, sea $E_h$ el conjunto de puntos $x\in X$ tales que, escribiendo $y=f(x)$, hay una componente irreducible $Z$ de la fibra $X_y$ conteniendo a $x$ y con $\dim(Z)\geq h$. Probar que
+\begin{enumerate}
+\item $E_e=X$ (usar (b)),
+\item si $h>e$, entonces $E_h$ no es denso en $X$ (usar (c)),
+\item $E_h$ es cerrado para todo $h$ (usar inducción en la dimensión de $X$).
+\end{enumerate}
+\item Probar el siguiente teorema de Chevalley---ver Cartan y Chevalley [1, exposé 8]. Para cada entero $h$, sea $C_h$ el conjunto de puntos $y\in Y$ tales que $\dim X_y=h$. Entonces los subconjuntos $C_h$ son constructibles y $C_e$ contiene un subconjunto abierto denso de $Y$.
+\end{enumerate}
 
+\end{ejercicio}
+\begin{solucion}
+BUSCAR EL TÍTULO DEL EJERCICIO PORQUE IGUAL HAY ALGÚN CAPÍTULO DE UN LIBRO QUE LO TRATA SEGÚN NARVÁEZ
+\end{solucion}
 \end{document}

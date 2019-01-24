@@ -1,0 +1,48 @@
+\documentclass[AL.tex]{subfiles}
+
+\begin{document}
+\chapter{Algoritmos heurísticos o metaheurísticos}
+Los procedimientos heurísticos se suelen aplicar en problemas de optimización combinatoria. Lo que consiguen es obtener ``buenas'' soluciones (no necesariamente correctas) en un tiempo ``razonable''. Un ejemplo habitual es el TSP.
+
+
+\begin{ej}
+Tenemos 6 ciudades con la siguiente tabla de distancias entre ellas:
+
+\begin{tabular}{c|c c c c c|}
+  & 2 & 3  & 4  & 5 & 6\\
+ \hline
+1 & 3 & 10 & 11 & 7 & 25\\
+2 &   &  8 & 12 & 9 & 26\\
+3 &   &    &  9 & 4 & 20\\
+4 &   &    &    & 5 & 5\\
+5 & & & & &  10
+\end{tabular}
+
+Se puede comprobar que la solución óptima es $(1,2,3,6,5,1)$ con un valor de 58. El algoritmo voraz partiendo de la primera ciudad yendo en cada caso a la ciudad más cercana nos da $(1,2,3,5,4,6,1)$ con un valor de 60. Esta solución no es exacta, pero es aproximada y es mucho más rápida que comprobar todas las posibilidades. No siempre el algoritmo voraz da una solución aceptable, pero sí en este caso.
+\end{ej}
+
+Los motivos para aplicar (meta)heurísticos son:
+\begin{enumerate}
+\item Resolver problemas NP-duros, ya que no encontraremos un algoritmo exacto en tiempo polinomial.
+\item En algunos casos es mejor obtener una solución aproximada a un problema exacto que una solución exacta a un problema aproximado (los problemas que provienen del mundo real se modelan con una aproximación).
+\item Se consigue más flexibilidad con respecto a las funciones objetivo y a las restricciones.
+\end{enumerate}
+
+Los algoritmos heurísticos se diseñan ad hoc para un problema concreto, mientras que los metaheurísticos pueden ser aplicables a distintos problemas.
+
+
+\section{GRASP}
+Greedy randomized adaptative search procedure
+
+\section{VNS}
+Variable Neighborhood Search. Sea $f$ una función varias veces diferenciable. Para encontrar un mínimo, si usamos el método de descenso máximo (dirección opuesta al gradiente) acabaremos en un mínimo local, pero no necesariamente global. Si tenemos un mecanismo aleatorio para salir de ese mínimo en un entorno pero el entorno es pequeño volveremos a caer en el mismo mínimo. Si esto ocurre, ampliamos el entorno hasta que consigamos acceder a otro mínimo local. Repetimos este proceso sucesivamente, de modo que cada vez es más probable alcanzar el mínimo global. Este procedimiento es metaheurístico.
+
+
+\section{Simulated annealing}
+(Recocido simulado) Este metaheurístico está basado en la química. La estructura de ciertos materiales dependen de la velocidad con la que se enfrían. Hay una ley sobre el incremento de energía con la fórmula $p(\delta t)=e^{-\frac{\delta t}{kt}}$, donde $t$ es la temperatura. 
+
+El algoritmo consiste en seleccionar aleatoriamente un punto $s\in N(s_0)$ (entorno de $s_0$), calcular $\delta=f(s)-f(s_0)$ y si $\delta<0$ entonces actualizar $s_0=s$, y en caso contrario generar aleatoriamente $x\in(0,1)$ de modo que si $x< e^{-\delta/t}$ hacemos $s_0=s$ hasta el máximo número de iteraciones y finalmente establecer $t=\alpha(t)$ (función de enfriamiento), repitiendo hasta que se cumpla la condición de parada. 
+
+Este tipo de algoritmo es aplicable al TSP. 
+\end{document}
+

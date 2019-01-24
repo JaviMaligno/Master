@@ -9,10 +9,86 @@
 
  
 \section{}
+Sea $f:(M,g)\to(\overline{M},\overline{g})$ una inmersión isométrica, $\nabla:\Chi(M)\times\Chi(M)\to\Chi(M)$ la conexión de Levi-Civita de $M$ y $\overline{\nabla}:\Chi(\overline{M})\times\Chi(\overline{M})\to\Chi(\overline{M})$ la de $\overline{M}$. Vamos a ver qué relación existe entre ambas conexiones. Nos centramos en $U\subseteq M$ abierto tal que $f|_U:U\to\overline{M}$ sea un embebimiento. Si $X\in\Chi(U)$, existe $\overline{X}\in\Chi(M)$ tal que $\overline{X}\circ f=X$ en $U$. La relación que vamos a probar es $\nabla_X Y=(\overline{\nabla}_{\overline{X}}\overline{Y})^t$ (parte tangente), aunque en esta igualdad estamos haciendo algunas identificaciones.
+
+SEGUIR POR AQUÍ, NÚMERO 4
+
+\section{•}
+Sea $f:(M^n,g)\to (M^m,\overline{g})$ una inmersión isométrica. Sea $O\subseteq M$ abierto tal que $f|_O$ es un embebimiento. Sean $X,Y\in\mathfrak{X}(O)$ y $\widetilde{X},\widetilde{Y}\in\mathfrak{X}(\overline{M})$ tales que $df(X)=\widetilde{X}\circ f$ y $df(Y)=\widetilde{Y}\circ f$.
+
+Tenemos que para $p\in O$ y $f(p)\in\overline{M}$, $T_pM\oplus T_pM^\perp =T_{f(p)}M\ni (\overline{\nabla}_{\widetilde{X}}\widetilde{Y})(f(p))=(\overline{\nabla}_{\widetilde{X}}\widetilde{Y})(f(p))^t+(\overline{\nabla}_{\widetilde{X}}\widetilde{Y})(f(p))^N$. Al segundo término es a lo que llamamos \emph{2ª forma fundamental de $f|_O$}.
+
+\begin{defi}
+Sean $X,Y\in\Chi(O)$. $\sigma(X,Y)=\overline{\nabla}_{\widetilde{X}}\widetilde{Y}\circ f-(\overline{\nabla}_{\widetilde{X}}\widetilde{Y}\circ f)^t=\overline{\nabla}_{\widetilde{X}}\widetilde{Y}\circ f-\nabla_XY=(\overline{\nabla}_{\widetilde{X}}\widetilde{Y}\circ f)^N$. Para todo $p\in O$, $\sigma(X,Y)(p)=(\overline{\nabla}_{\widetilde{X}}\widetilde{Y})^N(f(p))\in T_pM^\perp$, luego $\sigma(X,Y)\in\Chi^\perp(f|_O)$ (esto es igual a lo que habíamos llamado 2ª forma fundamental). 
+
+Vemos que $\sigma:\Chi(O)\times\Chi(O)\to\Chi^\perp(f|_O)$, $(X,Y)\mapsto\sigma(X,Y)=(\overline{\nabla}_{\widetilde{X}}\widetilde{Y}\circ f)-(df)(\nabla_X Y)$ 
+\begin{enumerate}
+\item Está bien definida.
+\item Es bilineal. La aditividad es trivial. Sea $f_1\in\CC^{\infty}(O)$. Entonces , para $\overline{f}_1=f_1\circ f^{-1}$
+
+$$
+\sigma(f_1X,Y)=(\overline{\nabla}_{\overline{f}_1\widetilde{X}}\widetilde{Y}\circ f)-(df)(\nabla_{f_1X}Y)=(\overline{f}_1\overline{\nabla}_{\widetilde{X}}\widetilde{Y})\circ f-(df)(f_1\nabla_XY)=
+$$
+$$f_1(\overline{\nabla}_{\widetilde{X}}\widetilde{Y}\circ f)-f_1(df)(\nabla_XY)=f_\sigma(X,Y)$$
+
+Ahora, en la otra componente
+$$
+\sigma(X,f_1Y)=\overline{\nabla}_{\widetilde{X}}(\overline{f}_1\widetilde{Y})\circ f-(df)(\nabla_X(f_1Y))=(\overline{f}_1\overline{\nabla}_{\widetilde{X}}\widetilde{Y} +\widetilde{X}(\overline{f}_1)\widetilde{Y})\circ f-(df)(f_1\nabla_XY+X(f_1)Y)=
+$$
+$$
+f_1(\overline{\nabla}_{\widetilde{X}}\widetilde{Y}\circ f)+\widetilde{X}(\overline{f}_1)\circ f(\widetilde{Y}\circ f)-f_1(df)(\nabla_XY)-X(f_1)df(Y)
+$$
+Además $\widetilde{X}(\overline{f}_1)\circ f=X(f_1)$ y $\widetilde{Y}\circ f=(df)(Y)$, luego cancelando nos queda $f_1\sigma(X,Y)$. 
+\item Es simétrica. Efectivamente
+$$\sigma(X,Y)-\sigma(Y,X)=(\overline{\nabla}_{\widetilde{X}}\widetilde{Y}\circ f)^N-(\overline{\nabla}_{\widetilde{Y}}\widetilde{X}\circ f)^N=([\widetilde{X},\widetilde{Y}]\circ f)^N=(df([X,Y,]))^N=0$$
+porque la diferencial va al tangente. 
+\item Verifica: Si $X\in\Chi(O)$ con extensiones $\widetilde{X}_1,\widetilde{X}_2\in\Chi(\overline{M})$ y si $Y\in\Chi(O)$ con extensiones $\widetilde{Y}_1,\widetilde{Y}_2\in\Chi(\overline{M})$, entonces $\sigma$ no depende de las extensiones. Efectivamente, si hacemos la diferencia, la parte con signo menos se cancela y nos queda $\overline{\nabla}_{\widetilde{X}_1}\widetilde{Y}\circ f-\overline{\nabla}_{\widetilde{X}_2}\widetilde{Y}_2\circ f$. Sumamos y restamos un término con los índices cruzados $\overline{\nabla}_{\widetilde{X}_1}\widetilde{Y}_2$. Aplicando las propiedades de linealidad y aditividad de la conexión de Levi-Civita obtenemos
+$$\overline{\nabla}_{\widetilde{X}_1}(\widetilde{Y}_1-\widetilde{Y}_2)\circ f+\overline{\nabla}_{\widetilde{X}_1+\widetilde{X}_2}\widetilde{Y}_2\circ f$$
+Como son extensiones de $X$ y de $Y$, sobre $O$ valen lo mismo, luego ambos términos son 0. Así que $\overline{\nabla}_{\widetilde{X}_1}(\widetilde{Y}_1=\overline{\nabla}_{\widetilde{X}_2}(\widetilde{Y}_2$ en $f(O)$
+\end{enumerate}
+\end{defi}
+
+Dado $p\in O$, $\sigma_p:T_pM\times T_pM\to T_pM^\perp$, $\sigma_p(u,v)=\sigma(U,V)(p)$, donde $U,V\in\Chi(O)$ tales que $U_p=u$ y $V_p=v$ es lo que llamaremos 2ª forma fundamental en $p$. $\sigma_p$ es claramente bilineal y simétrica. $\sigma_p$ está bien definida: dados $U_1,U_2\in\Chi(O)$ tales que $U_1(p)=u=U_2(p)$, entonces 
+\[
+\sigma(U_2,V)(p)-\sigma(U_2, V)(p)=(\overline{\nabla}_{\widetilde{U}_1}\widetilde{V}\circ f)^N(p)-(\overline{\nabla}_{\widetilde{U}_2}\widetilde{V}\circ f)^N(p)=(\overline{\nabla}_{\widetilde{U}_1-\widehat{U}_2}\widetilde{Y}\circ f)^N(p)=(\overline{\nabla}_{\widetilde{U}_1\circ f-\widetilde{U}_2\circ f}\widetilde{Y})^N(p)
+\]
+Como $(df)(u_1)-(df)(u_2)=(df)(u)-(df)u=0$, ambos vectores evaluados en $p$ coinciden y la diferencia es 0. Por simetría es suficiente probarlo para esta coordenada. 
 
 
+\section{Endomorfismo de Weingarten}
+Sea $f:M\to\overline{M}$ inmersión isométrica, $O\subseteq M$ abierto con $f|_O$ embebimiento, $\eta\in\Chi^\perp(f|_O)$ y la 2ª forma fundamental $\sigma$. Definimos en primer lugar $B_\eta:\Chi(O)\times\Chi(O)\to\CC^{\infty}(O)$ como $B_\eta(X,Y)=\gene{\sigma(X,Y),\eta}_{\overline{M}}:O\to\R$ (esta notación indica la métrica, similar al producto escalar) que actúa mediante $p\mapsto B_\eta(X,Y)(p)=\gene{\sigma(X,Y)(p),\eta_p}_{\overline{M}}\in\R$. Tenemos que $B_\eta$ es bilinial y simétrica, luego podemos considerar su enfomorfismo autoadjunto asociado $A_\eta:\Chi(O)\to \Chi(O)$, $X\mapsto A_\eta(X)=\gene{A_\eta(X),Y}_M=\gene{\sigma(X,Y),\eta}=B_\eta(X,Y)$ para todo $Y\in\Chi(O)$. A este endomorfismo es al que llamamos \emph{endomorfismo de Weingarten}. 
 
+Obsérvese que $\gene{A_\eta(X),Y}=\gene{\sigma(X,Y),\eta}=\gene{\sigma(Y,X),\eta}=\gene{A_\eta(Y),X}$, por lo que es efectivamente autoadjunto. 
 
+\begin{prop}
+$A_\eta(X)=-(\overline{\nabla}_{\widetilde{X}}\widetilde{\eta})^t$ donde $\widetilde{\eta}\in\Chi(\overline{M})$ es la extensión dada por $\widetilde{\eta}\circ f=\eta$. 
+\end{prop}
+\begin{dem}
+Debemos interpretar la igualdad como la conmutatividad del diagrama
+\[
+\begin{tikzcd}
+O\arrow[r, "A_\eta(X)"]\arrow[d, "f"] & TO\arrow[d, "df"]\\
+\overline{M}\arrow[r, "\overline{\nabla}_{\widetilde{X}}\widetilde{\eta}"'] & T\overline{M}
+\end{tikzcd}
+\]
+que es lo que vamos a probar. Dado $Y\in\Chi(O)$, sea $\widetilde{Y}\in\Chi(\overline{M})$ tal que $(df)(Y)=\widetilde{Y}\circ f$. 
+\[
+\gene{A_\eta(X),Y}=\gene{\sigma(X,Y),\eta}=\gene{\overline{\nabla}_{\widetilde{X}}\widetilde{Y}\circ f-(df)(\nabla_XY),\eta}=\gene{\overline{\nabla}_{\widetilde{X}}\widetilde{Y}\circ f,\eta}
+\]
+por ser $\eta$ normal. Por otro lado,
+\[
+\gene{\widetilde{Y},\widetilde{\eta}}\circ f=\gene{\widetilde{Y}\circ f,\widetilde{\eta}\circ f}=\gene{(df)(Y),\eta}=0
+\]
+Por tanto $0=\widetilde{X}\gene{\widetilde{Y},\widetilde{\eta}}=\gene{\overline{\nabla}_{\widetilde{X}}\widetilde{Y},\eta}+\gene{\widetilde{Y}, \overline{\nabla}_{\widetilde{X}}\widetilde{\eta}}$ en $f(O)$. Entonces, $\gene{\overline{\nabla}_{\widetilde{X}}\widetilde{Y}\circ f,\widetilde{\eta}\circ f}=-\gene{\widetilde{Y},\overline{\nabla}_{\widetilde{X}}\widetilde{\eta}}\circ f$ en $O$. Así, $\gene{\overline{\nabla}_{\widetilde{X}}\widetilde{Y}\circ f,\eta}=-\gene{(df)(Y),\overline{\nabla}_{\widetilde{X}}\widetilde{\eta}\circ f}$. El primer término es al que habíamos llegado en el primer desarrollo, luego $
+\gene{A_\eta(X),Y}=\gene{\overline{\nabla}_{\widetilde{X}}\widetilde{Y}\circ f,\eta}=-\gene{(df)(Y),\overline{\nabla}_{\widetilde{X}}\widetilde{\eta}\circ f}=-\gene{(df)(Y),(\overline{\nabla}_{\widetilde{X}}\widetilde{\eta}\circ f)^t}=
+$
 
+Como $f$ es isometría, podemos aplicar $df^{-1}$ y el producto escalar se mantiene:
+
+$$
+-\gene{(df)(Y),(\overline{\nabla}_{\widetilde{X}}\widetilde{\eta}\circ f)^t}=\gene{(df)(Y),-(\overline{\nabla}_{\widetilde{X}}\widetilde{\eta}\circ f)^t}=\gene{Y,(df)^{-1}((\overline{\nabla}_{\widetilde{X}}\widetilde{\eta}\circ f)^t)}
+$$
+como esta igualdad se tiene para todo $Y\in\Chi(O)$, deducimos la igualdad que queríamos demostrar. 
+\end{dem}
 
 \end{document}
