@@ -407,15 +407,19 @@ d\rho(\sigma)=\varepsilon_nd(\overline{\sigma})=\varepsilon_n\sum_{i=0}^n(-1)^i\
 \]
 La diferencia entre restringir antes o después de aplciarle el isomorfismo lineal es que en lugar de omitir $i$ se omite $n-i$, luego bata comprobar que el signo en cada uno es el mismo. Como $\varepsilon_{n-1}(-1)^i=\varepsilon_n(-1)^{n-i}=\varepsilon_n(-1)^n(-1)^i$, basta comprobar que $\varepsilon_{n-1}=\varepsilon_n(-1)^n$. Efectivamente, $\varepsilon_n=(-1)^{\sum_{i=0}^{n-1}i}(-1)^n=\varepsilon_{n-1}(-1)^n=\varepsilon_n$. 
 
-Veamos ahora que $\rho\simeq Id$. Sea $I=[0,1]$ y consideremos $\Delta^n\times I$. Identificamos $\Delta^n\times\{0\}=\Delta^n$ y a los vértices de $\Delta^n\times\{0\}$ los denotamos $w_0,\dots, w_n$. Sabemos que $\Delta^n\times I$ es un complejo simplicial de dimension $n+1$ con caras de la forma $[v_0,\dots, v_i,w_i,\dots, w_n]$ para $i=0,\dots, n$. Denotamos $\pi:\Delta^n\times I\to \Delta^n$. Vamos a definir una homotopía $P:C_n(X)\to C_{n+1}$ que nos de $dP+Pd=\rho-Id$ mediante $P(\sigma)=\sum_{i=0}^n(-1)^i\sigma\pi|_{[v_0,\dots, v_i,w_n,\dots,w_i]}$. Ahora
+Veamos ahora que $\rho\simeq Id$. Sea $I=[0,1]$ y consideremos $\Delta^n\times I$. Identificamos $\Delta^n\times\{0\}=\Delta^n$ y a los vértices de $\Delta^n\times\{0\}$ los denotamos $w_0,\dots, w_n$. Sabemos que $\Delta^n\times I$ es un complejo simplicial de dimension $n+1$ con caras de la forma $[v_0,\dots, v_i,w_i,\dots, w_n]$ para $i=0,\dots, n$. Denotamos $\pi:\Delta^n\times I\to \Delta^n$. Vamos a definir una homotopía $P:C_n(X)\to C_{n+1}(X)$ que nos de $dP+Pd=\rho-Id$ mediante $P(\sigma)=\sum_{i=0}^n(-1)^i\varepsilon_{n-i}\sigma\pi|_{[v_0,\dots, v_i,w_n,\dots,w_i]}$. Ahora
 \[
-dP(\sigma)=\sum_{i=0}^n(-1)^i\left[\sum_{j=0}^i(-1)^j\sigma\pi|_{[v_0,\dots,\hat{v}_j,\dots,  v_i,w_n,\dots,w_i]}+\sum_{j=i}^n(-1)^{n-j+i+1}\sigma\pi|_{[v_0,\dots, v_i,w_n,\dots,\hat{w}_j,\dots, w_i]}\right]
+dP(\sigma)=\sum_{i=0}^n(-1)^i\varepsilon_{n-i}\left[\sum_{j=0}^i(-1)^j\sigma\pi|_{[v_0,\dots,\hat{v}_j,\dots,  v_i,w_n,\dots,w_i]}+\sum_{j=i}^n(-1)^{n-j+i+1}\sigma\pi|_{[v_0,\dots, v_i,w_n,\dots,\hat{w}_j,\dots, w_i]}\right]
 \]
-Por otro lado
+Los términos $i=j$ en estas sumas dan
 \[
-Pd(\sigma)=\sum_{i=0}^n(-1)^i\left[\sum_{j=0}^{i-1}(-1)^j\sigma\pi|_{[v_0,\dots, v_j,w_n,,\dots,\dots,w_i]}\right]
+\varepsilon_n\sigma\pi|_{[v_0,\dots,v_n]}+\sum_{i=1}^n\varepsilon_{n-i}\sigma\pi|_{[v_0,\dots,v_{i-1},w_n,\dots, w_i]}+\sum_{i=1}^{n-1}(-1)^{n+i+1}\varepsilon_{n-i}\sigma\pi|_{[v_0,\dots, v_i,w_n,\dots, w_{i+1}]}-[v_0,\dots, v_n]
 \]
-CORREGIR Y COMPLETAR CON HATCHER
+En esta expresión los dos sumatorios se cancelan ya que al reemplazar $i$ por $i-1$ en el segundo sumatorio produce un nuevo signo $(-1)^{n+i}\varepsilon_{n-i+1}=-\varepsilon_{n-i}$. Los otros dos términos representan $\rho(\sigma)-\sigma$. Así que para demostrar que $dP+Pd=\rho-Id$ falta mostrar que la formula para $dP$ anterior da $-Pd$ para $i\neq j$. Calculamos entonces
+\[
+Pd(\sigma)=\sum_{i<j}(-1)^j\varepsilon_{n-i-1}\sigma\pi|_{[v_0,\dots, v_j,w_n,\dots,\hat{w}_j,\dots,w_i]}+\sum_{j>i}(-1)^{i-1}\varepsilon_{n-i}\sigma\pi|_{[v_0,\dots, \dots,\hat{v}_j,v_j,w_n,\dots,w_i]}
+\]
+Como $\varepsilon_{n-i}=(-1)^{n-i}\varepsilon_{n-i-1}$, esto finaliza la comprobación.
 
 
 Aplicando $\Hom(-,R)$, $\rho$ induce $\rho^*$ en las cocadenas que también es homotópico a la identidad. Entonces $$\rho^*(\varphi\smile\psi)(\sigma)=(\varphi\smile\psi)(\rho(\sigma))=(\varphi\smile\psi)(\varepsilon_{p+q}\overline{\sigma})=\varepsilon_{p+q}\varphi(\overline{\sigma}|_{[v_0, v_p]})\psi(\overline{\sigma}|_{[v_p,v_{p+q}]}.$$ 

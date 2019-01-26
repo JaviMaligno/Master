@@ -147,7 +147,22 @@ Un morfismo de esquemas $f:X\to Y$ es \emph{quasi-compacto} si existe un recubri
 \item[(b)] Si $I\subseteq S$ es un ideal homogéneo, sea $T=S/I$ y sea $Y$ un subesquema cerrado de $X=\proj(S)$ definido como la imagen de la inmersión cerrada $\proj(S/I)\to X$. Probar que diferentes ideales homogéneos pueden dar lugar al mismo subesquema cerrado. Por ejemplo, sea $d_0$ un entero y sea $I'=\bigoplus_{d\geq d_0}I_d$. Probar que $I$ e $I'$ determinan el mismo subesquema cerrado.
 \end{enumerate}
 \end{ejercicio}
-\begin{solucion}
+\begin{solucion}\
+\begin{enumerate}[(a)]
+\item Recordamos que $U=\{\p\in\proj(T)\mid \p\not\supseteq\varphi(S_+)\}$ y que por el ejercicio 2.14 $U$ es un subconjunto abierto de $\proj(T)$. Como $\varphi$ es sobreyectivo y gradudado, necesariamente se tiene $\varphi(S_+)=T_+$, por lo que por la definición de $\proj(T)$ se tiene la igualdad. Recordamos también que el morfismo $f:U\to\proj(S)$ está definido mediante la contracción $\p\in U\mapsto f(\p)=\varphi^{-1}(\p)$, que es continua de manera análoga al morfismo definido de esta forma para $\spec$. 
+
+Por otro lado, como $S/\ker\varphi\cong T$ y los ideales primos homogéneos de $S/\ker\varphi$ se corresponden biunívocamente con los ideales primos homogéneos de $S$ que contienen a $\ker\varphi$, deducimos que $f:\proj(T)\to\proj(S)$ es un homeomorfismo sobre $V(\ker\varphi)$, y como $\ker\varphi$ es un ideal homogéneo al ser $\varphi$ graduado, $V(\ker\varphi)$ es un cerrado de $\proj(S)$. Falta ver que el homomorfismo $f^\sharp:\OO_{\proj(S)}\to f_*\OO_{\proj(T)}$ es sobreyectivo. 
+
+Para ello es suficiente probarlo en las fibras, que por el ejercicio 1.8 es equivalente a probarlo para los homomorfismos $\OO_{\proj(S),\varphi^{-1}(\p)}\to\OO_{\proj(T),\p}$ usando que $f^{-1}(\OO_{\proj(S)})_{\p}=\OO_{\proj(S),f(\p)}$. Ahora bien, por la proposición 2.5 tenemos que esta aplicación es la aplicación $S_{(\varphi^{-1}(\p))}\to T_{(\p)}$ inducida por $\varphi$, por lo que es claramente sobreyectiva.
+
+
+%Si nos restringimos a un abierto principal $D_+(g)$ para $g\in S$, tenemos por la proposición 2.5 que $\OO_{\proj(S)}(D_+(g))=S_{(g)}$ y $f_*\OO_{\proj(T)}(D_+(g))=\OO_{\proj(T)}(f^{-1}(D_+(g)))=T_{(\varphi(g))}$ ESTO ALOMEJOR LO DESARROLLO MÁS (por ser $\varphi$ sobreyectivo $\varphi(g)$ es un ideal). Esto nos da un homomorfismo natural $S_{(g)}\to T_{(\varphi(g))}$, que es claramente sobreyectivo por serlo $\varphi$. 
+
+\item Consideremos la proyección natural $\varphi:S/I'\to S/I=\dfrac{S/I}{\oplus_{d\leq d_0}I_d}$ (usamos aquí la graduación inducida en el cociente). Es claro que $\varphi$ es un homomorfismo graduado, y denotamos por $\varphi_d$ a cada componente homogénea de $\varphi$. Entonces $\varphi_d$ es la identidad para $d>d_0$, así que usando el ejercicio 2.14 c), $f:\proj(S/I)\to\proj(S/I')$ es un isomorfismo. 
+
+%Por la proposición 2.5 este homomorfismo es equivalente a $f^\sharp:S_{(\varphi^{-1}(p)}$ %Por la proposición 2.5, este homomorfismo des de la forma $f^\sharp:S_{(f)}\to T_{}
+\end{enumerate}
+
 \end{solucion}
 \newpage
 \begin{ejercicio}{3.17}\emph{Espacios de Zariski}. 
@@ -176,6 +191,17 @@ Un morfismo de esquemas $f:X\to Y$ es \emph{quasi-compacto} si existe un recubri
 
 \end{ejercicio}
 \begin{solucion}
-BUSCAR EL TÍTULO DEL EJERCICIO PORQUE IGUAL HAY ALGÚN CAPÍTULO DE UN LIBRO QUE LO TRATA SEGÚN NARVÁEZ
+BUSCAR EL TÍTULO DEL EJERCICIO PORQUE IGUAL HAY ALGÚN CAPÍTULO DE UN LIBRO QUE LO TRATA SEGÚN 
+
+\url{http://jmilne.org/math/CourseNotes/AG.pdf} Theorem 9.9
+
+El de Cartan en la exposé 8 se supone que lo tiene
+
+Algo podré sacar de estos \url{https://stacks.math.columbia.edu/tag/04NP} \url{https://stacks.math.columbia.edu/tag/02FW}\url{https://stacks.math.columbia.edu/tag/0B2H}
+
+Lo trae resuelto \url{http://hartshorne-ag-solutions.wikidot.com/chapter-2-section-3} (también tengo una solución en una captura, comparar)
+
+
+
 \end{solucion}
 \end{document}

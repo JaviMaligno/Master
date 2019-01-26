@@ -22,7 +22,7 @@
 For a point $p=(x_1,x_2)\in\R^2$, let $p'=(-x_1,-x_2)$ be the antipodal point of $p$.
 
 \begin{defin}
-A set of $2n$ ($n\geq 3$) points on the unit circle centered at the origin is called an \emph{antipodal point set} if for every point $p\in S$, also $p'\in S$. Let $S=\{p_1,p_1'\dots,p_n,p_n'\}$ such set. An \emph{antipodal polygon} on $S$ is a convex polygon  having as vertices one point for each pair $(p_i,p_i')$. A \emph{thin} antipodal polygon $P$ is an antipodal polygon whose verticies are consectuvie points on the circle. For $n$ odd, a \emph{thick} antipodal polygon $P$ is an antipodal polygon such that there is a point of $S$ between every two vertices of $P$. For $n$ even there is exactly one pair of vertices of $P$ which are consecutive on the circle. 
+A set of $2n$ ($n\geq 3$) points on the unit circle centered at the origin is called an \emph{antipodal point set} if for every point $p\in S$, also $p'\in S$. Let $S=\{p_1,p_1'\dots,p_n,p_n'\}$ such set. An \emph{antipodal polygon} on $S$ is a convex polygon  having as vertices one point from each pair $(p_i,p_i')$. A \emph{thin} antipodal polygon $P$ is an antipodal polygon whose verticies are consecutive points on the circle. For $n$ odd, a \emph{thick} antipodal polygon $P$ is an antipodal polygon such that there is a point of $S$ between every two vertices of $P$. For $n$ even there is exactly one pair of vertices of $P$ which are consecutive on the circle. 
 \end{defin}
 
 \begin{figure}[h!]
@@ -44,21 +44,22 @@ area?
 \end{itemize}
 
 \subsection{Related Work}
+NO HAY TIEMPO PA ESTO
 
 \subsection{Results}\label{claim}
-We will prove the following general result:
+We will prove the following general result:\\
 
 \emph{Claim} Given an antipodal point set $S ⊂ \R^2$, every thin antipodal polygon on $S$ has
-less area than any non-thin antipodal polygon on $S$.
+less area than any non-thin antipodal polygon on $S$.\\
 
 In addition we show that the 2-dimensional case is special in the sense that the
 above result can not be generalized to higher dimensions.
 
 The analogue result holds for thick antipodal polygons when $n$ is odd but for $n$ even we provide an example of
-an antipodal non-thick polygon having larger area than a thick antipodal polygon. However, we are able to prove the following result:
+an antipodal non-thick polygon having larger area than a thick antipodal polygon. However, we are able to prove the following result:\\
 
 \emph{Claim} Given an antipodal point set $S ⊂ \R^2$, for every non-thick antipodal polygon
-on $S$ there exists a thick antipodal polygon on $S$ with larger area.
+on $S$ there exists a thick antipodal polygon on $S$ with larger area.\\
 
 Note that above claims imply that an antipodal polygon with minimum (resp. maximum)
 area is thin (resp. thick). As a consequence, we will show that the extremal
@@ -73,31 +74,53 @@ all thin antipodal polygons are of this form and that $P_q$ and $P_{q'}$ differ 
 The next lemma characterizes triangles that contain a given point of S and maximize
 the area.
 
-\begin{lem}
+\begin{lem}\label{1}
 For a point $p ∈ S$ let $l$ be the line containing $p$ and $p'$. Let $τ$ be the triangle
 determined by $p$, and its two neighbors in $S$. Among all triangles that have as vertices
 $p$ and one point of $S$ in each of the two half-planes defined by $l$, $τ$ has strictly the
 smallest area.
 \end{lem}
+\begin{proof}
+Let $τ'$ be a triangle with vertices in $S$, containing $p$ as a vertex and with a vertex
+in each of the two half-planes defined by $l$. Assume that $τ'$ is different from $τ$. Let
+$b$ be the side opposite to $p$ in $τ$ and $b'$ be the side opposite to $p$ in $τ'$. Note that $b'$
+is at least as large as $b$, because $S$ is an antipodal point set and $l$ contains the origin.
+The height of $τ'$ with respect to $p$ is larger than the height of $τ$ with respect to $p$, as
+otherwise $b'$ would have to intersect $b$, which is not possible by construction. Thus
+the area of $τ'$ is larger than the area of $τ$.
 
-SI VEO QUE DA TIEMPO PONER LAS PRUEBAS DE LOS LEMAS QUE SON CORTAS. O ALTERNATIVAMENTE NO PONER LAS PRUEBAS PERO EXPLICAR EL PÁRRAFO QUE VIENE DESPUÉS ANTES DEL TEOREMA
+HACER UN DIBUJITO
+\end{proof}
+
 
 We split the proof of the first claim of \ref{claim} into the three cases $n = 3$, $n = 4$, and $n ≥ 5$.
 
-\begin{lem}
+\begin{lem}\label{2}
 For $n = 3$, every thin antipodal polygon on $S$ has area strictly less than
 that of any non-thin antipodal polygon on $S$.
 \end{lem}
+\begin{proof}
+In this case the only non-thin polygons are the two triangles $τ$ and $τ'$ with vertex
+sets $\{p_1, p_2', p_3\}$ and $\{p_1', p_2, p_3'\}$, respectively. Note that $τ$ has the same area as $τ'$.
+In addition, by Lemma \ref{1}, $τ$ has larger area than $P_{p_2}$ and $τ'$ has larger area than $P_{p_1}$
+and $P_{p_3}$.
 
-\begin{lem}
+HACER UN DIBUJITO
+\end{proof}
+
+
+\begin{lem}\label{3}
 For $n = 4$, every thin antipodal polygon on $S$ has area strictly less than
 that of any non-thin antipodal polygon on $S$.
 \end{lem}
+
 
 \begin{thm}
 Every thin antipodal polygon on $S$ has less area than any non-thin antipodal
 polygon on $S$.
 \end{thm}
+
+The idea of the proof is induction on $n$ with lemmas \ref{2} and \ref{3} as base case. For $n\geq 5$, consider a triangulation $T$ of $S$, and by analysing the thin triangles of $T$ one can reduce the problem to the case $n-1$. 
 
 
 \section{Thick Antipodal Polygons}
