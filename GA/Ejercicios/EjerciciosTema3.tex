@@ -178,7 +178,7 @@ Para ello es suficiente probarlo en las fibras, que por el ejercicio 1.8 es equi
 \begin{ejercicio}{3.22}\emph{Dimensión de las fibras de un morfismo.} Sea $f:X\to Y$ un morfismo dominante de esquemas íntegros de tipo finito sobre un cuerpo $k$. 
 \begin{enumerate}[(a)]
 \item Sea $Y'$ un subconjunto cerrado irreducible de $Y$, cuyo punto genérico $\eta'$ está contenido en $f(X)$. Sea $Z$ una componente irreducible de $f^{-1}(Y)$ tal que $\eta'\in f(Z)$. Probar que $\mathrm{codim}(Z,X)\leq \mathrm{codim}(Y',Y)$. 
-\item Sea $e=\dim(X)-\dim(Y)$ la \emph{dimensión relativa} de $X$ sobre $Y$. Para cualquier punto $y\in f(X)$, probar que toda componente irreducible de la fibra $X_y$ riwnw dimensión $\geq e$. [Pista: sea $Y'=\overline{\{y\}}$ y usar (a) y el ejercicio 3.20b]
+\item Sea $e=\dim(X)-\dim(Y)$ la \emph{dimensión relativa} de $X$ sobre $Y$. Para cualquier punto $y\in f(X)$, probar que toda componente irreducible de la fibra $X_y$ riwnw dimensión $\geq e$. [Pista: sea $Y'=\overline{\{y\}}$ y usar (a) y el ejercicio 3.20d]
 \item Probar que existe un abierto denso $U\subseteq X$ tal que para cualquier $y\in f(U)$, $\dim(U_y)=e$[Pista: primero reducir al caso en el que $X$ e $Y$ son afines, digamos $X=\spec(A)$ e $Y=\spec(B)$. Entonces $A$ es una $B$-álgebra finitamente generada. Tomar $t_1,\dots, t_e\in A$ que forman una base de transcendencia de $K(X)$ sobre $K(Y)$, y sea $X_1=\spec(B[t_1,\dots, t_e]$. Entonces $X_1$ es isomorfo al $e$-espacio afín sobre $Y$, y el morfismo $X\to X_1$ es generalmente finito. Ahora usar el ejercicio 3.7]
 \item Volviendo al morfismo original $fX\to Y$, para cualquier entero $h$, sea $E_h$ el conjunto de puntos $x\in X$ tales que, escribiendo $y=f(x)$, hay una componente irreducible $Z$ de la fibra $X_y$ conteniendo a $x$ y con $\dim(Z)\geq h$. Probar que
 \begin{enumerate}
@@ -190,7 +190,21 @@ Para ello es suficiente probarlo en las fibras, que por el ejercicio 1.8 es equi
 \end{enumerate}
 
 \end{ejercicio}
-\begin{solucion}
+\begin{solucion}\
+\begin{enumerate}[(a)]
+\item Vamos a ver que una cadena de subconjuntos cerrados irreducibles distintos de $X$ empezando en $Z$ da lugar a una cadena de subconjuntos cerrados irreducibles distintos de $Y$ empezando en $Y'$. Supongamos que existe un cerrado irreducible $Z_1\subseteq X$ tal que $Z<Z_1$. Sea $Y_1=\overline{f(Z_1)}$, que es obviamente cerrado. Veamos que $Y_1$ es irreducible. Esto se debe a que por ser $Z_1$ irreducible, $f(Z_1)$ también lo es (imagen continua de un irreducible es irreducible), y la clausura de un irreducible es también irreducible. 
+
+Por último veamos que $Y'<Y_1$. En primer lugar, $Y'=\overline{f(Z)}$: como $\eta'\in f(Z)$ sabemos que $Y'=\overline{\{\eta'\}}\subseteq\overline{f(Z)}$, mientras que la inclusión opuesta se obtiene de que $f(Z)\subseteq f(f^{-1}(Y'))\subseteq Y'$, y al ser $Y'$ cerrado la contención se preserva al tomar clausura. En segundo lugar, obsérvese que $Y'\subseteq Y_1$ ya que $Z<Z_1$ implica $f(Z)\subseteq f(Z_1)$. Para ver que la contención es estricta, el hecho de que $Z$ sea una componente irreducible de $f^{-1}(Y')$, significa que $Z$ es un subconjunto irreducible de $f^{-1}(Y')$ que además es maximal con respecto a la inclusión. Si tuviéramos $Y'=Y_1$, $Z<Z_1$ contradeciría la maximalidad de $Z$, ya que $Z_1$ estaría contenido en $f^{-1}(Y')$ y sería una componente irreducible estrictamente mayor que $Z$.
+
+Por tanto la cadena $Z<Z_1$ induce una cadena $Y'<Y_1$. Podemos continuar este proceso inductivamente para cualquier cadena de subconjuntos cerrados irreducibles distintos de $X$ que comience en $Z$, dando lugar a una cadena análoga en $Y$ comenzando por $Y'$, por lo que se tiene la desigualdad deseada. 
+
+\item Por el ejercico 3.10a, al ser la dimensión una propiedad topológica, basta demostrar el resultado para el espacio topológico $f^{-1}(y)$ con la topología inducida. Siguiendo la pista del ejercicio, dado $y\in f(X)$, denotamos $Y'=\overline{\{y\}}$. Sea $Z$ una componente irreducible de $f^{-1}(Y')$ tal que $y\in Z$ (en este caso $y$ es el punto genérico de $Y'$ por definición). Por el apartado (a) tenemos que $\codim(Z,X)\leq\codim(Y',Y)$. Por el ejercicio 3.20d tenemos que $\dim(Z)+\codim(Z,X)=\dim(X)$ y $\dim(Y')+\codim(Y',Y)=\dim(Y)$, luego combinando estas desigualdades junto con (a) obtenemos
+\[
+\dim(X)-\dim(Z)\leq\dim(Y)-\dim(Y')
+\]
+de donde $e=\dim(X)-\dim(Y)\leq \dim(Z)-\dim(Y')\leq\dim(Z)$. 
+
+\end{enumerate}
 BUSCAR EL TÍTULO DEL EJERCICIO PORQUE IGUAL HAY ALGÚN CAPÍTULO DE UN LIBRO QUE LO TRATA SEGÚN 
 
 \url{http://jmilne.org/math/CourseNotes/AG.pdf} Theorem 9.9
@@ -199,7 +213,7 @@ El de Cartan en la exposé 8 se supone que lo tiene
 
 Algo podré sacar de estos \url{https://stacks.math.columbia.edu/tag/04NP} \url{https://stacks.math.columbia.edu/tag/02FW}\url{https://stacks.math.columbia.edu/tag/0B2H}
 
-Lo trae resuelto \url{http://hartshorne-ag-solutions.wikidot.com/chapter-2-section-3} (también tengo una solución en una captura, comparar)
+Lo trae parcialmente resuelto \url{http://hartshorne-ag-solutions.wikidot.com/chapter-2-section-3} (también tengo una solución en una captura, comparar)
 
 
 
