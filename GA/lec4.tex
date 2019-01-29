@@ -1,0 +1,156 @@
+\documentclass[GA.tex]{subfiles}
+
+\begin{document}
+
+
+%\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
+
+\chapter{Esquemas en grupos (group schemes)}
+Rereferencias: Alebgraic Geometry II, Abelian Varietis (Mumford), Abelian Variates (Edihoven van der Geer y Moonen)
+
+\section{El functor de los puntos}
+Los puntos de un esquema $X$ normalmente son los puntos del espacio topológico subyacente, pero hay otra noción de ``puntos con valores en un esquema T'', que es el functor $X(T)=h_X(T)=\Hom_{\Sch}(T,X)$. 
+
+\begin{ej}
+Sea $X=\spec(\Z[x,y]/\gene{x^2+y^2-1})$ y $A$ un anillo. Calculamos $X(\spec(A))=\Hom_{\Sch}(\spec(A),X) \cong\Hom_{\Ring}(\Z[x,y]/\gene{x^2+y^2-1},A)=\{a,b\in A\mid a^2+b^2=1\}$. En este caso vemos que el resultado son los puntos de una circunferencia. En general veremos que esto es lo que tiene estructura de grupo. 
+\end{ej}
+\begin{ej}
+Sea $X=\spec(Z[x_1,\dots, x_4]/\gene{x_1x_4-x_2x_3-1})$. Para un anillo $A$, haciendo lo mismo que en el ejemplo anterior obtenemos el conunto $\{(a_1,\dots, a_4)\in A^4\mid a_1a_4-a_2a_3=1\}$, que son las matrices cuadradas de orden 2 con determinante 1, es decir, $SL_2(A)$, que tiene claramente estructura de grupo, la cual depende de la suma y el producto de $A$ y de el esquema $X$ que hemos elegido. 
+\end{ej}
+
+\begin{ej}
+Si $X=\spec(B)$ y $T$ es un esquema cualquiera. Entonces $X(T)=\Hom_{\Sch}(T,X)=\Hom_{\Sch}(T,\spec(B))\cong\Hom_{\Ring}(B,\OO_T(T))$ (Hartshorne 2.4 maybe) que tiene estructura de grupo heredada de $\OO_T(T)$. 
+\end{ej}
+
+Fijaremos en este capítulo un esquema $S$ como base. De la definición de producto fibrado se sigue que para cualquier esquema $Z$, $\Hom_{\Sch|_S}(Z,X\times_S Y)\cong\Hom_{\Sch|_S}(Z,X)\times \Hom_{\Sch|_S}(Z,Y)$. 
+
+\begin{observacion}
+Sean $X\xrightarrow{f}S, Y\xrightarrow{g}S$, $X'\xrightarrow{f'}S, Y'\xrightarrow{g'}S$ esquemas sobre $S$. Sean $\alpha:X\to X'$ y $\beta:Y\to Y'$ morfismos de $S$-esquemas. Entonces existe un único $\alpha\times_S\beta\in\Hom(X\times_SY,X'\times_SY')$ haciendo conmutativo el diagrama 
+
+\[
+\begin{tikzcd}
+X\arrow[d, "\alpha"] & X\times_SY\arrow[l, "p_1"]\arrow[r, "p_2"]\arrow[d, dashed, "\alpha\times_S\beta"] & Y\arrow[d, "\beta"]\\
+X' &X'\times_SY'\arrow[l, "p_1'"]\arrow[r, "p_2'"] & Y'
+\end{tikzcd}
+\]
+\end{observacion}
+
+\begin{defi}
+Un esquema en grupos sobre $S$ es una tupla $(G,\mu,\tau,\varepsilon)$ donde $G\to S$ es un $S$-esquema, $\mu:G\times_SG\to G$ es la \emph{ley de producto}, $\tau:G\to G$ es el \emph{inverso} y $\varepsilon:S\to G$ es el \emph{elemento neutro} (todos ellos son morfismos de $S$-esquemas). A estos datos se les piden las siguientes condiciones:
+\begin{enumerate}
+\item Asociatividad:
+\[
+\begin{tikzcd}
+& G\times_S(G\times_S G)\cong (G\times_SG)\times_S G\arrow[rd, "Id_G\times\mu"]\arrow[ld, "\mu\times Id_G"] &\\
+G\times_S G \arrow[r, "\mu"] & G & G\times_SG\arrow[l, "\mu"]
+\end{tikzcd}
+\]
+\item Elemento neutro a izquierda y derecha (escribimos el diagrama conmutativo para la derecha, es análogo por la izquierda)
+\[
+\begin{tikzcd}
+G\times_S S \arrow[r, "Id_G\times\varepsilon"]\arrow[dr, "p_1"] & G\times_S G\arrow[d, "\mu"]\\
+& G
+\end{tikzcd}
+\]
+\item Inverso a izquiedra y derecha (solo escribimos el de la derecha) 
+\[
+\begin{tikzcd}
+G\arrow[r, "\Delta"]\arrow[d] & G\times_S G\arrow[r, "Id\times \tau"] & G\times_S G\arrow[d, "\mu"]\\
+S\arrow[rr, "\varepsilon"] & & G
+\end{tikzcd}
+\]
+
+$G$ será un esquema en grupos conmutativos si además se cumple
+\[
+\begin{tikzcd}
+G\times_S G\arrow[r, "\sigma"] \arrow[dr, "\mu"] & G\times_SG\arrow[d, "\mu"]\\
+& G
+\end{tikzcd}
+\]
+donde $\sigma$ está definido mediante
+\[
+\begin{tikzcd}
+G & G\times_SG\arrow[l, "p_2"]\arrow[r, "p_1"]\arrow[d, "\sigma"] & G\\
+& G\times_S G\arrow[ul, "p_1"]\arrow[ur, "p_2"] & 
+\end{tikzcd}
+\]
+\end{enumerate}
+
+Existe una noción de esquema en grupos abeliano más fuerte que lo que acabamos de ver para generalizar a las variedades abelianas .
+\end{defi}
+
+\begin{ej}
+Esquema en grupo aditivo $G_a$ sobre $\Z$. Sea $G_a=\spec(Z[X])$. Dar $\mu:\spec(\Z[X])\times_S\spec(\Z[X])\to\spec(\Z[X])$ es equivalente a dar $\mu^*:\Z[X]\to \Z[X]\otimes\Z[X]$, que en este caso lo vamos a definir mediante $x\mapsto x\times 1+1\otimes x$. Definimos $\tau:G_a\to G_a$ mediante $\tau^*:\Z[X]\to\Z[X]$ como $x\mapsto -x$. Por último $\varepsilon:\Z\to G_a$ está dado por $\varepsilon^*:\Z[X]\to\Z$, $x\mapsto 0$. 
+
+Verificamos ahora las condiciones de esquema en grupo mediante la conmutatividad de los diagramas duales en anillos. Basta comprobar la conmutatividad para el elemento $x$. Tenemos que $x\xrightarrow{\mu^*}x\otimes 1+1\otimes x\xrightarrow{\mu^*\times Id} \mu^*(x)\otimes 1+\mu^*(1)\otimes x=(x\otimes 1+1\otimes x)\otimes x+(1\otimes 1)\otimes x=x\otimes 1\otimes 1+1\otimes x\otimes 1+1\otimes 1\otimes x$. Por otro lado, $\mu^*(x)\xrightarrow{Id\times\mu^*} x\otimes\mu^*(1)+1\otimes\mu^*(x)=x\otimes(1\otimes 1)+1\otimes(x\otimes 1+1\otimes x)=x\otimes 1\otimes 1+ 1\otimes x\otimes 1+1\otimes 1\otimes x$, con lo que se verifica la asociatividad. 
+
+Para el elemento neutro recordamos que $\Z[X]\to\Z[X]\otimes_\Z\Z$ por la derecha (COMPROBAR QUE NO ME ESTOY CONFUNDIENDO CON LA IZQUIERDA) está dado por $a\mapsto a\otimes 1$. Entonces $Id\times\varepsilon^*(\mu^*(x))=x\otimes \varepsilon^*(1)+1\otimes\varepsilon^*(x)=x\otimes 1+0=x\otimes 1$, por lo que se verifica la propiedad del elemento neutro (es análoga por la izquierda).
+
+Por último tenemos que vemos el inverso. Vemos que $\Delta^*:\Z[X]\otimes\Z\Z[X]\to \Z[X]$ está dado por $a\otimes b=a+b$, puesto que por el diagrama se debe cumplir $a\otimes 1\mapsto a$ y $1\otimes b\mapsto b$. Esto se observa dualizando el diagrama
+\[
+\begin{tikzcd}
+& G\arrow[ld, "Id"] \arrow[rd, "Id"]\arrow[d, "\Delta"] & \\
+G & G\times_\Z G\arrow[l]\arrow[r] & G
+\end{tikzcd}
+\]
+Por tanto $\tau^*\mu^*(x)=x\otimes\tau^*(1)+1\otimes\tau^*(x)=x\otimes 1+1\otimes(-x)\mapsto x-x=0=i(\varepsilon(x))$. 
+
+Vamos a ver que además se verifica la conmutatividad. En efecto, $\sigma\mu^*(x)=\sigma(x\otimes 1+1\otimes x)=1\otimes x+x\otimes 1=x\otimes 1+1\otimes \sigma=\mu^*(x)$. 
+\end{ej}
+
+\begin{ej}
+Grupo multipliativo sobre $\Z$. Sea $G_m=\spec(\Z[X,Y]/\gene{XY-1})=\spec(\Z[X,X^{-1}])$. Las propiedades de este esquema se prueban de forma análoga a las de anterior ejemplo para $\mu^*:\Z[X,X^{-1}]\to\Z[X,X^{-1}]\otimes \Z[X,X^{-1}]: x\mapsto x\otimes x$; $\tau^*:\Z[X,X^{-1}]\to \Z[X,X^{-1}]: x\mapsto x^{-1}$; $\varepsilon^*:\Z[X,X^{-1}]\to\Z: x\mapsto 1$. LAS X PONERLAS TODAS IGUAL AQUÍ Y ANTES
+\end{ej}
+
+
+En general se puede definir un objeto grupo $X$ en una categoría $\CC$ que admita productos finitos y tenga objeto terminal $S$ dando  $\mu:X\times X\to X$, $\varepsilon:S\to X$ y $\tau:X\to X$ cumpliendo las propiedades análogas. 
+
+\begin{prop}
+Sea $G$ un esquema en grupos (conmutativo) sobre $S$. Sea $T\to S$ un $S$-esquema. Entonces $X(T)=\Hom_{\Sch|_S}(T,X)$ está dotado de estructua de grupo (conmutativo) mediante la siguiente ley: para todo $f,g\in\Hom_{\Sch|_S}(T,X)$ se define $f\cdot g=\mu\circ h\in\Hom_{\Sch|_S}(T,X)$ donde $h$ satisface el diagrama conmutativo
+\[
+\begin{tikzcd}
+ & T\arrow[dl, "f"]\arrow[dr, "g"]\arrow[d, "h"] & \\
+ G & G\times_S G\arrow[r] \arrow[l] & G
+\end{tikzcd}
+\]
+\end{prop}
+\begin{dem}
+\end{dem}
+
+
+\begin{ej}
+Veamos qué pinta tiene este producto en el ejemplo del grupo $G_a=\spec(\Z[X])$. Sea $T\to\Z$ un esquema. Recordemos que $\Hom_{\Sch_\Z}(T,G_a)\cong\Hom_{\Ring}(\Z[x],\OO_T(T))$. Entonces $h$ se corresponde con $f^*\otimes g^*:\Z[X]\otimes\Z[X]\to\OO_T(T)$. Además, como cada morfismo $\Z[X]\to\OO_T(T)$ está caracterizado por la imagen de $x$, el conjunto de tales morfismos es precisamente $\OO_T(T)$. 
+
+Ahora, $\mu^*(x)=x\otimes 1+1\otimes x\mapsto f^*(x)\cdot 1+1\cdot g^*(x)=a+b$ si asociamos $f$ con un elemento $a\in\OO_T(T)$ y $g$ con otro elemento $b$. Así que $G_a$ induce la suma en $\OO_T(T)$, de lo cual viene el nombre de grupo aditivo. 
+\end{ej}
+
+\begin{ej}
+Hagamos lo mismo en el grupo multiplicativo. Para $T$ un esquema, obtenemos $\Hom_{\Sch_\Z}(T,G_m)\cong(\OO_T(T))^\times$ puesto que $x$ tiene que mapearse a un elemento invertible. Se comprueba que $G_m$ induce el producto en el grupo de las unidades. 
+\end{ej}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

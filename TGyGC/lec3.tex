@@ -1,0 +1,36 @@
+\documentclass[TGyGC.tex]{subfiles}
+
+\begin{document}
+
+
+%\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
+\chapter{Optimización Geométrica}
+Consiste en resolver problemas de optimización ayudándonos de la geometría del problema para encontrar algoritmos eficientes. Vamos a ver algunos ejemplos de problemas en este área.
+
+\section{Mínimo círculo generador}
+(minimal spanning circle) Como problema de investigación operativa sería $\min_{x\in\R^2}\max_{1\leq i\leq n} d(x,p_i)$. Esto es equvialente a encontrar el centro del mínimo círculo generador, es decir, el círculo más pequeño que contiene al conjunto de puntos dado. Para resolverlo, se construye el diagrama de Vornoi del punto más lejano asociado al conjunto de puntos ($O(n\log n)$). Solo los vértices de la envolvente convexa de la nube de puntos genera regiones de Voronoi. Estos vértices dan los candidatos a circunferencias mínimas, lo cual se comprueba en $O(n)$, luego el tiempo total es $O(n\log n)$. 
+
+Existe un algoritmo óptimo $\Theta(n)$ TAREA: BUSCAR EL ALGORITMO. 
+
+\section{Máximo círculo vacío en un recinto}
+Encontrar el círculo de mayor área que no contenga ningún punto de un conjunto dado: $\max_{x\in R}\min_i d(x,p_i)$, donde $R$ es un recinto acotado. En el diagrama de Voronoi (del punto más cercano), los vértices del diagrama determinan círculos vacíos asociados a los puntos de las tres regiones incidentes. Sin embargo, no siempre el $x$ óptimo está en un vértice de Voronoi, porque si la región está muy concentrada en una zona cerca del límite de la región, el $x$ óptimo estaría en la intersección de una arista del diagrama con el borde de $R$. 
+
+\begin{prop}
+$x$ es un vértice del diagrama de Voronoi o la intersección de una arista de Voronoi con el borde de $R$. 
+\end{prop}
+
+El diagrama de Voronoi se calcula en $O(n\log n)$ y comprobar los candidatos es $O(n)$. 
+
+\section{Anchura de un conjunto de puntos en $\R^2$}
+$\min_l\max_{1\leq i\leq n}d(p_i,l)$. Es equivalente a encotnrar la banda de anchura mínima que contiene a todos los puntos (banda mínima generadora). 
+
+\begin{prop}
+La banda pasa por 3 puntos, dos en una rectas y uno en otra. 
+\end{prop}
+La forma más eficiente para encontrarla requiere $O(n\log n)$. Uno de los posiles algoritmos es encontrar la evolvente convexa de los puntos y calcular la anchura del polígono mediante el método de los calibres. Otra solución es, para cada cara, encontrar el punto más lejano, y elegir el mínimo de ellos. La búsqueda del punto más lejano para cada cara se puede hacer mediante búsqueda binaria: como $d(p_i,l)$ es monótona hasta llegar al máximo para $p_i\in CH$, podemos partir de un punto inicial y descartar la cadena de puntos correspondiente al vecino que nos dé menos distancia. Hay $O(n)$ caras y la búsqueda binaria es $O(log n)$, por lo que en total es $O(n\log n)$.
+
+\begin{teorema}
+El problema de la anchura tiene complejidad $\Theta(n\log n)$.
+\end{teorema}
+La prueba consiste en demostrar que el \emph{maximum gap on a circle} se reduce al problema de la anchura. Este problema consiste en, dado una sucesión de finita de puntos sobre una circunferencia, encontrar los dos puntos consecutivos más alejados. Este problema se conoce que tiene complejidad $\Theta(n\log n)$. 
+\end{document}
