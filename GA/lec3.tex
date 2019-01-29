@@ -60,5 +60,43 @@ Sea $f:X\to Y$ un morfismo quasi-compacto de esquemas (ver ejercicio 3.2). Enton
 \end{lemma}
 
 
+\begin{defi}
+Un morfismo $f:X\to Y$ es \emph{propio} si es propio, de tipo finito y universalmente cerrado, esto es, para todo $Z\to Y$, $X\times_Y\to Z$ es cerrado.
+\end{defi}
+
+\begin{prop}
+Sean $X$ e $Y$ espacio stopológicos y $f:X\to Y$ de tipo finito. Supongamos que $X$ es noetheriano. Entonces son equivalentes:
+\begin{enumerate}
+\item $f$ es propio.
+\item Para todo anillo de valoración $R$ con $K=Frac(R)$, $T=\spec(R)$ y $U=\spec(K)$, existe un único morfismo en la diagonal del diagrama siguiente que hace conmutar los triangulos
+\[
+\begin{tikzcd}
+U\arrow[r] \arrow[d, "i"]& X\arrow[d, "f"]\\
+T\arrow[r]\arrow[ur, dashed] & Y
+\end{tikzcd}
+\]
+
+\begin{ej}\
+\begin{enumerate}
+\item Los morfismos finitos son propios. Por resultados de álgebra conmutativa (Atiyah-MacDonald) existe un morfismo diagonal haciendo conmutar el diagrama
+\[
+\begin{tikzcd}
+K & B\arrow[l]\arrow[dl, dashed]\\
+R\arrow[u]\arrow[ur, dashed] & A\arrow[u]
+\end{tikzcd}
+\]
+\item Sea $A$ un anillo y $B=A[X_0,\dots, X_n]$ un anillo graduado. Al esquema $\proj(B)$ se le conoce como el espacio proyectivo sobre $A$ y se lo denota $\mathbb{P}_A^n$. Hay un morfismo $\PP_A^n\to\spec(A)$ inducido por $A\to B$. Obsérvese que podemos hacer cambios de base. El ejemplo más claro se tiene con $A=\Z$. Podemos cambiar, por ejemplo, a $\Q$, dándonos un diagrama conmutativo
+\[
+\begin{tikzcd}
+\PP_{\Z}^n\arrow[d] & \PP_\Q^n\arrow[l]\arrow[d]\\
+\spec(\Z) & \spec(\Q)\arrow[l]
+\end{tikzcd}
+\]
+Este morfismo además es propio. Para demostrarlo es suficiente demostrar que es propio el morfismo del caso $A=\Z$, ya que en el cambio de base $\PP_A^n=\PP_\Z^n\times_{\spec(A)}\spec(A)$, lo cual es equivalente a probar que $A[X_0,\dots, X_n]=A\otimes_\Z \Z[X_0,\dots,X_n]$. Este hecho aparece demostrado en el teorema 4.9 de Hartshorne TRATAR DE ENTENDERLA
+\end{enumerate}
+\end{ej}
+\end{enumerate}
+\end{prop}
+
 \end{document}
 

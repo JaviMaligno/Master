@@ -341,18 +341,96 @@ Sea $M_g$ una superficie orientable de género $g\geq 0$. Teníamos $$H_q(M_g)=\
 \Z^{2g} & q=1\\
 \Z & q=0
 \end{cases}$$
-Entonces $H^q(M_g)\cong \Hom(H_q(M_g),\Z)$ son exactamente los mismos grupos en las mismas dimensiones. Veamos cómo funciona el cup-producto $H^q(M_g)\times H^l(M_g)\to H^{q+l}(M_g)$. El único caso no trivial es $q=l=1$. Veamos los generadores de $H^1(M_g)$. Teníamos en $H_1(M_g)$ los generadores $a_i,b_i$ para $1\leq i\leq g$. Tendremos en $H^1(M_g)$ generadores $\alpha_i=[\varphi_i]$ tales que $h(\alpha_i)=[a_i]^*$ y $\beta_i=[\psi_i]$ tales que $h(\beta_i)=[b_i]^*$. Entonces $h(\alpha_i)([a_j])=\delta_{ij}$ y $h(\alpha_i)([b_j])=0$ para todo $j$. Por otra parte, por la definición de $h$, $h(\alpha_i)([a_j])=\varphi_i(a_j)$ y similarmente con $b_j$. Recordemos que $\varphi_i,\psi_j:C_1(M_g)\to \Z$. 
+Entonces $H^q(M_g)\cong \Hom(H_q(M_g),\Z)$ son exactamente los mismos grupos en las mismas dimensiones usando el teorema de coeficientes universales y el hecho de que los grupos de homología son todos libres. Veamos cómo funciona el cup-producto $H^q(M_g)\times H^l(M_g)\to H^{q+l}(M_g)$. El único caso no trivial es $q=l=1$. Veamos los generadores de $H^1(M_g)$. Teníamos en $H_1(M_g)$ los generadores $a_i,b_i$ para $1\leq i\leq g$. Tendremos en $H^1(M_g)$ generadores $\alpha_i=[\varphi_i]$ tales que $h(\alpha_i)=[a_i]^*$ y $\beta_i=[\psi_i]$ tales que $h(\beta_i)=[b_i]^*$. Entonces $h(\alpha_i)([a_j])=\delta_{ij}$ y $h(\alpha_i)([b_j])=0$ para todo $j$. Por otra parte, por la definición de $h$, $h(\alpha_i)([a_j])=\varphi_i(a_j)$ y similarmente con $b_j$. Recordemos que $\varphi_i,\psi_j:C_1(M_g)\to \Z$. 
 
 \begin{figure}[h!]
 \includegraphics[scale=0.7]{cup}
 \caption{Ejemplo del 2-toro.}
 \end{figure}
 
-Damos estructura de CW-complejo para calcular cuánto valen estas funciones sobre las células. La orientación de los 2-símplices es antihoraria. Tenemos que encontrar el valor de $\varphi_1$ en los 1-símplices interiores. Tenemos en cuenta que $\delta\varphi_1=0$, es decir, para todo triángulo $t_i$, $\delta\varphi_1(t_1)=\varphi_1(\partial t_i)=\varphi_1([v_0,v_1]+[v_1,v_2]-[v_0,v_2])=\varphi_1([v_0,v_1])+\varphi_1([v_1,v_2])-\varphi_1([v_0,v_2])=0$. Sobre el triángulo que contiene a $a_1$, la arista que está bien orientada valdrá 0 y la que no 1. En el de la derecha obtenemos que el segmento que queda libre debe valer 1 y así el siguiente triángulo,q ue de nuevo contiene a $a_1$ pero está orientado al contrario, está bien evaluado. 
+Damos estructura de CW-complejo para calcular cuánto valen estas funciones sobre las células. La orientación de los 2-símplices es antihoraria. Tenemos que encontrar el valor de $\varphi_1$ en los 1-símplices interiores. Tenemos en cuenta que $\delta\varphi_1=0$, es decir, para todo triángulo $t_i$, $\delta\varphi_1(t_1)=\varphi_1(\partial t_i)=\varphi_1([v_0,v_1]+[v_1,v_2]-[v_0,v_2])=\varphi_1([v_0,v_1])+\varphi_1([v_1,v_2])-\varphi_1([v_0,v_2])=0$. Sobre el triángulo que contiene a $a_1$, la arista que está bien orientada valdrá 0 y la que no 1. En el de la derecha obtenemos que el segmento que queda libre debe valer 1 y así el siguiente triángulo,q ue de nuevo contiene a $a_1$ pero está orientado al contrario, está bien evaluado. COMPROBAR QUE DOS ELECCIONES DE VALORES DE PHI SON EN REALIDAD DOS REPRESENTANTES DE ALPHA O MÚLTIPLOS
 
-En la figura anterior se trazan curvas que unen un generador consigo mismo y en cada corte con un 1-símplice se da el valor 1 o $-1$ según la orientación. Esta interpretación cobrará más sentido con la dualidad de Poincaré. 
+En la figura anterior se trazan curvas que unen un generador consigo mismo y en cada corte con un 1-símplice se da el valor 1 o $-1$ según la orientación. Esta interpretación cobrará más sentido con la dualidad de Poincaré.
+
+Dada una variedad compacta $M=|K|$, $H^*(M)=H^*(K)=H^*((C_*(K),\delta^*))$. Podemos definir una aplicación $C_q(K)\to C_{n-q}(K)$ dada por $\sum\sigma_i\mapsto \sum\sigma_i^*$, donde el dual de un símplice se define de la siguiente forma. Recordemos que $sd(K)=\{(b(\sigma_0),\dots, b(\sigma_n)\mid \sigma_0<\cdots<\sigma_n\}$, de modo que definimos $\sigma^*=\{(\sigma_0=\sigma<\sigma_1<\cdots)\mid (b(\sigma_0),b(\sigma_1),\dots)\in sd(K)\}$. En la figura anterior, la curva une el baricentro de $a_1$ consigo mismo mediante símplices pasando por los baricentros de los 2-símplices que contienen a $a_1$.  
+
+
+En cualquier caso, ahora podemos calcular $[\varphi_1\smile \psi_1]\in H^2(M_g)$. Tenemos que $$\varphi_1\smile\psi_1(t_1)=\varphi_1\cup\psi_1([v_0,v_1,v_2])=\varphi_1([v_0,v_1])\psi_1([v_1,v_2])=\varphi_1([v_0,v_1])\cdot 0=0.$$ Se comprueba análogamente que para $j\neq 2$, $\varphi_1\smile \psi_1=0$. En cambio $$\varphi_1\smile\psi_1(t_2)=\varphi_1([v_0,v_1])\psi_1([v_1,v_2])=1\cdot 1=1.$$ Este cálculo se puede predecir viendo dónde se cortan las curvas del dibujo.
+
+ Sabemos que $H_2(M_g)\cong\Z$ generado por $w=[t_1+t_2-t_3-t_4+t_5+t_6-t_7-t_8]$ (el signo depende de la orientación de $a_i$ o $b_i$). Por otra parte, $H^2(M_g)\cong \Hom(H_2(M_g),\Z)$ mediante el isomorfismo  que llega $[f]=\gamma$ a $h(\gamma)=w^*$. Por lo que $h(\gamma)(w)=1=w^*(w)=\rho(t_1)+\rho(t_2)+\cdots$. Como justamente $\varphi_1\smile\psi_1(t_1+t_2-t_2+\cdots)=1$, tenemos que $\alpha_1\smile\beta
+ _1=[\varphi_1\smile\psi_1]=\gamma$. Se comprueba que $\alpha_i\smile\alpha_j=\beta_i\smile\beta_j=0$ para todo $i,j$ y que $\alpha_i\smile\beta_i=\gamma$ (por conmutativiad, $\beta_i\smile\beta_i=-\gamma$). 
+
 
 \end{ej}
+\begin{ej}
+El caso de una superficie no orientable $N_g$ es trivial porque su homología con coeficientes en $\Z$ es nula en dimensión mayor o igual que 2. Aplicando coeficientes universales nos queda 
+$$H^q(N_g,\Z)=\begin{cases}
+0 & q\geq 2\\
+\Z\underbrace{\times\cdots\times}_{q-1}\Z & q=1\\
+\Z & q=0
+\end{cases}$$
+
+Sin embargo, 
+
+$$H_q(N_g,\Z_2)=\begin{cases}
+\Z_2 & q=2\\
+(\Z_2)^g & q=1\\
+\Z_2 & q=0
+\end{cases}$$
+y es nula en otro caso. Esto nos da los mismos grupos de cohomología por el teorema de coeficientes universales. Con el isomorfismo $H^1(N_g;\Z_2)\cong \Hom(H_1(N_g);\Z_2)$ hacemos el ejemplo de $N_4$. En este caso además no hay signos. 
+
+\begin{figure}[h!]
+\includegraphics[scale=0.7]{3-8}
+\end{figure}
+
+Igual que en el ejemplo anterior el isomorfismo funciona como $\alpha_i=[\varphi_i]\mapsto h(\alpha_i)=[\alpha_i]^*\in H_1(N_g)\to\Z_2$. Es fácil comprobar que $\alpha_i\smile\alpha_j=[\varphi_i\smile\varphi_j]=0$ cuando $i\neq j$. 
+
+$$\varphi_1\smile\varphi_1(t_1)=\varphi([v_0,v_1])\varphi_1([v_1,v_2])=0$$
+$$\varphi_1\smile\varphi_1(t_2)=1$$
+y en los demás triángulos vale claramente 0. Si denotamos $\gamma$ al generador de $H^2(N_g;\Z_2)$, $h(\gamma)=[\sum t_i]^*$. Tenemos que $h(\alpha_1\smile\alpha_1)([\sum t_i])=1$, luego $\alpha_1\smile\alpha_1=\alpha_1^2=\gamma$. 
+\end{ej}
+
+\begin{ej}
+Sea $X=B^2\cup_\varphi S^1$ donde $\varphi:\partial B^2\to S^1$ es una aplicación de grado $m$. Viéndo estos espacios como subespacios de $\C$ podemos pensar que es $z\mapsto z^m$. El complejo de cadenas es de la forma $0\to\Z\xrightarrow{m}\Z\xrightarrow{0}\Z\to 0$. Tenemos 
+
+\[
+H_q(X;\Z)=\begin{cases}
+0 & q\geq 2\\
+\Z_m & q=1\\
+\Z & q=0
+\end{cases}
+\]
+
+\[
+H^q(X;\Z)=\begin{cases}
+0 & q\geq 3\\
+\Z_m & q=2\\
+0 & q=1\\
+\Z & q=0
+\end{cases}
+\]
+
+De nuevo el cup producto no tiene interés con estos coeficientes, pero con coeficientes en $\Z_m$, la multiplicación por $m$ se vuelve nula y tenemos que 
+
+Hacemos un ejemplo con $m=4$.
+
+\begin{figure}[h!]
+\includegraphics[scale=0.7]{3-9}
+\end{figure}
+
+Tenemos del teorema de coeficientes universales que $\Z_m\cong H^1(X;\Z_m)\cong_h\Hom(H_1(X);\Z_m)$ generado por $[\varphi]$. Necesariamente $h([\varphi])=[e]^*$. Como $\varphi$ es un cociclo, $0=\delta\varepsilon(t_i)=\varphi(\partial t_i)=\varphi(e_i+e-e_{i+1})=\varphi(e_i)+1-\varphi(e_{i+1})$ con $i\in\Z_m$. Por tanto, para todo $i$, $\varphi(e_{i+1})=\varphi(e_i)+1$. Pongamos $\varphi(e_i)=i\mod n$. Calculamos ahora $[\varphi]\smile[\psi]=[\varphi\smile\psi]$. 
+
+$$
+(\varphi\smile\varphi)(t_i)=\varphi(e_i)\varphi(e)=i\mod n
+$$
+
+
+\end{ej}
+
+
+
+
+
 
 El cup producto también se restringe a las cadenas relativas $C^*(X,A)\subseteq C^*(X)$ para un subespacio $A\subseteq X$. Si $\varphi\in C^*(X,A)$ y $\sigma$ es un símplice singular cuya imagen está contenida en $A$, su restricción también está contenida en $A$, luego $\varphi(\sigma|)=0$, con lo que $(\varphi\smile\psi)(\sigma)=0$, con lo que $\varphi\smile\psi\in C^*(X,A)$. Nótese que no hemos necesitado que $\psi$ sea una cocadena relativa, luego tenemos cup-productos tanto $C^*(X,A)\times C^*(X)\to C^*(X,A)$ como $C^*(X,A)\times C^*(X,A)\to C^*(X,A)$. La misma prueba que en el caso no relativo sirve para inducir un cup producto en homología. Además tenemos inclusiones $C^*(X,A)\times C^*(X,A)\hookrightarrow C^*(X,A)\times C^*(X)\hookrightarrow C^*(X)\times C^*(X)$.  Así que los cup productos son compatibles con la sucesión exacta larga de cohomología a través del diagrama conmutativo
 \[

@@ -8,12 +8,36 @@
 \chapter{Subvariedades}
 
  
-\section{}
+\section{Repaso de superficies}
+
+\section{Subvariedades }
 Sea $f:(M,g)\to(\overline{M},\overline{g})$ una inmersión isométrica, $\nabla:\Chi(M)\times\Chi(M)\to\Chi(M)$ la conexión de Levi-Civita de $M$ y $\overline{\nabla}:\Chi(\overline{M})\times\Chi(\overline{M})\to\Chi(\overline{M})$ la de $\overline{M}$. Vamos a ver qué relación existe entre ambas conexiones. Nos centramos en $U\subseteq M$ abierto tal que $f|_U:U\to\overline{M}$ sea un embebimiento. Si $X\in\Chi(U)$, existe $\overline{X}\in\Chi(M)$ tal que $\overline{X}\circ f=X$ en $U$. La relación que vamos a probar es $\nabla_X Y=(\overline{\nabla}_{\overline{X}}\overline{Y})^t$ (parte tangente), aunque en esta igualdad estamos haciendo algunas identificaciones.
 
-SEGUIR POR AQUÍ, NÚMERO 4
+Dado $\nabla_XY\in\Chi(U)$ y $p\in U$, $(\nabla_X Y)(p)\in T_pM$. Tomamos $(df)_p(\nabla_X)_p\in (df)_p(T_pM)$. Tomamos una extensión $\overline{\nabla}_{\tilde{X}}\tilde{Y}\in\Chi(\overline{M})$, de modo que si $q\in \overline{M}$, $(\overline{\nabla}_{\tilde{X}}\tilde{Y})(q)\in T_q\overline{M}$. En particular se tiene para $q=f(p)$, en cuyo caso $T_{f(p)}\overline{M}=T_pM\oplus T_pM^\perp$. Nos quedamos solo con la parte tangente $(\overline{\nabla}_{\tilde{X}}\tilde{Y})(f(p))^t\in(df)_p(T_pM)$. Formalmente tendremos $(df)_p(\nabla_XY(p))=(\overline{\nabla}_{\tilde{X}}\tilde{Y})(f(p))^t$, o equivalentemente, 
+$\nabla_XY(p)=(df)^{-1}_p(\overline{\nabla}_{\tilde{X}}\tilde{Y})(f(p))^t$.
 
-\section{•}
+Para probar esta igualdad, vamos a ver que el miembro de la derecha define una conexión de Levi-Civita en $M$, de lo cual se desprenderá el resultado por unicidad. 
+
+Definimos $T:\Chi(U)\times\Chi(U)\to\Chi(U)$ como $T(X,Y)=(df)^{-1}[(\overline{\nabla}_{\tilde{X}}\tilde{Y}\circ f)^t]$.
+
+Probamos las cinco propiedades que definen la conexión de Levi-Civita:
+\begin{enumerate}
+\item Para $g\in C^{\infty}(M)$, tomamos $\overline{g}=g\circ f^{-1}$. 
+$$T(X,gY)=(df)^{-1}(\overline{\nabla}_{\tilde{X}}\tilde{Y}\circ f)^t=(df)^{-1}([\overline{g}\overline{\nabla}_{\tilde{X}}\tilde{Y}+\tilde{X}(\overline{g})\tilde{Y}]\circ f)^t=(df)^{-1}([g\overline{\nabla}_{\tilde{X}}\tilde{Y}]^t+[(\tilde{X}\circ f)(\tilde{Y}\circ  f)]^t)=$$
+$$gT(X,Y)+(df)^{-1}([\tilde{X}(\overline{g})\circ f)(\tilde{Y}\circ f)]^t)$$
+Ahora, 
+
+$$(\tilde{X}(\overline{g})\circ f)(p)=(d\overline{g})_{f(p)}(\tilde{X}f(p))=(d\overline{g})_{f(p)}((df)_p(X_p))=$$
+$$d(\overline{g}\circ f)_p(X_p)=(df)_p(X_p)=X_p(g)=X(g)(p)$$
+Con esto, $\tilde{X}(\overline{g})\circ f=X(g)$ y $\tilde{Y}\circ g=(df)(Y)$. De modo que 
+$$(df)^{-1}([\tilde{X}(\overline{g})\circ f)(\tilde{Y}\circ f)]^t)=X(g)(df)^{-1}(df)(Y)=X(g)Y$$
+
+\item
+\item
+\item
+\item 
+\end{enumerate}
+
 Sea $f:(M^n,g)\to (M^m,\overline{g})$ una inmersión isométrica. Sea $O\subseteq M$ abierto tal que $f|_O$ es un embebimiento. Sean $X,Y\in\mathfrak{X}(O)$ y $\widetilde{X},\widetilde{Y}\in\mathfrak{X}(\overline{M})$ tales que $df(X)=\widetilde{X}\circ f$ y $df(Y)=\widetilde{Y}\circ f$.
 
 Tenemos que para $p\in O$ y $f(p)\in\overline{M}$, $T_pM\oplus T_pM^\perp =T_{f(p)}M\ni (\overline{\nabla}_{\widetilde{X}}\widetilde{Y})(f(p))=(\overline{\nabla}_{\widetilde{X}}\widetilde{Y})(f(p))^t+(\overline{\nabla}_{\widetilde{X}}\widetilde{Y})(f(p))^N$. Al segundo término es a lo que llamamos \emph{2ª forma fundamental de $f|_O$}.
@@ -90,5 +114,40 @@ $$
 $$
 como esta igualdad se tiene para todo $Y\in\Chi(O)$, deducimos la igualdad que queríamos demostrar. 
 \end{dem}
+
+A partir de la definición del endomorfismo de Weingarten pasamos a definirlo en cada punto $p\in O$ como $A_{\eta,p}:T_pM\to T_pM$, donde $v\mapsto A_{\eta,p}(v)=A_\eta(V)(p)$, siendo $V\in\Chi(O)$ tal que $V_p=v$. 
+
+Esta aplicación está bien deinida: si $V_1,V_2\in\Chi(O)$ tales que $V_1(p)=V_2(p)=v$, entonces 
+\[
+(A_\eta(V_2)-A_\eta(V_2)_p=A_\eta(V_1-V_2)(p)=-(\overline{\nabla}_{\tilde{V}_1-\tilde{V}_2}\tilde{\eta})^t(p)=-(\overline{\nabla}_{(\tilde{V}_1-\tilde{V}_2)_p}\tilde{\eta})=0
+\]
+
+Tenemos que $A_{\eta,p}$ es un endomorfismo autoadjunto, esto es, $\gene{A_{\eta,p}(u),v}=\gene{A_{\eta,p}(v),y}$, lo cual implica que $A_{\eta,p}$ es diagonalizable por la simetría de su matriz. Por tanto, existe una base $\{e_1,\dots, e_n\}$ de $T_pM$ y existen números reales $k_1,\dots, k_n$ tales que $A_{\eta,p}(e_i)=k_ie_i$ para todo $i=1,\dots, n$. A los $k_i$ se los llama \emph{curvaturas principales} de $f$ en $p$ según la dirección de $\eta_p$. A los $e_i$ se los llama \emph{direcciones principales}. 
+
+Como en el caso no evaluado, tenemos también $\gene{A_{\eta,p}(e_i),e_j}=\gene{\sigma_p(e_i,e_j),\eta_p}$. En este caso, el miembto de la izquierda no es más que $k_i\delta_{ij}$. 
+
+\begin{ej}
+Veamos el caso particular de codimensión 1, es decir, sea $f:M^n\to \overline{M}^{n+1}$ una inmersión isométrica. En general, $\dim(T_pM^\perp)=codim(M)$, por lo que en este caso es 1. Sea $\eta_p\in T_pM^\perp$ un generador. Si lo tomamos unitario solo hay dos posibilidades, dependiendo del signo. Así que no hay dependencia del campo normal para hallar las curvaturas principales. 
+
+Supongamos ahora que $M$ y $\overline{M}$ son orientables, esto es, $\exists\eta:M\to T\overline{M}$ campo normal globalmente definido. Definimos la \emph{curvatura media} de $f$ en $p$ como $H_p=\frac{1}{n}tr(A_{\eta,p})=\frac{1}{n}\sum_i k_i$. Definimos también la \emph{curvatura de Gauss-Kronecker} de $f$ en $p$ como $K_p=\det(A_{\eta,p})=\prod_i k_i$.
+
+Recordamos la definición de la 2ª forma fundamental $\sigma:\Chi(O)\times\Chi(O)\to\Chi^\perp(f|_O)$ como $\sigma(X,Y)=(\overline{\nabla}_{\tilde{X}}\tilde{Y})^N$. Para $p\in O$, esto induce $\sigma_p:T_pM\times T_pM\to T_pM^\perp$ mediante $\sigma_p(u,v)=\sigma(U,V)(p)$. Como $\dim T_pM^\perp=1$, podemos identidicar este espacio con $\R$ con generador $\eta_p$. Así, 
+$$\sigma_p(u,v)=\gene{\sigma_p(u,v),\eta_p}\eta_p\equiv \gene{\sigma_p(u,v),\eta_p}=\gene{A_{\eta,p}(u),v}=\gene{A_\eta(U)(p),v}$$
+
+Vimos anteriormente que $A_\eta(U)(p)=(df)^{-1}(-\overline{\nabla}_{\tilde{U}}\tilde{\eta}\circ f)^t(p)$, por lo que sustituyendo y aplicando $df$ (teniendo en cuenta que $f$ es isometría y que $df$ tiene imagen tangente) obtenemos
+$$\gene{-\overline{\nabla}_{\tilde{U}}\tilde{\eta}\circ f)(p), (df)_p(v)}=\gene{(df)(-\nabla_{U}\eta\circ f)(p), (df)_p(v)}=\gene{-(\nabla_U\eta)(p),v}$$
+
+En la primera igualdad se ha sudado que $\overline{\nabla}\tilde{Y}\circ f=df(\nabla_XY)$. Esto extiende lo que ocurría en superficies, pues si $S\subseteq\R^3$ es una superficie, $\sigma_p:T_pS\times T_pS\to \R$ estaba dada por $\sigma_p(u,v)=\gene{-(dN)_p(u),v}$. En $S$ tenemos entonces $\sigma_p(u,v)\equiv \gene{\sigma_p(u,v),\eta_p}=\gene{A_{\eta,p}(u),v}$, con lo que $K_p=\det(A_{\eta,p})=\det(\sigma_p)$, que era la curvatura de Gauss como superficie. Lo mismo ocurre con la curvatura media. 
+
+Obsérvese que en la cadena de igualdades anterior hemos deducido en particular que $\A_{\eta,p}=-\nabla_U\eta_p$. 
+\end{ej} 
+
+
+
+
+
+
+
+
 
 \end{document}
