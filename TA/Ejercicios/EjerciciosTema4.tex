@@ -1,0 +1,25 @@
+	\documentclass[twoside]{article}
+\usepackage{../../estilo-ejercicios}
+\renewcommand{\baselinestretch}{1,3}
+%--------------------------------------------------------
+\begin{document}
+
+\title{Ejercicios de Topología Algebraica}
+\author{Javier Aguilar Martín}
+\maketitle
+
+\begin{ejercicio}{3.1.4}
+¿Qué pasa si se definen los grupos de homología $h_n(X;G)$ como la homología del complejo de cadenas $\cdots\to\Hom(G,C_n(X))\to\Hom(G,C_{n-1}(X))\to\cdots$? Más específicamente, ¿cuáles son los grupos $h_n(X;G)$ cuando $G=\Z,\Z_m$ y $\Q$?
+\end{ejercicio}
+\begin{solucion}
+Como $C_n(X)$ es un grupo libre abeliano, es claro que $\Hom(\Z_m,C_n(X))=0$ ya que no hay elementos de orden finito en $C_n(X)$, por lo que $h_n(X;\Z_m)$ para todo $n$. Lo mismo ocurre con $\Q$, puesto que cualquier racional de la forma $\frac{1}{r}$, con $r\in\Z$ tiene orden $|r|$. 
+
+Para $G=\Z$, es fácil comprobar que $\Hom(\Z,C_n(X))\cong C_n(X)$. En general, para cualquier cualquier grupo abeliano $A$, $\Hom(\Z,A)\cong A$, puesto que cada homomorfismo $\Z\to A$ está determinado por la imagen de $1$, que al tener orden infinito puede ser cualquier elemento de $A$. EXPLICAR POR QUÉ LOS BOUNDARY MAPS SIGUEN SIENDO IGUALES CON ALGÚN DIAGRAMA CONMUTATIVO O ALGO DE LOQ UE TENGO ESCRITO EN LA BOLSA
+
+Así que en el caso $G=\Z$ recuperamos $H_n(X)$. 
+
+De estos resultados deducimos que si $G$ es un grupo abeliano finitamente generado, entonces $h_n(X;G)=\oplus_{i=1}^rH_n(X)$, siendo $r$ el rango de $G$. Esto se debe a que $\Hom(G,C_n(X))\cong\oplus_{i=1}^r\Hom(\Z,C_n(X))$. 
+
+\end{solucion}
+
+\end{document}

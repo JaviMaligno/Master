@@ -10,7 +10,7 @@ Consiste en resolver problemas de optimización ayudándonos de la geometría de
 \section{Mínimo círculo generador}
 (minimal spanning circle) Como problema de investigación operativa sería $\min_{x\in\R^2}\max_{1\leq i\leq n} d(x,p_i)$. Esto es equvialente a encontrar el centro del mínimo círculo generador, es decir, el círculo más pequeño que contiene al conjunto de puntos dado. Para resolverlo, se construye el diagrama de Vornoi del punto más lejano asociado al conjunto de puntos ($O(n\log n)$). Solo los vértices de la envolvente convexa de la nube de puntos genera regiones de Voronoi. Estos vértices dan los candidatos a circunferencias mínimas, lo cual se comprueba en $O(n)$, luego el tiempo total es $O(n\log n)$. 
 
-Existe un algoritmo óptimo $\Theta(n)$ TAREA: BUSCAR EL ALGORITMO. 
+Existe un algoritmo óptimo $\Theta(n)$.
 
 \section{Máximo círculo vacío en un recinto}
 Encontrar el círculo de mayor área que no contenga ningún punto de un conjunto dado: $\max_{x\in R}\min_i d(x,p_i)$, donde $R$ es un recinto acotado. En el diagrama de Voronoi (del punto más cercano), los vértices del diagrama determinan círculos vacíos asociados a los puntos de las tres regiones incidentes. Sin embargo, no siempre el $x$ óptimo está en un vértice de Voronoi, porque si la región está muy concentrada en una zona cerca del límite de la región, el $x$ óptimo estaría en la intersección de una arista del diagrama con el borde de $R$. 
