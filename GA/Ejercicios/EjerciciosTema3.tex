@@ -139,7 +139,7 @@
 %Como esto se tiene para toda $f$, obtenemos que $h_\alpha=\tau(U)$, y como esta igualdad es para todo $U$, deducimos que $\tau=h_{\alpha}$, lo que nos da la sobreyectividad. 
 %\end{solucion}
 %
-\newpage
+%\newpage
 %
 \begin{ejercicio}{3.12}\emph{Subesquemas cerrados de $\proj(S)$}
 \begin{enumerate}
@@ -204,7 +204,7 @@ Por tanto la cadena $Z<Z_1$ induce una cadena $Y'<Y_1$. Podemos continuar este p
 \]
 de donde $e=\dim(X)-\dim(Y)\leq \dim(Z)-\dim(Y')\leq\dim(Z)$. 
 
-Sea ahora $W$ una componente irreducible de $f^{-1}(y)$. Sean $k$ la codimensión de $\overline{W}$ (clausura en $X$) en $X$ y sea $k'$ la codimensión de $Y'$ en $Y$. Ahora, $\overline{W}$ es una componente irreducible de $f^{-1}(Y')$ . Por (a) tenemos que $k\leq k'$. Aplicando el ejercicio 3.20b y la aditividad del grado de transcendencia en torres obtenemos
+Sea ahora $W$ una componente irreducible de $f^{-1}(y)$. Sean $k$ la codimensión de $\overline{W}$ (clausura en $X$) en $X$ y sea $k'$ la codimensión de $Y'$ en $Y$. Ahora, $\overline{W}$ es una componente irreducible de $f^{-1}(Y')$ . Por (a) tenemos que $k\leq k'$. Aplicando el ejercicio 3.20b y la aditividad del grado de transcendencia en torres obtenemos para $K(W)/K/k$ (donde $K$ es el cuerpo residual de $y$)
 \[
 \text{dim}(W)=e+k'-k \geq e.
 \]
@@ -219,32 +219,50 @@ Sea ahora $X_1=\spec(B[t_1,\dots, t_e])$. El morfismo $f:X\to Y$ induce un homom
 
 $g$ es genéricamente finito. Como $B$ es un dominio de integridad y los $t_i$ son algebraicamente independientes, $B[t_1,\dots, t_e]$ es también un dominio de integridad, y por tanto el punto genérico de $X_1$ es el ideal $\{0\}$ de $B[t_1,\dots, t_e]$. Por tanto, para que $g$ sea genéricamente finito, tenemos que probar que $v^{-1}(0)$ contiene una cantidad finita de ideales. Teniendo en cuenta que $A$ es claramente una $B[t_1,\dots, t_e]$-álgebra finitamente generada, identificando $B[t_t,\dots, t_e]$ con su imagen en $A$, el resultado se deduce del conocido teorema de álgebra conmutativa siguiente: Sea $C$ un anillo conmutativo con unidad y $A$ una $C$-álgebra finitamente generada que es íntegra sobre $A$. Entonces para cada $p\in C$ hay solo una cantidad finita de primos $q$ de $A$ tales que $q\cap C=p$\footnote{\href{https://math.stackexchange.com/questions/753042/finitely-many-prime-ideals-lying-over-mathfrakp}{Primos sobre un primo dado}}.
 
-Como hemos comentado, $A$ es una $B[t_1,\dots, t_e]$-álgebra finitamente generada, con lo cual $g$ es de tipo finito. Además, $g$ es dominante. Esto se debe a que $v$ tiene el mismo núcleo que la aplicación $B\to A$ inducida por $f$. Usando ahora que un morfismo entre esquemas afines es dominante si y solo si el núcleo del homomorfismo de anillos está contenido en el nilradical\footnote{\href{https://math.stackexchange.com/questions/389036/dominant-morphism-between-affine-varieties-induces-injection-on-coordinate-rings}{Morfismo dominante si y solo si núcleo contenido en el nilradical}}; por esto y por ser $f$ dominante, tenemos que $g$ es dominante. INCLUIR PRUEBA COMO LEMA, PÁGINA 3
+Como hemos comentado, $A$ es una $B[t_1,\dots, t_e]$-álgebra finitamente generada, con lo cual $g$ es de tipo finito. Además, $g$ es dominante. Esto se debe a que $v$ tiene el mismo núcleo que la aplicación $B\to A$ inducida por $f$. Usando el lema \ref{lema1} a continuación y por ser $f$ dominante, tenemos que $g$ es dominante. 
 
-Por tanto, por el ejercicio 3.7 existe un abierto denso $U_1\subseteq X_1$ tal que tomando $U=g^{-1}(U_1)$, el morfismo inducido $g|_U:U\to U_1$ es finito. Afirmamos que $U\subseteq X$ es el conjunto buscado. Por supuesto $U$ es un abierto denso, ya que es no vacío y $X$ es íntegro. PONER LA PRUEBA DE ESTO \url{https://math.stackexchange.com/questions/2455617/show-that-if-x-is-an-integral-affine-scheme-then-every-open-subscheme-is-dens} Por tanto, tenemos que comprobar que $y\in f(U)$ implica $\dim U_y=e$. HE PREGUNTADO PARA PROBAR LA IGUALDAD
+\begin{lemma}\label{lema1}
+Un morfismo entre esquemas afines es dominante si y solo si el núcleo del homomorfismo de anillos está contenido en el nilradical
+\end{lemma}
+\begin{proof}
+Sea $f:X=\spec(A)\to Y=\spec(B)$ y $\varphi:B\to A$ el homomorfismo de anillos correspondiente. Usando la igualdad $V(\varphi^{-1}(I))=\overline{f(V(I))}$ para ideales $I\subset A$ tenemos en particular $V(\ker\varphi)=V(\varphi^{-1}(0))=\overline{f(X)}$, que es igual a $Y$ si y solo si $f$ es dominante. Esto es equivalente a que $\ker\varphi$ esté contenido en todo ideal primo, o sea, en la intersección de todos ellos, que es el nilradical. 
+\end{proof}
+
+Por tanto, por el ejercicio 3.7 existe un abierto denso $U_1\subseteq X_1$ tal que tomando $U=g^{-1}(U_1)$, el morfismo inducido $g|_U:U\to U_1$ es finito. Afirmamos que $U\subseteq X$ es el conjunto buscado. Por supuesto $U$ es un abierto denso, ya que es no vacío y $X$ es íntegro, por lo tanto irreducible (Proposición 3.1). Es un ejercicio de topología general probar que si $X$ es irreducible, cualquier abierto no vacío es denso. MI PREGUNTA EN MSE
+%AFFINE N-SPACE https://stacks.math.columbia.edu/tag/01LZ https://stacks.math.columbia.edu/tag/01S5 https://stacks.math.columbia.edu/tag/01WG
 
 Por último tenemos que probar que el resultado se cumple en el caso general. Como $X$ e $Y$ son íntegros, por la proposición 3.1 y el ejercicio 2.9 podemos tomar $\eta_X,\eta_Y$ puntos genéricos de $X$ e $Y$, respectivamente. Sea $Y'\subseteq Y$ un entorno afín de $\eta_Y$ y $X'\subseteq X$ un entorno afín de $\eta_X$ contenido en $f^{-1}(Y')$. Se tiene que $X'$ e $Y'$ son esquemas íntegros de tipo finito sobre $k$. Obsérvese que $\eta_Y\in Y'$ es el punto genérico de $Y'$. Afirmamos que el morfismo restringido $f|_{X'}:X'\to Y'$ es dominante. De hecho, como $f$ es dominante, sabemos que $f(\eta_X)=\eta_Y$, por lo que $\eta_Y\in f(X')$. Pero ahora, $Y'=\overline{\{\eta_Y\}}\subseteq \overline{f(X')}\subseteq Y'$, por lo que $f|_{X'}$ es dominante. Así que podemos aplicar el resultado del caso afín para obtener un abierto denso $U\subseteq X'$ con la propiedad de que si $y\in f|_{X'}(U)=f(U)$, entonces $\dim U_y=e$. Por supuesto $U$ es abierto y no vacío, y de nuevo $X$ es íntegro, luego $U$ es denso en $X$. 
 
-\item \url{https://stacks.math.columbia.edu/tag/05F6}
+\item \begin{enumerate}[a)]
+\item Es trivial usando (b) para $h=e$. 
+\item Por (c) tenemos que existe un abierto denso $U\subseteq X$ tal que para cualquier $y\in f(U)$, $\dim U_y=e$. Por tanto, $E_h\subseteq X-U$. Ahora bien, $\overline{X-U}=X-U$ por ser $U$ abierto (la clausura del complementario es igual al complementario del interior). Como $X-U\neq X$ por ser $U\neq\emptyset$ deducimos que $X-U$ no es denso y por tanto tampoco lo es $E_h$. 
+\item Por a) tenemos que para todo $h\leq e$, $E_h=X$ es cerrado. Además, para $\dim(X)=0$ el resultado es trivial porque el espacio es discreto. Para $\dim(X)>0$ y $h>e$, $\overline{E}_h\neq X$ por b), por lo que pasando al esquema inducido por $X$ en cada componente irreducible de $\overline{E}_h$ (que tienen dimensión estrictamente menor que $X$) y utilizando la hipótesis de inducción obtenemos $E_h=\overline{E}_h$, lo que termina la demostración.
+\end{enumerate}%\url{https://stacks.math.columbia.edu/tag/05F6}
 
-\item \url{https://math.uchicago.edu/~barrett/resources/chevalley.pdf} (busqué ``chevalley theorem constructible fibre'')
+\item Probamos que $C_h$ es constructible observando que $C_h=f(E_h)-f(E_{h+1})$. Si $y\in f(E_h)$, entonces $\dim(X_y)\geq h$, pero si $\dim(Y)>h$ entonces existe una componente irreducible $Z\subseteq X_y$ con $\dim(Z)>h$, por lo que para todo $x\in Z$, $x\in E_{h+1}$, por lo que $y\in f(E_{h+1})$. Ahora, por el ejercicio 3.12 los cerrados son claramente constructibles. Por el ejercicio 3.19 la imagen de constructibles es constructibles y de nuevo por 3.18 la diferencia de constructibles es constructibles.
+
+Para probar que $C_h$ contiene un abierto denso de $Y$ usamos 3.19b, por el cual $f(X)$ contiene un abierto denso de $Y$. Sea $U$ como en (c). Por la caracterización de continuidad mediante la clausura, $f(X)=f(\overline{U})\subseteq \overline{f(U)}$, luego podemos aplicarle el ejercicio 3.19b a $f|_U:U\to Y$. Por tanto, basta probar que si $h>e$, $f(E_h)$ está contenido en un subconjunto cerrado propio de $Y$, es decir, que no es denso, ya que $C_e\supseteq f(U)-\bigcup_{h>e}f(E_h)$ seguiría conteniendo un subconjunto denso de $Y$. Es suficiente entonces probar que si $Z\subseteq X-U$ es una componente irreducible, entonces $f(Z)$ no es denso. Supongamos por el contrario que $\overline{f(Z)}=Y$. Entonces $f|_Z:Z\to Y$ es un morfismo dominante de esquemas íntegros de tipo finito sobre un cuerpo. Ahora, $\dim(Z)<\dim(X)$, por lo que $l=\dim(Z)-\dim(Y)<e$. Por (c) existe $V_l\subseteq Z$ sbierto no vacío con $\dim(V_l)_y=l$ para todo $y\in f(V_l)$. Esto contradice (b) mediante 3.20e, ya que para un $y$ de los anteriores, toda componente irreducible de $X_y$ debe tener dimensión $\geq e>l$, una contradicción.
+
+Por tanto, $\bigcup_{h>e}f(E_h)\subseteq L\subsetneq Y$ para $L$ un cerrado propio, lo que prueba el resultado. 
+
+%\url{https://math.uchicago.edu/~barrett/resources/chevalley.pdf} (busqué ``chevalley theorem constructible fibre'') LO DE AQUÍ ME SIRVE PARA LOS ANTERIORES TAMBIÉN
 
 \end{enumerate}
-BUSCAR EL TÍTULO DEL EJERCICIO PORQUE IGUAL HAY ALGÚN CAPÍTULO DE UN LIBRO QUE LO TRATA SEGÚN 
+%BUSCAR EL TÍTULO DEL EJERCICIO PORQUE IGUAL HAY ALGÚN CAPÍTULO DE UN LIBRO QUE LO TRATA SEGÚN 
+%
+%\url{http://jmilne.org/math/CourseNotes/AG.pdf} Theorem 9.9
+%
+%El de Cartan en la exposé 8 se supone que lo tiene
+%
+%Algo podré sacar de estos \url{https://stacks.math.columbia.edu/tag/04NP} \url{https://stacks.math.columbia.edu/tag/02FW}\url{https://stacks.math.columbia.edu/tag/0B2H}
 
-\url{http://jmilne.org/math/CourseNotes/AG.pdf} Theorem 9.9
+%Lo trae parcialmente resuelto \url{http://hartshorne-ag-solutions.wikidot.com/chapter-2-section-3} (también tengo una solución en una captura, comparar)
 
-El de Cartan en la exposé 8 se supone que lo tiene
-
-Algo podré sacar de estos \url{https://stacks.math.columbia.edu/tag/04NP} \url{https://stacks.math.columbia.edu/tag/02FW}\url{https://stacks.math.columbia.edu/tag/0B2H}
-
-Lo trae parcialmente resuelto \url{http://hartshorne-ag-solutions.wikidot.com/chapter-2-section-3} (también tengo una solución en una captura, comparar)
-
-Para bibliografía \url{https://mathoverflow.net/questions/80707/chevalleys-theorem-on-constructible-sets} 
+%Para bibliografía \url{https://mathoverflow.net/questions/80707/chevalleys-theorem-on-constructible-sets} 
 % CUANDO X ES ÍNTEGRO TODO AFÍN NO VACÍO ES DENSO https://math.stackexchange.com/questions/2455617/show-that-if-x-is-an-integral-affine-scheme-then-every-open-subscheme-is-dens
 
 % DOMINIO DE INTEGRIDAD IMPLICA SPEC IRREDUCIBLE http://math.stanford.edu/~conrad/210BPage/handouts/spec.pdf PAG 3
 
-% DIMENSIÓN DE UN ABIERTO DENSO IGUAL A LA DEL ESQUEMA AFÍN https://math.stackexchange.com/questions/1789033/dimension-of-irreducible-affine-variety-is-same-as-any-open-subset
+% DIMENSIÓN DE UN ABIERTO DENSO IGUAL A LA DEL ESQUEMA AFÍN https://math.stackexchange.com/questions/1789033/dimension-of-irreducible-affine-variety-is-same-as-any-open-subset EN ESTE CASO 3.20e ES MÁS POTENTE
 \end{solucion}
 \end{document}

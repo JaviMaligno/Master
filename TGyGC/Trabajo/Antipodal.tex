@@ -278,5 +278,48 @@ ULISES
 
 
  \section{Open Problems}
-CIRCULAR LATTICE ES SIMPLEMENTE UNA CIRCUNFERENCIA CON PUNTOS IGUALMENTE SEPARADOS EN ELLA
+ 
+ %CIRCULAR LATTICE ES UN CÍRCULO CON PUNTOS IGUALMENTE ESPACIADOS 
+Let us assume that we are given a circular lattice with an antipodal set of $2n$ points
+(evenly spaced) and we would like to compute an extremal antipodal $k$-polygon with
+$k < n$ vertices. For $k = n$, the linear algorithms proposed in this paper are strongly based on
+the simple characterization for the extremal antipodal polygons. Namely, the minimal
+thin antipodal polygon has consecutive vertices and the thick antipodal polygon has
+an alternating configuration. That
+characterization does not hold in the general case $k < n$.
+
+
+\definecolor{zzttqq}{rgb}{0.6,0.2,0.}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-6.246666666666667,-2.066666666666644) rectangle (9.086666666666668,2.07);
+\fill[line width=2.pt,color=zzttqq,fill=zzttqq,fill opacity=0.10000000149011612] (-1.7557911458287687,0.9577042613611466) -- (0.,2.) -- (1.0229677195353655,1.7185857688194133) -- (1.755791145828769,0.9577042613611464) -- (2.,0.) -- cycle;
+\draw [line width=1.2pt] (0.,0.) circle (2.cm);
+\draw [line width=2.pt,color=zzttqq] (-1.7557911458287687,0.9577042613611466)-- (0.,2.);
+\draw [line width=2.pt,color=zzttqq] (0.,2.)-- (1.0229677195353655,1.7185857688194133);
+\draw [line width=2.pt,color=zzttqq] (1.0229677195353655,1.7185857688194133)-- (1.755791145828769,0.9577042613611464);
+\draw [line width=2.pt,color=zzttqq] (1.755791145828769,0.9577042613611464)-- (2.,0.);
+\draw [line width=2.pt,color=zzttqq] (2.,0.)-- (-1.7557911458287687,0.9577042613611466);
+\begin{scriptsize}
+\draw [fill=black] (0.,0.) circle (1.5pt);
+\draw [fill=black] (0.,2.) circle (2.0pt);
+\draw [fill=black] (-1.0229677195353652,1.7185857688194135) circle (2.0pt);
+\draw [fill=black] (-1.7557911458287687,0.9577042613611466) circle (2.0pt);
+\draw [fill=black] (-2.,0.) circle (2.0pt);
+\draw [fill=black] (0.,-2.) circle (2.0pt);
+\draw [fill=black] (1.0229677195353652,-1.7185857688194135) circle (2.0pt);
+\draw [fill=black] (1.7557911458287687,-0.9577042613611466) circle (2.0pt);
+\draw [fill=black] (2.,0.) circle (2.0pt);
+\draw [fill=black] (1.0229677195353655,1.7185857688194133) circle (2.0pt);
+\draw [fill=black] (1.755791145828769,0.9577042613611464) circle (2.0pt);
+\draw [fill=black] (-1.755791145828769,-0.9577042613611464) circle (2.0pt);
+\draw [fill=black] (-1.0229677195353655,-1.7185857688194133) circle (2.0pt);
+\end{scriptsize}
+\end{tikzpicture}
+
+Finding the
+extremal antipodal $(n−1)$-polygon, called $(2n, n−1)$-problem for short, can be easily
+reduced to solve $O(n)$ times the $(2(n − 1), n − 1)$-problem: in the $(2n, n − 1)$-problem an antipodal pair is not selected and can thus be removed
+from the input. This approach gives a simple $O(n^{n−k+1})$ time algorithm for solving
+the general $(2n, k)$-problem. This leaves the open question if the $(2n, k)$-problem can
+be solve in $O(n^k )$ time.
 \end{document}
