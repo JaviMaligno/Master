@@ -143,6 +143,94 @@ Obsérvese que en la cadena de igualdades anterior hemos deducido en particular 
 \end{ej} 
 
 
+\section{Curvatura seccional}
+Sea $(M,g)$ una variedad rimaniana y $p\in M$ donde el espacio tangente es $T_pM$ con dimensión $n$. Sean $\Pi\subseteq T_pM$ un plano (subespacio 2-dimensional). Definimos $K(p,\Pi)$ como el número real que mide la curvatura de la 2-variedad formada por las geodésicas que pasan por $p$ y son tangentes a $M$. Sea $B_\Pi=\{u,v\}$ una base ortonormal de $M$. Entonces $K(p,\Pi)=R_p(u,v,v,u)=\gene{R(U,V)V,U}(p)=\gene{\nabla_U\nabla_VV-\nabla_V\nabla_UV-\nabla_{[U,V]}V,U}(p)$ donde $U,V\in\Chi(M)$ tales que $U_p=u$ y $V_p=v$. 
+
+Sea $f:M^n\to\overline{M}^n$ Una inmersión isométrica. Entonces $(df)(T_pM)\subseteq T_{f(p)}\overline{M}$. Podemos ver $\Pi$ como un plano contenido en $T_{f(p)}\overline{M}$. Vamos a dar la relación entre $K(p,\Pi)$ y $\overline{K}(f(p),\Pi)$ (curvatura seccional en $\overline{M}$). 
+
+\begin{teorema}[de Gauss]
+$K(p,\Pi)-\overline{K}(f(p),\Pi)=\gene{\sigma_p(u,u),\sigma_p(v,v)}-|\sigma_p(u,v)|^2$. 
+\end{teorema}
+\begin{dem}
+Sean $X,Y\in\Chi(M)$ tales que $X_p=u$, $Y_p=v$. 
+\[
+K(p,\Pi)=\gene{\nabla_X\nabla_YY-\nabla_Y\nabla_XY-\nabla_{[X,Y]}Y,X}_p=R_p(u,v,vu)=Rp(v,u,u,v)=\gene{\nabla_Y\nabla_X-\nabla_X\nabla_YX,Y}_p
+\]
+(Los que tienen abajo los corchetes se anulan ya pa siempre)
+\[
+\overline{K}(f(p),\Pi)=\gene{\tilde{\nabla}_{\tilde{Y}}\tilde{\nabla}_{\tilde{X}}\tilde{X}-\tilde{\nabla}_{\tilde{X}}\tilde{\nabla}_{\tilde{Y}}\tilde{X},\tilde{Y}}_{f(p)}
+\]
+para $\tilde{X},\tilde{Y}\in\Chi(\overline{M})$ extensiones. Tenemos
+\[
+\gene{(\tilde{\nabla}_{[\tilde{X},\tilde{Y}}\tilde{X})^t,\tilde{Y}}_{f(p)}=\gene{\nabla_{[X,Y]}X,Y}_p
+\]
+Así que
+\[
+K(p,\Pi)-K(f(p),\Pi)=\gene{\nabla_Y\nabla_X X-\nabla_X\nabla_YX,Y}-\gene{\tilde{\nabla}_{\tilde{Y}}\tilde{\nabla}_{\tilde{X}}\tilde{X}-\tilde{\nabla}_{\tilde{X}}\tilde{\nabla}_{\tilde{Y}}\tilde{X},\tilde{Y}}
+\]
+Por otro lado
+\[
+\tilde{\nabla}_{\tilde{X}}\tilde{X}=(\tilde{\nabla}_{\tilde{X}}\tilde{X})^t+(\tilde{\nabla}_{\tilde{X}}\tilde{X})^N-\nabla_XX+\sigma(X,X)
+\]
+luego
+\[
+\tilde{\nabla}_{\tilde{Y}}\tilde{\nabla}_{\tilde{X}}\tilde{X}=\tilde{\nabla}_{\tilde{Y}}(\nabla_XX+\sigma(X,X))=\tilde{\nabla}_{\tilde{Y}}\nabla_XX+\tilde{\nabla}_{\tilde{Y}}\sigma(X,X)
+\]
+Sea $\{E_1,\dots, E_{m-n}\}$ una base ortonormal de $\Chi^\perp(f(M))$ de modo que $\sigma(X,X)=\sum_iH_i(X,X)E_i$. Así, la última ecuación continuaría con
+\[
+\tilde{\nabla}_{\tilde{Y}}\nabla_XX+\tilde{\nabla}_{\tilde{Y}}(\sum_iH_i(X,X)E_i)=
+\]
+\[
+\tilde{\nabla}_{\tilde{Y}}\nabla_XX+\sum_iH_i(X,X)\tilde{\nabla}_{\tilde{Y}}E_i+\sum_i\tilde{Y}(H_i(X,X))E_i
+\]
+Entonces, haciendo cuentas llegamos a que
+\[
+\gene{\tilde{\nabla}_{\tilde{Y}}\tilde{\nabla}_{\tilde{X}},\tilde{Y}}_{f(p)}=\gene{\tilde{\nabla}_{\tilde{Y}}\nabla_XX,\tilde{Y}}_{f(p)}+\sum_iH_i(X,X)\gene{\tilde{\nabla}_{\tilde{Y}}E_i,\tilde{Y}}+\sum_i\tilde{Y}(H_i(X,X))\gene{E_i,\tilde{Y}}
+\]
+El último sumando es 0 así que nos queda
+\[
+\gene{\nabla_Y\nabla_X,Y}_p-\sum_iH_i(X,X)H_i(Y,Y)
+\]
+Y esto último por las cuentas que no me ha dado tiempo a copiar es igual que si el último sumando lo cambiamos por $\sum_iH_i(X,Y)^2$. 
+
+Restando nos queda
+\[
+\gene{\nabla_Y\nabla_XX-\nabla_X\nabla_YX,Y}-\sum H_i(X,X)H_i(Y,Y)+\sum_i H_i(X,Y)^2
+\]
+Volviendo a la resta de curvaturas que habíamos hecho obtenemos
+\[
+\sum_i H_i(X,X)H_i(Y,Y)-\sum_i H_i(X,Y)^2
+\]
+
+Ahora
+\[
+\gene{\sigma(X,X),\sigma(Y,Y)}=\gene{\sum_i H_i(X,X)E_i,\sum_jH_j(Y,Y)E_j}=\sum_{ij}H_i(X,X)H_j(Y,Y)\gene{E_i,E_j}=\sum_iH_i(X,X)
+\]
+Con lo que en la resta anterior obtenemos el resultado.
+
+\end{dem}
+
+
+\begin{ej}
+En el caso de codimensión uno tenemos 1 inmersión inmersión isométrica $f:M^n\to\overline{M}^{n+1}$. Elegimos $B=\{e_1,\dots, e_n\}$ una base de $T_pM$ con cada $e_i$ la dirección principal asociada a $k_i$ y como base de $T_pM^\perp$ elegimos $\{\eta_p\}$. Sean $\Pi=\gene{e_i,e_j}$ un plano de $T_pM$. Por el teorema anterior,
+\[
+K(p,\Pi)-\overline{K}(f(p),\Pi)=\gene{\sigma_p(e_i,e_i),\sigma_p(e_j,e_j)}-|\sigma_p(e_i,e_j)|^2=\gene{\gene{\sigma_p(e_i,e_i),\eta_p}\eta_p,\gene{\sigma_p(e_j,e_j),\eta_p}\eta_p}=
+\] 
+\[
+\gene{\sigma_p(e_i,e_i),\eta_p}\gene{\sigma_p(e_j,e_j),\eta_p}\gene{\eta_p,\eta_p}=\gene{A_{\eta_p}(e_i),e_i}\gene{A_{\eta_p}(e_j),e_j}=\gene{k_ie_i,e_i}\gene{k_je_j,e_j}=k_ik_j
+\]
+Hemos omitido $|\sigma_p(e_i,e_j)|^2$ porque haciendo el desarrollo se anula. Así que si $S\subseteq\R^3$ es una superficie y $f:S\to\R^3$ es una inmersión isométrica, para $p\in S$, como $\dim(T_pM)=2$, necesariamente $\Pi=T_pM$. Además, como la variedad ambiente es $\R^3$, $\overline{K}=0$, de modo que $K(p,T_pM)=k_1k_2$, que es justamente la curvatura de Gauss para $S$. Tenemos entonces que la curvatura de Gauss de una superficie es invariante pro isometrías. 
+
+Consideremos $S=S^n$ y $f$ la inclusión en $\R^{n+1}$. Tenemos que para cualquier $\Pi\subseteq T_pM$,  $K(p,\Pi)=\gene{\sigma_p(u,u),\sigma_p(v,v)}-|\sigma_p(u,v)|^2$. Usando las cuentas de más arriba esto es igual a $\gene{A_{\eta_p}(u),u}\gene{A_{\eta_p}(v),v}-\gene{A_{\eta_p}(u),v)}$. Aplicamos la expresión que tenemos para el endomorfismo de Weingarten
+\[
+\gene{-(\nabla_u\eta)^t,y)}\gene{-(\nabla_v\eta)^r,v}-\gene{-(\nabla_u\eta)^t,v}
+\]
+Como $u,v$ son tangentes, no hace falta tomar parte tangente. Tomando $\eta_p=p$ como generador, esto nos da
+\[
+\gene{-u,u}\gene{-v,v}-{-u,v}=(-1)(-1)-0=1
+\]
+Algo que ya sabíamos, que la curvatura seccional de $S^n$ es 1. 
+\end{ej}
 
 
 

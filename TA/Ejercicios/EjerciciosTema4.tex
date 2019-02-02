@@ -12,13 +12,28 @@
 ¿Qué pasa si se definen los grupos de homología $h_n(X;G)$ como la homología del complejo de cadenas $\cdots\to\Hom(G,C_n(X))\to\Hom(G,C_{n-1}(X))\to\cdots$? Más específicamente, ¿cuáles son los grupos $h_n(X;G)$ cuando $G=\Z,\Z_m$ y $\Q$?
 \end{ejercicio}
 \begin{solucion}
-Como $C_n(X)$ es un grupo libre abeliano, es claro que $\Hom(\Z_m,C_n(X))=0$ ya que no hay elementos de orden finito en $C_n(X)$, por lo que $h_n(X;\Z_m)$ para todo $n$. Lo mismo ocurre con $\Q$, puesto que cualquier racional de la forma $\frac{1}{r}$, con $r\in\Z$ tiene orden $|r|$. 
+Como $C_n(X)$ es un grupo libre abeliano, es claro que $\Hom(\Z_m,C_n(X))=0$, ya que no hay elementos de orden finito en $C_n(X)$, por lo que $h_n(X;\Z_m)=0$ para todo $n$. Este razonamiento es válido para cualquier grupo periódico, es decir, que todos sus elementos tengan orden finito.
 
-Para $G=\Z$, es fácil comprobar que $\Hom(\Z,C_n(X))\cong C_n(X)$. En general, para cualquier cualquier grupo abeliano $A$, $\Hom(\Z,A)\cong A$, puesto que cada homomorfismo $\Z\to A$ está determinado por la imagen de $1$, que al tener orden infinito puede ser cualquier elemento de $A$. EXPLICAR POR QUÉ LOS BOUNDARY MAPS SIGUEN SIENDO IGUALES CON ALGÚN DIAGRAMA CONMUTATIVO O ALGO DE LOQ UE TENGO ESCRITO EN LA BOLSA
+ Lo mismo ocurre con $\Q$, puesto que cualquier racional de la forma $\frac{1}{r}$, con $r\in\Z$, tiene orden $|r|$, de modo que si $\varphi\in\Hom(\Q,C_n(X))$, $\varphi(1)=\varphi(r)\varphi\left(\frac{1}{r}\right)=0$ (el producto tiene sentido porque $r\in\Z$). Como cualquier racional se escribe como $\frac{1+\cdots+1}{r}$, se tiene que $\Hom(\Q,C_n(X))=0$.
 
-Así que en el caso $G=\Z$ recuperamos $H_n(X)$. 
+Para $G=\Z$, es fácil comprobar que $\Hom(\Z,C_n(X))\cong C_n(X)$. En general, para cualquier cualquier grupo abeliano $A$, $\Hom(\Z,A)\cong A$, puesto que cada homomorfismo $\Z\to A$ está determinado por la imagen de $1$, que al tener orden infinito puede ser cualquier elemento de $A$. Observando el diagrama conmutativo
+\[
+\begin{tikzcd}[column sep=50]
+\Hom(\Z,C_n(X))\arrow[r, "\varphi\mapsto \varphi(1)"]\arrow[d, "\varphi\mapsto d_n\circ \varphi"] & C_n(X)\arrow[d, "\varphi(1)\mapsto d_n(\varphi(1))"]\\
+\Hom(\Z,C_n(X))\arrow[r, "d_n\circ\varphi\mapsto (d_n\circ\varphi)(1)"] & C_{n-1}(X)
+\end{tikzcd}
+\]
+obtenemos que $(d_n\circ\varphi)(1)=d_n(\varphi(1))$, con lo que también se respetan los operadores borde. De esta forma $h_n(X;\Z)=H_n(X)$ para todo $n$. 
 
-De estos resultados deducimos que si $G$ es un grupo abeliano finitamente generado, entonces $h_n(X;G)=\oplus_{i=1}^rH_n(X)$, siendo $r$ el rango de $G$. Esto se debe a que $\Hom(G,C_n(X))\cong\oplus_{i=1}^r\Hom(\Z,C_n(X))$. 
+
+De estos resultados deducimos que si $G$ es un grupo abeliano finitamente generado, entonces $h_n(X;G)=\oplus_{i=1}^rH_n(X)$, siendo $r$ el rango de $G$. Esto se debe a que $\Hom(G,C_n(X))\cong\oplus_{i=1}^r\Hom(\Z,C_n(X))$. Este razonamiento es aplicable también a sumas directas infinitas por las propiedades de $\Hom(G,-)$. 
+
+
+Para un grupo abeliano $G$ cualquiera, su subgrupo de torsión tiene imagen nula, luego $\Hom(G,C_n(X))\cong \Hom(G/T(G),C_n(X))$, siendo $G/T(G)$ un grupo abeliano libre de torsión. Si este cociente es fintiamente generado, sabemos que será un grupo libre abeliano y por tanto tenemos el mismo resultado que para grupos abelianos finitamente generados. En general, tendremos un complejo $\{\Hom(G,C_n(X))\}$ con $G$ libre de torsión.
+
+Si $G$ no es abeliano, dado $f\in\Hom(G,C_n(X))$ tenemos que para todo $a,b\in G$ (con notación multiplicativa), $f(ab)=f(a)f(b)=f(b)f(a)=f(ba)$, de modo que los conmutadores $[a,b]$ tienen imagen trivial. Esto implica que $\Hom(G,C_n(X))\cong\Hom(G/[G,G],C_n(X))$, y de nuevo estamos en el caso abeliano. 
+
+
 
 \end{solucion}
 

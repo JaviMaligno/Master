@@ -33,4 +33,45 @@ La forma más eficiente para encontrarla requiere $O(n\log n)$. Uno de los posil
 El problema de la anchura tiene complejidad $\Theta(n\log n)$.
 \end{teorema}
 La prueba consiste en demostrar que el \emph{maximum gap on a circle} se reduce al problema de la anchura. Este problema consiste en, dado una sucesión de finita de puntos sobre una circunferencia, encontrar los dos puntos consecutivos más alejados. Este problema se conoce que tiene complejidad $\Theta(n\log n)$. 
+
+\section{Máximo corredor vacío}
+Buscamos una recta que resuelta el problema $\max_{l}\min_{1\leq i\leq n} d(p_i,l)$ donde $l$ es la recta que buscamos. El conjunto de puntos $\{p_1,\dots, p_n\}\subseteq\R^2$ está dado. Para que el problema esté bien definido debemos pedir que $l$ interseque la envolvente convexa. Obsérvese que $l$ es la recta central de una banda determinada por otras dos rectas, digamos $l'$ y $l''$.
+
+Este problema tiene aplicaciones en robótica, pues se usa para encontrar un camino por el que pueda circular un robot sin chocar con una serie de obstáculos.
+
+\begin{prop}
+
+La solución puede ser de dos tipos: o bien $l'$ se apoya en dos puntos de la nube y $l''$ en uno (o viceversa), o bien tanto $l'$ como $l''$ se apoyan en un solo punto de forma perpendicular al segmento que une ambos puntos. 
+
+\end{prop}
+La prueba es de primaria (Día Bañez dixit).
+
+Para una dirección fijada, el problema se resuelve en $O(n\log n)$ simplemente comprobando casos. Por lo que para el siguiente apartado vamos a suponer que no buscamos una recta vertical.
+
+\subsection{Dualidad geométrica}
+Sea $P$ un plano al que llamamos \emph{plano primal} y $P'$ otro plano al que llamamos \emph{plano dual}. Sea $F:P\to P'$ definida mediante $p=(a,b)\mapsto F(p)\equiv y=ax-b$ (el signo es para simplificar notación más adelante). De forma inversa, si $l: y=mx-c$, entonces $F(l)=(m,c)$. 
+
+
+\begin{prop}\
+\begin{enumerate}
+\item $F(F(p))=p$.
+\item $l'\parallel l''\Leftrightarrow F(l')_x=F(l'')_x$.
+\item $p$ está debajo de $l$ (encima) si y solo si $F(p)$ está encima (debajo) de $F(l)$. 
+\end{enumerate}
+\end{prop}
+
+La prueba es simple, para el último usar las ecuaciones. 
+
+En el problema del máximo corredor vacío, el caso I se transforma en dos rectas correspondientes a los dos puntos, digamos $F(b)$ y $F(c)$ que se intersectan en el punto $F(l')$. Como $l''$ es paralela a $l'$, $F(l'')_x=F(l')_x$. Así que consideramos el segmento vertical que une $F(l'')$ con $F(l')$, que por la dualidad no corta a ninguna otra recta. 
+
+En el caso dos tenemos las rectas perpendiculares $F(p_i)$ y $F(p_j)$ que intersecan en un punto digamos $V$. Si la pendiente de una recta es $V_x$, la de la perpendicular es $-\frac{1}{V_x}$.
+
+Para resolver el problema en el plano dual buscamos intersecciones de rectas (que hay $O(n^2)$). Construir el arreglo de rectas ordenando los puntos de intersección por abcisa requiere $O(n^2)+O(n^2\log n)$. Después realizamos un barrido para ir buscando las intersecciones que cumplen alguno de los casos. Actualizar los vecinos de arriba y abajo del punto de intersección se puede hacer en tiempo constante.
+
+\section{Ajustar una función escalonada a un conjunto de datos}
+$\min_f d(S,f)$ donde $S=\{p_1,\dots, p_n\}$, $f$ es una función escalonada y $d(p_i,f)=\max_i|f(x_i)-y_i|=\max_id_v(p_i,f)$ (distancia vertical, que tiene sentido porque $f$ es constante en cada escalón, luego se mide la distancia al escalón inmediantamente por encima del punto). 
+
+
+
+
 \end{document}

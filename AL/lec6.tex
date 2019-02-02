@@ -1,0 +1,93 @@
+\documentclass[AL.tex]{subfiles}
+
+\begin{document}
+\chapter{Estructuras de datos básicas}
+Una estructura de datos es una forma de guardar y organizar datos de forma que se facilite el acceso a ellos y las actualizaciones o modificaciones necesarias.
+
+Para realizar ciertas operaciones hacen falta estructuras de datos que permitan hacerlas en tiempo constante (queries, modificación de operadores como insertar, borar, etc.)
+
+Algunos ejemplos de estructura de datos son:
+\begin{itemize}
+\item Árboles binarios de búsqueda: heap (montículo).
+\item Listas.
+\item Grafos. 
+\end{itemize}
+
+\section{Heap}
+Un heap es un árbol binario que cumple:
+\begin{enumerate}
+\item Las hojas están en los dos últimos niveles.
+\item En el último nivel, las hojas están a la izquierda.
+\item El atributo del padre es mayor o igual que el atributo del hijo (alternativamente, menor o igual). 
+\end{enumerate}
+
+\begin{ej}
+DIBUJAR ÁRBOL CON LO COMENTADO
+
+%Entre círculos los nodos. 
+%               11  
+%        7              10
+%    3       2        9    8
+%  1   1     2
+
+Este árbol se almacena en un vector (en el ejemplo anterior $[11,7,10,3,2,9,8,1,1,2]$). Se puede acceder a los nodos mediante las siguientes reglas: $padre(i)=i/2$, $hijo-izda(i)=2i$, $hijo-dcha(i)=2i+1$.
+\end{ej}
+
+
+\subsection{Construcción de un heap}
+Consideremos la lista de números $[2,5,1,8,3,4]$.  Construiríamos primero un árbol cumpliendo las dos primeras propiedads de heap. Para construirlo se colocan los números de arriba a abajo y de izquierda a derecha.  Dado un árbol binario con estas propiedades, recolocamos de abajo a arriba los nodos comparando los números que tiene cada hijo con el de su padre, intercambiándolos si es necesario. 
+
+DIBUJARLO
+
+En general, puede construirse el heap en tiempo $O(n)$. 
+
+\subsection{Aplicación: Heap-Sort}
+%Vamos a enunciar los pasos del algoritmo junto con la aplicación al ejemplo $[2,4,1,8,3,4]$.
+
+\begin{enumerate}
+\item Construir un heap.
+\item Bucle: 
+\begin{itemize}
+\item[2.1] Tomar la raíz.
+\item[2.2] Poner el último de la lista en la raíz.
+\item[2.3] Hundir la raíz por el mayor de los dos hijos y obtener un heap de $n-1$ elementos. 
+\end{itemize}
+\end{enumerate}
+Hundir un nodo para reconstruir el heap requiere $O(\log n)$ por la altura del árbol binario. Como hay $n$ nodos, el algoritmo tiene complejidad $O(n\log n)$, que es óptima para la ordenación. 
+
+
+
+
+
+\section{Listas}
+
+Dentro de las listas destacamos las \emph{multilistas} (matrices dispersas). Si tenemos por ejemplo una matriz $$\begin{bmatrix}
+0 & 8 & 0 & 6\\
+5 & 0 & 0 & 9\\
+0 & 2 & 3 & 0
+\end{bmatrix}$$
+(en general dimensión $n\times m$) para ahorrarnos los ceros se guarda una lista con los elementos no nulos con un puntero para cada uno de ellos que apunta a la posición en la matriz. Así guarda las matrices MATLAB. 
+
+
+
+\section{Pilas (stacks) y colas (queues)}
+Siguen el principio FILO (First In Last Out). Se comportan como una pila de platos, en el que la inserción y el borrado de datos se empieza siempre por la misma posición (la parte superior de la pila). Esta estructura de datos tiene utilidad en la implementación de algoritmos de recursión.
+
+Las colas siguen el principio FIFO (First In First Out) y se comportan como una cola de supermercado. Por un lado se insertan los datos y por otro se extraen. El algoritmo de Dijkstra usa colas. 
+
+Tenemos también las dobles cloas, donde la inserción y el borrado se puede hacer por ambos extremos de la cola. 
+
+\section{Grafos}
+Un grafo $G=(V,E)$ puede ser dirigido o no dirigido. En general, si $|V|\in O(n)$, $|E|\in O(n^2)$. Se pueden representar mediante una matriz de adyacencia. También se pueden representar con una \emph{lista de adyacencia}. Supongamos que tenemos la matriz de adyacencia 
+$$\begin{pmatrix}
+1 & 1 & 1\\
+0 & 0 & 1\\
+0 & 1 & 0
+\end{pmatrix}$$
+Para el vértice 1, tenemos la lista de adyacencia $[1,2,3]$, para el 2 la lista $[3]$ y para el 3 la lista $[2]$. El espacio consumido por la matriz de adyacencia es $|V|^2$ mientras que en el caso de listas es $|V|+|E|$. En la práctica el número de aristas suele ser menor que cuadrático, por lo que suele ser más útil esta representación. 
+
+Ejemplos de uso de las listas de adyacencia son los algoritmos BFS y DFS. Estos algoritmos son cuadráticos porque recorren todas las aristas, aunque no los repiten. Como existen ciclos si y solo si existen aristas de cruce, se pueden usar estos algoritmos para encontrarlos. También para encontrar las componentes conexas.
+
+
+\end{document}
+

@@ -52,7 +52,7 @@ G\times_S S \arrow[r, "Id_G\times\varepsilon"]\arrow[dr, "p_1"] & G\times_S G\ar
 & G
 \end{tikzcd}
 \]
-\item Inverso a izquiedra y derecha (solo escribimos el de la derecha) 
+\item Inverso a izquierda y derecha (solo escribimos el de la derecha) 
 \[
 \begin{tikzcd}
 G\arrow[r, "\Delta"]\arrow[d] & G\times_S G\arrow[r, "Id\times \tau"] & G\times_S G\arrow[d, "\mu"]\\
@@ -106,7 +106,7 @@ Grupo multipliativo sobre $\Z$. Sea $G_m=\spec(\Z[X,Y]/\gene{XY-1})=\spec(\Z[X,X
 En general se puede definir un objeto grupo $X$ en una categoría $\CC$ que admita productos finitos y tenga objeto terminal $S$ dando  $\mu:X\times X\to X$, $\varepsilon:S\to X$ y $\tau:X\to X$ cumpliendo las propiedades análogas. 
 
 \begin{prop}
-Sea $G$ un esquema en grupos (conmutativo) sobre $S$. Sea $T\to S$ un $S$-esquema. Entonces $X(T)=\Hom_{\Sch|_S}(T,X)$ está dotado de estructua de grupo (conmutativo) mediante la siguiente ley: para todo $f,g\in\Hom_{\Sch|_S}(T,X)$ se define $f\cdot g=\mu\circ h\in\Hom_{\Sch|_S}(T,X)$ donde $h$ satisface el diagrama conmutativo
+Sea $G$ un esquema en grupos (conmutativo) sobre $S$. Sea $T\to S$ un $S$-esquema. Entonces $G(T)=\Hom_{\Sch|_S}(T,G)$ está dotado de estructura de grupo (conmutativo) mediante la siguiente ley: para todo $f,g\in\Hom_{\Sch|_S}(T,G)$ se define $f\cdot g=\mu\circ h\in\Hom_{\Sch|_S}(T,G)$ donde $h$ satisface el diagrama conmutativo
 \[
 \begin{tikzcd}
  & T\arrow[dl, "f"]\arrow[dr, "g"]\arrow[d, "h"] & \\
@@ -115,6 +115,58 @@ Sea $G$ un esquema en grupos (conmutativo) sobre $S$. Sea $T\to S$ un $S$-esquem
 \]
 \end{prop}
 \begin{dem}
+Existencia de elemento neutro: 
+
+Podemos conectar el diagrama
+\[
+\begin{tikzcd}
+ & T\arrow[dl, "\pi_T"']\arrow[dr, "f"]\arrow[d] & \\
+ S & S\times_S G\arrow[r] \arrow[l] & G
+\end{tikzcd}
+\]
+con el del elemento neutro (por la izquierda) para obtener
+\[
+\begin{tikzcd}
+ & T\arrow[dl, "\varepsilon\circ\pi_T"']\arrow[dr, "f"] \arrow[d]& \\
+G & \arrow[l]\arrow[r]\arrow[d, "\mu"]G\times_S G & G\\
+& G &  
+\end{tikzcd}
+\] 
+La flecha $T\to G$ resultante de este diagrama es justamente $(\varepsilon\circ\pi_T)\cdot f$. Además tenemos que esto es igual a $f$ (continuando $f$ con la identidad). Así que $\varepsilon\circ\pi_T$ es neutro por la izquierda. Combinando con el diagrama del neutro por la derecha se obtiene que es neutro por la derecha. 
+
+Existencia de elemento inverso:
+
+Ahora usamos el diagrama
+\[
+\begin{tikzcd}
+& T\arrow[d, "f"] &\\
+& G\arrow[dl, "Id"]\arrow[dr, "Id"] \arrow[d, "\Delta"]& \\
+G\arrow[d, "Id"] & \arrow[l]\arrow[r]G\times_S G\arrow[d, "Id\times\tau"]& G\arrow[d, "Id"]\\
+G & \arrow[l]\arrow[r]G\times_S G\arrow[d,"\mu"]& G\\
+& G &
+\end{tikzcd}
+\]
+Por definición, $T\to G$ es el producto $f\cdot (\tau\circ f)$. Por otro lado tenemos la flecha que surge de componer $T\xrightarrow{f}G\xrightarrow{\pi_G}S\xrightarrow{\varepsilon}G$.  Afirmamos que $T\to G\to S$ es $\pi_T$. Esto se sigue de que $\pi_G\circ f$ es un morfismo de $S$-esquemas de $T$ en $S$, por lo que tiene que ser $\pi_T$ (solo hay un morfismo de $S$-esquemas hacia $S$, porque debe conmutar con la identidad). Por lo tanto $f\cdot (\tau\circ f)=\varepsilon\circ\pi_t$ por conmutatividad, por lo que hemos encontrado el inverso. 
+
+Asociatividad:
+
+Sean $f_1,f_2,f_3:T\to G$. 
+
+\[
+\begin{tikzcd}
+& T\arrow[dl, "f_1"]\arrow[d, "f_2"]\arrow[dr, "f_3"] & \\
+G & G & G\\
+ & G\times_S G\arrow[ddl, "\mu"']&\\
+& (G\times_S G)\times_S G\arrow[d, "\mu\times Id"]  & \\
+G & G\times_S G \arrow[d, "\mu"] & G\\
+& G &
+\end{tikzcd}
+\]
+La flecha $T\to G$ es $(f_1\cdot f_2)\cdot f_3$. Usando la otra parte del diagrama de asociatividad se obtiene $f_1\cdot (f_2\cdot f_3)$, que por la conmutatividad de los diagramas nos da la propiedad asociativa. COMPLETAR DIAGRAMA CON LO QUE HE COPIADO EN PAPEL
+
+Conmutatividad si el esquema en grupo es conmutativo:
+
+Sean $f_1,f_2:T\to G$. COPIAR DIAGRAMAS DEL PAPEL
 \end{dem}
 
 
@@ -129,7 +181,35 @@ Hagamos lo mismo en el grupo multiplicativo. Para $T$ un esquema, obtenemos $\Ho
 \end{ej}
 
 
+A lo que hemos llamado $G(T)$ es lo que usualmente denotábamos $h_G(T)=\Hom_{\Sch}(T,G)$, que en general era un functor $\Sch_S\to\Set$, pero al tener la imagen estructura de grupos, podemos factorizarlo como $\Sch_S\to\Grp\to\Set$ donde el último functor es el functor olvido. Para comprobar esto tenemos que comprobar que $h_G$ lleva morfismos de $S$-esquemas en homomorfismos de grupos, esto es, si $\phi:T'\to T$ es un morfismo de $S$-esquemas y $h_G(\phi)(f)=f\circ\phi:T'\to G$ para $f:T\to G$, entonces $h_G(\phi)(f_1\cdot f_2)=h_G(f_1)\cdot h_G(\phi)(f_2)$, o equivalentemente $(f_1\cdot f_2)\circ\phi=(f_1\circ\phi)\cdot (f_1\circ\phi)$.  Para ello usamos el diagrama OTRO DIAGRAMA EN EL PAPEL
 
+\begin{ej}
+Volvemos al ejemplo $\spec(\Z[x_1,x_2,x_3,x_4]/\gene{x_1x_4-x_2x_3-2})=\spec(B)$ y consideramos $T\to\spec(\Z)$ un esquema, entonces $\Hom_{\Sch}(T, \spec(B))\cong \Hom_{\Ring}(B,\OO_T(T))\cong SL_2(\O_T(T))$. Esto nos da $h_{\spec(B)}:\Sch\to\Grp$, aunque hay que ver que esta correspondencia es realmente un functor. Si $\phi:T'\to T$ es un morfismo de esquemas, esto nos da $\OO_T(T)\to\OO_{T'}(T')$. Esto nos daría un morfismo $SL_2(\OO_T(T))\to SL_2(\OO_{T'}(T'))$ y hay que ver que es justamente el morfismo inducido por la correspondencia.
+
+\[
+\begin{tikzcd}
+\Hom_{\Sch}(T,\spec(B))\arrow[r, "h(\phi)"]\arrow[d, "\cong"] & \Hom_{\Sch}(T',\spec(B))\arrow[d, "\cong"]\\
+\Hom(B,\OO_T(T))\arrow[r, "\phi(T)\circ-"]\arrow[d, "\cong"] & \Hom(B,\OO_{T'}(T'))\arrow[d,"\cong"]\\
+SL_2(\OO_T(T))\arrow[r] & SL_2(\OO_{T'}(T'))
+\end{tikzcd}
+\]
+Si tenemos una aplicación $x_1\mapsto a, x_2\mapsto b, x_3\mapsto c, x_4\mapsto d$ formando estos coeficientes una matriz de $SL_2(\OO_T(T))$, en $SL_2(\OO_{T'}(T'))$ tendríamos la aplicación $x_1\mapsto \phi(T)(a), x_2\mapsto\phi(T)(b),x_3\mapsto\phi(T)(c),x_4\mapsto\phi(T)(d)$, por lo que efectivamente es el morifsmo inducido. 
+
+
+Veamos cómo funciona $\mu:\spec(B)\times_\Z\spec(B)\to\spec(B)$, que viene inducido por $\mu^*:B\to B\otimes_\Z B$. Usando el producto de matrices definimos $\mu^*(x_1)=x_1\otimes x_1+x_2\otimes x_3$, $\mu^*(x_2)=x_1\otimes x_2+x_2\otimes x_4$ y así sucesivamente (sustituir el producto habitual por el tensorial en cada entrada de la matriz). De igual modo, $\tau$ viene inducida por $\tau^*:B\to B$ que se define usando la fórmula para la matriz inversa. También $\varepsilon$ estaría inducida por $\varepsilon^*:B\to \Z$, que está definida por la aplicación que envía cualquier matriz a la matriz identidad, es decir, $x_1,x_3\mapsto 1$, $x_2,x_4\mapsto 0$. 
+
+\section{Cambio de base}
+
+Sea $S$ un esquema y $G$ un esquema en grupos sobre $S$. Sea $S'\to S$. Queremos dotar a $G\times_S S'\to S'$ de estructura de esquemas en grupos sobre $S'$. Queremos encontrar un functor $h_{G\times_S S'}:\Sch_{S'}\to\Set$ que factorice a través de $\Grp$. Sea $T\to S'$ un esquema. Se tiene $\Hom_{S'}(T, G\times_S S')\cong\Hom_S(T,G)$ ya que si $f':T\to G\times_S S'$, $f=pr_1\circ f'$, tenemos
+\[
+\begin{tikzcd}
+&T\arrow[dl, "f"]\arrow[d, "f'"]&\\
+G& G\times_S S'\arrow[l, "pr_1"]\arrow[r]& S'
+\end{tikzcd}
+\]
+EL PRÓXIMO DÍA LO EXPLICA MEJOR, PARCE QUE COMO HOM PRESERVA COPRODUCTOS PODRÍA SALIR, PERO HAY LÍO CON LAS PRIMAS
+
+\end{ej}
 
 
 

@@ -424,7 +424,23 @@ $$
 (\varphi\smile\varphi)(t_i)=\varphi(e_i)\varphi(e)=i\mod n
 $$
 
+Vamos a probar con una demostración parecida a la del teorema de coeficientes universales que $h:H^2(X;\Z_m)\to \Hom(H_2(X;\Z_m),\Z_m)$ es isomorfismo. En la demostración del teorema de coeficientes universales usábamos que $B_n$ era libre para que las sucesiones exactas fueran escindibles. En este caso particular vamos a ver que la sucesión exacta es escindible, por lo que se podría continuar a partir de ahí. Tenemos $C_*(X;\Z_m)=\{0\to \Z_m\xrightarrow{0} \Z_m\xrightarrow{0}\Z_m\to 0\}$ (estos $\Z_m$ provienen en realdiad de hacer $\Z\otimes\Z_m$ al el complejo $C_*(X)$). Así que las sucesiones exactas cortas $0\to\Z_{n+1}\to C_{n+1}\to B_n\to 0$ son de la forma $0\to\Z_m\to Z_m\to 0\to 0$. Dualizando obtenemos la misma sucesión pero con las flechas en sentido contrario. La inclusión $B_n\hookrightarrow Z_n$ inducía una aplicación $i^*$ enlazando las sucesiones exactas cortas. Obtendríamos siguiendo la prueba del teorema de coeficientes universales
+\[
+\ker i^*_2\leftarrow H^2(X;\Z_m)\leftarrow\coker i_1^*=0
+\]
+Tenemos entonces un isomorfismo $H^2(X;\Z_m)\ker i^*_2=\Hom(H_2(X;\Z_m),\Z_m)$ dado por la aplicación $h$. Entonces buscamos $\zeta=[\psi]\in H^2(X;\Z_m)\mapsto h(\zeta)[\sum_{i=0}^3t_i]=\sum_{i=0}^4\psi(t_i)=1$. Tomamos $\psi:C_2(X)\to\Z_m$ dado por $t_i\mapsto\psi(t_i)=\delta_{1i}$, que es un generador. 
 
+\[
+h([\varphi]\smile[\varphi])([\sum_{i=0}^3t_i])=\sum_{i=0}^3\varphi(e_i)\varphi(e)=\sum_{i=0}^3i\mod 4=0+1+2+3=\frac{m(m-1)}{2}\mod m
+\]
+Si $m=2k$, entonces este producto es congruente con $k\mod m$. Si $m$ es impar, $m-1$ es impar y el producto sería congruente con $mk\equiv 0\mod m$. Así que 
+\[
+[\varphi]\smile[\varphi]=\begin{cases}
+0 & m\text{ impar}\\
+k\zeta & m\text{ par}
+\end{cases}
+\]
+En nuestro caso tenemos $m$ par. 
 \end{ej}
 
 
@@ -509,10 +525,38 @@ $$
 
 Como $\rho^*\simeq Id$, $\alpha=[\rho^*(\varphi)]$ y $\beta=[\rho^*(\psi)]$, luego $\alpha\cup\beta=[\rho^*(\varphi\smile\psi)]$, y como $\varepsilon_{p+q}=\varepsilon_p\varepsilon_q(-1)^{pq}$, se tiene el resultado. 
 \end{dem}
+
+COPIAR LAS DIAPOSITIVAS SOBRE EL ANILLO DE COHOMOLOGÍA
+
+Un ejemplo que no viene es $H^*(T;\Z)=H^*(S^1\times S^1;\Z)=\bigwedge_\Z[\alpha,\beta]$ por el ejemplo de superficie orientable. En general sale un álgebra exterior en más generadores. 
+
+El isomorfismo de Anillos de productos viene de la propiedad universal del producto directo, usando las proyecciones $\pi_\alpha:\prod H^*\to H^*_\alpha$ y al $H$ va por otro lado la $(i_\alpha)^*$, además $\{i_\alpha^*\}([\varphi\smile\psi])=\{i^*_\alpha(\varphi)\smile i_\alpha^*(\psi)\}=\{i^*_\alpha(\varphi\smile\psi\}$ (esta es la aplicación que une el $H^*$ del $\coprod$ al $\prod$ de $H^*$). Para reducida igual con el wedge sum, pero para poder hacer la escisión los $x_\alpha$ tienen que ser retractos de deformación de un entorno suyo.
+
+En el ejemplo de distinguir espacios, comprobar que tienen la misma cohomología (escribirlo después como ejercicio). Para ver que son distintos, el cup producto de una generador de la parte de $S^2$ consigo mismo se queda en esa parte, que en dimensión alta es 0. 
+
+La unidad que viene de $R$ es la clase que genera la cohomología 0. 
+
+Propiedades 4 y 5 son la numeración de Hatcher o contando en la anterior diapositiva
+
+
+Prueba de que $\mu$ es homomorfismo de anillos:
+
+\[
+\mu((a\otimes b)(c\otimes d)=\mu((-1)^{|b||c|}(ac)\otimes (bd))=(-1)^{|b||c|}(a\smile c)\times (b\smile d)=(-1)^{|b||c|}(p_1^*(a\smile c)\smile p_2^*(b\smile d))=
+\]
+\[
+(-1)^{|b||c|}(p_1^*(a)\smile p_1^*(c)\smile p_2^*(b)\smile p_2^*(d))=p_1^*(a)\smile p_2^*(b)\smile p_1^*(c)\smile p_2^*(d))=
+\]
+\[
+(a\times b)\smile (c\times d)=\mu(a\otimes b)\smile \mu (c\otimes d)=\mu(a\otimes b)\mu(c\otimes d)
+\]
+
+
 \section{Ejercicios}
 \begin{ejer}
 Si $A\to B\to C\to 0$ es exacta, entonces dualizar aplicando $\Hom(-,G)$ da lugar a una sucesión exacta $A^*\leftarrow B^*\leftarrow C^*\leftarrow 0$.
 \end{ejer}
+AÑADIR ALGUNA COSA QUE TENGO POR AHÍ COMO EJERCICIO
 
 
 \end{document}
