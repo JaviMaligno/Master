@@ -1,0 +1,61 @@
+	\documentclass[twoside]{article}
+\usepackage{../../estilo-ejercicios}
+\setcounter{section}{0}
+\newtheorem{defin}{Definition}[section]
+\newtheorem{lem}[defin]{Lemma}
+\newtheorem{propo}[defin]{Proposition}
+\newtheorem{thm}[defin]{Theorem}
+\newtheorem{eje}[defin]{Example}
+\newtheorem{obs}[defin]{Observación}
+\renewcommand{\baselinestretch}{1,3}
+%--------------------------------------------------------
+\begin{document}
+
+\title{Computation of words satisfying the “rhythmic oddity property”}
+\author{Javier Aguilar Martín}
+\maketitle
+
+%\varprojlim
+%\varinjlim
+\section{Resumen}
+
+En este artículo se trata el problema de calcular las palabras que satisfacen la propiedad de ``asimetría rítmica''. Este problema proviene del estudio de diversos patrones rítmicos en la música tradicional de diferentes culturas, los cuales satisfacen una cierta propiedad de asimetría. Para definirla formalmente necesitamos definir antes algunos conceptos básicos.
+
+Fijamos el alfabeto $A=\{2,3\}$, en el que cada número representa la duración en pulsos de una nota en el ritmo. Se considera el conjunto $A^*$ de palabras sobre $A$, siendo $\varepsilon$ la palabra vacía. Consideramos la permutación $\delta$ definida sobre $A^*$ como $\delta(\varepsilon)=\varepsilon$ y $\delta(au)=ua$ para $a\in A$, $u\in A^*$. Las \emph{conjugaciones} de una palabra $w$ son las palabras $\delta^k(w)$ para $k=0,\dots, |w|-1$, donde $|w|$ es la longitud de la palabra. La \emph{altura} de una palabra $w$, denotada $h(w)$, es la suma de sus símbolos. Ahora sí, definimos la propiedad con la que empezamos:
+
+\begin{defi}
+Una palabra $w$ satisface la \emph{propiedad de asimetría rítmica} si
+\begin{enumerate}
+\item $h(w)$ es par,
+\item ninguna conjugación de $w$ puede ser factorizada en palabras $uv$ tales que $h(u)=h(v)$. 
+\end{enumerate}
+\end{defi}
+
+En lo que sigue del artículo se enlazan, entre ejemplos, diversas caracterizaciones y propiedades de las palabras con la propiedad de asimetría rítmica de cara a encontrar la caracterización que proporciona el algoritmo del artículo. Para ello, se basa en la siguiente construcción.
+
+Sean $a,b:A^*\times A^*\to A^*\times A^*$ definidas como $a(u,v)=(3u,3v)$, $b(u,v)=(v,2u)$. Se considera el alfabeto $B=\{a,b\}$ y el monoide libre $B^*$. Denotamos $|w|_x$ al número de veces que aparece la letra $x$ en $w$ y definimos $D=\{w = uv, ∃α ∈ B^∗
+, |α|_b $ impar, $(u,v) = α(ε, ε)\}$. Se observa que cualquier palabra con la propiedad de asimetría rítmica es una conjugación de una palabra de $D$. Se prueba además que para cada $w$, $\alpha$ es única, luego se puede definir $f(w)=\alpha$ como una función $f:D\subset A^*\to f(D)\subset B^*$, siendo $f(D)$ el conjunto de palabras que tienen una cantidad impar de símbolos iguales a $b$. Además se prueba que $f$ es inyectiva, por lo que es biyectiva sobre su imagen. El cálculo de $f(w)$ es sencillo.\\
+
+Lo siguiente es estudiar el problema de encontrar un representante por cada clase de conjugación de una palabra con la propiedad de asimetría rítmica. Todas tienen un representante en $D$, pero se pretende encontrar uno lo más canónico y corto posible. Para ello se definen las \emph{palabras de Lyndon}, que son los representantes más pequeños con respecto al orden lexicográfico que además no son una potencia de ninguna palabra. Estas palabras cumplen la propiedad de que para longitud $>1$ se pueden construir concatenando palabras de Lyndon de longitud menor. 
+
+Se prueba que hay una biyección entre las clases de conjugación de $D$ y de $f(D)$, con lo que basta calcular palabras de Lyndon en $f(D)$, esto es, palabras de Lyndon en $B^*$ que tengan un número impar de símbolos iguales a $b$. Este cálculo resulta ser más corto en $f(D)$ que en $D$ gracias a la elección del alfabeto $B$. \\
+
+
+El artículo finaliza con un cálculo del número de palabras satisfaciendo la propiedad de asimetría rítmica, primero con una tabla de un cálculo experimental y luego con un cálculo teórico para un caso particular. Si $n_2$ y $n_3$ representan el número de doses y de treses de la palabra $w$ respectivamente y $p$ es su longitud, teniendo en cuenta que $n_3$ siempre es par tenemos el siguiente resultado:
+
+\begin{prop}
+Si $n_3=2j$ es una potencia de 2 entonces, el número de palabras satisfaciendo la propiedad de asimetría rítmica es $X(p)=\frac{1}{p}\binom{p}{j}$. 
+\end{prop}
+
+Del cómputo de soluciones se comprueba que efectivamente se recuperan los ritmos que inspiraron el problema. 
+
+\section{Comentarios}
+
+El artículo consiste mayormente en una sucesión de resultados en los que cada uno por sí mismo podría dar una aproximación naïve a un alogritmo para calcular las palabras con la propiedad de asimetría rítmica. El algoritmo final no está especialmente resaltado y depende en gran medida de los resultados enunciados previamente, lo cual dificulta ligeramente el seguimiento del artículo, tanto si se lee de principio a fin con detalle (pues no está muy clara la dirección del artículo) como si se pretende buscar directamente el algoritmo, puesto que se da más importancia a la cantidad de palabras existentes que al método de cálculo. Aun así, esto se ve justificado por la extrema sencillez del algoritmo final, y por el hecho de que su complejidad computacional depende principalmente del número de palabras que se calculen. 
+
+Es especialmente importante el ejemplo donde se calcula $f(w)$ para una palabra $w$ concreta, ya que es el que muestra que el algoritmo es realmente factible y sencillo, además de mostrar que la longitud de las palabras en $f(D)$ es menor que en $D$, aunque esto se podría haber enunciado de forma más general y rigurosa. 
+
+Creo que los resultados de este artículo tienen una aplicación importante en software musical. Resulta especialmente útil poder crear una librería con ritmos que tengan ciertas propiedades comunes, como en este caso la propiedad de asimetría rítmica. Por ello, creo que su implementación puede ayudar al proceso de composición musical. Sería interesante encontrar otras familias de ritmos (u otras propiedades musicales, pues las escalas e intervalos se pueden representar de manera similar) que pudieran encontrarse usando las mismas ideas. 
+
+
+\end{document}

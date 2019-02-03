@@ -1,6 +1,6 @@
 	\documentclass[twoside]{article}
 \usepackage{../../estilo-ejercicios}
-\renewcommand{\baselinestretch}{1,4}
+\renewcommand{\baselinestretch}{1,3}
 %--------------------------------------------------------
 \begin{document}
 
@@ -173,7 +173,7 @@ Para ello es suficiente probarlo en las fibras, que por el ejercicio 1.8 es equi
 %%
 %\end{solucion}
 
-\newpage
+%\newpage
 
 \begin{ejercicio}{3.22}\emph{Dimensión de las fibras de un morfismo.} Sea $f:X\to Y$ un morfismo dominante de esquemas íntegros de tipo finito sobre un cuerpo $k$. 
 \begin{enumerate}[(a)]
@@ -228,8 +228,29 @@ Un morfismo entre esquemas afines es dominante si y solo si el núcleo del homom
 Sea $f:X=\spec(A)\to Y=\spec(B)$ y $\varphi:B\to A$ el homomorfismo de anillos correspondiente. Usando la igualdad $V(\varphi^{-1}(I))=\overline{f(V(I))}$ para ideales $I\subset A$ tenemos en particular $V(\ker\varphi)=V(\varphi^{-1}(0))=\overline{f(X)}$, que es igual a $Y$ si y solo si $f$ es dominante. Esto es equivalente a que $\ker\varphi$ esté contenido en todo ideal primo, o sea, en la intersección de todos ellos, que es el nilradical. 
 \end{proof}
 
-Por tanto, por el ejercicio 3.7 existe un abierto denso $U_1\subseteq X_1$ tal que tomando $U=g^{-1}(U_1)$, el morfismo inducido $g|_U:U\to U_1$ es finito. Afirmamos que $U\subseteq X$ es el conjunto buscado. Por supuesto $U$ es un abierto denso, ya que es no vacío y $X$ es íntegro, por lo tanto irreducible (Proposición 3.1). Es un ejercicio de topología general probar que si $X$ es irreducible, cualquier abierto no vacío es denso. MI PREGUNTA EN MSE
+Por tanto, por el ejercicio 3.7 existe un abierto denso $U_1\subseteq X_1$ tal que tomando $U=g^{-1}(U_1)$, el morfismo inducido $g|_U:U\to U_1$ es finito. Afirmamos que $U\subseteq X$ es el conjunto buscado. Por supuesto $U$ es un abierto denso, ya que es no vacío y $X$ es íntegro, por lo tanto irreducible (Proposición 3.1). Es un ejercicio de topología general probar que si $X$ es irreducible, cualquier abierto no vacío es denso. 
 %AFFINE N-SPACE https://stacks.math.columbia.edu/tag/01LZ https://stacks.math.columbia.edu/tag/01S5 https://stacks.math.columbia.edu/tag/01WG
+
+Por (b) ya tenemos $\dim(U_y)\geq e$. Por otra parte, como $X_1$ es por definición un espacio afín $e$-dimensional sobre $B$ y como $U\to U_1$ es finito, entonces es íntegro y $U_y$ puede ser como mucho $e$-dimensional, ya que si $U\to U_1$ es íntegro, $\dim(U_1)\geq\dim(U)$.
+
+\textbf{Alternativa sin usar la pista}.
+Si $S=B\setminus\{0\}$, entonces de que $B\to A$ sea una extensión de tipo finito obtenemos que también $S^{-1}B\to S^{-1}A$ lo es. Ahora, por el lema de normalización de Noether tenemos la factorización
+\[
+S^{-1}AB\hookrightarrow S^{-1}B[t_1,\ldots,t_e] \hookrightarrow S^{-1}A
+\]
+done la segunda inclusión es íntegra. Si $s\in B$ es el producto de los denominadores que habíamos eliminado en la anterior versión y escribimos $y_i=st_i\in A$, tenemos la factorización
+\[
+B_s \hookrightarrow B_s[y_1,y_2,\ldots,y_n] \hookrightarrow A_s
+\]
+donde la segunda flecha es íntegra. Sean ahora $U=\spec(A_s)$ y $V=\spec(B_s)$. La sucesión de homomorfismos anteriores se corresponde con la sucesión
+\[
+U\to\A_V^e\to V
+\]
+de morfismos de esquemas cuya composición es $f|_U$ y tal que el primer morfismo es íntegro. Para todo $v\in V$ tenemos
+\[
+\dim U_v = \dim \mathbb{A}^e_{\kappa(v)} = n = \dim \mathbb{A}^n_V - \dim V = \dim U - \dim V,
+\]
+donde $\kappa(v)$ es el cuerpo residual de $v$, y la primera y la última igualdad provienen de que las extensiones de anillos íntegras preservan la dimensión (por el teorema Going-Up). 
 
 Por último tenemos que probar que el resultado se cumple en el caso general. Como $X$ e $Y$ son íntegros, por la proposición 3.1 y el ejercicio 2.9 podemos tomar $\eta_X,\eta_Y$ puntos genéricos de $X$ e $Y$, respectivamente. Sea $Y'\subseteq Y$ un entorno afín de $\eta_Y$ y $X'\subseteq X$ un entorno afín de $\eta_X$ contenido en $f^{-1}(Y')$. Se tiene que $X'$ e $Y'$ son esquemas íntegros de tipo finito sobre $k$. Obsérvese que $\eta_Y\in Y'$ es el punto genérico de $Y'$. Afirmamos que el morfismo restringido $f|_{X'}:X'\to Y'$ es dominante. De hecho, como $f$ es dominante, sabemos que $f(\eta_X)=\eta_Y$, por lo que $\eta_Y\in f(X')$. Pero ahora, $Y'=\overline{\{\eta_Y\}}\subseteq \overline{f(X')}\subseteq Y'$, por lo que $f|_{X'}$ es dominante. Así que podemos aplicar el resultado del caso afín para obtener un abierto denso $U\subseteq X'$ con la propiedad de que si $y\in f|_{X'}(U)=f(U)$, entonces $\dim U_y=e$. Por supuesto $U$ es abierto y no vacío, y de nuevo $X$ es íntegro, luego $U$ es denso en $X$. 
 
