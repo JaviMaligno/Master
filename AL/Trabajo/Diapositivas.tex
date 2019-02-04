@@ -12,7 +12,11 @@
 \usepackage{tikz-cd}
 \usetikzlibrary{arrows}
 \usetikzlibrary{cd}
-\usetikzlibrary{babel}
+%\usepackage[T1]{fontenc}
+%\usepackage{CJKutf8}
+%\usepackage{CJK}
+%\usetikzlibrary{babel}
+%\usepackage{kotex}
 \pgfplotsset{compat=1.13}
 \usetikzlibrary{decorations.shapes}
 \pgfkeyssetvalue{/tikz/braid height}{1cm} %no parece hacer nada
@@ -174,12 +178,17 @@ Aka Pygmies rythmic pattern: 32222322222
 \frametitle{Cyclic shifts}
 Let $\delta$ be a permutation of $A^*$ defined by $\delta(\varepsilon)=\varepsilon$, $\delta(au)=ua$ for $a\in A$ and $u\in A^*$.
 
-The \textbf{cyclic shifs} of $w$ are the words of the form $\delta^k(w)$ for any integer $k$. 
+\begin{itemize}
+\item<1-> The \textbf{cyclic shifs} of $w$ are the words of the form $\delta^k(w)$ for any integer $k$.
+\end{itemize} 
 
-\begin{example}
+\only<2->{\begin{example}
 $w=2223$ has cyclic shifts $2223$, $2232$, $2322$, $3222$.  
-\end{example}
-The \textbf{height} is a morphism $h:A^*\to\mathbb{N}$ defined by $h(u)=$sum of its symbols. 
+\end{example}}
+
+\begin{itemize}
+\item<3-> The \textbf{height} is a morphism $h:A^*\to\mathbb{N}$ defined by $h(u)=$sum of its symbols.
+\end{itemize} 
 \end{frame}
 
 \begin{frame}
@@ -191,79 +200,84 @@ A word $w$ satisfies the \textbf{rythmic oddity property} if and only if
 \item no cyclic shift of $w$ can be factorized into words $uv$ such that $h(u)=h(v)$. 
 \end{itemize}
 \end{alertblock}
-\begin{example}
+\only<2->{\begin{example}
 For the Aka Pygmies $32222322222$, $h(w)=24$ and any factorization of cyclic shifts gives $h(u)=11$ and $h(v)=13$ or viceversa. 
-\end{example}
+\end{example}}
 \end{frame}
 
+%\begin{frame}
+%\begin{block}{Proposition 1}
+%If $w$ satisfies the rythmic oddity property, then at least one of the following conditions is
+%satisfied:
+%\begin{itemize}
+%\item there exists a unique pair $(u,v)$ with $h(v)=h(u)+2$ such that $w=uv$, or 
+%\item there exists a unique pair $(u,v)$ with $h(v)=h(u)+2$ such that$w=vu$. 
+%\end{itemize}
+%\end{block}
+%
+%
+%
+%\end{frame}
+%\begin{frame}
+%\frametitle{Asymmetric pairs}
+%A pair $(u,v)$ is called \textbf{asymmetric} if no pair of prefixes $(u',v')$ exists such that $h(v')=h(u')+1$. 
+%
+%\begin{example}
+%$(33222,32322)$ is an asymmetric pair but $(3322,32232)$ is not because $h(322)=h(33)+1$. 
+%\end{example}
+%\begin{block}{Proposition 2}
+%A word $w$ satisfies the rythmic oddity property if and only if there exists an assymetric pair $(u,v)$ such that $w=uv$ or $w=vu$ with $h(v)=h(u)+2$. 
+%\end{block}
+%\end{frame}
+
+
+\section{Key construction}
+
 \begin{frame}
-\begin{block}{Proposition 1}
-If $w$ satisfies the rythmic oddity property, then at least one of the following conditions is
-satisfied:
+\frametitle{Key construction}
 \begin{itemize}
-\item there exists a unique pair $(u,v)$ with $h(v)=h(u)+2$ such that $w=uv$, or 
-\item there exists a unique pair $(u,v)$ with $h(v)=h(u)+2$ such that$w=vu$. 
+\item<1-> Consider $a,b:A^*\times A^*\to A^*\times A^*$ defined by $a(u,v)=(3u,3v)$ and $b(u,v)=(v,2u)$. 
+\item<2-> Let $B=\{a,b\}$ and consider the free monoid $B^*$.
+\item<3-> Let $D=\{w=uv, \exists\alpha\in B^*, |\alpha|_b$ odd, $(u,v)=\alpha(\varepsilon,\varepsilon)\}\subset A^*$
 \end{itemize}
-\end{block}
-
-
-
-\end{frame}
-\begin{frame}
-\frametitle{Asymmetric pairs}
-A pair $(u,v)$ is called \textbf{asymmetric} if no pair of prefixes $(u',v')$ exists such that $h(v')=h(u')+1$. 
-
-\begin{example}
-$(33222,32322)$ is an asymmetric pair but $(3322,32232)$ is not because $h(322)=h(33)+1$. 
-\end{example}
-\begin{block}{Proposition 2}
-A word $w$ satisfies the rythmic oddity property if and only if there exists an assymetric pair $(u,v)$ such that $w=uv$ or $w=vu$ with $h(v)=h(u)+2$. 
-\end{block}
-\end{frame}
-
-
-\section{Construction of asymmetric pairs}
-
-\begin{frame}
-\frametitle{Construction of asymmetric pairs}
-Consider $a,b:A^*\times A^*\to A^*\times A^*$ defined by $a(u,v)=(3u,3v)$ and $b(u,v)=(v,2u)$. 
-
-\begin{block}{Proposition 3}
-The set of asymmetric pairs is equal to the smallest set of pairs of words containing $\varepsilon\times A^*$ and $A^*\times\varepsilon$ and closed under $a$ and $b$. 
-\end{block}
-\end{frame}
-
-
-\begin{frame}
-Let $B=\{a,b\}$ and consider the free monoid $B^*$. 
-
-\begin{block}{Proposition 4}
-Let $(u,v)=\alpha(\varepsilon,\varepsilon)$ for $\alpha\in B^*$. If $|\alpha|_b$ is even, then $h(v)=h(u)$, and if $|\alpha|_b$ is even, then $h(v)=h(u)+2$. 
-\end{block}
-\begin{block}{Proposition 5}
-If $|\alpha|_b$ is even, then $\alpha(r,s)=\alpha(\varepsilon,\varepsilon)(r,s)$, and if $|\alpha|_b$ is odd, then $\alpha(r,s)=\alpha(\varepsilon,\varepsilon)(s,r)$.
-\end{block}
-
-{
-\setbeamercolor{block title}{bg=green, fg=white}
-\begin{block}{Corollary 6}
-A word $w$ satisfies the rythmic oddity property if and only if there exists a word $\alpha\in B^*$ with $|\alpha|_b$ being odd, such that $w=uv$ or $w=vu$ with $(u,v)=\alpha(\varepsilon,\varepsilon)$.
-\end{block}
-}
-\end{frame}
-\begin{frame}
-Let $D=\{w=uv, \exists\alpha\in B^*, |\alpha|_b$ odd, $(u,v)=\alpha(\varepsilon,\varepsilon)\}\subset A^*$
-
-\begin{block}{Lemma}
+%\begin{block}{Proposition 3}
+%The set of asymmetric pairs is equal to the smallest set of pairs of words containing $\varepsilon\times A^*$ and $A^*\times\varepsilon$ and closed under $a$ and $b$. 
+%\end{block}
+\only<4->{\begin{alertblock}{Lemma}
 A word $w$ satisfies the rythmic oddity property if anf only if $w$ is a cyclic shift of an element of $D$. 
-\end{block} 
-
-For $w\in D$ define $f:D\to B^*$ by $f(w)=\alpha$ ($\alpha$ is unique). $f$ is injective and $f(D)$ consists of the words of $\alpha\in B^*$ with $|\alpha|_b$ odd. 
-
-\begin{block}{Proposition 7}
-For any $w,w'\in D$, $f(w')$ is a cyclic shift of $f(w)$ if and only if $w'$ is a cyclic permutation of $w$.
-\end{block}
+\end{alertblock} }
+\only<5>{For $w\in D$ define $f:D\to B^*$ by $f(w)=\alpha$ ($\alpha$ is unique). $f$ is injective and $f(D)$ consists of the words of $\alpha\in B^*$ with $|\alpha|_b$ odd. }
 \end{frame}
+
+
+%\begin{frame}
+%
+%
+%\begin{block}{Proposition 4}
+%Let $(u,v)=\alpha(\varepsilon,\varepsilon)$ for $\alpha\in B^*$. If $|\alpha|_b$ is even, then $h(v)=h(u)$, and if $|\alpha|_b$ is even, then $h(v)=h(u)+2$. 
+%\end{block}
+%\begin{block}{Proposition 5}
+%If $|\alpha|_b$ is even, then $\alpha(r,s)=\alpha(\varepsilon,\varepsilon)(r,s)$, and if $|\alpha|_b$ is odd, then $\alpha(r,s)=\alpha(\varepsilon,\varepsilon)(s,r)$.
+%\end{block}
+%
+%{
+%\setbeamercolor{block title}{bg=green, fg=white}
+%\begin{block}{Corollary 6}
+%A word $w$ satisfies the rythmic oddity property if and only if there exists a word $\alpha\in B^*$ with $|\alpha|_b$ being odd, such that $w=uv$ or $w=vu$ with $(u,v)=\alpha(\varepsilon,\varepsilon)$.
+%\end{block}
+%}
+%\end{frame}
+%\begin{frame}
+
+
+
+
+
+
+%\begin{block}{Proposition 7}
+%For any $w,w'\in D$, $f(w')$ is a cyclic shift of $f(w)$ if and only if $w'$ is a cyclic permutation of $w$.
+%\end{block}
+%\end{frame}
 
 \begin{frame}
 \begin{example}
@@ -281,7 +295,35 @@ Computation of $f(w)$ where $w=332232322$. Factorization $w=uv$ such that $h(v)=
 which gives $f(332232322)= ababbbb$.
 \end{example}
 \end{frame}
+\section{Lyndon words}
+\begin{frame}
+\frametitle{Lyndon words}
+\begin{itemize}
+\item The \textbf{conjugacy} relation on words is the equivalence
+between words being cyclic shifts of one another.
+\item<2-> \textbf{Lyndon words} are defined as
+minimal elements in the conjugacy classes regarding
+the lexicographic order, with the additional condition
+that they are primitive (not power of another word).
+\item<3-> Lyndon words of length $n>1$ are
+obtained by concatenating Lyndon words of length $p$
+and $q$ with $n = p+q$.
 
+\only<4>{\begin{example}
+$$aababb=(aab)(abb)$$
+\end{example}} 
+\end{itemize}
+
+\end{frame}
+
+\section{Algorithm}
+\begin{frame}
+\frametitle{Algorithm}
+
+AQUÍ VIENE EL ALGORITMO PARA CALCULAR PALABRAS DE LYNDON Y LA REFERENCIA 8 DONDE SE EXPLICA, Y DE HECHO VIENE LO DE ESTE ARTÍCULO
+\url{http://ehess.modelisationsavoirs.fr/marc/publi/softcomputing/5000387periodicity.pdf}
+
+\end{frame}
 
 \section{Counting the solutions}
 
@@ -289,110 +331,38 @@ which gives $f(332232322)= ababbbb$.
 
 \begin{frame}
 \frametitle{Counting the solutions}
-%\begin{teorema}
-%\[
-%B_n=\left\langle\begin{array}{c| c c}
-%\multirow{2}{*}{$\sigma_1,\dots,\sigma_{n-1}$} & \sigma_i\sigma_j=\sigma_j\sigma_i, & |i-j|>1\\
-%& \sigma_i\sigma_j\sigma_i=\sigma_j\sigma_i\sigma_j, & |i-j|=1
-%\end{array}\right\rangle
-%\]
-%\end{teorema}
-%\begin{itemize}
-%%\item<1->[]
-%\item<2->[]
-%\begin{figure}[h!]
-%\resizebox{10cm}{2.3cm}{
-%\begin{tikzpicture}
-%\fill[black] ( 6.7 , -0.5 ) circle ( 1 pt ) ;
-%\fill[black] ( 7 , -0.5 ) circle ( 1 pt ) ;
-%\fill[black] ( 7.3 , -0.5 ) circle ( 1 pt ) ;
-%
-%\fill[black] ( 1.7 , -0.5 ) circle ( 1 pt ) ;
-%\fill[black] ( 2 , -0.5 ) circle ( 1 pt ) ;
-%\fill[black] ( 2.3 , -0.5 ) circle ( 1 pt ) ;
-%\braid[ number of strands=8, %lower bound
-% border height=2pt,style strands={8}{line width=2pt}, style strands={7}{draw=none},style strands={6}{line width=2pt},style strands={5}{line width=2pt},style strands={4}{line width=2pt},style strands={3}{line width=2pt}, style strands={2}{draw=none},style strands={1}{line width=2pt}] (braid) at (1,0)%optional, it's a name
-%          a_4^{-1};
-%          \node[ at=(braid-4-s),  label=north :  $i$ ] {} ;
-%\node[ at=(braid-5-s),  label=north : $i+1$ ] {} ;
-%\draw (4.5,-2) node[anchor=south] {$\sigma_i$};
-%\end{tikzpicture}
-%\qquad
-%\begin{tikzpicture}
-%\fill[black] ( 6.7 , -0.5 ) circle ( 1 pt ) ;
-%\fill[black] ( 7 , -0.5 ) circle ( 1 pt ) ;
-%\fill[black] ( 7.3 , -0.5 ) circle ( 1 pt ) ;
-%
-%\fill[black] ( 1.7 , -0.5 ) circle ( 1 pt ) ;
-%\fill[black] ( 2 , -0.5 ) circle ( 1 pt ) ;
-%\fill[black] ( 2.3 , -0.5 ) circle ( 1 pt ) ;
-%\braid[ number of strands=8, %lower bound
-% border height=2pt,style strands={8}{line width=2pt}, style strands={7}{draw=none},style strands={6}{line width=2pt},style strands={5}{line width=2pt},style strands={4}{line width=2pt},style strands={3}{line width=2pt}, style strands={2}{draw=none},style strands={1}{line width=2pt}] (braid) at (1,0)%optional, it's a name
-%          a_4;
-%          \node[ at=(braid-4-s),  label=north :  $i$ ] {} ;
-%\node[ at=(braid-5-s),  label=north : $i+1$ ] {} ;
-%\draw (4.5,-2) node[anchor=south] {$\sigma_i^{-1}$};
-%\end{tikzpicture}
-%}
-%\caption{Cruce positivo y cruce negativo.}
-%\end{figure}
-%\end{itemize}
+\begin{itemize}
+
+
+\item
+ Let $n_2$ and $n_3$ be the number of two- and three-unit
+elements of a solution. 
+
+\item<2->Let $X(p)$ be the number of words $w$ satisfying the
+rhythmic oddity property up to a cyclic shift, where $p$
+is the length of $f (w)$.
+\end{itemize}
+
+\only<3>{\begin{alertblock}{Proposition}
+If $n_3 = 2j$ is a power of 2, one has
+$$X(p)=\frac{1}{p}\binom{p}{j}.$$
+\end{alertblock}}
 \end{frame}
 
-%\begin{frame}[fragile]
-%
-%\begin{figure}[h!]
-%\resizebox{11cm}{2.5cm}{
-%\begin{tikzpicture}
-%\fill[black] ( 6.7 , -0.5 ) circle ( 1 pt ) ;
-%\fill[black] ( 7 , -0.5 ) circle ( 1 pt ) ;
-%\fill[black] ( 7.3 , -0.5 ) circle ( 1 pt ) ;
-%
-%\fill[black] ( 1.7 , -0.5 ) circle ( 1 pt ) ;
-%\fill[black] ( 2 , -0.5 ) circle ( 1 pt ) ;
-%\fill[black] ( 2.3 , -0.5 ) circle ( 1 pt ) ;
-%\braid[ number of strands=8, %lower bound
-% border height=2pt,style strands={8}{line width=2pt}, style strands={7}{draw=none},style strands={6}{line width=2pt},style strands={5}{line width=2pt},style strands={4}{line width=2pt},style strands={3}{line width=2pt}, style strands={2}{draw=none},style strands={1}{line width=2pt}] (braid) at (1,0)%optional, it's a name
-%          a_4^{-1};
-%          \node[ at=(braid-4-s),  label=north :  $i$ ] {} ;
-%\node[ at=(braid-5-s),  label=north : $i+1$ ] {} ;
-%\draw (4.5,-2) node[anchor=south] {$\sigma_i$};
-%\end{tikzpicture}
-%\qquad
-%\begin{tikzpicture}
-%\fill[black] ( 6.7 , -0.5 ) circle ( 1 pt ) ;
-%\fill[black] ( 7 , -0.5 ) circle ( 1 pt ) ;
-%\fill[black] ( 7.3 , -0.5 ) circle ( 1 pt ) ;
-%
-%\fill[black] ( 1.7 , -0.5 ) circle ( 1 pt ) ;
-%\fill[black] ( 2 , -0.5 ) circle ( 1 pt ) ;
-%\fill[black] ( 2.3 , -0.5 ) circle ( 1 pt ) ;
-%\braid[ number of strands=8, %lower bound
-% border height=2pt,style strands={8}{line width=2pt}, style strands={7}{draw=none},style strands={6}{line width=2pt},style strands={5}{line width=2pt},style strands={4}{line width=2pt},style strands={3}{line width=2pt}, style strands={2}{draw=none},style strands={1}{line width=2pt}] (braid) at (1,0)%optional, it's a name
-%          a_4;
-%          \node[ at=(braid-4-s),  label=north :  $i$ ] {} ;
-%\node[ at=(braid-5-s),  label=north : $i+1$ ] {} ;
-%\draw (4.5,-2) node[anchor=south] {$\sigma_i^{-1}$};
-%\end{tikzpicture}
-%}
-%\caption{Cruce positivo y cruce negativo.}
-%\end{figure}
-%\end{frame}
-
-%\begin{frame}
-%\begin{figure}[h!]
-%\includegraphics[scale=0.6]{Imagenes/Diapplana}
-%\caption{Representación plana de una trenza.}
-%\end{figure}
-%\end{frame}
-
-
-
-
-
-
-
 \begin{frame}[fragile]
+\begin{figure}[h!]
+\includegraphics[scale=0.5]{tabla}
+\end{figure}
+
+\end{frame}
+
+
+
+
+
+
+
+%\begin{frame}[fragile]
 %\frametitle{Generadores del grupo de trenzas puras}
 %%\begin{figure}[h!]
 %%\includegraphics[scale=0.5]{Imagenes/birman}
@@ -421,17 +391,17 @@ which gives $f(332232322)= ababbbb$.
 %}
 %\caption{Generador de Birman $A_{ij}$.}
 %\end{figure}
-\end{frame}
+%\end{frame}
 
 
-\begin{frame}
+%\begin{frame}
 %\frametitle{Automorfismos del grupo libre}
 
 %\begin{figure}[h!]
 %\includegraphics[scale=0.7]{Imagenes/Disco.png}
 %\caption{Los lazos $x_1,\dots,x_n$ son generadores de $\pi_1(\D_n)\cong F_n$.}
 %\end{figure}
-\end{frame}
+%\end{frame}
 
 %\begin{frame}
 %\begin{align*}
@@ -444,12 +414,12 @@ which gives $f(332232322)= ababbbb$.
 %$$\rho^{-1}_{\sigma_i}(x_i)=x_ix_{i+1}x_i^{-1},\quad \rho^{-1}_{\sigma_i}(x_{i+1})=x_i,\quad \rho^{-1}_{\sigma_i}(x_j)=x_j\ (j\neq i,i+1)$$
 %\end{frame}
 
-\begin{frame}
+%\begin{frame}
 %\begin{figure}[h!]
 %\includegraphics[scale=0.5]{Imagenes/auto.png}
 %\caption{Acción de $\sigma_i$ sobre los generadores $x_i$ y $x_{i+1}$.}
 %\end{figure}
-\end{frame}
+%\end{frame}
 
 %\begin{frame}
 %\frametitle{Solución al problema de la palabra}
@@ -478,7 +448,7 @@ which gives $f(332232322)= ababbbb$.
 %\]
 %\end{frame}
 
-\begin{frame}
+%\begin{frame}
 %Inductivamente, combinando $PB_{n+1}\cong F_n\rtimes PB_n$ y $PB_2\cong F_1$ obtenemos:
 %\frametitle{Peinado de trenzas}
 %\begin{block}{Resultado}
@@ -490,7 +460,7 @@ which gives $f(332232322)= ababbbb$.
 %\item<2-> La trenza trivial es pura.
 %\item<3-> Un elemento de un producto semidirecto es trivial si y solo si lo es cada una de sus coordenadas.
 %\end{enumerate}
-\end{frame}
+%\end{frame}
 
 %\begin{frame}
 %\frametitle{Solución al problema de la palabra}
@@ -501,7 +471,7 @@ which gives $f(332232322)= ababbbb$.
 %
 %\end{frame}
 
-\begin{frame}
+%\begin{frame}
 
 
 %\begin{figure}
@@ -511,12 +481,12 @@ which gives $f(332232322)= ababbbb$.
 %\caption{Trenza peinada.}
 %\end{figure}
 
-\end{frame}
+%\end{frame}
 
 
 
 
-\begin{frame}
+%\begin{frame}
 %\frametitle{Formas normales}
 %\begin{defi}[Monoide de trenzas positivas]
 %\[
@@ -529,9 +499,9 @@ which gives $f(332232322)= ababbbb$.
 %\begin{defi}[Orden parcial de prefijos]
 %Dadas $a,b\in B_n^+$, $a\preccurlyeq b$ si $ac=b$ para alguna $c\in B_n^+$. Decimos en ese caso que $a$ es un \textbf{prefijo} de $b$. %Escribimos $a\prec b$ si $c$ no es trivial. Si además $a\neq 1$, decimos que $a$ es un \emph{prefijo propio} de $b$. 
 %\end{defi}
-\end{frame}
+%\end{frame}
 
-\begin{frame}
+%\begin{frame}
 
 %\begin{defi}[Trenza funtamental]
 %$$\Delta=\sigma_1(\sigma_2\sigma_1)\cdots(\sigma_{n-1}\cdots\sigma_1)$$
@@ -578,7 +548,7 @@ which gives $f(332232322)= ababbbb$.
 %\end{enumerate}
 
 
-\end{frame}
+%\end{frame}
 
 
 \begin{frame}
@@ -586,6 +556,19 @@ which gives $f(332232322)= ababbbb$.
 \begin{Huge}
 ¡Gracias!
 \end{Huge}
+\vspace{0.5cm}
+
+\begin{Huge}
+Thank you!
+\end{Huge}
+\vspace{0.5cm}
+
+\begin{Huge}
+Danke!
+\end{Huge}
+\vspace{0.5cm}
+
+
 \end{center}
 \end{frame}
 

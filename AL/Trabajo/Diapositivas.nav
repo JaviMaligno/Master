@@ -10,48 +10,38 @@
 \headcommand {\sectionentry {2}{The rythmic oddity property}{3}{The rythmic oddity property}{0}}
 \headcommand {\slideentry {2}{0}{1}{3/7}{}{0}}
 \headcommand {\beamer@framepages {3}{7}}
-\headcommand {\slideentry {2}{0}{2}{8/8}{}{0}}
-\headcommand {\beamer@framepages {8}{8}}
-\headcommand {\slideentry {2}{0}{3}{9/9}{}{0}}
-\headcommand {\beamer@framepages {9}{9}}
-\headcommand {\slideentry {2}{0}{4}{10/10}{}{0}}
-\headcommand {\beamer@framepages {10}{10}}
-\headcommand {\slideentry {2}{0}{5}{11/11}{}{0}}
-\headcommand {\beamer@framepages {11}{11}}
-\headcommand {\beamer@sectionpages {3}{11}}
-\headcommand {\beamer@subsectionpages {3}{11}}
-\headcommand {\sectionentry {3}{Construction of asymmetric pairs}{12}{Construction of asymmetric pairs}{0}}
-\headcommand {\slideentry {3}{0}{1}{12/12}{}{0}}
-\headcommand {\beamer@framepages {12}{12}}
-\headcommand {\slideentry {3}{0}{2}{13/13}{}{0}}
-\headcommand {\beamer@framepages {13}{13}}
-\headcommand {\slideentry {3}{0}{3}{14/14}{}{0}}
-\headcommand {\beamer@framepages {14}{14}}
-\headcommand {\slideentry {3}{0}{4}{15/15}{}{0}}
-\headcommand {\beamer@framepages {15}{15}}
-\headcommand {\beamer@sectionpages {12}{15}}
-\headcommand {\beamer@subsectionpages {12}{15}}
-\headcommand {\sectionentry {4}{Counting the solutions}{16}{Counting the solutions}{0}}
-\headcommand {\slideentry {4}{0}{1}{16/16}{}{0}}
-\headcommand {\beamer@framepages {16}{16}}
-\headcommand {\slideentry {4}{0}{2}{17/17}{}{0}}
-\headcommand {\beamer@framepages {17}{17}}
-\headcommand {\slideentry {4}{0}{3}{18/18}{}{0}}
+\headcommand {\slideentry {2}{0}{2}{8/10}{}{0}}
+\headcommand {\beamer@framepages {8}{10}}
+\headcommand {\slideentry {2}{0}{3}{11/12}{}{0}}
+\headcommand {\beamer@framepages {11}{12}}
+\headcommand {\beamer@sectionpages {3}{12}}
+\headcommand {\beamer@subsectionpages {3}{12}}
+\headcommand {\sectionentry {3}{Key construction}{13}{Key construction}{0}}
+\headcommand {\slideentry {3}{0}{1}{13/17}{}{0}}
+\headcommand {\beamer@framepages {13}{17}}
+\headcommand {\slideentry {3}{0}{2}{18/18}{}{0}}
 \headcommand {\beamer@framepages {18}{18}}
-\headcommand {\slideentry {4}{0}{4}{19/19}{}{0}}
-\headcommand {\beamer@framepages {19}{19}}
-\headcommand {\slideentry {4}{0}{5}{20/20}{}{0}}
-\headcommand {\beamer@framepages {20}{20}}
-\headcommand {\slideentry {4}{0}{6}{21/21}{}{0}}
-\headcommand {\beamer@framepages {21}{21}}
-\headcommand {\slideentry {4}{0}{7}{22/22}{}{0}}
-\headcommand {\beamer@framepages {22}{22}}
-\headcommand {\slideentry {4}{0}{8}{23/23}{}{0}}
+\headcommand {\beamer@sectionpages {13}{18}}
+\headcommand {\beamer@subsectionpages {13}{18}}
+\headcommand {\sectionentry {4}{Lyndon words}{19}{Lyndon words}{0}}
+\headcommand {\slideentry {4}{0}{1}{19/22}{}{0}}
+\headcommand {\beamer@framepages {19}{22}}
+\headcommand {\beamer@sectionpages {19}{22}}
+\headcommand {\beamer@subsectionpages {19}{22}}
+\headcommand {\sectionentry {5}{Algorithm}{23}{Algorithm}{0}}
+\headcommand {\slideentry {5}{0}{1}{23/23}{}{0}}
 \headcommand {\beamer@framepages {23}{23}}
-\headcommand {\slideentry {4}{0}{9}{24/24}{}{0}}
-\headcommand {\beamer@framepages {24}{24}}
-\headcommand {\beamer@partpages {1}{24}}
-\headcommand {\beamer@subsectionpages {16}{24}}
-\headcommand {\beamer@sectionpages {16}{24}}
-\headcommand {\beamer@documentpages {24}}
-\headcommand {\gdef \inserttotalframenumber {20}}
+\headcommand {\beamer@sectionpages {23}{23}}
+\headcommand {\beamer@subsectionpages {23}{23}}
+\headcommand {\sectionentry {6}{Counting the solutions}{24}{Counting the solutions}{0}}
+\headcommand {\slideentry {6}{0}{1}{24/26}{}{0}}
+\headcommand {\beamer@framepages {24}{26}}
+\headcommand {\slideentry {6}{0}{2}{27/27}{}{0}}
+\headcommand {\beamer@framepages {27}{27}}
+\headcommand {\slideentry {6}{0}{3}{28/28}{}{0}}
+\headcommand {\beamer@framepages {28}{28}}
+\headcommand {\beamer@partpages {1}{28}}
+\headcommand {\beamer@subsectionpages {24}{28}}
+\headcommand {\beamer@sectionpages {24}{28}}
+\headcommand {\beamer@documentpages {28}}
+\headcommand {\gdef \inserttotalframenumber {12}}

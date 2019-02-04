@@ -6,10 +6,10 @@
 %\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
 
 \chapter{Esquemas en grupos (group schemes)}
-Rereferencias: Alebgraic Geometry II, Abelian Varietis (Mumford), Abelian Variates (Edihoven van der Geer y Moonen)
+Rereferencias: Alebgraic Geometry II, Abelian Varietis (Mumford), Abelian Varieties (Edihoven van der Geer y Moonen)
 
 \section{El functor de los puntos}
-Los puntos de un esquema $X$ normalmente son los puntos del espacio topológico subyacente, pero hay otra noción de ``puntos con valores en un esquema T'', que es el functor $X(T)=h_X(T)=\Hom_{\Sch}(T,X)$. 
+Los puntos de un esquema $X$ normalmente son los puntos del espacio topológico subyacente, pero hay otra noción de ``puntos con valores en un esquema $T$'', que es el functor $X(T)=h_X(T)=\Hom_{\Sch}(T,X)$. 
 
 \begin{ej}
 Sea $X=\spec(\Z[x,y]/\gene{x^2+y^2-1})$ y $A$ un anillo. Calculamos $X(\spec(A))=\Hom_{\Sch}(\spec(A),X) \cong\Hom_{\Ring}(\Z[x,y]/\gene{x^2+y^2-1},A)=\{a,b\in A\mid a^2+b^2=1\}$. En este caso vemos que el resultado son los puntos de una circunferencia. En general veremos que esto es lo que tiene estructura de grupo. 
@@ -84,7 +84,7 @@ Esquema en grupo aditivo $G_a$ sobre $\Z$. Sea $G_a=\spec(Z[X])$. Dar $\mu:\spec
 
 Verificamos ahora las condiciones de esquema en grupo mediante la conmutatividad de los diagramas duales en anillos. Basta comprobar la conmutatividad para el elemento $x$. Tenemos que $x\xrightarrow{\mu^*}x\otimes 1+1\otimes x\xrightarrow{\mu^*\times Id} \mu^*(x)\otimes 1+\mu^*(1)\otimes x=(x\otimes 1+1\otimes x)\otimes x+(1\otimes 1)\otimes x=x\otimes 1\otimes 1+1\otimes x\otimes 1+1\otimes 1\otimes x$. Por otro lado, $\mu^*(x)\xrightarrow{Id\times\mu^*} x\otimes\mu^*(1)+1\otimes\mu^*(x)=x\otimes(1\otimes 1)+1\otimes(x\otimes 1+1\otimes x)=x\otimes 1\otimes 1+ 1\otimes x\otimes 1+1\otimes 1\otimes x$, con lo que se verifica la asociatividad. 
 
-Para el elemento neutro recordamos que $\Z[X]\to\Z[X]\otimes_\Z\Z$ por la derecha (COMPROBAR QUE NO ME ESTOY CONFUNDIENDO CON LA IZQUIERDA) está dado por $a\mapsto a\otimes 1$. Entonces $Id\times\varepsilon^*(\mu^*(x))=x\otimes \varepsilon^*(1)+1\otimes\varepsilon^*(x)=x\otimes 1+0=x\otimes 1$, por lo que se verifica la propiedad del elemento neutro (es análoga por la izquierda).
+Para el elemento neutro recordamos que $\Z[X]\to\Z[X]\otimes_\Z\Z$ por la derecha está dado por $a\mapsto a\otimes 1$. Entonces $Id\times\varepsilon^*(\mu^*(x))=x\otimes \varepsilon^*(1)+1\otimes\varepsilon^*(x)=x\otimes 1+0=x\otimes 1$, por lo que se verifica la propiedad del elemento neutro (es análoga por la izquierda).
 
 Por último tenemos que vemos el inverso. Vemos que $\Delta^*:\Z[X]\otimes\Z\Z[X]\to \Z[X]$ está dado por $a\otimes b=a+b$, puesto que por el diagrama se debe cumplir $a\otimes 1\mapsto a$ y $1\otimes b\mapsto b$. Esto se observa dualizando el diagrama
 \[
@@ -151,22 +151,39 @@ Por definición, $T\to G$ es el producto $f\cdot (\tau\circ f)$. Por otro lado t
 Asociatividad:
 
 Sean $f_1,f_2,f_3:T\to G$. 
-
 \[
 \begin{tikzcd}
-& T\arrow[dl, "f_1"]\arrow[d, "f_2"]\arrow[dr, "f_3"] & \\
-G & G & G\\
- & G\times_S G\arrow[ddl, "\mu"']&\\
-& (G\times_S G)\times_S G\arrow[d, "\mu\times Id"]  & \\
-G & G\times_S G \arrow[d, "\mu"] & G\\
-& G &
+ &  & T \arrow[rd, "f_3"] \arrow[d] \arrow[ld] \arrow[d] \arrow[d, "f_2"'] \arrow[dd, bend left] \arrow[lld, "f_1"'] &  \\
+G \arrow[rdd, "Id", bend right] & G\times_SG \arrow[l] \arrow[dd, "\mu", bend right] & G & G \arrow[dd, "Id"] \\
+ &  & (G\times_S G)\times_SG \arrow[lu, "pr_1"'] \arrow[d, "\mu\times Id"] \arrow[ru, "pr_2"'] &  \\
+ & G & G\times_S G \arrow[d, "\mu"] \arrow[l] \arrow[r] & G \\
+ &  & G & 
 \end{tikzcd}
 \]
-La flecha $T\to G$ es $(f_1\cdot f_2)\cdot f_3$. Usando la otra parte del diagrama de asociatividad se obtiene $f_1\cdot (f_2\cdot f_3)$, que por la conmutatividad de los diagramas nos da la propiedad asociativa. COMPLETAR DIAGRAMA CON LO QUE HE COPIADO EN PAPEL
+
+
+La flecha $T\to G$ es $(f_1\cdot f_2)\cdot f_3$. Usando la otra parte del diagrama de asociatividad se obtiene $f_1\cdot (f_2\cdot f_3)$, que por la conmutatividad de los diagramas nos da la propiedad asociativa. 
 
 Conmutatividad si el esquema en grupo es conmutativo:
 
-Sean $f_1,f_2:T\to G$. COPIAR DIAGRAMAS DEL PAPEL
+Sean $f_1,f_2:T\to G$. 
+\[
+\begin{tikzcd}
+ & T \arrow[rd, "f_2"] \arrow[d] \arrow[ld, "f_1"'] \arrow[d] &  \\
+G & G\times_S G \arrow[l] \arrow[r] \arrow[d, "\sigma"] \arrow[ld, "pr_1"'] \arrow[rd, "pr_2"] & G \\
+G & G\times_S G \arrow[l, "pr_1"] \arrow[r, "pr_2"] \arrow[d, "\mu"] & G \\
+ & G & 
+\end{tikzcd}
+\]
+Y tenemos el mismo diagrama intercambiando $pr_1$ y $pr_2$. Teniendo en cuenta que $\sigma\mu=\mu$ y eliminando la parte central del diagrama anterior obtenemos
+ \[
+\begin{tikzcd}
+ & T \arrow[rd, "f_2"] \arrow[d] \arrow[ld, "f_1"'] \arrow[d] &  \\
+G & G\times_S G \arrow[l, "pr_1"'] \arrow[r, "pr_2"] \arrow[d, "\mu"] & G \\
+ & G & 
+\end{tikzcd}
+\]
+que nos define $f_1\cdot f_2$, y el mismo diagrama intercambiando $pr_1$ y $pr_2$, que es realmente el mismo diagrama girado, luego $f_2\cdot f_1=f_1\cdot f_2$. 
 \end{dem}
 
 
@@ -181,7 +198,24 @@ Hagamos lo mismo en el grupo multiplicativo. Para $T$ un esquema, obtenemos $\Ho
 \end{ej}
 
 
-A lo que hemos llamado $G(T)$ es lo que usualmente denotábamos $h_G(T)=\Hom_{\Sch}(T,G)$, que en general era un functor $\Sch_S\to\Set$, pero al tener la imagen estructura de grupos, podemos factorizarlo como $\Sch_S\to\Grp\to\Set$ donde el último functor es el functor olvido. Para comprobar esto tenemos que comprobar que $h_G$ lleva morfismos de $S$-esquemas en homomorfismos de grupos, esto es, si $\phi:T'\to T$ es un morfismo de $S$-esquemas y $h_G(\phi)(f)=f\circ\phi:T'\to G$ para $f:T\to G$, entonces $h_G(\phi)(f_1\cdot f_2)=h_G(f_1)\cdot h_G(\phi)(f_2)$, o equivalentemente $(f_1\cdot f_2)\circ\phi=(f_1\circ\phi)\cdot (f_1\circ\phi)$.  Para ello usamos el diagrama OTRO DIAGRAMA EN EL PAPEL
+A lo que hemos llamado $G(T)$ es lo que usualmente denotábamos $h_G(T)=\Hom_{\Sch}(T,G)$, que en general era un functor $\Sch_S\to\Set$, pero al tener la imagen estructura de grupos, podemos factorizarlo como $\Sch_S\to\Grp\to\Set$ donde el último functor es el functor olvido. Para comprobar esto tenemos que comprobar que $h_G$ lleva morfismos de $S$-esquemas en homomorfismos de grupos, esto es, si $\phi:T'\to T$ es un morfismo de $S$-esquemas y $h_G(\phi)(f)=f\circ\phi:T'\to G$ para $f:T\to G$, entonces $h_G(\phi)(f_1\cdot f_2)=h_G(f_1)\cdot h_G(\phi)(f_2)$, o equivalentemente $(f_1\cdot f_2)\circ\phi=(f_1\circ\phi)\cdot (f_1\circ\phi)$.  Para ello usamos el diagrama 
+\[
+\begin{tikzcd}
+ & T' \arrow[d, "\phi"] &  \\
+ & T \arrow[rd, "f_2"] \arrow[d] \arrow[ld, "f_1"'] \arrow[d] &  \\
+G & G\times_S G \arrow[l, "pr_1"'] \arrow[r, "pr_2"] \arrow[d, "\mu"] & G \\
+ & G & 
+\end{tikzcd}
+\]
+que por conmutatividad es el mismo que
+\[
+\begin{tikzcd}
+ & T' \arrow[rd, "f_2\circ\phi"] \arrow[d] \arrow[ld, "f_1\circ\phi"'] \arrow[d] &  \\
+G & G\times_S G \arrow[l, "pr_1"'] \arrow[r, "pr_2"] \arrow[d, "\mu"] & G \\
+ & G & 
+\end{tikzcd}
+\]
+de donde se deduce la igualdad.
 
 \begin{ej}
 Volvemos al ejemplo $\spec(\Z[x_1,x_2,x_3,x_4]/\gene{x_1x_4-x_2x_3-2})=\spec(B)$ y consideramos $T\to\spec(\Z)$ un esquema, entonces $\Hom_{\Sch}(T, \spec(B))\cong \Hom_{\Ring}(B,\OO_T(T))\cong SL_2(\O_T(T))$. Esto nos da $h_{\spec(B)}:\Sch\to\Grp$, aunque hay que ver que esta correspondencia es realmente un functor. Si $\phi:T'\to T$ es un morfismo de esquemas, esto nos da $\OO_T(T)\to\OO_{T'}(T')$. Esto nos daría un morfismo $SL_2(\OO_T(T))\to SL_2(\OO_{T'}(T'))$ y hay que ver que es justamente el morfismo inducido por la correspondencia.
