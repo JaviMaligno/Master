@@ -167,7 +167,7 @@ $$
 
 
  
-Notar que si $\gamma \left( T_{e,p} \right) / l \left( S_{p} \right) <1 +  \epsilon  \left( l  \left( S_{p}   \right) \right)$, entonces por la condición (b), $ T_{e,p}$ no puede ser una ruta alternativa con respecto a $p$.
+Notar que si $\gamma \left( T_{e,p} \right) / l \left( S_{p} \right) >1 +  \epsilon  \left( l  \left( S_{p}   \right) \right)$, entonces por la condición (b), $ T_{e,p}$ no puede ser una ruta alternativa con respecto a $p$.
 
 Sea $F \subseteq E$ el conjunto de aristas que corresponden con la carretera candidata para ser mejorada.
 Para cada arista $e \in F$, $b_{e}$ representa el coste unidad (el coste por segundo) para mejorar la arista $e$.
@@ -200,7 +200,7 @@ $$
 \text{maximizar} \sum_{e \in F} \#\left\{ p \in P | \beta_{e,p} \leq r_{1} \right\} x_{e} + C
 $$
 
-donde $C$ es una constante.
+donde $C$ es una constante. Esta equivalencia se obtiene de que para minimizar la función objetivo tenemos que encontrar la máxima cantidad posible de índices donde se reste $x_e$ y $\alpha_{e,p}$. La constante proviene de los $l(e)$. 
 
 A partir de aquí, se puede observar el modelo LP es el problema de la mochila de forma continua. Además, el modelo LP es un algoritmo solucionable voraz, es decir, una solución óptima está dada por, en orden descendente  por
 $$

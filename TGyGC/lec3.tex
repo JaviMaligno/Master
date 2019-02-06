@@ -69,9 +69,45 @@ En el caso dos tenemos las rectas perpendiculares $F(p_i)$ y $F(p_j)$ que inters
 Para resolver el problema en el plano dual buscamos intersecciones de rectas (que hay $O(n^2)$). Construir el arreglo de rectas ordenando los puntos de intersección por abcisa requiere $O(n^2)+O(n^2\log n)$. Después realizamos un barrido para ir buscando las intersecciones que cumplen alguno de los casos. Actualizar los vecinos de arriba y abajo del punto de intersección se puede hacer en tiempo constante.
 
 \section{Ajustar una función escalonada a un conjunto de datos}
-$\min_f d(S,f)$ donde $S=\{p_1,\dots, p_n\}$, $f$ es una función escalonada y $d(p_i,f)=\max_i|f(x_i)-y_i|=\max_id_v(p_i,f)$ (distancia vertical, que tiene sentido porque $f$ es constante en cada escalón, luego se mide la distancia al escalón inmediantamente por encima del punto). 
+Input: $S=\{p_1,\dots, p_n\}$ y $k\in\N$. Output: $f$, función escalonada de $k$ elementos tal que $d(S,f)$ sea mínimo, donde $d(S,f)=\max d_v(p_i,f)=\max_i|f(x_i)-y_i|$ (distancia vertical, que tiene sentido porque $f$ es constante en cada escalón, luego se mide la distancia al escalón inmediantamente por encima del punto). 
+
+Cada segmento del grafo de la función estará situado en la mediatriz de los puntos con mayor diferencia de ordenada en el conjunto de vértices con abscisa contenida en el segmento. En general hay infinitas soluciones, pero tenemos el siguiente lema.
+
+\begin{lemma}
+Existe una solución cuyos escalones (segmentos) están centrados con respecto a sus puntos asociados. 
+\end{lemma}
+
+Como consecuencia, podemos restringirnos a un conjunto discreto distancias máximas ($\varepsilon_{ij}$) que se corresponden a conjuntos consecutivos de puntos. Hay $O(n^2)$ tales subconjuntos, pues se construyen con un índice ínicial $i$ y un índice final $j$ con $1\leq i\leq j\leq n$. Para una distancia mínima $\varepsilon$ es posible que no baste con $k$ escalones. Esto nos plantea el siguiente problema de decisión: dado $\varepsilon>0$, ¿existe $f$ escalonada con $k$ escalones y $d(S,f)\leq\varepsilon$? Para responder podemos utilizar un algoritmo greedy en el que avancemos mientras podamos. Una solución algo más geométrica y centrar segmentos de longitud $2\varepsilon$ en los puntos del conjnto, y tratar de atravesar con un rayo la mayor cantidad de segmentos. De esta forma puede resolverse con un barrido de izquierda a derecha en tiempo lineal: matenemos la mayor y la menor ordenada $z,z'$ y avanzamos mientras $|z-z'|\leq 2\varepsilon$. Además así se minimiza el número de escalones.
+
+\subsection{Algoritmo}
+\begin{enumerate}
+\item Ordenamos el conjunto de candidatos $E=\{\varepsilon_{ij}, i\neq j\}$ ($O(n^2\log n)$).
+\item Aplicamos BS usando el problema de decisión, $\varepsilon_1\leq\varepsilon_2\leq\cdots\leq\varepsilon_k\leq\cdots\leq\varepsilon_{n^2}$ (si para $k$ existe solución vamos hacia la izquierda y si no existe vamos a la derecha) ($O(n\log(n^2)=O(n\log n)$)
+\end{enumerate}
+En total tenemos un algoritmo de complejidad $O(n^2\log n)$. 
+
+La solución de este problema tiene importantes aplicaciónes en transcripción de audios y manejo de datos. 
+
+Vamos a ver que este problema tiene cota inferior $\Omega(n\log n)$ reduciendo el problema de la ordenación al de la función escalonada. Dada una lista de puntos, se representan en el plano de cualquier forma que respete la ordenación de las abscisas. Para $k=n$ tenemos tantos escalones como puntos, luego los escalones nos dan el orden de los puntos. 
+
+Para conseguir resolver este problema en $O(n\log n)$ hacen falta técnicas más sofisticadas como \emph{matrix searching}. 
+
+\section{Menor anillo contenedor}
+$\min_C\max_{1\leq i\leq n} d(p_i,C)$. Llalamos $C_i$ al círculo interior y $C_o$ al círculo exterior, ambas circunferencias concéntricas.
+
+\begin{lemma}
+Una solución es del tipo:
+\begin{enumerate}
+\item $C_i$ pasa por al menos 3 puntos y $C_o$ pasa por al menos un punto (el más lejano al centro de $C_i$).
+\item Caso simétrico: intercambiar $C_i$ con $C_o$. 
+\item $C_i$ y $C_o$ pasan ambos por dos puntos (el cruce de las dos mediatrices da el centro). 
+\end{enumerate}
+\end{lemma}
 
 
+\begin{observacion}
+Si tenemos el centro $X$, podemos obtener la solución en $O(n)$. En el caso 1 $X$ es un vértice del diagrama de Voronoi, por tanto el algoritmo consistiría en calcular, para cada vértice, los 3 generadores y el punto más lejano ($O(n\log n)$ del diagrama $+O(n^2)$ de encontrar el más lejano por cada uno, con lo que es $O(n^2)$ en tiempo y $O(n)$ en espacio para almacenar el diagrama). 
+\end{observacion}
 
-
+Este algoritmo se ha llegado a resolver por debajo de $O(n^2)$, aunque todavía no se conoce cota inferior. 
 \end{document}

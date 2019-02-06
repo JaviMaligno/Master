@@ -231,29 +231,95 @@ Si tenemos una aplicación $x_1\mapsto a, x_2\mapsto b, x_3\mapsto c, x_4\mapsto
 
 
 Veamos cómo funciona $\mu:\spec(B)\times_\Z\spec(B)\to\spec(B)$, que viene inducido por $\mu^*:B\to B\otimes_\Z B$. Usando el producto de matrices definimos $\mu^*(x_1)=x_1\otimes x_1+x_2\otimes x_3$, $\mu^*(x_2)=x_1\otimes x_2+x_2\otimes x_4$ y así sucesivamente (sustituir el producto habitual por el tensorial en cada entrada de la matriz). De igual modo, $\tau$ viene inducida por $\tau^*:B\to B$ que se define usando la fórmula para la matriz inversa. También $\varepsilon$ estaría inducida por $\varepsilon^*:B\to \Z$, que está definida por la aplicación que envía cualquier matriz a la matriz identidad, es decir, $x_1,x_3\mapsto 1$, $x_2,x_4\mapsto 0$. 
-
-\section{Cambio de base}
-
-Sea $S$ un esquema y $G$ un esquema en grupos sobre $S$. Sea $S'\to S$. Queremos dotar a $G\times_S S'\to S'$ de estructura de esquemas en grupos sobre $S'$. Queremos encontrar un functor $h_{G\times_S S'}:\Sch_{S'}\to\Set$ que factorice a través de $\Grp$. Sea $T\to S'$ un esquema. Se tiene $\Hom_{S'}(T, G\times_S S')\cong\Hom_S(T,G)$ ya que si $f':T\to G\times_S S'$, $f=pr_1\circ f'$, tenemos
-\[
-\begin{tikzcd}
-&T\arrow[dl, "f"]\arrow[d, "f'"]&\\
-G& G\times_S S'\arrow[l, "pr_1"]\arrow[r]& S'
-\end{tikzcd}
-\]
-EL PRÓXIMO DÍA LO EXPLICA MEJOR, PARCE QUE COMO HOM PRESERVA COPRODUCTOS PODRÍA SALIR, PERO HAY LÍO CON LAS PRIMAS
-
 \end{ej}
 
 
 
+\begin{prop}
+Sea $\tilde{h}_G:\Sch_S\to\Grp$ un levantamiento de $h_G:\Sch_S\to\Set$ (una factorización como arriba). Entonces existen $\mu,\tau,\varepsilon$ morfismos de $\Sch_S$ tales que $(G,\mu,\tau,\varepsilon)$ es un esquema en grupos sobre $S$ de mod oque para todo $T\to S$, $\tilde{h}_G(T)$ tiene estructura de grupo heredada de $\mu,\tau,\varepsilon$. 
+\end{prop}
+
+Recordemos que por el lema de Yoneda $h_*:\CC\to\Nat(\CC^{op}, \Set)$ es plenamente fiel, es decir, para cualesquiera $X,Y\in\CC$ se tiene una biyección $\Hom_\CC(X,Y)\cong \Nat(h_X,h_Y)$
+
+\begin{dem}
+Existencia de $\mu$:
+
+Para todo $T\in\Sch_S$, $\Hom_{\Sch_S}(T,G)$ es un grupo, y tenemos $\mu_T:h_G(T)\times h_G(T)\to h_G(T)$, y además $h_G(T)\times h_G(T)\cong\Hom_{\Sch_S}(T,G\times_SG)=h_{G\times_S G}(T)$ por la definición del producto de morfismos. Es fácil ver que $h_{G\times_S G}$ es natural con respecto a morfismos $\alpha:T_1\to T_2$ y el producto $\mu_T$. Como $\tilde{h}_G$ es un functor en $\Grp$, para todo $f_1,f_2\in h_G(T_2)$, $\tilde{h}_G(\mu_{T_2}(f_1,f_2))=\mu_{T_1}(\tilde{h}_G(\alpha)(f_1),\tilde{h}_G(\alpha)(f_2))$. Por Yoneda $\mu$ se corresponde con un morfismo de $S$-esquemas $\mu:G\times_SG\to G$. 
+
+Existencia de $\varepsilon$:
+
+
+Para todo $T\to S$, $h_G(T)$ es un grupo con elemento neutro $e_T:\{*\}=\Hom_{\Sch_S}(T,S)\to\Hom_{Sch_S}(T,G)$, que envía el únivo morfismo del origen a $e_T$, y esto es claramente un homomorfismo de grupos. Definimos la transformación natural $\varepsilon:\{\varepsilon_T: T\in\Sch_S\}$. Por la definición de $\varepsilon_T$, es trivial comprobar la naturalidad de $\varepsilon$ con respecto a $\alpha:T_1\to T_2$ usando que $h_G$ es un morfismo de grupos. 
+
+Existencia de $\tau$:
+
+Para todo $T\to S$, $\tau_T:h_G(T)\to h_G(T)$ está definida como $f\mapsto f^{-1}$ (inverso del grupo). Obsérvese que esto no es un homomorfismo en general si el grupo no es conmutativo. Comprobamos la naturalidad para $\alpha:T_1\to T_2$. Sea $f:T_2\to G$, hay que ver que $h_G(\alpha)(\tau_{T_2}(f))=\tau_{T_1}(h_G(\alpha)(f))$, o equivalentemente $\tau_{T_2}(f)\circ\alpha=\tau_{T_1}(f\circ\alpha)$. Recordemos que $\tau_{T_1}(f\circ\alpha)$ está caracterizado por $\tau_{T_1}(f\circ\alpha)\cdot (f\circ\alpha)e_{T_1}$ y lo mismo por la izquierda. Así que vemos que el otro miembro de la igualdad satisface las mismas relaciones. 
+
+\[
+\tau_{T_2}(f)\circ\alpha)\cdot (f\circ\alpha)=h_G(\alpha)(\tau_{T_2}(f))\cdot h_G(\alpha)(f)=h_G(\alpha)(\tau_{T_2}(f)\cdot f)=h_G(\alpha)(e_{T_2})=e_{T_1}
+\]
+donde en la segunda igualdad hemos usando que $h_G(\alpha)$ es homomorfismo de grupos. Análogamente a la izquierda. Esta conmutatividad nos da el $\tau$ buscado via lema de Yoneda.
+
+Ahora hay que ver que los morfismos $\mu,\tau,\varepsilon$ satisfacen los diagramas conmutativos de los grupos. Vamos a probar uno y los demás se dejan como ejercicio
+\[
+\begin{tikzcd}
+G\times_S S\arrow[r, "Id_G\times\varepsilon"]\arrow[dr, "pr_1"] & G\times_S G\arrow[d,"\mu"]\\
+& G
+\end{tikzcd}
+\]
+Hay que ver $\mu_T\circ(Id_G\times\varepsilon_t)=pr_1$. En este caso no para el diagrama escrito arriba sino para $\varepsilon_T:\Hom(T,S)\to\Hom(T,G)$, $Id_G:\Hom(T,G)\to\Hom(T,G)$ y $pr_1:\Hom(T,G\times_S G)\to \Hom(T,G)$. Esto se reduce al hecho de que $\Hom_{\Sch}(T,G)$ con $\mu_T,e_T,\tau_T$ es un grupo. 
+\end{dem}
+
+\section{Cambio de base}
+
+Sea $S$ un esquema y $X$ un esquema en grupos sobre $S$. Sea $T\to S$. Queremos dotar a $X\times_S T\to T$ de estructura de esquemas en grupos sobre $T$. Para todo $Y\to T$ queremos dotar a $\Hom_{\Sch_T}(Y,X\times_S T)$ de estructura de grupo. Para ello buscamos una biyección $\Hom_{\Sch_T}(Y,X\times_S T)\cong\Hom_{\Sch_S}(Y,X)$. La prueba es parecida a que $\Hom$ preserva productos, pero tenemos que observar que hay un cambio de base. 
+
+Necesitamos que conmute el diagrama
+\[
+\begin{tikzcd}
+ & Y \arrow[d, "f"] \arrow[ldd] &  \\
+ & X\times_S T \arrow[d] \arrow[ld, "pr_1"] \arrow[rd] &  \\
+X \arrow[r] & S & T \arrow[l]
+\end{tikzcd}
+\]
+
+donde $f$ es un morfismo de $T$-esquemas y los dos triángulos inferiores son conmutativos. Entonces asociamos $f\mapsto pr_1\circ f$ y obtenemos el diagrama conmutativo
+\[
+\begin{tikzcd}
+ & Y \arrow[d] \arrow[ld, "f'"'] \arrow[rd, "{\pi_{Y,T}}"] &  \\
+X & X\times_S T \arrow[l] \arrow[r] & T
+\end{tikzcd}
+\]
+Haciendo $f'\mapsto f$, como $f$ es un morfismo de esquemas sobre $T$, obtennemos $\Hom_{\Sch_T}(Y,X\times_S T)$ es un grupo inducido por la ley de esquemas en grupos de $X$. 
+
+Faltaría ver que para $\phi:Y_1\to Y_2$, $h_{X\times_S T}(\phi):\Hom_{\Sch_T}(Y_2,X\times_S T)\to\Hom_{\Sch_T}(Y_1,X\times_S T)$ es un morfismo de grupos. 
+Llamamos $\Lambda:\Hom_{\Sch_S}(Y,X)\to\Hom_{\Sch_T}(Y,X\times_S T)$. Sean $f_1,f_2\in\Hom_{\Sch_T}(Y,X\times_S T)$. Queremos probar que $h_{X\times_S T}(f_1\cdot f_2)=h_{X\times_S T}(f_1)\cdot h_{X\times_S T}(f_2)$. Sean $f_1',f_2'\in\Hom_S(Y,X)$ y $\Lambda(f_i')=f_i$. Por definición de la estructura de grupo en $\Hom_T(Y,X\times_S T)$,$\Lambda$ es un homomorfismo de grupos, así que lo que hay que probar es que $h_{X\times_S T}(\Lambda(f_1'\cdot f_2'))=h_{X\times_S T}(\Lambda(f_1'))\cdot=h_{X\times_S T}(\Lambda(f_2'))$. Tenemos que $h_{X\times_S T}(\Lambda(f'))=\Lambda(h_X(f'))$: $\Lambda(h_X(f'))=\Lambda(f'\circ\phi)=h_{X\times_S T}(\Lambda(f'))=\Lambda(f')\circ\phi$. El diagrama siguiente nos da $\Lambda(f')\circ\phi$
+\[
+\begin{tikzcd}
+ & Y_1 \arrow[d] &  \\
+ & Y_2 \arrow[ld, "f'"'] \arrow[rd] \arrow[d, "\Lambda(f')"] &  \\
+X & X\times_ST \arrow[l] \arrow[r] & T
+\end{tikzcd}
+\]
+y el de a continuación nos da $\Lambda(f'\circ\phi)$
+\[
+\begin{tikzcd}
+Y_1 \arrow[d, "\phi"'] \arrow[rdd, "\Lambda(f'\circ\phi)"] \arrow[rrdd, bend left] &  &  \\
+Y_2 \arrow[d, "f'"'] &  &  \\
+X & X\times_S T \arrow[l] \arrow[r] & T
+\end{tikzcd}
+\]
+
+Las proyecciones de la derecha coinciden porque solo hay un morfismo $T$-esquemas $Y\to T$. Como $X$ es un esquema en grupos, $h_X$ s un morfismo de grupos. Hemos dado entonces un functor $\tilde{h}_{X\times_S T}:\Sch_T\to\Grp$ que levanta a $h_{X\times_S T}:\Sch_T\to\Set$. 
 
 
 
 
+\begin{ej}
+Sea $G$ un grupo. Nos preguntamos si existe un $S$-esquema $X$ en grupos tal que $X(T)\cong G$ para todo $T\to S$, o al menos para algún $T\to S$. Definimos $S^G$ como la unión disjunta de copias de $S$ indexadas por $G$, $S^G=\coprod_{g\in G}S_g$, donde $S_g=S$ para todo $g$. Si $U\subseteq S^G$ es un abierto, $\OO_{S^G}(U)=\prod_{g\in G}\OO_S(U)$. Sea $T\to S$ un esquema. $\Hom_{\Sch_S}(T,S^G)=\Hom(T,\coprod_{g\in G}S_g)$. Para todo $g\in G$, sea $U_g=f^{-1}(S_g)\subseteq T$ abierto. Tenemos $T=\coprod_{g\in G} U_g$, por lo que $f:T\to\coprod_{g\in G}S_g$ se corresponde con la familia de restricciones $f|_{U_g}:U_g\to S$, cada uno de ellos siendo el morfismo estructural $\pi_{U_g,S}$ como $S$-esquema. Para otro morfismo $g$ definimos la misma familia pero llamando $V_h$ a los abiertos. Definimos $h=f\cdot g$ como el morfismo estructural $h|_{U_g\cap V_h}:U_g\cap V_h\to S_{g\cdot h}=S$.
 
-
-
+Nótese que si $T$ es conexo, solo hay un $U_x$, porque el complementario es abierto y por tanto tendríamos $T$ como unión de abiertos y cerrados disjutnos. En este caso, solo hay un $h$ y la estructura de grupo es claramente la de $G$. En el caso de que $T$ no sea conexo me gustaría
+\end{ej}
 
 
 

@@ -526,15 +526,31 @@ $$
 Como $\rho^*\simeq Id$, $\alpha=[\rho^*(\varphi)]$ y $\beta=[\rho^*(\psi)]$, luego $\alpha\cup\beta=[\rho^*(\varphi\smile\psi)]$, y como $\varepsilon_{p+q}=\varepsilon_p\varepsilon_q(-1)^{pq}$, se tiene el resultado. 
 \end{dem}
 
-COPIAR LAS DIAPOSITIVAS SOBRE EL ANILLO DE COHOMOLOGÍA
+\section{Cohomology Ring}
+Como hemos visto en la sección anterior, el producto cup es asociativo y distributivo, por lo que podemos dotar de estructura de anillo a $H^*(X;R)=\oplus_{i\geq 0}H^i(X;R)$, donde los elementos de este anillo son sumas finitas $\sum_i\alpha_i$ con $\alpha_i\in H^i(X;R)$. El producto de dos tales sumas está definido como $(\sum_i\alpha_i)(\sum_j\beta_j)=\sum_{i,j}\alpha_i\smile\beta_j$. Esto convierte a $H^*(X;R)$ es un anillo, con unidad si $R$ tiene unidad (el elemento unidad será el generador de $H_0(X;R)$ que envía todo símplice singular al $1\in R$). Tomando en cuenta la multiplicación por escalares de $R$ en cuenta, estos anillos pueden ser vistos también como $R$-álgebras. 
 
-Un ejemplo que no viene es $H^*(T;\Z)=H^*(S^1\times S^1;\Z)=\bigwedge_\Z[\alpha,\beta]$ por el ejemplo de superficie orientable. En general sale un álgebra exterior en más generadores. 
+El anillo de cohomología se considera siempre como anillo gradudado. Esto es, un anillo $A=\oplus_{k\geq 0}A_k$ donde los $A_k$ son grupos aditivos y e $A_k A_l\subseteq A_{k+l}$. Si $\alpha\in A_k$ escribiremos $|\alpha|=k$ y diremos que tiene \emph{grado} $k$. Cuando además se verifica $ab=(-1)^{|a||b|}ba$ diremos que el anillo es conmutativo (grambién graduado-conmutativo, skew-conmutativo o anticonmutativo).  
 
-El isomorfismo de Anillos de productos viene de la propiedad universal del producto directo, usando las proyecciones $\pi_\alpha:\prod H^*\to H^*_\alpha$ y al $H$ va por otro lado la $(i_\alpha)^*$, además $\{i_\alpha^*\}([\varphi\smile\psi])=\{i^*_\alpha(\varphi)\smile i_\alpha^*(\psi)\}=\{i^*_\alpha(\varphi\smile\psi\}$ (esta es la aplicación que une el $H^*$ del $\coprod$ al $\prod$ de $H^*$). Para reducida igual con el wedge sum, pero para poder hacer la escisión los $x_\alpha$ tienen que ser retractos de deformación de un entorno suyo.
+\begin{ej}
+Anillos de polinomios $R[\alpha]$ y $R[\alpha]/\gene{\alpha^n}$. 
+\end{ej}
 
-En el ejemplo de distinguir espacios, comprobar que tienen la misma cohomología (escribirlo después como ejercicio). Para ver que son distintos, el cup producto de una generador de la parte de $S^2$ consigo mismo se queda en esa parte, que en dimensión alta es 0. 
+\begin{ej}
+Álgebras exteriores $\land_R[\alpha_1,\dots,\alpha_n]$. Esto es el $R$-módulo libre con base el producto finito (ordenado) $\alpha_{i_1}\land\cdots\land\alpha_{i_k}$, $i_1<\cdots<i_k$ con producto asociativo y distributivo verificando $\alpha_i\land\alpha_j=-\alpha_j\land\alpha_i$. Un ejemplo de este tipo de anillo graduado en cohomología es $H^*(T;\Z)=H^*(S^1\times S^1;\Z)=\bigwedge_\Z[\alpha,\beta]$ por el ejemplo de superficie orientable. En general sale un álgebra exterior en más generadores.  
+\end{ej}
 
-La unidad que viene de $R$ es la clase que genera la cohomología 0. 
+\begin{ej}
+Anillos producto. El isomorfismo $H^*(\coprod_\alpha X_\alpha)=\prod_\alpha H^*(X_\alpha;R)$ inducido por las inclusiones $i_\alpha:X_\alpha\to X$ es un isomorfismo de anillos pues cada $i_\alpha^*$ lo es. El isomorfismo de anillos de productos viene de la propiedad universal del producto directo, usando las proyecciones $\pi_\alpha:\prod H^*\to H^*_\alpha$ y al $H$ va por otro lado la $(i_\alpha)^*$, además $\{i_\alpha^*\}([\varphi\smile\psi])=\{i^*_\alpha(\varphi)\smile i_\alpha^*(\psi)\}=\{i^*_\alpha(\varphi\smile\psi)\}$ (esta es la aplicación que une el $H^*$ del $\coprod$ al $\prod$ de $H^*$).
+
+HACER DIAGRAMA
+
+ Similarmente $\widetilde{H}^*(\bigvee_\alpha X_\alpha;R)\cong\prod_\alpha\widetilde{H}^*(X_\alpha;R)$, suponiendo que $x_\alpha\in X_\alpha$ son retractos de deformación de un entorno suyo para poder aplicar escisión y garantizar el isomorfismo. Esta estructura extra sirve para distinguir $S^2\vee S^4$ de $\C P^2$, que es el resultado de pegar una 4-célula a $S^2$ mediante $f:S^3\to S^2$. Tenemos que $\widetilde{H}^*(S^2\vee S^4;\Z)\cong \widetilde{H}^*(S^2)\oplus \widetilde{H}^*(S^4)$, de modo que visto como anillo, el producto de dos generadores distintos es nulo. Sin embargo, como $H^*(\C P^2;\Z)=\Z[\alpha]/\gene{\alpha^3}$, $|\alpha|=1$, el producto de generadores de $H^2(\C P^2;\Z)$ no es nulo.
+\end{ej}
+
+
+
+
+
 
 Propiedades 4 y 5 son la numeración de Hatcher o contando en la anterior diapositiva
 
@@ -555,6 +571,10 @@ Prueba de que $\mu$ es homomorfismo de anillos:
 \section{Ejercicios}
 \begin{ejer}
 Si $A\to B\to C\to 0$ es exacta, entonces dualizar aplicando $\Hom(-,G)$ da lugar a una sucesión exacta $A^*\leftarrow B^*\leftarrow C^*\leftarrow 0$.
+\end{ejer}
+
+\begin{ejer}
+Comprobar que $S^2\vee S^4$ y $\C P^2$ tienen la misma cohomología. 
 \end{ejer}
 AÑADIR ALGUNA COSA QUE TENGO POR AHÍ COMO EJERCICIO
 

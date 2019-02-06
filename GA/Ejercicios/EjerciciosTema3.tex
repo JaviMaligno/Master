@@ -30,13 +30,13 @@
 %DECIRLE QUE QUIERO HACER EL 2.16
 
 
-%\begin{ejercicio}{3.1}
-%Probar que un morfismo $f:X\to Y$ es localmente de tipo finito si y solo si para \emph{todo} abierto afín $V=\spec(B)$ de $Y$, $f^{-1}(V)$ puede ser cubierto por abiertos afines $U_j=\spec(A_j)$, donde cada $A_j$ es una $B$-álgebra finitamente generada. 
-%\end{ejercicio}
-%\begin{solucion}
-%Una de las implicaciones es trivial, así que supongamos que $f:X\to Y$ es localmente de tipo finito. Sea $V=\spec(B)$ un abierto afín de $Y$ y consideremos $f^{-1}(V)$. Por ser $f$ localmente de tipo finito, podemos recubrir $Y$ con abiertos afines $V_i=\spec(B_i)$ de modo que $f^{-1}(V_i)$ está cubierto por abiertos afines $U_{ij}=\spec(A_{ij})$, donde cada $A_{ij}$ es na $B_i$-álgebra finitamente generada. %Esto nos da un recubrimiento de $f^{-1}(V)$ por abiertos de $X$, ya que $f^{-1}(V)=f^{-1}(V\cap \bigcup V_i)=\bigcup(f^{-1}(V)\cap f^{-1}(V_i))$, pero estos abiertos no tienen por qué ser afines. 
-%
-%Observemos que para $\p\in B_i$, $f^{-1}(\spec((B_i)_\p))$ está cubierto por los $f^{-1}(\spec((A_{ij})_{\p^e})$, donde el ideal $\p^e$ es el extendido de $\p$ por la aplicación del álgebra $B_i\to A_{ij}$: si $f(x)\in\spec((B_i)_{\p})$, entonces $f(x)$ es un primo de $B_i$ que no contiene a $\p$, por lo que 
+\begin{ejercicio}{3.1}
+Probar que un morfismo $f:X\to Y$ es localmente de tipo finito si y solo si para \emph{todo} abierto afín $V=\spec(B)$ de $Y$, $f^{-1}(V)$ puede ser cubierto por abiertos afines $U_j=\spec(A_j)$, donde cada $A_j$ es una $B$-álgebra finitamente generada. 
+\end{ejercicio}
+\begin{solucion}
+Una de las implicaciones es trivial, así que supongamos que $f:X\to Y$ es localmente de tipo finito. Sea $V=\spec(B)$ un abierto afín de $Y$ y consideremos $f^{-1}(V)$. Por ser $f$ localmente de tipo finito, podemos recubrir $Y$ con abiertos afines $V_i=\spec(B_i)$ de modo que $f^{-1}(V_i)$ está cubierto por abiertos afines $U_{ij}=\spec(A_{ij})$, donde cada $A_{ij}$ es na $B_i$-álgebra finitamente generada. %Esto nos da un recubrimiento de $f^{-1}(V)$ por abiertos de $X$, ya que $f^{-1}(V)=f^{-1}(V\cap \bigcup V_i)=\bigcup(f^{-1}(V)\cap f^{-1}(V_i))$, pero estos abiertos no tienen por qué ser afines. 
+
+Observemos que para $\p\in B_i$, $f^{-1}(\spec((B_i)_\p))$ está cubierto por los $f^{-1}(\spec((A_{ij})_{\p^e})$, donde el ideal $\p^e$ es el extendido de $\p$ por la aplicación del álgebra $B_i\to A_{ij}$: si $f(x)\in\spec((B_i)_{\p})$, entonces $f(x)$ es un primo de $B_i$ que no contiene a $\p$, por lo que 
 
 %\url{https://math.stackexchange.com/questions/384137/intersection-of-open-affines-can-be-covered-by-open-sets-distinguished-in-both}
 %\url{https://math.arizona.edu/~cais/CourseNotes/AlgGeom04/Hartshorne_Solutions.pdf}
@@ -49,41 +49,41 @@
 %\url{http://mathbabysteps.blogspot.com/2016/12/affine-communication-lemma.html}
 %\url{https://math.stackexchange.com/questions/803636/question-on-morphism-locally-of-finite-type}
 
-%Una de las implicaciones es trivial, así que supongamos que $f:X\to Y$ es localmente de tipo finito. Sea $V=\spec(B)$ un abierto afín de $Y$. Del recubrimiento afín $\{V_i=\spec(B_i)\}_{i\in I}$ de $Y$ que nos da que $f$ sea localmente de tipo finito obtenemos un recubrimiento afín de $V$, pero $V\cap V_i$ no será en general afín, así que necesitamos el siguiente lema:
-%
-%\begin{lemma}
-%Sean $U=\spec(A)$ y $V=\spec(B)$ subesquemas afines abiertos de un esquema $X$. Entonces $\spec(A)\cap\spec(B)$ puede ser recubierto por abiertos $W_i$ que son subesquemas abiertos básicos tanto de $\spec(A)$ como de $\spec(B)$.
-%\end{lemma}
-%\begin{proof}
-%Hacemos primero la siguiente observación: dado un abierto $U$ y $g\in\OO_X(U)$ y $V\subseteq U$, denotamos $U_g=\{x\in U\mid g_x\notin \mm_x\}$ donde $\mm_x$ es el ideal maximal de $\OO_x$, entonces $U_g\cap V=V_{g|_V}$. 
-%
-%Sea $p\in\spec(A)\cap\spec(B)$. Afirmamos que existe un subesquema abierto básico tanto de $\spec(A)$ como de $\spec(B)$ conteniendo a $x$. Sea $\spec(A)\supseteq\spec(A_f)\ni p$ y sea $\spec(A_f)\supseteq\spec(B_g)\ni p$ tal como se observa en la figura.
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[scale=0.22]{3-1}
-%\end{figure}
-%
-% Estas inclusiones y el hecho de que $\spec(A_f)$ es básico en $\spec(A)$ y $\spec(B_g)$ es básico en $\spec(B)$ nos lo da el ejercicio 2.1. Vamos a probar que $\spec(B_g)$ también es básico en $\spec(A)$. Tenemos que $g\in\Gamma(\spec(B),\OO_X)$ se restringe a $g'\in\Gamma(\spec(A_f),\OO_X)=A_f$. Por la observación del principio de la demostración tenemos que $\spec(B_g)=\spec(A_f)_{g'}$. Si $g'=g''/f^n$ con $g''\in A$, tal como se hizo en el apartado (a) del ejercicio 2.16 se prueba que además $\spec(A_f)_{g'}=\{x\in\spec(A)\mid (f^ng'')_x=g'_x\notin \mm_x\}=D(g')$, con lo que hemos probado el resultado. 
-%
-%
-%
-%\end{proof}
-%Ahora podemos cubrir $V$ con subesquemas afines que son básicos tanto en $V$ como en $V_i$, y tomando preimágenes recubrimos $f^{-1}(V)$ (aunque cada preimagen no tiene por qué ser afín). Sea $V'$ unos de esos subesquemas afines, digamos $D(g)=V'= D(g_i)$ con $g\in B$ y $g_i\in B_i$. Podemos cubrir $f^{-1}(V')$ por subesquemas affines abiertos que son abiertos básicos para unos ciertos abiertos afines $U_{ij}=\spec(A_{ij})$ de $X$ (los que nos da que $f$ sea localmente de tipo finito). Sea $U'$ uno de esos abiertos básicos, digamos $U'=D(f_{ij})$ para $f_{ij}\in A_{ij}$. 
-%
-%Ahora, $f|_{U_{ij}}:U_{ij}\to V_i$ está inducida por un homomorfimos de anillos $\varphi_{ij}:B_i\to A_{ij}$ por la proposición 2.3(c), por lo que $A_{ij}$ es una $B_i$-álgebra. Como $U'\subseteq f^{-1}(V\cap V_i)$, sabemos que $f|_{U'}:U'\to V_i$ está inducida por la localización de $\varphi_{ij}$, pero también por un cierto homomorfismo $\varphi:B\to (A_{ij})_{f_{ij}}$. Probaremos que esto convierte a $A=(A_{ij})_{f_{ij}}$ en una $B$-álgebra finitamente generada.
-%
-%Usamos que $U'\subseteq f^{-1}(V')$ para obtener dos homomorfismos de anillos inducidos por $f$, $\psi:B_g\to A$ y $\psi_{ij}:(B_i)_{g_i}\to A$. De la construicción de $V'$ y $U'$ se sigue que $\psi$ es la localización de $\varphi$ y $\psi_{ij}$ la localización de $\varphi_{ij}$ compuesta con la localización $A_{ij}\to A$. Además, si $\sigma:B_g\to (B_i)_{g_i}$ es el isomorfismo inducido por el isomorfismo de sus espectros, $\psi=\psi_{ij}\circ\sigma$ por la conmutatividad de los morfismos de esquemas
-%\[
-%\begin{tikzcd}
-%D(g)& D(f_{ij})\arrow[l, "f"']\arrow[dl, "f"]\\
-%D(g_i)\arrow[u, equals] & 
-%\end{tikzcd}
-%\]
-%
-%Finalmente, por hipótesis tenemos que $A_{ij}$ es una $B_i$-álgebras finitamente generadas, con lo que también lo es $A=(A_{ij})_{f_{ij}}$. Pero entonces también es un una $(B_i)_{g_i}$-álgebra finitamente generada, lo cual es equivalente a ser una $B_g$-álgebra finitamente generada, y entonces es una $B$-álgebra finitamente generada, como queríamos probar.
-%\end{solucion}
-%
-%\newpage
+Una de las implicaciones es trivial, así que supongamos que $f:X\to Y$ es localmente de tipo finito. Sea $V=\spec(B)$ un abierto afín de $Y$. Del recubrimiento afín $\{V_i=\spec(B_i)\}_{i\in I}$ de $Y$ que nos da que $f$ sea localmente de tipo finito obtenemos un recubrimiento afín de $V$, pero $V\cap V_i$ no será en general afín, así que necesitamos el siguiente lema:
+
+\begin{lemma}
+Sean $U=\spec(A)$ y $V=\spec(B)$ subesquemas afines abiertos de un esquema $X$. Entonces $\spec(A)\cap\spec(B)$ puede ser recubierto por abiertos $W_i$ que son subesquemas abiertos básicos tanto de $\spec(A)$ como de $\spec(B)$.
+\end{lemma}
+\begin{proof}
+Hacemos primero la siguiente observación: dado un abierto $U$ y $g\in\OO_X(U)$ y $V\subseteq U$, denotamos $U_g=\{x\in U\mid g_x\notin \mm_x\}$ donde $\mm_x$ es el ideal maximal de $\OO_x$, entonces $U_g\cap V=V_{g|_V}$. 
+
+Sea $p\in\spec(A)\cap\spec(B)$. Afirmamos que existe un subesquema abierto básico tanto de $\spec(A)$ como de $\spec(B)$ conteniendo a $x$. Sea $\spec(A)\supseteq\spec(A_f)\ni p$ y sea $\spec(A_f)\supseteq\spec(B_g)\ni p$ tal como se observa en la figura.
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.22]{3-1}
+\end{figure}
+
+ Estas inclusiones y el hecho de que $\spec(A_f)$ es básico en $\spec(A)$ y $\spec(B_g)$ es básico en $\spec(B)$ nos lo da el ejercicio 2.1. Vamos a probar que $\spec(B_g)$ también es básico en $\spec(A)$. Tenemos que $g\in\Gamma(\spec(B),\OO_X)$ se restringe a $g'\in\Gamma(\spec(A_f),\OO_X)=A_f$. Por la observación del principio de la demostración tenemos que $\spec(B_g)=\spec(A_f)_{g'}$. Si $g'=g''/f^n$ con $g''\in A$, tal como se hizo en el apartado (a) del ejercicio 2.16 se prueba que además $\spec(A_f)_{g'}=\{x\in\spec(A)\mid (f^ng'')_x=g'_x\notin \mm_x\}=D(g')$, con lo que hemos probado el resultado. 
+
+
+
+\end{proof}
+Ahora podemos cubrir $V$ con subesquemas afines que son básicos tanto en $V$ como en $V_i$, y tomando preimágenes recubrimos $f^{-1}(V)$ (aunque cada preimagen no tiene por qué ser afín). Sea $V'$ unos de esos subesquemas afines, digamos $D(g)=V'= D(g_i)$ con $g\in B$ y $g_i\in B_i$. Podemos cubrir $f^{-1}(V')$ por subesquemas affines abiertos que son abiertos básicos para unos ciertos abiertos afines $U_{ij}=\spec(A_{ij})$ de $X$ (los que nos da que $f$ sea localmente de tipo finito). Sea $U'$ uno de esos abiertos básicos, digamos $U'=D(f_{ij})$ para $f_{ij}\in A_{ij}$. 
+
+Ahora, $f|_{U_{ij}}:U_{ij}\to V_i$ está inducida por un homomorfimos de anillos $\varphi_{ij}:B_i\to A_{ij}$ por la proposición 2.3(c), por lo que $A_{ij}$ es una $B_i$-álgebra. Como $U'\subseteq f^{-1}(V\cap V_i)$, sabemos que $f|_{U'}:U'\to V_i$ está inducida por la localización de $\varphi_{ij}$, pero también por un cierto homomorfismo $\varphi:B\to (A_{ij})_{f_{ij}}$. Probaremos que esto convierte a $A=(A_{ij})_{f_{ij}}$ en una $B$-álgebra finitamente generada.
+
+Usamos que $U'\subseteq f^{-1}(V')$ para obtener dos homomorfismos de anillos inducidos por $f$, $\psi:B_g\to A$ y $\psi_{ij}:(B_i)_{g_i}\to A$. De la construicción de $V'$ y $U'$ se sigue que $\psi$ es la localización de $\varphi$ y $\psi_{ij}$ la localización de $\varphi_{ij}$ compuesta con la localización $A_{ij}\to A$. Además, si $\sigma:B_g\to (B_i)_{g_i}$ es el isomorfismo inducido por el isomorfismo de sus espectros, $\psi=\psi_{ij}\circ\sigma$ por la conmutatividad de los morfismos de esquemas
+\[
+\begin{tikzcd}
+D(g)& D(f_{ij})\arrow[l, "f"']\arrow[dl, "f"]\\
+D(g_i)\arrow[u, equals] & 
+\end{tikzcd}
+\]
+
+Finalmente, por hipótesis tenemos que $A_{ij}$ es una $B_i$-álgebras finitamente generadas, con lo que también lo es $A=(A_{ij})_{f_{ij}}$. Pero entonces también es un una $(B_i)_{g_i}$-álgebra finitamente generada, lo cual es equivalente a ser una $B_g$-álgebra finitamente generada, y entonces es una $B$-álgebra finitamente generada, como queríamos probar.
+\end{solucion}
+
+\newpage
 
 
 
@@ -96,50 +96,10 @@
 %
 
 %
-%\begin{ejercicio}{2.16}
-%
-%\end{ejercicio}
-%\begin{solucion}
-%Un morfismo de esquemas $f:X\to Y$ es \emph{quasi-compacto} si existe un recubrimiento de $Y$ por abiertos afines $V_i$ tales que $f^{-1}(V_i)$ es quasi-compacto para cada $i$. Porbar que $f$ es quasi-compacto si y solo si para \emph{todo} abierto afín $V\subseteq Y$, $f^{-1}(V)$ es quasi-compacto.
-%\end{solucion}
-%%
-%\newpage
-%%
-%\begin{ejercicio}{Lema de Yoneda}
-%$h_*:\CC\to \mathrm{Fun}(\CC^{op}, \mathrm{Set})$ es plenamente fiel, es decir, para todo $X,X'\in Ob(\CC)$ la aplicación $\alpha\in\Hom_{\CC}(X,X')\mapsto h_{\alpha}\in \mathrm{Nat}(h_X,h_{X'})$ es un isomorfismo. 
-%\end{ejercicio}
-%\begin{solucion}
-%%https://math.stackexchange.com/questions/94007/proof-of-yoneda-lemma
-%Supongamos que existen $\alpha,\alpha'\in\Hom(X,X')$ tales que $h_\alpha=h_{\alpha'}$. Tenemos entonces, un diagrama conmutativo
-%\[
-%\begin{tikzcd}
-%h_X(X)\arrow[r, "h_\alpha=h_{\alpha'}"]\arrow[d, "h_X(Id)"'] & h_{X'}(X)\arrow[d, "h_{X'}(Id)"]\\
-%h_X(X)\arrow[r, "h_\alpha=h_{\alpha'}"'] & h_{X'}(X)
-%\end{tikzcd}
-%\]
-%Dada una flecha $f\in h_X(X)$, $$h_{X'}\circ h_{\alpha}(f)=\alpha\circ f\circ Id=\alpha\circ f$$
-%$$h_{X'}\circ h_{\alpha'}(f)=\alpha'\circ f\circ Id=\alpha'\circ f$$
-%En particular, para $f=Id:X\to X$, obtenemos $\alpha=\alpha'$, y con ello la inyectividad. 
-%
-%Sea ahora $\tau:h_X\to h_{X'}$ una transformación natural cualquiera, de modo que tenemos el diagrama conmutativo para todo $U,V\in Ob(\CC)$  y $f\in\Hom_{\CC^{op}}(U,V)$ 
-%\[
-%\begin{tikzcd}
-%h_X(U)\arrow[r, "\tau(U)"] \arrow[d, "h_X(f)"']& h_{X'}(U)\arrow[d, "h_{X'}(f)"]\\
-%h_X(V)\arrow[r, "\tau(V)"'] & h_{X'}(V)
-%\end{tikzcd}
-%\]
-%donde $h_X(f)$ se debe interpretar como $h_X(f^{op})$. En particular, para $U=X$ tenemos por el diagrama que $\tau(U)\circ h_X(f)=h_{X'}(f)\circ\tau(X)$. Definimos $\alpha=\tau(X)(Id)\in h_{X'}(X)=\Hom(X,X')$. Sustituyendo $Id$ en el lado izquierdo de la ecuación de conmutatividad obtenemos
-%\[
-%\tau(U)\circ h_X(f)(Id)=\tau(U)( f^{op})
-%\]
-%y en el lado derecho
-%\[
-%h_{X'}(f)\circ\tau(X)(Id)=h_{X'}(f)(\alpha)=\alpha\circ f^{op}=h_\alpha(f^{op})
-%\]
-%Como esto se tiene para toda $f$, obtenemos que $h_\alpha=\tau(U)$, y como esta igualdad es para todo $U$, deducimos que $\tau=h_{\alpha}$, lo que nos da la sobreyectividad. 
-%\end{solucion}
-%
-%\newpage
+
+
+
+
 %
 \begin{ejercicio}{3.12}\emph{Subesquemas cerrados de $\proj(S)$}
 \begin{enumerate}
@@ -173,7 +133,7 @@ Para ello es suficiente probarlo en las fibras, que por el ejercicio 1.8 es equi
 %%
 %\end{solucion}
 
-%\newpage
+\newpage
 
 \begin{ejercicio}{3.22}\emph{Dimensión de las fibras de un morfismo.} Sea $f:X\to Y$ un morfismo dominante de esquemas íntegros de tipo finito sobre un cuerpo $k$. 
 \begin{enumerate}[(a)]

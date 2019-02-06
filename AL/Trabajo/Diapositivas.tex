@@ -1,7 +1,7 @@
 \documentclass{beamer}
 \usepackage[utf8]{inputenc}
 \usetheme{Copenhagen}
-\usepackage[spanish]{babel}
+\usepackage[english]{babel}
 \usepackage{multirow}
 %\usepackage{estilo-apuntes}
 \usepackage{braids}
@@ -89,54 +89,6 @@
 \newcommand{\conti}{\setcounter{enumi}{\value{saveenumi}}}
 
 \resetcounteronoverlays{saveenumi}
-%\AtBeginSection[]{
-%\begin{frame}
-%\frametitle{Tabla de contenidos}
-%\tableofcontents
-%\end{frame}
-%}
-%\begin{frame}
-%\begin{enumerate}
-%\item Saludo, agradecimientos, decir que tenía tantas ganas de presentarlo que he venido desde Madrid
-%\item Presentarlo, decir que explicaré brevemente el problema de la palabra, daré varias visiones de los grupos de trenzas y varios algoritmos (muy por encima) para resolver el problema en estos grupos
-%\item Problema de la palabra: explicación, no siempre se puede resolver pero vamos a ver unos grupos donde sí
-%\seti
-%\end{enumerate}
-%\end{frame}
-%\begin{frame}
-%\begin{enumerate}
-%\conti
-%\item Trenzas: decir que son grupos importantes no solo por esto. idea intuitiva de trenza (incluyendo trenzas puras) y concatenación. Esto da un grupo de clases de homotopía relativa.
-%\item Espacios de configuración: n puntos distintos moviéndose en un espacio sin chocarse, si no importa el orden de los puntos hacemos el cociente. Las trenzas (puras) serían grupo fundamental de estos en C o R2 da lo mismo. 
-%\item Mapping class group: automorfismos del disco deforman lazos y esto hacen el efecto de cruce de puntos, que se corresponde con los cruces de cuerdas (Poner imagen de automorfismos del grupo libre) salvo isotopía
-%\item Presentación del grupo: generadores son cruces, también tenemos presentación para las trenzas puras con generadores de Birman (dibujo)
-%\seti
-%\end{enumerate}
-%\end{frame}
-%\begin{frame}
-%\begin{enumerate}
-%\conti
-%\item Automorfismos del grupo libre :Con la imagen y la expresión de la representación, aquí usamos los mapping class groups, y asociamos un automorfismo del grupo libre a cada generador. Esta representación es fiel y en el grupo libre se puede resolver el problema de la palabra. 
-%\item Peinado de trenzas: Usamos una propiedad de los grupos de trenzas puras, que es que son isomorfos a un producto semidirecto de grupos libres y entonces basta resolver en cada factor el problema. Para expresarlo se usan los generadores de Birman. Para una trenza general primero se comprueba si es pura. (Imagen de peinada, cada cuerda se corresponde a uno) (Producto semidirecto: extensión escindida de grupos)
-%\seti
-%
-%\end{enumerate}
-%\end{frame}
-%\begin{frame}
-%\begin{enumerate}
-%\conti
-%\item Forma normal: Monoide de trenzas positivas: trenzas que tienen exponentes positivas. Aquí existe un orden parcial que admite mínimo común múltiplo y máximo común divisor. Existe un elemento especial que es el mínimo común múltiplo de los generadores. A partir de esto llegamos a una forma normal (la forma normal de Garside) y ya dos palabras representan el mismo elemento si y solo si tienen la misma forma normal. 
-%(Si tengo que poner en la misma diapositiva el monoide y el Delta hacer para que no salgan a la vez, posiblemente con itemize haciendo que no salga el bullet) BN+ misma presentación con un +
-%\item Representaciones lineales: se intenta representar las trenzas en un grupo lineal (en este caso sobre anillos de polinomios). Enumerar las que menciono en el trabajo diciendo que la de Burau no se sabe si es fiel para n=4 pero las otras sí. 
-%\item Finalización: y con esto hemos visto los principales algoritmos. Agradecimiento y preguntas. 
-%\end{enumerate}
-%\end{frame}
-%
-%\begin{frame}
-%BOTELLA DE AGUA
-%
-%PUNTERO PARA PASAR DIAPOSITIVAS
-%\end{frame}
 
 
 \section{Introduction}
@@ -145,7 +97,7 @@
 \frametitle{Introduction}
 Aka Pygmies rythmic pattern: 32222322222
 \begin{figure}[h!]
-\includegraphics[scale=0.5]{circulo}
+\includegraphics[scale=0.7 ]{circulo}
 \caption{No breaking point giving two parts of equal length.}
 \end{figure}
 \end{frame}
@@ -169,8 +121,8 @@ Aka Pygmies rythmic pattern: 32222322222
 \item<1-> Alphabet $A=\{2,3\}$, $A^*=$words over $A$, $\varepsilon=$empty word. 
 \item<2-> $A^*$ is a monoid under concatenation.
 \item<3-> For $w\in A^*$, $|w|=$lenght of $w$, $|w|_x=$number of symbols in $w$ equal to $x$.
-\item<4-> $u$ is a \textbf{prefix} of $w$ is $w=uy$ for some $y\in A^*$.
-\item<5-> $u$ is a \textbf{suffix} of $w$ is $w=yu$ for some $y\in A^*$.
+%\item<4-> $u$ is a \textbf{prefix} of $w$ is $w=uy$ for some $y\in A^*$.
+%\item<5-> $u$ is a \textbf{suffix} of $w$ is $w=yu$ for some $y\in A^*$.
 \end{itemize}
 \end{frame}
 
@@ -290,9 +242,9 @@ Computation of $f(w)$ where $w=332232322$. Factorization $w=uv$ such that $h(v)=
 &= abab(2, 22)\\
 &= ababb(2, 2)\\
 &= ababbb(\varepsilon, 2)\\
-&= ababbbb(\varepsilon, \varepsilon),
+&= ababbbb(\varepsilon, \varepsilon)\Rightarrow f(332232322)=ababbbb
 \end{align*}
-which gives $f(332232322)= ababbbb$.
+%which gives $f(332232322)= ababbbb$.
 \end{example}
 \end{frame}
 \section{Lyndon words}
@@ -319,12 +271,39 @@ $$aababb=(aab)(abb)$$
 \section{Algorithm}
 \begin{frame}
 \frametitle{Algorithm}
+\begin{itemize}
+\item<1->  Let $a$ be the smallest
+letter of the ordered alphabet $\Sigma$ and $M$ be the largest one.
+\item<2-> For every $x\in \Sigma\setminus\{M\}$, $s(x)$ is the
+letter that immediately larger than $x$. 
+\item<3-> Denote by
+$w[1...n]$ an array of letters of dimension $n$.
+\end{itemize}
 
-AQUÍ VIENE EL ALGORITMO PARA CALCULAR PALABRAS DE LYNDON Y LA REFERENCIA 8 DONDE SE EXPLICA, Y DE HECHO VIENE LO DE ESTE ARTÍCULO
-\url{http://ehess.modelisationsavoirs.fr/marc/publi/softcomputing/5000387periodicity.pdf}
+
+%AQUÍ VIENE EL ALGORITMO PARA CALCULAR PALABRAS DE LYNDON Y LA REFERENCIA 8 DONDE SE EXPLICA, Y DE HECHO VIENE LO DE ESTE ARTÍCULO
+%\url{http://ehess.modelisationsavoirs.fr/marc/publi/softcomputing/5000387periodicity.pdf}
 
 \end{frame}
 
+\begin{frame}
+
+\textbf{Computation of Lyndon words of length $\leq n$}
+
+\begin{figure}
+\includegraphics[scale=0.8]{algoritmo}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\textbf{Computation of words satisfying the rythmic oddity property}
+\begin{itemize}
+\item<2-> Apply the previous algorithm to $\Sigma=B$.
+\item<3-> Take only those words with an odd number of symbols equal to $b$. 
+\item<4-> To recover the words in $A^*$ evaluate each solution on $(\varepsilon,\varepsilon)$. 
+\end{itemize}
+\end{frame}
 \section{Counting the solutions}
 
 

@@ -22,6 +22,12 @@ Definimos $T:\Chi(U)\times\Chi(U)\to\Chi(U)$ como $T(X,Y)=(df)^{-1}[(\overline{\
 
 Probamos las cinco propiedades que definen la conexión de Levi-Civita:
 \begin{enumerate}
+\item $T(g_1X+g_2Y)=(df)^{-1}((\overline{\nabla}_{\widetilde{g_1X+g_2Y}}\tilde{Z}\circ f)^t)=$
+$$(df)^{-1}(\overline{\nabla}_{\overline{g}_1\tilde{X}+\overline{g}_2\tilde{Y}}\tilde{Z}\circ f)^t=(df)^{-1}((\overline{g}_1\overline{\nabla}_{\tilde{X}}\tilde{Z}+\overline{g}_2\tilde{\nabla}_{\tilde{Y}}\tilde{Z})\circ f)^t $$
+$$(df)^{-1}((\overline{g}_1\circ f)\overline{\nabla}_{\tilde{X}}\tilde{Z}+(\overline{g}_2\circ f)\tilde{\nabla}_{\tilde{Y}}\tilde{Z})^t=(df)^{-1}(g_1\overline{\nabla}_{\tilde{X}}\tilde{Z}+g_2\tilde{\nabla}_{\tilde{Y}}\tilde{Z})^t=$$
+$$(df)^{-1}(g_1\overline{\nabla}_{\tilde{X}}\tilde{Z})^t+(df)^{-1}(g_2\overline{\nabla}_{\tilde{Y}}\tilde{Z})=g_1T(X,Z)+g_2T(Y,Z)$$
+
+\item Igual que la anterior.
 \item Para $g\in C^{\infty}(M)$, tomamos $\overline{g}=g\circ f^{-1}$. 
 $$T(X,gY)=(df)^{-1}(\overline{\nabla}_{\tilde{X}}\tilde{Y}\circ f)^t=(df)^{-1}([\overline{g}\overline{\nabla}_{\tilde{X}}\tilde{Y}+\tilde{X}(\overline{g})\tilde{Y}]\circ f)^t=(df)^{-1}([g\overline{\nabla}_{\tilde{X}}\tilde{Y}]^t+[(\tilde{X}\circ f)(\tilde{Y}\circ  f)]^t)=$$
 $$gT(X,Y)+(df)^{-1}([\tilde{X}(\overline{g})\circ f)(\tilde{Y}\circ f)]^t)$$
@@ -31,11 +37,13 @@ $$(\tilde{X}(\overline{g})\circ f)(p)=(d\overline{g})_{f(p)}(\tilde{X}f(p))=(d\o
 $$d(\overline{g}\circ f)_p(X_p)=(df)_p(X_p)=X_p(g)=X(g)(p)$$
 Con esto, $\tilde{X}(\overline{g})\circ f=X(g)$ y $\tilde{Y}\circ g=(df)(Y)$. De modo que 
 $$(df)^{-1}([\tilde{X}(\overline{g})\circ f)(\tilde{Y}\circ f)]^t)=X(g)(df)^{-1}(df)(Y)=X(g)Y$$
-
-\item
-\item
-\item
-\item 
+\item $T(X,Y)-T(Y,X)=(df)^{-1}[(\overline{\nabla}_{\tilde{X}}\tilde{Y}\circ f-\overline{\nabla}_{\tilde{Y}}\tilde{X}\circ f)^t]=$
+$$(df)^{-1}((\overline{\nabla}_{\tilde{X}}\tilde{Y}-\overline{\nabla}_{\tilde{Y}}\tilde{X})\circ f)^t=(df)^{-1}([X,Y]\circ f)^t=$$
+$$(df)^{-1}((df)[X,Y])=[X,Y]$$
+\item  $\gene{T(X,Y),Z}+\gene{Y,T(X,Z)}=\gene{(df)^{-1}(\overline{\nabla}_{\tilde{X}}\tilde{Y}\circ f,Z}+\gene{Y,(df)^{-1}(\overline{\nabla}_{\tilde{X}}\tilde{Z}\circ f}=$
+$$\gene{\overline{\nabla}_{\tilde{X}}\tilde{Y}\circ f,(df)(\tilde{Z})}+\gene{(df)(\tilde{Y}),\overline{\nabla}_{\tilde{X}}\tilde{Z}\circ f}=$$
+$$\gene{\overline{\nabla}_{\tilde{X}}\tilde{Y}\circ f,\tilde{Z}\circ f}+\gene{\tilde{Y}\circ f,\overline{\nabla}_{\tilde{X}}\tilde{Z}\circ f}=$$
+$$(\gene{\overline{\nabla}_{\tilde{X}}\tilde{Y},\tilde{Z}}+\gene{\tilde{Y},\overline{\nabla}_{\tilde{X}}\tilde{Z}})\circ f=\tilde{X}(\gene{\tilde{Y},\tilde{Z}})\circ f=X(\gene{Y,Z})$$
 \end{enumerate}
 
 Sea $f:(M^n,g)\to (M^m,\overline{g})$ una inmersión isométrica. Sea $O\subseteq M$ abierto tal que $f|_O$ es un embebimiento. Sean $X,Y\in\mathfrak{X}(O)$ y $\widetilde{X},\widetilde{Y}\in\mathfrak{X}(\overline{M})$ tales que $df(X)=\widetilde{X}\circ f$ y $df(Y)=\widetilde{Y}\circ f$.
