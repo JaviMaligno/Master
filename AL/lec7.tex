@@ -1,0 +1,114 @@
+\documentclass[AL.tex]{subfiles}
+
+\begin{document}
+\chapter{Algoritmos aproximados}
+Queremos empezar diferenciando los algoritmos heurísticos de los aproximados. Los algoritmos heurísticos son intuitivos y polinomiales, pero no garantizan la calidad de la solución. Los aproximados en cambio, sí garantizan la calidad de la solución, para lo cual requieren una prueba teórica de que la solución está cerca del óptimo (sin conocer la solución óptima). 
+
+\section{Problemas de optimización}
+
+Supongamos que tenemos un problema de optimización $P$, por fijar ideas $\min f(n)$, que tiene una solución óptima $C^*$. 
+
+\begin{defi}
+Un algoritmo $A$ es \emph{$\rho(n)$-aproximado} para $P$ si para cualquier instancia de tamaño $n$, la solución de $A$, $C_A$, cumple
+\[
+\frac{C_A}{C^*}\leq \rho(n)
+\]
+en el caso de que el problema consista en minimizar $f(n)$, y con la fracción invertida en el caso de maximizar. 
+\end{defi}
+
+\begin{ej}
+$A$ es 3-aproximado si $C_A\leq 3C^*$ para cualquier situación. 
+\end{ej}
+
+
+\begin{ej}[Vertex Cover]
+Dado un grafo no dirigido $G=(V,E)$, buscar el mínimo número de vértice de modo que cualquier arista toca alguno de los vértices elegidos. El input es $G$ y el output es un conjunto $C\subseteq V$ de mínimo tamaño tal que para todo $(u,v)\in E$ se cumple o bien $u\in C$ o bien $v\in C$. 
+
+Un posible algoritmo es greedy. Empezamos seleccionando el vértice de mayor grado y descartamos sus vecinos y las aristas incidentes, de entre los vértices  restantes se va eligiendo de nuevo uno de máximo grado. Claramente este algoritmo es lineal en el número de vértices. Sin embargo, no es tan preciso como puede parecer. El siguiente ejemplo, comenzando por el vértice inferior izquierdo nos da una solución $C=11$, pero la óptima es $C^*=6$, y de hecho se puede generalizar para que la diferencia sea arbitrariamente grande. 
+
+\definecolor{qqqqff}{rgb}{0.,0.,1.}
+\definecolor{qqffqq}{rgb}{0.,1.,0.}
+\definecolor{ffqqqq}{rgb}{1.,0.,0.}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-3.753333333333333,-1.) rectangle (10.966666666666672,4);
+\draw [line width=2.pt] (-2.,0.)-- (0.,3.);
+\draw [line width=2.pt] (-1.,0.)-- (3.,3.);
+\draw [line width=2.pt] (-2.,0.)-- (1.,3.);
+\draw [line width=2.pt] (-2.,0.)-- (2.,3.);
+\draw [line width=2.pt] (-1.,0.)-- (4.,3.);
+\draw [line width=2.pt] (-1.,0.)-- (5.,3.);
+\draw [line width=2.pt] (0.,0.)-- (0.,3.);
+\draw [line width=2.pt] (0.,0.)-- (1.,3.);
+\draw [line width=2.pt] (1.,0.)-- (2.,3.);
+\draw [line width=2.pt] (1.,0.)-- (3.,3.);
+\draw [line width=2.pt] (2.,0.)-- (4.,3.);
+\draw [line width=2.pt] (2.,0.)-- (5.,3.);
+\draw [line width=2.pt] (0.,3.)-- (3.,0.);
+\draw [line width=2.pt] (1.,3.)-- (4.,0.);
+\draw [line width=2.pt] (2.,3.)-- (5.,0.);
+\draw [line width=2.pt] (3.,3.)-- (6.,0.);
+\draw [line width=2.pt] (4.,3.)-- (7.,0.);
+\draw [line width=2.pt] (5.,3.)-- (8.,0.);
+\begin{scriptsize}
+\draw [fill=ffqqqq] (0.,3.) circle (2.5pt);
+\draw [fill=ffqqqq] (1.,3.) circle (2.5pt);
+\draw [fill=ffqqqq] (2.,3.) circle (2.5pt);
+\draw [fill=ffqqqq] (3.,3.) circle (2.5pt);
+\draw [fill=ffqqqq] (4.,3.) circle (2.5pt);
+\draw [fill=ffqqqq] (5.,3.) circle (2.5pt);
+\draw [fill=qqffqq] (-2.,0.) circle (2.5pt);
+\draw [fill=qqffqq] (-1.,0.) circle (2.5pt);
+\draw [fill=qqqqff] (0.,0.) circle (2.5pt);
+\draw [fill=qqqqff] (1.,0.) circle (2.5pt);
+\draw [fill=qqqqff] (2.,0.) circle (2.5pt);
+\draw [fill=black] (3.,0.) circle (2.5pt);
+\draw [fill=black] (4.,0.) circle (2.5pt);
+\draw [fill=black] (5.,0.) circle (2.5pt);
+\draw [fill=black] (6.,0.) circle (2.5pt);
+\draw [fill=black] (7.,0.) circle (2.5pt);
+\draw [fill=black] (8.,0.) circle (2.5pt);
+\end{scriptsize}
+\end{tikzpicture}
+
+En concreto, tomando $k!/k$ vertices verdes, $k!/(k-1)$ azules, $k!$ negros (entre ellos pondríamos $k!/(k-j)$ vértices de un color $j$-ésimo) y $k!$ rojos vemos que la solución óptima es $k!$, pero el greedy nos da $k!\left(\frac{1}{k}+\frac{1}{k-1}+\cdots +\frac{1}{k}+1\right)\approx k!\log k$. Se puede demostrar que el greedy es $O(\log n)$-aproximado para Vertex Cover. 
+
+Uno más sencillo y 2-aproximado es el siguiente: elegir una arista cualquiera $(u,v)$, seleccionar $u$ y $v$, borrar los vértices adyacentes a estos vértices (y las aristas que van a los vértices ya elegidos), repetir recursivamente añadiendo los nuevos vértices seleccionados mientras el conjunto de aristas no se quede vacío. El algoritmo tiene complejidad $O(n^2)$ y es obviamente correcto. El factor 2 se debe a que la solución óptima como mínimo tiene un vértice por cada arista, mientras que el algoritmo selecciona los dos vértices de cada arista seleccionada. 
+\end{ej}
+
+\section{Many-to-Many Matching}
+Empezamos explicando dónde se va a aplicar el algoritmo. Recibimos dos melodías, $M_A$ y $M_B$, representadas por puntos en el plano al extraer las frecuencias fundamentales. La primera melodía podemos pensar que es original y la segunda es de alguien intentando interpretarla. Queremos detectar si las dos melodías son la misma. Imaginemos que tenemos una asignación exhaustiva (de forma que no quede ninguna nota sin nota asignar) $A$ entre las notas de $M_A$ y $M_B$. Denotamos $C(A)=\sum d(asignacion)$, donde la $d$ representa la distancia entre los puntos. Así que $d(M_A,M_B)=\min_A C(A)$. 
+
+El algoritmo para generar una asignación aproximada sería empezar con una de las líneas, digamos $M_A$, y a cada punto asignamos los puntos de $M_B$ más cercanos, denotados $E_A$. Después hacemos lo mismo con $M_B$ eligiendo los que no han sido asociados antes, y al conjunto obtenido lo denotamos $E_B$: Entonces devolvemos $C=E_A\sqcup E_B$. 
+
+Si $C^*=\sum_i d_i$, y consideramos una arista de nuestra asignación que dé distancia mínima, entonces el óptimo debe contenerla, porque si en lugar de esta tuviera otra, la suma sería mayor. Esto prueba que $E_A\subseteq E^*$ y análogamente $E_B\subseteq E^*$, por lo que $C(E_A)\leq C(E^*)$ y $C(E_B)\leq C(E^*)$. Despejando obtenemos $C(E_A\sqcup E_B)=C(E_A)+C(E_B)\leq 2C^*$, por lo que el algoritmo es 2-aproximado. 
+
+\begin{ej}
+Damos un ejemplo en el que la desigualdad es en realidad una igualdad. 
+
+\definecolor{ffqqqq}{rgb}{1.,0.,0.}
+\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1.}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-0.5,2) rectangle (18.7,5);
+\draw (0,3.84) node[anchor=north west] {$a_0$};
+\draw (0.3,3.84) node[anchor=north west] {$a_1$};
+\draw (2,3.8) node[anchor=north west] {$a_2$};
+\draw (4,3.74) node[anchor=north west] {$a_3$};
+\draw (8,3.74) node[anchor=north west] {$a_4$};
+\draw (13,3.7) node[anchor=north west] {$a_5$};
+\draw (14.92,3.68) node[anchor=north west] {$a_6$};
+\begin{scriptsize}
+\draw [fill=ududff] (0.5,3.) circle (2.5pt);
+\draw [fill=ududff] (1.,3.) circle (2.5pt);
+\draw [fill=ududff] (6.,3.) circle (2.5pt);
+\draw [fill=ududff] (15.,3.) circle (2.5pt);
+\draw [fill=ffqqqq] (0.,3.) circle (2.5pt);
+\draw [fill=ffqqqq] (3.,3.) circle (2.5pt);
+\draw [fill=ffqqqq] (10.,3.) circle (2.5pt);
+\end{scriptsize}
+\end{tikzpicture}
+Donde $a_i$ representa la distancia entre los puntos, que vamos a suponer que es $2^i$.
+
+Como la distancia aumenta, en la segunda asignación se asignas los anteriores en lugar de los siguientes. Así que $C^*=a_0+a_2+a_4+a_6$ pero $C_A=\sum_{i=0}^6 a_i$, de mod oque $C_A=2C^*$. 
+\end{ej}
+\end{document}
+

@@ -315,22 +315,130 @@ Las proyecciones de la derecha coinciden porque solo hay un morfismo $T$-esquema
 
 
 
-\begin{ej}
+\begin{ej}[Esquema en grupos constante]
 Sea $G$ un grupo. Nos preguntamos si existe un $S$-esquema $X$ en grupos tal que $X(T)\cong G$ para todo $T\to S$, o al menos para algún $T\to S$. Definimos $S^G$ como la unión disjunta de copias de $S$ indexadas por $G$, $S^G=\coprod_{g\in G}S_g$, donde $S_g=S$ para todo $g$. Si $U\subseteq S^G$ es un abierto, $\OO_{S^G}(U)=\prod_{g\in G}\OO_S(U)$. Sea $T\to S$ un esquema. $\Hom_{\Sch_S}(T,S^G)=\Hom(T,\coprod_{g\in G}S_g)$. Para todo $g\in G$, sea $U_g=f^{-1}(S_g)\subseteq T$ abierto. Tenemos $T=\coprod_{g\in G} U_g$, por lo que $f:T\to\coprod_{g\in G}S_g$ se corresponde con la familia de restricciones $f|_{U_g}:U_g\to S$, cada uno de ellos siendo el morfismo estructural $\pi_{U_g,S}$ como $S$-esquema. Para otro morfismo $g$ definimos la misma familia pero llamando $V_h$ a los abiertos. Definimos $h=f\cdot g$ como el morfismo estructural $h|_{U_g\cap V_h}:U_g\cap V_h\to S_{g\cdot h}=S$.
 
-Nótese que si $T$ es conexo, solo hay un $U_x$, porque el complementario es abierto y por tanto tendríamos $T$ como unión de abiertos y cerrados disjutnos. En este caso, solo hay un $h$ y la estructura de grupo es claramente la de $G$. En el caso de que $T$ no sea conexo me gustaría
+Nótese que si $T$ es conexo, solo hay un $U_x$, porque el complementario es abierto y por tanto tendríamos $T$ como unión de abiertos y cerrados disjutnos. En este caso, solo hay un $h$ y la estructura de grupo es claramente la de $G$. En el caso de que $T$ no sea conexo esto no podrá ser así nunca porque cada componente conexo nos dará una copia de $G$, en concreto $\Hom_S(T,X)=\coprod_i G_i$, donde el índice $i$ recorre las componentes conexas de $T$ y $G_i=G$ para todo $i$. En particular, tenemos una biyección entre $\Hom_S(T,X)$ y las funciones localmente constantes $T\to G$. 
 \end{ej}
 
+\section{Morfismos de esquemas en grupos}
+Tenenemos dos definiciones equivalentes, una desde el punto de vista de los morfismos de esquemas y otro desde el functor de los puntos. 
+
+\begin{defi}
+Un morfismo de $S$-esquemas $\alpha:G\to G'$ donde $G,G'$ son esquemas en grupos sobre $S$ se dice morfismo de esquemas en grupos si el siguiente diagrama es conmutativo.
+\[
+\begin{tikzcd}
+G\times_S G \arrow[r, "\alpha\times\alpha"] \arrow[d, "\mu_G"'] & G'\times_S G' \arrow[d, "\mu_{G'}"] \\
+G \arrow[r, "\alpha"] & G'
+\end{tikzcd}
+\]
+\end{defi}
+
+\begin{lemma}
+Para todo $T\to S$, $\alpha$ induce un morfismo de grupos $\Hom(T,G)\xrightarrow{\alpha(T)}\Hom(T,G')$ asignando $f\mapsto \alpha\circ f$. 
+\end{lemma}
+\begin{proof}
+Para todo $f_1,f_2\in G(T)$, $\alpha(T)(f_1\cdot f_2)=\alpha\circ(f_1\cdot f_2)=(\alpha(T)\cdot f_1)\cdot(\alpha(T)\cdot f_2)=(\alpha\circ f_1)\cdot(\alpha\circ f_2)$ por el diagrama simplicado del producto
+\[
+\begin{tikzcd}
+ & T \arrow[ld, "f_1"'] \arrow[rd, "f_2"] \arrow[d] \arrow[dd, bend left] &  \\
+G \arrow[d, "\alpha"'] & G'\times_S G' \arrow[ld] \arrow[rd] \arrow[d, "\mu_{G'}"'] & G \arrow[d, "\alpha"] \\
+G' & G' & G'
+\end{tikzcd}
+\]
+donde la flecha curva es $(\alpha\circ f_1)\cdot (\alpha\circ f_2)$. Recíprocamente, si damos una familia $\{\alpha(T):\Hom_S(T,G)\to\Hom_S(T,G')\}$ de morfismos de grupos tales que si $\phi:T_1\to T_2$ el diagrama siguiente es conmutativo 
+\[
+\begin{tikzcd}
+{\Hom_S(T_2,G)} \arrow[r] \arrow[d, "\phi\circ-"] \arrow[r, "\alpha(T_2)"] & {\Hom_S(T_2,G')} \arrow[d, "\phi\circ-"] \\
+{\Hom_S(T_1,G)} \arrow[r, "\alpha(T_1)"] & {\Hom_S(T_1,G')}
+\end{tikzcd}
+\]
+Se sigue del lema de Yoneda que esta familia proviene de un $\alpha:G\to G'$ morfismo de esquemas en grupos sobre $S$.
+\end{proof}
 
 
+\begin{ej}
+Sea $G$ un esquema en grupos conmutativo sobre $S$ y $n\in\N$. Definimos $[n]:G\to G$ como la multiplicación por $n$, es decir, para todo $T\to S$, $[n](T):\Hom_S(T,G)\to\Hom_S(T,G)$ definida como $f\mapsto f\cdots f$ ($n$ veces). Se verifica trivialmente que es un homomorfismo de gurpos. Se verifica fácilmente la conmutatividad del diagrama
+\[
+\begin{tikzcd}
+{\Hom_S(T_2,G)} \arrow[r] \arrow[d, "\phi\circ-"] \arrow[r, "\alpha(T_2)"] & {\Hom_S(T_2,G)} \arrow[d, "\phi\circ-"] \\
+{\Hom_S(T_1,G)} \arrow[r, "\alpha(T_1)"] & {\Hom_S(T_1,G)}
+\end{tikzcd}
+\]
 
+Se puede definir también directamente sobre $G$ inductivamente. $[1]:G\to G$ se define como la itendidad y $[n]:G\to G$ se define como la composición 
+\[
+G\xrightarrow{\Delta}G\times_SG\xrightarrow{[1]\times[n-1]}G\times_S G\xrightarrow{\mu_G}G
+\]
+y se comprueba que da lo mismo que con la anterior definición. 
+\end{ej}
 
+\begin{ej}
+Sea $k$ un cuerpo de característica $p>0$ y $G_{a,k}=\spec(k[x])\to\spec(k)$. Tenemos el producto inducido por $x\mapsto 1\otimes x+x\otimes 1$. Definimos el morfismo de Frobenius $F_p$ definido por $G_{a,k}(T)\cong\OO_T(T)\to \OO_T(T)\cong G_{a,k}$, $a\mapsto a^p$, que es un morfismo de grupos y $\{F_p(T)\}$ define un morfismo de esquemas en grupos sobre $\spec(k)$.  
+\end{ej}
 
+\subsection{Núcleo de un morfismo de esquemas en grupos}
+Sea $\alpha:G\to G'$ un morfismo de esquemas en grupos sobre $S$. Para todo $T\to S$, $\alpha(T):G(T)\to G'(T)$ es un morfismo de grupos. Sea $K_T=\ker(\alpha(T))$. Consideramos el functor $\Sch_S\to\Grp$ dado por $T\mapsto K_T$. Nos preguntamos si existe $Z\to S$ tal que $\Hom_S(T,Z)\cong K_T$ para todo $T\to S$. Tenemos que $K_T=\ker(\alpha(T))=\{f\in\Hom_S(T,G')\mid \alpha(T)(f)=\alpha\circ f=\varepsilon_{G'}\circ\pi_T\}$. Es decir, $f\in K_T$ si y solo conmuta el diagrama
+\[
+\begin{tikzcd}
+T \arrow[r] \arrow[d, "\pi_T"'] \arrow[r, "f"] & G \arrow[d, "\alpha"] \\
+S \arrow[r, "\varepsilon_{G'}"] & G'
+\end{tikzcd}
+\]
+Si definimos $Z=S\times_{G'}G$ podemos colocarlo en el interior del diagrama con las proyecciones naturales de modo que obtenemos $f':T\to Z$ (las estructuras de $G'$-esquemas están dadas por las flechas del diagrama). Así que hay una correspondencia biyectiva entre las $f$ que hacen conmutativo el diagrama y $\Hom_S(T,S\times_{G'}\times G\}$. Esto significa que $S\times_{G'}G$ representa al functor $T\to K_T$. Por tanto hacemos la siguiente definición.
 
+\begin{defi}
+Se define $\ker\alpha=S\times_{G'}G$. 
+\end{defi}
+\begin{nota}
+Por el ejercicio 3.11 de Hartshorne, si $\alpha:X\to Y$ es una inmersión cerrada, $h:X'\to X$ morfismo de esquemas, y definimos $\alpha'$ mediante 
+\[
+\begin{tikzcd}
+X'\times_X Y\arrow[r] \arrow[d, "\alpha'"] & Y\arrow[d, "\alpha"]\\
+X'\arrow[r, "h"] & X
+\end{tikzcd}
+\]
+entonces $\alpha'$ también es una inmersión cerrada. Por tanto, si $\varepsilon_{G'}$ es una inmersión cerrada, también lo es $S\times_{G'}G\to G$, por lo que el núcleo se puede ver en este caso como un subesquema cerrado de $G$ (obsérvese que esto es independiente de $\alpha$). 
+\end{nota}
 
+\begin{prop}
+Sea $G$ un esquema en grupos sobre $S$. Son equivalentes:
+\begin{enumerate}
+\item $G\to S$ es separado.
+\item $\varepsilon_G:S\to G$ es una inmersión cerrada. 
+\end{enumerate}
+\end{prop}
+La prueba consiste en comparar $\Delta$ y $\varepsilon_{G'}$ usando 3.11 de Hartshorne. 
+\begin{ej}
+Sea $G_m$, $[n]:G_m\to G_m$. Para todo $T\to S$, $\ker[n](T)=\{f:T\to \spec(\Z[x,x^{-1}])\mid f^n=id\}=\{t\in\OO_T(T)^\times\mid t^n=1\}$. Equivalentemente, $\ker[n]=\spec(\Z[x,x^{-1}]/\gene{x^n-1})$. 
+\end{ej}
 
+\subsection{Cocientes}
 
+\begin{ej}
+Calculamos el conúcleo de $[2]:G_m\to G_m$, siendo $G_m=\spec(\Z[x,x^{-1}])\to\spec(\Z)$. A nivel de anillos, la operación es simplemente elevar al cuadrado, luego $[2](T):\OO_T(T)^\times\to\OO_T(T)^\times$ es $t\mapsto t^2$. $\coker[2](T)=G_m(T)/[2](T)(G_m(T))=\OO_T(T)^\times/(\OO_T(T)^\times)^2$. Querríamos representar el functor $T\mapsto \coker[2](T)$, pero esto no es posible. Sea $T=\spec(\Q)$. Tenemos que $\coker[2](\spec(\Q))\neq\{1\}$, pero si pasamos a la clausura algebraica $\overline{\Q}$, sí obtenemos un conúcleo trivial. Para $Z$ separable, usando EGA IV tenemos que $\Q\hookrightarrow \overline{\Q}$ por ser inyectivo entre dominios de integrar, la aplicación $\Hom(\spec(\Q),Z)\to\Hom(\spec(\overline{Q}),Z)$ sería inyectivo, pero es un homomorfismo $\{1\}\neq Z(\Q)\to Z(\overline{\Q})=1$. El caso general se sale del nivel de este universo. 
 
+Podemos ver que $[2]$ es sobre entre los espacios topológicos, porque $[2](\p)=\phi^{-1}(\p)=\{a\in\Z[x,x^{-1}]\mid a^2\in\p\}=\p$. Recordamos que si $f:X\to Y$ con $Y$ reducido, $f(X)\subseteq Y$ dotado dela estructura reducida es la imagen esquemática de $f$. Tomando $X=Y=G_m$, que son reducidos, $[2](G_m)=G_m$, por lo que la imagen esquemática de $[2]$ es $G_m$. Querríamos que $\coker[2]=G_m/G_m=1$. Pero $\coker([2](\spec\Q))\neq 1$. 
+\end{ej}
 
+Este ejemplo muestra la dificultad para definir los cocientes. La construcción de los cocientes requiere uso de las topologías de Grothendieck, por lo que pasamos a definirlos directamente mediante una propiedad unviersal. 
 
+\begin{defi}
+Sea $\phi:H\to G$ un morfismo de esquemas en grupos sobre $S$. Un par $(Q,\eta)$ con $Q\to S$ un esquema y $\eta:G\to Q$ es un \emph{cociente} si el siguiente diagrama es conmutativo
+\[
+\begin{tikzcd}
+G\times_S H \arrow[r, "Id_G\times\phi"] \arrow[d, "pr_1"'] & G\times_S G \arrow[r, "\mu"] & G \arrow[d, "\eta"] \\
+G \arrow[rr] &  & G
+\end{tikzcd}
+\]
+y para todo para $(Y,f)$ satisfaciendo las mismas propiedades existe un único morfismo que hace conmutar el diagrama siguiente
+\[
+\begin{tikzcd}
+G\times_S H \arrow[r, "Id_G\times\phi"] \arrow[dd, "pr_1"'] & G\times_S G \arrow[r, "\mu"] & G \arrow[dd, "f"] \arrow[ld, "\eta"] \\
+ & Q \arrow[rd, dashed] &  \\
+G \arrow[ru, "\eta"] \arrow[rr] &  & Y
+\end{tikzcd}
+\]
+Si para todo $T\to S$ $\phi(H(T))<G(T)$ es normal, $Q$ es un esquema en grupos sobre $S$, $\eta$ es un morfismo de esquemas en grupos y $\ker\eta\cong\phi(H)$. 
+\end{defi}
 \end{document}

@@ -355,10 +355,10 @@ En la figura anterior se trazan curvas que unen un generador consigo mismo y en 
 Dada una variedad compacta $M=|K|$, $H^*(M)=H^*(K)=H^*((C_*(K),\delta^*))$. Podemos definir una aplicación $C_q(K)\to C_{n-q}(K)$ dada por $\sum\sigma_i\mapsto \sum\sigma_i^*$, donde el dual de un símplice se define de la siguiente forma. Recordemos que $sd(K)=\{(b(\sigma_0),\dots, b(\sigma_n)\mid \sigma_0<\cdots<\sigma_n\}$, de modo que definimos $\sigma^*=\{(\sigma_0=\sigma<\sigma_1<\cdots)\mid (b(\sigma_0),b(\sigma_1),\dots)\in sd(K)\}$. En la figura anterior, la curva une el baricentro de $a_1$ consigo mismo mediante símplices pasando por los baricentros de los 2-símplices que contienen a $a_1$.  
 
 
-En cualquier caso, ahora podemos calcular $[\varphi_1\smile \psi_1]\in H^2(M_g)$. Tenemos que $$\varphi_1\smile\psi_1(t_1)=\varphi_1\cup\psi_1([v_0,v_1,v_2])=\varphi_1([v_0,v_1])\psi_1([v_1,v_2])=\varphi_1([v_0,v_1])\cdot 0=0.$$ Se comprueba análogamente que para $j\neq 2$, $\varphi_1\smile \psi_1=0$. En cambio $$\varphi_1\smile\psi_1(t_2)=\varphi_1([v_0,v_1])\psi_1([v_1,v_2])=1\cdot 1=1.$$ Este cálculo se puede predecir viendo dónde se cortan las curvas del dibujo.
+En cualquier caso, ahora podemos calcular $[\varphi_1\smile \psi_1]\in H^2(M_g)$. Tenemos que $$\varphi_1\smile\psi_1(t_1)=\varphi_1\smile\psi_1([v_0,v_1,v_2])=\varphi_1([v_0,v_1])\psi_1([v_1,v_2])=\varphi_1([v_0,v_1])\cdot 0=0.$$ Se comprueba análogamente que para $j\neq 2$, $(\varphi_1\smile \psi_1)(t_j)=0$. En cambio $$\varphi_1\smile\psi_1(t_2)=\varphi_1([v_0,v_1])\psi_1([v_1,v_2])=1\cdot 1=1.$$ Este cálculo se puede predecir viendo dónde se cortan las curvas del dibujo.
 
- Sabemos que $H_2(M_g)\cong\Z$ generado por $w=[t_1+t_2-t_3-t_4+t_5+t_6-t_7-t_8]$ (el signo depende de la orientación de $a_i$ o $b_i$). Por otra parte, $H^2(M_g)\cong \Hom(H_2(M_g),\Z)$ mediante el isomorfismo  que llega $[f]=\gamma$ a $h(\gamma)=w^*$. Por lo que $h(\gamma)(w)=1=w^*(w)=\rho(t_1)+\rho(t_2)+\cdots$. Como justamente $\varphi_1\smile\psi_1(t_1+t_2-t_2+\cdots)=1$, tenemos que $\alpha_1\smile\beta
- _1=[\varphi_1\smile\psi_1]=\gamma$. Se comprueba que $\alpha_i\smile\alpha_j=\beta_i\smile\beta_j=0$ para todo $i,j$ y que $\alpha_i\smile\beta_i=\gamma$ (por conmutativiad, $\beta_i\smile\beta_i=-\gamma$). 
+ Sabemos que $H_2(M_g)\cong\Z$ generado por $w=[t_1+t_2-t_3-t_4+t_5+t_6-t_7-t_8]$ (el signo depende de la orientación de $a_i$ o $b_i$). Por otra parte, $H^2(M_g)\cong \Hom(H_2(M_g),\Z)$ mediante el isomorfismo $[f]=\gamma\mapsto h(\gamma)=w^*$. Por lo que $h(\gamma)(w)=1=w^*(w)=\rho(t_1)+\rho(t_2)+\cdots$. Como justamente $\varphi_1\smile\psi_1(t_1+t_2-t_3+\cdots)=1$, tenemos que $\alpha_1\smile\beta
+ _1=[\varphi_1\smile\psi_1]=\gamma$. Se comprueba que $\alpha_i\smile\alpha_j=\beta_i\smile\beta_j=0$ para todo $i,j$ y que $\alpha_i\smile\beta_i=\gamma$ (por conmutativiad, $\beta_i\smile\alpha_i=-\gamma$). 
 
 
 \end{ej}
@@ -471,7 +471,7 @@ Como esta igualdad se verifica para todos los elementos de la base, se verifica 
 \end{proof}
 Entonces $f^*:H(Y)\to H^*(X)$ preserva el producto cup y análogamente con el complejo relativo. En particular esto se verifica para $i^*$ en la sucesión exacta larga de cohomología de un par. Nos falta ver la relación con el homomorfismo de conexión de la sucesión exacta larga. 
 
-BUSCAR RELACIÓN. EL PRODUCTO DE UN ELEMENTO DE $H^{n+1}(X,A;R)$ CON UNO DE $H^n(X;R)$
+BUSCAR RELACIÓN. EL PRODUCTO DE UN ELEMENTO DE $H^{n+1}(X,A;R)$ CON UNO DE $H^n(X;R)$ (ALOMEJOR AQUÍ HAY ALGO C \url{http://www.hiroleetanaka.com/pdfs/231a-hmwk12.pdf})
 
 Sean $A,B\subseteq X$ abiertos. Veamos que existe también un cup producto $H^*(X;A;R)\times H^*(X,B;R)\to H^*(X,A\cup B;R)$. Desgraciadamente, el producto de una cocadena en $C^*(X,A;R)$ con una de $C^*(X,B;R)$ no está en general en $C^*(X,A\cup B;R)$. Recordemos la equivalencia homotópica $C_*(A+B)\hookrightarrow C_*(A\cup B)$. Aplicando el functor $\Hom(-,R)$ obtenemos la equivalencia $C^*(A\cup B;R)\twoheadrightarrow C^*(A+B;R)$. Además tenemos el diagrama conmutativo
 \[
@@ -526,7 +526,7 @@ $$
 Como $\rho^*\simeq Id$, $\alpha=[\rho^*(\varphi)]$ y $\beta=[\rho^*(\psi)]$, luego $\alpha\cup\beta=[\rho^*(\varphi\smile\psi)]$, y como $\varepsilon_{p+q}=\varepsilon_p\varepsilon_q(-1)^{pq}$, se tiene el resultado. 
 \end{dem}
 
-\section{Cohomology Ring}
+\section{Anillo de Cohomología}
 Como hemos visto en la sección anterior, el producto cup es asociativo y distributivo, por lo que podemos dotar de estructura de anillo a $H^*(X;R)=\oplus_{i\geq 0}H^i(X;R)$, donde los elementos de este anillo son sumas finitas $\sum_i\alpha_i$ con $\alpha_i\in H^i(X;R)$. El producto de dos tales sumas está definido como $(\sum_i\alpha_i)(\sum_j\beta_j)=\sum_{i,j}\alpha_i\smile\beta_j$. Esto convierte a $H^*(X;R)$ es un anillo, con unidad si $R$ tiene unidad (el elemento unidad será el generador de $H_0(X;R)$ que envía todo símplice singular al $1\in R$). Tomando en cuenta la multiplicación por escalares de $R$ en cuenta, estos anillos pueden ser vistos también como $R$-álgebras. 
 
 El anillo de cohomología se considera siempre como anillo gradudado. Esto es, un anillo $A=\oplus_{k\geq 0}A_k$ donde los $A_k$ son grupos aditivos y e $A_k A_l\subseteq A_{k+l}$. Si $\alpha\in A_k$ escribiremos $|\alpha|=k$ y diremos que tiene \emph{grado} $k$. Cuando además se verifica $ab=(-1)^{|a||b|}ba$ diremos que el anillo es conmutativo (grambién graduado-conmutativo, skew-conmutativo o anticonmutativo).  
@@ -536,41 +536,270 @@ Anillos de polinomios $R[\alpha]$ y $R[\alpha]/\gene{\alpha^n}$.
 \end{ej}
 
 \begin{ej}
-Álgebras exteriores $\land_R[\alpha_1,\dots,\alpha_n]$. Esto es el $R$-módulo libre con base el producto finito (ordenado) $\alpha_{i_1}\land\cdots\land\alpha_{i_k}$, $i_1<\cdots<i_k$ con producto asociativo y distributivo verificando $\alpha_i\land\alpha_j=-\alpha_j\land\alpha_i$. Un ejemplo de este tipo de anillo graduado en cohomología es $H^*(T;\Z)=H^*(S^1\times S^1;\Z)=\bigwedge_\Z[\alpha,\beta]$ por el ejemplo de superficie orientable. En general sale un álgebra exterior en más generadores.  
+Álgebras exteriores $\land_R[\alpha_1,\dots,\alpha_n]$. Esto es el $R$-módulo libre con base el producto finito (ordenado) $\alpha_{i_1}\land\cdots\land\alpha_{i_k}$, $i_1<\cdots<i_k$ con producto asociativo y distributivo verificando $\alpha_i\land\alpha_j=-\alpha_j\land\alpha_i$. Un ejemplo de este tipo de anillo graduado en cohomología es $H^*(T;\Z)=H^*(S^1\times S^1;\Z)=\bigwedge_\Z[\alpha,\beta]$ por el ejemplo de superficie orientable. En general, para  $T^n$ sale un álgebra exterior en $2n$ generadores, como se prueba en el ejemplo 3.16 de Hatcher.   
 \end{ej}
 
 \begin{ej}
-Anillos producto. El isomorfismo $H^*(\coprod_\alpha X_\alpha)=\prod_\alpha H^*(X_\alpha;R)$ inducido por las inclusiones $i_\alpha:X_\alpha\to X$ es un isomorfismo de anillos pues cada $i_\alpha^*$ lo es. El isomorfismo de anillos de productos viene de la propiedad universal del producto directo, usando las proyecciones $\pi_\alpha:\prod H^*\to H^*_\alpha$ y al $H$ va por otro lado la $(i_\alpha)^*$, además $\{i_\alpha^*\}([\varphi\smile\psi])=\{i^*_\alpha(\varphi)\smile i_\alpha^*(\psi)\}=\{i^*_\alpha(\varphi\smile\psi)\}$ (esta es la aplicación que une el $H^*$ del $\coprod$ al $\prod$ de $H^*$).
+Anillos producto. El isomorfismo $H^*(\coprod_\alpha X_\alpha)\cong \prod_\alpha H^*(X_\alpha;R)$ inducido por las inclusiones $i_\alpha:X_\alpha\to X$ es un isomorfismo de anillos pues cada $i_\alpha^*$ lo es. El isomorfismo de anillos de productos viene de la propiedad universal del producto directo, usando las proyecciones $\pi_\alpha:\prod_\alpha H^*(X_\alpha;R)\to H^*(X_\alpha;R)$ y a $H^*(\coprod X_\alpha;R)$ va por otro lado la $(i_\alpha)^*$, además $\{i_\alpha^*\}([\varphi\smile\psi])=\{i^*_\alpha(\varphi)\smile i_\alpha^*(\psi)\}=\{i^*_\alpha(\varphi\smile\psi)\}$ (esta es la aplicación dibujada con línea discontinua en el diagrama).
 
-HACER DIAGRAMA
+\[
+\begin{tikzcd}
+\prod_\alpha H^*( X_\alpha;R)\arrow[r, "\pi_\alpha"] & H^*(X_\alpha;R)\\
+H^*(\coprod_\alpha X_\alpha)\arrow[ur, "(i_\alpha)^*"']\arrow[u, dashed]
+\end{tikzcd}
+\]
 
- Similarmente $\widetilde{H}^*(\bigvee_\alpha X_\alpha;R)\cong\prod_\alpha\widetilde{H}^*(X_\alpha;R)$, suponiendo que $x_\alpha\in X_\alpha$ son retractos de deformación de un entorno suyo para poder aplicar escisión y garantizar el isomorfismo. Esta estructura extra sirve para distinguir $S^2\vee S^4$ de $\C P^2$, que es el resultado de pegar una 4-célula a $S^2$ mediante $f:S^3\to S^2$. Tenemos que $\widetilde{H}^*(S^2\vee S^4;\Z)\cong \widetilde{H}^*(S^2)\oplus \widetilde{H}^*(S^4)$, de modo que visto como anillo, el producto de dos generadores distintos es nulo. Sin embargo, como $H^*(\C P^2;\Z)=\Z[\alpha]/\gene{\alpha^3}$, $|\alpha|=1$, el producto de generadores de $H^2(\C P^2;\Z)$ no es nulo.
+ Similarmente $\widetilde{H}^*(\bigvee_\alpha X_\alpha;R)\cong\prod_\alpha\widetilde{H}^*(X_\alpha;R)$, suponiendo que $x_\alpha\in X_\alpha$ son retractos de deformación de un entorno suyo para poder aplicar escisión y garantizar el isomorfismo. Esta estructura extra sirve para distinguir $S^2\vee S^4$ de $\C P^2$, que es el resultado de pegar una 4-célula a $S^2$ mediante $f:S^3\to S^2$. Tenemos que $\widetilde{H}^*(S^2\vee S^4;\Z)\cong \widetilde{H}^*(S^2)\oplus \widetilde{H}^*(S^4)$, de modo que visto como anillo, el producto de los generadores de $H^2(S^2)$ es nulo al estar el resultado en $H^4(S^2)=0$. Sin embargo, $H^*(\C P^2;\Z)=\Z[\alpha]/\gene{\alpha^3}$ con $|\alpha|=2$ como se probará más adelante, por lo que producto del generador de grado 2 consigo mismo de $H^2(\C P^2;\Z)$ no es nulo.
 \end{ej}
 
+\subsection{Fórmula de Künneth}
+\begin{defi}
+El \emph{producto cross} $H^*(X;R)\times H^*(Y;R)\to H^*(X\times Y;R)$ está definido como $(a,b)\mapsto a\times b=p_1^*(a)\smile p_2^*(b)$, donde $p_i$ son las proyecciones $X\times Y\to X,Y$. 
+\end{defi}
 
+Como el cup producto es distributivo, el producto cross es bilineal (lineal en cada coordenada por separado), pero esto no implica que sea un homomorfismo, mucho menos un isomorfismo. Para conseguir que sea un homomorfismo reemplazamos $H^*(X;R)\times H^*(Y;R)$ por el producto tensorial $H^*(X;R)\otimes_R H^*(Y;R)$. Repasemos la definición del producto tensorial y sus propiedades básicas. Dados dos grupos abelianos $A$ y $B$, $A\otimes B$ es el grupo abeliano con elementos $a\otimes b$ verificando:
+\begin{enumerate}
+\item $(a+a')\otimes b=a\otimes b+a'\otimes b$.
+\item $a\otimes (b+b')=a\otimes b+a\otimes b'$.
+\item $0\otimes 0=a\otimes 0=0\otimes b$.
+\item $-(a\otimes b)=-a\otimes b=a\otimes -b$
+\end{enumerate} 
 
+Obsérvese que $A\otimes B$ no es más que un cociente de $A\times B$ por la relación generada por las propiedades anteriores. Se verifican las propiedades elementales siguientes:
+\begin{enumerate}
+\item $A\otimes B\cong B\otimes A$.
+\item $(\oplus_i A_i)\otimes B\cong \oplus_i(A_i\otimes B)$.
+\item $(A\otimes B)\otimes C\cong A\otimes (B\otimes C)$.
+\item $\Z\otimes A\cong A$.
+\item $\Z_n\otimes A\cong A/nA$. 
+\item Dados homomorfismos $f:A\to A'$ y $g:B\to B'$, se induce un homomorfismo $f\otimes g:A\otimes B\to B\otimes B'$ dado por $(f\otimes g)(a\otimes b)=f(a)\otimes g(b)$. 
+\item Toda aplicación bilineal $\varphi:A\times B\to C$ induce un homomorfismo $A\otimes B\to C$ enviando $a\otimes b$ a $\varphi(a,b)$. 
+\end{enumerate}
 
+Para generalizar el producto tensorial a la categoría de $R$-módulos con $R$ conmutativo definimos $A\otimes_R B$ como el cociente de $A\otimes B$ obtenido al imponer la relación $ra\otimes b=a\otimes rb$. Si $R$ no es conmutativo, pedimos que $A$ sea $R$-módulo por la derecha y $B$ sea $R$-módulo por la izquierda e imponemos la relación $ar\otimes b=a\otimes rb$. En este caso $A\otimes_R B$ es solo un grupo abeliano. Es sencillo comprobar que cuando $R=\Z_m$ o $\Q$, $A\otimes_R B=A\otimes B$, pero en general no es cierto. 
 
-
-Propiedades 4 y 5 son la numeración de Hatcher o contando en la anterior diapositiva
-
-
-Prueba de que $\mu$ es homomorfismo de anillos:
-
+Las propiedades 1-3, 6 y 7 siguen siendo válidas para el caso de $R$-módulos. La 4 tiene un generalización sencilla $R\otimes_R A\cong A$ mediante $r\otimes a\mapsto ra$. Por 7 el producto cross induce un homomorfismo de $R$-módulos que también llamaremos producto cross
 \[
-\mu((a\otimes b)(c\otimes d)=\mu((-1)^{|b||c|}(ac)\otimes (bd))=(-1)^{|b||c|}(a\smile c)\times (b\smile d)=(-1)^{|b||c|}(p_1^*(a\smile c)\smile p_2^*(b\smile d))=
-\]
-\[
-(-1)^{|b||c|}(p_1^*(a)\smile p_1^*(c)\smile p_2^*(b)\smile p_2^*(d))=p_1^*(a)\smile p_2^*(b)\smile p_1^*(c)\smile p_2^*(d))=
-\]
-\[
-(a\times b)\smile (c\times d)=\mu(a\otimes b)\smile \mu (c\otimes d)=\mu(a\otimes b)\mu(c\otimes d)
+H^*(X;R)\otimes_R H^*(Y;R)\to H^*(X\times Y;R),\ a\otimes b\mapsto a\times b
 \]
 
+
+Este producto se convierte en un homomorfismo de anillos si definimos el producto como $(a\otimes b)(c\otimes d)=(-1)^{|b||c|}(ac)\otimes (bd)$, donde $|x|$ denota el grado de $x$. Efectivamente, denotando por $\mu$ al producto cross
+
+\begin{align*}
+\mu((a\otimes b)(c\otimes d))=&\mu((-1)^{|b||c|}(ac)\otimes (bd))=(-1)^{|b||c|}(a\smile c)\times (b\smile d)\\
+=&(-1)^{|b||c|}(p_1^*(a\smile c)\smile p_2^*(b\smile d))\\
+=&(-1)^{|b||c|}(p_1^*(a)\smile p_1^*(c)\smile p_2^*(b)\smile p_2^*(d))\\
+=&p_1^*(a)\smile p_2^*(b)\smile p_1^*(c)\smile p_2^*(d))=(a\times b)\smile (c\times d)\\
+=&\mu(a\otimes b)\smile \mu (c\otimes d)=\mu(a\otimes b)\mu(c\otimes d)
+\end{align*}
+
+\begin{teorema}[Fórmula de Künneth]\label{tensor}
+El producto cross $\mu:H^*(X;R)\otimes_R H^*(Y;R)\to H^*(X\times Y;R)$ es un isomorfismo de anillos si $X$ e $Y$ son CW-complejos y $H^k(Y;R)$ es finitamente generado para todo $k$.
+\end{teorema}
+
+\begin{nota}
+La hipótesis de ser CW-complejos no es necesaria (ver 3.B y 3.E de Hatcher).
+\end{nota}
+
+%\frown -> cap product
+
+AÑADIR A LA BIBLIOGRAFÍA SPANIER, DONDE VIENE LA PRUEBA QUE UTILIZA MÁS TEORÍA.
+
+BUSCAR FUNCTOR TOR EN HATCHER 3.A
+
+La idea de la prueba será considerar, para un CW complejo $Y$, los functores de pares de CW
+\begin{gather*}
+h^n(X,A)=\bigoplus_i(H^i(X,A;R)\otimes_R H^{n-1}(Y;R))\\
+k^n(X,A)=H^n(X\times Y,A\times Y;R)
+\end{gather*}
+El producto cross, o su versión relativa (la veremos más adelante), define una aplicación $\mu: h^n(X,A)\to k^n(X,A)$ que nos gustaría probar que es isomorfismo cuando $X$ es un CW complejo y $A=\emptyset$. Probaremos:
+\begin{enumerate}
+\item $h^*$ y $k^*$ son teorías de cohomología en la categoría de CW complejos.
+\item $\mu$ es una transformación natural: conmuta con las aplicaciones inducidas y con el operador coborde. 
+\end{enumerate}
+
+Es obvio que $\mu:h^n(*,\emptyset)\to k^n(*,\emptyset)$ es un isomorfismo ya que es simplemente la multiplicación por escalar $R\otimes_R H^n(Y;R)\to H^n(Y;R)$. La siguiente proposición implicará el teorema:
+
+\begin{prop}
+Si una transformación natural entre teorías de cohomología (no reducida) sobre la categoría de pares CW es un isomorfismo para el par $(*,\emptyset)$, entonces es un isomorfismo para todos los pares de CW.
+\end{prop}
+\begin{dem}
+Si $\mu$ es una transformación natural entre las cohomologías $h^*$ y $k^*$ entonces
+\[
+\begin{tikzcd}
+\cdots \arrow[r] & h^{n-1}(X) \arrow[r] \arrow[d, "\mu"] & h^{n-1}(A) \arrow[r] \arrow[d, "\mu"] & {h^{n}(X,A)} \arrow[r] \arrow[d, "\mu"] & h^{n}(X) \arrow[d, "\mu"] \arrow[r] & h^{n}(A) \arrow[r] \arrow[d, "\mu"] & \cdots \\
+\cdots \arrow[r] & k^{n-1}(X) \arrow[r] & k^{n-1}(A) \arrow[r] & {k^{n}(X,A)} \arrow[r] & k^{n}(X) \arrow[r] & k^{n}(A) \arrow[r] & \cdots
+\end{tikzcd}
+\]
+conmuta. Por lo que, usando el lema de los cinco, basta comprobar el isomorfismo de $\mu$ en el caso absoluto con $A=\emptyset$ para tenerlo en todas las parejas. Probamos primero el caso finito-dimensional por inducción en la dimensión de $X$. Si $\dim(X)=0$, entonces $X=\coprod_{i=1}^r\{x_i\}$ y por tanto $h^n(X)=\prod_{i=1}^rh^n(x_i)$ y $k^n(X)=\prod_{i=1}^r k^n(x_i)$, de modo que por hipótesis son isomorfas. 
+
+Supongámoslo ahora cierto para dimensiones a lo sumo $n-1$ y consideramos el par $(X^n,X^{n-1})$, para el cual tenemos el diagrama conmutativo
+\[
+\begin{tikzcd}[column sep=18]
+\cdots \arrow[r] & h^{q-1}(X^n) \arrow[r] \arrow[d, "\mu"] & h^{q-1}(X^{n-1}) \arrow[r] \arrow[d, "\mu"] & {h^{q}(X^n,X^{n-1})} \arrow[r] \arrow[d, "\mu"] & h^{q}(X^n) \arrow[d, "\mu"] \arrow[r] & h^{n}(X^{n-1}) \arrow[r] \arrow[d, "\mu"] & \cdots \\
+\cdots \arrow[r] & k^{q-1}(X^n) \arrow[r] & k^{q-1}(X^{n-1}) \arrow[r] & {k^{q}(X^n,X^{n-1})} \arrow[r] & k^{q}(X^n) \arrow[r] & k^{n}(X^{n-1}) \arrow[r] & \cdots
+\end{tikzcd}
+\]
+que por el lema de los cinco, nos indica que basta comprobar el resultado para parejas $(X^n,X^{n-1})$ para tenerlo para $X^n$.
+
+Sea $\Phi:\coprod_{\alpha}(D_\alpha^n,S_\alpha^{n-1})\to (X^n,X^{n-1})$ la colección de aplicaciones características de las $n$-células de $X$. Por escisión obtenemos que $\Phi^*$ induce isomorfismos para $h^*$ y $k^*$
+\[
+\begin{tikzcd}
+{h^*(X^n,X^{n-1})} \arrow[r, "\Phi^*"] \arrow[d, "\mu"] & {\prod_\alpha h^*(D_\alpha^n,S_\alpha^{n-1})} \arrow[d, "\prod_\alpha\mu_\alpha"] \\
+{k^*(X^n,X^{n-1})} \arrow[r, "\Phi^*"] & {\prod_\alpha k^*(D_\alpha^n,S_\alpha^{n-1})}
+\end{tikzcd}
+\]
+Usando el axioma de uniión disjunta y la naturalidad de $\mu$, basta probar que $\mu$ induce isomorfismo para $(D^n,S^{n-1})$. Como $\mu$ es isomorfismo para puntos, lo es para $D^n$ por homotopía y también lo es para $S^{n-1}$ por inducción sobre la dimensión. Por el lema de los 5 aplicado a 
+\[
+\begin{tikzcd}[column sep=18]
+\cdots \arrow[r] & h^{q-1}(D^n) \arrow[r] \arrow[d, "\mu"] & h^{q-1}(S^{n-1}) \arrow[r] \arrow[d, "\mu"] & {h^{q}(D^n,S^{n-1})} \arrow[r] \arrow[d, "\mu"] & h^{q}(D^n) \arrow[d, "\mu"] \arrow[r] & h^{n}(S^{n-1}) \arrow[r] \arrow[d, "\mu"] & \cdots \\
+\cdots \arrow[r] & k^{q-1}(D^n) \arrow[r] & k^{q-1}(S^{n-1}) \arrow[r] & {k^{q}(D^n,S^{n-1})} \arrow[r] & k^{q}(D^n) \arrow[r] & k^{n}(S^{n-1}) \arrow[r] & \cdots
+\end{tikzcd}
+\]
+se deduce que el isomorfismo es cierto para $(D^n,S^{n-1})$. 
+
+El caso infinito-dimensional se sigue del caso anterior, pues de los axiomas se deduce que las inclusiones $X^n\hookrightarrow X$ inducen isomorfismo para $n$ suficientemente grande con respecto a $q$ en $h^q(X)\to h^q(X^n)$ y $k^q(X)\to k^q(X^n)$.
+\end{dem}
+
+\begin{dem}[del teorema \ref{tensor}]
+Falta ver que $h^*$ y $k^*$ son teorías de cohomología y que $\mu$ es una transformación natural entre ellas. 
+
+\begin{enumerate}
+\item Invariancia homotópica: Si $f\simeq g$, entonces$f^*=g^*$. Esto es obvio para $h^*$ y para $k^*$. 
+\item Excisión: Si $X=A\cup B$ es unión de subcomplejos, entonces claramente $h^*(X,A)=h^*(A,A\cap B)$. Para $k^*$ también es claro porque $(A\cup B)\times Y=(A\times Y)\cup (B\times Y)$ y $(A\cap B)\times Y=(A\times Y)\cap (B\times Y)$. 
+\item Sucesión exacta larga de una pareja: es trivial para $k^*$. Para $h^*$, como $H^{n-i}(Y;R)$ es libre y finitamente generado PREGUNTAR POR ESTO, entonces $-\otimes H^{n-i}(Y;R)$ preserva la exactitud de 
+\[
+\cdots\to H^i(X,A)\to H^i(X)\to H^i(A)\to H^{i+1}(X,A)\to\cdots
+\]
+Variando $i$ y tomando la suma directa en $i=0,\dots, n$ de las sucesiones exactas previas obtenemos el resultado para $h^*$. 
+\[
+\begin{tikzcd}
+\vdots \arrow[d] & \vdots \arrow[d] \\
+{H^i(X,A)\otimes H^{n-i}(Y;R) } \arrow[d] & {H^{i+1}(X,A)\otimes H^{n-i-1}(Y;R)} \arrow[d] \\
+H^i(X)\otimes H^{n-i}(Y;R) \arrow[d] & H^{i+1}(X)\otimes H^{n-i-1}(Y;R) \arrow[d] \\
+H^i(A)\otimes H^{n-i}(Y;R) \arrow[d] & H^{i+1}(A)\otimes H^{n-i-1}(Y;R) \arrow[d] \\
+{H^{i+1}(X,A)\otimes H^{n-i}(Y;R)} \arrow[d] & {H^{i+2}(X,A)\otimes H^{n-i-2}(Y;R)} \arrow[d] \\
+\vdots & \vdots
+\end{tikzcd}
+\]
+\item Uniones disjuntas: de nuevo es obvio para $k^*$. Para $h^*$ usamos el isomorfismo canónico $(\prod_\alpha M_\alpha)\otimes_R N\cong \prod_\alpha (M_\alpha\otimes_R N)$ para $N$ libre y finitamente generado. Como $N=\prod R_\beta$ es producto finito (o suma directa) de copias $R_\beta$, entonces cada $M\otimes_R N$ es el producto finito de copias $M_{\alpha\beta}=M_\alpha\otimes_R R_\beta$. Entonces, la relación que buscábamos es
+\[
+\prod_\beta\prod_\alpha M_{\alpha\beta}\cong\prod_\alpha\prod_\beta M_{\alpha\beta}
+\]
+que es trivialmente cierta. Así, tenemos
+\begin{gather*}
+h^n\left(\coprod_\alpha(X_\alpha, A_\alpha)\right)=\bigoplus_i\left(H^i\left(\coprod_\alpha(X_\alpha, A_\alpha)\right)\otimes H^{n-i}(Y)\right)=\\
+\bigoplus_i\left( \prod_\alpha H^i(X_\alpha,A_\alpha)\otimes H^{n-i}(Y)\right)
+\end{gather*}
+y por tanto
+\begin{gather*}
+\prod_\alpha h^n(X_\alpha,A_\alpha)=\prod_\alpha\left(\bigoplus_i H^i(X_\alpha,A_\alpha)\otimes H^{n-i}(Y)\right)=\\
+\bigoplus_i\prod_\alpha\left(H^i(X_\alpha,A_\alpha)\otimes H^{n-i}(Y)\right)
+\end{gather*}
+\end{enumerate}
+Ahora tenemos que probar la naturalidad de $\mu$. La naturalidad con respecto a las aplicaciones entre espacios se deduce de la naturalidad del producto cup. La naturalidad respecto al operador borde se sigue de la conmutatividad del siguiente diagrama
+\[
+\begin{tikzcd}
+H^k(A;R)\times H^l(Y;R) \arrow[r, "\delta\times Id"] \arrow[d, "\times"] & H^{k+1}(A;R)\times H^l(Y;R) \arrow[d, "\times"] \\
+H^{k+l}(A\times Y;R) \arrow[r, "\delta"] & H^{k+l+1}(A\times Y;R)
+\end{tikzcd}
+\]
+Para comprobarla, empecemos con un elemento del producto arriba a la izquierda, representado por cociclos $\varphi\in C^k(A;R)$ y $\psi\in C^l(Y;R)$. Extendemos $\varphi$ a una cocadena $\overline{\varphi}\in C^k(X;R)$ (por ejemplo con el homomorfismo inducido por la inclusión). Entonces el par $(\varphi,\psi)$ se envía a la derecha a $(\delta\overline{\varphi}, \psi)$ y luego hacia abajo a $p_1^*(\delta\overline{\varphi})\smile p_2^*(\psi)$. Yendo en el otro sentido del cuadrado, $(\varphi,\psi)$ se envía hacia abajo a $p_1^*(\varphi)\smile p_2^*(\psi)$ y luego a la derecha a $\delta(p_1^*(\overline{\varphi})\smile p_2^*(\psi))$, ya que $p_1^*(\overline{\varphi})\smile p_2^*(\psi)$ extiende a $p_1^*(\varphi)\smile p_2^*(\psi)$ sobre $X\times Y$. Finalmente, $\delta(p_1^*(\overline{\varphi})\smile p_2^*(\psi))=p_1^*(\overline{\varphi})\smile p_2^*(\psi)$ ya que $\delta\psi=0$. POR QUÉ ES 0
+\end{dem}
+
+La versión relativa del producto cross es
+\[
+H^*(X,A;R)\otimes_r H^*(Y,B;R)\xrightarrow{\times} H^*(X\times Y,A\times Y\cup X\times B;R)
+\]
+definido como el el caso absoluto mediante $a\otimes b\mapsto a\times b=p_1^*(a)\smile p_2^*(b)$, donde $p_1^*(a)\in H^*(X\times Y,A\times Y;R)$ y $p_2^*(b)\in H^*(X\times Y,X\times B;R)$. 
+
+\begin{teorema}[Fórmula de Künneth relativa]
+Para pares CW, el homomorfismo anterior es isomorfismo de anillos si $H^k(Y;R)$ es libre y finitamente generado como $R$-módulo para todo $k$. 
+\end{teorema}
+\begin{dem}
+El caso $B=\emptyset$ ya has sido probado para la versión absoluta. Con el siguiente diagrama conmutativo reduciremos el caso $B\neq\emptyset$ al de que $B$ sea un punto. 
+\[
+\begin{tikzcd}
+{H^*(X,A)\otimes_R H^*(Y,B) } \arrow[r, "\cong"] \arrow[d, "\times"] & {H^*(X,A)\otimes_R H^*(Y/B,B/B)} \arrow[d, "\times"] \\
+{H^*(X\times Y,A\times Y\cup X\times B)} \arrow[r, "\cong"] & {H^*(X\times (Y/B), A\times (Y/B)\cup X\times (B/B))}
+\end{tikzcd}
+\]
+La flecha superior es isomorfismo por escisión y la inferior resulta de que los espacios cociente $(X\times Y)/(A\times Y\cup X\times B)$ y $(X\times (Y/B))/(A\times (Y/B)\cup X\times (B/B))$ son homeomorfos. 
+
+Tomando entonces $B=\{y_0\}\subseteq Y$ tenemos el diagrama conmutativo
+\[
+\begin{tikzcd}[column sep=20]
+{H^*(X,A)\otimes_R H^*(Y,y_0)} \arrow[r] \arrow[dd, "\times"] & {H^*(X,A)\otimes_R H^*(Y)} \arrow[r] \arrow[dd, "\times"] & {H^*(X,A)\otimes_R H^*(y_0)} \arrow[d, "\times"] \\
+ &  & {H^*(X\times y_0,A\times y_0)}  \\
+{H^*(X\times Y,X\times y_0\cup A\times Y) } \arrow[r] & {H^*(X\times A,A\times Y)} \arrow[ru] \arrow[r] & {H^*(X\times y_0\cup A\times Y,A\times Y)}\arrow[u, "\cong"]
+\end{tikzcd}
+\]
+La fila superior es una sucesión exacta corta escindible porque $y_0$ es retracto de $Y$ (con escición dada por el retracto). El morfismo vertical inferior en la columna derecha es isomorfismo usando escisión y el homeomorfismo de los cocientes. Así la fila inferior también es sucesión exacta corta escindible porque $(X\times \{y_0\},A\times\{y_0\})$ es retracto de $(X\times Y,A\times Y)$. Los morfismos verticales del centro y la derecha son isomorfismos por el caso $B=\emptyset$. Así que por el lema de los cinco obtenemos el resultado para $B=\{y_0\}$. 
+\end{dem}
+
+El producto cross relativo da lugar a un producto cross reducido 
+\[
+\widetilde{H}^*(X;R)\otimes_R\widetilde{H}^*(Y;R)\to \widetilde{H}^*(X\wedge Y;R)
+\]
+recordamos que $X\wedge Y=(X\times Y)/(X\times\{x_0\}\cup \{x_0\}\times Y)$. Este producto es isomorfismo si $\widetilde{H}^*(X;R)$ o $\widetilde{H}^*(Y;R)$ son libres y finitamente generados en cada dimensión.
+
+\begin{ej}
+$\widetilde{H}^*(X;R)\otimes_R\widetilde{H}^*(S^k;R)\cong \widetilde{H}^*(X\wedge S^k;R)$ via producto cross con el generador $H^k(S^k;R)\cong R$. Como la suspensión reducida $\Sigma^kX$ es homeomorfa a $X\wedge S^k$, obtenemos el isomorfismo de suspensión $\widetilde{H}^n(X;R)\cong \widetilde{H}^{n+k}(\Sigma^k X;R)$. 
+\end{ej}
+
+\section{Espacios con cohomología polinomial}
+Para ahorrar notación vamos a escribir $P^n=\R P^n$ para $0\leq n\leq \infty$. Recordamos que $$H_k(P^n;\Z)=\begin{cases}
+\Z_2 & k\text{ impar y } k<n\\
+0 & k\text{ par o } k>n\\
+\Z & k=n\text{ o } k=0
+\end{cases}$$
+
+Por el teorema de coeficientes universales tenemos la sucesión exacta corta
+\[
+0\to \Ext(H_k(P^n;\Z),\Z_2)\to H^k(P^n;\Z_2)\to\Hom(H_k(P^n,\Z),\Z_2)\to 0
+\]
+El último término es $\Z_2$ si $H_k(P^n,\Z)\neq 0$ y 0 en caso contrario. Por las propiedades que vimos de $\Ext$, el primer término es $\Z_2$ si $H_k(P^n;\Z)=\Z_2$ y 0 en caso contrario. Por tanto
+\[
+H^k(P^n;\Z_2)=\begin{cases}
+\Z_2 & k\leq n\\
+0 & k>n
+\end{cases}
+\]
+
+\begin{teorema}
+$H^*(P^n;\Z_2)\cong\Z_2[\alpha]/\gene{\alpha^{n+1}}$ con $|\alpha|=1$ y $H^*(P^\infty;\Z_2)\cong\Z_2[\alpha]$. BUSCAR EL LIM1 QUE SE SUPONE QUE ES LO QUE MIDE LA DIFERENCIA DE LO QUE SE LE ESCAPA A LA COHOMOLOGÍA DEL LÍMITE \url{https://ncatlab.org/nlab/show/lim%5E1+and+Milnor+sequences}
+\end{teorema}
+\begin{dem}
+Todo lo haremos con coeficientes en $\Z_2$ aunque no se explicite. Recordamos que $P^n=\{[x_0:\cdots :x_n]\mid x_i\in\R$ no todos nulos$\}$ bajo la relación $[x_0:\cdots :x_n]=[\lambda x_0:\cdots :\lambda x_n]$ para todo $\lambda\in\R-\{0\}$. Además podemos incluir $P^i$ en $P^n$ para $i<n$ de dos formas distintas: añadiendo ceros por delante o por detrás. 
+
+Obsérvese que el caso $n=0$ es trivial porque obtenemos simplemente el grupo aditivo $\Z_2$. En general, tenemos que $i^*:H^*(P^n)\to H^*(P^{n-1})$ es un isomorfismo en los grados estrictamente menor $n$ por cohomología celular, ya que tendríamos
+\[
+H^*(P^n,P^{n-1})\to H^*(P^n)\to H^*(P^{n-1})
+\]
+siendo el primer término 0 por dimensión, de modo que $i^*$ es inyectiva entre dos conjuntos finitos iguales ($\Z_2$) por lo que es un isomorfismo. Por inducción tenemos que $H^*(P^n)=\Z[\alpha]/\gene{\alpha^{n+1}}$, en concreto, que si $\alpha\in H^1(P^n)$ es el generador, entonces $\alpha^i\in H^i(P^n)$ también lo es si $i<n$. Así que solo queda probar que $\alpha^n\in H^n(P^n)$ es el generador. Bastará ver que $\alpha^i-\alpha^j$ es el generador de $H^n(P^n)$ para todo $i+j=n$ (esta elección es para que las cuentas salgan mejor, consideramos $i,j>0$ porque en otro caso es trivial). Consideramos el cup producto $H^i(P^n)\times H^j(P^n)\to H^{i+j}(P^n)$ y tenemos que probar que el producto de generadores es un generador. Denotamos $P^i$ a la inclusión añadiendo 0 al final y $P^j$ a la inclusión añadiéndo 0 al principio. Consideramos 
+\[
+H^i(P^n,P^n-P^j)\times H^j(P^n,P^n-P^i)\to H^{i+j}(P^n,P^n-p)
+\]
+donde $p=[0,\dots, 0,1,0,\dots, 0]$ con el 1 en la posición $i+1$ (esta es la interseción $P^i\cap P^j$). Por cohomología local, el codominio es isomorfo a $H^{i+j}(\R^n,\R^n-\{0\})$ inducido por la inclusión utilizando escisión. Tenemos un homomorfismo del dominio a $H^i(\R^n-\R^n-\R^j)\times  H^j(\R^n,\R^n-\R^j)$ de nuevo inducido por la inclusión. También tenemos homomorfismos desde las cohomologías relativas hacia las cohomologías el cup producto original por la sucesión exacta larga del par. HACER DIAGRAMA (I) 220 AT
+
+Tomamos $P^{n-1}\hookrightarrow P^n$ incluido mediante $[x_0:\cdots:x_n]\mapsto[x_0:\cdots:x_{i-1}:0:x_i:\cdots:x_{n-1}]$, de modo que $p\notin P^{n-1}$. Así que $P^n-\{p\}$ es un retracto de deformación de $P^n$ y con ello $H^n(P^n,P^n-\{p\})\cong H^n(P^n, P^{n-1})$ inducido por la inclusión. DIAGRAMA QUE TENGO EN PAPEL
+
+
+Obsérvese que $P^n-P^j$ son los puntos que contiene alguna coordenada no nula antes de la $i$-ésima. Por lo que claramente $P^n-P^j\supset P^{i-1}$ y de hecho es un retracto de deformación a través de la homotopía $[x_0:\cdots: x_i: tx_{i+1}:\cdots: tx_n]$ (está bien definida porque hay algún $x_k\neq 0$ para $k<i$). Así que tenemos el diagrama DIAGRAMA (II) 221 AT LOS DE EN MEDIO SON ISO POR ESTO QUE ACABO DE PONER, LOS DE ABAJO SE OBTIENEN INTERSECANDO CON $P^i$
+
+La primera flecha vertical es isomorfismo por retracto de deformación, la segunda lo es por cohomología celular (o por homología celular y luego coeficientes universales). La primera flecha horizontal de abajo es isomorfismo con la misma prueba que hemos hecho para $i=n$. También lo hemos visto antes con el segundo de abajo, así que la tercerca flecha vertical es isomorfismo. Como $\R^n-\R^j=(R^i-\{0\})\times\R^j$, que se retrae con deformación sobre $\R^i-\{0\}$, así que la última flecha vertical es isomorfismo. Por último, la cohomología local nos da el isomofismo de la última flecha horizontal de abajo, con lo que ya todas las flechas son isomorfismos por conmutatividad. 
+
+Nos falta por tanto, en el diagrama (I) ver que el producto de abajo lleva pares de generadores en un generador. Nos fijamos en el isomorfismo inducido por la proyección $p^*:H^i(\R^i,\R^i-\{0\})\to H^i(\R^n,\R^n-\R^j)$, y también para grado $j$. Vamos a ver que esto nos da justamente el cross producto. Denotamos $I=[-1,1]$, de modo que tenemos un isomorfismo $H^i(\R^i,\R^i-\{0\})\cong H^i(I^i,\partial I^i)$ y lo mismo con $j$, con lo que tenemos el producto cross con codominio $H^{i+j}(I^{i+j}(I^{i+j},\partial I^{i+j})\cong H^{i+j}(\R^n,\R^n-\{0\})$, que es un isomorfismo por Künneth CREO QUE ME FALTA EL TEOREMA 3.18 EN ALGÚN LAO
+\end{dem}
 
 \section{Ejercicios}
 \begin{ejer}
 Si $A\to B\to C\to 0$ es exacta, entonces dualizar aplicando $\Hom(-,G)$ da lugar a una sucesión exacta $A^*\leftarrow B^*\leftarrow C^*\leftarrow 0$.
+\end{ejer}
+
+\begin{ejer}
+Probar que para $R=\Z_m$ o $\Q$, $A\otimes_R B=A\otimes B$, y dar un ejemplo de anillo para el que la igualdad no sea cierta [Pista: desarrollar el ejemplo de la página 215 de Hatcher].
 \end{ejer}
 
 \begin{ejer}
