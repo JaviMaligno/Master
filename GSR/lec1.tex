@@ -241,9 +241,105 @@ Algo que ya sabíamos, que la curvatura seccional de $S^n$ es 1.
 \end{ej}
 
 
+\section{Ecuaciones fundamentales}
 
+\subsection{Ecuación de Gauss}
 
+\[
+R(X,Y,Z,T)=\overline{R}(\tilde{X},\tilde{Y},\tilde{Z},\tilde{T})-\gene{\sigma(X,Z),\sigma(Y,T)}+\gene{\sigma(X,T),\sigma(Y,Z)}
+\]
+para todo $X,Y,Z,T\in\Chi(M)$, donde $\overline{R}$ es el tensor de curvatura de la variedad ambiente.
 
+Tenemos 
+$$\overline{R}(\tilde{X},\tilde{Y})\tilde{Z}=\overline{\nabla}_{\tilde{X}}\overline{\nabla}_{\tilde{Y}}\tilde{Z}-\overline{\nabla}_{\tilde{Y}}\overline{\nabla}_{\tilde{X}}\tilde{Z}-\overline{\nabla}_{[\tilde{X},\tilde{Y}}\tilde{Z}=$$
+\begin{gather*}
+overline{\nabla}_{\tilde{X}}(\nabla_XZ+\sigma(Y,Z))-\overline{\nabla}_{\tilde{Y}}(\nabla_XZ+\sigma(X,Y))-\nabla_{[X,Y]}Z-\sigma([X,Y],Z)=\nabla_X\nabla_YZ+\sigma(X,\nabla_YZ)+\nabla^\perp_X\sigma(Y,Z)-A_{\sigma(Y,Z)}X\\
+-\nabla_Y\nabla_XZ-\sigma(Y,\nabla_XZ)-\nabla_Y^\perp\sigma(X,Z)+A_{\sigma(X,Z)}Y\\
+-\nabla_{[X,Y]}Z-\sigma([X,Y],Z)=
+\end{gather*}
+\begin{equation}\label{A}
+R(X,Y)Z+\sigma(X,\nabla_YZ)+\nabla_X^\perp\sigma(Y,Z)-A_{\sigma(Y,Z)}X-\sigma(Y,\nabla_XZ)-\nabla_Y^\perp\sigma(X,Z)+A_{\sigma(X,Z)}Y-\sigma([X,Y],Z)=\overline{R}(\tilde{X},\tilde{Y})\tilde{Z}
+\end{equation}
 
+\[
+\overline{R}(\tilde{X},\tilde{Y},\tilde{Z},\tilde{T})=\gene{\overline{R}(\tilde{X},\tilde{Y})\tilde{Z},\tilde{T}}=\gene{R(X,Y)Z,T}+0-\gene{A_{\sigma(Y,Z)}X,T}+\gene{A_{\sigma(X,Z)}Y,T}=\ast
+\]
+
+Por la definición del endomorfismo de Weingarten tenemos
+\[
+\gene{A_{\sigma(Y,Z)}X,T}=\gene{\sigma(X,T),\sigma(Y,Z)}
+\]
+y análogo cambiando $X$ por $Y$. Así que en la igualdad que quedó abierta antes sigue como
+\[
+R(X,Y,Z,T)-\gene{\sigma(X,T),\sigma(Y,Z)}+\gene{\sigma(Y,T),\sigma(X,Z)}
+\]
+
+\subsection{Ecuación de Ricci}
+
+Para $X,Y\in\Chi(M)$ y $\eta,\zeta\in\Chi^\perp(f)$
+\[
+\gene{\overline{R}(\tilde{X},\tilde{Y})\tilde{\eta},\tilde{\zeta}}=\gene{R^\perp(X,Y)\eta,\zeta}-\gene{[A_\eta,A_\zeta](X),Y}
+\]
+Usamos notación $[A_\eta,A_\zeta](X)=A_\eta(A_\zeta(X))-A_\zeta(A_\eta(X))\in\Chi(M)$.
+
+\begin{gather*}
+\overline{R}(\tilde{X},\tilde{Y})\tilde{\eta}=\overline{\nabla}_{\tilde{X}}\overline{\nabla}_{\tilde{Y}}\tilde{\eta}-\overline{\nabla}_{[\tilde{X},\tilde{Y}]}\tilde{\eta}=\\
+\overline{\nabla}_{\tilde{X}}(\nabla_Y^\perp\eta-A_\eta(Y))-\overline{\nabla}_{\tilde{Y}}(\nabla^\perp_{[X,Y]}\eta+A_{\eta}([X,Y])=\\
+\nabla^\perp_X\nabla_Y^\perp\eta-A_{\nabla^\perp_Y\eta}(X)-\nabla_XA_\eta(Y)-\sigma(X,A_\eta(Y))-\\
+-\nabla_Y^\perp\nabla_X^\perp\eta+A_{\nabla_X^\perp\eta}(Y)+\nabla_YA_\eta(X)+\sigma(Y,A_\eta(X))-\\
+-\nabla^\perp_{[X,Y]}\eta+A_\eta([X,Y])=\\
+R^\perp(X,Y)\eta-A_{\nabla^\perp_Y\eta}(X)-\nabla_XA_\eta(Y)-\sigma(X,A_\eta(Y))+A_{\nabla^\perp_X\eta}Y+\nabla_YA_\eta(X)+\sigma(Y,A_\eta(X))+A_\eta([X,Y])
+\end{gather*}
+
+Tniendo en cuenta que $\tilde{\zeta}$ es normal
+\[
+\gene{\overline{R}(\tilde{X},\tilde{Y})\tilde{\eta},\tilde{\zeta}}=\gene{R^\perp(X,Y)\eta,\zeta}-\gene{\sigma(X,A_\eta(Y)),\zeta}+\gene{\sigma(Y,A_\eta(X)),\zeta}
+\]
+Ahora
+\[
+\gene{\sigma(X,A_\eta(Y)),\zeta}=\gene{A_\zeta(X),A_\eta(Y)}
+\]
+y análogo en el otro sumando, así que podemos escribir lo anterior como
+\[
+\gene{R^\perp(X,Y)\eta,\zeta}-\gene{A_\eta A_\zeta(X)-A_\zeta A_\eta(X),Y}=\gene{R^\perp(X,Y)\eta,\zeta}-\gene{[A_\eta,A_\zeta](X),Y}
+\]
+
+\subsection{Ecuación de Codazzi}
+Definimos $\sigma:\Chi(M)\times\Chi(M)\times\Chi^\perp(f)\to C^\infty(M)$ como $\sigma(X,Y,\eta)=\gene{\sigma(X,Y),\eta}_{\overline{M}}$. Definismo $(\overline{\nabla}_{\tilde{X}}\sigma)(Y,Z,\eta)=X(\sigma(Y,Z,\eta))-\sigma(\nabla_XY,Z,\eta)-\sigma(Y,\nabla_XZ,\eta)-\sigma(Y,Z,\nabla_X^\perp\eta)$. 
+
+Obsérvese que $X(\sigma(X,Y,\eta))=\gene{\nabla_X^\perp \sigma(X,Y),\eta}+\gene{\sigma(X,Y),\nabla_X^\perp\eta}$. Así que la fórmula de la segunda definición se puede reescribir como 
+\[
+(\overline{\nabla}_{\tilde{X}}\sigma)(Y,Z,\eta)=\gene{\nabla_X^\perp \sigma(X,Y),\eta}-\sigma(Y,\nabla_XZ,\eta)-\sigma(Y,Z,\nabla_X^\perp\eta)
+\]
+
+La ecuación de Codazzi es
+\[
+\gene{\overline{R}(\tilde{X},\tilde{Y})\tilde{Z},\tilde{\eta}}=(\overline{\nabla}_{\tilde{X}}\sigma)(Y,Z,\eta)-(\overline{\nabla}_{\tilde{Y}}\sigma)(X,Z,\eta)
+\]
+
+Usando \ref{A} y cancelando términos vemos que
+\begin{gather*}
+\gene{\overline{R}(\tilde{X},\tilde{Y})\tilde{Z},\tilde{\eta}}=\gene{\sigma(X,\nabla_YZ),\eta}+\gene{\nabla_X^\perp\sigma(Y,Z),\eta}-\gene{\sigma(Y,\nabla_XZ),\eta}-\\
+-\gene{\nabla_Y^\perp\sigma(X,Z),\eta}-\gene{\sigma([X,Y],X),\eta}
+\end{gather*}
+Fijémonos en el último término. 
+\[
+\sigma([X,Y],Z)=\sigma(\nabla_XY-\nabla_YX,Z)
+\]
+luego
+\[
+\gene{\sigma([X,Y],Z),\eta}=\gene{\sigma(\nabla_XY,Z),\eta}-\gene{\sigma(\nabla_YX,Z),\eta}
+\]
+De modo que sustituyendo obtenemos la igualdad buscada. 
+
+\section{•}
+
+En superficies tenemos el teorema de Bonnet, según el cual la primera y segunda forma fundamental determinan una superficie en $\R^3$ única salvo movimiento rígido. Esto es, dadas $E,F,G,e,f,g:V\subseteq\R^2\to\R^3$ diferenciables tales que $E,G>0, EG-F^2>0$ y además verifican la ecuación de Gauss y la ecuación de Mainardi-Codazzi, entonces para too $q\i V$, existe $U\subseteq V$ entorno de $q$ y existe $\chi:U\to\chi(U)$ una parametrización de forma que $\chi(U)$ es una superficie regular con primera forma fundamental determinada por $E,F,G$ y segunda forma funamental determinada por $e,f,g$. 
+
+Lo que buscamos es generalizar este resultado a varieades de Riemann. 
+
+\begin{teorema}[K. Tenenblat, \emph{On isometric immersions of Riemannian manifolds} (1971)]
+Sea $M^{n}$ una varieda riemanniana simplemente conexa. Sea $O^k$ un fibrado vectorial métrico ($\forall p\in M$, $O^k_p$ es un espacio vectorial de dimensión $k$). Sean $\{s_p:T_pM\times T_pM\to O_p^k\}_{p\in M}$ bilineales y simétricas. Sea $\nabla^{O^k}:TM\times O^k\to O^k$ una conexión afín. Entonces se satisfacen las ecuaciones de Gauss, Ricci y Codazzi para una variedad ambiente $\mathcal{Q}_c^{n+k}$ y existe $f:M\to \mathcal{Q}_c^{n+k}$ inmersión isométrica tal que $\sigma_p^f\equiv s_p, \nabla^\perp\equiv\nabla^{O_k}, T_pM^\perp\equiv O_p^k$. Además tenemos unicidad salvo isometría del espacio ambiente. 
+\end{teorema}
 
 \end{document}

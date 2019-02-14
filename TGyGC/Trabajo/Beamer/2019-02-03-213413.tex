@@ -48,17 +48,23 @@
 
 For a point $p=(x_1,x_2)\in\R^2$, let $p'=(-x_1,-x_2)$ be the antipodal point of $p$.\pause
 
-\begin{block}{Andipodal Polygon}
-A set of $2n$ ($n\geq 3$) points on the unit circle centered at the origin is called an \textbf{antipodal point set} if for every point $p\in S$, also $p'\in S$.
-\end{block}\pause
+\begin{block}{Andipodal Polygons}
+\begin{itemize}
+\item A set of $2n$ ($n\geq 3$) points on the unit circle centered at the origin is called an \textbf{antipodal point set} if for every point $p\in S$, also $p'\in S$.\pause
 
-\begin{block}{Thin Antipodal Polygon}
-A \textbf{thin} antipodal polygon $P$ is an antipodal polygon whose verticies are consecutive points on the circle.
-\end{block}
+\item An \textbf{antipodal polygon} on $S$ is a convex polygon having as vertices
+precisely one point from each antipodal pair $(p , p')$ of $S$.
+\end{itemize}
+\end{block}\
 
 \end{frame}
 
 \begin{frame}
+\begin{block}{Thin Antipodal Polygon}
+A \textbf{thin} antipodal polygon $P$ is an antipodal polygon whose verticies are consecutive points on the circle.
+\end{block}\pause
+
+
 \begin{block}{Thick Antipodal Polygon}
 \begin{itemize}
 \item<1-> For $n$ odd, a \textbf{thick} antipodal polygon $P$ is an antipodal polygon such that there is a point of $S$ between every two vertices of $P$. 
@@ -344,7 +350,7 @@ polygon on $S$.
 \end{alertblock}\pause
 \vspace{0.5cm}
 
-\emph{Idea of the proof}: Induction on $n$ with lemmas 2 and 3 as base cases. Triangulate $S$. Choose wisely and antipodal pair $(p,p')$ that eliminates a thin triangle and use induction on $S\setminus\{p,p'\}$. Then analyse what are the possibilities when adding $p$ or $p'$ to a polygon.
+\emph{Idea of the proof}: Induction on $n$ with lemmas 2 and 3 as base cases. Triangulate  a non-thin antipodal poligon $P$ on $S$. Choose wisely and antipodal pair $(p,p')$ that eliminates a thin triangle and use induction on $S\setminus\{p,p'\}$. Then analyse what are the possibilities when adding $p$ or $p'$ to a polygon.
 \end{frame}
 
 \section{Thick Antipodal Polygons}
@@ -796,7 +802,7 @@ reduced to solve $\mathcal{O}(n)$ times the $(2(n - 1), n - 1)$-problem: \pause
 \vspace{0.5cm}
 
 In the $(2n, n - 1)$-problem an antipodal pair is not selected and can thus be removed
-from the input. This approach gives a simple $O(n^{n-k+1})$ time algorithm for solving
+from the input. This approach gives a simple $\mathcal{O}(n^{n-k+1})$ time algorithm for solving
 the general $(2n, k)$-problem.\pause
 \vspace{0.5cm}
 

@@ -17,9 +17,11 @@
 \headcommand {\beamer@sectionpages {3}{10}}
 \headcommand {\beamer@subsectionpages {3}{10}}
 \headcommand {\sectionentry {3}{Key construction}{11}{Key construction}{0}}
-\headcommand {\slideentry {3}{0}{1}{11/15}{}{0}}
-\headcommand {\beamer@framepages {11}{15}}
-\headcommand {\slideentry {3}{0}{2}{16/16}{}{0}}
+\headcommand {\slideentry {3}{0}{1}{11/13}{}{0}}
+\headcommand {\beamer@framepages {11}{13}}
+\headcommand {\slideentry {3}{0}{2}{14/15}{}{0}}
+\headcommand {\beamer@framepages {14}{15}}
+\headcommand {\slideentry {3}{0}{3}{16/16}{}{0}}
 \headcommand {\beamer@framepages {16}{16}}
 \headcommand {\beamer@sectionpages {11}{16}}
 \headcommand {\beamer@subsectionpages {11}{16}}
@@ -38,14 +40,14 @@
 \headcommand {\beamer@sectionpages {21}{28}}
 \headcommand {\beamer@subsectionpages {21}{28}}
 \headcommand {\sectionentry {6}{Counting the solutions}{29}{Counting the solutions}{0}}
-\headcommand {\slideentry {6}{0}{1}{29/31}{}{0}}
-\headcommand {\beamer@framepages {29}{31}}
-\headcommand {\slideentry {6}{0}{2}{32/32}{}{0}}
+\headcommand {\slideentry {6}{0}{1}{29/30}{}{0}}
+\headcommand {\beamer@framepages {29}{30}}
+\headcommand {\slideentry {6}{0}{2}{31/31}{}{0}}
+\headcommand {\beamer@framepages {31}{31}}
+\headcommand {\slideentry {6}{0}{3}{32/32}{}{0}}
 \headcommand {\beamer@framepages {32}{32}}
-\headcommand {\slideentry {6}{0}{3}{33/33}{}{0}}
-\headcommand {\beamer@framepages {33}{33}}
-\headcommand {\beamer@partpages {1}{33}}
-\headcommand {\beamer@subsectionpages {29}{33}}
-\headcommand {\beamer@sectionpages {29}{33}}
-\headcommand {\beamer@documentpages {33}}
-\headcommand {\gdef \inserttotalframenumber {14}}
+\headcommand {\beamer@partpages {1}{32}}
+\headcommand {\beamer@subsectionpages {29}{32}}
+\headcommand {\beamer@sectionpages {29}{32}}
+\headcommand {\beamer@documentpages {32}}
+\headcommand {\gdef \inserttotalframenumber {15}}

@@ -1,0 +1,82 @@
+	\documentclass[twoside]{article}
+\usepackage{../estilo-ejercicios}
+\renewcommand{\baselinestretch}{1,3}
+%--------------------------------------------------------
+\begin{document}
+
+\title{Ejercicios de la segunda parte de Geometría Semi-Riemanniana}
+\author{Javier Aguilar Martín}
+\maketitle
+
+
+\begin{ejercicio}{1}
+ Sea $f : M → \overline{M}$ una inmersión isométrica, donde $\overline{M}$ es una variedad riemanniana
+con curvatura seccional constante.
+Probar que, en tal caso, la ecuación de Codazzi queda
+\[
+(\overline{∇}_{\widetilde{X}} σ)(Y, Z, η) = (\overline{∇}_{\widetilde{Y}} σ)(X, Z, η),\ X, Y, Z ∈ \mathfrak{X}(M), η ∈ \mathfrak{X}^⊥(f),
+\]
+y que la ecuación de Ricci implica que
+\[
+R^⊥(X, Y )η = σ(X, A_η(Y )) − σ(Y, A_η(X)),\ X, Y ∈ \mathfrak{X}(M), η ∈ \mathfrak{X}^⊥(f).
+\]
+\end{ejercicio}
+\begin{solucion}
+ La ecuación de Codazzi en general tiene la expresión 
+ \[
+\gene{\overline{R}(\widetilde{X},\widetilde{Y})\widetilde{Z},\widetilde{\eta}}=(\overline{\nabla}_{\widetilde{X}}\sigma)(Y,Z,\eta)-(\overline{\nabla}_{\widetilde{Y}}\sigma)(X,Z,\eta)
+\]
+Como $\overline{M}$ tiene curvatura seccional constante $k$, tenemos la expresión 
+\[
+\overline{R}(\widetilde{X}, \widetilde{Y} )\widetilde{Z} = k(\gene{\widetilde{Y},\widetilde{Z}}\widetilde{X} - \gene{\widetilde{X},\widetilde{Z}}\widetilde{Y} ),
+\]
+la cual implica que $\overline{R}_p(\widetilde{X}_p, \widetilde{Y}_p )\widetilde{Z}_p$ es tangente para todo $p\in\overline{M}$, de modo que el producto escalar $\gene{\overline{R}(\widetilde{X},\widetilde{Y})\widetilde{Z},\widetilde{\eta}}=0$, de donde se deduce la igualdad del enunciado. 
+
+LO SIGUIENTE NO TENGO NI IDEA
+\end{solucion}
+
+\begin{ejercicio}{2}
+Sea $f : M → \overline{M}$ una inmersión isométrica, donde $\overline{M}$ es una variedad riemanniana
+con curvatura seccional constante. Supongamos además que $\dim(M) = \dim(\overline{M}) − 1$
+(es decir, que $M$ es una hipersuperficie de $\overline{M}$).
+Probar, usando la ecuación de Codazzi, que
+\[
+A_η([X, Y ]) = ∇_X(A_η(Y)) − ∇_Y (A_η(X)),\ X, Y ∈ \mathfrak{X}(M), η ∈ \mathfrak{X}^⊥(f).
+\]
+\end{ejercicio}
+\begin{solucion}
+PRUEBA CON LAS DEFINICIONES
+\end{solucion}
+
+\begin{ejercicio}{3}
+Sea $f : M → \overline{M}$ una inmersión isométrica, y supongamos que $\dim(M) = \dim(\overline{M})−1$
+(es decir, $M$ es una hipersuperficie de $\overline{M}$).
+Comprobar que la ecuación de Ricci, en este caso, no da ninguna información.
+
+\end{ejercicio}
+\begin{solucion}
+\end{solucion}
+
+
+\begin{ejercicio}{4}
+Sea $(M, g)$ una variedad riemanniana arbitraria.
+Sea $X ∈ \mathfrak{X}(M)$. Diremos que $X$ es un \emph{campo de Killing} en $M$ si
+\[
+\gene{∇_Y X, Z} + \gene{Y, ∇_X Z} = 0,\text{ para cualesquiera }Y, Z ∈ \mathfrak{X}(M).
+\]
+Sea ahora $f : M → \overline{M}$ una inmersión isométrica, y sea $\overline{X} ∈ \mathfrak{X}(\overline{M})$ un campo de
+Killing en $\overline{M}$. Probar formalmente que
+\[
+X = (df)^{−1}(\overline{X} \circ f) : M → TM,
+\]
+definido por
+\[
+X_p = (df)^{−1}_p(\overline{X}_{f(p)}) ∈ T_pM,
+\]
+es un campo de Killing en M.
+\end{ejercicio}
+\begin{solucion}
+\end{solucion}
+
+
+\end{document}

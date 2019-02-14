@@ -132,11 +132,11 @@ Let $\delta$ be a permutation of $A^*$ defined by $\delta(\varepsilon)=\varepsil
 
 \begin{itemize}
 \item<1-> The \textbf{cyclic shifs} of $w$ are the words of the form $\delta^k(w)$ for any integer $k$.
-\end{itemize} 
+\end{itemize} \pause
 
-\only<2->{\begin{example}
+\begin{example}
 $w=2223$ has cyclic shifts $2223$, $2232$, $2322$, $3222$.  
-\end{example}}
+\end{example}\pause
 
 \begin{itemize}
 \item<3-> The \textbf{height} is a morphism $h:A^*\to\mathbb{N}$ defined by $h(u)=$sum of its symbols.
@@ -151,10 +151,11 @@ A word $w$ satisfies the \textbf{rythmic oddity property} if and only if
 \item $h(w)$ is even and
 \item no cyclic shift of $w$ can be factorized into words $uv$ such that $h(u)=h(v)$. 
 \end{itemize}
-\end{alertblock}
-\only<2->{\begin{example}
+\end{alertblock}\pause 
+
+\begin{example}
 For the Aka Pygmies $32222322222$, $h(w)=24$ and any factorization of cyclic shifts gives $h(u)=11$ and $h(v)=13$ or viceversa. 
-\end{example}}
+\end{example}
 \end{frame}
 
 %\begin{frame}
@@ -195,30 +196,18 @@ For the Aka Pygmies $32222322222$, $h(w)=24$ and any factorization of cyclic shi
 %\begin{block}{Proposition 3}
 %The set of asymmetric pairs is equal to the smallest set of pairs of words containing $\varepsilon\times A^*$ and $A^*\times\varepsilon$ and closed under $a$ and $b$. 
 %\end{block}
-\only<4->{\begin{alertblock}{Lemma}
-A word $w$ satisfies the rythmic oddity property if anf only if $w$ is a cyclic shift of an element of $D$. 
-\end{alertblock} }
-\only<5>{For $w\in D$ define $f:D\to B^*$ by $f(w)=\alpha$ ($\alpha$ is unique). $f$ is injective and $f(D)$ consists of the words of $\alpha\in B^*$ with $|\alpha|_b$ odd. }
+
+
 \end{frame}
 
 
-%\begin{frame}
-%
-%
-%\begin{block}{Proposition 4}
-%Let $(u,v)=\alpha(\varepsilon,\varepsilon)$ for $\alpha\in B^*$. If $|\alpha|_b$ is even, then $h(v)=h(u)$, and if $|\alpha|_b$ is even, then $h(v)=h(u)+2$. 
-%\end{block}
-%\begin{block}{Proposition 5}
-%If $|\alpha|_b$ is even, then $\alpha(r,s)=\alpha(\varepsilon,\varepsilon)(r,s)$, and if $|\alpha|_b$ is odd, then $\alpha(r,s)=\alpha(\varepsilon,\varepsilon)(s,r)$.
-%\end{block}
-%
-%{
-%\setbeamercolor{block title}{bg=green, fg=white}
-%\begin{block}{Corollary 6}
-%A word $w$ satisfies the rythmic oddity property if and only if there exists a word $\alpha\in B^*$ with $|\alpha|_b$ being odd, such that $w=uv$ or $w=vu$ with $(u,v)=\alpha(\varepsilon,\varepsilon)$.
-%\end{block}
-%}
-%\end{frame}
+\begin{frame}
+\begin{alertblock}{Lemma}
+A word $w$ satisfies the rythmic oddity property if anf only if $w$ is a cyclic shift of an element of $D$. 
+\end{alertblock}\pause
+
+For $w\in D$ define $f:D\to B^*$ by $f(w)=\alpha$ ($\alpha$ is unique). $f$ is injective and $f(D)$ consists of the words of $\alpha\in B^*$ with $|\alpha|_b$ odd. 
+\end{frame}
 %\begin{frame}
 
 
@@ -320,12 +309,12 @@ elements of a solution.
 \item<2->Let $X(p)$ be the number of words $w$ satisfying the
 rhythmic oddity property up to a cyclic shift, where $p$
 is the length of $f (w)$.
-\end{itemize}
+\end{itemize}\pause
 
-\only<3>{\begin{alertblock}{Proposition}
+\begin{alertblock}{Proposition}
 If $n_3 = 2j$ is a power of 2, one has
 $$X(p)=\frac{1}{p}\binom{p}{j}.$$
-\end{alertblock}}
+\end{alertblock}
 \end{frame}
 
 \begin{frame}[fragile]
