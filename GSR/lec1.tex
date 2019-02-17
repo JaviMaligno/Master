@@ -147,7 +147,7 @@ $$\gene{-\overline{\nabla}_{\tilde{U}}\tilde{\eta}\circ f)(p), (df)_p(v)}=\gene{
 
 En la primera igualdad se ha sudado que $\overline{\nabla}\tilde{Y}\circ f=df(\nabla_XY)$. Esto extiende lo que ocurría en superficies, pues si $S\subseteq\R^3$ es una superficie, $\sigma_p:T_pS\times T_pS\to \R$ estaba dada por $\sigma_p(u,v)=\gene{-(dN)_p(u),v}$. En $S$ tenemos entonces $\sigma_p(u,v)\equiv \gene{\sigma_p(u,v),\eta_p}=\gene{A_{\eta,p}(u),v}$, con lo que $K_p=\det(A_{\eta,p})=\det(\sigma_p)$, que era la curvatura de Gauss como superficie. Lo mismo ocurre con la curvatura media. 
 
-Obsérvese que en la cadena de igualdades anterior hemos deducido en particular que $\A_{\eta,p}=-\nabla_U\eta_p$. 
+Obsérvese que en la cadena de igualdades anterior hemos deducido en particular que $A_{\eta,p}(U)=-\nabla_U\eta_p$. 
 \end{ej} 
 
 
@@ -276,11 +276,11 @@ R(X,Y,Z,T)-\gene{\sigma(X,T),\sigma(Y,Z)}+\gene{\sigma(Y,T),\sigma(X,Z)}
 
 \subsection{Ecuación de Ricci}
 
-Para $X,Y\in\Chi(M)$ y $\eta,\zeta\in\Chi^\perp(f)$
+Para $X,Y\in\Chi(M)$ y $\eta,\xi\in\Chi^\perp(f)$
 \[
-\gene{\overline{R}(\tilde{X},\tilde{Y})\tilde{\eta},\tilde{\zeta}}=\gene{R^\perp(X,Y)\eta,\zeta}-\gene{[A_\eta,A_\zeta](X),Y}
+\gene{\overline{R}(\tilde{X},\tilde{Y})\tilde{\eta},\tilde{\xi}}=\gene{R^\perp(X,Y)\eta,\xi}-\gene{[A_\eta,A_\xi](X),Y}
 \]
-Usamos notación $[A_\eta,A_\zeta](X)=A_\eta(A_\zeta(X))-A_\zeta(A_\eta(X))\in\Chi(M)$.
+Usamos notación $[A_\eta,A_\xi](X)=A_\eta(A_\xi(X))-A_\xi(A_\eta(X))\in\Chi(M)$.
 
 \begin{gather*}
 \overline{R}(\tilde{X},\tilde{Y})\tilde{\eta}=\overline{\nabla}_{\tilde{X}}\overline{\nabla}_{\tilde{Y}}\tilde{\eta}-\overline{\nabla}_{[\tilde{X},\tilde{Y}]}\tilde{\eta}=\\
@@ -291,21 +291,21 @@ Usamos notación $[A_\eta,A_\zeta](X)=A_\eta(A_\zeta(X))-A_\zeta(A_\eta(X))\in\C
 R^\perp(X,Y)\eta-A_{\nabla^\perp_Y\eta}(X)-\nabla_XA_\eta(Y)-\sigma(X,A_\eta(Y))+A_{\nabla^\perp_X\eta}Y+\nabla_YA_\eta(X)+\sigma(Y,A_\eta(X))+A_\eta([X,Y])
 \end{gather*}
 
-Tniendo en cuenta que $\tilde{\zeta}$ es normal
+Teniendo en cuenta que $\tilde{\xi}$ es normal
 \[
-\gene{\overline{R}(\tilde{X},\tilde{Y})\tilde{\eta},\tilde{\zeta}}=\gene{R^\perp(X,Y)\eta,\zeta}-\gene{\sigma(X,A_\eta(Y)),\zeta}+\gene{\sigma(Y,A_\eta(X)),\zeta}
+\gene{\overline{R}(\tilde{X},\tilde{Y})\tilde{\eta},\tilde{\xi}}=\gene{R^\perp(X,Y)\eta,\xi}-\gene{\sigma(X,A_\eta(Y)),\xi}+\gene{\sigma(Y,A_\eta(X)),\xi}
 \]
 Ahora
 \[
-\gene{\sigma(X,A_\eta(Y)),\zeta}=\gene{A_\zeta(X),A_\eta(Y)}
+\gene{\sigma(X,A_\eta(Y)),\xi}=\gene{A_\xi(X),A_\eta(Y)}
 \]
 y análogo en el otro sumando, así que podemos escribir lo anterior como
 \[
-\gene{R^\perp(X,Y)\eta,\zeta}-\gene{A_\eta A_\zeta(X)-A_\zeta A_\eta(X),Y}=\gene{R^\perp(X,Y)\eta,\zeta}-\gene{[A_\eta,A_\zeta](X),Y}
+\gene{R^\perp(X,Y)\eta,\xi}-\gene{A_\eta A_\xi(X)-A_\xi A_\eta(X),Y}=\gene{R^\perp(X,Y)\eta,\xi}-\gene{[A_\eta,A_\xi](X),Y}
 \]
 
 \subsection{Ecuación de Codazzi}
-Definimos $\sigma:\Chi(M)\times\Chi(M)\times\Chi^\perp(f)\to C^\infty(M)$ como $\sigma(X,Y,\eta)=\gene{\sigma(X,Y),\eta}_{\overline{M}}$. Definismo $(\overline{\nabla}_{\tilde{X}}\sigma)(Y,Z,\eta)=X(\sigma(Y,Z,\eta))-\sigma(\nabla_XY,Z,\eta)-\sigma(Y,\nabla_XZ,\eta)-\sigma(Y,Z,\nabla_X^\perp\eta)$. 
+Definimos $\sigma:\Chi(M)\times\Chi(M)\times\Chi^\perp(f)\to C^\infty(M)$ como $\sigma(X,Y,\eta)=\gene{\sigma(X,Y),\eta}_{\overline{M}}$. Definimos $(\overline{\nabla}_{\tilde{X}}\sigma)(Y,Z,\eta)=X(\sigma(Y,Z,\eta))-\sigma(\nabla_XY,Z,\eta)-\sigma(Y,\nabla_XZ,\eta)-\sigma(Y,Z,\nabla_X^\perp\eta)$. 
 
 Obsérvese que $X(\sigma(X,Y,\eta))=\gene{\nabla_X^\perp \sigma(X,Y),\eta}+\gene{\sigma(X,Y),\nabla_X^\perp\eta}$. Así que la fórmula de la segunda definición se puede reescribir como 
 \[

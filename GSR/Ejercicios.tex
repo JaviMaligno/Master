@@ -30,9 +30,49 @@ Como $\overline{M}$ tiene curvatura seccional constante $k$, tenemos la expresi�
 \[
 \overline{R}(\widetilde{X}, \widetilde{Y} )\widetilde{Z} = k(\gene{\widetilde{Y},\widetilde{Z}}\widetilde{X} - \gene{\widetilde{X},\widetilde{Z}}\widetilde{Y} ),
 \]
-la cual implica que $\overline{R}_p(\widetilde{X}_p, \widetilde{Y}_p )\widetilde{Z}_p$ es tangente para todo $p\in\overline{M}$, de modo que el producto escalar $\gene{\overline{R}(\widetilde{X},\widetilde{Y})\widetilde{Z},\widetilde{\eta}}=0$, de donde se deduce la igualdad del enunciado. 
+la cual implica que $\overline{R}_p(\widetilde{X}_p, \widetilde{Y}_p )\widetilde{Z}_p$ es tangente para todo $p\in\overline{M}$, de modo que el producto escalar $\gene{\overline{R}(\widetilde{X},\widetilde{Y})\widetilde{Z},\widetilde{\eta}}=0$, de donde se deduce la primera igualdad del enunciado. 
 
-LO SIGUIENTE NO TENGO NI IDEA
+Probamos ahora la segunda igualdad. Por tener $\overline{M}$ curvatura seccional constante, tenemos
+\[
+\gene{\overline{R}(\widetilde{X},\widetilde{Y})\widetilde{Z},\widetilde{\eta}}=\gene{k(\gene{\widetilde{Y},\widetilde{Z}}\widetilde{X} - \gene{\widetilde{X},\widetilde{Z}}\widetilde{Y} ),\widetilde{\eta}}=k(\gene{\gene{\widetilde{Y},\widetilde{Z}}\widetilde{X},\eta} - \gene{\gene{\widetilde{X},\widetilde{Z}}\widetilde{Y} ),\widetilde{\eta}})=
+\]
+\[
+k\gene{\widetilde{Y},\widetilde{Z}}\gene{\widetilde{X},\widetilde{\eta}}-k\gene{\widetilde{X},\widetilde{Z}}\gene{\widetilde{Y},\widetilde{\eta}}
+\]
+ya que los campos $X$ y $Y$ son ortogonales a $\eta$. Vamos a probar ahora que
+\[
+R^\perp(X,Y)\eta=\sigma(X,A_\eta(Y))-\sigma(Y,A_\eta)
+\]
+usando la ecuación de Ricci, es decir, 
+\[
+\gene{\overline{R}(\widetilde{X},\widetilde{Y})\widetilde{\eta},\widetilde{\xi}}=\gene{R^\perp(X,Y)\eta,\xi}-\gene{[A_\eta,A_\xi](X),Y}
+\]
+para todo $\xi\in\mathfrak{X}^\perp(f)$. Veamos que el $\gene{R^\perp(X,Y)\eta,\xi}=0$
+\[
+\gene{\overline{R}(\widetilde{X},\widetilde{Y})\widetilde{\eta},\widetilde{\xi}}=k\gene{\widetilde{Y},\widetilde{\eta}}\gene{\widetilde{X},\widetilde{\xi}}-k\gene{\widetilde{X},\widetilde{\eta}}\gene{\widetilde{Y},\widetilde{\xi}}=0
+\]
+para todo $\xi\in\mathfrak{X}^\perp(f)$. Además, recordemos que por definición 
+\[
+[A_\eta,A_\xi](X)=A_\eta(A_\xi(X))-A_\xi(A_\eta(X)).
+\]
+Además, por ser el endomorfismo de Weingarte autoadjunto
+\[
+\gene{A_\eta(A_\xi(X)),Y}=\gene{A_\xi(X),A_\eta(Y)}=\gene{\sigma(X,A_\eta(Y)),\xi}
+\]
+y análogamente intercambiando los papeles de $X$ e $Y$. Con esto, llegamos a que para todo $\xi\in\mathfrak{X}^\perp(f)$
+\[
+\gene{R^\perp(X,Y)\eta,\xi}=\gene{\sigma(X,A_\eta(Y)),\xi}-\gene{\sigma(Y,A_\eta(X)),\xi}
+\]
+Usando la linealidad de la métrica 
+\[
+\gene{R^\perp(X,Y)\eta-\sigma(X,A_\eta(Y))+\sigma(Y,A_\eta(X)),\xi}=0
+\]
+para todo $\xi\in\mathfrak{X}^\perp(f)$. Basta entonces observar que $R^\perp(X,Y)\eta-\sigma(X,A_\eta(Y))+\sigma(Y,A_\eta(X))\in\mathfrak{X}^\perp(f)$. Como al hacer el producto escalar por sí mismo sale 0, obtenemos entonces 
+\[
+R^\perp(X,Y)\eta-\sigma(X,A_\eta(Y))+\sigma(Y,A_\eta(X))=0
+\]
+de donde se deduce la igualdad que buscábamos. 
+
 \end{solucion}
 
 \begin{ejercicio}{2}
@@ -45,7 +85,22 @@ A_η([X, Y ]) = ∇_X(A_η(Y)) − ∇_Y (A_η(X)),\ X, Y ∈ \mathfrak{X}(M), �
 \]
 \end{ejercicio}
 \begin{solucion}
-PRUEBA CON LAS DEFINICIONES
+Por el ejercicio anterior, la ecuación de Codazzi queda 
+\[
+(\overline{∇}_{\widetilde{X}} σ)(Y, Z, η) = (\overline{∇}_{\widetilde{Y}} σ)(X, Z, η).
+\]
+Como vimos en clase, en el caso de codimensión 1 tenemos que $A_\eta(X)=-\nabla_X \eta$, por lo que $\nabla^\perp\eta=0$. Con esto, obtenemos
+\[
+\overline{\nabla}_X\sigma(Y,Z,\eta)=X(\gene{A_\eta(Y),Z}-\gene{A_\eta(\nabla_XY),Z}-\gene{A_\eta(Y),\nabla_XZ}=
+\]
+\[
+\gene{\nabla_X(A_\eta(Y)),Z}-\gene{A_\eta(\nabla_XY),Z}
+\]
+Por lo tanto, la ecuació de Codazzi se puede escribir como 
+\[
+A_η([X, Y ]) = ∇_X(A_η(Y)) − ∇_Y (A_η(X))
+\]
+tal como queríamos demostrar. 
 \end{solucion}
 
 \begin{ejercicio}{3}
@@ -76,6 +131,8 @@ X_p = (df)^{−1}_p(\overline{X}_{f(p)}) ∈ T_pM,
 es un campo de Killing en M.
 \end{ejercicio}
 \begin{solucion}
+\url{https://math.stackexchange.com/questions/2900274/fm-rightarrow-n-an-isometry-show-that-x-is-a-killing-field-on-m-if-and}
+isometría implica difeomorfismo afín (3.3.3 TFG), o sea, que hacer $df$ fuera es como hacerlo al mismo tiempo abajo y dentro
 \end{solucion}
 
 

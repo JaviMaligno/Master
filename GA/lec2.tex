@@ -240,13 +240,13 @@ Como $\beta$ es local, $\beta(\m_p)\subseteq\gene{\varepsilon}$ y $\beta(\m^2_p)
 Si $k$ es un cuerpo algebraicamente cerrado, podíamos considerar el espacio afín $k^n$ con la topología de Zariski. Desde el punto de vista esquemático, si tomamos $A=k[x_1,\dots, x_n]=k[x]$, $\spec(A)=\A_k^n=(\spec(k[x]),\OO_{\A_k^n})$. Hay una relación entre estas dos construcciones. Cada punto de $k^n$ nos da un ideal maximal, luego $\tau:k^n\hookrightarrow\spec(k[x])$ mediante $a\mapsto \gene{x_1-a_1, \dots, x_n-a_n}$. Entonces $\Ima\tau$ se llama espectro maximal de $k[x]$. Además $\tau$ es na inmersión topológica (es homeomorfismo sobre su imagen). Dado un ideal cualquiera $I\subseteq k[x]$ y consideramos $\tau^{-1}(V(I))=\{a\in k^n\mid \tau(a)\supseteq I\}=\{a\mid I\supseteq \gene{x_1-a_1, \dots, x_n-a_n}=\{a\mid f(a)=0, \forall f\in I\}=V(I)$ (abusamos de notación, el primer $V(I)$ es el del espectro y el segundo el de la geometría algebraica clásica). Se comprueba además que $\tau^{-1}\OO_{\A_k^n}$ es el haz de las funciones regulares en $k^n$. 
 \end{ej}
 
-Lo siguiente será construir el proyectivo en versión esquemática. Sea $S=\bigoplus_{d=0}^{\infty}S_d$ un anillo graduado (recordemos que la suma es como grupos aditivos, $1\in S_0$, Y $S_dS_e\in S_{d+e}$). Clásico ejemplo el de los polinomios en varias variables con grado la suma de los exponentes de las variables. Los elementos de $S_d$ se llaman homogéneos. Denotamos $S_+$ como la suma directa cuando $d>0$ (denominado ideal irrelevante por analogía al ejemplo mencionado). 
+Lo siguiente será construir el proyectivo en versión esquemática. Sea $S=\bigoplus_{d=0}^{\infty}S_d$ un anillo graduado (recordemos que la suma es como grupos aditivos, $1\in S_0$, Y $S_dS_e\in S_{d+e}$). Clásico ejemplo el de los polinomios en varias variables con grado la suma de los exponentes de las variables. Los elementos de $S_d$ se llaman homogéneos. Denotamos $S_+$ como la suma directa cuando $d>0$ ($S_0$ se denomina ideal irrelevante por analogía al ejemplo mencionado). 
 
 \begin{defi}
 Un ideal $I\subseteq S$ se dice \emph{homogéneo} cuando $I=\bigoplus_{d=0}^{\infty}(I\cap S_d)$, lo cual es equivalente a decir que $I$ está generado por elementos homogéneos. Recordamos que en estas condiciones $S/I=\bigoplus_{d=0}^{\infty}S_d/(I\cap S_d)$.
 \end{defi} 
 
-Dado un anillo graduado $S$, definimos $\proj(S)=\{\p\in\spec(S)\mid \p$ homogéneo, $\p\not\supseteq S_+\}$. Definismos sobre este conjunto la topología cuyos cerrados son de la siguiente forma: si $I$ es un ideal homogéneo, definimos $V(I)=\{\p\in\proj(S)\mid \p\supseteq I\}$. Por ejemplo, $V(S_+)=\emptyset$ y $V(\{0\})=\proj(S)$. Por el lema 2.4 de Hartshore se verifican las propiedades necesarias para que estos conjuntos sean los cerrados de una topología, a la que llamamos topología de Zariski. A veces, para distinguirla de la topología de $\spec(S)$, escribiremos $V^h$ en lugar de $V$.
+Dado un anillo graduado $S$, definimos $\proj(S)=\{\p\in\spec(S)\mid \p$ homogéneo, $\p\not\supseteq S_+\}$. Definimos sobre este conjunto la topología cuyos cerrados son de la siguiente forma: si $I$ es un ideal homogéneo, definimos $V(I)=\{\p\in\proj(S)\mid \p\supseteq I\}$. Por ejemplo, $V(S_+)=\emptyset$ y $V(\{0\})=\proj(S)$. Por el lema 2.4 de Hartshore se verifican las propiedades necesarias para que estos conjuntos sean los cerrados de una topología, a la que llamamos topología de Zariski. A veces, para distinguirla de la topología de $\spec(S)$, escribiremos $V^h$ en lugar de $V$.
 
 Obsérvese que $\proj(S)\subset\spec(S)$. De hecho, se tiene que $\proj(S)$ tiene la topología inducida por $\spec(S)$\footnote{\href{https://math.stackexchange.com/questions/2747367/is-the-zariski-topology-of-proj-s-the-same-as-the-subspace-topology-of-spec-s}{Prueba}}.
 
@@ -296,7 +296,7 @@ Para $\CC=\mathrm{Set}$, el producto es el producto cartesiano con las proyeccio
 Un \emph{coproducto} de $X$ e $Y$ es un producto en $\CC^{op}$. 
 \end{defi}
 \begin{defi}
-En $\mathrm{Set}$ y $\mathrm{Top}$ el coproducto es la unión disjunta. Mientras que en $\mathrm{Vec}_k$ es la suma directa (que es lo mismo que el producto cartesiano), así que el producto y el coproducto de espacios vectoriales son isomorfos (esto pasa también es los $R$-módulos y cualquier otra categoría abeliana). 
+En $\mathrm{Set}$ y $\mathrm{Top}$ el coproducto es la unión disjunta. Mientras que en $\mathrm{Vec}_k$ es la suma directa (que es lo mismo que el producto cartesiano cuando la dimensión es finita), así que el producto y el coproducto de espacios vectoriales son isomorfos (esto pasa también es los $R$-módulos y cualquier otra categoría abeliana). 
 \end{defi}
 
 Vamos a centrarnos ahora en la categoría $\mathrm{Ring}$. Aquí el producto no es más que el producto cartesiano. El coproducto sin embargo es $A\otimes_{\Z} B$. Aquí el producto está definido como $(a\otimes b)(a'\otimes b')=(aa')\otimes (bb')$. La propiedad universal se cumple para $a\mapsto a\otimes 1$ y $b\mapsto 1\otimes b$ (el elemento neutro es $1\otimes 1$). 
@@ -412,6 +412,68 @@ donde los morfismos existen por las propiedades universales y en el caso de las 
 
 \end{defi}
 
+\subsection{Ecualizador y coecualizador}
+
+
+Sea $\CC$ una categoría y sean $f,g:X\to Y$ morfismos. Se dice que $eq:Eq\to X$ satisfaciendo $f\circ eq= f\circ eq$ es un \emph{ecualizador} si para todo $m:Z\to X$ con $f \circ m=g\circ m$ existe un único $u:Z\to E$ tal que $eq\circ u=m$
+\[
+\begin{tikzcd}
+E\arrow[r, "eq"] & X\arrow[r, shift left, "f"]\arrow[r, shift right, "g"'] & Y\\
+Z\arrow[u, dashed, "u"]\arrow[ur, "m"] & 
+\end{tikzcd}
+\] 
+
+\begin{ej}
+En la categoría de conjuntos, dadas $\alpha, \alpha': A\to B$, el equalizador es el subconjunto $Eq(\alpha,\alpha')=\{a\in A\mid \alpha(a)=\alpha'(a')\}$. 
+\end{ej}
+Obsérvese que en una categoría aditiva, donde podemos sumar y restar morfismos, $Eq(\alpha,\alpha')=\ker(\alpha-\alpha')$. Dualmente se define el \emph{coecualizador} $Coeq$ mediante el siguiente diagrama
+\[
+\begin{tikzcd}
+X\arrow[r, shift left, "f"]\arrow[r, shift right, "g"'] & Y\arrow[r, "q"] \arrow[dr, "q'"]& Coeq\arrow[d,dashed, "u"]\\
+& & Z
+\end{tikzcd}
+\]
+El coecualizador verifica la relación análoga con el conúcleo.
+\begin{ej}
+El coecualizador en la categoría de conjuntos, el coecualizador es el cociente $B/\sim$, donde $\sim$ es la relación generada por $\alpha(x)\sim\alpha'(x)$. 
+\end{ej}
+\begin{ej}
+En $\mathrm{Top}$ tenemos los mismos ecualizadores y coecualizadores con las topologías inducidas correspondientes. 
+\end{ej}
+
+Sea $X=\bigcup_{i\in I}U_i$ un recubrimiento abierto del espacio $X$ y consideremos el coproducto $\coprod_{i\in I}U_i$. Tenemos el siguiente diagrama conmutativo 
+\[
+\begin{tikzcd}
+\coprod_{(i,j)\in I^2}\in U_i\cap U_j\arrow[r, shift left, "\alpha"]\arrow[r, shift right,"\alpha'"']&\coprod_{i\in I}U_i\arrow[r, "\sigma"] & X\\
+&U_i\arrow[u]\arrow[ur,hookrightarrow]&
+\end{tikzcd}
+\]
+donde $\alpha$ es la inclusión con respecto al índice $i$ y $\alpha'$ con respecto al índice $j$. Se tiene entonces que $X=Coeq(\alpha,\alpha')$. Tenemos que probar que para todo espacio topológico $Z$ y para todo $h:\coprod U_i\to Z$ tal que $h\circ\alpha=h\circ\alpha'$, existe un único $\tilde{h}: X\to Z$ tal que $\tilde{h}\circ\sigma=h$. La aplicación $h$ está determinada por cada $h_i:U_i\to Z$, por lo que $h\circ \alpha=h\circ\alpha'$ si y solo si $h_i|_{U_i\cap U_j}=h_j|_{U_i\cap U_j}$, luego definimos $\tilde{h}$ pegando las $h_i$, que se pegan con continuidad porque coinciden en las intersecciones.
+
+\begin{nota}
+La condición de haz se puede expresar en una categoría más general (como la de conjuntos) como que $\calF(U)\to\prod_{i\in I}\calF(U_i)\rightrightarrows \prod_{(i,j)}\calF(U_i\cap U_j)$ es un ecualizador, lo cual en cierto sentido se puede ver como una sucesión exacta. Además esto proviene del coecualizador $\coprod U_i\cap U_j\rightrightarrows \coprod U_i\to U$. En abiertos de un espacio $X$ se tiene además que $U_i\cap U_j$ es el producto fibrado $U_i\times_X U_j$. Con esto se consigue que si $F(X)=\Hom_{Top}(X,Z)$, entonces $F(X)\to \Hom_{Top}(\coprod X_i, Z)=\prod\Hom_{Top}(X_i,Z)\rightrightarrows \prod\Hom_{Top}(X_i\cap X_j,Z)$
+\end{nota}
+
+\begin{defi}[Topología en una categoría]
+Una topología en $\CC$ sobre un objeto $X$ es una familia $Cov=\{X_i\to X\}_{i\in I}$ tal que
+\begin{enumerate}
+\item $\{Id:X\to X\}\in Cov$
+\item  Si $\{X_i\to X\}, \{X_{ij}\to X_i\}\in Cov$, entonces $\{X_{ij}\to X\}\in Cov$.
+\item Si $\{X_i\to X\}\in Cov$ y $Y\to X$, entonces $\{X_i\times_X Y\to Y\}\in Cov$. 
+\end{enumerate} 
+\end{defi}
+Ejemplo de esto serían todas las familias de recubrimientos abiertos, ya sean de espacios topológicos sin más o esquemas (que sabemos que forman una categoría). Utilizando esta definición podemos definir haces sobre categorías. Un caso concreto muy importante es la topología \emph{Étale} sobre $\mathrm{Sch}_S$, donde las flechas de la definición tienen que ser morfismos étale:
+\begin{defi}
+Sabemos que para $f:A\to B$ y pra cualquier anillo $A\to C$ con un ideal $N^2=0$, tenemos el diagrama conmutativo
+\[
+\begin{tikzcd}
+B \arrow[r, "\beta"] & C/N\\
+A\arrow[u, "f"]\arrow[r, "\alpha"] & C\arrow[u, "\pi"]
+\end{tikzcd}
+\]
+Decimos que $f$ es \emph{étale} si existe un único $\tilde{\beta}:B\to C$ que haga conmutar el diagrama. 
+\end{defi}
+
 \section{Propiedades de los esquemas}
 
 Un ejemplo de categoría aditiva no abeliana es la de los espacios normados.
@@ -463,7 +525,7 @@ Luego podemos introducir $\spec(A\otimes_C B)$ en el primer diagrama, haciendo q
 
 Vamos ahora al caso general. Denotamos $f:X\to S$ y $g:Y\to S$. Consideramos las ternas $(U,V,W)$ de abiertos afines $U\subseteq X, V\subseteq Y, W\subseteq S$, $p(U),Q(V)\subseteq W$. Siempre se pueden encontrar ternas de este tipo que recubran todos los espacios, pues podemos recubrir $S$ por abiertos $S_i$ y considerar $f^{-1}(S_i)$, que son abiertos de $X$ y se pueden recubrir con abiertos afines (y lo mismo para $Y$). En cada abierto afín tenemos definidos los coproductos, de modo que tenemos que ``pegarlos''. 
 
-Demostración detallada en la pagina 16 de LAS NOTAS ESAS QUE TENGO QUE AÑADIR A LA BIBLIOGRAFÍA. 
+Demostración detallada en la pagina 16 de \emph{Algebraic Geometry II} de Mumford y Oda
 
 \begin{lemma}
 Si $U\subseteq S$ es abierto, entonces existe $X\times_S U=f^{-1}(U)$. 
@@ -581,11 +643,11 @@ El hecho de que $-1$ sea un cuadrado, es decir, $\exists\alpha\in\F_p\mid \alpha
 \begin{ej}
 Vamos a generalizar el ejemplo de la parábola a un cuerpo algebraicamente cerrado. Para ello tenemos que considerar ahora otro punto cerrado de $\spec(k[X])$, $\spec(k[X]/\gene{f(X)})=\spec(K)$ con $f(x)$ irreducible y $f(x)\neq x$ (porque el caso $\spec(k[X](\gene{X})=k$ ya lo habíamos tratado). Ahora $X_y=\spec(K[Y]/\gene{Y^2-X})$, y ahora tendríamos que distinguir si el anillo es reducido o no (en principio no podemos decir si $Y^2-X$ tiene raíces en $K$). Si $char(k)\neq 2$, $K[Y]/\gene{Y^2-X}$ es reducido y siempre tenemos dos puntos en la parábola salvo en el vértice. Si $char(k)=2$, para $x=0$ seguiríamos viendo el mismo punto doble del vértice, y para el resto de valores de $x$ hay puntos dobles que posiblemente solo se distingan en una extensión. Esto es porque si $\beta^2=\alpha$, entonces $Y^2-\alpha=Y^2+\alpha=Y^2+\beta^2=(Y+\beta)^2$, luego siempre hay raíces dobles, aunque no estén en el cuerpo que hemos elegido. 
 
-Vamos a ver ahora qué ocurre en el punto genérico $\zeta=\{0\}\in S=\spec(Z)$. El cuerpo residual en este ideal es $\Q$ y tendríamos el siguiente diagrama
+Vamos a ver ahora qué ocurre en el punto genérico $\zeta=\{0\}\in S=\spec(\Z)$. El cuerpo residual en este ideal es $\Q$ y tendríamos el siguiente diagrama
 \[
 \begin{tikzcd}
 \spec(\Z[i])\arrow[d] & \spec(\Q[i])\arrow[l]\arrow[d]\\
-\spec(Z) & \spec(\Q)\arrow[l]
+\spec(\Z) & \spec(\Q)\arrow[l]
 \end{tikzcd}
 \]
 La aplicación $\Q\to\Q[i]$ es una extensión de cuerpos de característica 0 de grado 2. Aquí vemos que si hacemos una extensión donde $-1$ tenga dos raíces (por ejemplo $\C$), obtenemos un punto doble (sus dos raíces).
@@ -645,7 +707,7 @@ Un espacio topológico $X$ se dice \emph{noetheriano} si satisface la condición
 \end{defi}
 
 \begin{nota}
-Si $X$ es un esquema noetheriano, entonces $\spec(X)$ es noetheriano como espacio topolótico, pero el recíproco no es cierto.
+Si $X$ es un esquema noetheriano, entonces $\spec(X)$ es noetheriano como espacio topológico, pero el recíproco no es cierto.
 \end{nota}
 
 \begin{prop}
@@ -718,71 +780,11 @@ Pero desde el punto de vista esquemático, $X_0=\spec(k[x,y]/\gene{x^2})$ nos da
 \end{ej}
 
 \begin{ej}
-De forma similar, si $X=\spec(k[x,y,t]/\gene{xy-t})$, obtenemos una familia cuyo miembto general $X_a$ es una hipérbola irreducible $xy=a$ cuando $a\neq 0$, pero cuyo miembro especial $X_0$ es el esquema reducible $xy=0$ consistente en dos rectas.
+De forma similar, si $X=\spec(k[x,y,t]/\gene{xy-t})$, obtenemos una familia cuyo miembro general $X_a$ es una hipérbola irreducible $xy=a$ cuando $a\neq 0$, pero cuyo miembro especial $X_0$ es el esquema reducible $xy=0$ consistente en dos rectas.
 \end{ej}
 
 
-\section{Ecualizador y coecualizador}
-PENSAR SI PONER ESTO EN OTRA parte DEPENDIENDO DE LO QUE VEAMOS DESPUÉS
 
-Sea $\CC$ una categoría y sean $f,g:X\to Y$ morfismos. Se dice que $e:Eq\to X$ satisfaciendo $f\circ eq= f\circ eq$ es un \emph{ecualizador} si para todo $m:Z\to X$ con $f \circ m=g\circ m$ existe un único $u:Z\to E$ tal que $eq\circ u=m$
-\[
-\begin{tikzcd}
-E\arrow[r, "eq"] & X\arrow[r, shift left, "f"]\arrow[r, shift right, "g"'] & Y\\
-Z\arrow[u, dashed, "u"]\arrow[ur, "m"] & 
-\end{tikzcd}
-\] 
-
-\begin{ej}
-En la categoría de conjuntos, dadas $\alpha, \alpha': A\to B$, el equalizador es el subconjunto $Eq(\alpha,\alpha')=\{a\in A\mid \alpha(a)=\alpha'(a')\}$. 
-\end{ej}
-Obsérvese que en una categoría aditiva, donde podemos sumar y restar morfismos, $Eq(\alpha,\alpha')=\ker(\alpha-\alpha')$. Dualmente se define el \emph{coecualizador} $Coeq$ mediante el siguiente diagrama
-\[
-\begin{tikzcd}
-X\arrow[r, shift left, "f"]\arrow[r, shift right, "g"'] & Y\arrow[r, "q"] \arrow[dr, "q'"]& Coeq\arrow[d,dashed, "u"]\\
-& & Z
-\end{tikzcd}
-\]
-El coecualizador verifica la relación análoga con el conúcleo.
-\begin{ej}
-El coecualizador en la categoría de conjuntos, el coecualizador es el cociente $B/\sim$, donde $\sim$ es la relación generada por $\alpha(x)\sim\alpha'(x)$. 
-\end{ej}
-\begin{ej}
-En $\mathrm{Top}$ tenemos los mismos ecualizadores y coecualizadores con las topologías inducidas correspondientes. 
-\end{ej}
-
-Sea $X=\bigcup_{i\in I}U_i$ un recubrimiento abierto del espacio $X$ y consideremos el coproducto $\coprod_{i\in I}U_i$. Tenemos el siguiente diagrama conmutativo 
-\[
-\begin{tikzcd}
-\coprod_{(i,j)\in I^2}\in U_i\cap U_j\arrow[r, shift left, "\alpha"]\arrow[r, shift right,"\alpha'"']&\coprod_{i\in I}U_i\arrow[r, "\sigma"] & X\\
-&U_i\arrow[u]\arrow[ur,hookrightarrow]&
-\end{tikzcd}
-\]
-donde $\alpha$ es la inclusión con respecto al índice $i$ y $\alpha'$ con respecto al índice $j$. Se tiene entonces que $X=Coeq(\alpha,\alpha')$. Tenemos que probar que para todo espacio topológico $Z$ y para todo $h:\coprod U_i\to Z$ tal que $h\circ\alpha=h\circ\alpha'$, existe un único $\tilde{h}: X\to Z$ tal que $\tilde{h}\circ\sigma=h$. La aplicación $h$ está determinada por cada $h_i:U_i\to Z$, por lo que $h\circ \alpha=h\circ\alpha'$ si y solo si $h_i|_{U_i\cap U_j}=h_j|_{U_i\cap U_j}$, luego definimos $\tilde{h}$ pegando las $h_i$, que se pegan con continuidad porque coinciden en las intersecciones.
-
-\begin{nota}
-La condición de haz se puede expresar en una categoría más general (como la de conjuntos) como que $\calF(U)\to\prod_{i\in I}\calF(U_i\rightrightarrows \prod_{(i,j)}\calF(U_i\cap U_j)$ es un ecualizador, lo cual en cierto sentido se puede ver como una sucesión exacta. Además esto proviene del coecualizador $\coprod U_i\cap U_j\rightrightarrows \coprod U_i\to U$. En abiertos de un espacio $X$ se tiene además que $U_i\cap U_j$ es el producto fibrado $U_i\times_X U_j$. Con esto se consigue que si $F(X)=\Hom_{Top}(X,Z)$, entonces $F(X)\to \Hom_{Top}(\coprod X_i, Z)=\prod\Hom_{Top}(X_i,Z)\rightrightarrows \prod\Hom_{Top}(X_i\cap X_j,Z)$
-\end{nota}
-
-\begin{defi}[Topología en una categoría]
-Una topología en $\CC$ sobre un objeto $X$ es una familia $Cov=\{X_i\to X\}_{i\in I}$ tal que
-\begin{enumerate}
-\item $\{Id:X\to X\}\in Cov$
-\item  Si $\{X_i\to X\}, \{X_{ij}\to X_i\}\in Cov$, entonces $\{X_{ij}\to X\}\in Cov$.
-\item Si $\{X_i\to X\}\in Cov$ y $Y\to X$, entonces $\{X_i\times_X Y\to Y\}\in Cov$. 
-\end{enumerate} 
-\end{defi}
-Ejemplo de esto serían todas las familias de recubrimientos abiertos, ya sean de espacios topológicos sin más o esquemas (que sabemos que forman una categoría). Utilizando esta definición podemos definir haces sobre categorías. Un caso concreto muy importante es la topología \emph{Étale} sobre $\mathrm{Sch}_S$, donde las flechas de la definición tienen que ser morfismos étale:
-\begin{defi}
-Sabemos que para $f:A\to B$ y pra cualquier anillo $A\to C$ con un ideal $N^2=0$, tenemos el diagrama conmutativo
-\[
-\begin{tikzcd}
-B \arrow[r, "\beta"] & C/N\\
-A\arrow[u, "f"]\arrow[r, "\alpha"] & C\arrow[u, "\pi"]
-\end{tikzcd}
-\]
-Decimos que $f$ es \emph{étale} si existe un único $\tilde{\beta}:B\to C$ que haga conmutar el diagrama. 
-\end{defi}
 
 
 \section{Ejercicios}

@@ -20,7 +20,7 @@ An \emph{operad} is a tuple $(O, \circ, \mathbbm{1})$ consisting of the followin
 \item an element $\mathbbm{1}\in O(1)$ is called the \emph{identity},
 \item for all positive integers $n,k_1,\dots, k_n$, a \emph{composition} map
 \begin{align*}
-\circ:P(n)\times O(k_1)\times\cdots\times O(k_n)&\to O(k_1+\cdots+k_n)\\
+\circ:O(n)\times O(k_1)\times\cdots\times O(k_n)&\to O(k_1+\cdots+k_n)\\
 (\theta, \theta_1,\dots, \theta_n)&\to \theta\circ(\theta_1,\dots, \theta_n),
 \end{align*}
 satisfying the following axioms:
@@ -31,8 +31,11 @@ satisfying the following axioms:
 & \theta \circ (\theta_1 \circ (\theta_{1,1}, \ldots, \theta_{1,k_1}), \ldots, \theta_n \circ (\theta_{n,1}, \ldots,\theta_{n,k_n}))= \\
  {} & (\theta \circ (\theta_1, \ldots, \theta_n)) \circ (\theta_{1,1}, \ldots, \theta_{1,k_1}, \ldots, \theta_{n,1}, \ldots, \theta_{n,k_n})
 \end{align*}
+\end{itemize}
 
-\item \emph{equivariance}: given permutations $s_i\in\Sigma_{k_i}$, $t\in\Sigma_n$,
+An operad is called \emph{symmetric} if it satisfies the following additional property:
+\begin{itemize}
+\item \emph{equivariance} or \emph{symmetry}: given permutations $s_i\in\Sigma_{k_i}$, $t\in\Sigma_n$,
 \begin{align*}
 & (\theta\cdot t)\circ(\theta_{t_1},\ldots,\theta_{t_n}) = (\theta\circ(\theta_1,\ldots,\theta_n))\cdot t \\[2pt]
 & \theta\circ(\theta_1\cdot s_1,\ldots,\theta_n\cdot s_n) = (\theta\circ(\theta_1,\ldots,\theta_n))\cdot (s_1,\ldots,s_n)
@@ -64,7 +67,54 @@ ALOMEJOR HACER DIBUJITOS DE LOS AXIOMAS
 
 \section{Little disks operad}
 
+From now on, by ``disk'' we will mean ``open disk''. 
+ 
+ Let $E_2(n)$ be the configuration space of $n$ disks $B(x_i,r_i)$ of center $x_i\in D^2$ and radius $r_i\in (0,1)$ (called \emph{little disks}) inside the standard unit disk viewed $D^2$ as a subspaces of $(D^2\times (0,1))^n$ whose points are of the form $((x_1,r_1),\dots, (x_n,r_n))$. By convention, $E_2(0)=\{*\}$. Note that $r_i$ must be such that the disk of center $B(x_i,r_i)\subset D^2$ without intersecting any other disk $B(x_j,r_j)$. 
+ 
+ There is an obvious homotopy equivalence $E_2(n)\simeq \mathcal{M}_2(n)$ from $E_2(n)$ to the configuration space of $n$ points of $D^2$. This homotopy equivalence is given by ``forgetting the radius'' of each little disk. Hence $\pi_1(E_2(n))\cong PB_n$, the pure braid group of order $n$, and $\pi_i(E_2(n))=0$ for $j>1$. 
+ 
+ 
+ GRAPHIC REPRESENTATION OF $E_n$ FOR $n=3$
+ 
+ We define for all positive integers $p$ and $q$ and  each $1\leq i\leq p$the composition or \emph{structure} map 
+ \[
+ \begin{tikzcd}[row sep=10]
+  E_2(p)\times E_2(q)\arrow[r, "\circ_i"] & E_2(p+q-1)\\
+  (c_1,c_2)\arrow[r, mapsto, shorten <= 1em, shorten >= 1em] & c_1\circ_i c_2
+ \end{tikzcd}
+ \]
+ by inserting $c_2$ inside $B(x_i,r_i)$ as shown in the figure. 
+ 
+ FIGURE OF THE STRUCTURE MAP
 
+
+Note that there is an element $Id_{E_2}\in E_2(1)$ given by the coordinates $(0,1)$ which acts as the identity for this map. It is easy to check that these maps satisfy the associativity property of an operad. IGUAL DEBERÍA PONERME A COMPROBARLO Y ESCRIBIRLO Therefore, the familty $E_2=\{E_2(n)\}_{n\geq 0}$ is an operad with identity $Id_{E_2}$ and composition map $\circ_i$. This is what we call the \emph{little disks operad}.
+
+\begin{remark}
+In the definition of the structure maps we're omitting the disks on which only the identity is acting. If we want to write it with the same notation as we defined operads, the maps should be $\circ_i:O(p)\times O(q)\times O(1)\times\cdots \times O(1)\to O(p+q-1)$. 
+\end{remark}
+
+There is an action $E_2(n)\times \Sigma_n\to E_2(n)$ of the symmetric group on $E_2(n)$ given by rearranging the little disks. An example is shown below.
+EJEMPLO DE LA ACCIÓN
+
+It is not difficult to check that the maps $\circ_i$ are compatible with this action in the sense of equivariance of operads QUIZÁ DEBERÍA COMPROBARLO, so $E_2$ is indeed a symmetric operad. 
+
+\subsection{Action of $E_2$ on a loop space}
+Given a based space $(X,x_0)$, consider the loop space $\Omega^2(X)$ of based maps $(S^2, (1,0,0))\to (X, x_0)$. One can interpret this maps as maps $\overline{D}^2\to X$ taking the boundary $S^1$ of $\overline{D}^2$ to $x_0$, since they induce a well defined map $\overline{D}^2/S^1\cong S^2\to X$ and we can choose the quotient map to identify the class of $S^1$ in $\overline{D}^2/S^1$ with the point $(1,0,0)\in S^2$. 
+
+Now we can define for $n\geq 1$ an action $E_2(n)\times (\Omega^2(X))^n\to \Omega^2(X)$ given by $(c,\gamma_1,\dots, \gamma_n)\mapsto c(\gamma_1,\dots, \gamma_n)$, where 
+$c(\gamma_1,\dots, \gamma_n):c\to X$ is defined as $\gamma_i$ on $B(x_i,r_i)$ and to be constantly the base point $x_0$ outside the little disks. This map has the following immediate properties:
+\begin{enumerate}
+\item $Id_{E_2}(\gamma)=\gamma$ for all $\gamma\in \Omega^2(X)$.
+\item For $c_1\in E_2(p)$ and $c_2\in E_2(q)$, 
+$$(c_1\circ_i c_2)(\gamma_1,\dots, \gamma_{p+q-1})=c_1(\gamma_1,\dots, \gamma_{i-1}, c_2(\gamma_i,\dots, \gamma_{i+q-1}),\dots, \gamma_{p+q-1}).$$ COMPROBARLA
+\item For $c\in E_2(n)$ and $\sigma\in\Sigma_n$, $(c\cdot \sigma)(\gamma_1,\dots,\gamma_n)=c(\gamma_{\sigma^{-1}(1)},\dots, \gamma_{\sigma^{-1}(n)})$. 
+\end{enumerate}
+Note that for $n=0$, there is only the map $E_2(0)\to\Omega^2(X)$ inducing $*\mapsto x_0$. 
+
+LO DE $E_2$-ÁLGEBRA NO SÉ SI ES DEFINICIÓN O ES UNA ESTRUCTURA QUE SE VERIFICA
+
+NO SÉ DÓNDE PONER LA PARTE DE LAS CADENAS Y TODO ESO. EN CUANTO A ESO PREGUNTAR POR QUÉ SE COGÍA SOLO EL $E_2(2)$ Y CÓMO SE RELACIONA LA COHOMOLOGÍA DE HOCHSCHILD DE $A$ CON LA HOMOLOGÍA DEL LOOP SPACE
 
 
 \end{document}

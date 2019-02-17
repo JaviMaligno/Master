@@ -80,26 +80,26 @@ Existe una noción de esquema en grupos abeliano más fuerte que lo que acabamos
 \end{defi}
 
 \begin{ej}
-Esquema en grupo aditivo $G_a$ sobre $\Z$. Sea $G_a=\spec(Z[X])$. Dar $\mu:\spec(\Z[X])\times_S\spec(\Z[X])\to\spec(\Z[X])$ es equivalente a dar $\mu^*:\Z[X]\to \Z[X]\otimes\Z[X]$, que en este caso lo vamos a definir mediante $x\mapsto x\times 1+1\otimes x$. Definimos $\tau:G_a\to G_a$ mediante $\tau^*:\Z[X]\to\Z[X]$ como $x\mapsto -x$. Por último $\varepsilon:\Z\to G_a$ está dado por $\varepsilon^*:\Z[X]\to\Z$, $x\mapsto 0$. 
+Esquema en grupo aditivo $G_a$ sobre $\Z$. Sea $G_a=\spec(Z[X])$. Dar $\mu:\spec(\Z[X])\times_S\spec(\Z[X])\to\spec(\Z[X])$ es equivalente a dar $\mu^*:\Z[X]\to \Z[X]\otimes\Z[X]$, que en este caso lo vamos a definir mediante $x\mapsto x\times 1+1\otimes x$. Definimos $\tau:G_a\to G_a$ mediante $\tau^*:\Z[X]\to\Z[X]$ como $X\mapsto -X$. Por último $\varepsilon:\Z\to G_a$ está dado por $\varepsilon^*:\Z[X]\to\Z$, $X\mapsto 0$. 
 
-Verificamos ahora las condiciones de esquema en grupo mediante la conmutatividad de los diagramas duales en anillos. Basta comprobar la conmutatividad para el elemento $x$. Tenemos que $x\xrightarrow{\mu^*}x\otimes 1+1\otimes x\xrightarrow{\mu^*\times Id} \mu^*(x)\otimes 1+\mu^*(1)\otimes x=(x\otimes 1+1\otimes x)\otimes x+(1\otimes 1)\otimes x=x\otimes 1\otimes 1+1\otimes x\otimes 1+1\otimes 1\otimes x$. Por otro lado, $\mu^*(x)\xrightarrow{Id\times\mu^*} x\otimes\mu^*(1)+1\otimes\mu^*(x)=x\otimes(1\otimes 1)+1\otimes(x\otimes 1+1\otimes x)=x\otimes 1\otimes 1+ 1\otimes x\otimes 1+1\otimes 1\otimes x$, con lo que se verifica la asociatividad. 
+Verificamos ahora las condiciones de esquema en grupo mediante la conmutatividad de los diagramas duales en anillos. Basta comprobar la conmutatividad para el elemento $X$. Tenemos que $X\xrightarrow{\mu^*}X\otimes 1+1\otimes X\xrightarrow{\mu^*\times Id} \mu^*(X)\otimes 1+\mu^*(1)\otimes X=(X\otimes 1+1\otimes X)\otimes X+(1\otimes 1)\otimes X=X\otimes 1\otimes 1+1\otimes X\otimes 1+1\otimes 1\otimes X$. Por otro lado, $\mu^*(X)\xrightarrow{Id\times\mu^*} X\otimes\mu^*(1)+1\otimes\mu^*(X)=X\otimes(1\otimes 1)+1\otimes(X\otimes 1+1\otimes X)=X\otimes 1\otimes 1+ 1\otimes X\otimes 1+1\otimes 1\otimes X$, con lo que se verifica la asociatividad. 
 
-Para el elemento neutro recordamos que $\Z[X]\to\Z[X]\otimes_\Z\Z$ por la derecha está dado por $a\mapsto a\otimes 1$. Entonces $Id\times\varepsilon^*(\mu^*(x))=x\otimes \varepsilon^*(1)+1\otimes\varepsilon^*(x)=x\otimes 1+0=x\otimes 1$, por lo que se verifica la propiedad del elemento neutro (es análoga por la izquierda).
+Para el elemento neutro recordamos que $\Z[X]\to\Z[X]\otimes_\Z[X]$ por la derecha está dado por $a\mapsto a\otimes 1$. Entonces $Id\times\varepsilon^*(\mu^*(X))=X\otimes \varepsilon^*(1)+1\otimes\varepsilon^*(X)=X\otimes 1+0=X\otimes 1$, por lo que se verifica la propiedad del elemento neutro (es análoga por la izquierda).
 
-Por último tenemos que vemos el inverso. Vemos que $\Delta^*:\Z[X]\otimes\Z\Z[X]\to \Z[X]$ está dado por $a\otimes b=a+b$, puesto que por el diagrama se debe cumplir $a\otimes 1\mapsto a$ y $1\otimes b\mapsto b$. Esto se observa dualizando el diagrama
+Por último tenemos que vemos el inverso. Vemos que $\Delta^*:\Z[X]\otimes\Z[X]\to \Z[X]$ está dado por $a\otimes b=a+b$, puesto que por el diagrama se debe cumplir $a\otimes 1\mapsto a$ y $1\otimes b\mapsto b$. Esto se observa dualizando el diagrama
 \[
 \begin{tikzcd}
 & G\arrow[ld, "Id"] \arrow[rd, "Id"]\arrow[d, "\Delta"] & \\
 G & G\times_\Z G\arrow[l]\arrow[r] & G
 \end{tikzcd}
 \]
-Por tanto $\tau^*\mu^*(x)=x\otimes\tau^*(1)+1\otimes\tau^*(x)=x\otimes 1+1\otimes(-x)\mapsto x-x=0=i(\varepsilon(x))$. 
+Por tanto $\tau^*\mu^*(X)=X\otimes\tau^*(1)+1\otimes\tau^*(X)=X\otimes 1+1\otimes(-X)\mapsto X-X=0=i(\varepsilon(X))$. 
 
-Vamos a ver que además se verifica la conmutatividad. En efecto, $\sigma\mu^*(x)=\sigma(x\otimes 1+1\otimes x)=1\otimes x+x\otimes 1=x\otimes 1+1\otimes \sigma=\mu^*(x)$. 
+Vamos a ver que además se verifica la conmutatividad. En efecto, $\sigma\mu^*(X)=\sigma(X\otimes 1+1\otimes X)=1\otimes X+X\otimes 1=X\otimes 1+1\otimes \sigma=\mu^*(X)$. 
 \end{ej}
 
 \begin{ej}
-Grupo multipliativo sobre $\Z$. Sea $G_m=\spec(\Z[X,Y]/\gene{XY-1})=\spec(\Z[X,X^{-1}])$. Las propiedades de este esquema se prueban de forma análoga a las de anterior ejemplo para $\mu^*:\Z[X,X^{-1}]\to\Z[X,X^{-1}]\otimes \Z[X,X^{-1}]: x\mapsto x\otimes x$; $\tau^*:\Z[X,X^{-1}]\to \Z[X,X^{-1}]: x\mapsto x^{-1}$; $\varepsilon^*:\Z[X,X^{-1}]\to\Z: x\mapsto 1$. LAS X PONERLAS TODAS IGUAL AQUÍ Y ANTES
+Grupo multipliativo sobre $\Z$. Sea $G_m=\spec(\Z[X,Y]/\gene{XY-1})=\spec(\Z[X,X^{-1}])$. Las propiedades de este esquema se prueban de forma análoga a las de anterior ejemplo para $\mu^*:\Z[X,X^{-1}]\to\Z[X,X^{-1}]\otimes \Z[X,X^{-1}]: X\mapsto X\otimes X$; $\tau^*:\Z[X,X^{-1}]\to \Z[X,X^{-1}]: X\mapsto X^{-1}$; $\varepsilon^*:\Z[X,X^{-1}]\to\Z: X\mapsto 1$. 
 \end{ej}
 
 
@@ -109,7 +109,7 @@ En general se puede definir un objeto grupo $X$ en una categoría $\CC$ que admi
 Sea $G$ un esquema en grupos (conmutativo) sobre $S$. Sea $T\to S$ un $S$-esquema. Entonces $G(T)=\Hom_{\Sch|_S}(T,G)$ está dotado de estructura de grupo (conmutativo) mediante la siguiente ley: para todo $f,g\in\Hom_{\Sch|_S}(T,G)$ se define $f\cdot g=\mu\circ h\in\Hom_{\Sch|_S}(T,G)$ donde $h$ satisface el diagrama conmutativo
 \[
 \begin{tikzcd}
- & T\arrow[dl, "f"]\arrow[dr, "g"]\arrow[d, "h"] & \\
+ & T\arrow[dl, "f"']\arrow[dr, "g"]\arrow[d, "h"] & \\
  G & G\times_S G\arrow[r] \arrow[l] & G
 \end{tikzcd}
 \]
@@ -188,13 +188,13 @@ que nos define $f_1\cdot f_2$, y el mismo diagrama intercambiando $pr_1$ y $pr_2
 
 
 \begin{ej}
-Veamos qué pinta tiene este producto en el ejemplo del grupo $G_a=\spec(\Z[X])$. Sea $T\to\Z$ un esquema. Recordemos que $\Hom_{\Sch_\Z}(T,G_a)\cong\Hom_{\Ring}(\Z[x],\OO_T(T))$. Entonces $h$ se corresponde con $f^*\otimes g^*:\Z[X]\otimes\Z[X]\to\OO_T(T)$. Además, como cada morfismo $\Z[X]\to\OO_T(T)$ está caracterizado por la imagen de $x$, el conjunto de tales morfismos es precisamente $\OO_T(T)$. 
+Veamos qué pinta tiene este producto en el ejemplo del grupo $G_a=\spec(\Z[X])$. Sea $T\to\Z$ un esquema. Recordemos que $\Hom_{\Sch_\Z}(T,G_a)\cong\Hom_{\Ring}(\Z[X],\OO_T(T))$. Entonces $h$ se corresponde con $f^*\otimes g^*:\Z[X]\otimes\Z[X]\to\OO_T(T)$. Además, como cada morfismo $\Z[X]\to\OO_T(T)$ está caracterizado por la imagen de $X$, el conjunto de tales morfismos es precisamente $\OO_T(T)$. 
 
-Ahora, $\mu^*(x)=x\otimes 1+1\otimes x\mapsto f^*(x)\cdot 1+1\cdot g^*(x)=a+b$ si asociamos $f$ con un elemento $a\in\OO_T(T)$ y $g$ con otro elemento $b$. Así que $G_a$ induce la suma en $\OO_T(T)$, de lo cual viene el nombre de grupo aditivo. 
+Ahora, $\mu^*(X)=X\otimes 1+1\otimes X\mapsto f^*(X)\cdot 1+1\cdot g^*(X)=a+b$ si asociamos $f$ con un elemento $a\in\OO_T(T)$ y $g$ con otro elemento $b$. Así que $G_a$ induce la suma en $\OO_T(T)$, de lo cual viene el nombre de grupo aditivo. 
 \end{ej}
 
 \begin{ej}
-Hagamos lo mismo en el grupo multiplicativo. Para $T$ un esquema, obtenemos $\Hom_{\Sch_\Z}(T,G_m)\cong(\OO_T(T))^\times$ puesto que $x$ tiene que mapearse a un elemento invertible. Se comprueba que $G_m$ induce el producto en el grupo de las unidades. 
+Hagamos lo mismo en el grupo multiplicativo. Para $T$ un esquema, obtenemos $\Hom_{\Sch_\Z}(T,G_m)\cong(\OO_T(T))^\times$ puesto que $X$ tiene que mapearse a un elemento invertible. Se comprueba que $G_m$ induce el producto en el grupo de las unidades. 
 \end{ej}
 
 
@@ -218,8 +218,8 @@ G & G\times_S G \arrow[l, "pr_1"'] \arrow[r, "pr_2"] \arrow[d, "\mu"] & G \\
 de donde se deduce la igualdad.
 
 \begin{ej}
-Volvemos al ejemplo $\spec(\Z[x_1,x_2,x_3,x_4]/\gene{x_1x_4-x_2x_3-2})=\spec(B)$ y consideramos $T\to\spec(\Z)$ un esquema, entonces $\Hom_{\Sch}(T, \spec(B))\cong \Hom_{\Ring}(B,\OO_T(T))\cong SL_2(\O_T(T))$. Esto nos da $h_{\spec(B)}:\Sch\to\Grp$, aunque hay que ver que esta correspondencia es realmente un functor. Si $\phi:T'\to T$ es un morfismo de esquemas, esto nos da $\OO_T(T)\to\OO_{T'}(T')$. Esto nos daría un morfismo $SL_2(\OO_T(T))\to SL_2(\OO_{T'}(T'))$ y hay que ver que es justamente el morfismo inducido por la correspondencia.
-
+Volvemos al ejemplo $\spec(\Z[x_1,x_2,x_3,x_4]/\gene{x_1x_4-x_2x_3-2})=\spec(B)$ y consideramos $T\to\spec(\Z)$ un esquema, entonces $\Hom_{\Sch}(T, \spec(B))\cong \Hom_{\Ring}(B,\OO_T(T))\cong SL_2(\OO_T(T))$. Esto nos da $h_{\spec(B)}:\Sch\to\Grp$, aunque hay que ver que esta correspondencia es realmente un functor. Si $\phi:T'\to T$ es un morfismo de esquemas, esto nos da $\OO_T(T)\to\OO_{T'}(T')$. Esto nos daría un morfismo $SL_2(\OO_T(T))\to SL_2(\OO_{T'}(T'))$ y hay que ver que es justamente el morfismo inducido por la correspondencia.
+%\O da la O de MO 
 \[
 \begin{tikzcd}
 \Hom_{\Sch}(T,\spec(B))\arrow[r, "h(\phi)"]\arrow[d, "\cong"] & \Hom_{\Sch}(T',\spec(B))\arrow[d, "\cong"]\\
@@ -256,7 +256,7 @@ Existencia de $\tau$:
 Para todo $T\to S$, $\tau_T:h_G(T)\to h_G(T)$ está definida como $f\mapsto f^{-1}$ (inverso del grupo). Obsérvese que esto no es un homomorfismo en general si el grupo no es conmutativo. Comprobamos la naturalidad para $\alpha:T_1\to T_2$. Sea $f:T_2\to G$, hay que ver que $h_G(\alpha)(\tau_{T_2}(f))=\tau_{T_1}(h_G(\alpha)(f))$, o equivalentemente $\tau_{T_2}(f)\circ\alpha=\tau_{T_1}(f\circ\alpha)$. Recordemos que $\tau_{T_1}(f\circ\alpha)$ está caracterizado por $\tau_{T_1}(f\circ\alpha)\cdot (f\circ\alpha)e_{T_1}$ y lo mismo por la izquierda. Así que vemos que el otro miembro de la igualdad satisface las mismas relaciones. 
 
 \[
-\tau_{T_2}(f)\circ\alpha)\cdot (f\circ\alpha)=h_G(\alpha)(\tau_{T_2}(f))\cdot h_G(\alpha)(f)=h_G(\alpha)(\tau_{T_2}(f)\cdot f)=h_G(\alpha)(e_{T_2})=e_{T_1}
+\tau_{T_2}(f\circ\alpha)\cdot (f\circ\alpha)=h_G(\alpha)(\tau_{T_2}(f))\cdot h_G(\alpha)(f)=h_G(\alpha)(\tau_{T_2}(f)\cdot f)=h_G(\alpha)(e_{T_2})=e_{T_1}
 \]
 donde en la segunda igualdad hemos usando que $h_G(\alpha)$ es homomorfismo de grupos. Análogamente a la izquierda. Esta conmutatividad nos da el $\tau$ buscado via lema de Yoneda.
 

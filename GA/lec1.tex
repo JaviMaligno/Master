@@ -24,7 +24,7 @@ Todo esto vale también si consideramos $C^n(U,\R)\forall n\geq 0, C^\infty(U,\R
 \end{ej}
 
 \begin{ej}
-Ahora vamos a considerar las funciones constantes $Cte(U,\R)\cong \R$. En este caso, lo explicaco en el ejemplo anterior ya no es válido. Si consideramos un abierto donde la función vale 2 y otro en el que la función vale 3 (naturalmente su intersección es vacía), no existe una función constante que valga 2 en un abierto y 3 en otra. Esto muestra que ser constante no es una propiedad local. Si exigiéramos que fuera localmente constante entonces sí se verificaría.
+Ahora vamos a considerar las funciones constantes $Cte(U,\R)\cong \R$. En este caso, lo explicado en el ejemplo anterior ya no es válido. Si consideramos un abierto donde la función vale 2 y otro disjunto en el que la función vale 3 (naturalmente su intersección es vacía), no existe una función constante que valga 2 en un abierto y 3 en otra. Esto muestra que ser constante no es una propiedad local. Si exigiéramos que fuera localmente constante entonces sí se verificaría.
 \end{ej}
 
 Estos ejemplos nos dan la noción de prehaz (que no verifica necesariamente la condición local) y de haz (que sí la verifica).
@@ -103,11 +103,11 @@ Para probar que el límite directo existe en el caso de grupos abelianos, dados 
 \]
 \end{defi}
 
-Podemos pensar de otra forma el límite directo además de la que hemos definido antes. Consideremos $\{(U,s)\mid U$ es entorno abierto de $p$ y $s\in\calF(U)\}$. Definismo sobre este conjunto la relación de equivalencia $(U,s)\sim (V,t)$ si $\exists w\in U\cap V$ entorno abierto de $p$ tal que $s|_W=t|_W$. Este conjunto tiene además de estructura de grupo abeliano haciendo suma donde dos funciones estén definidas. 
+Podemos pensar de otra forma el límite directo además de la que hemos definido antes. Consideremos $\{(U,s)\mid U$ es entorno abierto de $p$ y $s\in\calF(U)\}$. Definimos sobre este conjunto la relación de equivalencia $(U,s)\sim (V,t)$ si $\exists w\in U\cap V$ entorno abierto de $p$ tal que $s|_W=t|_W$. Este conjunto tiene además de estructura de grupo abeliano haciendo suma donde dos funciones estén definidas. 
 
 \begin{ejs}
 \begin{enumerate}
-\item Une jemplo sencillo es considerar funciones que vayan a $\R$. En ese caso las clases de equivalencia serían los gérmenes de funciones en $p$. 
+\item Un ejemplo sencillo es considerar funciones que vayan a $\R$. En ese caso las clases de equivalencia serían los gérmenes de funciones en $p$. 
 
 \item Sea $X=\C$ y $\calF(U)$ el grupo de funciones holomorfas (o analíticas) $f:U\to\C$. Claramente las funciones de una clase tendrían el mismo valor en $p$, pero no solo eso, sino también la misma serie de Taylor porque también coincidirían sus derivadas. Por tanto, el límite directo aquí serían los posibles desarrollos de Taylor en $p$. En el caso analítico, por el principio de extensión analítica, las funciones de una clase deben ser iguales en la componente conexa de $p$ en la intersección de los dominios. 
 \end{enumerate}
@@ -169,7 +169,7 @@ Un \emph{subhaz} de un haz $\calF$ es un haz $\calF'$ tal que para todo abierto 
 
 Decimos que un morfismo de haces $\varphi:\calF\to\calG$ es inyectivo si $\ker\varphi=0$. Por tanto, $\varphi$ es inyectivo si y solo si la aplicación inducida $\varphi(U):\calF(U)\to\calG(U)$ es inyectiva para todo abierto de $X$. Esto es equivalente a que $\varphi_p:\calF_p\to \calG_p$ es inyectiva (la implicación directa se cumple para prehaces, la inversa requiere que sean haces). 
 
-Definimos la imagen de un morfismo de haces $\Ima\varphi$ como el haz asociado al prehaz imagen, es decir, $(\Ima^0\varphi)^+$. Por la propiedad universal del haz asociado, existe una aplicación natural $\Ima\varphi\to\calG$ que es de hecho inyectivo, y por tanto podemos identificar la imagen con un subhaz de $\calG$. 
+Definimos la imagen de un morfismo de haces $\Ima\varphi$ como el haz asociado al prehaz imagen, es decir, $(\Ima^0\varphi)^+$. Por la propiedad universal del haz asociado, existe una aplicación natural $\Ima\varphi\to\calG$ que es de hecho inyectiva, y por tanto podemos identificar la imagen con un subhaz de $\calG$. 
 
 Decimos que un morfismo de haces es sobreyectivo si $\Ima\varphi=\calG$.
 
@@ -199,7 +199,7 @@ Sea $\calG$ un prehaz en $Y$. Definimos el prehaz $f^{-1}_0(\calG)(U)$. Para ell
 \end{defi}
 
 \begin{prop}
-Se verifica $(f^{-1}\calG)_p\cong \calG_p$ para todo $p\in X$. No así para la imagen directa.
+Se verifica $(f^{-1}\calG)_p\cong \calG_{f(p)}$ para todo $p\in X$. No así para la imagen directa.
 \end{prop}
 
 Tanto $f_*$ como $f^{-1}$ definen funtores, el primero entre la categoría $\mathfrak{Ab}(X)$ de haces sobre $X$ en $\mathfrak{Ab}(Y)$ y el segundo a la inversa. 
@@ -214,7 +214,7 @@ donde $\C_X$ denota las funciones localmente constantes en $X$. Para $U=\C-\{0\}
 \[
 0\to \C \hookrightarrow \OO_X(\C-\{0\})\xrightarrow{\frac{d}{dz}}\OO_X(\C-\{0\})\to H^1(\C-\{0\})
 \]
-donde $H^1(\C-\{0\})$ es la cohomología que estudiaremos en el capítulo siguiente y coincide con la cohomología singular del espacio. En este caso es un espacio vectorial de dimensión 1 generado por $\frac{1}{z}$. 
+donde $H^1(\C-\{0\})$ es la cohomología de haces (Hartshorne, capítulo III) y coincide en este caso con la cohomología singular del espacio. En este caso es un espacio vectorial de dimensión 1 generado por $\frac{1}{z}$. 
 \end{ej}
 
 

@@ -9,8 +9,6 @@
 
 La noción de morfismo propio en esquemas es la habitual de espacios topológicos, es decir, la preimagen de un compacto es compacta. El concepto de morfismo separado sin embargo tendrá que ser refinado. En topología general una aplicación es separada si la preimagen de cada punto es un espacio Hausdorff, pero esta condición es demasiado fuerte en los espacios que atañen a la geometría algebraica. 
 
-
-PONER DE PRELIMINARES LAS COSAS QUE APARECEN EN AGII 4. 
 \section{Morfismos separados}
 
 
@@ -35,6 +33,25 @@ Un morfismo $f:X\to Y$ es separado si y solo si la imagen del morfismo diagonal 
 \begin{dem}
 Una implicación es obvia, así que solo tenemos que probar que si $\Delta(X)$ es un subconjunto cerrado, entonces $\Delta:X\to X\times_Y X$ es una inmersión cerrada. En otras palabras, tenemos que comprobar que $\Delta:X\to \Delta(X)$ es un homeomorfismo y que el morfismo de haces $\OO_{X\times_Y X}\to\Delta_*\OO_X$ es sobreyectivo. Sea $p_1:X\times_Y X\to X$ la primera proyección. Como $p_1\circ\Delta=Id_X$, se sigue que $\Delta$ da un homeomorfismo sobre su imagen. Ver que el morfismo de haces $\OO_{X\times_Y X}\to\Delta_*\OO_X$ es sobreyectivo es una cuestión local. Para cualquier punto $P\in X$, sea $U$ un abierto afín con $P\in U$ lo bastante pequeño como para que $f(U)$ esté contenido en un abierto afín $V$ de $Y$. Entonces $U\times_V U$ is un entorno abierto afín de $\Delta(P)$, y por la proposición, $\Delta:U\to U\times_V U$ es una inmersión cerrada, por lo que la aplicación de haces es sobreyectiva en un entorno de $P$ por definición de inmersión cerrada, lo que completa la prueba.  
 \end{dem}
+
+\begin{prop}[AGII, Prop 4.2]
+Las siguientes condiciones son equivalentes entre sí y a que $X$ sea un esquema separado:
+\begin{enumerate}
+\item There is an open affine covering $\{U_i\}$ of $X$ such that for all $i$, $j$, $U_i ∩ U_j$ is affine and
+$\OO_X(U_i)$, $\OO_X(U_j)$ generate $\OO_X(U_i ∩ U_j)$.
+\item For all open affines $U$, $V ⊂ X$, $U ∩V$ is affine and $\OO_X(U)$, $\OO_X(V )$ generate $\OO_X(U ∩V )$.
+\end{enumerate}
+\end{prop}
+
+\begin{prop}[AGII, Prop 4.6]
+If $X → S$ is a closed immersion and $Y → S$ is any morphism, then
+$X ×_S Y → Y$ is a closed immersion.
+\end{prop}
+
+\begin{prop}[AGII, Prop 4.7]
+Given two morphisms $f_1, f_2 : Z → X$ where $X$ is separated, $Eq(f_1, f_2)$ is
+a closed subset of $Z$.
+\end{prop}
 
 \begin{teorema}[Criterio Valuativo de Separación]
 Sea $f:X\to Y$ un morfismo de esquemas y supongamos que $X$ es noetheriano. Entonces $f$ es separado si y solo si la siguiente condición se cumple. Para cualquier cuerpo $K$ y para cualquier anillo de valuación\footnote{\url{https://en.wikipedia.org/wiki/Valuation_ring}} $R$ con cuerpo de fracciones $K$, sean $T=\spec(R)$, $U=\spec(K)$ y sea $i:U\to T$ el morfismo inducido por la inclusión $R\subseteq K$. Dado un morfismo $T\to Y$ y dado un morfismo $U\to X$ haciendo conmutativo el cuadrado del diagrama
@@ -82,7 +99,7 @@ T\arrow[r]\arrow[ur, dashed] & Y
 \[
 \begin{tikzcd}
 K & B\arrow[l]\arrow[dl, dashed]\\
-R\arrow[u]\arrow[ur, dashed] & A\arrow[u]
+R\arrow[u] & A\arrow[u]\arrow[l]
 \end{tikzcd}
 \]
 \item Sea $A$ un anillo y $B=A[X_0,\dots, X_n]$ un anillo graduado. Al esquema $\proj(B)$ se le conoce como el espacio proyectivo sobre $A$ y se lo denota $\mathbb{P}_A^n$. Hay un morfismo $\PP_A^n\to\spec(A)$ inducido por $A\to B$. Obsérvese que podemos hacer cambios de base. El ejemplo más claro se tiene con $A=\Z$. Podemos cambiar, por ejemplo, a $\Q$, dándonos un diagrama conmutativo
@@ -92,7 +109,7 @@ R\arrow[u]\arrow[ur, dashed] & A\arrow[u]
 \spec(\Z) & \spec(\Q)\arrow[l]
 \end{tikzcd}
 \]
-Este morfismo además es propio. Para demostrarlo es suficiente demostrar que es propio el morfismo del caso $A=\Z$, ya que en el cambio de base $\PP_A^n=\PP_\Z^n\times_{\spec(A)}\spec(A)$, lo cual es equivalente a probar que $A[X_0,\dots, X_n]=A\otimes_\Z \Z[X_0,\dots,X_n]$. Este hecho aparece demostrado en el teorema 4.9 de Hartshorne TRATAR DE ENTENDERLA
+Este morfismo además es propio. Para demostrarlo es suficiente demostrar que es propio el morfismo del caso $A=\Z$, ya que en el cambio de base $\PP_A^n=\PP_\Z^n\times_{\spec(A)}\spec(A)$, lo cual es equivalente a probar que $A[X_0,\dots, X_n]=A\otimes_\Z \Z[X_0,\dots,X_n]$. Este hecho aparece demostrado en el teorema 4.9 de Hartshorne.
 \end{enumerate}
 \end{ej}
 \end{enumerate}
