@@ -74,7 +74,7 @@ R^\perp(X,Y)\eta-\sigma(X,A_\eta(Y))+\sigma(Y,A_\eta(X))=0
 de donde se deduce la igualdad que buscábamos. 
 
 \end{solucion}
-
+\newpage
 \begin{ejercicio}{2}
 Sea $f : M → \overline{M}$ una inmersión isométrica, donde $\overline{M}$ es una variedad riemanniana
 con curvatura seccional constante. Supongamos además que $\dim(M) = \dim(\overline{M}) − 1$
@@ -102,6 +102,7 @@ A_η([X, Y ]) = ∇_X(A_η(Y)) − ∇_Y (A_η(X))
 \]
 tal como queríamos demostrar. 
 \end{solucion}
+\newpage
 
 \begin{ejercicio}{3}
 Sea $f : M → \overline{M}$ una inmersión isométrica, y supongamos que $\dim(M) = \dim(\overline{M})−1$
@@ -110,7 +111,30 @@ Comprobar que la ecuación de Ricci, en este caso, no da ninguna información.
 
 \end{ejercicio}
 \begin{solucion}
+Tenemos la ecuación de Ricci 
+\[
+\langle \overline{R}(\overline{X},\overline{Y})\overline{\eta},\overline{\xi}\rangle=\langle R^\perp (X,Y)\eta,\xi\rangle -\langle [A_\eta,A_\xi](X),Y\rangle
+\]
+
+Tenemos por un lado que 
+\[
+R^\perp (X,Y)\eta=\nabla_Y^\perp \nabla_X^\perp\eta-\nabla_X^\perp \nabla_Y^\perp\eta+\nabla_{[X,Y]}^\perp\eta=0
+\]
+por lo probado en el ejercicio anterior, así que uno de los términos de la ecuación de Ricci se anula. Recordemos que
+\[
+\langle [A_\eta,A_\xi](X),Y\rangle=\gene{\sigma(Y,A_\eta(X)),\xi}-\gene{\sigma(X,A_\eta(Y)),\xi}
+\]
+Como estamos en codimensión 1, $\dim(T_pM^\perp)=1$ para todo $p\in M$, por lo que en cada entorno $U$ de $p$, podemos escribir $\xi=g\eta$ para $g\in C^{\infty}(U)$, así que
+\[
+\gene{\sigma(Y,A_\eta(X)),\xi}=g\gene{\sigma(Y,A_\eta(X)),\eta}=g\gene{A_\eta(Y),A_\eta(X)}
+\]
+y análogamente intercambiando los papeles de $X$ e $Y$, de modo que todo el miembro derecho de la ecuación de Ricci se anula, ya que se anula en todo punto. Finalmente, usando que $R^\perp=0$ y $\xi$ es normal, obtenemos
+\[
+\gene{\overline{R}(\widetilde{X},\widetilde{Y})\widetilde{\eta}}=\gene{\sigma(Y,A_\eta(X),\xi)}-\gene{\sigma(X,A_\eta(Y)),\xi}=0
+\]
+Así que la ecuación de Ricci se reduce a $0=0$, de modo que no aporta ninguna información. 
 \end{solucion}
+\newpage
 
 
 \begin{ejercicio}{4}
@@ -131,9 +155,34 @@ X_p = (df)^{−1}_p(\overline{X}_{f(p)}) ∈ T_pM,
 es un campo de Killing en M.
 \end{ejercicio}
 \begin{solucion}
-\url{https://math.stackexchange.com/questions/2900274/fm-rightarrow-n-an-isometry-show-that-x-is-a-killing-field-on-m-if-and}
-isometría implica difeomorfismo afín (3.3.3 TFG), o sea, que hacer $df$ fuera es como hacerlo al mismo tiempo abajo y dentro
+%\url{https://math.stackexchange.com/questions/2900274/fm-rightarrow-n-an-isometry-show-that-x-is-a-killing-field-on-m-if-and}
+%isometría implica difeomorfismo afín (3.3.3 TFG), o sea, que hacer $df$ fuera es como hacerlo al mismo tiempo abajo y dentro
+
+Dados $Y,Z\in\mathfrak{X}(M)$ definimos $\widetilde{Y},\widetilde{Z}\in\mathfrak{X}(\overline{M})$ a partir de extensiones $\overline{Y},\overline{Z}$ mediante
+\[
+\widetilde{Y} = (df)^{−1}(\overline{Y} \circ f) : M → TM,
+\]
+\[
+\widetilde{Z} = (df)^{−1}(\overline{Z} \circ f) : M → TM,
+\]
+Tenemos entonces, usando que $f$ es isometría y el resultado probado en clase de que $\nabla_Y X=(df)^{-1}(\overline{\nabla}_{\widetilde{Y}}\widetilde{X}\circ f)^t$
+\[
+\gene{\nabla_Y X,Z}=\gene{(df)^{-1}(\overline{\nabla}_{\widetilde{Y}}\widetilde{X}\circ f)^t, Z}=\gene{(\overline{\nabla}_{\widetilde{Y}}\widetilde{X}\circ f)^t, (df)(Z)}
+\]
+Como $(df)(Z)$ es tangente, no necesitamos tomar parte tangente en el primer argumento del producto escalar. Además, sabemos que $(df)(Z)=\widetilde{Z}\circ f$, por lo que
+\[
+\gene{(\overline{\nabla}_{\widetilde{Y}}\widetilde{X}\circ f)^t, (df)(Z)}=\gene{\overline{\nabla}_{\widetilde{Y}}\widetilde{X}\circ f, \widetilde{Z}\circ f}=\gene{\overline{\nabla}_{\widetilde{Y}}\widetilde{X}, \widetilde{Z} }\circ f
+\]
+de donde se deduce que 
+\[
+\gene{\nabla_Y X,Z}=\gene{\overline{\nabla}_{\widetilde{Y}}\widetilde{X}, \widetilde{Z} }\circ f
+\]
+y análogamente con $\gene{Y,\nabla_X Z}$. Por tanto, como $\overline{X}$ es un campo de Killing, tenemos que
+\[
+\gene{\nabla_Y X,Z}+\gene{Y,\nabla_X Z}=(\gene{\overline{\nabla}_{\widetilde{Y}}\widetilde{X}, \widetilde{Z} }+\gene{\widetilde{Y},\overline{\nabla}_{\widetilde{X}},\widetilde{Z}})\circ f=0
+\]
 \end{solucion}
+
 
 
 \end{document}
