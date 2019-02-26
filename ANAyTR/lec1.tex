@@ -1,0 +1,76 @@
+\documentclass[ANAyTR.tex]{subfiles}
+
+\begin{document}
+
+
+%\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
+
+\chapter{Teoría de Representaciones}
+\section{Álgebras (asociativaas con unidad sobre un cuerpo $k$)}
+Algunas álgebras habituales que usaremos seran las álgebras de polinomios, el álgebra de endomorfismos de un espacio vectorial, el álgebra de matrices cuadradas de orden $n$ (esta es la misma que la anterior para dimensión finita) y álgebras asociativas libres (polinomios no conmutativos). 
+
+\begin{defi}
+Una \emph{representación} de un álgebra $A$ un $A$-módulo a la izquierda. También se puede interpretar como un espacio vectorial $V$ sobre $k$ (el mismo cuerpo que el álgebra) con una operación extra $A\times V\to V$ que extiende a la operación $k\times V\to V$ ``razonablemente''. 
+\end{defi}
+
+\begin{ej}[Ejemplo fundamental]
+Sea $V$ un espacio vectorial de dimensión finita sobre $\C$ ($V=\C^n$). Sea $f\in\mathrm{End}(V)$ un endomorfismo con matriz asociada $A$ respecto a la base canónica. Si tenemos la expresión $(f^2-f-id)(v)$, podemos representarla por $(A^2-A-I)X$, donde $X$ es el vector de coordenadas de $v$. Vemos que ambas expresiones son el mismo polinomio evaluado en dos tipos de objetos distintos. Así que si consideramos un polinomio $P$, tenemos un producto $P\cdot v=P(f)(v)$. Esto refleja la idea de extender ``razonablemente'' el producto por escalar. Decimos entonces que $f$ tiene asociada una \emph{representación} del álgebra de polinomios $\C[x]$ (en general $k[x]$), que es una acción del álgebra de polinomios sobre el espacio vectorial.
+\end{ej}
+
+
+En vistas del ejemplo anterior, podemos precisar que la aplicación $\varphi:A\times V\to V$ debe cumplir las siguientes propiedades:
+\begin{enumerate}
+\item $\varphi(a,v+w)=\varphi(a,v)+\varphi(a,w)$
+\item $\varphi(a,\lambda v)=\lambda\varphi(a,v)$
+\item $\varphi(a+b,v)=\varphi(a,v)+\varphi(b,v)$
+\item $\varphi(\lambda a,v)=\lambda\varphi(a,v)$
+\item $\varphi(1,v)=v$
+\item $\varphi(ab,v)=\varphi(a,\varphi(b,v))$. 
+\end{enumerate}
+
+Definismo $\rho:A\to mathrm{End}(V)$, $\rho(a): v\mapsto\varphi(a,v)$. Las reglas anteriores nos dicen que $\rho$ es lineal, es decir, $\rho(a)(v+w)=\rho(a)(v)+\rho(a)(w)$, $\rho(a)(\lambda v)=\lambda\rho(a)(v)$. Además $\rho(a+b)=\rho(a)+\rho(b)$, $\rho(\lambda a)=\lambda\rho(a)$, $\rho(1)=id_V$ y $\rho(ab)=\rho(a)\circ\rho(b)$. Estas últimas propiedades se resumen en que $\rho$ es u morfismo de álgebras. Esto nos da la siguiente definición más concisa:
+
+\begin{defi}
+Una representación de un álgebra $A$ sobre $k$ es un morfismo de álgebras $A\to\mathrm{End}(V)$ donde $V$ es un espacio vectorial sobre $k$. Decimos también que $V$ es una representación de $A$.
+\end{defi}
+
+En el caso del ejemplo anterior, cada $f\in\End(V)$ da a $V$ una estructura de representación de $k[x]$ dada por $k[x]\to\End(V)$ donde $P\mapsto P(f)$. 
+
+\begin{defi}
+Una \emph{subrepresentación} de una representación $V$ de $A$ es un subespacio vectorial $L$ de $V$ estable bajo multiplicación por los elementos de $A$, esto es $\forall a\in A$, $\forall v\in L$, $a\cdot v\in L$ (identificamos la representación con $\rho:A\to\End(V)$ y $\rho(a)(v)$ con $a\cdot v$, además sería necesario definir $\rho'(a)=\rho(a)|_L$ como subrepresentación). 
+\end{defi}
+
+\begin{defi}
+Si $V_1$ y $V_2$ son dos representaciones de $A$, un morfismo de representaciones de $V_1$ en $V_2$ es una alicación lineal $f:V_1\to V_2$ tal que $\forall a\in A$, $\forall v\in V_1$, $f(av)=af(v)$ (interpretar como $f\circ \rho_1(a)(v)=\rho_2(a)\circ f(v)$, donde $\rho_i$ son las representaciones correspondientes). Más guay si lo pensamos com ouna transformación natural: para todo $a\in A$ este diagrama conmuta
+\[
+\begin{tikzcd}
+V_1\arrow[r, "f"]\arrow[d, "\rho_1(a)"] & V_2\arrow[d, "\rho_2(a)"]\\
+V_1 \arrow[r, "f"] & V_2
+\end{tikzcd}
+\]
+También se les llama a estos morfismos \emph{intertwining operators}. 
+\end{defi}
+
+\begin{ej}
+Sea $V$ un espacio vectorial de dimensión 3 sobre $\C$ y sea $f$ un endomorfismo de $V$ que admite, con respecto a cierta base $\{u_1,u_2,u_3\}$, la matriz
+\[
+\begin{pmatrix}
+2 & 1 & 0\\
+0 & 2 & 0\\
+0 & 0 & 3 
+\end{pmatrix}
+\]
+A $f$ se le asocia una representación de $\C[x]$, $\C[x]\to\End(V)$ mediante $P\mapsto P(f)$. Tenemos que $f(u_1)=2u_1$. Así que por definición $P\cdot u_1=P(f)(u_1)$. En particilar, $x\cdot u_1=f(u_1)=2u_1$. Con $x^2$ sería $f^2(u_1)=f(f(u_1))=2^2u_1$. En general, es fácil observar que $P\cdot u_1=P(2)\cdot u_1$. Tenemos que la recta $\C u_1$ es una subrepresentación de la representación considerada. Lo mismo se puede hacer con $u_3$, por lo que $\C u_3$ es otra subrepresentación. De la matriz obtenemos también que $\C u_1\oplus \C u_2$ es una subrepresentación. Se deja como ejercicio comprobar que cualquier otra recta no es estable bajo el producto, por lo que hemos obtenido todas las ubrepresentaciones. 
+
+Si tuviéramos una matriz diagonal, las subrepresentaciones serían las de dimensión 1 y las generadas por sumas directas de ellas. Descompondríamos así la representación en subrepresentaciones \emph{irreducibles}, que las definimos a continuación.
+\end{ej}
+
+\begin{defi}
+Una representación es \emph{irreducible} cuando no es $\{0\}$ y no contiene ninguan subrepresentación propia. Una representación es \emph{indecomponible} cuando no se puede obtener como suma directa de subrepresentaciones no triviales. 
+\end{defi}
+
+El ejemplo anterior muestra que las dos nociones definidas no son equivalentes. Se deja como ejercicio comprobar que para dimensión finita, se puede proceder a descomponer la representación en suma directa de subrepresentaciones y reiterar hasta que tenemos la representación descompuesta como suma directa de indecomponibles. 
+
+Para cualquier endomorismo $f$ de un espacio vectorial $V$ de dimensión finita sobre $\C$ ha una base con respecto a la cual la matriz de $f$ tiene la forma normal de Jordan (diagonal por bloques, donde los bloques tienen $\lambda$ en la diagonal y 1 en la superdiagonal). Esto se interpreta en términos de representaciones como que cualquier representación de $\C[x]$ indecomponible de dimensión finita es del tipo $P\mapsto P(A)$, donde $A$ es un bloque de Jordan. Estas representaciones están indexadas por pares $(\lambda,r)$, donde $\lambda$ es el coeficiente de la diagonal y $r$ es el tamaño de la matriz. 
+\end{document}
+
