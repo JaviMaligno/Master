@@ -1,0 +1,90 @@
+	\documentclass[twoside]{article}
+\usepackage{../../estilo-ejercicios}
+%\renewcommand{\baselinestretch}{1,3}
+%--------------------------------------------------------
+\begin{document}
+
+\title{Ejercicios de Teoría de Representaciones}
+\author{Javier Aguilar Martín y Rafel González López}
+\maketitle
+
+\section{Ejercicio del profesor}
+
+
+\begin{ejercicio}{1}
+Demostrar que si $A$ es conmutativa y $k$ es algebraicamente cerrado, todas las representaciones irreducibles de dimensión finita de $A$ son de dimensión 1. 
+\end{ejercicio}
+\begin{solucion}
+Sea $V$ una representación cualquiera de $A$. Para $a,b\in A$ cualquiesquiera, tenemos $ab=ba$, luego para todo $v\in V$ tenemos $ab(v)=ba(v)$
+\[
+\begin{tikzcd}
+V\arrow[r, "b"] \arrow[d, "a"] & V\arrow[d, "a"]\\
+V\arrow[r, "b"] & V
+\end{tikzcd}
+\]
+De aquí deducimos que la multiplicación por $b$ es un morfismo de representaciones. Por tanto, $b=\lambda_b Id$ en virtud del lema de Schur, es decir, la multiplicación por $b$ es la multiplicación por un número $\lambda_b\in k$. Supongamos que $V$ tuviera dimensión al menos 2. Entonces podemos escoger dos vectores linealmente independientes $u,v$. Entonces cada recta $ku$ y $kv$ son subrepresentaciones de $V$, pues $bu=\lambda_bu$ y $bv=\lambda_bv$, de modo que las rectas son cerradas bajo el producto. Esto es una contradicción con el hecho de que $V$ sea irreducible. 
+
+Forma alternativa de decirlo: todo subespacio de dimensión 1 de $V$ es subrepresentación y como $V$ es irreducible, $\dim(V)=1$. 
+
+\end{solucion}
+
+\newpage
+
+\begin{ejercicio}{2}
+Hallar una representación irreducible de dimensión 2 de $\R[x]$. 
+\end{ejercicio}
+\begin{solucion}
+Tenemos que definir $\rho:\R[x]\to \End(\C)$ viendo $\C$ como $\R$-espacio vectorial. Definisos el homomorfismo de álgebras inducido por extensión lineal de $x\mapsto i$ (multiplicación por $i$). Como no hay ningún subespacio propio no trivial invariante por esta multiplicación, la representación es irreducible.  
+\end{solucion}
+
+\newpage
+
+\section{Ejercicios del libro}
+
+\begin{ejercicio}{1.20}
+Sea $V$ una representación vectorial no trivial de dimensión finita de un álgebra $A$. Probar que tiene una subrepresentación irreducible. Probar entonces con un ejemplo que esto no siempre se cumple para representaciones de dimensión infinita.
+\end{ejercicio}
+\begin{solucion}
+Si $V$ es irreducible, ya está. Si no, entonces tiene alguna subrepresentación propia $V_1$ no trivial de dimensión estrictamente menor. Repetimos recursivamente sobre este procedimiento con $V_1$ y como la dimensión es finita, el proceso termina, dando una subrepresentación irreducible.
+
+ME FALTA EL CONTRAEJEMPLO
+\url{https://math.stackexchange.com/questions/1041759/infinite-dimensional-representation-such-that-every-subrepresentation-is-reducib} (prefiero el segundo)
+\end{solucion}
+
+\newpage
+
+\begin{ejercicio}{1.21}
+Sea $A$ un álgebra sobre un cuerpo $k$ algebraicamente cerrado. El centro $Z(A)$ de $A$ es el conjunto de los elementos $z\in A$ que conmutan con todos los elementos de $A$. 
+\begin{enumerate}[(a)]
+\item  Probar que si $V$ es una representación irreducible de dimensión finita de $A$, entonces cualquier elemento $z\in Z(A)$ actúa en $V$ como multiplicación por algún escalar $\chi_V(z)$. Probar que $\chi_V:Z(A)\to k$ es un homomorfismo. Se llama \textbf{caracter central} de $V$.
+
+\item Probar que si $V$ es una representación de dimensión finita indecomponible de $A$, entonces para cualquier $z\in Z(A)$, el operador $\rho(z)$ por el cual $z$ actúa en $V$ tiene solo un autovalor $\chi_V(z)$, egual al escalar por el cual $z$ actúa en alguna subrepresentación irreducible de $V$. Por tanto, $\chi_V:Z(A)\to k$ es un homomorfismo, que se llama de nuevo caracter central de $V$.
+
+\item ¿Es $\rho(z)$ necesariamente un operador escalar?
+
+\end{enumerate}
+\end{ejercicio}
+\begin{solucion}
+\end{solucion}
+
+\newpage
+
+\begin{ejercicio}{1.22}
+Let $A$ un álgebra asociativa y $V$ una representación de $A$. Denotamos por $\End_A(V)$ al álgebra de morfismos de representaciones $V\to V$. Probar que $\End_V(A)=A^{op}$, el álgebra $A$ con la multiplicación opuesta.
+\end{ejercicio}
+\begin{solucion}
+\end{solucion}
+
+\newpage
+\begin{ejercicio}{1.23}
+Probar el siguiente ``lema infinito-dimensional de Schur'' (debido a Dixmier): sea $A$ un álgebra sobre $\C$ y $V$ una representación irreducible de $A$ con una base numerable. Entonces cualquier morfismo de representaciones $\phi:V\to V$ es un operador escalar.
+
+Pista. Por el lemma de Schur usual, el álgebra $D=\End_A(V)$ es un álgebra con división. Probar que $D$ es como mucho de dimensión numerable. Suponer que $\phi$ no es escalar y considerar un subcuerpo $\C(\phi)\subset D$. Probar que $\C(\phi)$ es extensión trascendental de $\C$. Deducir de esto que $\C(\phi)$  tiene dimensión no numerable y obtener una contradicción. 
+\end{ejercicio}
+\begin{solucion}
+\end{solucion}
+
+
+
+
+\end{document}

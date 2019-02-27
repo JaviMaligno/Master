@@ -10,7 +10,7 @@
 Algunas álgebras habituales que usaremos seran las álgebras de polinomios, el álgebra de endomorfismos de un espacio vectorial, el álgebra de matrices cuadradas de orden $n$ (esta es la misma que la anterior para dimensión finita) y álgebras asociativas libres (polinomios no conmutativos). 
 
 \begin{defi}
-Una \emph{representación} de un álgebra $A$ un $A$-módulo a la izquierda. También se puede interpretar como un espacio vectorial $V$ sobre $k$ (el mismo cuerpo que el álgebra) con una operación extra $A\times V\to V$ que extiende a la operación $k\times V\to V$ ``razonablemente''. 
+Una \emph{representación} de un álgebra $A$ es un $A$-módulo a la izquierda. También se puede interpretar como un espacio vectorial $V$ sobre $k$ (el mismo cuerpo que el álgebra) con una operación extra $A\times V\to V$ que extiende a la operación $k\times V\to V$ ``razonablemente''. 
 \end{defi}
 
 \begin{ej}[Ejemplo fundamental]
@@ -28,7 +28,7 @@ En vistas del ejemplo anterior, podemos precisar que la aplicación $\varphi:A\t
 \item $\varphi(ab,v)=\varphi(a,\varphi(b,v))$. 
 \end{enumerate}
 
-Definismo $\rho:A\to mathrm{End}(V)$, $\rho(a): v\mapsto\varphi(a,v)$. Las reglas anteriores nos dicen que $\rho$ es lineal, es decir, $\rho(a)(v+w)=\rho(a)(v)+\rho(a)(w)$, $\rho(a)(\lambda v)=\lambda\rho(a)(v)$. Además $\rho(a+b)=\rho(a)+\rho(b)$, $\rho(\lambda a)=\lambda\rho(a)$, $\rho(1)=id_V$ y $\rho(ab)=\rho(a)\circ\rho(b)$. Estas últimas propiedades se resumen en que $\rho$ es u morfismo de álgebras. Esto nos da la siguiente definición más concisa:
+Definimos $\rho:A\to \mathrm{End}(V)$, $\rho(a): v\mapsto\varphi(a,v)$. Las reglas anteriores nos dicen que $\rho$ es lineal, es decir, $\rho(a)(v+w)=\rho(a)(v)+\rho(a)(w)$, $\rho(a)(\lambda v)=\lambda\rho(a)(v)$. Además $\rho(a+b)=\rho(a)+\rho(b)$, $\rho(\lambda a)=\lambda\rho(a)$, $\rho(1)=id_V$ y $\rho(ab)=\rho(a)\circ\rho(b)$. Estas últimas propiedades se resumen en que $\rho$ es un morfismo de álgebras. Esto nos da la siguiente definición más concisa:
 
 \begin{defi}
 Una representación de un álgebra $A$ sobre $k$ es un morfismo de álgebras $A\to\mathrm{End}(V)$ donde $V$ es un espacio vectorial sobre $k$. Decimos también que $V$ es una representación de $A$.
@@ -48,7 +48,7 @@ V_1\arrow[r, "f"]\arrow[d, "\rho_1(a)"] & V_2\arrow[d, "\rho_2(a)"]\\
 V_1 \arrow[r, "f"] & V_2
 \end{tikzcd}
 \]
-También se les llama a estos morfismos \emph{intertwining operators}. 
+También se les llama a estos morfismos \emph{intertwining operators}. Un \emph{isomorfismo} de representaciones es un morfismo con two-sided inverse o equivalentemente, un morfismo biyectivo. 
 \end{defi}
 
 \begin{ej}
@@ -72,5 +72,43 @@ Una representación es \emph{irreducible} cuando no es $\{0\}$ y no contiene nin
 El ejemplo anterior muestra que las dos nociones definidas no son equivalentes. Se deja como ejercicio comprobar que para dimensión finita, se puede proceder a descomponer la representación en suma directa de subrepresentaciones y reiterar hasta que tenemos la representación descompuesta como suma directa de indecomponibles. 
 
 Para cualquier endomorismo $f$ de un espacio vectorial $V$ de dimensión finita sobre $\C$ ha una base con respecto a la cual la matriz de $f$ tiene la forma normal de Jordan (diagonal por bloques, donde los bloques tienen $\lambda$ en la diagonal y 1 en la superdiagonal). Esto se interpreta en términos de representaciones como que cualquier representación de $\C[x]$ indecomponible de dimensión finita es del tipo $P\mapsto P(A)$, donde $A$ es un bloque de Jordan. Estas representaciones están indexadas por pares $(\lambda,r)$, donde $\lambda$ es el coeficiente de la diagonal y $r$ es el tamaño de la matriz. 
+
+
+\begin{defi}
+Dado un grupo finito $G$, el \emph{álgebra} $k[G]$ del grupo es el espacio vectorial con base los elementos de $G$ con el producto bilineal que existiende la multiplicación de $G$. No hay problema en definirlo para un grupo finito, pero no vamos a ver representaciones de grupos infinitos. 
+\end{defi}
+
+\begin{ej}
+Sea $S_2=\{Id,\tau\}$ el grupo de dos elementos. Entonces $k[S_2]$ son las expresiones de la forma $(aId+b\tau)(cId+d\tau)$. 
+\end{ej}
+
+\begin{lemma}[de Schur]
+Sea $A$ un álgebra, $V_1,V_2$ dos representaciones de $A$ y $f:V_1\to V_2$ un morfismo de representaciones. Entonces:
+\begin{enumerate}
+\item Si $V_1$ es irreducible, entonces $f$ es 0 o inyectiva.
+\item Si $V_2$ es irreducible, entonces $f$ es 0 o sobreyectiva.
+\item Si $V_1$ y $V_2$ son irreducibles, entonces $f$ es 0 o isomorfismo. 
+\end{enumerate}
+\end{lemma}
+\begin{proof}\
+\begin{enumerate}
+\item $\ker f$ es una subrepresentación de $V_1$, es decir, $\forall a\in A$ y $\forall v\in\ker f$ se tiene que $av\in\ker f$. Esto es fácil de ver, si $v\in\ker f$, $f(v)=0$, pero entonces $af(v)=f(av)=0$, luego $av\in\ker f$. Como $V_1$ es irreducible, entonces solo hay dos posibilidades, $\ker f=0$ ($f$ inyectiva) o $\ker f=V_1$ ($f=0$). 
+\item Para la imagen igual porque también es una subrepresentación de $V_2$.
+\item Unir resultados anteriores. 
+\end{enumerate}
+\end{proof}
+
+\begin{coro}[lema de Schur para $k$ algebraicamente cerrado]
+Sea $A$ un álgeba y $V$ una representacion irreducible de $A$ de dimensión finita. Sea $f:V\to V$ un morfismo de representaciones. Como $k$ es algebraicamente cerrado, $f$ tiene un autovalor $\lambda\in k$. Se tiene que $f-\lambda Id$ es un morfismo de representaciones. Este morfismo no es inyectivo (si $v$ es un autovector, ($f-\lambda Id)(v)=0$), por lo que no puede ser un isomorfismo, así que es 0, es decir, $f=\lambda Id$. 
+\end{coro}
+\begin{proof}
+$a(f-\lambda Id)(v)=af(v)-a\lambda v=f(av)-\lambda av=(f-\lambda Id)(av)$.
+\end{proof}
+
+
+
+
+
+
 \end{document}
 
