@@ -47,8 +47,21 @@ Sea $V$ una representación vectorial no trivial de dimensión finita de un álg
 \begin{solucion}
 Si $V$ es irreducible, ya está. Si no, entonces tiene alguna subrepresentación propia $V_1$ no trivial de dimensión estrictamente menor. Repetimos recursivamente sobre este procedimiento con $V_1$ y como la dimensión es finita, el proceso termina, dando una subrepresentación irreducible.
 
-ME FALTA EL CONTRAEJEMPLO
-\url{https://math.stackexchange.com/questions/1041759/infinite-dimensional-representation-such-that-every-subrepresentation-is-reducib} (prefiero el segundo)
+Construimos ahora un contraejemplo para el caso de dimensión infinita. Sea $A=\C[x]$ y consideramos la representación regular (ejemplo 1.10) de $A$ actuando sobre sí mismo con la multiplicación del anillo. Entonces cualquier elemento no nulo de $a$ genera una subrepresentación isomorfa a $A$, por lo que no puede tener subrepresentaciones irreducibles. 
+
+%Sea $A=\C[C_\infty]$ el álgebra del grupo cíclico infinito $C_\infty=\gene{c}$. Sea $V=\C[T,T^{-1}]$ el anillo de polinomios de Laurent, es decir, 
+%\[
+%V=\{a(T)=\sum_{i=m}^n a_iT^i\mid m,n\in\Z, m\leq n, a_i\in\C\}
+%\]
+%
+%Podemos convertir $V$ en un $A$-módulo haciendo que el elemento $c^j\in C_\infty$ ($j\in\Z$) actúe con una traslación de $j$ posiciones, es decir,
+%\[
+%c^j\cdot a(T)=T^ja(T)
+%\]
+%Veamos que $V$ no contiene submódulos irreducibles. Supongamos por el contrario que existe un submódulo irreducible $W\neq\{0\}$. Si $a(T)=\sum_{i=m}^n a_iT^i\neq 0$ tiene $a_m\neq 0\neq a_n$, entonces llamamos a $|n-m|$ la \emph{anchura} de $a(T)$. Por tanto, todos los elementos no nulos de $V$ tienen anchura positiva. Esto implica que todo submódulo de $V$ contiene elementos de anchura mínima. Pero si $W$ es un submódulo irreducible, entonces el espacio $(T-1)W=\{(T-1)a(T)\mid a(T)\in W\}$ es un subespacio de $W$. 
+%
+%ME FALTA EL CONTRAEJEMPLO
+%\url{https://math.stackexchange.com/questions/1041759/infinite-dimensional-representation-such-that-every-subrepresentation-is-reducib} (prefiero el segundo)
 \end{solucion}
 
 \newpage
@@ -70,9 +83,16 @@ Sea $A$ un álgebra sobre un cuerpo $k$ algebraicamente cerrado. El centro $Z(A)
 \newpage
 
 \begin{ejercicio}{1.22}
-Let $A$ un álgebra asociativa y $V$ una representación de $A$. Denotamos por $\End_A(V)$ al álgebra de morfismos de representaciones $V\to V$. Probar que $\End_V(A)=A^{op}$, el álgebra $A$ con la multiplicación opuesta.
+Sea $A$ un álgebra asociativa y $V$ una representación de $A$. Denotamos por $\End_A(V)$ al álgebra de morfismos de representaciones $V\to V$. Probar que $\End_A(A)=A^{op}$, el álgebra $A$ con la multiplicación opuesta.
 \end{ejercicio}
 \begin{solucion}
+Definimos la aplicación $A^{op}\to \End_A(A)$ mediante $a\mapsto f_a \equiv (x\mapsto xa)$. Probamos que esta aplicacion es un morfismo de álgebras. Es claro que se trata de una aplicación lineal, por lo que comprobamos solamente que respeta el producto, que denotamos $a*b$, que por definición es $ba$. Tenemos por definición $a*b\mapsto f_{a*b}(x\mapsto x(a*b)=x(ba))$.
+
+Veamos entonces que $f_a\circ f_b=f_{a*b}=f_{ba}$. 
+\[
+f_a(f_b(x))=f_a(xb)=xba=x(ba)
+\]
+por lo que la aplicación es un morfismo de álgebras. Además tiene inverso dado por $f\mapsto f(1)$. Es fácil comprobar que efectivamente es el inverso, por lo que tenemos un isomorfismo. 
 \end{solucion}
 
 \newpage
@@ -88,3 +108,4 @@ Pista. Por el lemma de Schur usual, el álgebra $D=\End_A(V)$ es un álgebra con
 
 
 \end{document}
+http://brianbi.ca/etingof/2.3

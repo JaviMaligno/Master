@@ -46,7 +46,7 @@ H_3(A)\oplus H_3(B)\arrow[r]\arrow[d, equals] & H_3(A\cup B)\arrow[r]\arrow[d, e
 0 \arrow[r] & \Z\arrow[r] & H_2(A\cap B)\arrow[r] & 0
 \end{tikzcd}
 \]
-por lo que $H_2(A\cap B)\cong \Z$. Para obtener generadores seguimos el procedimiento descrito en la página 150 de Hatcher. Como tenemos un generador representado $q:\Delta^3\to S^3$ dado por la aplicación cociente, subdividimos baricéntricamente $\Delta^3$ de modo que $q=x+y$ con $x\in C_3(A)$, $y\in C_3(B)$. Entonces un generador de $H_2(A\cap B)$ está representado por $d(x)\in Z_2(A\cap B)$. La subdivisión depende de $f_1$ y $f_2$, por lo que no podemos hacerla explícita, pero sabemos que $x$ contiene a $\Ima f_2$ en su suporte (y no a $\Ima f_2$) y al contrario con $y$. 
+por lo que $H_2(A\cap B)\cong \Z$. Para obtener generadores seguimos el procedimiento descrito en la página 150 de Hatcher. Como tenemos un generador representado $q:\Delta^3\to S^3$ dado por la aplicación cociente, subdividimos baricéntricamente $\Delta^3$ de modo que $q=x+y$ con $x\in C_3(A)$, $y\in C_3(B)$. Entonces un generador de $H_2(A\cap B)$ está representado por $d(x)\in Z_2(A\cap B)$. La subdivisión depende de $f_1$ y $f_2$, por lo que no podemos hacerla explícita, pero sabemos que $x$ contiene a $\Ima f_2$ en su suporte (y no a $\Ima f_2$) y al contrario con $y$. De hecho podemos considerar si lo necesitamos que $f_2(I)$ toca en uno de sus extremos al punto del infinito de $S^3$, y que está separado de $f_2(I)$ por la imagen mediante $q$ de un subcomplejo simplicial homeomorfo a una esfera (consideramos la distancia mínima entre $f_1(I)$ y $f_2(I)$, que existe por ser compactos y los podemos separar por un entorno de $f_1(I)$ homeomorfo a una bola $D^3$, por lo que su borde será homeomorfo a $S^2$). Este subcomplejo servirá como soporte de la cadena $x$ descrita anteriormente.
 
 Para $i=1$ y para $i=0$ obtenemos de forma inmediata que $\widetilde{H}_i(A\cap B)=0$. 
 
@@ -74,7 +74,8 @@ Para $i=1$ y para $i=0$ obtenemos de forma inmediata que $\widetilde{H}_i(A\cap 
 
  %QUE REPRESENTEN EL MISMO O QUE UNO SE VAYA O QUE SEA UNO UN MÚLTIPLO DE OTRO DEPENDERÁ EN REALIDAD DE LO DE ANTES
 
-\item Dividimos $M$ en dos rectángulos cerrados cuya intersección sea homeomorfa a dos copias de $I\times I\cong D^2$. A cada uno de estos rectángulos los llamamos $M_1$ y $M_2$. Por ejemplo, si consideramos el cociente habitual $M=I\times I/\sim$, tomamos $M_1$ como el rectángulo inducido por $I\times [0,2/5]\cup I\times [3/5,1]$ y $M_2$ inducido por $I\times [2/3,4/3]$. Consideramos entonces sus imágenes mediante $g$, $g(M_1)$ y $g(M_2)$, cuya intersección es un embebimiento $D^2\sqcup D^2$. Tenemos $S^3-\Ima g =(S^3-g(M_1))\cap (S^3-g(M_2)$ y $(S^3-g(M_1))\cup (S^3-g(M_2))=S^3-g(M_1)\cap g(M_2)\cong S^3-g(D^2)\sqcup g(D^2)$  (abuso de notación identificando $D^2\sqcup D^2$ con el subespacio de $M_1\cap M_2$). Podemos calcular $H_*(S^3-g(D^2)\sqcup g(D^2))$ de forma totalmente análoga al cálculo del apartado anterior, por lo que podemos usar su homología para obtener la de $S^3-\Ima g$ mediante la sucesión reducida de Mayer-Vietoris. En concreto tenemos que $\widetilde{H}_i(S^3-g(D^2)\sqcup g(D^2))=0$ para todo $i\neq 2$ y $H_2(S^3-g(D^2)\sqcup g(D^2))=\Z$. Por ello, utilizando la descomposición $S^3-M_1\cap M_2 =(S^3-g(M_1))\cup (S^3-g(M_2))$ y la proposición 2B.1 tenemos fácilmente que $\widetilde{H}_i(S^3-\Ima g)=\widetilde{H}_i((S^3-g(M_1))\cap (S^3-g(M_2)))=0$ para $i\neq 1$. Para $i=1$ lo que obtenemos es la sucesión exacta
+\item Dividimos $M$ en dos rectángulos cerrados cuya intersección sea homeomorfa a dos copias disjuntas de $I$, que denotaremos $I_1$ e $I_2$. A cada uno de estos rectángulos los llamamos $M_1$ y $M_2$. Por ejemplo, si consideramos el cociente habitual $M=I\times I/\sim$, donde $\sim$ está generada por $(0,x)\sim (1,1-x)$, tomamos $M_1$ como el rectángulo inducido por $I\times [0,1/3]\cup I\times [2/3,1]$ y $M_2$ inducido por $I\times [1/3,2/3]$. Consideramos entonces sus imágenes mediante $g$, $g(M_1)$ y $g(M_2)$, cuya intersección es un embebimiento de $I_1\sqcup I_2$. Tenemos $S^3-\Ima g =(S^3-g(M_1))\cap (S^3-g(M_2))$ y $$(S^3-g(M_1))\cup (S^3-g(M_2))=S^3-g(M_1)\cap g(M_2)= S^3-g(I_1)\sqcup g(I_2).$$
+ Podemos calcular $H_*(S^3-g(I_1)\sqcup g(I_2))$ de forma totalmente análoga al cálculo del apartado anterior, por lo que podemos usar su homología para obtener la de $S^3-\Ima g$ mediante la sucesión reducida de Mayer-Vietoris. En concreto tenemos que $\widetilde{H}_i(S^3-g(I_1)\sqcup g(I_2))=0$ para todo $i\neq 2$ y $H_2(S^3-g(I_1)\sqcup g(I_1))=\Z$. Por ello, utilizando la descomposición $$S^3-M_1\cap M_2 =(S^3-g(M_1))\cup (S^3-g(M_2))$$ y la proposición 2B.1 tenemos que $\widetilde{H}_i(S^3-\Ima g)=\widetilde{H}_i((S^3-g(M_1))\cap (S^3-g(M_2)))=0$ para $i\neq 1$. Para $i=1$ lo que obtenemos es la sucesión exacta
 \[
 \begin{tikzcd}[column sep=13]
 0\arrow[r]\arrow[d, equals] & H_2((S^3-g(M_1))\cup (S^3-g(M_2)))\arrow[r]\arrow[d, equals] & H_1((S^3-g(M_1))\cap (S^3-g(M_2)))\arrow[r]\arrow[d,equals] & 0\arrow[d, equals]\\
@@ -83,7 +84,43 @@ Para $i=1$ y para $i=0$ obtenemos de forma inmediata que $\widetilde{H}_i(A\cap 
 \]
 Por lo que $H_1((S^3-g(M_1))\cap (S^3-g(M_2)))=H_1(S^3-\Ima g)\cong \Z$. 
 
-Ahora, por la proposición 2B.1(b) tenemos que, al ser $g|_{\partial M}$ un embebimiento de $S^1$, $\widetilde{H}_i(S^3-\Ima g|_{\partial M})=\Z$ para $i=1$ y 0 en cualquier otro caso, por lo que solo tenemos que considerar el homomorfismo $i_*:H_1(S^3-\Ima g)\to H_1(S^3-\Ima g|_{\partial M})$, ya que los demás son triviales (en grado 0 es claramente la identidad). HACER EL CÁLCULO DE $H_1(S^3-\Ima g|_{\partial M})$ POR MAYER-VIETORIS CON LA SUBDIVISIÓN INDUCIDA POR LA BANDA DE MÖBIUS A VER SI SE PUEDEN CONECTAR, DEBE DE SALIR QUE EL HOMOMORFISMO ES MULTIPLICAR POR 2
+Ahora, por la proposición 2B.1(b) tenemos que, al ser $g|_{\partial M}$ un embebimiento de $S^1$, $\widetilde{H}_i(S^3-\Ima g|_{\partial M})=\Z$ para $i=1$ y 0 en cualquier otro caso, por lo que solo tenemos que considerar el homomorfismo $i_*:H_1(S^3-\Ima g)\to H_1(S^3-\Ima g|_{\partial M})$, ya que los demás son triviales (en grado 0 es claramente la identidad). 
+
+Para ello vamos a buscar generadores de $H_1(S^3-g(M))$ a partir del isomorfismo $H_2(S^3-g(M_1\cap M_2))\xrightarrow{\partial}H_1(S^3-g(M))$. Por el apartado (a) tenemos un generador en $H_2(S^3-g(M_1\cap M_2))$ dado por una esfera $S$ rodeando a $g(I_1)$ que lo separa de $g(I_2)$. Esta esfera puede dividirse en dos hemisferios $S_1$ y $S_2$, de modo que $S_1\subset S^3-g(M_1)$ y $S_2\subset S^3-g(M_2)$, y su intersección será un generador de $H_1(S^3-g(M))$ (la intersección es salvo signo el borde de los dos hemisferios, luego se sigue del mismo argumento que en el apartado (a)). Este generador es una circunferencia que rodea la imagen de $M$. Por tanto, rodea a la imagen de $\partial M$ dos veces, esto es, se puede expresar dos veces el generador de $H_1(S^3-g(\partial M))$, que se puede obtener del mismo modo que hemos obtenido el de $H_1(S^3-g(M))$, dividiendo $\partial M$ en dos intervalos que intersequen en dos puntos. Esto significa que el homomorfismo $i_*:H_1(S^3-g(M))\to H_1(S^3-g(\partial M))$ como homomorfismo $\Z\to\Z$ es la multiplicación por 2. 
+
+
+\begin{figure}[h!]
+\includegraphics[scale=0.6]{generador}
+\caption{Representación de los generadores, identificando la banda de Möbius con su imagen. Los dos ciclos en los que se descompone el ciclo que rodea el borde representan el mismo generador, pues puede uno trasladarse hasta el otro rodeando el borde.}
+\end{figure}
+
+
+
+
+
+
+%HACER EL CÁLCULO DE $H_1(S^3-\Ima g|_{\partial M})$ POR MAYER-VIETORIS CON LA SUBDIVISIÓN INDUCIDA POR LA BANDA DE MÖBIUS A VER SI SE PUEDEN CONECTAR, DEBE DE SALIR QUE EL HOMOMORFISMO ES MULTIPLICAR POR 2
+
+%\textbf{Primera idea}
+%
+%La partición de $M$ que hemos hecho induce una partición en cuatro segmentos que agrupamos de 2 en 2 como se observa en la figura HACER DIBUJO
+%
+%Esta partición nos permite aplicar Mayer-Vietoris a $S^3-\partial M$ de forma similar al caso de $S^3-M$ mediante la descomposición $S^3-(N_1\cap N_2)=(S^3-N_1)\cup (S^3-N_2)$, de modo que $S^3-\partial M=(S^3-N_1)\cap (S^3-N_2)$. La inclusión $S^3-(M_1\cap M_2)\hookrightarrow S^3-(N_1\cap N_2)$ respeta las descomposiciones, luego la naturalidad de la sucesión de Mayer-Vietoris nos da el diagrama conmutativo
+%\[
+%\begin{tikzcd}[column sep=10]
+%0\to H_2(S^3-(M_1\cap M_2))\arrow[r] \arrow[d] & H_1(S^3-M)\arrow[r]\arrow[d, "i_*"] & H_1(S^3-M-1)\oplus H_1(S^3-M_2)\arrow[r]\arrow[d] & 0\\
+% 0\to  H_2(S^3-(N_1\cap N_2))  \arrow[r]                               & H_1(S^3-\partial M)\arrow[r] & H_1(S^3-N_1)\oplus H_1(S^3-N_2) \arrow[r] & H_1(S^3-(N_1\cap N_2))
+% \end{tikzcd}
+%\]
+%Podemos calcular fácilmente $H_*(S^3-(N_1\cap N_2))$ combinando Mayer-Vietoris con la propsición 2B.1 o con el apartado (a), pues $S^3-(N_1\cap N_2)\cong S^3-\coprod_{i=1}^4 I$, de modo que $\widetilde{H}_i(S^3-(N_1\cap N_2))=0$ para $i\neq 2$ y $H_1(S^3-(N_1\cap N_2))\cong \Z^3$. Por el apartado (a) tenemos además que $\widetilde{H}_i(S^3-N_j)=0$ para $i\neq 2$ y $H_2(S^3-N_j)\cong\Z$ ($j=1,2$). Así que el diagrama anterior se simplifica a 
+%
+%\[
+%\begin{tikzcd}
+%\Z\arrow[r, "\cong"]\arrow[d] & \Z\arrow[d, "i_*"]\\
+%\Z\oplus\Z\oplus\Z \arrow[r] & \Z
+%\end{tikzcd}
+%\]
+%de donde necesariamente $i_*=0$. 
 %\item Consideramos ahora un entorno tubular $N$ de $\Ima g$, que será homeomorfo al interior de un toro sólido, posiblemente anudado, pero en cualquier caso homotópico a $S^1$. Sean entonces $A=N$ y $B=S^3-\Ima g$. Tenemos entonces que $A\cup B=S^3$ y $A\cap B\simeq T^2$ (un toro). Claramente $B$ es conexo por caminos, por lo que $H_0(B)=\Z$. Calculamos el resto de grupos usando Mayer-Vietoris, de donde se deduce fácilmente que $H_i(B)=0$ para $i\geq 3$. Empezamos calculando $H_1(B)$ a partir de la sucesión exacta
 %\[
 %0\to H_1(A\cap B)\to H_1(A)\oplus H_1(B)\to 0,
@@ -114,26 +151,38 @@ Ahora, por la proposición 2B.1(b) tenemos que, al ser $g|_{\partial M}$ un embe
 %%\url{https://math.stackexchange.com/questions/3017199/homology-and-mobius-band}
 %\newpage
 
-\item Sabemos que $\R P^2 = M\cup D^2$, por lo que $S^3-M=(S^3-\R P^2)\cup D^2$, verificándose además $(S^3-\R P^2)\cap D^2=\emptyset$. Utilizamos el cálculo de la homología de $S^3-M$ para calcular la de $S^3-\R P^2$ por Mayer-Vietoris. Obtenemos inmediatamente que $H_i(S^3-\R P^2)=0$ para $i\geq 2$. Para $i=1$ la calculamos usando la sucesión exacta
-\[
-0\to H_1(S^3-\R P^2)\oplus H_1(D^2)\to H_1(S^3-M)\to 0
-\]
-o lo que es lo mismo
-\[
-0\to H_1(S^3-\R P^2)\to \Z\to 0
-\]
-por lo que $H_1(S^3-\R P^2)\cong \Z$. Por último, para $i=0$ tenemos
-\[
-0\to H_0(S^3-\R P^2)\oplus H_0(D^2)\to H_0(S^3-M)\to 0
-\]
-que es equivalente a 
-\[
-0\to H_0(S^3-\R P^2)\oplus \Z\to \Z\to 0
-\]
-de donde deducimos que $H_0(S^3-\R P^2)=0$. De aquí obtenemos al menos dos contradicciones con lo que tenemos hasta el momento. En primer lugar, este último resultado implica que $S^3-\R P^2=\emptyset$, pero $H_1(\emptyset)=0$, lo que entra en contradicción con que $H_1(S^3-\R P^2)=\Z$. También tenemos otra contradicción para la cual no necesitamos ninguna otra homología. Como estamos identificando $\R P^2$ con un embebimiento suyo en $S^3$, el hecho de que $S^3-\R P^2=\emptyset$ significaría que $S^3\cong \R P^2$, lo cual sabemos que es falso. La conclusión es por tanto que no puede existir $h:\R P^2\to S^3$ inyectiva, es decir, $\R P^2$ no puede embeberse en $S^3$. 
+%\item Sabemos que $\R P^2 = M\cup D^2$, por lo que $S^3-M=(S^3-\R P^2)\cup D^2$, verificándose además $(S^3-\R P^2)\cap D^2=\emptyset$. Utilizamos el cálculo de la homología de $S^3-M$ para calcular la de $S^3-\R P^2$ por Mayer-Vietoris. Obtenemos inmediatamente que $H_i(S^3-\R P^2)=0$ para $i\geq 2$. Para $i=1$ la calculamos usando la sucesión exacta
+%\[
+%0\to H_1(S^3-\R P^2)\oplus H_1(D^2)\to H_1(S^3-M)\to 0
+%\]
+%o lo que es lo mismo
+%\[
+%0\to H_1(S^3-\R P^2)\to \Z\to 0
+%\]
+%por lo que $H_1(S^3-\R P^2)\cong \Z$. Por último, para $i=0$ tenemos
+%\[
+%0\to H_0(S^3-\R P^2)\oplus H_0(D^2)\to H_0(S^3-M)\to 0
+%\]
+%que es equivalente a 
+%\[
+%0\to H_0(S^3-\R P^2)\oplus \Z\to \Z\to 0
+%\]
+%de donde deducimos que $H_0(S^3-\R P^2)=0$. De aquí obtenemos al menos dos contradicciones con lo que tenemos hasta el momento. En primer lugar, este último resultado implica que $S^3-\R P^2=\emptyset$, pero $H_1(\emptyset)=0$, lo que entra en contradicción con que $H_1(S^3-\R P^2)=\Z$. También tenemos otra contradicción para la cual no necesitamos ninguna otra homología. Como estamos identificando $\R P^2$ con un embebimiento suyo en $S^3$, el hecho de que $S^3-\R P^2=\emptyset$ significaría que $S^3\cong \R P^2$, lo cual sabemos que es falso. La conclusión es por tanto que no puede existir $h:\R P^2\to S^3$ inyectiva, es decir, $\R P^2$ no puede embeberse en $S^3$. 
 %De nuevo $h$ es homeomorfismo sobre su imagen. 
 %
 %CREO QUE DEBO LLEGAR A LA CONCLUSIÓN DE QUE $h$ NO PUEDE EXISTIR, PORQUE SEGÚN EL COROLARIO 3.46 NO SE PUEDE EMBEBER EN $\mathbb{R}^3$ Y POR TANTO TAMPOCO EN $S^3$, YA QUE SI SE PUDIERA, NO SERÍA SOBREYECTIVO PORQUE NO SON HOMEOMORFOS Y ENTONCES LA PROYECCIÓN ESTEREOGRÁFICA DARÍA UN EMBEBIMIENTO EN $\R^3$. POR EJEMPLO, SI USARA EL 3.45 SALDRÍA DIRECTAMENTE UNA CONTRADICCIÓN PORQUE $H^2=\Z_2$ Y LA REDUCIDA EN 0 ES 0 PORQUE QUITARLE UN CONEXO ACOTADO POR UNA BOLA PROPIA QUEDA CONEXO, PERO SUPONGO QUE NO PUEDO UTILIZAR ESTO. 
+
+\item Sabemos que $\R P^2 = M\cup D^2$ con $M\cap D^2=\partial M$. Por tanto, identificando los espacios con su imagen mediante $h$, podemos considerar la descomposición $$S^3-\partial M=S^3-(M\cap D^2)=(S^3-M)\cup (S^3-D^2).$$ Se tiene que $(S^3-M)\cap (S^3-D^2)=S^3-(M\cup D^2)=S^3-\R P^2$. Así que usamos la sucesión reducida de Mayer-Vietoris para calcular $H_*(S^3-\R P^2)$. Por los cálculos de los apartados anteriores, obtenemos de forma inmediata que $H_i(S^3-\R P^2)=0$ para $i\geq 2$. Para $i\leq 1$ tenemos la sucesión exacta 
+\[
+0\to H_1(S^3-\R P^2)\to H_1(S^3-M)\oplus H_1(S^3-D^2)\to H_1(S^3-\partial M)\to \widetilde{H}_0(S^3-\R P^2)\to 0
+\]
+Tenemos que $H_1(S^3-D^2)=0$ por la proposición 2B.1 y por tanto el homomorfismo central es $i_*:H_1(S^3-M)\to H_1(S^3-\partial M)$, que hemos calculado previamente que se trata de la multiplicación por 2 como homomorfismo $\Z\to\Z$. Como este homomorfismo es inyectivo, la siguiente sucesión es exacta
+\[
+0\to \Z\xrightarrow{2} \Z\to \widetilde{H}_0(S^3-\R P^2)\to 0
+\]
+de donde deducimos que $\widetilde{H}_0(S^3-\R P^2)=\Z_2$, lo cual es imposible porque $H_0(X)=\widetilde{H}_0(X)\oplus\Z$ es libre para cualquier espacio $X$ por la proposición 2.7. Como estamos identificando $\R P^2$ con su imagen mediante un embebimiento $h:\R P^2\to S^3$, concluimos que tal $h$ no puede existir. 
+
+
 \end{enumerate}
 
 %\begin{nota}
