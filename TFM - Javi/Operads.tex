@@ -7,12 +7,15 @@
 
 ESCRIBIR ALGO AQUÍ, INCLUYENDO ALGO DE QUE ALL MAPS ARE REQUIRED TO BE CONTINUOUS
 
+REVISAR LA NOTACIÓN POR SI DEBERÍA SER MÁS CONSISTENTE EN LOS ÍNDICES DE LOS OPERADS
+
 
 \section{Operads}
 First we give the general notion of operad and some properties of this object. EN PRINCIPIO LO DEFINO EN TOP Y YA PREGUNTO SI HACE FALTA QUE SEA EN UNA MONOIDAL SIMÉTRICA. SI HACE FALTA, HACER UNA SECCIÓN DE CATEGORÍAS SIMÉTRICAS MONOIDALES. SI NO, CITAR A DONALD YAU CON QUE SE PUEDE DEFINIR CON MÁS GENERALIDAD
-
+\url{https://ncatlab.org/nlab/show/operad}
 %
 %NO PARECE QUE ESTA DEFINICIÓN CAPTURE LA COMPOSICIÓN DEL LITTLE DISKS OPERAD, PERO EN VERDAD SÍ, LO QUE FALTA ES RELLENA CON LA IDENTIDAD HASTA COMPLETAR LA ARIDAD DEL PRIMERO
+PENSAR EN CAMBIAR LA NOTACIÓN PARA LA IDENTIDAD
 \begin{defi}
 An \emph{operad} is a tuple $(O, \circ, \mathbbm{1})$ consisting of the following data:
 \begin{enumerate}[(1)]
@@ -40,12 +43,13 @@ An operad is called \emph{symmetric} if it satisfies the following additional pr
 & (\theta\cdot t)\circ(\theta_{t_1},\ldots,\theta_{t_n}) = (\theta\circ(\theta_1,\ldots,\theta_n))\cdot t \\[2pt]
 & \theta\circ(\theta_1\cdot s_1,\ldots,\theta_n\cdot s_n) = (\theta\circ(\theta_1,\ldots,\theta_n))\cdot (s_1,\ldots,s_n)
 \end{align*}
-where $\cdot$ is the natural right action of the symmetric group $\Sigma_n$ on $P(n)$ by rearranging the $n$ arguments of the $n$-ary operations. AQUÍ SEGÚN WIKIPEDIA HAY UN ABUSO DE NOTACIÓN EN LA T DE LA PRIMERA ECUACIÓN, PENSAR SI EXPLICARLO O SI PONERLO CON DIAGRAMA COMO YAU (EN ESE CASO QUIZÁ SEA MÁS COHERENTE HACERLO TODO CON DIAGRAMAS)
+where $\cdot$ is the natural right action of the symmetric group $\Sigma_n$ on $P(n)$ by rearranging the $n$ arguments of the $n$-ary operations. AQUÍ SEGÚN WIKIPEDIA HAY UN ABUSO DE NOTACIÓN EN LA T DE LA PRIMERA ECUACIÓN, PENSAR SI EXPLICARLO O SI PONERLO CON DIAGRAMA COMO YAU (EN ESE CASO QUIZÁ SEA MÁS COHERENTE HACERLO TODO CON DIAGRAMAS). DE TODOS MODOS CONTRASTARLO CON MAY
 \end{itemize}
 \end{enumerate}
 \end{defi}
 
 %\url{https://en.wikipedia.org/wiki/Operad_theory}
+
 
 \begin{defi}
 Given two operads $O$ and $P$, a \emph{map} or \emph{morphism} of operads $f:O\to P$ consists of a sequence of maps $f_n:O(n)\to P(n)$, $n\in\N$ which
@@ -60,7 +64,7 @@ f(\theta\circ(\theta_1,\ldots,\theta_n))
 \end{enumerate}
 \end{defi}
 
-We're treating operads only in the category of topological spaces, but they can be defined in a more general setting, namely, in any \emph{symmetric monoidal category} \cite{Yau}.
+We're treating operads only in the category of topological spaces, but they can be defined in a more general setting, namely, in any \emph{symmetric monoidal category} \cite{Yau}. HABLAR ALGO DE ESTAS CATEGORÍAS PARA QUE TENGA MÁS SENTIDO GENERALIZAR LAS DEFINICIONES Y DAR UNA IDEA DE CÓMO SE DEFINEN LAS OPERADS EN ESAS CATEGORÍAS
 
 ALOMEJOR HACER DIBUJITOS DE LOS AXIOMAS
 
@@ -112,13 +116,30 @@ $$(c_1\circ_i c_2)(\gamma_1,\dots, \gamma_{p+q-1})=c_1(\gamma_1,\dots, \gamma_{i
 \end{enumerate}
 Note that for $n=0$, there is only the map $E_2(0)\to\Omega^2(X)$ inducing $*\mapsto x_0$. 
 
-LO DE $E_2$-ÁLGEBRA NO SÉ SI ES DEFINICIÓN O ES UNA ESTRUCTURA QUE SE VERIFICA
+The action described above turns $\Omega^2(X)$ into an \emph{$E_2$-álgebra}. A formal definition of this concept is given below in terms of the \emph{endomorphism operad}.
 
-NO SÉ DÓNDE PONER LA PARTE DE LAS CADENAS Y TODO ESO. EN CUANTO A ESO PREGUNTAR POR QUÉ SE COGÍA SOLO EL $E_2(2)$ Y CÓMO SE RELACIONA LA COHOMOLOGÍA DE HOCHSCHILD DE $A$ CON LA HOMOLOGÍA DEL LOOP SPACE (¿Y CUÁL ERA EL OBJTIVO DE ANALIZAR LA ACCIÓN ESA?)
 
-PREGUNTARLE QUÉ SENTIDO TIENE SER QUASI-ISOMORFO A LA HOMOLOGÍA, SI LA HOMOLOGÍA DE LA HOMOLOGÍA ES 0
+\begin{defi}
+Let $X$ be a topological space and define the \emph{endomorphism operad} $\xi_X$ as follows. Let $\xi_X(j)$ be the space of based maps $X^j\to X$, $X^0=*$, and $\xi_X(0)$ the inclusion $*\to X$. The data are defined by:
+\begin{enumerate}
+\item $\gamma(f;g_1,\dots, g_k)=f(g_1\times\cdots\times g_k)$ for $f\in \xi_X(k)$ and $g_s\in\xi_X(j_s)$ such that $\sum_s j_s=j$.
+\item The identity element $\mathbbm{1}\in\xi_X(1)$ is the identity map on $X$.
+\item $(f\sigma)(y)=f(\sigma y)$ for $f\in\xi_X(j)$, $\sigma\in\Sigma_j$ and $y\in X^j$, where $\Sigma_j$ acts on $X^j$ by $\sigma(x_1,\dots, x_j)=(x_{\sigma^{-1}(1)},\dots, x_{\sigma^{-1}(j)})$. 
+\end{enumerate}
 
-CON LO DEL SUSTITUTO, SI TIENE LA MISMA HOMOLOGÍA QUE C2, ENTONCES CONSIGUES QUE C(SUSTITUTO) ACTÚE EN H(A,A), PERO DE AHÍ EN PRINCIPIO NO SE SACA LA ACCION EN C(A,A)
+Given a morphism of operads $O\to \xi_X$, we say that the pair $(X,O)$ is an \emph{$O$-algebra} (sometimes called \emph{$O$-space} \cite{May}).
+\end{defi}
+
+
+Note that giving a morphism $O\to \xi_X$ is equivalent to give a sequence of maps $O(k)\times X^k\to X$, so this definition is consistent with saying that $\Omega^2(X)$ is an $E_2$-algebra. In any other symmetric monoidal category the definition works just as fine performing the obvious substitutions, and the equivalence mentioned before remains true by the well-known andjunction $\Hom(X\otimes Y,Z)\cong\Hom(X,\Hom(Y,Z))$ REFERENCIARLA EN ALGÚN LAO O PROBARLA. 
+
+\url{https://ncatlab.org/nlab/show/algebra+over+an+operad}
+
+NO SÉ DÓNDE PONER LA PARTE DE LAS CADENAS Y TODO ESO. EN CUANTO A ESO PREGUNTAR POR QUÉ SE COGÍA SOLO EL $E_2(2)$ Y CÓMO SE RELACIONA LA COHOMOLOGÍA DE HOCHSCHILD DE $A$ CON LA HOMOLOGÍA DEL LOOP SPACE (¿Y CUÁL ERA EL OBJETIVO DE ANALIZAR LA ACCIÓN ESA?)
+
+%PREGUNTARLE QUÉ SENTIDO TIENE SER QUASI-ISOMORFO A LA HOMOLOGÍA, SI LA HOMOLOGÍA DE LA HOMOLOGÍA ES 0
+%
+%CON LO DEL SUSTITUTO, SI TIENE LA MISMA HOMOLOGÍA QUE C2, ENTONCES CONSIGUES QUE C(SUSTITUTO) ACTÚE EN H(A,A), PERO DE AHÍ EN PRINCIPIO NO SE SACA LA ACCION EN C(A,A)
 \end{document}
 
 %isotopía \url{https://link.springer.com/chapter/10.1007%2F978-94-015-9319-9_6}
