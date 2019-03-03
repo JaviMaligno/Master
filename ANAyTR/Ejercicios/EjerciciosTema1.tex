@@ -71,13 +71,22 @@ Sea $A$ un álgebra sobre un cuerpo $k$ algebraicamente cerrado. El centro $Z(A)
 \begin{enumerate}[(a)]
 \item  Probar que si $V$ es una representación irreducible de dimensión finita de $A$, entonces cualquier elemento $z\in Z(A)$ actúa en $V$ como multiplicación por algún escalar $\chi_V(z)$. Probar que $\chi_V:Z(A)\to k$ es un homomorfismo. Se llama \textbf{caracter central} de $V$.
 
-\item Probar que si $V$ es una representación de dimensión finita indecomponible de $A$, entonces para cualquier $z\in Z(A)$, el operador $\rho(z)$ por el cual $z$ actúa en $V$ tiene solo un autovalor $\chi_V(z)$, egual al escalar por el cual $z$ actúa en alguna subrepresentación irreducible de $V$. Por tanto, $\chi_V:Z(A)\to k$ es un homomorfismo, que se llama de nuevo caracter central de $V$.
+\item Probar que si $V$ es una representación de dimensión finita indecomponible de $A$, entonces para cualquier $z\in Z(A)$, el operador $\rho(z)$ por el cual $z$ actúa en $V$ tiene solo un autovalor $\chi_V(z)$, igual al escalar por el cual $z$ actúa en alguna subrepresentación irreducible de $V$. Por tanto, $\chi_V:Z(A)\to k$ es un homomorfismo, que se llama de nuevo caracter central de $V$.
 
 \item ¿Es $\rho(z)$ necesariamente un operador escalar?
 
 \end{enumerate}
 \end{ejercicio}
 \begin{solucion}
+\begin{enumerate}
+\item RAFA
+\item Tenemos que para todo $z\in Z(A)$ y todo $\lambda\in k$, $z-\lambda\in Z(A)$, luego $(\rho(z)-\lambda Id)$ es un morfismo de representaciones, es decir, para todo $a\in A$ y para todo $v\in V$ se tiene que $$(\rho(z)-\lambda Id)(av)=a(\rho(z)-\lambda Id)(v).$$ En particular, si $v$ es el autovector asociado a $\lambda$, 
+
+$$(\rho(z)-\lambda Id)(av)=a(\rho(z)-\lambda Id)(v)=0.$$
+
+Esto quiere decir que los autovectores generan subrepresentaciones. Recordemos que autovectores asociados a distintos autovalores son linealmente independientes. Por lo que si hay $n$ autovalores distintos $\lambda_1,\dots, \lambda_n$ (debe haber una cantidad finita porque la representación es finita), entonces $V=\bigoplus_i V_{\lambda_i}$, donde $V_{\lambda_i}$ es el autoespacio asociado a $\lambda_i$. Como $V$ es indecomponible, necesariamente $n=1$. NECESITA REVISIÓN, NO ME TERMINA DE CONVENCER
+\item No, para $A=k[x]$ ($Z(A)=A$) tras el ejemplo 1.19 se explica que $\rho(z)$ puede ser cualquier bloque de Jordan, por lo que en general no será necesariamente escalar. 
+\end{enumerate}
 \end{solucion}
 
 \newpage
@@ -92,7 +101,7 @@ Veamos entonces que $f_a\circ f_b=f_{a*b}=f_{ba}$.
 \[
 f_a(f_b(x))=f_a(xb)=xba=x(ba)
 \]
-por lo que la aplicación es un morfismo de álgebras. Además tiene inverso dado por $f\mapsto f(1)$. Es fácil comprobar que efectivamente es el inverso, por lo que tenemos un isomorfismo. 
+por lo que la aplicación es un morfismo de álgebras. De hecho preserva la unidad puesto que trivialmente $1\mapsto Id_A$. Además tiene inverso dado por $f\mapsto f(1)$. Es fácil comprobar que efectivamente es el inverso, por lo que tenemos un isomorfismo. 
 \end{solucion}
 
 \newpage
