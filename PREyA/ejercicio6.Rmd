@@ -1,0 +1,116 @@
+---
+title: "Procesos Estocástiscos y Aplicaciones"
+subtitle: "Ejercicio 6"
+author: "Rafael González López"
+output: html_document
+header-includes:
+  - \usepackage{tikz}
+  - \usepackage{pgfplots}
+  - \usepackage{tikz-cd}
+  - \usetikzlibrary{arrows}
+  - \usetikzlibrary{cd}
+  - \usetikzlibrary{babel}
+  - \usetikzlibrary{trees}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+> Las máquinas me sorprenden con mucha frecuencia. Alan Turing.
+
+Una máquina tiene dos piezas colocadas en paralelo de manera que para funcionar utiliza solo una de ellas, quedando la otra de repuesto para reemplazar a la que trabaja cuando esta se estropea, si está en condiciones de trabajar. Las piezas trabajan de manera que se estropean durante un periodo de tiempo dado con una probabilidad $q$. Supongamos que la pieza que está trabajando, en caso de que se estropee, lo hace al final de un periodo, de manera que la pieza de repuesto empieza a trabajar, si está en condiciones de hacerlo, al principio del periodo siguiente. Hay un único mecánico para reparar las piezas estropeadas, que tarda dos periodos en reparar una pieza estropeada. El proceso puede describirse mediante un vector $X_t$ de dos componentes $U$ y $V$, donde $U$ representa el número de piezas hábiles, trabajando o en condiciones de trabajar, al final del periodo $t$-ésimo, y $V$ toma el valor $1$ si el mecánico requiere únicamente un periodos adicional para completar una reparación, si está procediendo a ella, y $0$ en caso contrario. Por lo tanto, el espacio de estados consta de cuatro estados
+$$
+(2,0), (1,0),(0,1),(1,1)
+$$
+(Por ejemplo, el estado $(1,1)$ implica que una componente opera y la otra necesita un periodo adicional para acabar de ser reparada). Denotemos los cuatro estados por $0,1,2$ y $3$, respectivamente. (Es decir, $X_t=0$ quiere decir $X_t = (2,0)$, por ejemplo). 
+
+### Comprobar que $X_t$ para $t=0,1,\dotsc$ es una cadena de Markov.
+
+Es claro que el espacio de estados consta de cuatro elementos, luego es discreto. Que se verifica la propiedad de Markov se tiene casi por el propio planteamiento del modelo. El estado futuro de la cadena depende a lo sumo del último estado conocido, pero desde luego no de los anteriores. 
+
+### Describir el diagrama de transiciones y hallar la matriz de probabilidades de transición. 
+
+Para realizar el ejercicio vamos a utilizar las siguientes librerías
+
+```{r car, message = FALSE}
+library(markovchain)
+library(expm)
+```
+
+Para cada $q\in (0,1)$, la matriz de transición de estados que define el problema es
+$$
+\begin{pmatrix}
+1-q	& q & 0 & 0\\
+0 	& 0	& q	& 1-q\\
+0	& 1 & 0 & 0\\
+1-q & 0 & 0 & q
+\end{pmatrix}
+$$
+dado que R no nos permite trabajar con variables genéricas, vamos a crear una función que nos dé para cada valor de $q$ la cadena de markov correspondiente. 
+
+```{r pressure, message=FALSE}
+matrizp = function(q) {
+  estados <- c("1", "2", "3","4")
+  cmatrix <- matrix(data = c(1-q,q,0,0,0,0,q,1-q,0,1,0,0,1-q,0,0,q),
+                       byrow = T, nrow = 4,dimnames=list(estados,estados)) 
+  maquina<-new("markovchain",states=estados,byrow=T,transitionMatrix=cmatrix,name="Maquinaria")
+  mclist<-new("markovchainList",markovchains=list(maquina),name="list")
+  return(maquina)
+}
+```
+Usando el comando plot de R podemos generar algunas visualizaciones del diagrama de transición para distintos valores de $q$. Sin embargo, es claro que la conectividad entre los ditintos estados no cambia, pues no ninguna entrada de la matriz de transición es un u polinomio en $q$ con raíces en $(0,1)$, luego basta con que representemos el caso $q=1/2$.
+```{r lars, echo = FALSE}
+plot(matrizp(0.5))
+```
+
+### Clasificar los estados
+Es fácil ver, o bien calculando $P^4$ (es $>0$ y por tanto $P$ es regular) o bien directamente sobre el diagrama, que todos los estados están interconectados cuando $q\in(0,1)$. Por tanto, todos deben tener el mismo carácter. Como estamos en una cadena finita, deben ser todos recurrentes no nulos. 
+```{r lars2}
+summary(matrizp(0.5))
+```
+Del sumario podemos comprobar que la teoría se cumple: tenemos una única clase cerrada e irreducible de estados recurrentes. Que $P$ sea regular implica que la cadena es ergódica. En particular, todos los estados son aperiódicos. Esto también puede comprobarse mediante R
+```{r lars3}
+period(matrizp(0.5))
+```
+Además, gracias a $R$ podemos calcular la probabilidad de que la primera pasada de un estado $i$ por otro estado $j$ ocurra en el instante $n$-ésimo. Continuando con el ejemplo usando $q=1/2$ y para el estado $1$ tenemos
+```{r lars4}
+firstPassage(matrizp(1/2),"1",20)
+```
+### Distribución estacionaria
+Otra consecuencia de que $P$ sea regular es que existe una única distribución límite que además es la distribución estacionaria, luego podemos calcularla directamente.
+$$
+P =\begin{pmatrix}
+1-q	& q & 0 & 0\\
+0 	& 0	& q	& 1-q\\
+0	& 1 & 0 & 0\\
+1-q & 0 & 0 & q
+\end{pmatrix} \qquad 
+P'-I = 
+\begin{pmatrix}
+-q	& 0 & 0 & 1-q\\
+q 	& -1	& 1	& 0\\
+0	& q & -1 & 0\\
+0	& 1-q & 0 & q-1
+\end{pmatrix}
+$$
+Resolviendo el sistema e imponiendo que los coeficientes sumen $1$ obtenemos que la distribución estacionaria es
+$$
+\pi(q) = \frac{q}{q^2+q+1}
+\begin{pmatrix}
+\dfrac{1-q}{q} & 1 & q & 1
+\end{pmatrix}
+$$
+Está bien definido porque el denominador no tiene raíces reales y es positivo en $(0,1)$. Veamos qué resultados obtenemos con R. Primeramente escribimos la función $\pi(q)$.
+```{r}
+distest = function(q) {
+  a = q/(q^2+q+1)
+  c = c((1-q)/q,1,q,1)
+  return(a*c)
+}
+```
+Sin embargo, el paquete `markovchain` nos permite calcular directamente la distribución estacionaria. Veamos que efectivamente coindicen
+```{r}
+distest(1/2)
+steadyStates(matrizp(1/2))
+```

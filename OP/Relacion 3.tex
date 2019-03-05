@@ -1,0 +1,154 @@
+\documentclass[twoside]{article}
+\usepackage{../estilo-ejercicios}
+\newcommand{\x}{{\mathbf{x}}}
+\newcommand{\y}{{\mathbf{y}}}
+\usepackage[]{algorithm2e}
+%--------------------------------------------------------
+\begin{document}
+
+\title{Optimización}
+\author{Rafael González López}
+\maketitle
+
+\begin{ejercicio}{1} Sean $X$ e $Y$ dos espacios normados, $U ⊆ X$ un abierto y $F : U \to \R$ un operador. Dados $x_1, x_2 ∈ U$ tales que $[x_1, x_2] ⊂ U$, supongamos que $F$ es dos veces $G$-diferenciable en todo punto de $[x_1, x_2]$ en la dirección $x_2 − x_1$. Entonces, $\exists \xi  \in (x_1,x_2)$ tal que
+$$
+F(x_2)= F(x_1) + \delta F(x_1;x_2-x_1)+\frac{1}{2}\delta^2 F(\xi;x_2-x_1;x_2-x_1)
+$$
+\end{ejercicio}
+\begin{solucion}
+Como aplicación trivial del Teorema de Taylor, sea $g\in C^2([a,b])$, entonces $\exists \xi \in (a,b)$ tal que
+$$
+g(b)=g(a)+g'(a)(b-a) +\frac{g''(\xi)}{2}(b-a)^2
+$$
+Consideremos la función 
+$$
+g:[0,1]\to \R \quad  t\to F(x_1+t(x_2-x_1))
+$$
+De manera que $g(0)=F(x_1)$ y $g(1)=F(x_2)$. Notemos que si probamos que $g\in C^2([0,1])$, entonces aplicando el resultado anterior tendríamos que $\exists c \in (0,1)$ tal que
+$$
+g(1) = g(0) + g'(0)+\frac{g''(c)}{2}
+$$
+Vamos a probar que efectivamente $g\in C^2([0,1])$ y veamos quiénes son $g'$ y $g''$. Sin pérdida de generalidad, sea $x\in (0,1)$
+$$
+g'(x) = \lim_{h\to 0} \frac{g(x+h)-g(x)}{h} = \lim_{h\to0} \frac{ F(x_1+(x+h)(x_2-x_1))- F(x_1+x(x_2-x_1))}{h}
+$$
+Como $F$ es dos veces $G$-diferenciable en la dirección $x_2-x_1$, tenemos que dicho límite vale
+$$
+g'(x) = \delta(x_1 + x(x_2-x_1);x_2-x_1)
+$$
+Además, tomando el límite lateral para $x=0$ obtenemos $g'(0) = \delta(x_1;x_2-x_1)$. Comprobamos ahora que $g'$ es diferenciable
+\begin{align*}
+g''(x) &= \lim_{h\to0}\frac{g'(x+h)-g(x)}{h}\\
+&= \lim_{h\to0} \frac{\delta F(x_1+(x+h)(x_2-x_1);x_2-x_1)- \delta F(x_1+x(x_2-x_1);x_2-x_1)}{h}
+\end{align*}
+Nuevamente, dado que $F$ es dos veces $G$-diferenciable en la dirección $x_2-x_1$, tenemos que el límite existe y vale precisamente $\delta^2 F(x_1+x(x_2-x_1);x_2-x_1;x_2-x_1)$. Sea $c\in (0,1)$, entonces $\xi = x_1 +c(x_2-x_1) \in (x_1,x_2)$. Por tanto, tenemos que
+$$
+F(x_2) = F(x_1) + \delta F(x_1;x_2-x_1) + \frac{\delta^2 F(\xi;x_2-x_1;x_2-x_1)}{2}
+$$
+\end{solucion}
+
+
+\newpage
+\begin{ejercicio}{2}Sean $V$ un espacio normado, $\Omega ⊂ V$ un abierto, $U ⊂ \Omega $ un convexo no vacío y $J_1, J_2 : \Omega  \to \R$ dos funcionales convexos en $U$. Supongamos que $J_1$ es $G$-diferenciable en $\Omega $.
+Pruébese que $u ∈ U$ es un mínimo de $J_1 + J_2$ en $U$ si y sólo si
+$$
+\delta J_1(u, v − u) + J_2(v) − J_2(u) ≥ 0, \quad ∀v ∈ U
+$$
+\end{ejercicio}
+\begin{solucion}
+\begin{itemize}
+\item[]
+\item Supongamos que se verifica la desigualdad. Como $J_1$ es $G$-diferenciable en $\Omega$, entonces para $u,v$ cualesquiera se verifica (Proposición 1.31 de los apuntes) 
+$$
+J_1(v)-J_1(u) \geq \delta J_1(u,v-u)
+$$
+Combinando esto con la desigualdad que hemos supuesto, tomando $u$ que verifique la misma y $v$ cualquiera
+$$
+J_1(v)-J_1(u)+J_2(v)-J_2(u)\geq \delta J_1(u, v − u) + J_2(v) − J_2(u) \geq 0 \quad \forall v \in U
+$$
+Despejando
+$$
+J_1(v)+J_2(v) \geq J_1(u)+J_2(u) \quad \forall v \in U
+$$
+Por lo que $u$ es mínimo para la suma.
+
+\item Veamos el recíproco. Supongamos que $u$ es mínimo de $J_1+J_2$.
+\begin{align*}
+\delta J(u,v-u) &= \lim_{\varepsilon \to 0^+} \frac{J_1(u+\varepsilon(v-u))-J_1(u)}{\varepsilon}\\
+&=\lim_{\varepsilon \to 0^+} \frac{(J_1+J_2)(u+\varepsilon(v-u))-(J_1+J_2)(u)}{\varepsilon}+\frac{J_2(u)+J_2(u+\varepsilon(v-u))}{\varepsilon}
+\end{align*}
+Para $\varepsilon$ suficientemente pequeño, el primer sumando es no negativo, mientras que por convexidad
+$$
+J_2(u+\varepsilon(v-u)) \leq (1-\varepsilon)J_2(u)+\varepsilon J_2(v) \Leftrightarrow -J_2(u+\varepsilon(v-u)) \geq (\varepsilon-1)J(u) - \varepsilon J_2(v)
+$$
+Por tanto
+$$
+\delta J(u,v-u) \geq \lim_{\varepsilon \to 0} 0 + \frac{\varepsilon J_2(u)-\varepsilon J_2(v)}{\varepsilon} = J_2(u)-J_2(v)
+$$
+\end{itemize}
+\end{solucion}
+\newpage
+
+\begin{ejercicio}{3}
+Sean $V$ un espacio de Hilbert, $Ω ⊆ V$ un abierto, $U ⊆ Ω$ un subconjunto convexo no vacío y $J_1, J_2 : Ω → \R$ dos funcionales continuos en $Ω$. Supongamos que $J_1$ es elíptico en $U$, con constante de elipticidad $α > 0$, y $J_2$ es convexo en $U$. Pruébese que $J = J_1 + J_2$ es también un
+funcional elíptico en $U$ y que $α$ es una constante de elipticidad de $J$ en $U$.
+\end{ejercicio}
+\begin{solucion}
+Sean $u,v\in U$ y $\theta \in [0,1]$, como $J_2$ es convexo en $U$
+$$
+J_2((1-\theta)u+\theta v) \leq (1-\theta)J_2(u) + \theta J_2(v)
+$$
+Análogamente, como $J_1$ es elíptico con constante $\alpha$ 
+$$
+J_1((1-\theta)u+\theta v) \leq (1-\theta)J_1(u) + \theta J_1(v) + \alpha\frac{\theta(1-\theta)}{2}||u-v||^2
+$$
+Sumando las igualdades obtenemos
+$$
+(J_1+J_2)((1-\theta)u+\theta v) \leq (1-\theta)(J_1+J_2)(u) + \theta (J_1+J_2)(v) + \alpha\frac{\theta(1-\theta)}{2}||u-v||^2
+$$
+\end{solucion}
+\newpage
+\begin{ejercicio}{4}
+Sean $V$ un espacio de Hilbert, $Ω ⊆ V$ un abierto, $U ⊆ Ω$ un subconjunto convexo no vacío y $J : Ω → \R$ un funcional continuo. Supongamos que $J$ es dos veces $G$-diferenciable en $Ω$. Entonces, $J$ es elíptico en $U$ (con constante $α > 0$ asociada) si y sólo si
+$$
+\delta^2 J(u,v-u,v-u)\geq \alpha ||v-u||^2, \quad \forall u,v\in U				
+$$
+\end{ejercicio}
+\begin{solucion}
+\begin{itemize}
+\item[]
+\item Supongamos que $J$ es funcional elíptico en $U$. Consideremos $g:[0,1]\to \R$, $g(t) = g(u+t(v-u))$, que ya utilizamos en el primer ejercicio. Siguiendo la demostración del Teorema 2.4 obtenemos que para $t,s\in[0,1]$
+$$
+g'(t)-g'(s)\geq \alpha(t-s)||v-u||^2
+$$
+Tomando $s=0$ y dividiendo por $t>0$ obtenemos
+$$
+\frac{g'(t)-g'(0)}{t}\geq \alpha||v-u||^2
+$$
+Basta tomar $t\to0^+$ y tener en cuenta que
+$$
+g''(0) = \delta^2 J(u,v-u,v-u)
+$$
+Por lo que
+$$
+\delta^2 J(u,v-u,v-u) \geq \alpha ||v-u||^2
+$$
+\item Supongamos que se verifica la desigualdad. Usando el Ejercicio $1$ tenemos que
+$$
+J(v) = J(u) + \delta J(u;v-u) + \frac{1}{2}\delta^2 J(x^*;v-u;v-u)
+$$
+donde $x^* = u + \varepsilon (v-u)$ para algún $\varepsilon\in(0,1)$, de manera que $x^* \in U$. De esta forma, desarrollando la segunda $G$-derivada y usando la hipótesis de la igualdad para $u,x^*$
+\begin{align*}
+ \delta^2 J(x^*;v-u;v-u) & = \delta^2 J(x^*;-\frac{1}{\varepsilon}(u-x^*);-\frac{1}{\varepsilon}(u-x^*))\\
+ &= \frac{1}{\varepsilon^2}\delta^2 J (x^*,u-x^*,u-x^*)\\
+ &\geq \frac{1}{\varepsilon^2}  \alpha ||x^*-u||^2\\
+ &= \alpha||v-u||^2
+\end{align*}
+Por tanto,
+$$
+J(v)\geq J(u)+\delta J(u;v-u) + \frac{\alpha}{2}||v-u||^2
+$$
+Usando el Teorema 2.4, tenemos que $J$ es elípitico.
+\end{itemize}
+\end{solucion}
+\end{document}
