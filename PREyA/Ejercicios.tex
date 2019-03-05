@@ -11,7 +11,7 @@
 \maketitle
 
 \begin{ejercicio}{1}
-Sea $\{X_t\}_{t\in T}$ un PE tal que $X_t$ es continua $\forall t$ y que verifica la propiedad de incrementos independientes. Probar que para conocer la densidad conjunta bidemensional es suficiente con conocer la densidad margial de $X_s$ y de $X_{t-s}$, para $s>t$
+Sea $\{X_t\}_{t\in T}$ un PE tal que $X_t$ es continua $\forall t$ y que verifica la propiedad de incrementos independientes. Probar que para conocer la densidad conjunta bidimensional es suficiente con conocer la densidad marginal de $X_s$ y de $X_{t-s}$, para $s>t$
 
 
 \end{ejercicio}
@@ -249,7 +249,7 @@ Por tanto, $$P_{jj}(1)=\infty \Leftrightarrow  F_{jj}(1)=1 \Leftrightarrow f_j =
 \newpage
 
 
-\begin{ejercicio}{7}Supongamos una cadea de Markov no homogénea con $3$ estados y matriz de transición en el instante $n$ dada por
+\begin{ejercicio}{7}Supongamos una cadena de Markov no homogénea con $3$ estados y matriz de transición en el instante $n$ dada por
 $$
 P_n=
 \begin{pmatrix}
@@ -282,7 +282,7 @@ $$
 \newpage
 
 
-\begin{ejercicio}{8}Supongamos una cadea de Markov no homogénea con $3$ estados y matriz de transición en el instante $n$ dada por
+\begin{ejercicio}{8}Supongamos una cadena de Markov no homogénea con $3$ estados y matriz de transición en el instante $n$ dada por
 $$
 P=
 \begin{pmatrix}
@@ -452,5 +452,9 @@ Dado que se verifican las tres propiedades, $\{Y_t\}$ es proceso de Poisson.
 
 
 \end{solucion}
-
+\newpage
+Sea $u = \arctan(x)$ entonces $du = dx/(1+x^2)$ $dx = (1+tan(u)^2)du$.
+$$
+\int_{-\infty}^\infty x f(x) dx = \int_{-\pi/2}^{\pi/2} \arctan(x) f(\arctan(x))(1+tan(u)^2)du
+$$
 \end{document}
