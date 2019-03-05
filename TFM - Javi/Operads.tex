@@ -11,40 +11,45 @@ REVISAR LA NOTACIÓN POR SI DEBERÍA SER MÁS CONSISTENTE EN LOS ÍNDICES DE LOS
 
 
 \section{Operads}
-First we give the general notion of operad and some properties of this object. EN PRINCIPIO LO DEFINO EN TOP Y YA PREGUNTO SI HACE FALTA QUE SEA EN UNA MONOIDAL SIMÉTRICA. SI HACE FALTA, HACER UNA SECCIÓN DE CATEGORÍAS SIMÉTRICAS MONOIDALES. SI NO, CITAR A DONALD YAU CON QUE SE PUEDE DEFINIR CON MÁS GENERALIDAD
-\url{https://ncatlab.org/nlab/show/operad}
+First we give the general notion of operad and some properties of this object.
+% EN PRINCIPIO LO DEFINO EN TOP Y YA PREGUNTO SI HACE FALTA QUE SEA EN UNA MONOIDAL SIMÉTRICA. SI HACE FALTA, HACER UNA SECCIÓN DE CATEGORÍAS SIMÉTRICAS MONOIDALES. SI NO, CITAR A DONALD YAU CON QUE SE PUEDE DEFINIR CON MÁS GENERALIDAD
+%\url{https://ncatlab.org/nlab/show/operad}
 %
 %NO PARECE QUE ESTA DEFINICIÓN CAPTURE LA COMPOSICIÓN DEL LITTLE DISKS OPERAD, PERO EN VERDAD SÍ, LO QUE FALTA ES RELLENA CON LA IDENTIDAD HASTA COMPLETAR LA ARIDAD DEL PRIMERO
-PENSAR EN CAMBIAR LA NOTACIÓN PARA LA IDENTIDAD
-\begin{defi}
-An \emph{operad} is a tuple $(O, \circ, \mathbbm{1})$ consisting of the following data:
-\begin{enumerate}[(1)]
-\item a sequence of topological spaces $O=\{O(n)\}_{n\geq 0}$, whose elements are called \emph{$n$-ary operations}.
-\item an element $\mathbbm{1}\in O(1)$ is called the \emph{identity},
-\item for all positive integers $n,k_1,\dots, k_n$, a \emph{composition} map
-\begin{align*}
-\circ:O(n)\times O(k_1)\times\cdots\times O(k_n)&\to O(k_1+\cdots+k_n)\\
-(\theta, \theta_1,\dots, \theta_n)&\to \theta\circ(\theta_1,\dots, \theta_n),
-\end{align*}
-satisfying the following axioms:
-\begin{itemize}
-\item \emph{indentity}: $\theta(\mathbbm{1},\dots, \mathbbm{1})=\mathbbm{1}\circ\theta$,
-\item \emph{associativiy}:
-\begin{align*}
-& \theta \circ (\theta_1 \circ (\theta_{1,1}, \ldots, \theta_{1,k_1}), \ldots, \theta_n \circ (\theta_{n,1}, \ldots,\theta_{n,k_n}))= \\
- {} & (\theta \circ (\theta_1, \ldots, \theta_n)) \circ (\theta_{1,1}, \ldots, \theta_{1,k_1}, \ldots, \theta_{n,1}, \ldots, \theta_{n,k_n})
-\end{align*}
-\end{itemize}
+An operad is a collection of suitably interrelated spaces $\CC(j)$, the points of which are to
+be thought of as $j$-adic operations $X^j \to X$ for some topological space $X$. Precisely, we have the following definitions.
 
-An operad is called \emph{symmetric} if it satisfies the following additional property:
-\begin{itemize}
-\item \emph{equivariance} or \emph{symmetry}: given permutations $s_i\in\Sigma_{k_i}$, $t\in\Sigma_n$,
-\begin{align*}
-& (\theta\cdot t)\circ(\theta_{t_1},\ldots,\theta_{t_n}) = (\theta\circ(\theta_1,\ldots,\theta_n))\cdot t \\[2pt]
-& \theta\circ(\theta_1\cdot s_1,\ldots,\theta_n\cdot s_n) = (\theta\circ(\theta_1,\ldots,\theta_n))\cdot (s_1,\ldots,s_n)
-\end{align*}
-where $\cdot$ is the natural right action of the symmetric group $\Sigma_n$ on $P(n)$ by rearranging the $n$ arguments of the $n$-ary operations. AQUÍ SEGÚN WIKIPEDIA HAY UN ABUSO DE NOTACIÓN EN LA T DE LA PRIMERA ECUACIÓN, PENSAR SI EXPLICARLO O SI PONERLO CON DIAGRAMA COMO YAU (EN ESE CASO QUIZÁ SEA MÁS COHERENTE HACERLO TODO CON DIAGRAMAS). DE TODOS MODOS CONTRASTARLO CON MAY
-\end{itemize}
+\begin{defi}\label{operadtop}
+An \emph{operad} $\CC$ consists of topological spaces $\CC(j)$ for $j\geq 0$, with $\CC(0)$ a single point $*$, together with the following data:
+\begin{enumerate}[(1)]
+\item Continuous functions $\gamma : \CC(k) × \CC(j_1) × \cdots × \CC(j_k) \to \CC(j)$, $j =\sum_s j_s$, such that the
+following associativity formula is satisfied for all $c\in \CC(k)$, $d_s \in \CC(js)$, and $e_t \in \CC(i_t)$:
+
+\[\gamma(
+\gamma(c; d_1, \dots , d_k); e_1, \dots , e_j) = 
+\gamma(c; f_1, \dots , f_k),
+\]
+where $f_s = \gamma(d_s; e_{j_1+\cdots+j_{s−1}+1}, \cdots , e_{j_1+\cdots+j_s} )$, and $f_s = *$ if $j_s = 0$.
+
+\item An identity element $1 \in \CC(1)$ such that 
+$\gamma(1; d) = d$ for $d \in \CC(j)$ and 
+$\gamma(c; 1^k) = c$ for
+$c \in \CC(k)$, $1^k = (1, \dots , 1) \in \CC(1)^k$.
+
+\item A right operation of the symmetric group $\Sigma_j$ on $\CC(j)$ such that the following equivariance
+formulas are satisfied for all $c\in \CC(k)$, $d_s \in \CC(j_s)$, $\sigma\in\Sigma_k$, and $\tau_s\in\Sigma_{j_s}$:
+\[
+\gamma(c\sigma; d_1, \dots , d_k) = 
+\gamma(c; d_{\sigma^{−1}(1)}, \dots , d_{\sigma^{−1}(k)})\sigma(j_1, \dots , j_k)
+\]
+and 
+\[
+\gamma(c; d_1\tau_1, \dots , d_k\tau_k) = \gamma(c; d_1, \dots , d_k)(\tau_1\oplus\cdots\oplus\tau_k),
+\] 
+where $\sigma(j_1, \dots , j_k)$ denotes the
+permutation of $j$ letters which permutes the $k$ blocks of letters determined by the given
+partition of $j$ (a first block of $j_1$, a second one of $j_2$ letters and so on), and $\tau_1\oplus\cdots\oplus\tau_k$ denotes the image of $(\tau_1, \dots , \tau_k)$ under the evident inclusion of $\tau_{j_1} × \cdots × \tau_{j_k}$ in $\Sigma_j$.
+%{1,2,...,j} se divide en bloques y se permuta ese conjunto 
 \end{enumerate}
 \end{defi}
 
@@ -52,21 +57,22 @@ where $\cdot$ is the natural right action of the symmetric group $\Sigma_n$ on $
 
 
 \begin{defi}
-Given two operads $O$ and $P$, a \emph{map} or \emph{morphism} of operads $f:O\to P$ consists of a sequence of maps $f_n:O(n)\to P(n)$, $n\in\N$ which
-\begin{enumerate}
-\item preserves identity: $f_1(\mathbbm{1}_O)=\mathbbm{1}_P$,
-\item preserves composition: for every $n$-ary operation $\theta$ and operations $\theta_1,\dots, \theta_n$,
-\[
-f(\theta\circ(\theta_1,\ldots,\theta_n))
-= f(\theta)\circ(f(\theta_1),\ldots,f(\theta_n))
-\]
-\item  preserves the permutation actions: $f(x\cdot s)=f(x)\cdot s$.
-\end{enumerate}
+A \emph{morphism} $\psi:\CC \to \CC'$ of operads is a sequence of $\Sigma_j$-equivariant maps  $\psi_j : \CC(j)\to \CC'(j)$ such that
+ $\psi_1(1) = 1$ and the following diagram commutes:
+ \[
+ \begin{tikzcd}
+\CC(k)\times \CC(j_1)\times\cdots\times \CC(j_k) \arrow[r, "\gamma"] \arrow[d, "\psi_k\times\psi_{j_1}\times\cdots\psi_{j_k}"'] & \CC(j) \arrow[d, "\psi_j"] \\
+\CC'(k)\times \CC'(j_1)\times\cdots\times \CC'(j_k) \arrow[r, "\gamma"]                                                         & \CC'(j)                   
+\end{tikzcd}\]
+$\Sigma_j$-equivariancy means that $\psi_j(c\sigma)=\psi_j(c)\sigma$ for all $c\in \CC(j)$, $\sigma\in\Sigma_j$ and $j\geq 0$. 
 \end{defi}
 
-We're treating operads only in the category of topological spaces, but they can be defined in a more general setting, namely, in any \emph{symmetric monoidal category} \cite{Yau}. HABLAR ALGO DE ESTAS CATEGORÍAS PARA QUE TENGA MÁS SENTIDO GENERALIZAR LAS DEFINICIONES Y DAR UNA IDEA DE CÓMO SE DEFINEN LAS OPERADS EN ESAS CATEGORÍAS
 
-ALOMEJOR HACER DIBUJITOS DE LOS AXIOMAS
+
+\url{https://ncatlab.org/nlab/show/symmetric+monoidal+category#as_algebras_over_the_little_cubes_operad}
+% HABLAR ALGO DE ESTAS CATEGORÍAS PARA QUE TENGA MÁS SENTIDO GENERALIZAR LAS DEFINICIONES Y DAR UNA IDEA DE CÓMO SE DEFINEN LAS OPERADS EN ESAS CATEGORÍAS
+
+ALOMEJOR HACER DIBUJITOS DE LOS AXIOMAS \url{https://en.wikipedia.org/wiki/Operad#\%22Little_something\%22_operads}
 
 
 \section{Little disks operad}
@@ -92,7 +98,7 @@ From now on, by ``disk'' we will mean ``open disk''.
  FIGURE OF THE STRUCTURE MAP
 
 
-Note that there is an element $Id_{E_2}\in E_2(1)$ given by the coordinates $(0,1)$ which acts as the identity for this map. It is easy to check that these maps satisfy the associativity property of an operad. IGUAL DEBERÍA PONERME A COMPROBARLO Y ESCRIBIRLO Therefore, the familty $E_2=\{E_2(n)\}_{n\geq 0}$ is an operad with identity $Id_{E_2}$ and composition map $\circ_i$. This is what we call the \emph{little disks operad}.
+Note that there is an element $Id_{E_2}\in E_2(1)$ given by the coordinates $(0,1)$ which acts as the identity for this map. It is easy to check that these maps satisfy the associativity property of an operad. IGUAL DEBERÍA PONERME A COMPROBARLO Y ESCRIBIRLO It is not difficult to check that the maps $\circ_i$ are compatible with this action in the sense of equivariance of operads QUIZÁ DEBERÍA COMPROBARLO Therefore, the familty $E_2=\{E_2(n)\}_{n\geq 0}$ is an operad with identity $Id_{E_2}$ and composition map $\circ_i$. This is what we call the \emph{little disks operad}.
 
 \begin{remark}
 In the definition of the structure maps we're omitting the disks on which only the identity is acting. If we want to write it with the same notation as we defined operads, the maps should be $\circ_i:O(p)\times O(q)\times O(1)\times\cdots \times O(1)\to O(p+q-1)$. 
@@ -101,7 +107,7 @@ In the definition of the structure maps we're omitting the disks on which only t
 There is an action $E_2(n)\times \Sigma_n\to E_2(n)$ of the symmetric group on $E_2(n)$ given by rearranging the little disks. An example is shown below.
 EJEMPLO DE LA ACCIÓN
 
-It is not difficult to check that the maps $\circ_i$ are compatible with this action in the sense of equivariance of operads QUIZÁ DEBERÍA COMPROBARLO, so $E_2$ is indeed a symmetric operad. 
+
 
 \subsection{Action of $E_2$ on a loop space}
 Given a based space $(X,x_0)$, consider the loop space $\Omega^2(X)$ of based maps $(S^2, (1,0,0))\to (X, x_0)$. One can interpret this maps as maps $\overline{D}^2\to X$ taking the boundary $S^1$ of $\overline{D}^2$ to $x_0$, since they induce a well defined map $\overline{D}^2/S^1\cong S^2\to X$ and we can choose the quotient map to identify the class of $S^1$ in $\overline{D}^2/S^1$ with the point $(1,0,0)\in S^2$. 
@@ -140,6 +146,58 @@ NO SÉ DÓNDE PONER LA PARTE DE LAS CADENAS Y TODO ESO. EN CUANTO A ESO PREGUNTA
 %PREGUNTARLE QUÉ SENTIDO TIENE SER QUASI-ISOMORFO A LA HOMOLOGÍA, SI LA HOMOLOGÍA DE LA HOMOLOGÍA ES 0
 %
 %CON LO DEL SUSTITUTO, SI TIENE LA MISMA HOMOLOGÍA QUE C2, ENTONCES CONSIGUES QUE C(SUSTITUTO) ACTÚE EN H(A,A), PERO DE AHÍ EN PRINCIPIO NO SE SACA LA ACCION EN C(A,A)
+
+
+\section{Operads in symmetric monoidal categories}
+We've treated operads only in the category of topological spaces, but they can be defined in a more general setting, namely, in any \emph{symmetric monoidal category} \cite{Yau}. We're going to introduce this categories since it becomes more natural to talk about operads and other constructions in other categories having that framework in advance.
+
+\begin{defi}
+A \emph{symmetric monoidal category} is a category $M$ equipped with:
+\begin{enumerate}[(1)]
+\item A functor $\otimes: M\times M\to M$ called the \emph{tensor product}.
+\item An object $I\in M$ called the \emph{unit}.
+\item Natural isomorphism $a_{x,y,z} : (x \otimes y) \otimes z \to x \otimes (y \otimes z)$ (called the \emph{associator}), $\lambda_x : I \otimes x \to x$ (\emph{left unitor}), $\rho_x : x \otimes I \to x$ (\emph{right unitor}) and $B_{x,y}: x\times y\to y\times x$ (\emph{braiding}).
+\end{enumerate}
+
+We then demand that the associator obey the pentagon identity, which says this diagram commutes:
+\[
+\begin{tikzcd}[column sep=-25, row sep=30]
+                                                                                                            &                                                                     & (w\otimes x)\otimes (y\otimes z) \arrow[rrd, "{a_{w,x,y\otimes z}}"] &                                                                         &                                \\
+((w\otimes x)\otimes y)\otimes z \arrow[rru, "{a_{w\otimes x,y,z}}"] \arrow[rdd, "{a_{w,x,y}\otimes 1_z}"'] &                                                                     &                                                                      &                                                                         & w\otimes(x\otimes(y\otimes z)) \\
+                                                                                                            &                                                                     &                                                                      &                                                                         &                                \\
+                                                                                                            & (w\otimes (x\otimes y))\otimes z \arrow[rr, "{a_{w,x\otimes y,z}}"] &                                                                      & w\otimes ((x\otimes y)\otimes z) \arrow[ruu, "{1_w\otimes a_{x,y,z}}"'] &                               
+\end{tikzcd}
+\]
+We demand that the associator and unitors obey the triangle identity, which says this diagram commutes:
+\[
+\begin{tikzcd}
+(x\otimes I)\otimes y \arrow[rr, "{a_{x,I,y}}"] \arrow[rd, "\rho_x\otimes 1_y"'] &            & x\otimes (I\otimes y) \arrow[ld, "1_x\otimes\lambda_y"] \\
+                                                                                 & x\otimes y &                                                        
+\end{tikzcd}
+\]
+We demand that the braiding and associator obey the hexagon identity:
+\[
+\begin{tikzcd}
+(x\otimes y)\otimes z \arrow[r, "{a_{x,y,z}}"] \arrow[d, "{B_{x,y}\otimes 1_z}"'] & x\otimes (y\otimes z) \arrow[r, "{B_{x,y\otimes z}}"]   & (y\otimes z)\otimes x \arrow[d, "{a_{y,z,x}}"] \\
+(y\otimes x)\otimes z \arrow[r, "{a_{y,x,z}}"]                                    & y\otimes (x\otimes z) \arrow[r, "{1_y\otimes B_{x,z}}"] & y\otimes (z\otimes x)                         
+\end{tikzcd}
+\]
+And lastly, we demand that $B_{y,x}B_{x,y}=1_{x\otimes y}$.
+\end{defi}
+
+\begin{ex}\
+\begin{enumerate}
+\item The categories $\Set$ and $\Top$ are symmetric monoidal categories with the cartesian product as tensor product and a singleton as unit. 
+\item For $k$ some field, the category $\Vect_k$ of $k$-vector spaces carries the standard structure of a monoidal category coming from the tensor product, over $k$, of vector spaces. The standard braiding that identifies $V\otimes W$ with $W\otimes V$ by mapping homogeneous elements $v\otimes w$ to $w\otimes v$ obviously makes $\Vect_k$ into a symmetric monoidal category. 
+\end{enumerate}
+SI ME HACE FALTA HABLO DE MÓDULOS Y DE ÁLGEBRAS
+\end{ex}
+
+For an arbitrary symmetric monoidal category $\DD$ we obtain the following definition of operad, which specializes to the definition \ref{operadtop} for $\DD=\Top$.
+
+\begin{defi}
+COGER DE YAU, EN NLAB VIENE INCOMPLETO Y NO APARECEN MORFISMOS \url{https://ncatlab.org/nlab/show/operad}
+\end{defi}
 \end{document}
 
 %isotopía \url{https://link.springer.com/chapter/10.1007%2F978-94-015-9319-9_6}
