@@ -161,8 +161,17 @@ Sea $V\neq 0$ una representación de $A$. Decimos que un vector $v$ es cíclico 
 \end{enumerate}
 \end{ejercicio}
 \begin{solucion}
-\begin{enumerate}
+\begin{enumerate}[(a)]
+\item[]
+\item Supongamos que $V$ es irreducible. Si todos los vectores no son cíclicos, $\exists w$ no cíclico. En ese caso $Aw$ está estrictamente contenido en $V$ y, además, es un subespacio vectorial. Además, para todo $z \in Aw$ y $\forall a \in A$ y $b \in A$ tales que
+$$
+\rho(a)(z) = \rho(a)\circ \rho(b) (w) = \rho(ab) (w) \in Aw
+$$
+Por tanto, $Aw$ es una subrepresentación de $A$, lo cuál es una contradicción.
 
+
+Recíprocamente, supongamos que todos los vectores no nulos son cíclicos. Si $V$ no es irreducible debe existir $W\subset V$ que sea subrepresentación, es decir, que $AW\subset W$. Sea $w\in W$ no nulos y sea $v \notin W$, debe existir un $a \in A$ tal que $aw = v$, lo cuál es una contradicción.
+\item 
 \end{enumerate}
 \end{solucion}
 
