@@ -106,9 +106,25 @@ $a(f-\lambda Id)(v)=af(v)-a\lambda v=f(av)-\lambda av=(f-\lambda Id)(av)$.
 \end{proof}
 
 
+\section{Ideales}
 
+Definición
 
+Weyl algebra (1.7)
 
+\begin{prop}
+Los monomios $\{x^iy^j\}$ son una base para el álgebra de Weyl $W$.
+\end{prop}
+\begin{dem}[Independencia lienal]
+Consideramos la representación $W\to\End(\R[t])$ expresada como la derivada. Obsérvese que la derivada de $t\cdot f$ es $f+tf'$. En términos del operador $\partial=\frac{d}{dt}$ y la función $x: f\mapsto tf$ tenemos que $\partial x(f)=f+x\partial (f)$. Esta identidad es equvialente a $\partial x=1+x\partial$ (de aquí la relación del cociente). Esta representación está bien definida porque es la aplicación inducida en el cociente de $k\gene{x,y}\to\End(\R[t])$ dada por $x\mapsto t$ (multiplicación por $t$), $y\mapsto\partial$, ya que $yx-xy-1\mapsto \partial x-x\partial -1=0$. 
+
+Sea $L=\sum a_{ij}x^iy^j\in W$ y suponemos que $L=0$. Debemos demostrar que todos los $a_{ij}=0$. $L$ se puede escribir también como $\sum P_j(x)y^j$ con $P_j(x)=\sum a_{ij}x^j$. Como $L=0$, también su imagen por la representación lo es, es decir, $\sum P_j(x)\partial^j=0$ como elemento de $\End(\R[t])$ (entiendiendo $x$ como multiplicación por $t$). Consideramos $(\sum P_j(x)\partial^j)1=P_0(x)1=P_0(t)$ (todas las derivaciones se anulan en la constante). Consideramos también 
+\[
+(\sum P_j(x)\partial^j)t=(P_0(x)+P_1(x)\partial)(t)=tP_0(t)+P_1(t)
+\]
+Podemos continuar aumentando el grado, y por hipótesis todos los polinomios se anulan. Por inducción se prueba que $P_i(t)=0$ para todo $i$. Esta prueba da problemas para característica positiva. En el libro se hace una modificación para salvar este problema.
+
+\end{dem}
 
 \end{document}
 
