@@ -180,6 +180,7 @@
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{3}
 
+
 \begin{document}
 % ---------------------PORTADA
 \begin{titlepage}
@@ -271,222 +272,67 @@ Finalmente, ejemplificaremos la eficacia del método con experimentos reales. Ex
 \thispagestyle{empty}
 %\pagenumbering{arabic} % para empezar la numeración con números
 \chapter{Planteamiento teórico del problema}
-\section{Formulación}
+\section{Introducción al problema del emparejamiento}
 \subsection{El problema del $b$-emparejamiento}
 Dado que nuestro objetivo es el estudio paramétrico del problema del emparejamiento y la versión multiobjetivo del mismo, comenzamos este trabajo exponiendo en qué consiste el problema del ejemparejamiento o problema del \textit{matching}. Para ello, comenzamos definiendo qué entendemos por grado de un subconjunto de vértices
 \begin{defi}
-Sea $G=(V,E)$ un grafo y sea $S \subset V$, denominamos \textbf{grado} de $S$ y denotamos por $\delta(S)$ al número de aristas incidentes en algún vértice de $S$. En el caso de un conjunto unitario $\{i\}$, denotamos $\delta(i):=\delta(\{i\})$. 
+Sea $G=(V,E)$ un grafo y sea $S \subset V$, definimos $\delta(S)$ como el conjunto de aristas con un único extremo en $S$. En el caso de un conjunto unitario $\{i\}$, denotamos $\delta(i):=\delta(\{i\})$. Definimos además $\gamma(S)$ como el conjunto de aristas que tienen ambos extremos en $S$.
 \end{defi}
+
 En adelante consideramos siempre $G=(V,E)$ un grafo no dirigido. El problema del \textit{matching} consiste en encontrar un subconjunto $M\subset E$ con la propiedad de que en el subgrafo inducido $G(M)=(V,M)$ ningún vértice tenga grado mayor que $1$, es decir, que ninguna arista tenga vértices en común. Naturalmente, este problema es fácilmente generalizable al problema del $b$-emparejamiento o $b$-\textit{matching}, en el cual cada vértice $i$ debe tener un grado no mayor que $b_i$, donde $b_i$ es un entero positivo. El problema original pasaría a ser el caso particular en el que $b_i = 1$ $\forall i \in V$.
 
 \begin{defi}
 Sea $G=(V,E)$ un grafo y sea $M\subset E$ un $b$-emparejamiento. Diremos que $M$ es un \textbf{emparejamiento perfecto} si $\delta(v_i)=b_i$ $\forall i \in V$, es decir, si las restricciones se verifican con igualdad.
 \end{defi}
-Para cada $e\in E$ podemos considerar el peso $c_e$ asociado. Dependiendo del contexto en el que estemos trabajando estos pesos pueden ser números reales, reales positivos, enteros no negativos, etc. Dado un conjunto de aristas $M$, tiene sentido considerar
+Para cada $(i,j)\in E$ podemos considerar el peso o coste $c_{ij}$ asociado. Dependiendo del contexto en el que estemos trabajando estos pesos pueden ser números reales, reales positivos, enteros no negativos, etc. Dado un conjunto de aristas $M$, tiene sentido considerar
 $$
-c(M)=\sum_{e\in M} c_e
+c(M)=\sum_{(i,j)\in M} c_{ij}
 $$
-El problema del $b$-emparejamiento de peso máximo \textit{weighted $b$-matching problem} consiste en encontrar el $b$-emparejamiento que maximiza la función $c(\cdot)$. Si nos ceñimos únicamente a los emparejamientos perfectos, también tiene sentido considerar el problema de encontrar el que tiene peso mínimo. En general, cuando $c_e=1$ $\forall e\in E$, el problema se denomina de cardinalidad o \textit{cardinality problem}. Este puede ser formulado como un problema de programación entera
-\begin{align}
-\max_{x} &\; cx  \nonumber\\ 
-s.a.\;  &  Ax\leq b \tag{1} \label{eq:1}\\
+El problema del $b$-emparejamiento de coste máximo \textit{weighted $b$-matching problem} consiste en encontrar el $b$-emparejamiento que maximiza la función $c(\cdot)$. Si nos ceñimos únicamente a los emparejamientos perfectos, también tiene sentido considerar el problema de encontrar el que tiene peso mínimo. En general, cuando $c_{ij}=1$ $\forall (i,j)\in E$, el problema se denomina de cardinalidad o \textit{cardinality problem}. Este puede ser formulado como un problema de programación entera
+\begin{align*}
+\max_{x} &\; \sum_{(i,j)\in E} x_{ij}c_{ij}  \nonumber\\ 
+s.a.\;  &  Ax\leq b \\
 & x\in\{0,1\}^n\nonumber
-\end{align}
-donde $c$ es el vector de pesos, $A$ es la matriz de incidencia del grafo, $|E|=n$ y la variable $x_e=1$ si la arista $e$ está en el emparejamiento y $0$ en caso contrario. Nótese que si $G$ es un grafo bipartito entonces $A$ es una matriz totalmente unimodular y, en ese caso, los puntos extremos del poliedro $\{x \in \R^n_+\mid Ax\leq b\}$ son precisamente los $b$-emparejamientos.
-
-\newpage
-
-
-La particularidad que caracteriza a este problema frente a otros que hemos estudiado a lo largo del Grado en Matemáticas es que, en nuestro caso, tanto la función objetivo como las restricciones no serán necesariamente determinísticas, sino que ambas pueden estar dadas por esperanzas de variables aleatorias:
-$$ 
-f_i(x):=\E[F_i(x,\xi)] \quad i=0,\dotsc,q
-$$
-
-En la formulación (\ref{eq:1}) $\chi\subset \R^n$ es un conjunto determinístico, $\xi\in\R^d$ es un vector que representa unos parámetros indeterminados del problema y $F_i$ son funciones explícitas con imagen real. Es importante notar que en esta formulación asumimos que el vector $\xi$ está modelado por una variable aleatoria con una distribución de probabilidad $P$ y que las esperanzas las calcularemos con respecto a esta distribución. Recordemos que los estas esperanzas están dadas por
-$$
-\E[F_i(x,\xi)]=\int F_i(x,\xi)dP(\xi)
-$$
-Cuando $P$ sea una variable aleatoria discreta, con $\xi$ tomando valores en $\{\xi_1,\dotsc,\xi_K\}$ y probabilidades (respectivamente) $p_1,\dotsc,p_K$, la integral anterior puede escribirse como
-$$
-\E[F_i(x,\xi)] = \sum_{k=1}^K p_k F_i(x,\xi)
-$$
-
-Una referencia básica a problemas de optimización como (\ref{eq:1}) es Rubistein y Shapiro \cite{shapiro}. 
-
-Veamos que esta formulación es lo suficientemente versátil como para formular el problema de restricciones probabilísticas. Restringir el espacio de soluciones factibles con restricciones de la forma $G_i(x,\xi)\leq 0$ $\forall \xi\in\Xi$ puede puede introducir un número excesivo de restricciones de manera que no haya solución. En su lugar se pueden tomar unas condiciones menos restrictivas
-$$
-P[G_i(x,\xi)\leq 0]\geq 1-\alpha
-$$
-con $\alpha\in (0,1)$. Este tipo de restricciones son denominadas \textit{restricciones probabilísticas} y $1-\alpha$ es usualmente referido como \textit{nivel de confianza} (confidence level). Tal y como vemos en \cite{chance} el problema puede describirse de la siguiente forma. Definimos $$G(x,\xi):=\max_{1\leq i\leq q}G_i(x,\xi)$$
-Esto nos permite formular las restricciones como una única restricción equivalente
-$$
-P[G(x,\xi)> 0]\leq \alpha
-$$
-Además, como una probabilidad $p_A$ puede verse como una esperanza utilizando una función indicatriz, tomamos $1_{(0,\infty)}(t)$ la función indicatriz de $(0,\infty)$. Como la $\E[c]=c$ y la espereza es lineal, nuestro problema puede escribirse como
-\begin{align*}
-\min_{x} &f_0(x)\\
-s.a.\;  & f_1(x)= \E[1_{(0,\infty)}(G(x,\xi))-\alpha]\leq 0 \tag{2} \label{eq:2}\\
-&x\in\chi
 \end{align*}
-
-Por tanto, el problema de restricciones de probabilidad puede ser formulado como un problema cuyas restricciones son funciones dadas por esperanzas.
-
-
-\subsection*{Inconvenientes de la formulación}
-Un claro inconveniente de la formulación anterior es que las funciones $f_i$ pueden no tener buenas propiedades desde el punto de vista de la la optimización. Por ejemplo, en el caso discreto cuando $K$ tome valores grandes (exponencial en el tamaño de la muestra), su cálculo puede no ser directo. Supongamos que las componentes del vector $\xi$ están distribuidas de manera que son independientes entre sí y utilizamos $r$ puntos para la discretización de la distribución marginal de cada componente de $\xi$. Por tanto, el número total de puntos será $r^d$, número que crece rápidamente si aumentamos la dimensión $d$ de $\xi$ incluso para valores moderados de $r$. En el caso de tener distribuciones continuas, las esperanzas estarán dadas por integrales múltiples que rara vez podrán ser evaluadas con una forma cerrada, por lo que tendríamos aproximarlas numéricamente.
-
-
-\section{Método de aproximación por media muestral}
-
-El método de aproximación por media muestral, SAA, por sus siglas en inglés de Sample Average Approximation, consiste en aproximar el problema de optimización estocástica (\ref{eq:1}) por un problema determinístico obtenido aplicando el método de Montecarlo para aproximar las funciones $f_i$, $i=0,\dotsc,q$.
-
-Más precisamente, se genera una muestra aleatoria $\xi_1,\dotsc,\xi_N$, idénticamente distribuidas a $\xi$, y se estima por el método de los momentos cada $f_i(x)=E[F_i(x,\xi)]$, de manera que 
-$$
-\hat{f}_{iN}(x)=\frac{1}{N}\sum_{k=1}^N F_i(x,\xi_k)
-$$
-y se aproximará el problema (\ref{eq:1}) mediante el problema de optimización
+donde $c$ es el vector de pesos, $A$ es la matriz de incidencia del grafo, $|E|=n$ y la variable $x_{ij}=1$ si la arista $(i,j)$ está en el emparejamiento y $0$ en caso contrario. Nótese que si $G$ es un grafo bipartito entonces $A$ es una matriz totalmente unimodular y, en ese caso, los puntos extremos del poliedro $\{x \in \R^n_+\mid Ax\leq b\}$ son precisamente los $b$-emparejamientos.
+En general, podemos formular las restricciones que obligan a que nuestra solución sea un emparejamiento de la forma
+\begin{align*}
+\sum_{(i,j)\in\delta(i)} x_{ij} &\leq 1, \quad \forall i \in V\\
+ x_{ij}&\geq 0 \quad \forall (i,j) \in E\\
+x_{ij} &\in \Z^+  \quad \forall (i,j) \in E 
+\end{align*}
+Si queremos optimizar sobre emparejamientos perfectos, el primer bloque de restricciones ha de darse con igualdad.
+\subsection{Emparejamiento perfecto de coste mínimo (MCPM)}
+En adelante consideraremos que $c_{ij}\geq 0$ $\forall (i,j)\in E$, es decir, los pesos son no negativos. Si además imponemos que nuestro matching sea perfecto, tiene sentido considerar el problema del emparejamiento perfecto de coste mínimo o \textit{minimum-cost perfect matching}. Este problema será al cual nos referiremos usualmente a lo largo del trabajo y puede ser formulado como 
 \begin{align}
-\min_{x} &\hat{f}_{0N}(x)  \nonumber\\ 
-s.a.\;  & \hat{f}_{iN}(x)\leq 0 \quad i=1,\dotsc,q \tag{3} \label{eq:3}\\
-& x\in\chi \nonumber
+\min_{x} &\; \sum_{(i,j)\in E} x_{ij}c_{ij} \nonumber&\\ 
+s.a.&\; \sum_{(i,j)\in\delta(i)} x_{ij} = 1, \quad \forall i \in V\\
+& x_{ij}\geq 0 \quad \forall (i,j) \in E\\
+& x_{ij} \in \Z^+  \quad \forall (i,j) \in E \label{ent}
 \end{align}
 
-En el caso particular en el que las condiciones son de la forma $P[(G_i(x,\xi)\leq 0]\geq 1-\alpha$, tal y como vimos en (\ref{eq:2}), podemos dar una formulación 
+La mayoría de algoritmos para solucionar problemas de optimzación de funciones lineales sobre emparejamientos están basados en la programación lineal gracias al resultado que probó Edmonds en \cite{edmond}, que pasamos a enunciar.
+\begin{thm}
+Sea $G=(V,E)$ un grafo. Sea $B$ el conjunto
 $$
-\hat{f}_{1N}(x) =\frac{1}{N}\sum_{k=1}^N 1_{(0,\infty)}(G(x,\xi_k))  -\gamma
+B = \{S\subset V \mid |S| \text{ es impar},\;|S|\geq 3\}
 $$
-donde $\gamma$ es el nivel de confianza asociado al problema muestral. Notemos que el nivel de confianza del problema SAA puede ser diferente del nivel de confianza del problema real. Finalmente, si escribimos
-$$
-P_N:=\frac{1}{N}\sum_{k=1}^N \Delta(\xi_k) \qquad 
-$$
-entonces el problema SAA puede escribirse como
+Entonces, la envolvente convexa del politopo del matching viene dada por
+\begin{align}
+\sum_{j:(i,j)\in E} x_{ij} &\leq 1, \quad \forall i \in V\tag{1.1}\\
+x_{ij} &\geq 0\tag{1.2}\\
+\sum_{(i,j)\in \gamma(S)} x_{ij}& \leq \frac{1}{2}(|S|-1)\quad \forall S \in B	\tag{1.4} \label{esoes}
+\end{align}
+Además, si nos restringimos a los emparejamientos perfectos, entonces basta considerar únicamente la igualdad en el primer bloque de restricciones.
+\end{thm}
+Es decir, si sustituímos la condición \ref{ent} por la \ref{esoes} en el MCPM pasamos de trabajar con un problema de programación entera a un problema de programación lineal. De esta form podemos considerar el problema dual
 \begin{align*}
-\min_{x} &f_0(x)  \nonumber\\ 
-s.a.\;  & \hat{f}_{1N} (x) = \E_{P_N}[1_{(0,\infty)}(G(x,\xi))  -\gamma]\leq 0\\
-& x\in\chi \nonumber
-\end{align*}
-\newpage
-\section{Ejemplos}\label{sec:unotres}
-A continuación se presentarán algunos ejemplos de problemas de optimización estocástica y se describe su SAA asociado.
-\subsection{Problema de la cartera restringida}
-Consideremos el problema de maximización sujeto a una única restricción
-\begin{align*}
-\max_{x} &\;\E[r^Tx] \\ 
-s.a.\;  &  P[r^Tx\geq v]\geq 1-\alpha \tag{4} \label{eq:4}\\
-& x\in X
-\end{align*}
-donde $x\in\R^n$ es un vector de variables de decisión, $r$ es un vector de datos aleatorio con distribución de probabilidad conocida, $v\in\R^n$ y $\alpha\in(0,1)$ son constantes y
-$$
-X:=\{x\in\R^n \mid \sum_{i=1}^n x_i=1,x\geq 0\}
-$$
-Naturalmente, por propiedades básicas de la esperanza, si denotamos $\overline{r}= E[r]$ entonces $\E[r^Tx]=\overline{r}^Tx$.
-
-La motivación para estudiar este problema podemos encontrarla en Markowitz \cite{portfolio}. El vector $x$ representa el porcentaje de un total de riqueza de una unidad monetaria (u.m.) invertida en cada una de los $n$ activos disponibles, $r$ es el vector de rendimientos aleatorios de esas inversiones y deseamos maximizar el rendimiento sujeto a tener rendimiento medio mayor o igual a un nivel deseado $v$ con probabilidad al menos $1-\alpha$. Obviamente, el problema (\ref{eq:4}) no es realista, pues no tiene en cuenta características fundamentales del mercado como: costes de transacción, ventas en corto, límites inferiores o superiores de almacenamiento, etc. Sin embargo, sirve como un sencillo ejemplo de aplicación SAA.
-
-\subsubsection*{Aplicación del SAA}
-
-Supongamos que $r$ se distribuye según una normal multivariante con media $\overline{r}$ y matriz de covarianzas $\Sigma$, es decir, $r\sim N(\overline{r},\Sigma)$. Por propiedades de la distribución normal, $r^Tx \sim N(\overline{r}^Tx,x^T\Sigma x)$. En este caso podemos encontrar una forma explícita para la restricción en \cite{convexop}, aunque en general esto no va a ser posible Entonces el problema SAA puede ser escrito como
-
-\begin{align*}
-\max_{x}&\,{ \overline{r}^Tx}  \nonumber\\ 
-s.a.\;  & \E_{P_N}[1_{(0,\infty)}(v-r^Tx)  -\gamma]\leq 0\\
-& x\in X \nonumber
+\max_{y} &\; \sum_{v\in V} y_v - \sum_{S\in B} \frac{1}{2}(|S|-1)y_S\\
+s.a.&\;y_u+y_v - \sum_{S\in B,(u,v)\in \gamma(S)}y_S  \leq c_{uv} \quad \forall (u,v)\in E\\
+&y_S\geq 0 \quad \forall S\in B
 \end{align*}
 
-
-\newpage
-\subsection{Problemas de asignación de recursos}
-
-Un agente tiene que escoger, de entre $k$ proyectos, un subconjunto de ellos. Para este propósito dispone de una cantidad conocida de recursos $q$ para asignar a los distintos proyectos. Cualquier otra cantidad de recursos adicional puede obtenerse con un coste de $c$, más alto, por unidad de recurso. La cantidad de recurso $W_i$ requerida para emprender cada proyecto no es conocida, pero suponemos que nuestro agente tiene una estimación de cómo se distribuye $W=(W_1,\dotsc,W_k)$. Denotamos $\posi{x}=\max\{x,0\}$. Si para cada proyecto $i$ denotamos $r_i$ como la diferencia entre los ingresos y los costes, entonces, como el consumo de recursos extra es $c\left[W'x-q\right]^+$, el beneficio neto es la v.a. 
-$$
-r'x + c\left[W'x-q\right]^+
-$$
-Por tanto, el beneficio neto esperado, a maximizar, es
-\begin{align*}	
-\max_x&\; r'x  -c\E\posi{W'x-q}\tag{5}\label{eq:5}\\
-s.a.& \; x\in\{0,1\}^k
-\end{align*}
-
-Elegimos presentar este problema en los ejemplos por varias razones. Por ejemplo, muchos problemas interesantes como el problema de la tripulación (una aproximación probabilística a este problema puede verse en \cite{avion}) o la versión estocástica del problema del camino más corto en un grafo, que detallaremos más adelante, tienen funciones objetivos parecidas a la de este ejemplo en términos de valores esperados.
-
-Otra razón para su estudio es que en la función objetivo encontramos términos de la forma $\E\posi{\sum_i W_ix_i-q}$. En muchos problemas de programación estocástica se pueden obtener soluciones muy buenas si sustituimos las variables aleatorias implicadas en el problema por sus medias y resolviendo el problema determinístico tal y como podemos ver en \cite{cita1}. Sin embargo, es fácil ver que en general cuando tenemos este tipo de valores esperados no tiene por qué ocurrir así. Dada una solución $x$, este término puede ser grande y, a pesar de ello, volverse muy pequeño si sustituimos cada $W_i$ por su esperanza. 
-
-Finalmente, hemos de tener en cuenta el interés que puede tener este problema en sí mismo. Aplicaciones de este problema pueden ser la toma de decisiones por parte de un contratista que provee a varios usuarios de manera simultánea, como una compañía eléctrica o una empresa de construcción. La cantidad de trabajo que requerirá para cada contrato es desconocida cuando el contrato es firmado, los materiales tienen un bajo costo y si la cantidad de trabajo requerida con un alto coste.
-\subsubsection*{Aplicación del SAA}
-Denotaremos por $W^i_j$ $j=1,\dotsc,N$, la muestra aleatoria de $W_i$, $i=1,\dotsc,k$. Por tanto, podemos formular la aplicación del SAA del problema \ref{eq:5} como
-\begin{align*}	
-\max_{x,z}&\; r^Tx  -\frac{c}{N}\sum_{i=1}^N z_i \\\
-s.a.
-& \; z_j \geq \sum_{i=1}^kW_i^jx_i - q  & j=1,\dotsc,N\\ 
-&\; z_j\geq 0 &j=1,\dotsc,N  \\
-& \; x\in\{0,1\}^k\\
-\end{align*}
-Este problema puede ser resuelto por el método de ramificación y acotación, usando el problema lineal relajado para tener cotas superiores.
-\subsection{Problemas de mezclas probabilístico}
-Vamos a considerar otro ejemplo de problema de restricciones probabilísticas. Supongamos que un granjero desea fertilizar sus cultivos con el fin de aumentar su producción. Él decide utilizar una ciertas cantidades $v_1,\dotsc,v_k$ de $k$ nutrientes. El granjero tiene a su disposición en el mercado $h$ fertilizantes disponibles, de manera que cada fertilizante $i$ contiene $\omega_{ij}$ gramos del nutriente $j$, $1\leq i \leq k$, $1 \leq j \leq h$. Precisamente serán ciertos $\omega_{ij}$ los que normalmente en este y otros problemas análogos sean parámetros desconocidos distribuidos según alguna variable aleatoria.
-
-Existen muchas formas de modelar el problema de mezclas. Una exposición detallada de las mismas puede encontrarse en \cite{mixing}. Si denotamos por $x_i$ la cantidad de fertilizante $i$ que compramos a un precio $p_i$, entonces podemos considerar la formulación
-\begin{align*}	
-\min_{x_i} &\; \sum_{i=1}^h p_ix_i 
-\\\
-s.a.
-& \; P\left[\sum_{i=1}^h \omega_{ij}x_i \geq v_j \quad \forall j=1,\dotsc,k\right]\geq 1-\alpha &\tag{6}\label{eq:6}\\
-& \; x_i\in\R_{\geq 0} & i=1,\dotsc,h\\
-\end{align*}
-Notemos que el problema (\ref{eq:6}) no está escrito en la forma \ref{eq:2}. Sin embargo, si denotamos 
-$$
-G(x_1,\dotsc,x_h)=\min_{1\leq j \leq k}-v_j + \sum_{i=1}^h \omega_{ij}x_i
-$$
-podemos escribir (\ref{eq:6}) como 
-\begin{align*}	
-\min_{x_i} &\; \sum_{i=1}^h p_ix_i 
-\\\
-s.a.
-& \; P[G(x_1,\dotsc,x_h,\xi)>0]\leq \alpha\\
-& \; x_i\in\R_{\geq 0} & i=1,\dotsc,h\\
-\end{align*}
-Procediendo de manera análoga al desarrollo teórico podemos encontrar el problema SAA asociado.
-\chapter{Convergencia}
-
-\section{Definiciones y resultados previos}
-\
-Vamos a dar algunas definiciones y resultados de teoría de la probabilidad que serán necesarios para comprender o demostrar los enunciados propios de nuestro trabajo.
-\begin{notac}
-Notaremos por $\vartheta^*$ y $\hat{\vartheta}_N$ los valores óptimos del problema real (\ref{eq:1}) y el problema SAA (\ref{eq:2}) respectivamente. De la misma forma, $S$ y $\hat{S}_N$ para el conjunto de soluciones óptimas del problema real y el SAA respectivamente y $X$ y $\hat{X}_N$ para referirnos a los conjuntos factibles, es decir
-\begin{gather*}
-X=\chi\cap\{x\mid f_i(x)\leq 0 \;\forall i=1,\dotsc,q\}\\
-\hat{X}_N=\chi\cap\{x\mid \hat{f}_{iN}(x)\leq 0 \;\forall i=1,\dotsc,q\}
-\end{gather*} 
-Observamos que $X$ y $S$ son subconjuntos de $\R^n$, mientra que $\hat{x}_N$ y $\hat{S}_N$, como dependen del espacio probabilístico, son conjuntos aleatorios.
- Además, dado $\varepsilon\geq 0$ diremos que $x$ es un solución $\varepsilon$-óptima si $f_0(x)\leq \vartheta^*+\varepsilon$. El conjunto de las soluciones $\varepsilon$-óptimas del problema real y el SAA será denotado por $S^\varepsilon$ y $\hat{S}^\varepsilon_N$.
-\end{notac}
-\begin{defi}
-Una sucesión de variables aleatorias $\{X_N\}$ definida sobre un espacio probabilístico $(\Omega,A,P)$ converge de manera casi segura a X o con probabilidad 1, lo cual notaremos $X_N \convcs X$, si se verifica que:
-\begin{gather*}
-P\left(\{\omega\in\Omega \mid X_N(\omega)\longrightarrow X(\omega)\}\right)=1
-\end{gather*}
-\end{defi}
-\begin{defi}
-Una sucesión de variables aleatorias $\{X_N\}$ definida sobre un espacio probabilístico $(\Omega,A,P)$ converge en probabilidad a X, que notaremos ${X_N \conv{P} X}$ si se verifica:
-\begin{gather*}
-\lim_{N\to\infty}P\left(\{\omega\in\Omega \mid \abs{X_N(\omega)-X(\omega)}\leq \varepsilon \}\right)=1
-\end{gather*}
-\end{defi}
-\begin{defi}
-Una sucesión de variables aleatorias $\{X_N\}$ definida sobre un espacio probabilístico $(\Omega,A,P)$ con funciones de distribución $F_{X_N}$ converge en Ley a X, lo cual notaremos $X_N \conv{L} X$ si se verifica que:
-\begin{gather*}
-F_{X_N}(x)\longrightarrow F_X(x)\text{ $\forall x$ punto de continuidad de $F_X$}
-\end{gather*}
-\end{defi}
-\begin{prop}
-La convergencia casi segura implica convergencia en probabilidad, y esta implica la convergencia en Ley.
-\end{prop}
-\begin{defi}
-Una sucesión de funciones $f_N\func{\chi\times\Omega}{\R}$ con $(\Omega,A,P)$ espacio probabilistico, converge uniformemente de manera casi segura a la función $f\func{\chi\times\Omega}{\R}$ si 
-$$
-P(\{\omega\in\Omega \mid \sup_{x\in\chi}\abs{f_N(x,\omega)-f(x,\omega)}\to 0\}=1
-$$
-\end{defi}
+\newpage 
 \begin{thm}[Ley fuerte de los grandes números]\label{grandesnumeros}
 Sea $\{X_N\}$ una sucesión de variables aleatorias independientes e idénticamente distribuidas (i.i.d) con esperanza finita. Sea $\mu = E[X_N]$ entonces:
 \begin{gather*}
@@ -1143,7 +989,17 @@ for (i in 1:50) {
   write.table(muestra(tam),direc, row.names=F,sep="\t")
   }
 \end{erre}
-\addcontentsline{toc}{chapter}{Bibliografía}
-\bibliographystyle{plain}
-\bibliography{BibliografiaCristina}
+
+\begin{thebibliography}{9}
+\bibitem{edmond} 
+Edmonds, J. (1965). Maximum matching and a polyhedron with 0, 1-vertices. Journal of Research of the National Bureau of Standards B, 69, 125--130. 
+
+ 
+\bibitem{pruebaed} 
+Schrijver, Alexander. (1983). Short proofs on the matching polyhedron. Journal of Combinatorial Theory, Series B. 34. 104-108. 10.1016/0095-8956(83)90011-4. 
+ 
+\bibitem{knuthwebsite} 
+Knuth: Computers and Typesetting,
+\\\texttt{http://www-cs-faculty.stanford.edu/\~{}uno/abcde.html}
+\end{thebibliography}
 \end{document} 
