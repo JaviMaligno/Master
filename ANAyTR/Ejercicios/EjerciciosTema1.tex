@@ -78,7 +78,8 @@ Sea $A$ un álgebra sobre un cuerpo $k$ algebraicamente cerrado. El centro $Z(A)
 \end{enumerate}
 \end{ejercicio}
 \begin{solucion}
-\begin{enumerate}
+\begin{enumerate}[(a)]
+\item[]
 \item Básciamente es seguir la demostración del ejercicio $1$. Si $z$ conmuta con todos los elementos de $a$, naturalmente para $v\in V$ y $a\in A$
 $$
 \rho(z)(\rho(a)(v)) = \rho(za)(v) = \rho(az)(v) = \rho(a)(\rho(z)(v))
@@ -107,12 +108,8 @@ $$(\rho(z)-\lambda Id)(av)=a(\rho(z)-\lambda Id)(v)=0.$$
 En particular, el espacio $V_1(\lambda)$ de autovectores asociados al autovalor $\lambda$ es invariante por esta representación, luego $V_1(\lambda)$ es una subrepresentación. Recordemos que autovectores asociados a distintos autovalores son linealmente independientes y suman, con suma directa, el espacio total por ser $k$ algebraicamente cerrado. Si hay $n$ autovalores distintos $\lambda_1,\dots, \lambda_n$ (debe haber una cantidad finita porque la representación es finita), entonces $V=\bigoplus_i V_{\lambda_i}$, donde $V_{\lambda_i}$ es el autoespacio asociado a $\lambda_i$. Como $V$ es indecomponible, necesariamente $n=1$.
 
 
-\item Tenemos que para todo $z\in Z(A)$ y todo $\lambda\in k$, $z-\lambda\in Z(A)$, luego $(\rho(z)-\lambda Id)$ es un morfismo de representaciones, es decir, para todo $a\in A$ y para todo $v\in V$ se tiene que $$(\rho(z)-\lambda Id)(av)=a(\rho(z)-\lambda Id)(v).$$ En particular, si $v$ es el autovector asociado a $\lambda$, 
-
-$$(\rho(z)-\lambda Id)(av)=a(\rho(z)-\lambda Id)(v)=0.$$
-
-Esto quiere decir que los autovectores generan subrepresentaciones. Recordemos que autovectores asociados a distintos autovalores son linealmente independientes. Por lo que si hay $n$ autovalores distintos $\lambda_1,\dots, \lambda_n$ (debe haber una cantidad finita porque la representación es finita), entonces $V=\bigoplus_i V_{\lambda_i}$, donde $V_{\lambda_i}$ es el autoespacio asociado a $\lambda_i$. Como $V$ es indecomponible, necesariamente $n=1$. 
 \item No, para $A=k[x]$ ($Z(A)=A$) tras el ejemplo 1.19 se explica que $\rho(z)$ puede ser cualquier bloque de Jordan, por lo que en general no será necesariamente escalar. 
+
 \end{enumerate}
 \end{solucion}
 
@@ -135,12 +132,39 @@ por lo que la aplicación es un morfismo de álgebras. De hecho preserva la unid
 \begin{ejercicio}{1.23}
 Probar el siguiente ``lema infinito-dimensional de Schur'' (debido a Dixmier): sea $A$ un álgebra sobre $\C$ y $V$ una representación irreducible de $A$ con una base numerable. Entonces cualquier morfismo de representaciones $\phi:V\to V$ es un operador escalar.
 
-Pista. Por el lemma de Schur usual, el álgebra $D=\End_A(V)$ es un álgebra con división. Probar que $D$ es como mucho de dimensión numerable. Suponer que $\phi$ no es escalar y considerar un subcuerpo $\C(\phi)\subset D$. Probar que $\C(\phi)$ es extensión trascendental de $\C$. Deducir de esto que $\C(\phi)$  tiene dimensión no numerable y obtener una contradicción. 
+Pista. Por el lemma de Schur usual, el álgebra $D=\End_A(V)$ es un álgebra con división. Probar que $D$ es como mucho de dimensión numerable. Suponer que $\phi$ no es escalar y considerar un subcuerpo $\C(\phi)\subset D$. Probar que $\C(\phi)$ es extensión trascendental de $\C$. Deducir de esto que $\C(\phi)$  tiene dimensión no numerable y obtener una contradicción.
+\end{ejercicio}
+\begin{solucion}
+\end{solucion}
+
+\newpage
+
+
+
+
+\begin{ejercicio}{1.24}
+Sea $A = k[x_1,\dotsc,x_n]$ y sea $I\neq A$ un ideal de $A$ que contiene todos los polinomios homogéneos de grado $\geq N$. Demostrar que $A/I$ es una representación indecomponible de $A$. 
 \end{ejercicio}
 \begin{solucion}
 \end{solucion}
 
 
+\newpage
+
+\begin{ejercicio}{1.25}
+Sea $V\neq 0$ una representación de $A$. Decimos que un vector $v$ es cíclico si genera $V$, es decir, si $V= Av$. Una representación que admita un vector cíclico se dice cíclica. Demuestra que
+\begin{enumerate}[(a)]
+\item $V$ es irreducible si y solo si todos los vectores no nulos son cíclicos.
+\item $V$ es cíclico si y solo si es isomorfo a $A/I$, donde $I$ es algún ideal de $A$. 
+\item Da un ejemplo de una representación indecomponible que no sea cíclica.
+
+\end{enumerate}
+\end{ejercicio}
+\begin{solucion}
+\begin{enumerate}
+
+\end{enumerate}
+\end{solucion}
 
 
 \end{document}
