@@ -1,0 +1,310 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{makeidx}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amscd,amsthm}
+\usepackage{amssymb}
+\usepackage{tabularx}
+\usepackage{amssymb,eucal,bezier,graphicx}
+\usepackage{times,amssymb}
+\usepackage[ansinew]{inputenc}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{verbatim}
+\usepackage{tikz-cd}
+\usepackage{listings}
+
+\newtheorem{thm}{Teorema}[section]
+\newtheorem{cor}[thm]{Collorary}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposición}
+\newtheorem{prob}[thm]{Problema}
+\newtheorem{defi}[thm]{Definición}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{nota}[thm]{Nota}
+\newtheorem{ejem}[thm]{Ejemplo}
+
+\newtheorem{demo}[thm]{Demostración}
+\providecommand{\gabs}[1]{\left|{#1}\right|}
+\providecommand{\R}{\mathbb{R}}
+\begin{document}
+
+%%Los tres siguientes comandos estaban inicialmente desinsertados, pero no funcionaban en concordancia en el texto
+
+\renewcommand{\figurename}{Figure}
+
+\renewcommand\thefigure{\arabic{section}.\arabic{figure}}
+
+\numberwithin{figure}{section}
+%\renewcommand{\thebibliography}{References}
+
+%\addto\captionsspanish{%
+%\def\bibname{References}%
+%}
+
+
+\begin{center} {\large \bf Convexidad generalizada}
+\end{center}
+
+
+\begin{center}
+{\bf Rafael González-López}
+\end{center}
+
+\begin{center}{
+\small Universidad de Sevilla. \\
+\small rafaelbenzal96@gmail.com}
+\end{center}
+
+\vspace{0.4cm}
+
+
+
+\section{Introducción}
+
+Es bien conocido que una de las propiedades más útiles que puede tener una función en el contexto de las Matemáticas Aplicadas es la \textbf{convexidad}. Esto se debe a que es una hipótesis necesaria en los enunciados de muchos teoremas relacionados con los extremos de las funciones. Recordemos la definición de convexidad.
+\begin{defi}
+Sea $f$ una función real definida en un conjunto $X\subset \mathbb{R}^n$ convexo con al menos dos puntos. Diremos que $f$ es \textbf{convexa} en $x_0$ si 
+$$
+f((1-\lambda)x_0+\lambda x) \leq (1-\lambda)f(x_0) + \lambda f(x) \qquad \forall x \in X,\; \forall \lambda \in [0,1]
+$$
+La función $f$ se dice que es convexa en $X$ si es convexa en cada punto $x_0 \in X$. En ambos casos se dirá que la convexidad es estricta si las desigualdades son estrictas.
+\end{defi}
+Consideremos además el siguiente problema de Programación Matemática $(P)$.
+\begin{align*}
+\min &\; f(x)\\
+s.a.&\; x\in X
+\end{align*}
+Usualmente solemos denotar a cada $x \in X$ como \textbf{solución factible}, mientras que si $x^*$ verifica $f(x^*)\leq f(x)$ $\forall x \in S$ se dirá \textbf{solución global} o simplemente \textbf{solución}. Si $\exists B(x^*,r)$ tal que $f(x^*)\leq f(x)$, entonces se dice \textbf{solución local}. Tenemos entonces el siguiente resultado.
+\begin{thm}
+Sea $f\colon X\to\mathbb{R}$ convexa. Consideremos el problema $(P)$ asociado a $f$ y supongamos que $x^*$ es una solución local del problema. Entonces $x^*$ es una solución global.
+\end{thm}
+\subsection{Propiedades}
+Aunque el tema central de nuestro trabajo será generalizar la propiedad que expresa el teorema anterior, veamos algunas propiedades interesantes de las funciones convexas. Comencemos  dando la siguiente definición
+\begin{defi}
+Llamaremos \textbf{epígrafo de $f$}, y notaremos $Epi(f)$, al conjunto
+$$
+\{(x,y)\in \mathbb{R}^{n+1} \mid x \in X ,\; Y \in \mathbb{R}, y \geq f(x)\}
+$$
+\end{defi}
+
+En general, una función está determinada por su \textbf{grafo}, es decir, por el conjunto $\{(x,f(x))\mid x \in X\}$. El epígrafo de $f$ son los puntos que están por encima del grafo.
+\begin{prop}
+Sea la función $f$ definida sobre $X$. Entonces $f$ es conexa si y solo si $Epi(f)$ es un conjunto convexo.
+\end{prop}
+
+\begin{thm}
+ea $\{f_i\}_{i\in I}$ una famiia finita o infinita de funciones convexas y acotadas definidas sobre $X$. Entonces $f(x) = \sup \{f(x)_i \mid i \in I\}$ es convexa en $X$.
+\end{thm}
+\begin{demo}
+Como las funciones $f_i$ son convexas y, por tanto, sus epígrafos son conjuntos convexos. Por definición
+\begin{align*}
+Epi(f)&= \{(x,y)\mid x\in X,y\geq f(x)\}\\
+&= \{(x,y)\mid x\in X, y\geq f_i (x) \; \forall i \in I\}\\
+&= \bigcap_{i \in I} \{(x,y)\mid x\in X, y\geq f_i(x)\}`\\
+&=\bigcap_{i\in I} Epi(f_i)
+\end{align*}
+Usando que la intersección arbitraria de convexos es convexa y que 
+\end{demo}
+
+\subsection{Subdiferenciabilidad}
+Para finalizar la introducción vamos a presentar algunos resultados más sobre la relación entre la convexidad y los puntos extremos. Para ello, vamos introducir algunos conceptos y resultados.
+\begin{defi}
+Sea $f$ una función definida en $X$ y sea $x_0 \in X$. Llamaremos \textbf{subgradiente} de $f$ en $x_0$ a un vector $\xi \in \mathbb{R}^n$ tal que:
+$$
+f(x)\geq f(x_0)+\xi'(x-x_0)\quad \forall x\in X
+$$
+\end{defi}
+\begin{prop}
+El conjunto de subgradientes de una función convexa en un punto es convexo.
+\end{prop}
+Se sigue a partir de la definición que $f(x_0)+\xi'(x-x_0)$ se corresponde el hiperplano soporte del $Epi(f)$ en $(x_0,f(x_0))$, donde el vector $\xi$ se corresponde con la pendiente del hiperplano. Veamos que esta noción tiene una consecuencia interesante en el análisis convexo.
+
+\begin{prop}
+Sea $f$ una función convexa definida sobre $X$. Entonces se tiene que $\forall x_0 \in int(X)$ existe un vector $\xi$ subgradiente de $f$ en $x_0$.
+\end{prop}
+
+\begin{prop}
+Sea una función $X$ tal que $\forall x_0 \in int(X)$ existe un vector $\xi \in \mathbb{R}^n$ no nulo tal que $f(x) \geq f(x_0) + \xi'(x-x_0)$ $\forall x \in X$. Entonces $f$ es convexa en $int(X)$.
+\end{prop}
+\subsection{Optimización}
+Además del \textbf{Teorema 1.2}, las funciones convexas tienen más propiedades que las relacionan con las soluciones de los problemas de optimización.
+\begin{thm}
+Sea $X$ un convexo no vacío y $f$ una función convexa en $X$. Consideremos además el problema $(P)$, es decir, minimizar una función $f(x)$ sujeto a que $x\in X$. Entonces, $x^*\in Z$ es solución óptima de este problema si y solo si $f$ tiene un subgradiente $\xi$ en $x^*$ tal que $\xi'(x-x^*)\geq 0$ para todo $x\in X$.
+\end{thm}
+
+\begin{thm}
+Sea $f$ una función convexa y sea $X$ un convexo no vacío de $\mathbb{R}^n$. Consideremos el problema de maximizar $f(x)$ sujeto a que $x \in X$. Si $x^* \in X$ es una solución óptima local entonces $\xi'(x-x^*)\leq 0$ $\forall x \in X$ y $\forall \xi$ subgradientes de $f$ en $x^*$.
+\end{thm}
+
+\begin{thm}
+Sea $f$ una función convexa, y sea $X$ un poliedro compacto de $\mathbb{R}^n$ no vacío. Entonces el problema de maximizar $f(x)$ sujeto a que $x\in X$ tiene solución óptima $x^*$, donde $x^*$ es un punto extremo de $X$.
+\end{thm}
+
+
+\newpage
+
+\section{Convexidad generalizada}
+Tras esta introducción, hemos comentado algunas de las propiedades más importantes de las funciones convexas.
+\begin{itemize}
+\item Todo mínimo local es también mínimo global.
+\item La condición necesaria y suficiente de punto extremo es que el gradiente de la función en ese punto sea nulo.
+\end{itemize}
+Vamos a estudiar algunas generalizaciones importantes de la noción de convexidad.
+\subsection{Cuasiconvexidad}
+Sea $f$ una función escalar definida en $X\subset \mathbb{R}^n$ convexo y con al menos dos punto.
+\begin{defi}
+Se dice que una función es \textbf{cuasiconvexa} en $x_0$ si $\forall x  \in X$ y $\forall \lambda \in [0,1]$, se cumple que
+$$
+f((1-\lambda)x_0+\lambda x) \leq \max\{f(x_0),f(x)\}
+$$
+Se dice que es cuasiconvexa en $X$ si es cuasiconvexa en todo punto de $X$. 
+\end{defi}
+\begin{defi}
+Se dice que una función es \textbf{estrictamente cuasiconvexa} en $x_0$ si $\forall x  \in X$ y $\forall \lambda \in 
+(0,1)$ con $f(x)\neq f(x_0)$ se cumple que
+$$
+f((1-\lambda)x_0+\lambda x) < \max\{f(x_0),f(x)\}
+$$
+Se dice que es estrictamente cuasiconvexa en $X$ si es estrictamente cuasiconvexa en todo punto de $X$. 
+\end{defi}
+\begin{defi}
+Diremos que una función $f$ es \textbf{explícitamente cuasiconvexa} si es cuasiconvex y estrictamente cuasiconvexa.
+\end{defi}
+\begin{defi}
+Se dice que una función es \textbf{fuertemente cuasiconvexa} en $x_0$ si $\forall  x \neq x_0 \in X$ y $\forall \lambda \in (0,1)$ se cumple que
+$$
+f((1-\lambda)x_0+\lambda x) < \max\{f(x_0),f(x)\}
+$$
+Se dice que es fuertemente cuasiconvexa en $X$ si es fuertemente cuasiconvexa en todo punto de $X$. 
+\end{defi}
+
+Una vez presentadas estas generalizaciones, veamos cómo se relacionan entre ellas.
+\begin{prop}
+Toda función convexa es explícitamente cuasiconvexa.
+\end{prop}
+\begin{prop} Se tienen las siguientes relaciones
+\begin{itemize}
+\item Toda función estrictamente convexa es fuertemente cuasiconvexa. 
+\item Toda función fuertemente cuasiconvexa es explícitamente cuasiconvexa.
+\end{itemize}
+\end{prop}
+Veamos ahora algunos resultados sobre las funciones y la óptimalidad en problemas de extremos.
+\begin{thm}
+Sea $X$ convexo. Consideremos el problema de minimizar $f(x)$ sujeto a que $x\in X$. Sea $x^*$ una solución local del problema. Entonces
+\begin{itemize}
+\item Si $f$ es cuasiconvexa y $x^*$ es una solución estricta local, entonces $x^*$ es una solución estricta global.
+\item Si $f$ es estrictamente cuasiconvexa, $x^*$ es solución global del problema.
+\item Si $f$ es fuertemente cuasiconvexa en $X$, $x^*$ es la única solución óptima del problema.
+\end{itemize}
+\end{thm}
+\begin{thm}
+Sea $X$ un poliedro compacto de $\mathbb{R}^n$ y $f$ una función cuasiconvexa y continua en $X$. Consideremos el problema de maximizar $f(x)$ sujeto a que $x\in X$. Entonces existe una solución óptima $x^*$ para el problema, donde $x^*$ es un punto extremo de $X$.
+\end{thm}
+\subsection{Preconvexidad}
+Consideremos $X\subset \mathbb{R}^n$ un conjunto convexo. Notamos por $C(X)$ al conjunto de las funciones escalares continuas definidas en $X$. Vammos ahora  a extender el concepto de función convexa dentro de la clase de las funciones continuas. Sea $f\in C(X)$.  
+\begin{defi}
+Una función $f \in C(X)$ se dirá que es \textbf{preconvexa} en $X$ si para cualesquiera $x_1<x_2\in X$ tales que $f(x_1)=f(x_2)$ se verifica que $f(x)\leq f(x_1)$ para cualesquiera $x\in[x_1,x_2]$. Análogamente se define la \textbf{preconvexidad estricta}.
+\end{defi} 
+Algunas relaciones entre estos conceptos y otros que hemos visto anteriormente.
+\begin{prop}
+Sea $f\in C(X)$. Entonces $f$ es cuasiconvexa si y solo si es preconvexa.
+\end{prop}
+\begin{prop}
+Sea $f\in C(X)$. Entonces, $f$ es estrictamente preconvexa si y solo si $f$ es fuertemente cuasiconvexa.
+\end{prop}
+Finalmente, veamos qué propiedad tiene la convexidad con respecto a los puntos extremos.
+\begin{thm}
+Si la función $f\in C(X)$ es preconvexa, entonces cualquier mínimo local estricto es mínimo global.
+\end{thm}
+\begin{thm}
+Sea $f\in C(X)$ una función tal que en cualquier segmento cerrado todo mínimo local es global, entonces la función es preconvexa.
+\end{thm}\begin{thm}
+Si $f\in C(X)$ es estrictamente preconvexa existe un único punto mínimo local de $f$ en $X$
+\end{thm}
+
+\subsection{Pre-ínvexidad}
+Las funciones pre-ínvex conservan algunas de las propiedades interesantes de las funciones convexas, tales como que todo mínimo local de la función en un conjunto mínimo global sobre ese conjunto.
+\begin{defi}
+Sea $f$ una función real definida en $\mathbb{R}^n$. Diremos que $f$ es \textbf{pre-invex} si para cualesquiera $x_1,x_2\in \mathbb{R}^n$ existe un vector $\nu(x_1,x_2)$ tal que
+$$
+f(x_2+\lambda \nu(x_1,x_2)) \leq \lambda f(x_1) + (1-\lambda)f(x_2)
+$$ 
+\end{defi}
+\begin{thm}
+Sea $f$ una función pre-invex con respecto a $\nu$. Consideramos el problema a minimizar $f(x)$ sujeto a que $x\in S$. Sea $x^*$ un mínimo local de $f$, entonces $x^*$ es un mínimo global de $f$ sobre $S$.
+\end{thm}
+\begin{thm}
+Toda función convexa es pre-invex.
+\end{thm}
+\begin{demo}
+Basta tomar $\nu(x_1,x_2)=x_1-x_2$.
+\end{demo}
+\begin{nota}
+El recíproco del resultado no es cierto. Un contraejemplo se tiene con la función $f(x)=-|x|$ claramente es no convexa. Sin embargo, sí es pre-invex con respecto a vectores
+$$
+\nu(x_1,x_2)=\begin{cases}
+x_1-x_2 & \text{ si $x_1\leq 0$ y $x_2\leq 0$}\\
+x_1-x_2 & \text{ si $x_1\geq 0$ y $x_2\geq 0$}\\
+x_2-x_1 & \text{ si $x_2> 0$ y $x_2< 0$}\\
+x_2-x_1 & \text{ si $x_2< 0$ y $x_2> 0$}
+\end{cases}
+$$
+\end{nota}
+\newpage
+\section{Convexidad y diferenciabilidad}
+Vamos a estudiar distintas familias de funciones tales que, suponiendo diferenciabilidad, conserven la propiedad de las funciones convexas: un punto es óptimo si y solo si el gradiente de la función en ese punto es nulo.
+\subsection{Pseudoconvexidad}
+\begin{defi}
+Se dice que la función $f$ es \textbf{pseudoconvexa} (con respecto a $X$) en $x_0$ si es diferenciable en $x_0$ y 
+$$
+\nabla f(x_0)'(x-x_0) \geq 0 \Rightarrow f(x)\geq f(x_0) \quad 
+$$
+Diremos que la función $f$ es pseudoconvexa en $X$ si es pseudoconvexa en cada punto de $X$.
+\end{defi}
+\begin{defi}
+Se dice que la función $f$ es \textbf{estrictamente pseudoconvexa} (con respecto a $X$) en $x_0$ si es diferenciable en $x_0$ y 
+$$
+\nabla f(x_0)'(x-x_0) \geq 0 \Rightarrow f(x) >  f(x_0) \quad 
+$$
+Diremos que la función $f$ es pseudoconvexa en $X$ si es pseudoconvexa en cada punto de $X$.
+\end{defi}
+La pseudoconvexidad se relaciona de la siguiente manera con la cuasiconvexidad
+\begin{thm}
+Sea $f$ diferenciable en $X$, convexo. Si $f$ es pseudoconvexa en $X$ entonces $f$ es explícitamente cuasiconvexa.
+\end{thm}
+Además, la pseudoconvexidad se relaciona de manera muy interesante con los extremos.
+\begin{thm}
+Sea $f$ definid en $X$ convexo y abierto. Si $f$ es pseudoconvexa en $X$ entonces cualquier mínimo local es mínimo global.
+\end{thm}
+\begin{thm}
+Sabemos $f$ definida en $X$ abierto y convexo. Supongamos que $f$ es diferenciable en $x_0$. Entonces
+\begin{itemize}
+\item Si $f(x_0) = \min_{x\in X}f(x)$ entonces $\nabla f(x_0)=0$.
+\item Si $f$ es pseudoconvexa entonces, si $\nabla f(x_0)=0$, $f(x_0) = \min_{x\in X} f(x)$.
+\end{itemize}
+\end{thm}
+
+\subsection{Invexidad}
+\begin{defi}
+Sea $f$ una función escalar definida sobre $\R^n$ diferenciable. Se dirá que $f$ es \textbf{invex} si para cualesquiera $x,u \in \R^n$ existe una función vectorial $\nu(x,u)\in \R^n$ tal que
+$$
+f(x)-f(u)\geq \nu(x,u)'\nabla f(u)
+$$
+\end{defi}
+La invexidad es una de las clases más generales que hemos estudiado, como se muestra en el siguiente teorema.
+
+\begin{thm}
+Toda función pseudoconvexa es invex.
+\end{thm}
+Finalmente, veamos los resultados relacionados con la optimización.
+\begin{thm}
+Todo punto estacionario de una función invex es mínimo global de la función.
+\end{thm}
+Notemos que el teorema anterior dice, junto con las ideas usuales de diferenciabilidad, lo siguiente. Si $f$ es una función invex, entonces el conjunto de los puntos estacionarios de $f$ es precisamente el conjunto de sus mínimos globales. Esto ya de por sí es interesante, pero es algo que también comparten otras clases de funciones que hemos estudiado anteriormente. Lo realmente interesante es el siguiente resultado.
+\begin{thm}
+Sea $f$ una función diferenciable tal que todo punto estacionario es mínimo global. Entonces $f$ es invex.
+\end{thm}
+
+
+\end{document}
