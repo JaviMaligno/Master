@@ -189,7 +189,9 @@ Por tanto, $Aw$ es una subrepresentación de $A$, lo cuál es una contradicción
 
 
 Recíprocamente, supongamos que todos los vectores no nulos son cíclicos. Si $V$ no es irreducible debe existir $W\subset V$ que sea subrepresentación, es decir, que $AW\subset W$. Sea $w\in W$ no nulos y sea $v \notin W$, debe existir un $a \in A$ tal que $aw = v$, lo cuál es una contradicción.
-\item Supongamos que $V$ es cíclico. Entonces existe $v\in V$ tal que $Av = V$. 
+\item Supongamos que $V$ es cíclico. Entonces existe $v\in V$ tal que $Av = V$. Consideramos el morfismo de $A$-módulos $\phi=\rho(-)(v):A\to V$ definido como $a\mapsto \rho(a)(v)=av$. Como $Av=V$, este morfismo es sobreyectivo, y para $I=\ker\phi$ se tiene que $A/I\cong V$. Este isomorfismo es como $A$-módulos, pero $I$ no es solo un submódulo sino que es un ideal de $A$. 
+
+El recíproco es trivial porque basta considerar la imagen de $\overline{1}\in A/I$ mediante el isomorfismo $A/I\cong V$. 
 
 \item Sea $A = \C[x,y]/I_2$, visto como $\C$-ev (intuyo), donde $I_2$ es el ideal generado por los polinomios homogéneos de grado $\geq 2$ y $V = A^*$ donde $A^*$ es el espacio de los funcionales lineales de $A$ con la acción dada por $\rho(a)(f)(b) = f(ba)$. 
 
