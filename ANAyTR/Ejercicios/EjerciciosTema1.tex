@@ -39,6 +39,15 @@ Tenemos que definir $\rho:\R[x]\to \End(\C)$ viendo $\C$ como $\R$-espacio vecto
 
 \newpage
 
+\begin{ejercicio}{3}
+Si en $\End_A(V)$ hay solamente la identidad y sus múltiplos, entonces $V$ es irreducible.
+\end{ejercicio}
+\begin{solucion}
+Supongamos que existe una subrepresentación $W\subset V$, es decir, $AW\subset W$. Dado $v\in V$, podemos descomponerlo de forma única como $v=w+w^\perp$, donde $w\in W$ y $w\in W^\perp$. Como $W$ es subrepresentación, es fácil comprobar que la proyección $p:V=W\oplus W^\perp\to W$ dada por $v=w+w^\perp\mapsto w$ es un morfismo de representaciones. Pero este morfismo es un múltiplo de la identidad si y solo si $W=V$ o bien $W=0$. 
+\end{solucion}
+
+\newpage
+
 \section{Ejercicios del libro}
 
 \begin{ejercicio}{1.20}
@@ -163,7 +172,7 @@ Sea $V\neq 0$ una representación de $A$. Decimos que un vector $v$ es cíclico 
 \begin{solucion}
 \begin{enumerate}[(a)]
 \item[]
-\item Supongamos que $V$ es irreducible. Si todos los vectores no son cíclicos, $\exists w$ no cíclico. En ese caso $Aw$ está estrictamente contenido en $V$ y, además, es un subespacio vectorial. Además, para todo $z \in Aw$ y $\forall a \in A$ y $b \in A$ tales que
+\item Supongamos que $V$ es irreducible. Supongamos por reducción al absurdo que $\exists w$ no cíclico. En ese caso $Aw$ está estrictamente contenido en $V$ y, además, es un subespacio vectorial. Además, para todo $z \in Aw$ existe $b \in A$ tal que $\forall a \in A$ se cumple
 $$
 \rho(a)(z) = \rho(a)\circ \rho(b) (w) = \rho(ab) (w) \in Aw
 $$
