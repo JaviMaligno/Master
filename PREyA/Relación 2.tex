@@ -1,0 +1,85 @@
+
+\documentclass[twoside]{article}
+\usepackage{../estilo-ejercicios}
+\newcommand{\x}{{\mathbf{x}}}
+\newcommand{\y}{{\mathbf{y}}}
+%--------------------------------------------------------
+\begin{document}
+
+\title{Procesos Estocásticos. Aplicaciones}
+\author{Rafael González López}
+\maketitle
+\begin{ejercicio}{2}
+Una empresa de distribución de energía eléctrica ha decidido enfrentar el invierno venidero con un Plan de Solución de Averías Críticas. De las estadísticas recopiladas de los años anteriores, se puede concluir que las averías críticas tienen dos orígenes posibles: Domiciliario y de Alumbrado Público. Ambas averías se presentan según procesos de Poisson independientes, de tasa $\lambda_D$ [fallos/día] para averías domiciliarias y $\lambda_A$ [fallos/días] para averías de Alumbrado Público. Como parte del diseño del plan, se conformó un equipo de empleados altamente capacitados en la reparación de averías en redes eléctricas. Este equipo acude a repara las averías reportadas demorándose un tiempo exponencialmente distribuido de media $T$ [hrs] por cada una, incluyendo en este lapso el tiempo de transporte al lugar de la avería.
+\begin{itemize}
+\item Si durante el primer mes de funcionamiento del Plan se han producido $F$ averías, ¿cuál es el número esperado de averías para el segundo mes?
+\item ¿Cuál es la probabilidad de que la primera avería que se registre en un mes sea domiciliaria?
+\item El equipo de reparación está trabajando en la solución de una avería de Alumbrado Público. En promedio, ¿cuántas averías de cada tipo ocurrirán antes de que la reparación en curso sea finalizada?
+\end{itemize}
+Se está estudiando la posibilidad de dejar la reparación de averías de Alumbrado Público en manos de una empresa contratistas. Los términos del contrato indican que mensualmente se pagará como costo fijo un equivalente a $R$ reparaciones a un costo unitario $s_1$, mientras que el precio de cada reparación sobre este mínimo será de $s_2$ con $s_2>s_1$.
+\begin{itemize}
+
+\item Como Ingeniero de Estudios de la empresa distribuidora, plantear el problema de optimización que permita encontrar el valor $R^*$ que minimiza los costos mensuales esperados del contrato de reparación de fallas de Alumbrado Público.
+\end{itemize}
+\end{ejercicio}
+\begin{solucion}
+\begin{itemize}
+\item[] 
+\item Si $N(t)$ es el proceso suma de ambos, dado que son independientes, es otro proceso de Poisson de parámetro $\lambda_A+\lambda_D$. Lo que ocurre en un mes es independiente de lo que ocurre en otro. Luego si el segundo mes tiene $X$ días, el número esperado de averías es $E[N(X)] = X(\lambda_A+\lambda_B)$.
+\item 
+\item Sabemos que el tiempo medio de una reparación es $T$ horas, luego la cantidad esperada de averías sería $\lambda_A T/24$ y $\lambda_D T/24$.
+\end{itemize}
+\end{solucion}
+
+\newpage
+\begin{ejercicio}{3}
+Las abejas y las avispas llegan a coger el polen de una flor según procesos de Poisson independientes con intensidades respectivas $\lambda$ y $\mu$. Demuestra que las llegadas de estos insectos voladores a la flor forman un proceso de Poisson con intensidad $\lambda+\mu$.
+\end{ejercicio}
+\begin{solucion}
+Sea $N_1$ el proceso asociado las abejas, $N_2$ el de las avispas y $N$ la suma de ambos, entonces
+\begin{align*}
+P[N(t)= k] &= \sum_{i=0}^k P[N_1(t)=k-i,N_2=i] \\
+&= \sum_{i=0}^k e^{-\lambda t}\frac{(\lambda t)^{k-i}}{(k-i)!}e^{-\mu t}\frac{(\mu  t)^{i}}{i!}\\
+&= e^{-(\lambda+\mu )t}\frac{((\lambda+\mu )t)^k}{k!}
+\end{align*}
+\end{solucion}
+\newpage
+\begin{ejercicio}{4}
+Al parque natural Sierra de Cazorla, Segura y las Villas legan diariamente automóviles de acuerdo a un proceso de Poisson con tasa $\lambda$ [automóviles/hora]. La entrada al recinto se paga por persona que ingresa y el precio individual de $p$ euros. Estadísticamente se sabe que el número de personas en cada automóvil, $X$, son variables aleatorias i.i.d. con la siguiente ley de probabilidad
+\begin{align*}
+P[X=1]=0.1 & & P[X=4]=0.3\\
+P[X=2]=0.2 & & P[X=5]=0.1\\
+P[X=3]=0.3 & & 
+\end{align*}
+El parque abre sus puertas diariamente desde las $08:00$ a las $16:00$ hrs. Una hora después de cerrar todas las personas abandonan el parque (supongamos que nadie se va antes).
+\begin{itemize}
+\item Se sabe que a las $8:15$ habrán llegado $2$ personas al parque. ¿Cuál es la probabilidad de que las primeras $2$ personas que llegan al parque vengan juntas?
+\item ¿Cuál es la recaudación diaria promedio del parque?
+\item Se está pensando hacer un descuento a aquellos coches con más de 2 pasajeros. En este caso se cobrará el $80\%$ del precio por persona. ¿Cuál sería la recaudación promedio diaria en este caso?
+\item Se está pensando en construir un estacionamiento techado. ¿Cuál debe ser su tamaño $M$ de modo que la probabilidad de que algún coche no pueda estacionarse bajo techo sea menor o igual a $5\%$? Asumir que un conductor siempre se estaciona bajo techo si hay espacio disponible. 
+\end{itemize}
+\end{ejercicio}
+\begin{solucion} 
+\begin{itemize}
+\item[]
+\item Sea $A$ el suceso a las 8:15 hayan venido dos personas y en el mismo coche. Si el parque abre a las 8:00, expresando en horas, tenemos que $t=1/4$.
+$$
+P[A] = P[N(1/4)=1,X=2] = e^{-\lambda/4}\frac{\lambda}{4}0.2
+$$
+\item Consideremos la variable $N(8) X$. La recaudación esperada es $pE[N(8)X]$. Como $X$ y $N$ son independientes, entonces
+$$
+pE[N(8)]E[X] = p8\lambda (0.1 + 0.4+0.9+1.2+0.5) = 24.8 p \lambda
+$$
+\item En este caso multiplicamos el descuento apropiadamente en el cálculo. Sea $Y$ la variable aleatoria del beneficio de cada coche, entonces
+$$
+E[N(8)]E[Y] = p8\lambda (p0.1 + p0.4+p0.8\cdot 0.9+p0.8\cdot 1.2+p 0.8\cdot 0.5) = 20.64 p \lambda
+$$
+\item Buscamos $k$ tal que $P[N(8)>k]\leq 0.05$, es decir $P[N(8)\leq k] \geq 0.95$
+$$
+\sum_{n=1}^k e^{-8\lambda}\frac{(8\lambda)^n}{n!} \geq 0.95 
+$$
+Para un $\lambda$ fijo solo hay que dar valores a $k$ de manera creciente hasta que se verifique la desigualdad.
+\end{itemize}
+\end{solucion}
+\newpage
+\end{document}
