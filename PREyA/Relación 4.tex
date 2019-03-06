@@ -1,0 +1,162 @@
+
+\documentclass[twoside]{article}
+\usepackage{../estilo-ejercicios}
+\usepackage{enumerate}
+\newcommand{\x}{{\mathbf{x}}}
+\newcommand{\y}{{\mathbf{y}}}
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning}
+%--------------------------------------------------------
+\begin{document}
+
+\title{Procesos Estocásticos. Aplicaciones}
+\author{Rafael González López}
+\maketitle
+\begin{ejercicio}{1} 
+Considérese un proceso de renovación en el que los tiempos entre llegadas son iid con distribución común informe en el intervalo $(0,1)$.
+\begin{enumerate}[a)]
+\item Probar que la función de renovación satisface:
+$$
+m(t) = \begin{cases}
+t+\int_0^t m(u)du & t\in(0,1)\\
+1+\int_{t-1}^tm(u)du & t\geq 1
+\end{cases}
+$$
+\item Resolver la ecuación integral anterior para $t\in(0,1)$.
+\item Resolver la ecuación integral anterior para $t\in(1,2)$.
+\item Calcular 
+$$
+\lim_{t\to\infty}\frac{m(t)}{t}
+$$
+\end{enumerate}
+\end{ejercicio}
+\begin{solucion}
+\begin{enumerate}[a)]
+\item[]
+\item Sabemos que se verifica la igualdad integral
+$$
+m(t) = F(t)+\int_0^t m(t-x)dF(x)
+$$
+donde 
+$$
+F(t)= \begin{cases}
+t & t\in(0,1)\\
+1 & t \geq 1
+\end{cases}
+$$
+Por tanto, $F(t)$ es diferenciable salvo en $0$ y $1$, pero como son solo puntos aislados, podemos transformar la integral de Riemann Stieltjes en una de Riemann
+$$
+m(t) = \begin{cases}
+t + \int_0^t m(t-x)dx  & t\in(0,1)\\
+ 1 + \int_0^1 m(t-x)dx + \int_1^t 0 dx & t\geq 1
+\end{cases}
+$$
+
+Aplicando el cambo $u=t-x$, 
+$$
+m(t) = \begin{cases}
+ t + \int_t^0 -m(u)du   & t\in(0,1)\\
+ 1 + \int_t^{t-1} -m(u)du & t\geq 1
+\end{cases}
+$$
+Finalmente, usando el signo para intercambiar límites de integración obtenemos el resultado.
+$$
+m(t) = \begin{cases}
+t+\int_0^t m(u)du & t\in(0,1)\\
+1+\int_{t-1}^tm(u)du & t\geq 1
+\end{cases}
+$$
+\item Comencemos diferenciando la igualdad
+$$
+m'(t) = 1 + m(t) \Rightarrow m(t)=Ce^t-1
+$$
+Si imponemos la igualdad integral, obtenemos
+$$
+Ce^t -1 = t + \int_0^t Ce^u-1du = t + C(e^t-1)-t \Rightarrow C=1
+$$
+Por tanto, la solución es $m(t)=e^t-1$.
+\item Separemos la integral y diferenciemos.
+\begin{align*}
+m(t) &= 1+ \int_{t-1}^1 m(u)du + \int_1^t m(u)du \\
+&= 1 + \int_{t-1}^1 e^u -1 du + \int_1^tm(u)du\\
+&= 1+t-e^{t-1}+e-2 + \int_1^t m(u)du\\
+m'(t)& = 1-e^{t-1} + m(t)\\
+m(t)&= Ce^t -e^{t-1}t -1  
+\end{align*}
+Si imponemos continuidad en $1$, entonces 
+$$
+\lim_{t\to1^-} m(t) = e-1 = Ce-2
+$$
+Por tanto, $C= 1 + e^{-1}$.
+\item Sabemos que ese límite tiende a $\mu^{-1}$. En este caso
+$$
+\lim_{t\to \infty} \frac{m(t)}{t} = \frac{1}{1/2} = 2
+$$
+\end{enumerate}
+\end{solucion}
+\newpage
+\begin{ejercicio}{2} Un trabajo consta de dos fases sucesivas cuyas duraciones siguen distribuciones independientes $Exp(\lambda)$ y $Exp(\mu)$, respectivamente ($\lambda\neq \mu$). Un robot ejecuta sin interrupción trabajos como el descrito. Sea $N(t)$ el número de trabajos completos relizados por el robot hasta el instante $t>0$.
+\begin{enumerate}[a)]
+\item Usando el procedimiento basado en la transformada de Laplace, calcular la función de renovación del proceso.
+\item Si la primera fase de cada trabajo tiene un costo $c_1$ y la segunda $c_2$, ¿cuál es (asintóticamente) el coste por unidad de tiempo del trabajo realizado por el robot?
+\end{enumerate}
+\end{ejercicio}
+\begin{solucion}
+\begin{enumerate}[a)]
+\item[]
+\item Si denotamos por $Y_i$ las fases impares del proceso y por $Z_i$ las impares, tenemos un proceso de renovación alternante. Denotemos por $X_i = Y_i + Z_i$ el correspondiente proceso de renovación. Entonces
+\begin{align*}
+f_X(x) &= \int_0^x f_Y(s)f_X(x-s)ds \\
+&= \int_0^x \lambda e^{-\lambda s} \mu e^{-\mu(x-s)} ds\\
+&= \frac{\lambda\mu}{\mu-\lambda}(e^{-\lambda x}-e^{-\mu x})
+\end{align*}
+Por tanto, su transformada de Laplace es
+$$
+\hat{f}_X(s) = \frac{\lambda\mu}{\mu-\lambda}\left(\frac{1}{\lambda + s} - \frac{1}{\mu + s}\right) = \frac{\lambda\mu}{(\lambda+s)(\mu+s)}
+$$
+Utilizando el cálculo anterior, podemos calcular la transformada de Laplace de la función de renovación
+$$
+\hat{m}(s) = \frac{1}{s}\frac{\frac{\lambda\mu}{(\lambda+s)(\mu+s)}}{1-\frac{\lambda\mu}{(\lambda+s)(\mu+s)}} = \frac{1}{s}\frac{\lambda\mu}{(\lambda+s)(\mu+s) - \lambda\mu} = \frac{\lambda\mu}{s^2(\lambda+\mu+s)}
+$$
+Si descomponemos en fracciones simples
+$$
+\hat{m}(s) = -\frac{\lambda\mu}{\lambda+\mu}\frac{1}{s}+\frac{\lambda\mu}{\lambda+\mu}\frac{1}{s^2} + \frac{\lambda\mu}{(\lambda+\mu)^2}\frac{1}{(\lambda+\mu + s)}
+$$
+Por tanto,
+$$
+m(t) = \frac{\lambda\mu}{\lambda+\mu}\left(-1 + t+ \frac{1}{\lambda + \mu}e^{-(\lambda+\mu)t}\right)
+$$
+\item Cada ciclo $X_i$ tenemos un coste total $c_1+c_2$. Podemos considerar
+$$
+C(t) = \sum_{i=1}^{N(t)} R_i
+$$
+donde $R_i$ es el coste (aleatorio). En este caso $R_i$ es $c_1+c_2$ con probabilidad $1$, por lo que $E[R_i] = c_1+c_2$. Por teoría sabemos que el coste por unidad de tiempo asintótico es
+$$
+\lim_{t\to \infty} \frac{C(t)}{t} = \frac{E[R_i]}{E[X_i]} = \frac{c_1+c_2}{\lambda^{-1}+\mu^{-1}} = \lambda\mu \frac{c_1+c_2}{\mu+\lambda}
+$$
+\end{enumerate}
+\end{solucion}
+
+
+
+\newpage
+\begin{ejercicio}{3}Cada vez que una cierta máquina se rompe es reemplazada (instantáneamente) por una nueva del mismo tipo. Se sabe que el tiempo medio de vida de una máquina sigue una función de distribución $F$ con media $\mu$. Calcular la proporción asintótica $(t\to \infty)$ del tiempo que la máquina está en uso menos de un tiempo dado (fijo) $T_0>0$.
+\end{ejercicio}
+\begin{solucion}
+Podemos supoer que $F$ es continua, de manera que $F(t)=\lim_{x\to t^{-}} F(x)$. Consideremos $R_i$ definido de la siguiente forma
+$$
+R_i = \begin{cases}
+X_i & \text{ si } X_i \leq T_0\\
+0 & \text{ si }X_i > T_0
+\end{cases}
+$$
+Podemos ver $R_i$ como la distribución truncada de $X_i$, de manera que
+$$
+E[R_i] = E[X_i | X_i \leq T_0] = \frac{\int_0^{T_0}xf(x)dx}{F(T_0)} = \frac{\mu - \int_{T_0}^\infty xf(x)dx}{F(T_0)}
+$$
+Por tanto, la proporción asintótico del tiempo que la máquina está en uso menos de un tiempo $T_0$ es
+$$
+\lim_{t\to \infty} \frac{\sum_{i=1}^{N(t)}R_i}{t} = \frac{E[R_1]}{E[X_1]} = \frac{\int_0^{T_0}xf(x)dx}{\mu F(T_0)}
+$$
+\end{solucion}
+\end{document}

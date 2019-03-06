@@ -1,0 +1,299 @@
+\documentclass[PREyA.tex]{subfiles}
+
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning}
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\begin{document}
+
+\chapter{Procesos de renovación}
+\section{Introducción}
+\begin{defi}Sean $X_i$ v.a. independientes e idénticamente distribuidas.
+\end{defi}
+\begin{defi}
+Consideremos $p_{ij}=P[X=x_i,Y=y_j]$. Entonces definimos la probabilidad condicionada de $Y$ a $X=x_i$ como
+$$
+P[Y=y_i \mid X=x_i] = \frac{p_{ij}}{P[X=x_i]}
+$$
+Si consideramos la esperanza de $Y$ condicionado a $X=x_i$ 
+$$
+E[Y\mid X=x_i] = \sum_j y_j P[Y=y_j \mid X=x_i]
+$$
+\end{defi}
+\begin{defi}
+Definimos la esperanza de $Y$ condicionada a $X$ como
+$$
+E[Y\mid X]:= g(X)
+$$
+donde $g$ es la función
+$$
+g(x)=\begin{cases}
+E[Y\mid X=x] & P[X=x]>0\\
+0 & P[X=x]=0
+\end{cases}
+$$
+\end{defi}
+Los conceptos anteriores pueden definirse análogamente para el caso absolutamente continuo. En tal caso tendríamos una función de densidad $f(x,y)$.
+\begin{defi}
+Definimos la funcion de densidad de $Y$ a $X=x_i$ como
+$$
+f_{Y|X=x}(y)=\frac{f(x,y)}{f_X(x)}
+$$
+Si consideramos la esperanza de $Y$ condicionado a $X=x_i$ 
+$$
+E[Y\mid X=x_i] = \int y \frac{f(x,y)}{f_X(x)} dy
+$$
+\end{defi}
+La definición de la esperanza de $Y$ condicionada a $X$ es exactamente la misma.
+\begin{prop}
+La función de probabilidad y de densidad (caso discreto y continuo) de la suma de dos variables aleatorias independientes es simplemente la convolución de las respectivas funciones de densidad. En el caso continuo
+$$
+f_Z(x)=f_X * f_Y (z) = \int f_X(z-y)f_Y(y)dy = \int f_X(x)f_Y(z-x)dx
+$$
+En el caso discreto
+$$
+P[Z=z] = \sum_k P[X=k]P[Y=z-k]
+$$
+\end{prop}
+\begin{defi}
+Sea el conjunto
+$$
+D=\{s \in \R \mid \int_0^\infty |f(x)|e^{-sx}dx < \infty\}
+$$
+Se define la función
+$$
+s \in D \to \hat{f}(s)= \int_0^\infty f(x)e^{-sx}dx
+$$
+Decimos que $\hat{f}$ es la \textbf{transformada de Laplace} de $f$.
+\end{defi}
+\section{Procesos de renovación}
+\begin{defi}Son procesos tales que el tiempo entre eventos consecutivos son variables aleatorias independientes y non negativas. Sea $N(t)$ es el número de eventos que ocurren en $(0,t]$. El evento $n$-ésimo ocurre en el instante $S_n = \sum_i X_i$.
+\end{defi}
+\begin{prop}Se verifican las siguientes igualdades
+$$
+N(t)=\sum_{i=1}^\infty I_{(0,t]}(S_n)
+$$
+$$
+N(t)= \max\{n\geq0 \mid S_n \leq t\}
+$$
+$$
+N(t)\geq n \Leftrightarrow S_n(t)\leq t
+$$
+\end{prop}
+\begin{defi}
+La propiedad de renovación es
+$$
+\left(N(t)\mid X_1 = x_1\right) \overset{d}{=} \begin{cases}
+0 & t<x_1\\
+1+N(t-x_1) & t>x_1
+\end{cases}
+$$
+\end{defi}
+\begin{prop} Se verifica que
+$$
+P[N(t)=n] = F_{S_n}(t)-F_{S_{n+1}}(t)
+$$
+\end{prop}
+\begin{dem}
+\begin{align*}
+P[N(t)\geq n] &= P[N(t) = n] + \sum_{k=n+1}^\infty P[N(t)=k]\\
+&= P[N(t)=n]+ P[N(t)\geq n+1]
+\end{align*}
+\begin{align*}
+P[N(t)=n] &= P[N(t)\geq n]-P[N(t)\geq n+1]\\
+&=P[S_n\leq t]-P[S_{n+1}\leq t]\\
+&=F_{S_n}(t)-F_{S_{n+1}}(t)
+\end{align*}
+Donde $F_{S_n}$ es la función de distribución de $S_n = X_1+\dotsc + X_n$. 
+\end{dem}
+\begin{example}
+Supongamos que nuestro proceso es tal que  $X_i \sim Exp(\lambda)$, independientes entre sí. Entonces
+$$
+P[N(t)=n] = \int_0^tx^{n-1}e^{-\lambda x}\left(\frac{\lambda^n}{\Gamma(n)}-\frac{\lambda^{n+1}}{\Gamma(n+1)}x\right)dx
+$$
+\end{example}
+\section{Función de renovación}
+\begin{defi}
+Se define la \textbf{función de renovación } como $m(t)=E[N(t)]$. 
+\end{defi}
+\begin{prop}
+La función de renovación verifica 
+\begin{align*}
+m(t)&= \sum_{n=1}^\infty E[I_{(0,t]}(S_n) \\
+&= \sum_{n=1}^\infty (0\cdot P[S_n > t] + 1\cdot P[S_n \leq t]\\
+&= \sum_{n=1}^\infty F_{S_n}(t)
+\end{align*}
+donde, recordemos, $S_n = \sum_i X_i$, luego $F_{S_n} = F *F *\dotsc *F$.
+\end{prop}
+\begin{example}
+Probar que para el proceso de Poisson $m(t)=\lambda t$.
+\end{example}
+Podemos también calcular la función de renovación mediante la transformada de Laplace. Usando la linealidad tenemos de la transformada tenemos
+$$
+m(t) = \sum_{n=1}^\infty F_{S_n}(t) \Rightarrow \hat{m}(t) = \sum_{n=1}^\infty \hat{F}_{S_n}(t)
+$$
+dado que $F_{S_n}(t) = \int_0^x dt$ $\hat{F}_{S_n}(s) = \hat{f}_{S_n}(s)s^{-1} = \hat{f}^n(s)s^{-1}$. Por tanto
+$$
+\hat{m}(t) = \sum_{n=1}^\infty\frac{1}{s}\hat{f}^n(s) = \frac{1}{s}\frac{\hat{f}(s)}{1-\hat{f}(s)}
+$$ 
+\newpage
+Otra posibilidad para calcular la función de renovación es utilizar una ecuación integral
+$$
+m(t) = E[N(t)] = E[E[N(t)\mid X_1]] = E[g(X_1)]
+$$
+Vamos a estudiar la variable aleatoria $g(X_1)$. 
+\begin{align*}
+g(x_1) &= E[N(t)\mid X_1=x_1]= \begin{cases}
+0 & t<x_1\\
+E[1+N(t-x_1)] & t\geq x_1
+\end{cases}
+= \begin{cases}
+0 & t<x_1\\
+1+m  (t-x_1)& t\geq x_1
+\end{cases}
+\end{align*}
+O de otra forma
+$$
+g(x_1) = (1+m(t-x_1))I(t\geq x_1)
+$$
+Finalmente
+\begin{align*}
+m(t) &= E[g(X_1)] \\
+& = \int_0^\infty g(x_1)dF(x_1) \\
+&= \int_0^t dF(x_1) + \int_0^t m(t-x_1)dF(x_1)\\
+&= F(t) + \int_0^t m(t-x_1)dF(x_1)
+\end{align*}
+\subsection{Ecuaciones diferenciales de tipo renovación}
+Supongamos que tenemos una ecuación integral de la forma
+$$
+s(t)=G(t) + \int_0^t g(t-x)dF(x), \quad t\geq 0
+$$
+
+donde $F$ es una función de distribución. 
+\begin{theorem}
+Si $G$ está acotada en cada intervalo de $[0,\infty)$ entonces la ecuación anterior tiene solución única y es
+$$
+s(t) = G(t) + \int_0^t G(t-x)dm(x) \quad t\geq 0
+$$
+donde $m(x)$ es la función de renovación del proceso que tiene como función de distribución $F(x)$. Además $m(x)$ se puede calcular de la siguiente manera
+$$
+m = \sum_{n=1}^\infty F_{S_n} = F + F*F + F*F*F + \dotsc
+$$
+\end{theorem}
+
+
+
+\newpage
+\begin{example} Usando los resultados anteriores vamos a calcular la distribución de $E_t$. 
+$$
+g_x(t)= P[E_t>x] = E[P[E_t>x \mid X_1]]  = \int_0^\infty h(x_1)dF(x_1)
+$$
+Tenemos que
+$$
+h(X_1)= P[E_t > x \mid X_1 = x_1] = \begin{cases}
+I(x_1>x+t) & t< x_1\\
+P[E_{t-x_1}>x] & t\geq x
+\end{cases}
+$$
+Recordemos que si $t<x_1$ entonces $N(t)\mid X_1=x_1 \sim 0$, luego
+$$
+P[E_t>x \mid X_1=x_1] = P[S_{N(t)+1}-t>x\mid X_1=x_1] = P[X_1> x+t \mid X_1= x_1]
+$$
+También, si $t\geq x_1$, entonces $N(t)\mid X_1=x_1 \sim 1+N(t-x_1)$.
+Por tanto
+$$
+g_x(t) = \int_0^t P[E_{t-x_1}>x]dF(x_1) + \int_t^\infty I(x_1>x+t)dF(x_1)
+$$
+Como $x>0$ tenemos que
+\begin{align*}
+g_x(t)&=\int_0^t g_x(t-x_1)dF(x_1) + \int_{t+x}^\infty dF(x_1)\\
+&= 1-F(t+x) + \int_0^t g_x(t-x_1)dF(x_1) 
+\end{align*}
+Sabemos que este tipo de ecuaciones integrales tiene una solución 
+$$
+P[E_t>x] = 1- F(t+x) + \int_0^t ( 1- F(t+x-s)) dm(s)
+$$
+\end{example}
+\begin{example}
+Para el caso del proceso de Poisson, $F(x)= 1-e^{-\lambda x}$ y $m(x)\lambda x$. Por tanto
+$$
+P[E_t> x] = e^{-\lambda(t+x)} + \lambda \int_0^t e^{-\lambda(t+x-s)}ds = e^{-\lambda x}
+$$
+Por tanto, $E_t \sim Exp(\lambda)$.
+\end{example}
+\begin{prop}
+Para $C_t = t-S_{N(t)}$ se obtiene la ecuación integral (para el caso no trivial, pues para $t\leq x$ es $0$):
+$$
+g_x(t) = 1 - F(t) + \int_0^{t-x}g_x(t-s)dF(s)
+$$
+Redefiniendo $h_x(t)=g_x(t+x)$ obtenemos la misma ecuación integral, es decir
+$$
+P[c_t > x] = 1- F(t) + \int_0^{t-x}(1-F(t-s))dm(s)
+$$
+Notemos que en el caso de la Poisson es una exponencial truncada. 
+\end{prop}
+\begin{prop}
+Consideremos $T_t = X_{N(t)+1}$. Uno podría pesar que $T_t \sim F$, pero no es así, dada la aleatoriedad del subíndice. Si tomamos $g_x(t) = P[T_t>x]$ obtenemos la ecuación integral
+$$
+g_x(t)=1-F(\max(t,x)) + \int_0^t g_x(t-s)dF(s)
+$$
+\end{prop}
+\begin{example}
+Para el caso de la Poisson
+$$
+P[T_t\leq x] 1- (1+\lambda\min(t,x))e^{-\lambda x}
+$$
+$$
+E[T_t] = \frac{1}{\lambda}(2-e^{-\lambda t}) > E[X] = \frac{1}{\lambda}
+$$
+Este resultado se conoce como \textbf{paradoja de la inspección}.
+
+\end{example}
+
+\newpage
+
+
+\section{Propiedades límites}
+\begin{theorem}[Teorema llave de la renovación] Sea $g:\R^+\to\R^+$ tal que $g\geq 0$ decreciente e integrable. Entonces
+$$
+\lim_{t\to\infty}\int_0^t g(t-x)dm(x) = \frac{1}{\mu}\int_0^\infty g(x)dx
+$$
+donde $m(t)$ es la función de renovación asociada al proceso
+\end{theorem}
+\begin{example}[Proceso alternante de renovación] Imaginemos una máquina que funciona durante un tiempo $Z_i$ hasta que se estropea y pasa un tiempo en reparación $Y_i$, de manera que se van intercalando las distintas variables. Supngamos que $Z_i$ son i.i.d, así como las $Y_i$, además de independientes entre sí. Si denotamos $X_i = Z_i + Y_i$, estas verifican un proceso de renovación, pues son i.i.d. Consideremos 
+$$
+p(t)=P[\text{ON en t}]
+$$ 
+Intentemos describir la función anterior
+\begin{align*}
+p(t)&=P\left[t\in \bigcup_{i=0}^\infty (S_i,S_i+Z_{i+1})\right]\\
+&=P[t\in(0,Z_1)] + \sum_{i=1}^\infty P[t\in (S_i,S_i+Z_{i+1})]\\
+&= 1-F_{Z_1}(t) + \sum_{i=1}^\infty P[t\in (S_i,S_i+Z_{i+1})]\\
+&= 1-F_{Z_1}(t) + \sum_{i=1}^\infty E[P[t\in (S_i,S_i+Z_{i+1})]\mid X_1]\\
+&= 1-F_{Z_1}(t) + \sum_{i=1}^\infty E[P[t-X_1\in (S_i-X_1,S_i-X_1+Z_{i+1})]\mid X_1]\\
+&= 1-F_{Z_1}(t) + \sum_{i=1}^\infty E[P[t-X_1\in (S_{i-1},S_{i-1}+Z_{i})]\mid X_1]\\
+&=1-F_{Z_1}(t) + \sum_{i=1}^\infty \int_0^\infty P[t-x_1 \in (S_{i-1},S_{i-1}+Z_i)dF_{X_1}(x_1)\\
+&=1-F_{Z_1}(t) + \int_0^\infty  \sum_{i=1}^\infty P[t-x_1 \in (S_{i-1},S_{i-1}+Z_i)dF_{X_1}(x_1)\\
+&=1-F_{Z_1}(t) + \int_0^\infty p(t-x_1)dF_{X_1}(x_1)
+\end{align*}
+Esta ecuación integral tiene como solución
+$$
+p(t)=1-F_Z(t) + \int_0^\infty (1-F_Z(t-x))dm_{X_1}(x)
+$$
+Aplicando el teorema anterior
+$$
+\lim_{t\to \infty} p(t) = (1-1) + \frac{1}{E[X_1]}\int_0^\infty 1-F_Z(x)dx = \frac{E[Z]}{E[Z]+E[Y]}
+$$
+
+\end{example}
+\begin{example}[Proceso de renovación con recompensa]
+Supongamos que en cada renovación $X_i$ se tiene una recompensa $R_i$. Por tanto, las $X_i$ son i.i.d., así como las $R_i$. Definimos el proceso
+$$
+C(t)=\text{Recompensa total en $(0,t)$} = \sum_{i=1}^{N(t)}R_i
+$$
+\end{example}
+\newpage
+
+Ya hace rato que estamos pasando de los apuntes, pero algo que deberías saber de Teoria de Colas. En las colas markovianas M/M/1, el número de clientes en cola es $\max(0,N-1)$. También reseñar el tema de los Tiempos de Espera. $W$ es el tiempo de espera en el sistema. $W_q$ es el tiempo de espera en la cola.
+
+Estudiemos $W$. Si un cliente llega al sistema y no hay nadie $(W|N=0)\sim Exp(\mu)$, solo tiene que pasar él por el sistema. Si hay $n$ clientes, $(W|N=n)$ con $n\geq 1$, entonces tiene que esperar a que termine el servicio del primero, los servicios completos de los $n-1$ siguientes y su propio tiempo de servicio. En este caso $(W|N=n)\sim Ga(n+1,\mu)$.
+\end{document}
