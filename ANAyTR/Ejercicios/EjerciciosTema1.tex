@@ -155,7 +155,15 @@ Pista. Por el lemma de Schur usual, el álgebra $D=\End_A(V)$ es un álgebra con
 Sea $A = k[x_1,\dotsc,x_n]$ y sea $I\neq A$ un ideal de $A$ que contiene todos los polinomios homogéneos de grado $\geq N$. Demostrar que $A/I$ es una representación indecomponible de $A$. 
 \end{ejercicio}
 \begin{solucion}
-Consideremos la acción $\rho(a)(v) = av$ 
+Consideremos la acción $\rho(a)(v) = \pi(a)\pi(v)$ donde $\pi$ es la aplicación de paso al cociente. Claramente $\pi$ es $k$-lineal y es compatible con el producto, además
+$$
+\rho(ab)(v) = \pi(ab)\pi(v) =\pi(a)\pi(bv) = \rho(a)\circ \rho(b)(v)
+$$
+Por tanto, $A/I$ es una representación de $A$. Para ver que es indecomponible, consideremos una base de $A/I$. Esta esta formada por las proyecciones de los monomios en $x_1,\dotsc,x_n$. Sea $W_1,\dotsc,W_k$ una desomposición propia en suma directa de $A/I$. $\exists! i$ tal que $\pi(1)\in W_i$. Tiene que existir un monomio $\bar{x}_1,\dotsc,\bar{x}_n$ que no pertenezca a $W_i$, pues en otro caso $W_i = A/I$. Supongamos sin pérdida de generalidad que es $\bar{x}_k$. En tal caso
+$$
+\rho(x_k)(1) = \pi(1)\pi(x_k) = \bar{x}_k \notin W_i
+$$
+Por tanto, $W_i$ no es subrepresentación. Como esto es independiente de la descomposición escogida, $A/I$ es una representación indecomponible.
 \end{solucion}
 
 
