@@ -204,7 +204,7 @@ Para ver que $V$ es indecomponible, sea $W_1,\dotsc,W_s$ tales que $V = \bigoplu
 \newpage
 
 \begin{ejercicio}{1.34}
-Let $A$ be a $\Z^+$-graded algebra, i.e., $A = \bigoplus_{n≥0}A[n]$, and $A[n]A[m] ⊂ A[n + m]$. If $A[n]$ is finite dimensional, it is useful to consider the Hilbert series $h_A(t) = \sum dim(A[n])t^n$ (the generating function of dimensions of $A[n]$). Often this series converges to a rational function, and the answer is written in the form of such function. For example, if $A = k[x]$ and $deg(x^n) = n$ then
+Let $A$ be a $\Z^+$-graded algebra, i.e., $A = \bigoplus_{n≥0}A[n]$, and $A[n]A[m] ⊂ A[n + m]$. If $A[n]$ is finite dimensional, it is useful to consider the Hilbert series $h_A(t) = \sum \dim(A[n])t^n$ (the generating function of dimensions of $A[n]$). Often this series converges to a rational function, and the answer is written in the form of such function. For example, if $A = k[x]$ and $deg(x^n) = n$ then
 $$
 h_A(t) = 1 + t + t^2 + \dotsc  + t^n + \dotsc  = \frac{1}{1-t}
 $$
@@ -214,21 +214,33 @@ Find the Hilbert series of:
 \item $A = k \gene{ x_1, \dotsc , x_m}$ (the grading is by length of words);
 \item $A$ is the exterior (=Grassmann) algebra $∧_k[x_1, \dotsc , x_m]$, generated over some field $k$ by $x_1, \dotsc , x_m$ with the defining relations $x_ix_j + x_jx_i = 0$ and $x^2_i = 0$ for all $i, j$ (the grading is by degree).
 \item $A$ is the path algebra $P_Q$	of a quiver $Q$ (the grading is defined by $deg(p_i) = 0$, $deg(a_h) = 1$).
-Hint. The closed answer is written in terms of the adjacency matrix $MQ$ of $Q$.
+Hint. The closed answer is written in terms of the adjacency matrix $M_Q$ of $Q$.
 \end{enumerate}
 \end{ejercicio}
 \begin{solucion}
 \begin{enumerate}[a)]
 \item[]
-\item Sea $A[i]$ el grupo abeliano de los polinomios homogéneos de grado $i$, entonces $A= \bigoplus_{n\geq 0}A[n]$ y $A[n]A[m]\subset A[n+m]$. Además, una base de estos grupos vistos como $k$-ev. está dada por todos los monimos de grado $i$. Esta base tiene dimensión
+\item Sea $A[i]$ el grupo abeliano de los polinomios homogéneos de grado $i$, entonces $A= \bigoplus_{n\geq 0}A[n]$ y $A[n]A[m]\subset A[n+m]$. Además, una base de estos grupos vistos como $k$-ev. está dada por todos los monomios de grado $i$. Esta base tiene dimensión
 $$
-\binom{n-1+i}{i} = \frac{(n-1+i)!}{i!(n-1)!}
+\binom{n-1+i}{i} = \frac{(m-1+i)!}{i!(m-1)!}
 $$
 Por tanto
 $$
-h_A(t) = \sum_{i=0}^\infty \frac{(n-1+i)!}{i!(n-1)!} t^i = \frac{1}{(1-t)^n}
+h_A(t) = \sum_{i=0}^\infty \frac{(m-1+i)!}{i!(m-1)!} t^i = \frac{1}{(1-t)^m}
 $$
-\item 
+\item Este caso es análogo al anterior, solo que en este nos importa el orden de la multiplicación, de manera que $x^2y^2 \neq xyxy$. Por tanto, el número de monomios de grado $i$ es $m^i$. 
+$$
+h_A(t) = \sum_{i=0}^\infty n^i t^i = \frac{1}{1-mt} 
+$$
+\item Es una cuestión puramente conmbinatoria comprobar que el número de moniomos de grado $n$ es $\binom{m}{i}$ si $i\leq m$ y $0$ en otro caso, luego
+$$
+h_A(t) = \sum_{n\geq 0} \dim(A[n])t^n = \sum_{n=0}^m \binom{m}{n}t^n = (t+1)^m
+$$
+\item Consideremos $A[n]$ como el espacio vectorial generado por caminos entre cualesquiera vértices que tienen longitud (y por tanto, grado) $n$. Esos caminos están precisamente dados por la suma de todos los elementos de $M_Q^n$. Por tanto, considerando $|\cdot|$ la norma matricial dada por la suma de los valores absolutos de todos los coeficientes, tenemos que 
+$$
+h_A(t) = \sum_{n\geq 0} \dim(A[n])t^n =  \sum_{n\geq 0} |M_Q^n|t^n 
+$$
+Nótese que el caso $n=0$ está correctamente definido.
 \end{enumerate}
 \end{solucion}
 \end{document}
