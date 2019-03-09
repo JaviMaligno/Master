@@ -1,13 +1,53 @@
-\documentclass[TFG.tex]{subfiles}
+\documentclass[TFM.tex]{subfiles}
 
 \begin{document}
 
 
-\chapter{Formality of blablabla}
+\chapter{Formality of Chain Operad of Little Disks}
 POR AQUÍ TENGO QUE PONER LO DE EILENBERG-ZILBER, CUYA ASOCIATIVIDAD PERMITE QUE LA HOMOLOGÍA OBTENGA LA ESTRUCTURA DE OPERAD
 
-TAMBIÉN EL EJEMPLO DE FIEDEROWICZ CON LA PRUEBA DEL EJERCICO QUE ME PUSO MURO
 
 EN GENERAL LO QUE PUEDA DE TAMARKIN
+
+
+\url{https://ncatlab.org/nlab/show/augmentation}
+
+\url{https://ncatlab.org/nlab/show/Drinfeld+associator}
+
+
+PONER ALGO DE LO QUE SE VA A HACER EN ESTA SECCIÓN TIPO DICE QUÉ ES LA FORMALIDAD, DECIR QUE SE VA A PROBAR Y ALGO DE CÓMO
+
+We can substitute the group $\Sigma_n$ in the definition \ref{operadtop} by the braid group $B_n$, since there is a projection $B_n\to \Sigma_n$ with kernel $PB_n$ assigning to each braid $\sigma\in B_n$ the permutation that it induces on its endpoints. This way we obtain the notion of \emph{braided operad}. A \emph{topological $B_\infty$-operad} $X$ is defined as a braided operad such that all its spaces $X(n)$ are contractible and the braid group $B_n$ acts freely on $X(n)$. HABRÍA QUE COMPROBAR QUE ACTÚA LIBREMENTE EN EL RECUBRIDOR UNIVERSAL DE E2 (NO RECUERDO SI SE HACE EN BAR) If $X$ and $Y$ are topological $B_\infty$-operads, then so is $X\times Y$ and we have homotopi equivalences QUIZÁ EXPLICAR QUE EL PRODUCTO DE OPERADS ES OPERAD AUNQUE SEA EN EL CAPÍTULO DE OPERADS
+\begin{equation}\label{projections}
+p_1:X\times Y\to X;\ p_2:X\times Y\to Y,
+\end{equation}
+where $p_1$, $p_2$ are the projections. 
+
+Given a topological $B_\infty$-operad $X$, the corresponding \emph{operad of little disks} is a symmetric operad $X'$ such that $X'(n)=X(n)/PB_n$ with the induced structure maps. The maps \ref{projections} guarantee that any two operads of little disks are connected by a chain of homotopy equivalencesHAY EQUIVALENCIA ENTRE LOS $X$ PERO LOS LITTLE DISKS SON LOS $X'$
+
+ DEBERÍA COPIAR DE [6] LO DE CHAIN OF HOMOTOPY EQUIVALENCES
+
+
+We now prove that the little disks operad defined in Section \ref{little} is a little disks operad in this sense.
+
+EL EJEMPLO DE FIEDEROWICZ CON LA PRUEBA DEL EJERCICO QUE ME PUSO MURO
+
+The functor of singular chains $C_*^{sing}:\Top\to \Ch$ has a natural tensor structure ¿PONGO LAX MONOIDAL? given by the Eilenberg-Zilber map $EZ:C_*^{sing}(X)\otimes C_*^{sing}(Y)\to C_*^{sing}(X\times Y)$. Therefore, for a topological operad $O$, the coleccion $C_*^{sin}(O(*))$ has a structure of a dg-operad PONERLO EN LA SECCIÓN DE OPERADS EN EL EJEMPLO DE CHAIN COMPLEX \url{https://ncatlab.org/nlab/show/dg-operad}. The structure map of the $i$-th insertion is PONER EN LA DEFINICIÓN DE OPERAD QUE SE LLAMA INSERTION
+\[
+C_*^{sing}(O(n))\otimes C_*^{sing}(O(m))\xrightarrow{EZ} C_*^{sing}(O(n)\times O(m))\xrightarrow{\circ_{i*}} C_*^{sing}(O(n+m-1)),
+\]
+where $\circ_i$ is the structure map of the $i$-th insertion in $O$. We need to check that the associativity axiom of the operad structure still holds after applyin the Eilenberg-Zilber map. In order to prove it, we use its explicit formulation \cite{EZ}
+
+\url{https://ncatlab.org/nlab/show/Eilenberg-Zilber+map}
+HACER LA PRUEBA 
+
+For a little disks operad $X$ consider the operad $E_2(X)=C_*^{sing}(X)$ CREO QUE DEBERÍA CAMBIAR LA NOTACIÓN. Any two such operads are quasi-isomorphic PONER EN ALGÚN LADO LO DE CHAIN OF QUASI-ISOMORPHISM DE [6]. In particular, the homology operad of any $E_2(X)$ is the operad $e_2$ CAMBIAR ESTA NOTACIÓN TAMBIÉN controlling Gerstenhaber algebras. Our goal in this chapter is to show the following.
+
+\begin{thm}
+Any operad $E_2(X)$ is quasi-isomorphic to its homology operad $e_2$.
+\end{thm}
+
+It suffices to prove this theorem only for one operad $X$ of little disks since they are all homotopy equivalent. , 
+
 
 \end{document}

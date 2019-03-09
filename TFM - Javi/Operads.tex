@@ -4,6 +4,7 @@
 
 %\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
 \chapter{Little disks operad}
+TENER EN CUENTA KONTSEVICH[6] Y PREGUNTAR A MURO LO QUE TENGO APUNTADO ENCUADRADO EN TAMARKIN
 
 ESCRIBIR ALGO AQUÍ, INCLUYENDO ALGO DE QUE ALL MAPS ARE REQUIRED TO BE CONTINUOUS
 
@@ -11,7 +12,7 @@ REVISAR LA NOTACIÓN POR SI DEBERÍA SER MÁS CONSISTENTE EN LOS ÍNDICES DE LOS
 
 
 \section{Operads}
-First we give the general notion of operad and some properties of this object.
+First we give the general notion of (topological) operad and some properties of this object.
 % EN PRINCIPIO LO DEFINO EN TOP Y YA PREGUNTO SI HACE FALTA QUE SEA EN UNA MONOIDAL SIMÉTRICA. SI HACE FALTA, HACER UNA SECCIÓN DE CATEGORÍAS SIMÉTRICAS MONOIDALES. SI NO, CITAR A DONALD YAU CON QUE SE PUEDE DEFINIR CON MÁS GENERALIDAD
 %\url{https://ncatlab.org/nlab/show/operad}
 %
@@ -20,7 +21,7 @@ An operad is a collection of suitably interrelated spaces $\CC(j)$, the points o
 be thought of as $j$-adic operations $X^j \to X$ for some topological space $X$. Precisely, we have the following definitions.
 
 \begin{defi}\label{operadtop}
-An \emph{operad} $\CC$ consists of topological spaces $\CC(j)$ for $j\geq 0$, with $\CC(0)$ a single point $*$, together with the following data:
+An \emph{operad} (also \emph{symmetric operad}) $\CC$ consists of topological spaces $\CC(j)$ for $j\geq 0$, with $\CC(0)$ a single point $*$, together with the following data:
 \begin{enumerate}[(1)]
 \item Continuous functions $\gamma : \CC(k) × \CC(j_1) × \cdots × \CC(j_k) \to \CC(j)$, $j =\sum_s j_s$, such that the
 following associativity formula is satisfied for all $c\in \CC(k)$, $d_s \in \CC(js)$, and $e_t \in \CC(i_t)$:
@@ -75,7 +76,7 @@ $\Sigma_j$-equivariancy means that $\psi_j(c\sigma)=\psi_j(c)\sigma$ for all $c\
 ALOMEJOR HACER DIBUJITOS DE LOS AXIOMAS \url{https://en.wikipedia.org/wiki/Operad#\%22Little_something\%22_operads}
 
 
-\section{Little disks operad}
+\section{Little disks operad}\label{little}
 
 From now on, by ``disk'' we will mean ``open disk''. 
  
@@ -185,13 +186,18 @@ We demand that the braiding and associator obey the hexagon identity:
 And lastly, we demand that $B_{y,x}B_{x,y}=1_{x\otimes y}$.
 \end{defi}
 
+If we drop the braiding from the definition above we obtain what is simply called a \emph{monoidal category}.
+
 \begin{ex}\
 \begin{enumerate}
 \item The categories $\Set$ and $\Top$ are symmetric monoidal categories with the cartesian product as tensor product and a singleton as unit. 
 \item For $k$ some field, the category $\Vect_k$ of $k$-vector spaces carries the standard structure of a monoidal category coming from the tensor product, over $k$, of vector spaces. The standard braiding that identifies $V\otimes W$ with $W\otimes V$ by mapping homogeneous elements $v\otimes w$ to $w\otimes v$ obviously makes $\Vect_k$ into a symmetric monoidal category. 
 \end{enumerate}
+CHAIN COMPLEXES \url{https://ncatlab.org/nlab/show/tensor+product+of+chain+complexes} LA FORMAN SIN SYMMETRIC PERO NO TENGO CLARO CUÁLES SON LAS DIFERENCIALES DEL COMPLEJO UNIDAD. A LAS OPERADS AQUÍ SE LE LLAMAN DG-OPERAD (DIFFERENTIAL GRADED) \url{https://ncatlab.org/nlab/show/dg-operad}
 SI ME HACE FALTA HABLO DE MÓDULOS Y DE ÁLGEBRAS
 \end{ex}
+
+(LAX) MONOIDAL FUNCTORS \url{https://ncatlab.org/nlab/show/monoidal+functor}
 
 For an arbitrary symmetric monoidal category $\DD$ we obtain the following definition of operad, which specializes to the definition \ref{operadtop} for $\DD=\Top$.
 
