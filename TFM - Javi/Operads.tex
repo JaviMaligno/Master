@@ -30,7 +30,7 @@ following associativity formula is satisfied for all $c\in \CC(k)$, $d_s \in \CC
 \gamma(c; d_1, \dots , d_k); e_1, \dots , e_j) = 
 \gamma(c; f_1, \dots , f_k),
 \]
-where $f_s = \gamma(d_s; e_{j_1+\cdots+j_{s−1}+1}, \cdots , e_{j_1+\cdots+j_s} )$, and $f_s = *$ if $j_s = 0$.
+where $f_s = \gamma(d_s; e_{j_1+\cdots+j_{s−1}+1}, \cdots , e_{j_1+\cdots+j_s} )$, and $f_s = *$ if $j_s = 0$. These functions are usually called \emph{structure maps}.
 
 \item An identity element $1 \in \CC(1)$ such that 
 $\gamma(1; d) = d$ for $d \in \CC(j)$ and 
@@ -85,9 +85,32 @@ From now on, by ``disk'' we will mean ``open disk''.
  There is an obvious homotopy equivalence $E_2(n)\simeq \mathcal{M}_2(n)$ from $E_2(n)$ to the configuration space of $n$ points of $D^2$. This homotopy equivalence is given by ``forgetting the radius'' of each little disk. Hence $\pi_1(E_2(n))\cong PB_n$, the pure braid group of order $n$, and $\pi_i(E_2(n))=0$ for $j>1$. 
  
  
- GRAPHIC REPRESENTATION OF $E_n$ FOR $n=3$
+\definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1.}
+
+\begin{figure}[h!]
+\resizebox{10cm}{4.7cm}{%
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-5.5,-3.4) rectangle (9.5,3.4);
+\draw [line width=2.pt,color=xdxdff,fill=xdxdff,fill opacity=0.10000000149011612] (2.,1.) circle (0.7823042886243178cm);
+\draw [line width=2.pt,color=xdxdff,fill=xdxdff,fill opacity=0.10000000149011612] (3.,-1.) circle (1.100727032465361cm);
+\draw [line width=2.pt,color=xdxdff,fill=xdxdff,fill opacity=0.10000000149011612] (4.48,1.46) circle (0.7496665925596522cm);
+\draw [line width=2.pt] (3.,0.) circle (3.1622776601683795cm);
+\draw [line width=2.pt] (2.,1.) circle (0.7823042886243178cm);
+\draw [line width=2.pt] (4.48,1.46) circle (0.7496665925596522cm);
+\draw [line width=2.pt] (3.,-1.) circle (1.100727032465361cm);
+\draw (1.84,1.3) node[anchor=north west] {$1$};
+\draw (4.32,1.7) node[anchor=north west] {$2$};
+\draw (2.8,-0.8) node[anchor=north west] {$3$};
+\draw (-1.44,0.6) node[anchor=north west] {\LARGE{$c=$}};
+\end{tikzpicture}
+}
+\caption{A point $c\in E_2(3)$.}
+ \end{figure}
  
- We define for all positive integers $p$ and $q$ and  each $1\leq i\leq p$the composition or \emph{structure} map 
+
+ 
+ 
+ We define for all positive integers $p$ and $q$ and  each $1\leq i\leq p$the composition or \emph{insertion} map 
  \[
  \begin{tikzcd}[row sep=10]
   E_2(p)\times E_2(q)\arrow[r, "\circ_i"] & E_2(p+q-1)\\
@@ -96,13 +119,17 @@ From now on, by ``disk'' we will mean ``open disk''.
  \]
  by inserting $c_2$ inside $B(x_i,r_i)$ as shown in the figure. 
  
- FIGURE OF THE STRUCTURE MAP
-
+  
+  \begin{figure}[h!]
+  \centering
+\includegraphics[scale=0.3]{Imagenes/insertion}
+\caption{An insertion $\circ_2:E_2(2)\times E_2(3)\to E_2(4)$.}
+ \end{figure}
 
 Note that there is an element $Id_{E_2}\in E_2(1)$ given by the coordinates $(0,1)$ which acts as the identity for this map. It is easy to check that these maps satisfy the associativity property of an operad. IGUAL DEBERÍA PONERME A COMPROBARLO Y ESCRIBIRLO It is not difficult to check that the maps $\circ_i$ are compatible with this action in the sense of equivariance of operads QUIZÁ DEBERÍA COMPROBARLO Therefore, the familty $E_2=\{E_2(n)\}_{n\geq 0}$ is an operad with identity $Id_{E_2}$ and composition map $\circ_i$. This is what we call the \emph{little disks operad}.
 
 \begin{remark}
-In the definition of the structure maps we're omitting the disks on which only the identity is acting. If we want to write it with the same notation as we defined operads, the maps should be $\circ_i:O(p)\times O(q)\times O(1)\times\cdots \times O(1)\to O(p+q-1)$. COMENTAR QUE ES HABITUAL POR LA ASOCIATIVIDAD, QUE PERMITE HACERLO DE DOS EN DOS (COMPROBARLO) Defined this way, the structre map $\circ_i$ is usually called \emph{the $i$-th insertion} because of geometrical reasons. 
+In the definition of the structure maps we're omitting the disks on which only the identity is acting. If we want to write it with the same notation as we defined operads, the maps should be $\circ_i:O(p)\times O(q)\times O(1)\times\cdots \times O(1)\to O(p+q-1)$. COMENTAR QUE ES HABITUAL POR LA ASOCIATIVIDAD, QUE PERMITE HACERLO DE DOS EN DOS (COMPROBARLO)
 \end{remark}
 
 There is an action $E_2(n)\times \Sigma_n\to E_2(n)$ of the symmetric group on $E_2(n)$ given by rearranging the little disks. An example is shown below.
@@ -147,13 +174,30 @@ NO SÉ DÓNDE PONER LA PARTE DE LAS CADENAS Y TODO ESO. EN CUANTO A ESO PREGUNTA
 %PREGUNTARLE QUÉ SENTIDO TIENE SER QUASI-ISOMORFO A LA HOMOLOGÍA, SI LA HOMOLOGÍA DE LA HOMOLOGÍA ES 0
 %
 %CON LO DEL SUSTITUTO, SI TIENE LA MISMA HOMOLOGÍA QUE C2, ENTONCES CONSIGUES QUE C(SUSTITUTO) ACTÚE EN H(A,A), PERO DE AHÍ EN PRINCIPIO NO SE SACA LA ACCION EN C(A,A)
-\subsection{Little $n$-disks operad}\label{intervals}
-COMENTAR QUE SE PUEDEN DEFINIR PARA DIMENSIÓN CUALQUIERA Y LA ACCIÓN SE MANTIENE PERO QUE LOS DE DIMENSIÓN SUPERIOR SON COMPLICADOS TOPOLÓGICAMENTE (PONER ALGUNA REFERENCIA, QUIZÁ MAY) Y EL DE DIMENSIÓN ES SIMPLE, PROBAR QUE ES CONTRÁCTIL:
+\subsection{Little $k$-disks operad}\label{intervals}
 
-TENGO QUE PROBAR QUE EL LITTLE INTERVALS ES A INFINITO: MI IDEA ES QUE SE TRATA DE PONER $N$ PUNTOS ORDENADOS EN LÍNEA (POR SER DEL TIPO DE HOMOTOPÍA DEL ESPACIO DE CONFIGURACIONES), ASÍ QUE SE PUEDEN MOVER SIEMPRE PARA QUE ESTÉN COLOCADOS EN POSICIONES CONCRETAS
+One can define an operad $E_k$ for $k\geq 0$ in the same way we've defined $E_2$, but replacing the 2-dimensional disks by $k$-dimensional disks. Their action on $\Omega^k(X)$ is defined similarly. For $k\geq 2$, $E_k$ gives rise to more topologically rich spaces, since they have non trivial homology groups in dimensions greater than $2$, and there is also an operad $E_\infty$ (see \cite{cuentas}). 
+
+The case $k=1$ is particularly simple. For $E_1$, usually called \emph{little intervals operad}, we have the following proposition.
+
+\begin{prop}\label{E1}
+For all $n\geq 0$, $E_1(n)$ is a contractible space.
+\end{prop}
+\begin{proof}
+The case $n=0$ is trivial so take $n>0$. We have that $E_1(n)\simeq \mathcal{M}_1(n)$ via the analogue of homotopy equivalence $E_2(n)\simeq\mathcal{M}_2(n)$.  Therefore, we've reduced the proof to show that the configuration space of $n$ points of $(0,1)$, $\mathcal{M}_1(n)$, is contractible. Any point $(x_1,\dots, x_n)\in\mathcal{M}_1(n)$ is a sequence of distinct points of $(0,1)$, so we can order them and consider the sequence $0<x_{i_1}<\cdots<x_{i_n}<1$. Let $p=\left(\frac{1}{n+1},\dots, \frac{n}{n+1}\right)\in \mathcal{M}_1(n)$. We show that $\mathcal{M}_1(n)\simeq \{p\}$. To do that is enough to show that the map $q:\mathcal{M}_1(n)\to \{p\}$ defined coordinatewise by $x_{i_k}\mapsto \frac{k}{n+1}$ is an homotopy equivalence. We define a homotopy $E_1(n)\times [0,1]\to E_1(n)$ coordinatewise as $x_{i_k}\mapsto (1-t)x_{i_k}+t\frac{k}{n+1}$ for each $t\in [0,1]$. Since $(0,1)$ is convex, this map is well-defined as a map of points of $(0,1)$. We need to check that it preserves the order. That's easy since if $x_{i_j}<x_{i_k}$, then clearly 
+\[
+(1-t)x_{i_j}+t\frac{j}{n+1}<(1-t)x_{i_k}+t\frac{k}{n+1}
+\] 
+Continuity if obvious and we've defined a homotopy from the identity map on $E_1(n)$ to $i\circ q$, where $i:\{p\}\hookrightarrow \mathcal{M}_1(n)$ is the inclusion. 
+\end{proof}
 
 
-ESTO ES INTERESANTE, LO DEJO AQUÍ \url{https://amathew.wordpress.com/2011/11/13/operads-i/}
+
+
+
+
+
+%ESTO ES INTERESANTE, LO DEJO AQUÍ \url{https://amathew.wordpress.com/2011/11/13/operads-i/}
 
 \section{Operads in symmetric monoidal categories}
 We've treated operads only in the category of topological spaces, but they can be defined in a more general setting, namely, in any \emph{symmetric monoidal category} \cite{Yau}. We're going to introduce this categories since it becomes more natural to talk about operads and other constructions in other categories having that framework in advance.
@@ -218,6 +262,8 @@ For an arbitrary symmetric monoidal category $\DD$ we obtain the following defin
 
 \begin{defi}
 COGER DE YAU, EN NLAB VIENE INCOMPLETO Y NO APARECEN MORFISMOS \url{https://ncatlab.org/nlab/show/operad}
+
+LA DUDA SOBRE LA UNIDAD. COMO SE COGE UNA APLICACIÓN, CREO QUE BASTA DECIR QUE A LA UNIDAD LE ASOCIAS EL QUE HEMOS COGIDO COMO IDENTIDAD
 \end{defi}
 \end{document}
 

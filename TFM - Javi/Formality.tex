@@ -17,9 +17,11 @@ EN GENERAL LO QUE PUEDA DE TAMARKIN
 
 PONER ALGO DE LO QUE SE VA A HACER EN ESTA SECCIÓN TIPO DICE QUÉ ES LA FORMALIDAD, DECIR QUE SE VA A PROBAR Y ALGO DE CÓMO (LOS PASOS) CITANDO QUE SIGO A TAMARKIN
 
+In this chapter we review and explain the heart of the prove of the Deligne Conjecture: the formality of the chain operad of little disks. SEGUIR
+
 \section{Braided operads and little disks operads}
 
-We can substitute the group $\Sigma_n$ in the definition \ref{operadtop} by the braid group $B_n$, since there is a projection $B_n\to \Sigma_n$ with kernel $PB_n$ assigning to each braid $\sigma\in B_n$ the permutation that it induces on its endpoints. This way we obtain the notion of \emph{braided operad}. A \emph{topological $B_\infty$-operad} $X$ is defined as a braided operad such that all its spaces $X(n)$ are contractible and the braid group $B_n$ acts freely on $X(n)$. HABRÍA QUE COMPROBAR QUE ACTÚA LIBREMENTE EN EL RECUBRIDOR UNIVERSAL DE E2 (NO RECUERDO SI SE HACE EN BAR) If $X$ and $Y$ are topological $B_\infty$-operads, then so is $X\times Y$ and we have homotopi equivalences QUIZÁ EXPLICAR QUE EL PRODUCTO DE OPERADS ES OPERAD AUNQUE SEA EN EL CAPÍTULO DE OPERADS
+We can substitute the group $\Sigma_n$ in the definition \ref{operadtop} by the braid group $B_n$, since there is a projection $B_n\to \Sigma_n$ with kernel $PB_n$ assigning to each braid $\sigma\in B_n$ the permutation that it induces on its endpoints. This way we obtain the notion of \emph{braided operad}. A \emph{topological $B_\infty$-operad} $X$ is defined as a braided operad such that all its spaces $X(n)$ are contractible and the braid group $B_n$ acts freely on $X(n)$. If $X$ and $Y$ are topological $B_\infty$-operads, then so is $X\times Y$ in an obvious way and we have homotopy equivalences 
 \begin{equation}\label{projections}
 p_1:X\times Y\to X;\ p_2:X\times Y\to Y,
 \end{equation}
@@ -56,9 +58,50 @@ Let $\widetilde{E}_2(n)$ denote the universal cover of $E_2(n)$. We will dfine
 an operad structure map and braid group actions on $\widetilde{E}_2$ by lifting them from the
 structure map and symmetric group actions on $E_2$. Let $p:\widetilde{E}_2\to E_2$ the universal covering and let $E_1\subseteq E_2$ be the ``horizontal'' embedding of $E_1$ as little cubes of the form
 
-DIBUJO DE FIEDEROWICZ PERO HECHO POR MÍ PORQUE LA FUENTE NO ES LA DE LATEX
+\definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1.}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-3.5866666666666673,-0.4666666666666) rectangle (11.293333333333335,4.5);
+\fill[line width=2.pt,color=xdxdff,fill=xdxdff,fill opacity=0.10000000149011612] (0.41333333333333344,4.) -- (0.4,0.) -- (0.7733333333333334,0.) -- (0.7866666666666668,4.) -- cycle;
+\fill[line width=2.pt,color=xdxdff,fill=xdxdff,fill opacity=0.10000000149011612] (1.2,4.) -- (1.2133333333333338,0.) -- (1.586666666666667,0.) -- (1.586666666666667,4.) -- cycle;
+\fill[line width=2.pt,color=xdxdff,fill=xdxdff,fill opacity=0.10000000149011612] (3.,4.) -- (3.,0.) -- (3.386666666666667,0.) -- (3.4,4.) -- cycle;
+\draw[line width=2.pt] (0.41333333333333344,4.) -- (0.4,0.) -- (0.7733333333333334,0.) -- (0.7866666666666668,4.) -- cycle;
+\draw[line width=2.pt] (1.2,4.) -- (1.2133333333333338,0.) -- (1.586666666666667,0.) -- (1.586666666666667,4.) -- cycle;
+\draw[line width=2.pt] (3.,4.) -- (3.,0.) -- (3.386666666666667,0.) -- (3.4,4.) -- cycle;
+\draw [line width=2.pt] (0.,0.)-- (0.,4.);
+\draw [line width=2.pt] (0.,4.)-- (4.,4.);
+\draw [line width=2.pt] (4.,4.)-- (4.,0.);
+\draw [line width=2.pt] (4.,0.)-- (0.,0.);
+\draw [line width=2.pt,color=xdxdff] (0.41333333333333344,4.)-- (0.4,0.);
+\draw [line width=2.pt,color=xdxdff] (0.4,0.)-- (0.7733333333333334,0.);
+\draw [line width=2.pt,color=xdxdff] (0.7733333333333334,0.)-- (0.7866666666666668,4.);
+\draw [line width=2.pt,color=xdxdff] (0.7866666666666668,4.)-- (0.41333333333333344,4.);
+\draw [line width=2.pt,color=xdxdff] (1.2,4.)-- (1.2133333333333338,0.);
+\draw [line width=2.pt,color=xdxdff] (1.2133333333333338,0.)-- (1.586666666666667,0.);
+\draw [line width=2.pt,color=xdxdff] (1.586666666666667,0.)-- (1.586666666666667,4.);
+\draw [line width=2.pt,color=xdxdff] (1.586666666666667,4.)-- (1.2,4.);
+\draw [line width=2.pt,color=xdxdff] (3.,4.)-- (3.,0.);
+\draw [line width=2.pt,color=xdxdff] (3.,0.)-- (3.386666666666667,0.);
+\draw [line width=2.pt,color=xdxdff] (3.386666666666667,0.)-- (3.4,4.);
+\draw [line width=2.pt,color=xdxdff] (3.4,4.)-- (3.,4.);
+\draw [line width=2.pt] (0.41333333333333344,4.)-- (0.4,0.);
+\draw [line width=2.pt] (0.4,0.)-- (0.7733333333333334,0.);
+\draw [line width=2.pt] (0.7733333333333334,0.)-- (0.7866666666666668,4.);
+\draw [line width=2.pt] (0.7866666666666668,4.)-- (0.41333333333333344,4.);
+\draw [line width=2.pt] (1.2,4.)-- (1.2133333333333338,0.);
+\draw [line width=2.pt] (1.2133333333333338,0.)-- (1.586666666666667,0.);
+\draw [line width=2.pt] (1.586666666666667,0.)-- (1.586666666666667,4.);
+\draw [line width=2.pt] (1.586666666666667,4.)-- (1.2,4.);
+\draw [line width=2.pt] (3.,4.)-- (3.,0.);
+\draw [line width=2.pt] (3.,0.)-- (3.386666666666667,0.);
+\draw [line width=2.pt] (3.386666666666667,0.)-- (3.4,4.);
+\draw [line width=2.pt] (3.4,4.)-- (3.,4.);
+\draw (0.35,2.38) node[anchor=north west] {$1$};
+\draw (1.15,2.38) node[anchor=north west] {$2$};
+\draw (2.95,2.38) node[anchor=north west] {$n$};
+\draw (1.9,2.353333333333338) node[anchor=north west] {$\cdots$};
+\end{tikzpicture}
 
-ordered from left to right as shown. Note that the little cubes are homotopy equivalent to the little disks. By lemma \ref{contractible} and the fact that $E_1$ is contractible (see Section \ref{intervals}) we have that $p^{-1}(E_1(n))\subseteq\widetilde{E}_2(n)$ is a disjoint union of components, each homeomorphic to $E_1(n)$ via $p$. For each $n$, arbitrarily choose one these components and call it $\widetilde{C}_1(n)$. 
+ordered from left to right as shown. Note that the little squares are homotopy equivalent to the little disks. By lemma \ref{contractible} and the fact that $E_1$ is contractible (see Section \ref{intervals}, Proposition \ref{E1}) we have that $p^{-1}(E_1(n))\subseteq\widetilde{E}_2(n)$ is a disjoint union of components, each homeomorphic to $E_1(n)$ via $p$. For each $n$, arbitrarily choose one these components and call it $\widetilde{C}_1(n)$. 
 
 Now define the structure map $\widetilde{\gamma}$ for $\widetilde{E}_2$ to be the unique lifting 
 \[
@@ -69,9 +112,203 @@ E_2(k)\times E_2(j_1)\times\cdots E_2(j_1+\cdots+j_k) \arrow[r, "\gamma"]       
 \]
 which takes $\widetilde{E}_1(k)\times\widetilde{E}_1(j_1)\times\cdots\widetilde{E}_1(j_k)$ to $\widetilde{E}_1(j_1+\cdots+j_k)$. The existence and uniqueness of this map is guaranteed by lemma \ref{lift} since $\gamma$ clearly takes the embedding $E_1(k)\times E_1(j_1)\times\cdots E_1(j_k)$ to the embedding of $E_1(j_1+\cdots+j_k)$. Here we're implicitly making use of the theory of covering spaces, in particular the lifting properties of the universal cover, see Section 1.3 of \cite{HA} for a complete treatment of the subject. Also recall that the product of covering spaces is a covering space of the product (Exercise 2 from page 79 of \cite{HA}).
 
-CONTINUAR CON LA ACCIÓN (SACAR EL DIBUJO DEL GENERADOR DE ARTIN DE MI TFG)
+Finally we have to dene the braid group actions $\widetilde{E}_2(n)\times B_n\to\widetilde{E}_2(n)$. It suffices
+to specify actions by the standard generators $\widetilde{\sigma}_i$, $1 \leq i \leq n - 1$, where $\widetilde{\sigma}_i$ denotes
+the braid
 
-EL EJEMPLO DE FIEDEROWICZ CON LA PRUEBA DEL EJERCICO QUE ME PUSO MURO (A infinito significa que los espacios del operad son contráctiles, esto para el caso sin acción del grupo simétrico, que es el que usa Fiedorowicz. Con acción significa que cada componente conexa es contráctil, pero en cualquier caso C1 es contráctil \url{https://en.wikipedia.org/wiki/A\%E2\%88\%9E-operad}) 
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+\fill[black] ( 6.7 , -1.5 ) circle ( 1 pt ) ;
+\fill[black] ( 7 , -1.5 ) circle ( 1 pt ) ;
+\fill[black] ( 7.3 , -1.5 ) circle ( 1 pt ) ;
+
+\fill[black] ( 1.7 , -1.5 ) circle ( 1 pt ) ;
+\fill[black] ( 2 , -1.5 ) circle ( 1 pt ) ;
+\fill[black] ( 2.3 , -1.5 ) circle ( 1 pt ) ;
+\braid[ number of strands=10, %lower bound
+ border height=2pt,style strands={8}{line width=2pt}, style strands={7}{draw=none},style strands={6}{line width=2pt},style strands={5}{line width=2pt},style strands={4}{line width=2pt},style strands={3}{line width=2pt}, style strands={2}{draw=none},style strands={1}{line width=2pt}, style strands={9,10}{draw=none}] (braid) at (1,0)%optional, it's a name
+         a_{9} a_4 a_{9};
+           \node[ at=(braid-1-s),  label=north :  $1$ ] {} ;
+          \node[ at=(braid-4-s),  label=north :  $i$ ] {} ;
+\node[ at=(braid-5-s),  label=north : $i+1$ ] {} ;
+\node[ at=(braid-8-s),  label=north :  $n$ ] {} ;
+%\draw (4.5,-2) node[anchor=south] {$\sigma_i$};
+\end{tikzpicture}
+\end{figure}
+
+%suces
+We will specify the action by this braid to be the lift of the action of $\sigma_i = (i\ i+1)\in\Sigma_n$ on $E_2(n)$ subject to the following basepoint condition. CREO QUE LA IDEA ES QUE LA ACCIÓN SIEMPRE LIFTEA PERO DEPENDE DE LA ELECCIÓN DE PUNTO BASE, SI NO ME ACLARO ESTO PREGUNTARLE A MURO PORQUE AQUÍ NO SE DEFINE LA ACCIÓN EN TODO EL RECUBRIDOR, SOLO EN EL LIFT DE $E_1$ Choose an arbitrary point $x\in E_1(n)$. Let $\alpha:I\to E_2(n)$ denote the path from $x$ to $x\sigma_i$ specified by the following sequence
+of pictures
+
+\definecolor{qqqqff}{rgb}{0.,0.,1.}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-1.586666666666667,-6.553333333333329) rectangle (13.293333333333337,5.533333333333328);
+\fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (0.37333333333333335,5.) -- (0.7733333333333334,5.) -- (0.8,0.) -- (0.4,0.) -- cycle;
+\fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (1.6,5.) -- (2.186666666666667,5.) -- (2.2,0.) -- (1.6133333333333333,0.) -- cycle;
+\fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (2.6133333333333333,5.) -- (3.3866666666666667,5.) -- (3.4133333333333336,0.) -- (2.6,0.) -- cycle;
+\fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (4.2,5.) -- (4.613333333333333,5.) -- (4.626666666666667,0.) -- (4.226666666666667,0.) -- cycle;
+\fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (6.4,5.) -- (6.4,0.) -- (6.786666666666667,0.) -- (6.8,5.) -- cycle;
+\fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (10.626666666666667,5.) -- (10.626666666666667,0.) -- (10.2,0.) -- (10.24,5.) -- cycle;
+\fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (7.626666666666667,0.) -- (7.613333333333334,2.393333333333333) -- (8.213333333333335,2.4066666666666663) -- (8.213333333333335,0.) -- cycle;
+\fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (8.613333333333333,5.) -- (8.6,2.58) -- (9.4,2.58) -- (9.426666666666668,5.) -- cycle;
+\fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (0.4,-1.) -- (0.4133333333333334,-6.) -- (0.8,-6.) -- (0.8,-1.) -- cycle;
+\fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (4.613333333333333,-6.) -- (4.613333333333333,-1.) -- (4.2,-1.) -- (4.226666666666667,-6.) -- cycle;
+\fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (1.6133333333333333,-1.) -- (1.6133333333333335,-3.406666666666663) -- (2.4,-3.406666666666663) -- (2.4,-1.) -- cycle;
+\fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (2.8,-6.) -- (2.8133333333333335,-3.606666666666663) -- (3.4,-3.606666666666663) -- (3.413333333333334,-6.) -- cycle;
+\fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (6.373333333333334,-1.) -- (6.4,-6.) -- (6.8,-6.) -- (6.8133333333333335,-1.) -- cycle;
+\fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (10.6,-6.) -- (10.6,-1.) -- (10.2,-1.) -- (10.213333333333335,-6.) -- cycle;
+\fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (8.386666666666667,-1.) -- (8.413333333333334,-6.) -- (7.613333333333334,-6.) -- (7.6,-1.) -- cycle;
+\fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (8.813333333333334,-1.) -- (8.8,-6.) -- (9.4,-6.) -- (9.413333333333334,-1.) -- cycle;
+\draw [line width=2.pt] (0.,0.)-- (0.,5.);
+\draw [line width=2.pt] (0.,5.)-- (5.,5.);
+\draw [line width=2.pt] (5.,5.)-- (5.,0.);
+\draw [line width=2.pt] (5.,0.)-- (0.,0.);
+\draw [line width=2.pt] (6.,0.)-- (6.,5.);
+\draw [line width=2.pt] (6.,5.)-- (11.,5.);
+\draw [line width=2.pt] (11.,5.)-- (11.,0.);
+\draw [line width=2.pt] (11.,0.)-- (6.,0.);
+\draw [line width=2.pt] (0.,-1.)-- (0.,-6.);
+\draw [line width=2.pt] (0.,-6.)-- (5.,-6.);
+\draw [line width=2.pt] (5.,-6.)-- (5.,-1.);
+\draw [line width=2.pt] (5.,-1.)-- (0.,-1.);
+\draw [line width=2.pt] (6.,-1.)-- (11.,-1.);
+\draw [line width=2.pt] (11.,-1.)-- (11.,-6.);
+\draw [line width=2.pt] (11.,-6.)-- (6.,-6.);
+\draw [line width=2.pt] (6.,-6.)-- (6.,-1.);
+\draw [line width=2.pt] (0.37333333333333335,5.)-- (0.4,0.);
+\draw [line width=2.pt] (0.7733333333333334,5.)-- (0.8,0.);
+\draw [line width=2.pt] (1.6,5.)-- (1.6133333333333333,0.);
+\draw [line width=2.pt] (2.186666666666667,5.)-- (2.2,0.);
+\draw [line width=2.pt] (2.6133333333333333,5.)-- (2.6,0.);
+\draw [line width=2.pt] (3.3866666666666667,5.)-- (3.4133333333333336,0.);
+\draw [line width=2.pt] (4.613333333333333,5.)-- (4.626666666666667,0.);
+\draw [line width=2.pt] (4.2,5.)-- (4.226666666666667,0.);
+\draw [line width=2.pt,color=qqqqff] (6.4,5.)-- (6.4,0.);
+\draw [line width=2.pt,color=qqqqff] (6.4,0.)-- (6.786666666666667,0.);
+\draw [line width=2.pt,color=qqqqff] (6.786666666666667,0.)-- (6.8,5.);
+\draw [line width=2.pt,color=qqqqff] (6.8,5.)-- (6.4,5.);
+\draw [line width=2.pt,color=qqqqff] (10.626666666666667,5.)-- (10.626666666666667,0.);
+\draw [line width=2.pt,color=qqqqff] (10.626666666666667,0.)-- (10.2,0.);
+\draw [line width=2.pt,color=qqqqff] (10.2,0.)-- (10.24,5.);
+\draw [line width=2.pt,color=qqqqff] (10.24,5.)-- (10.626666666666667,5.);
+\draw [line width=2.pt,color=qqqqff] (7.626666666666667,0.)-- (7.613333333333334,2.393333333333333);
+\draw [line width=2.pt,color=qqqqff] (7.613333333333334,2.393333333333333)-- (8.213333333333335,2.4066666666666663);
+\draw [line width=2.pt,color=qqqqff] (8.213333333333335,2.4066666666666663)-- (8.213333333333335,0.);
+\draw [line width=2.pt,color=qqqqff] (8.213333333333335,0.)-- (7.626666666666667,0.);
+\draw [line width=2.pt,color=qqqqff] (8.613333333333333,5.)-- (8.6,2.58);
+\draw [line width=2.pt,color=qqqqff] (8.6,2.58)-- (9.4,2.58);
+\draw [line width=2.pt,color=qqqqff] (9.4,2.58)-- (9.426666666666668,5.);
+\draw [line width=2.pt,color=qqqqff] (9.426666666666668,5.)-- (8.613333333333333,5.);
+\draw [line width=2.pt,color=qqqqff] (0.4,-1.)-- (0.4133333333333334,-6.);
+\draw [line width=2.pt,color=qqqqff] (0.4133333333333334,-6.)-- (0.8,-6.);
+\draw [line width=2.pt,color=qqqqff] (0.8,-6.)-- (0.8,-1.);
+\draw [line width=2.pt,color=qqqqff] (0.8,-1.)-- (0.4,-1.);
+\draw [line width=2.pt,color=qqqqff] (4.613333333333333,-6.)-- (4.613333333333333,-1.);
+\draw [line width=2.pt,color=qqqqff] (4.613333333333333,-1.)-- (4.2,-1.);
+\draw [line width=2.pt,color=qqqqff] (4.2,-1.)-- (4.226666666666667,-6.);
+\draw [line width=2.pt,color=qqqqff] (4.226666666666667,-6.)-- (4.613333333333333,-6.);
+\draw [line width=2.pt,color=qqqqff] (1.6133333333333333,-1.)-- (1.6133333333333335,-3.406666666666663);
+\draw [line width=2.pt,color=qqqqff] (1.6133333333333335,-3.406666666666663)-- (2.4,-3.406666666666663);
+\draw [line width=2.pt,color=qqqqff] (2.4,-3.406666666666663)-- (2.4,-1.);
+\draw [line width=2.pt,color=qqqqff] (2.4,-1.)-- (1.6133333333333333,-1.);
+\draw [line width=2.pt,color=qqqqff] (2.8,-6.)-- (2.8133333333333335,-3.606666666666663);
+\draw [line width=2.pt,color=qqqqff] (2.8133333333333335,-3.606666666666663)-- (3.4,-3.606666666666663);
+\draw [line width=2.pt,color=qqqqff] (3.4,-3.606666666666663)-- (3.413333333333334,-6.);
+\draw [line width=2.pt,color=qqqqff] (3.413333333333334,-6.)-- (2.8,-6.);
+\draw [line width=2.pt,color=qqqqff] (6.373333333333334,-1.)-- (6.4,-6.);
+\draw [line width=2.pt,color=qqqqff] (6.4,-6.)-- (6.8,-6.);
+\draw [line width=2.pt,color=qqqqff] (6.8,-6.)-- (6.8133333333333335,-1.);
+\draw [line width=2.pt,color=qqqqff] (6.8133333333333335,-1.)-- (6.373333333333334,-1.);
+\draw [line width=2.pt,color=qqqqff] (10.6,-6.)-- (10.6,-1.);
+\draw [line width=2.pt,color=qqqqff] (10.6,-1.)-- (10.2,-1.);
+\draw [line width=2.pt,color=qqqqff] (10.2,-1.)-- (10.213333333333335,-6.);
+\draw [line width=2.pt,color=qqqqff] (10.213333333333335,-6.)-- (10.6,-6.);
+\draw [line width=2.pt,color=qqqqff] (8.386666666666667,-1.)-- (8.413333333333334,-6.);
+\draw [line width=2.pt,color=qqqqff] (8.413333333333334,-6.)-- (7.613333333333334,-6.);
+\draw [line width=2.pt,color=qqqqff] (7.613333333333334,-6.)-- (7.6,-1.);
+\draw [line width=2.pt,color=qqqqff] (7.6,-1.)-- (8.386666666666667,-1.);
+\draw [line width=2.pt,color=qqqqff] (8.813333333333334,-1.)-- (8.8,-6.);
+\draw [line width=2.pt,color=qqqqff] (8.8,-6.)-- (9.4,-6.);
+\draw [line width=2.pt,color=qqqqff] (9.4,-6.)-- (9.413333333333334,-1.);
+\draw [line width=2.pt,color=qqqqff] (9.413333333333334,-1.)-- (8.813333333333334,-1.);
+\draw [line width=2.pt] (6.4,5.)-- (6.8,5.);
+\draw [line width=2.pt] (6.4,5.)-- (6.4,0.);
+\draw [line width=2.pt] (6.4,0.)-- (6.786666666666667,0.);
+\draw [line width=2.pt] (6.786666666666667,0.)-- (6.8,5.);
+\draw [line width=2.pt] (7.613333333333334,2.393333333333333)-- (8.213333333333335,2.4066666666666663);
+\draw [line width=2.pt] (8.213333333333335,2.4066666666666663)-- (8.213333333333335,0.);
+\draw [line width=2.pt] (7.613333333333334,2.393333333333333)-- (7.626666666666667,0.);
+\draw [line width=2.pt] (7.626666666666667,0.)-- (8.213333333333335,0.);
+\draw [line width=2.pt] (8.613333333333333,5.)-- (9.426666666666668,5.);
+\draw [line width=2.pt] (9.426666666666668,5.)-- (9.4,2.58);
+\draw [line width=2.pt] (9.4,2.58)-- (8.6,2.58);
+\draw [line width=2.pt] (8.6,2.58)-- (8.613333333333333,5.);
+\draw [line width=2.pt] (10.24,5.)-- (10.2,0.);
+\draw [line width=2.pt] (10.2,0.)-- (10.626666666666667,0.);
+\draw [line width=2.pt] (10.626666666666667,0.)-- (10.626666666666667,5.);
+\draw [line width=2.pt] (10.626666666666667,5.)-- (10.24,5.);
+\draw [line width=2.pt] (0.4,-1.)-- (0.8,-1.);
+\draw [line width=2.pt] (0.8,-1.)-- (0.8,-6.);
+\draw [line width=2.pt] (0.8,-6.)-- (0.4133333333333334,-6.);
+\draw [line width=2.pt] (0.4133333333333334,-6.)-- (0.4,-1.);
+\draw [line width=2.pt] (1.6133333333333333,-1.)-- (1.6133333333333335,-3.406666666666663);
+\draw [line width=2.pt] (1.6133333333333335,-3.406666666666663)-- (2.4,-3.406666666666663);
+\draw [line width=2.pt] (2.4,-3.406666666666663)-- (2.4,-1.);
+\draw [line width=2.pt] (2.4,-1.)-- (1.6133333333333333,-1.);
+\draw [line width=2.pt] (2.8133333333333335,-3.606666666666663)-- (3.4,-3.606666666666663);
+\draw [line width=2.pt] (3.413333333333334,-6.)-- (3.4,-3.606666666666663);
+\draw [line width=2.pt] (2.8133333333333335,-3.606666666666663)-- (2.8,-6.);
+\draw [line width=2.pt] (2.8,-6.)-- (3.413333333333334,-6.);
+\draw [line width=2.pt] (4.226666666666667,-6.)-- (4.2,-1.);
+\draw [line width=2.pt] (4.613333333333333,-1.)-- (4.613333333333333,-6.);
+\draw [line width=2.pt] (4.613333333333333,-6.)-- (4.226666666666667,-6.);
+\draw [line width=2.pt] (4.2,-1.)-- (4.613333333333333,-1.);
+\draw [line width=2.pt] (6.373333333333334,-1.)-- (6.4,-6.);
+\draw [line width=2.pt] (6.4,-6.)-- (6.8,-6.);
+\draw [line width=2.pt] (6.8,-6.)-- (6.8133333333333335,-1.);
+\draw [line width=2.pt] (6.8133333333333335,-1.)-- (6.373333333333334,-1.);
+\draw [line width=2.pt] (7.6,-1.)-- (7.613333333333334,-6.);
+\draw [line width=2.pt] (7.613333333333334,-6.)-- (8.413333333333334,-6.);
+\draw [line width=2.pt] (8.413333333333334,-6.)-- (8.386666666666667,-1.);
+\draw [line width=2.pt] (8.386666666666667,-1.)-- (7.6,-1.);
+\draw [line width=2.pt] (8.813333333333334,-1.)-- (8.8,-6.);
+\draw [line width=2.pt] (8.8,-6.)-- (9.4,-6.);
+\draw [line width=2.pt] (9.4,-6.)-- (9.413333333333334,-1.);
+\draw [line width=2.pt] (9.413333333333334,-1.)-- (8.813333333333334,-1.);
+\draw [line width=2.pt] (10.2,-1.)-- (10.213333333333335,-6.);
+\draw [line width=2.pt] (10.213333333333335,-6.)-- (10.6,-6.);
+\draw [line width=2.pt] (10.6,-6.)-- (10.6,-1.);
+\draw [line width=2.pt] (10.6,-1.)-- (10.2,-1.);
+\draw (0.4,2.6) node[anchor=north west] {$1$};
+\draw (1.72,2.6) node[anchor=north west] {$i$};
+\draw (0.9,2.5) node[anchor=north west] {$\cdots$};
+\draw (2.48,2.6) node[anchor=north west] {$i+1$};
+\draw (3.4,2.5) node[anchor=north west] {$\cdots$};
+\draw (4.2,2.6) node[anchor=north west] {$n$};
+\draw (6.4,2.6) node[anchor=north west] {$1$};
+\draw (7.72,2.193333333333332) node[anchor=north west] {$i$};
+\draw (8.48,4.393333333333331) node[anchor=north west] {$i+1$};
+\draw (6.9,2.5) node[anchor=north west] {$\cdots$};
+\draw (9.4,2.5) node[anchor=north west] {$\cdots$};
+\draw (0.4,-2.9) node[anchor=north west] {$1$};
+\draw (1.5,-2.) node[anchor=north west] {$i+1$};
+\draw (2.9,-4.38) node[anchor=north west] {$i$};
+\draw (4.2,-2.9) node[anchor=north west] {$n$};
+\draw (6.4,-2.9) node[anchor=north west] {$1$};
+\draw (0.8,-3.) node[anchor=north west] {$\cdots$};
+\draw (3.493333333333334,-3.0) node[anchor=north west] {$\cdots$};
+\draw (6.8,-3.) node[anchor=north west] {$\cdots$};
+\draw (7.48,-2.9) node[anchor=north west] {$i+1$};
+\draw (8.95,-2.9) node[anchor=north west] {$i$};
+\draw (9.48,-3.) node[anchor=north west] {$\cdots$};
+\draw (10.15,-2.9) node[anchor=north west] {$n$};
+\draw (10.2,2.6) node[anchor=north west] {$n$};
+\end{tikzpicture}
+
+Let $\widetilde{\alpha}$ denote the lift which starts in $\widetilde{C}_1$. Let $\widetilde{x}=\widetilde{\alpha}(0)$ and $\widetilde{y}=\widetilde{\alpha}(1)$, then specify $\widetilde{x}\widetilde{\sigma}=\widetilde{y}$. COMPROBAR QUE ESTO DA LA ESTRUCTURA DE $B_\infty$ (ADEMÁS DE LAS PROPIEDADES DE OPERAD, LA ACCIÓN TIENE QUE SER LIBRE, PERO TENGO DUDA PARA EL CASO DE LAS TRENZAS PURAS) Y QUE EL COCIENTE POR LA ACCIÓN DE LAS TRENZAS PURAS ES $E_2$ (QUIZÁ ESTO SEA PORQUE PRECISAMENTE ES EL GRUPO FUNDAMENTAL, PERO TENGO QUE REVISAR SI ES LA MISMA ACCIÓN QUE LA DEL GRUPO FUNDAMENTAL)
+
+%EL EJEMPLO DE FIEDEROWICZ CON LA PRUEBA DEL EJERCICO QUE ME PUSO MURO (A infinito significa que los espacios del operad son contráctiles, esto para el caso sin acción del grupo simétrico, que es el que usa Fiedorowicz. Con acción significa que cada componente conexa es contráctil, pero en cualquier caso C1 es contráctil \url{https://en.wikipedia.org/wiki/A\%E2\%88\%9E-operad}) 
 
 \end{proof}
 
