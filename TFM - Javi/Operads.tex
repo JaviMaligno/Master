@@ -102,7 +102,7 @@ From now on, by ``disk'' we will mean ``open disk''.
 Note that there is an element $Id_{E_2}\in E_2(1)$ given by the coordinates $(0,1)$ which acts as the identity for this map. It is easy to check that these maps satisfy the associativity property of an operad. IGUAL DEBERÍA PONERME A COMPROBARLO Y ESCRIBIRLO It is not difficult to check that the maps $\circ_i$ are compatible with this action in the sense of equivariance of operads QUIZÁ DEBERÍA COMPROBARLO Therefore, the familty $E_2=\{E_2(n)\}_{n\geq 0}$ is an operad with identity $Id_{E_2}$ and composition map $\circ_i$. This is what we call the \emph{little disks operad}.
 
 \begin{remark}
-In the definition of the structure maps we're omitting the disks on which only the identity is acting. If we want to write it with the same notation as we defined operads, the maps should be $\circ_i:O(p)\times O(q)\times O(1)\times\cdots \times O(1)\to O(p+q-1)$. 
+In the definition of the structure maps we're omitting the disks on which only the identity is acting. If we want to write it with the same notation as we defined operads, the maps should be $\circ_i:O(p)\times O(q)\times O(1)\times\cdots \times O(1)\to O(p+q-1)$. COMENTAR QUE ES HABITUAL POR LA ASOCIATIVIDAD, QUE PERMITE HACERLO DE DOS EN DOS (COMPROBARLO) Defined this way, the structre map $\circ_i$ is usually called \emph{the $i$-th insertion} because of geometrical reasons. 
 \end{remark}
 
 There is an action $E_2(n)\times \Sigma_n\to E_2(n)$ of the symmetric group on $E_2(n)$ given by rearranging the little disks. An example is shown below.
@@ -142,12 +142,18 @@ Note that giving a morphism $O\to \xi_X$ is equivalent to give a sequence of map
 
 \url{https://ncatlab.org/nlab/show/algebra+over+an+operad}
 
-NO SÉ DÓNDE PONER LA PARTE DE LAS CADENAS Y TODO ESO. EN CUANTO A ESO PREGUNTAR POR QUÉ SE COGÍA SOLO EL $E_2(2)$ Y CÓMO SE RELACIONA LA COHOMOLOGÍA DE HOCHSCHILD DE $A$ CON LA HOMOLOGÍA DEL LOOP SPACE (¿Y CUÁL ERA EL OBJETIVO DE ANALIZAR LA ACCIÓN ESA?)
+NO SÉ DÓNDE PONER LA PARTE DE LAS CADENAS Y TODO ESO. EN CUANTO A ESO PREGUNTAR POR QUÉ SE COGÍA SOLO EL $E_2(2)$ (POR EL GRADO DE LA OPERACIÓN) Y CÓMO SE RELACIONA LA COHOMOLOGÍA DE HOCHSCHILD DE $A$ CON LA HOMOLOGÍA DEL LOOP SPACE (¿Y CUÁL ERA EL OBJETIVO DE ANALIZAR LA ACCIÓN ESA? ERA POR MOTIVACIÓN)
 
 %PREGUNTARLE QUÉ SENTIDO TIENE SER QUASI-ISOMORFO A LA HOMOLOGÍA, SI LA HOMOLOGÍA DE LA HOMOLOGÍA ES 0
 %
 %CON LO DEL SUSTITUTO, SI TIENE LA MISMA HOMOLOGÍA QUE C2, ENTONCES CONSIGUES QUE C(SUSTITUTO) ACTÚE EN H(A,A), PERO DE AHÍ EN PRINCIPIO NO SE SACA LA ACCION EN C(A,A)
+\subsection{Little $n$-disks operad}\label{intervals}
+COMENTAR QUE SE PUEDEN DEFINIR PARA DIMENSIÓN CUALQUIERA Y LA ACCIÓN SE MANTIENE PERO QUE LOS DE DIMENSIÓN SUPERIOR SON COMPLICADOS TOPOLÓGICAMENTE (PONER ALGUNA REFERENCIA, QUIZÁ MAY) Y EL DE DIMENSIÓN ES SIMPLE, PROBAR QUE ES CONTRÁCTIL:
 
+TENGO QUE PROBAR QUE EL LITTLE INTERVALS ES A INFINITO: MI IDEA ES QUE SE TRATA DE PONER $N$ PUNTOS ORDENADOS EN LÍNEA (POR SER DEL TIPO DE HOMOTOPÍA DEL ESPACIO DE CONFIGURACIONES), ASÍ QUE SE PUEDEN MOVER SIEMPRE PARA QUE ESTÉN COLOCADOS EN POSICIONES CONCRETAS
+
+
+ESTO ES INTERESANTE, LO DEJO AQUÍ \url{https://amathew.wordpress.com/2011/11/13/operads-i/}
 
 \section{Operads in symmetric monoidal categories}
 We've treated operads only in the category of topological spaces, but they can be defined in a more general setting, namely, in any \emph{symmetric monoidal category} \cite{Yau}. We're going to introduce this categories since it becomes more natural to talk about operads and other constructions in other categories having that framework in advance.
@@ -192,9 +198,18 @@ If we drop the braiding from the definition above we obtain what is simply calle
 \begin{enumerate}
 \item The categories $\Set$ and $\Top$ are symmetric monoidal categories with the cartesian product as tensor product and a singleton as unit. 
 \item For $k$ some field, the category $\Vect_k$ of $k$-vector spaces carries the standard structure of a monoidal category coming from the tensor product, over $k$, of vector spaces. The standard braiding that identifies $V\otimes W$ with $W\otimes V$ by mapping homogeneous elements $v\otimes w$ to $w\otimes v$ obviously makes $\Vect_k$ into a symmetric monoidal category. 
+
+\item The category $\Cat$ of small categories (the collection of objects and the collection of morphisms are both sets) is symmetric monoidal with the product of categories and the category of one object and only the identity morphism as unit.
+
 \end{enumerate}
-CHAIN COMPLEXES \url{https://ncatlab.org/nlab/show/tensor+product+of+chain+complexes} LA FORMAN SIN SYMMETRIC PERO NO TENGO CLARO CUÁLES SON LAS DIFERENCIALES DEL COMPLEJO UNIDAD. A LAS OPERADS AQUÍ SE LE LLAMAN DG-OPERAD (DIFFERENTIAL GRADED) \url{https://ncatlab.org/nlab/show/dg-operad}
+CHAIN COMPLEXES \url{https://ncatlab.org/nlab/show/tensor+product+of+chain+complexes} LA FORMAN SIN SYMMETRIC (PERO LO ES PORQUE OBJETO A OBJETO LO ES) PERO NO TENGO CLARO CUÁLES SON LAS DIFERENCIALES DEL COMPLEJO UNIDAD. A LAS OPERADS AQUÍ SE LE LLAMAN DG-OPERAD (DIFFERENTIAL GRADED) \url{https://ncatlab.org/nlab/show/dg-operad}
+
+
+SIMPLICIAL SETS
+
 SI ME HACE FALTA HABLO DE MÓDULOS Y DE ÁLGEBRAS
+
+
 \end{ex}
 
 (LAX) MONOIDAL FUNCTORS \url{https://ncatlab.org/nlab/show/monoidal+functor}
