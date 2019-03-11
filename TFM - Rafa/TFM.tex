@@ -271,47 +271,33 @@ Finalmente, ejemplificaremos la eficacia del método con experimentos reales. Ex
 \newpage
 \thispagestyle{empty}
 %\pagenumbering{arabic} % para empezar la numeración con números
-\chapter{Planteamiento teórico del problema}
-\section{Introducción al problema del emparejamiento}
-\subsection{El problema del $b$-emparejamiento}
-Dado que nuestro objetivo es el estudio paramétrico del problema del emparejamiento y la versión multiobjetivo del mismo, comenzamos este trabajo exponiendo en qué consiste el problema del ejemparejamiento o problema del \textit{matching}. Para ello, comenzamos definiendo qué entendemos por grado de un subconjunto de vértices
+\chapter{El problema del emparejamiento}
+\section{El problema del $b$-emparejamiento}
+Dado que nuestro objetivo es el estudio paramétrico del problema del emparejamiento y la versión multiobjetivo del mismo, comenzamos este trabajo exponiendo en qué consiste el problema del ejemparejamiento o problema del \textit{matching}. Para ello, comenzamos definiendo algunos conceptos básicos en el marco de la teoría de grafos.
 \begin{defi}
-Sea $G=(V,E)$ un grafo y sea $S \subset V$, definimos $\delta(S)$ como el conjunto de aristas con un único extremo en $S$. En el caso de un conjunto unitario $\{i\}$, denotamos $\delta(i):=\delta(\{i\})$. Definimos además $\gamma(S)$ como el conjunto de aristas que tienen ambos extremos en $S$.
+Sea $G=(V,E)$ un grafo y sea $S \subset V$, definimos $\delta(S)$ como el conjunto de aristas con un único extremo en $S$. En el caso de un conjunto unitario $\{i\}$, denotamos $\delta(i):=\delta(\{i\})$. Usualmente se denomina \textbf{grado del vértice $i$} al cardinal de $\delta(i)$. Definimos además $\gamma(S)$ como el conjunto de aristas que tienen ambos extremos en $S$.
 \end{defi}
 
-En adelante consideramos siempre $G=(V,E)$ un grafo no dirigido. El problema del \textit{matching} consiste en encontrar un subconjunto $M\subset E$ con la propiedad de que en el subgrafo inducido $G(M)=(V,M)$ ningún vértice tenga grado mayor que $1$, es decir, que ninguna arista tenga vértices en común. Naturalmente, este problema es fácilmente generalizable al problema del $b$-emparejamiento o $b$-\textit{matching}, en el cual cada vértice $i$ debe tener un grado no mayor que $b_i$, donde $b_i$ es un entero positivo. El problema original pasaría a ser el caso particular en el que $b_i = 1$ $\forall i \in V$.
+En adelante consideramos siempre $G=(V,E)$ un grafo no dirigido. El problema del \textit{matching} consiste en encontrar un subconjunto $M\subset E$ con la propiedad de que en el subgrafo inducido $G(M)=(V,M)$ ningún vértice tenga grado mayor que $1$, es decir, que ninguna arista tenga vértices en común. Naturalmente, este problema es fácilmente generalizable al problema del $b$-emparejamiento o $b$-\textit{matching}, en el cual cada vértice $v$ debe tener un grado no mayor que $b_v$, donde $b_v$ es un entero positivo. El problema original pasaría a ser el caso particular en el que $b_v = 1$ $\forall v \in V$.
 
 \begin{defi}
-Sea $G=(V,E)$ un grafo y sea $M\subset E$ un $b$-emparejamiento. Diremos que $M$ es un \textbf{emparejamiento perfecto} si $\delta(v_i)=b_i$ $\forall i \in V$, es decir, si las restricciones se verifican con igualdad.
+Sea $G=(V,E)$ un grafo y sea $M\subset E$ un $b$-emparejamiento. Diremos que $M$ es un \textbf{emparejamiento perfecto} si $|\delta(v)|=b_v$ $\forall v \in V$, es decir, si las restricciones se verifican con igualdad.
 \end{defi}
-Para cada $(i,j)\in E$ podemos considerar el peso o coste $c_{ij}$ asociado. Dependiendo del contexto en el que estemos trabajando estos pesos pueden ser números reales, reales positivos, enteros no negativos, etc. Dado un conjunto de aristas $M$, tiene sentido considerar
+Para cada $(u,v)\in E$ podemos considerar el peso o coste $c_{uv}$ asociado. Dependiendo del contexto en el que estemos trabajando estos pesos pueden ser números reales, reales positivos, enteros no negativos, etc. En este trabajo consideraremos que los costes son reales no negativos. Dado un conjunto de aristas $E'\subset E$, tiene sentido considerar
 $$
-c(M)=\sum_{(i,j)\in M} c_{ij}
+c(E')=\sum_{(u,v)\in E'} c_{uv}
 $$
-El problema del $b$-emparejamiento de coste máximo \textit{weighted $b$-matching problem} consiste en encontrar el $b$-emparejamiento que maximiza la función $c(\cdot)$. Si nos ceñimos únicamente a los emparejamientos perfectos, también tiene sentido considerar el problema de encontrar el que tiene peso mínimo. En general, cuando $c_{ij}=1$ $\forall (i,j)\in E$, el problema se denomina de cardinalidad o \textit{cardinality problem}. Este puede ser formulado como un problema de programación entera
+El problema del $b$-emparejamiento de coste máximo o \textit{weighted $b$-matching problem} consiste en encontrar el $b$-emparejamiento que maximiza la función $c(\cdot)$. Si nos ceñimos únicamente a los emparejamientos perfectos, también tiene sentido considerar el problema de encontrar el que tiene peso mínimo. En general, cuando $c_{uv}=1$ $\forall (u,v)\in E$, el problema se denomina de cardinalidad o \textit{cardinality problem}.
+
+El problema del matching puede ser formulado como un problema de programación entera
 \begin{align*}
-\max_{x} &\; \sum_{(i,j)\in E} x_{ij}c_{ij}  \nonumber\\ 
+\max_{x} &\; \sum_{(u,v)\in E} x_{uv}c_{uv}  \nonumber\\ 
 s.a.\;  &  Ax\leq b \\
 & x\in\{0,1\}^n\nonumber
 \end{align*}
-donde $c$ es el vector de pesos, $A$ es la matriz de incidencia del grafo, $|E|=n$ y la variable $x_{ij}=1$ si la arista $(i,j)$ está en el emparejamiento y $0$ en caso contrario. Nótese que si $G$ es un grafo bipartito entonces $A$ es una matriz totalmente unimodular y, en ese caso, los puntos extremos del poliedro $\{x \in \R^n_+\mid Ax\leq b\}$ son precisamente los $b$-emparejamientos.
-En general, podemos formular las restricciones que obligan a que nuestra solución sea un emparejamiento de la forma
-\begin{align*}
-\sum_{(i,j)\in\delta(i)} x_{ij} &\leq 1, \quad \forall i \in V\\
- x_{ij}&\geq 0 \quad \forall (i,j) \in E\\
-x_{ij} &\in \Z^+  \quad \forall (i,j) \in E 
-\end{align*}
-Si queremos optimizar sobre emparejamientos perfectos, el primer bloque de restricciones ha de darse con igualdad.
-\subsection{Emparejamiento perfecto de coste mínimo (MCPM)}
-En adelante consideraremos que $c_{ij}\geq 0$ $\forall (i,j)\in E$, es decir, los pesos son no negativos. Si además imponemos que nuestro matching sea perfecto, tiene sentido considerar el problema del emparejamiento perfecto de coste mínimo o \textit{minimum-cost perfect matching}. Este problema será al cual nos referiremos usualmente a lo largo del trabajo y puede ser formulado como 
-\begin{align}
-\min_{x} &\; \sum_{(i,j)\in E} x_{ij}c_{ij} \nonumber&\\ 
-s.a.&\; \sum_{(i,j)\in\delta(i)} x_{ij} = 1, \quad \forall i \in V\\
-& x_{ij}\geq 0 \quad \forall (i,j) \in E\\
-& x_{ij} \in \Z^+  \quad \forall (i,j) \in E \label{ent}
-\end{align}
+donde $c$ es el vector de pesos, $A$ es la matriz de incidencia del grafo, $|E|=n$ y la variable $x_{uv}=1$ si la arista $(u,v)$ está en el emparejamiento y $0$ en caso contrario. Nótese que si $G$ es un grafo bipartito entonces $A$ es una matriz totalmente unimodular y, en ese caso, los puntos extremos del poliedro $\{x \in \R^n_+\mid Ax\leq b\}$ son precisamente los $b$-emparejamientos.
 
-La mayoría de algoritmos para solucionar problemas de optimzación de funciones lineales sobre emparejamientos están basados en la programación lineal gracias al resultado que probó Edmonds en \cite{edmond}, que pasamos a enunciar.
+Es claro que la formulación como problema de programación entera no suele resultar la más conveniente. La mayoría de técnicas y algoritmos para resolver este problema de manera eficiente utilizan instrumentos basados en la dualidad de la Programación Lineal. Esto es posible gracias a un importante resultado que probó Edmond \cite{edmond}, que pasamos a enunciar.
 \begin{thm}
 Sea $G=(V,E)$ un grafo. Sea $B$ el conjunto
 $$
@@ -319,677 +305,68 @@ B = \{S\subset V \mid |S| \text{ es impar},\;|S|\geq 3\}
 $$
 Entonces, la envolvente convexa del politopo del matching viene dada por
 \begin{align}
-\sum_{j:(i,j)\in E} x_{ij} &\leq 1, \quad \forall i \in V\tag{1.1}\\
-x_{ij} &\geq 0\tag{1.2}\\
-\sum_{(i,j)\in \gamma(S)} x_{ij}& \leq \frac{1}{2}(|S|-1)\quad \forall S \in B	\tag{1.4} \label{esoes}
+\sum_{(u,v)\in\delta(u)} x_{uv} &\leq 1, \quad \forall u\in V\tag{1.1}\\
+x_{uv} &\geq 0\tag{1.2}\\
+\sum_{(u,v)\in \gamma(S)} x_{uv}& \leq \frac{1}{2}(|S|-1)\quad \forall S \in B	\tag{1.4} \label{esoes}
 \end{align}
 Además, si nos restringimos a los emparejamientos perfectos, entonces basta considerar únicamente la igualdad en el primer bloque de restricciones.
 \end{thm}
-Es decir, si sustituímos la condición \ref{ent} por la \ref{esoes} en el MCPM pasamos de trabajar con un problema de programación entera a un problema de programación lineal. De esta form podemos considerar el problema dual
+
+Resumiendo nuestras asunciones, consideraremos que $c_{uv}\geq 0$ $\forall (u,v)\in E$, es decir, los pesos son no negativos. Además, imponemos que los grafos estudiados admiten un matching perfecto. Principalmente, vamos a estudiar técnicas para resolver y reoptimiar el el problema del emparejamiento perfecto de coste mínimo o \textit{minimum-cost perfect matching problem} (MCPM). Usando el teorema anterior, este puede ser furmulado como
+\begin{align*}
+\min_x & \sum_{(u,v) \in E}x_{uv}c_{uv}\\
+s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} \leq 1, \quad \forall u \in V\\
+&\sum_{(u,v)\in \gamma(S)} x_{uv} \leq \frac{1}{2}(|S|-1)\quad \forall S \in B	\\
+&x_{uv} \geq 0 \qquad \forall(u,v)\in E
+\end{align*}
+Dado que estamos ante la formulación de un problema de Programación Lineal, tiene sentido que consideremos el problema dual asociado
 \begin{align*}
 \max_{y} &\; \sum_{v\in V} y_v - \sum_{S\in B} \frac{1}{2}(|S|-1)y_S\\
 s.a.&\;y_u+y_v - \sum_{S\in B,(u,v)\in \gamma(S)}y_S  \leq c_{uv} \quad \forall (u,v)\in E\\
 &y_S\geq 0 \quad \forall S\in B
 \end{align*}
-
-\newpage 
-\begin{thm}[Ley fuerte de los grandes números]\label{grandesnumeros}
-Sea $\{X_N\}$ una sucesión de variables aleatorias independientes e idénticamente distribuidas (i.i.d) con esperanza finita. Sea $\mu = E[X_N]$ entonces:
-\begin{gather*}
-\frac{1}{N} \sum_{i=1}^N X_i \convcs \mu
-\end{gather*}
-\end{thm}
-\begin{thm}[Teorema central del límite]
-Sea $\{X_N\}$ una sucesión de variables aleatorias i.i.d con varianza finita y no nula. Sean $\mu = E[X_N]$ y $\sigma^2 = V[X_N]$ entonces:
-\begin{gather*}
-\sqrt{N}\frac{\frac{1}{N} \sum_{i=1}^N X_i-\mu}{\sigma} \conv{L} N(0,1)
-\end{gather*}
-donde $N(0,1)$ denota la distribución normal de media $0$ y varianza $1$.
-\end{thm}
 \begin{defi}
-Sea $f\func{\R^n\times \Xi}{\R}$. Diremos que $f(x,y)$ es una función de Carathéodory si $f(x,\cdot)$ es medible para cada $x\in\R^n$ y $f(\cdot,y)$ es continua para cada $y\in\Xi$.
+Sea $y$ una solución factible del problema dual, definimos el \textbf{coste reducido de un eje $(u,v)$ asociado a $y$} como
+$$
+c_{uv}'(y) = c_{uv} - y_u -y_v + \sum_{S\in B,(u,v)\in \gamma(S)} y_S
+$$ 
 \end{defi}
-\begin{defi}
-Sea una sucesión de funciones $f_N \func{\chi\subset \R^n}{\overline{\R}}$. Diremos que $\{f_N(x)\}$ epiconverge a $f(x)$ y denotaremos $f_N\conve f$ si se verifica
-\begin{itemize}
-\item Para cada sucesión $\{x_N\}$ tal que $x_N\to x$ 
-$$
-\liminf_{N\to\infty} f_N(x_N)\geq f(x)
-$$
-\item Existe $\{x_N\}$ tal que $x_N \to x$ y tal que
-$$
-\limsup_{N\to\infty} f_N(x_N)\leq f(x)
-$$
-\end{itemize}
-\end{defi}
-
-\begin{defi}
-Sea $f\func{\chi}{\overline{\R}}$. Diremos que $f$ es semicontinua inferiormente en $x_0$ si 
-$$
-\liminf_{x\to x_0}f(x)\geq f(x_0)
-$$
-Análogamente $f$ se dice semicontinua superiormente en  en $x_0$ si
-$$
-\limsup_{x\to x_0}f(x)\leq f(x_0)$$
-\end{defi}
-\begin{defi}
-Sea $f\func{\chi}{\overline{\R}}$. Para cada $\alpha\in\R$ definimos los conjuntos de nivel inferiores como $\{x\in \chi\mid f(x)\leq \alpha\}$.  
-\end{defi}
-\begin{prop}\label{level}
-Una función es semicontinua inferiormente si y solo si los conjuntos de nivel inferiores son cerrados.
-\end{prop}
-\begin{defi}
-Sean $A,B\subset \R^n$. Definimos la distancia de $x\in\R^n$ a $A$ como
-$$
-dist(x,A):=\inf_{y\in A}||x-y||
-$$
-y la desviación del conjunto $A$ del conjunto $B$ como
-$$
-\mathbb{D}(A,B):=\sup_{x\in A}dist(x,B)
-$$
-Por convenio, diremos $dist(x,\emptyset)=\infty
-$. 
-\end{defi}
-\section{Valor y soluciones óptimas}
-\subsection{Caso general}
-Primeramente veremos un teorema que nos asegure convergencia del valor óptimo y del conjunto de soluciones factibles en la formulación general del problema.
-\begin{thm}
-Supongamos que $X$, conjunto factible de (\ref{eq:1}) es cerrado y que existe un compacto de $C\subset \R^n$ tal que 
-\begin{enumerate}
-\item El conjunto $S$ de soluciones óptimas de (\ref{eq:1}) es no vacío y está contenido en $C$.
-\item La función $f_0(x)$ tiene imagen finita y es continua en $C$.
-\item $\hat{f}_{0N}\convcs f_0$ uniformemente en $C$ cuando $N\to \infty$.
-\item Con probabilidad 1 para $N$ suficientemente grande $\hat{S}_{N}$ es no vacío y $\hat{S}_N\subset C$
-\item Para toda sucesión $\{x_N\}$ con $x_N\in \hat{X}_N$ y $x_N\convcs  x$, entonces $x\in X$. 
-\item $\exists x\in S$ tal que $\exists\{x_N\}$ con $ x_N \in \hat{X}_N$ tal que $x_N\convcs x$. 
-\end{enumerate}
-Entonces $\va\to \vartheta^*$ y $\mathbb{D}(\hat{S}_N,S)\to 0$  con probabilidad 1 cuando $N\to \infty$.
-\end{thm}
-Una prueba de este teorema puede encontrarse en \cite{lecture}.
-
-\subsection{Restricciones determinísticas}
-Veamos algunos resultados para el caso en el que $\hat{X}_N=X$, es decir, cuando las restricciones son determinísticas. Vamos a enunciar algunos resultados con características sobre $X$, que bien podrían ser enunciados sobre $\chi$, pero sería claramente innecesario.
-\begin{nota}
-Si las restricciones del problema son determinísticas, entonces las dos últimas condiciones del Teorema 2.2.1 son innecesarias y se tiene el mismo resultado.
-\end{nota}
-\begin{prop} Supongamos que $\hat{f}_{0N}(x)$ converge a $f_0(x)$ con probabilidad 1 cuando $N\to \infty$ uniformemente en $X$. Entonces $\va$ converge con probabilidad 1 a $\vartheta^*$ cuando $N\to \infty$.
-\end{prop}
-\begin{dem}
-Aunque lo omitamos, la función $\hat{f}_{0N}$ es aleatoria, pues depende de la muestra, es decir $\hat{f}_{0N}(x)=\hat{f}_{0N}(x,\omega)$. La convergencia uniforme con probabilidad 1 nos dice que $\forall \varepsilon >0$ y para casi todo $\omega \in \Xi$ $\exists N^*=N^*(\varepsilon,\omega)$ tal que, $\forall N\geq N^*$
-$$
-\sup_{x\in X}\abs{\hat{f}_{0N}(x,\omega)-f_0(x)}\leq \varepsilon
-$$
-Se sigue inmediatamente que $\abs{\va-\vartheta^*}\leq\varepsilon$ para todo $N\geq N^*$. \qed
-\end{dem}
-\begin{prop}\label{desi} Si $X$ es compacto y las funciones involucradas son continuas, entonces
-$$
-\abs{\va-\vartheta^*}\leq \delta_N:= \max_{x\in X}\abs{\hat{f}_{0N}(x)-f_0(x)}
-$$
-\end{prop}
-\begin{nota}
-El resultado se seguiría manteniendo de manera trivial si prescindimos de las hipótesis sobre las funciones pero imponemos que el conjunto $X$ sea finito.
-\end{nota}
-\begin{dem}
-La hipótesis de compacidad se usa para garantizar la existencia de máximos y mínimos
-$$
--\max_{x\in X}|f(x)| = \min_{x\in X}-|f(x)| \leq \min_{x\in X}f(x)
-$$
-Se tiene
+\subsection{El problema del emparejamiento paramétrico y biobjetivo}
+Una vez que hemos presentado los conceptos básicos para entender el MCPM, podemos definir una clase más general de problemas a los cuáles dedicaremos especial atención durante los procesos de reoptimización. Definimos el \textit{problema del emparejamiento paramétrico respecto de $R\subset E$} con parámetro $\lambda$ como
 \begin{align*}
-\min_{x\in X}\hat{f}_{0N}(x) &= \min_{x\in X}(\hat{f}_{0N}(x)+f_0(x)-f_0(x)) \\
-&\geq \min_{x\in X}(\hat{f}_{0N}(x)-f_0(x))+\min_{x\in X}f_0(x)\\
-&\geq -\max_{x\in X}\abs{\hat{f}_{0N}(x)-f_0(x)}+\min_{x\in X}f_0(x)
+\min_x & \sum_{(u,v) \in E}x_{uv} (c_{uv} + \lambda d_{uv})\\
+s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} \leq 1, \quad \forall u \in V\\
+&\sum_{(u,v)\in \gamma(S)} x_{uv} \leq \frac{1}{2}(|S|-1)\quad \forall S \in B	\\
+&x_{uv} \geq 0 \qquad \forall(u,v)\in E
 \end{align*}
-Por lo que
+donde 
 $$
-\delta_N \geq \va-\vartheta^*
+d_{uv} = \begin{cases}
+1 & (u,v)\in R\\
+0 & (u,v)\notin R
+\end{cases}
 $$
-La otra desigualdad se deduce del siguiente razonamiento
+Este problema puede verse como la relajación lagrangiana del problema del matching con una cota superior y es ampliamente estudiado por Ball y Taverna en \cite{balltab}. 
+
+Más generalmente, si consideramos dos funciones de coste $c^1$ y $c^2$ cualesquiera y un parámetro $\lambda$, podemos formular el problema del emparejamiento biobjetivo
 \begin{align*}
-\min_{x\in X}{f}_{0}(x) &= \min_{x\in X}(f_0(x)-\fn(x)+\fn(x)) \\
-&\geq \min_{x\in X}(f_0(x)-\hat{f}_{0N}(x))+\min_{x\in X}\fn(x)\\
-&\geq -\max_{x\in X}\abs{\hat{f}_{0N}(x)-f_0(x)}+\min_{x\in X}\fn(x)
+\min_x & \sum_{(u,v) \in E}x_{uv}(c^1_{uv}+\lambda c^2_{uv})\\
+s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} \leq 1, \quad \forall u \in V\\
+&\sum_{(u,v)\in \gamma(S)} x_{uv} \leq \frac{1}{2}(|S|-1)\quad \forall S \in B	\\
+&x_{uv} \geq 0 \qquad \forall(u,v)\in E
 \end{align*}
-Por tanto
-$$
-\delta_N\geq \vartheta^*-\va
-$$ \qed
-\end{dem}
-\subsubsection*{Conjunto factible finito}
-Si mantenemos que $X=\hat{X}_N$ y además imponemos que $X$ sea conjunto finito, podemos mejorar algunos resultados.
-\begin{prop}
-Se tienen las siguientes propiedades
-\begin{itemize}
-\item $\va\convcs \vartheta^*$ cuando $N\to \infty$.
-\item Para todo $\varepsilon\geq 0$ el suceso $\{\hat{S}^\varepsilon_N\subset S^\varepsilon\}$ ocurre con probabilidad 1 para $N$ suficientemente grande.
-\end{itemize}
-\end{prop}
-\begin{dem}
-\begin{itemize}
-\item[]
-\item Se sigue de manera inmediata a partir de la ley fuerte de los grandes números (Teorema \ref{grandesnumeros}) que para cada $x\in S$, $\fn(x)$ converge de manera casi segura a $f_{0}(x)$. Dado que que $X$ es finito y la unión finita de conjuntos de medida nula es de medida nula, tenemos que $\fn(x)$ converge de manera uniforme $f_0(x)$, es decir,
-$$
-\max_{x\in X}\abs{\hat{f}_{0N}(x)-f_0(x)}\convcs 0 \qquad N\to \infty
-$$
-Junto a la Proposición~\ref{desi} se tiene el primer punto.
-\item Dado un $\varepsilon\geq 0$ podemos considerar
-$$
-\rho(\varepsilon):=\min_{x\in X\setminus S^\varepsilon}f_{0}(x)-\vartheta^*-\varepsilon
-$$
-Dado cualquier $x\in X\setminus S^\varepsilon$, por definición $f_0(x)>\vartheta^*+\varepsilon$ y siendo $X$ un conjunto finito, se sigue que $\rho(\varepsilon)>0$. Luego, $\forall x \in X$ $f_0(x)\geq \vartheta^* +\varepsilon+\rho(\varepsilon)$.
+\section{Aplicaciones}
+\subsection{El problema de la asignación}
+Para ilustrar las distintas aplicaciones que tiene el problema del matchig, comenzamos con un problema clásico de la Investigación Operativa. El problema de asignación o \textit{assigment assignment problem} consiste en encontrar la forma de asignar recursos (máquinas, empleados, etc.) a un cierto conjunto de teareas determinadas con coste mínimo. Se supone que cada recurso se destina a una sola tarea, y que cada tarea es ejecutada por uno solo de los recursos. Es claro que este problema puede formularse como un problema de matching de coste mínimo sobre un grafo bipartito.
+\subsection{Aproximación al problema del viajante}
+El problema del viajante o \textit{travelling salesman problem} en un grafo no dirigido consiste en encontrar el ciclo hamiltoniano de peso mínimo. Este problema es NP-duro. Este problema aparece para responder a la pregunta: ¿Dada una lista de ciudades y las distancias entre cada pareja de ciudades, cuál es la ruta más corta para visitar todas las ciudades y volver a la ciudad de origen? Este problema puede formularse como problema de programación entera, como puede encontrarse en \cite{papa}. 
 
-Sea $N$ lo suficientemente grande como para asegurar que $\delta_N<\rho(\varepsilon)/2$. En particular, tenemos que $\hat{f}_{0N}(x) > f_0(x)-\rho(\varepsilon)/2$ $\forall x \in X$. Si $x\in \X\setminus S^\varepsilon$, tenemos además 
-$$
-\hat{f}_{0N}(x)> f_0(x)-\rho(\varepsilon)/2 \geq  \vartheta^* +\varepsilon+\rho(\varepsilon) - \rho(\varepsilon)/2 =  \vartheta^* +\varepsilon+\rho(\varepsilon)/2
-$$
-Usando la Proposición 2.2.2 tenemos que $\hat{\vartheta}_N-\vartheta^*\leq \delta_N < \rho(\varepsilon)/2$, Por tanto, si $x\in X\setminus S^\varepsilon$ entonces tenemos
-$$
-\hat{f}_{0N}(x)> \vartheta^* +\varepsilon+\rho(\varepsilon)/2 > \hat{\vartheta}_N + \varepsilon
-$$
-Por lo que $x\in X\setminus \hat{S}^\varepsilon_N$, de donde se deduce el resultado.
-\end{itemize} 
-\qed
-\end{dem}
-\section{Restricciones de probabilidad}
-Veamos algunos resultados referentes al problema (\ref{eq:2}). En esta sección supondremos que $\chi$ es cerrado. 
-\begin{prop}
-Sea $G(x,\xi)$ una función de Carathéodory. Entonces $\hat{f}_{1N}(x) $ y $f_1(x)$ son semicontinuas inferiormente y $\hat{f}_{1N}(x)\conve f_1(x)$ con probabilidad 1. Es más, si $\forall x\in \chi$ $G(x,\xi)\neq 0$ con probabilidad 1, entonces $\hat{f}_{1N}(x)$ es continua en $\chi$ y converge a $f_1(x)$ uniformemente en cada compacto $C\subset \chi$.
-\end{prop}
-Una demostración de este resultado puede encontrarse en \cite{chance}.
-\begin{prop}
-Supongamos que el nivel de confianza de SAA y el problema real es el mismo ($\alpha=\gamma$), $\chi$ es compacto y la función $f(x)$ es continua, $G(x,\xi)$ es una función de Carathéodory y se verifica la siguiente condición
-\begin{itemize}
-\item[(A)] Hay una solución $x^*$ del problema real tal que para todo $\varepsilon>0$ existe $x\in \chi$ tal que $\norm{x^*-x}\leq \varepsilon$ y $f_1(x)<\alpha$.
-\end{itemize}
-Entonces $\va\to\vartheta^*$ y $\D(\hat{S}_N,S)\to\infty$ con probabilidad 1 cuando $N\to\infty$.
-\end{prop}
-\begin{dem}
-Por la condición (A) el conjunto $S$ es no vacío y 
-existe un $x'$ tal que $f_1(x')<\alpha$. Que $\hat{f}_{1N}(x') \convcs f_1(x')$ se tiene por la ley fuerte de los grandes números. Por tanto, con probabilidad 1 y para $N$ suficientemente grande $\hat{f}_{1N}(x')<\alpha$ y el problema SAA tiene solución factible. De hecho, $x'\in X_N$ para $N$ suficientemente grande con probabilidad 1. Además, usando la semicontinuidad inferior de $\hat{f}_{1N}$, el conjunto factible del problema SAA $\hat{X}_N$ es compacto (es la intersección de un compacto y un cerrado [Proposición \ref{level}]) y, por tanto, por continuidad de $f_0$, $\hat{S}_N$ es no vacío con probabilidad 1 para $N$ suficientemente grande. Si $x_N\in \hat{X}_N$, entonces $f_0(x_N)\geq \va$. Utilizando $(A)$ y el razonamiento anterior podemos considerar una sucesión $x_N$ con $x_N\in \hat{X}_N$ con probabilidad 1 para $N$ suficientemente grande, tal que converge a $x^*$. Usando que $f$ es continua, tenemos que con probabilidad 1
-$$
-\limsup_{N\to\infty} \va \leq \limsup_{N\to \infty} f(x_N)=  f(x^*)=  \vartheta^*$$ 
-Sea ahora $x_N\in \hat{S}_N$. Dado que $\chi$ es compacto, renombrando una subsucesión si fuera necesario, tenemos una sucesión $x_N$ converge a un punto $\bar{x}\in \chi$ con probabilidad 1. Junto con el hecho de que $\hat{f}_{1N}\conve f_1(x)$ con probabilidad 1, tenemos que con probabilidad 1
-$$
-\liminf_{N\to\infty} \hat{f}_{1N}(x_N) \geq f_1(\bar{x})
-$$
-Se sigue que $f_1(\bar{x})\leq \alpha$ y, por tanto, $\bar{x}$ es punto factible del problema real, por lo que $f_0(\bar{x})\geq\vartheta^*$. Como también se tiene que $f(x_N)\convcs f(\bar{x})$, tenemos con probabilidad 1 que
-$$
-\liminf_{N\to\infty}\va\geq \vartheta^*
-$$
-Por tanto, $\va\to \vartheta^*$ con probabilidad 1. Además, $\bar{x}$ es solución óptima del problema real, luego $\D(\hat{S}_N,S)\to\infty$ con probabilidad 1. \qed
-\end{dem}
-\begin{nota}
-Notemos que la condición (A) es esencial para probar la convergencia casi segura de $\va$ y $\hat{S}_N$. Pensemos, por ejemplo, en una situación donde las restricciones del problema dejen un único punto factible $\bar{x}$ tal que $f_0(\bar{x})=\alpha$. Cualquier perturbación arbitrariamente pequeña en la restricción $\hat{f}_{1N}(x)\leq \alpha$ puede provocar que el conjunto factible del problema SAA sea vacío.
-\end{nota}
-\begin{nota}
-Observemos además que no hemos usado la condición (A) para probar 
-$$
-\liminf_{N\to\infty}\va\geq \vartheta^*
-$$
-\end{nota}
-\chapter{Tasa de convergencia}
-En el capítulo anterior hemos probado la consistencia de los estimadores del problema SAA bajo ciertas hipótesis. El hecho que estos converjan al menos en probabilidad asegura que el error en la estimación de los parámetros se aproxima a cero cuando el tamaño de la muestra crece. A pesar de la importancia desde un punto de vista teórico, dada una muestra no tenemos ninguna indicación de la magnitud del error que podemos estar cometiendo. 
-\begin{defi}
-Diremos que un estimador $X_n$ está estocásticamente acotado por la sucesión $\{a_n\}$ y notaremos $X_n = O_p(a_n)$ si $\forall \varepsilon>0$ $\exists M,N>0$ finitos tales que
-$$
-P(|X_n/a_n|>M)<\varepsilon \quad \forall n>N
-$$
-\end{defi}
-\begin{prop}
-Consideremos el problema (\ref{eq:1}). Si la varianza $V[F_0(x,\xi)]$ es finita y $N$ es el tamaño de la muestra, entonces $f_{0N}(x)=O_p(N^{-1/2})$.
-\end{prop} 
-\begin{dem}
-Por el Teorema Central del Límite sabemos que $\forall x \in \chi$
-$$
-\sqrt{N}\frac{\hat{f}_{0N}(x)-f_0(x)}{\sigma} \conv{L} N(0,1)$$
-donde $\sigma^2 = V[F_0(x,\xi)]$. Esto significa que $\hat{f}_{0N}(x)$ está asintóticamente distribuida como una normal $N(f_0(x),\sigma^2/N)$. Por tanto, tenemos un intervalo de confianza asintótico al $100(1-\alpha)\%$ para $f_0(x)$ dado por
-$$
-\left[ \hat{f}_{0N}(x)-\frac{z_{\alpha/2}\hat{\sigma}(x)}{\sqrt{N}},\hat{f}_{0N}(x)+\frac{z_{\alpha/2}\hat{\sigma}(x)}{\sqrt{N}} \right]
-$$
-donde $z_{\alpha/2}=\Phi^{-1}(1-\alpha/2)$, $\Phi(\cdot)$ es la función de distribución de la normal estándar y $\hat{\sigma}^2(x)$ es la cuasivarianza muestral dada por
-$$
-\hat{\sigma}^2(x) = \frac{1}{N-1}\sum_{j=1}^N\left(F(x,\xi)-\hat{f}_{0N}(x)\right)^2
-$$
-De aquí se sigue el resultado. \qed
-\end{dem}
+Aunque no puede utilizarse el problema del matching para resolver este problema, Nicos Christofides encontró un algoritmo \cite{nico} para obtener, bajo ciertas condiciones, una aproximación no mayor que $1.5$ el valor óptimo del TSP. Para este resultado es necesario imponer que las distancias estén en el marco de un espacio métrico, es decir, han de ser simétricas y verifica la desigualdad triangular.
+
+
+\chapter{El método SAP}
+
 \newpage
-\section{Restricciones determinísticas}
-Volvamos a considerar el caso donde $X_N=X$. Sabemos que en estos casos podemos hablar indistintamente de $\chi$ o $X$, renombrando $\chi:=X$ si hiciera falta.
-
-\begin{prop}
-Se verifica 
-$$
-\vartheta^* \geq \E[\va]
-$$
-\end{prop}
-\begin{dem}
-Claramente, $\forall x' \in X$ tenemos que $\hat{f}_{0N}(x')\geq \inf_{x\in X} \hat{f}_{0N}(x)$. Ahora podemos tomar esperanza a ambos lados y tomar ínfimo en el izquierdo, obteniendo así
-$$
-\inf_{x\in X}\E\left[\hat{f}_{0N}(x)\right]\geq \E\left[\inf_{x\in X}\hat{f}_{0N}(x)\right]
-$$
-Dado que $\E[\hat{f}_{0N}(x)]=f_0(x)$ y además $\inf_{x\in X}\hat{f}_{0N}(x)=\va$ obtenemos 
-$$
-\hat{f}_{0N}(x) \geq \vartheta^* \geq \E[\va]
-$$\qed
-\end{dem}
-\begin{prop}
-Para todo $n\in \N$ se verifica
-$$
-\E[\va]\leq \E[\hat{\vartheta}_{N+1}]\leq \vartheta^*
-$$
-\end{prop}
-\begin{dem}
-Es inmediato por la proposición anterior que $\E[\hat{\vartheta}_{N+1}]\leq \vartheta^*$. Podemos escribir
-$$
-\hat{f}_{0N+1}(x)=\frac{1}{N+1}\sum_{i=1}^{N+1}\left[\frac{1}{N}\sum_{j\neq i} F_0(x,\xi^j)\right]
-$$
-Se sigue 
-\begin{align*}
-\E[\hat{\vartheta}_{N+1}] &= \E\left[\inf_{x\in X}\hat{f}_{0N+1}(x)\right]\\
-&=\E\left[\inf_{x\in X}\frac{1}{N+1}\sum_{i=1}^{N+1}\left(\frac{1}{N}\sum_{j\neq i} F_0(x,\xi^j)\right)\right]\\
-&\geq \E\left[\frac{1}{N+1}\sum_{i=1}^{N+1}\left(\inf_{x\in X}\frac{1}{N}\sum_{j\neq i} F_0(x,\xi^j)\right)\right]\\
-&=\frac{1}{N+1}\sum_{i=1}^{N+1}\E\left[\inf_{x\in X}\frac{1}{N}\sum_{j\neq i} F_0(x,\xi^j)\right]\\
-&=\frac{1}{N+1}\sum_{i=1}^{N+1}\E[\va]\\
-&=\E[\va]
-\end{align*}\qed
-\end{dem}
-\newpage
-\begin{prop}
-Supongamos que $X$ es compacto y se verifican las condiciones
-\begin{itemize}
-\item[(A1)] Existe algún $\bar{x}\in X$ tal que $\E[F(\bar{x},\xi)^2]$ es finito.
-\item[(A2)] Existe una función medible $C\func{\Xi}{\R_+}$ tal que $\E[C(\xi)^2]$ es finito y 
-$$\abs{F_0(x,\xi)-F_0(x',\xi)}\leq C(\xi)\norm{x-x'}
-$$
-para todo $x,x'\in X$ y casi todo $\xi\in\Xi$.
-\end{itemize}
-entonces se tiene:
-\begin{gather*}
-\va=\inf_{x\in S}\hat{f}_N(x)+O_p(N^{-1/2})
-\end{gather*}
-Si $S=\{\bar{x}\}$ es un conjunto unitario, entonces
-$$
-N^{1/2}\left(\va-\vartheta^*\right)\conv{L} N(0,\sigma^2(\bar{x}))
-$$
-\end{prop}
-Una demostración de esta proposición puede encontrarse en \cite{lecture}
-
-%
-\chapter{Experimentos}
-Con el fin de ilustrar el potencial del método, vamos a aplicarlo a dos experimentos y presentaremos los resultados. Para modelar y resolver los problemas utilizaremos el software Gurobi (v. 8.0.0) con una interfaz de Python (v. 3.6.2).
-
-Nuestro objetivo será minimizar los costes al elegir dentro de una determinada gama de $n$ proyectos, imponiendo que la probabilidad de que el rendimiento se mayor o igual que una cierta constante $v$ sea mayor o igual que una cierta probabilidad $1-\alpha$. Aceptar el proyecto $i$ implica asumir un coste $c_i$ fijo y proporciona un rendimiento aleatorio $w_i$. Denotemos $W=(w_1,\dotsc,w_n)$, vector aleatorio de marginales independientes. De esta forma, el problema de optimización considerado es
-\begin{align*}
-\min_{x}&\;\sum_{i=1}^n c_i x_i\\
-s.a.&\; P\left[\sum_{i=1}^n w_i x_i \geq v\right]\geq 1-\alpha\\
-&\; x \in \{0,1\}^n
-\end{align*}
-Para la distribución de los rendimientos plantearemos los casos. En primer lugar que $W$ es un vector normal multivariante, y en el segundo una mixtura de normales independientes.
-
-En cualquier caso, el problema real induce un problema SAA que tenemos que resolver. Sea $W_1,\dotsc,W_N$ una muestra de tamaño $N$ del vector aleatorio $W$. Dadas las limitaciones que tenemos para resolver problemas de programación entera con restricciones cuadráticas es necesario que hagamos uso de una constante auxiliar $K>0$ que nos permita formular el problema, que puede formularse de la siguiente forma 
-\begin{align*}
-\min_{x,z}&\;\sum_{i=1}^n c_i x_i\\
-s.a.&\; W_i'x-v\geq - K(1-z_i) \quad \forall i =1,\dotsc,N\\
-& \frac{1}{N}\sum_{i=1}^Nz_i \geq 1-\alpha \\
-&\; x \in \{0,1\}^n\\
-&\; z\in \{0,1\}^N
-\end{align*}
-Expliquemos esta formulación. Cuando tratamos de traducir la restricción probabilística a una que pueda implementarse en nuestro software aparece de manera natural unas ciertas variables $z_i$ que deben contar el número de veces que la muestra verifica la desigualdad deseada. Si $z_i=1$ entonces la restricción $W_i'x - v$ se verifica mientras que si $z_i=0$ entonces no se impone nada sobre su cumplimiento, pues tomamos $K$ tal que $\forall x$ $P[W'x-v\leq -K]$ sea despreciable.
-
-\section{Normal multivariante}
-Para el caso práctico supondremos que $n=17$, $1-\alpha = 0.	95$, $v=18$ y vector de costes
-\begin{gather*}
-c_{1:9} = \left(\begin{array}{ccccccccc}
-0.55& 0.57& 0.46& 0.02&0.25& 0.34& 0.89& 0.49 &0.50\end{array}\right)\\
-c_{10:18}=\left(\begin{array}{ccccccccc}
-0.91 & 0.52& 0.4& 0.6& 0.2&0.225& 0.344& 0.9& 0.45
-\end{array}\right)
-\end{gather*}
-Los parámetros de las variables los generaremos de manera aleatoria pero con una semilla fija. 
-
-
-Comencemos generando los datos del problema. En este caso, utilizamos una semilla fija para asegurar la reproducibilidad del experimento.
-\begin{erre}
-set.seed(481516)
-mu = abs(round(rnorm(17,1.5,1),2))
-# Imponemos que mu sea un vector de números positivos
-# pues suponemos que son rendimientos económicos de los
-# distintos proyectos.
-sigma = abs(round(rnorm(17,0,0.3),2))
-\end{erre}
-
-Ahora que ya tenemos todos los datos del problema, vamos a resolverlo en R por enumeración completa. Esto nos facilitará posteriormente una primera impresión sobre la capacidad del método.
-\newpage
-\begin{erre}
-#########################################
-#                                       #
-#  Scripts para solucionar el problema  #
-#     real por enumeración completa     #
-#                                       #
-#########################################
-
-# Unos comandos para limpiar el entorno
-closeAllConnections()
-rm(list=ls())
-
-# Dimensión del problema
-n = 17
-
-# Con el siguiente comando obtenemos una enumeración
-# completa de {0,1}^n
-
-A <-expand.grid(rep(list(0:1),n))
-colnames(A)<-NULL
-B = as.matrix(A)
-
-# Escribimos el vector de costes
-c = c(0.55, 0.57, 0.46, 0.02,0.25, 0.34, 0.89, 0.49 ,0.50,
-	  0.91, 0.52, 0.4, 0.6, 0.2,0.225, 0.344, 0.9)
-
-# Fijamos la constante del rendimiento
-v = 18
-
-# Y finalmente el parámetro de probabilidad 1-alfa
-alfa = 0.05
-beta = 1-alfa
-
-# Distribución normal
-#####################
-
-# Como suponemos independencia, calculamos la probabilidad
-# de una normal univariante de media c'mu y varianza
-# (c^2)'sigma^2, donde mu y sigma son los vectores de 
-# las respctivas medias y desviaciones.
-
-set.seed(481516)
-mu = abs(round(rnorm(17,1.5,1),2))
-sigma = abs(round(rnorm(17,0,0.3),2))
-
-# Con la siguiente función calculamos el valor de la restricción
-normi <- function(q){
-  mus = t(q)%*%mu;
-  sigmas = sqrt((t(q)%*%sigma^2)); 
-  # La desviación típica de la suma es la raíz de la suma de las varianzas.
-  a = 1-pnorm(v,mean = mus, sd = sigmas)
-  return(a)}
-
-# Este método nos devuelve las posibilidades que verifican la restricción
-m = c();
-for (i in 1:2^n){
-  if (normi(B[i,])<beta){
-    m = append(m,i)}
-}
-if (length(m)==0){
-  D = B
-  }else
-  {
-D = B[-m,]}
-head(D)
-
-# A continuación minimizamos 
-
-obje <- function(q){
-  t(c)%*%q
-  }
-H = apply(D,1,obje)
-head(H)
-
-# Obtenemos la/s solución/es 
-S = D[which(H==min(H)),]
-S
-
-# Y el valor objetivo
-nu = min(H)
-nu  
-\end{erre}
-\begin{erre}
-> S
- [1] 0 1 0 1 1 1 0 0 0 0 1 1 1 1 1 0 1
-> nu
- [1] 4.369
-\end{erre}
-Por tanto, tenemos solución única con valor objetivo $4.369$. A continuación vamos a presentar un script, también en R, para generar un conjunto de muestras de una normal 10-variante con los parámetros anteriores (las componentes se suponen independientes). En nuestro experimento vamos a resolver, para cada tamaño muestral considerado, 20 problemas y considerar la solución media como solución asociada a dicho tamaño muestral. 
-
-
-\begin{erre}
-###################################
-#                                 #
-#  Scripts para generar muestras  #
-#                                 #
-###################################
-
-# Unos comandos para limpiar el entorno
-closeAllConnections()
-rm(list=ls())
-
-# Número de problemas que vamos a resolver para cada tamño muestral
-M = 20;
-
-library(mvtnorm)
-
-# Fijamos la semilla
-set.seed(481516)
-medias = abs(round(rnorm(17,1.5,1),2))
-desvi = abs(round(rnorm(17,0,0.3),2))
-matcov<-diag(desvi^2)
-
-# Generamos las muestras de normal multivariante N(mu,sigma) 
-# de tamaño 7*i cuyas componentes son independientes entre sí. 
-set.seed(123456)
-dir = paste(getwd(),"/muestreo",sep="")
-for (i in 1:40) {
-  direc = paste(dir,"/datos",i,".txt",sep = "")
-  direc
-  data = rmvnorm(M*7*i,mean=medias,sigma=matcov)
-  write.table(data,direc, row.names=F,sep="\t")
-}
-\end{erre}
-Finalmente, resolvemos usando Gurobi (con interfaz de Python 3.6) los problemas muestrales. Notemos que el código que hemos utilizado para la resolución en Python, así como el planteamiento del problema muestral, naturalmente es independiente de la distribución que siga $W$, por lo que no necesitamos volver a citarlo en un caso posterior.
-
-\newpage 
-\begin{pythone}# Comenzamos el código para resolver los problemas de programación entera.
-# Utilizamos como interfaz para el software Gurobi.
-
-from gurobipy import *
-import numpy as np
-
-# Leemos todas las muestras.
-datos = [np.loadtxt("muestreo/datos" + str(i) + ".txt", skiprows=1) for i in range(1,41)]
-
-# Aunque nuestro tamaño muestra varía, vamos a resolver siempre "20" problemas.
-# Es decir, cada elemento de datos es una lista con "20*(7*i)" listas de 10 elementos.
-
-# Con la siguiente función resolvemos un único problema asociado a una muestra
-# W1,...,Wn.
-def problema(w):
-    
-    # Dimensión
-    n = 17
-    N = len(w)
-    # Creamos un modelo
-    m = Model("escenarios");
-    
-    # Vector de costes
-    c = [0.55, 0.57, 0.46, 0.02,0.25, 0.34, 0.89, 0.49 ,0.50, 0.91,
-      0.52, 0.4, 0.6, 0.2,0.225, 0.344, 0.9]
-    
-    # Parámetro de rendimiento
-    v = 18
-    
-    # Probabilidad
-    alfa = 0.05
-    beta = 1 - alfa
-
-    # Creamos las variables. El tipo puede ser 
-    # 'C' para continuas, 'B' para binarias, 'I' para enteras,
-    # 'S' para semicontinuas, or 'N' for semienteras.
-    x = m.addVars(range(n), vtype='B', name="x");
-    z = m.addVars(range(N), vtype='B', name="z")
-    
-    
-    # Definimos un producto escalar 
-    def productx(v):
-        k = 0
-        for i in range(len(v)):
-            k = k + v[i]*x[i]
-        return(k)    
-                
-    # Definimos la función objetivo y queremos maximizar/minimizar.
-    m.setObjective(productx(c), GRB.MINIMIZE);
-                
-    # Añadimos las restricciones
-    def productz(v):
-        k = 0
-        for i in range(len(v)):
-            k = k + v[i]*z[i]
-        return(k)   
-        
-    unos = np.repeat(1,N)
-    m.addConstr(productz(unos) >= N*beta, "c0");
-    
-    for i in range(N):
-        m.addConstr(productx(w[i])-v >= -100*(1-z[i]), "cad");
-                         
-    m.optimize();      
-       
-    for v in m.getVars():
-        print(v.varName, v.x)
-    return(m.objVal)  
-
-# Hemos exportado las 20 muestras, para cada tamaño muestral, todas 
-# juntas, por lo que es necesario dividirlas en paquetes de tamaño adecuado.
-def divide(v,n):
-    return([v[x:x+n] for x in range(0, len(v), n)])
-    
-# Utilizamos este comando para ver la solución más repetida en cada caso y tomarla como solución asociada al tamaño muestral.
-def modaux(L):
-  SL = sorted((x, i) for i, x in enumerate(L))
-  groups = itertools.groupby(SL, key=operator.itemgetter(0))
-  def _auxfun(g):
-    item, iterable = g
-    count = 0
-    min_index = len(L)
-    for _, where in iterable:
-      count += 1
-      min_index = min(min_index, where)
-    return count, -min_index
-  return max(groups, key=_auxfun)[0]
-  
-# Finalmente, utilizamos este método para calcular la media y la mediana
-# truncadas con 3 decimales, así como la solución modal asociada.
-def resuelve(w):
-    N = len(w)//15
-    a = divide(w,N)
-    s = []
-    p = []
-    for i in range(len(a)):
-        try:
-            kr= problema(a[i])[0]
-            kp = problema(a[i])[1]
-            s.append(kr)
-            p.append(kp)
-        except GurobiError as e:
-            print('Error code ' + str(e.errno) + ": " + str(e))
-        except AttributeError:
-            print('Encountered an attribute error ')
-    mean = np.mean(s)
-    med = np.median(s)
-    k = np.round(mean,3)
-    l = np.round(med,3)
-    lp = modaux(p)
-    return([[k,l],lp])
-\end{pythone}
-\newpage 
-\subsubsection*{Resultados numéricos}
-Comencemos por el estudio de la solución óptima. Con la enumeración completa observamos que el problema tiene solución única asociada al vector $x^*$
-\begin{erre}
-> x^*
- [1] 0 1 0 1 1 1 0 0 0 0 1 1 1 1 1 0 1
-\end{erre} 
-Aunque en principio podríamos asignar una interpretación a la solución media de cada uno de los veinte problemas asociados a cada tamaño muestral, vamos a asociar como solución óptima a cada tamaño muestral la solución modal de los problemas asociados. No necesitamos hacer ningún otro tipo de análisis en este caso, pues, obtenemos para todos los tamaños muestrales la misma solución modal, que coincide con $x^*$.
-
-Sin embargo, si la cantidad de problemas que resolvemos no es demasiado grande, una muestra atípica puede afectar a la media. Por ejemplo, estudiemos los Problemas 39 y 40. El valor objetivo del Problema 39 es $4.39$, mientras que el del Problema 40 coincide con el valor objetivo del problema real. Si hacemos un análisis de las correlaciones entre las $i$-ésimas componentes de los datos, observamos que hay algunas donde las mismas son menores que $0.9$. Veamos a continuación un histograma comparativo de una de ellas. 
-
-
-Notemos que los datos del Problema 39 se encuentran más alejados de los valores centrales que los del Problema 40, lo que puede explicar el valor atípico asociado a estas muestras. En general, dado que el muestreo puede proporcionar de manera aleatoria datos que pudieran ser engañosos, es interesante comprobar además la solución mediana asociada a cada tamaño muestral. 
-
-
-Desde la segunda muestra (tamaño 20) obtenemos el resultado exacto. Gracias al uso de la mediana podemos corregir en parte el problema de tener muestras que se desvíen razonablemente de las respectivas medias.
-\newpage
-
-\section{Mixtura de normales}
-
-Vamos a estudiar un caso donde $W$ se distribuye según una mixtura de normales. En este caso no podemos resolver el problema por enumeración completa, pues tomaremos una $n$ relativamente alta, lo suficiente para que con nuestros medios podamos computar el SAA en un tiempo razonable pero no la enumeración. Comencemos con adjuntando el código con el que hemos generado todos los parámetros involucrados en R.
-
-\begin{erre}
-###################################
-#                                 #
-#  Scripts para generar muestras  #
-#                                 #
-###################################
-
-# Unos comandos para limpiar el entorno
-closeAllConnections()
-rm(list=ls())
-
-# Número de problemas que vamos a resolver para cada tamaño muestral
-M = 8
-
-# Dimensión del problema
-n = 25
-
-# Construímos el vector de costes
-c = abs(round(rnorm(n,1,0.5),2))
-
-# Escojamos los parámetros de la convinación convexa.
-# Elejimos 2*15 parámetros y el restante será 1 - la 
-# suma de dos de ellos.
-set.seed(2342)
-
-# Como tenemos una mixtura de 3 normales, necesitamos 3*n
-# medias y varianzas y realizar la suma convexa.
-mediaux = abs(round(rnorm(3*n,1.5,1),2))
-desviaux = abs(round(rnorm(3*n,0,2),2))
-medias = matrix(mediaux,nrow=n)
-desvi = matrix(desviaux, nrow=n)
-
-# Generemos la probabilidad de tomar cada normal en los
-# distintos casos
-lista = 1:50/100
-paraux = sample(lista,n*2,replace=TRUE)
-
-# Generamos la matriz de parámetros de la mixtura
-comp = c()
-for (j in 1:n) {
-  probaux = paraux[(2*j-1):(2*j)]
-  probi = append(probaux,1-sum(probaux))
-  comp = rbind(comp, probi)
-}
-row.names(comp) <- NULL
-
-# Por tanto, la variable i-ésima es una mixtura de 3 normales 
-# con medias: medias[i,] y sd: desvi[i,], dadas por la suma 
-# convexa con componentes comp[i,]. Vamos a construir una 
-# función que para cada i nos dé una muestra de tamaño i
-muestra <- function(N){
-  s = c()
-  for (i in 1:n){
-    compo <- sample(1:3,prob=comp[i,],size=N,replace=TRUE)
-    samples <- rnorm(n=N,mean=medias[i,][compo],
-                     sd=desvi[i,][compo])
-    s = cbind(s,samples)  }
-  colnames(s) <- NULL
-  return(s)}
-
-# Con el siguiente script generamos y exportamos las muestras
-dir = paste(getwd(),"/muestreoM",sep="")
-for (i in 1:50) {
-  tam = 8*i*M
-  direc = paste(dir,"/datos",i,".txt",sep = "")
-  write.table(muestra(tam),direc, row.names=F,sep="\t")
-  }
-\end{erre}
-
 \begin{thebibliography}{9}
 \bibitem{edmond} 
 Edmonds, J. (1965). Maximum matching and a polyhedron with 0, 1-vertices. Journal of Research of the National Bureau of Standards B, 69, 125--130. 
@@ -998,8 +375,13 @@ Edmonds, J. (1965). Maximum matching and a polyhedron with 0, 1-vertices. Journa
 \bibitem{pruebaed} 
 Schrijver, Alexander. (1983). Short proofs on the matching polyhedron. Journal of Combinatorial Theory, Series B. 34. 104-108. 10.1016/0095-8956(83)90011-4. 
  
-\bibitem{knuthwebsite} 
-Knuth: Computers and Typesetting,
-\\\texttt{http://www-cs-faculty.stanford.edu/\~{}uno/abcde.html}
+\bibitem{balltab}
+Ball, M. O.,  Taverna, R. (1985). Sensitivity analysis for the matching problem and its use in solving matching problems with a single side constraint. Annals of Operations Research, 4(1), 25-56.
+
+\bibitem{papa}
+Papadimitriou, C.H.; Steiglitz, K. (1998), Combinatorial optimization: algorithms and complexity, Mineola, NY: Dover, pp.308-309.
+
+\bibitem{nico}
+Nicos Christofides, Worst-case analysis of a new heuristic for the travelling salesman problem, Report 388, Graduate School of Industrial Administration, CMU, 1976
 \end{thebibliography}
 \end{document} 
