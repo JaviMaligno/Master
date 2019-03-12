@@ -359,12 +359,16 @@ s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} \leq 1, \quad \forall u \in V\\
 \subsection{El problema de la asignación}
 Para ilustrar las distintas aplicaciones que tiene el problema del matchig, comenzamos con un problema clásico de la Investigación Operativa. El problema de asignación o \textit{assigment assignment problem} consiste en encontrar la forma de asignar recursos (máquinas, empleados, etc.) a un cierto conjunto de teareas determinadas con coste mínimo. Se supone que cada recurso se destina a una sola tarea, y que cada tarea es ejecutada por uno solo de los recursos. Es claro que este problema puede formularse como un problema de matching de coste mínimo sobre un grafo bipartito.
 \subsection{Aproximación al problema del viajante}
-El problema del viajante o \textit{travelling salesman problem} en un grafo no dirigido consiste en encontrar el ciclo hamiltoniano de peso mínimo. Este problema es NP-duro. Este problema aparece para responder a la pregunta: ¿Dada una lista de ciudades y las distancias entre cada pareja de ciudades, cuál es la ruta más corta para visitar todas las ciudades y volver a la ciudad de origen? Este problema puede formularse como problema de programación entera, como puede encontrarse en \cite{papa}. 
+El problema del viajante o \textit{travelling salesman problem} (TSP) en un grafo no dirigido consiste en encontrar el ciclo hamiltoniano de peso mínimo. Computacionalmente hablando, se sabe que es NP-duro. Este problema aparece para responder a la pregunta: ¿Dada una lista de ciudades y las distancias entre cada pareja de ciudades, cuál es la ruta más corta para visitar todas las ciudades y volver a la ciudad de origen? Este problema puede formularse como problema de programación entera, como puede encontrarse en \cite{papa}. 
 
 Aunque no puede utilizarse el problema del matching para resolver este problema, Nicos Christofides encontró un algoritmo \cite{nico} para obtener, bajo ciertas condiciones, una aproximación no mayor que $1.5$ el valor óptimo del TSP. Para este resultado es necesario imponer que las distancias estén en el marco de un espacio métrico, es decir, han de ser simétricas y verifica la desigualdad triangular.
 
 
-\chapter{El método SAP}
+\chapter{Método SAP}
+\chapter{Análisis de sensitividad}
+\subsection{Método de reoptimización}
+\subsection{Lo importante va aquí}
+
 
 \newpage
 \begin{thebibliography}{9}

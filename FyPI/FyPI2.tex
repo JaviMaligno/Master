@@ -81,7 +81,7 @@ Si definimos $T(A) = T_0(A)\cup T_1(A)\cup T_2(A)$ entonces $T(S) = S_1$, $T(S_1
 
 
 \chapter{Sistema de funciones iteradas}
-\section{Espacio métrico}
+\section{Espacios métricos}
 \begin{defi}
 Sea $X$ un conjunto. Una \textbf{métrica} o \textbf{distancia }en $X$ es una aplicación $d: X\times X \to [0,\infty)$ que verifica
 \begin{itemize}
@@ -94,15 +94,178 @@ $$
 \end{itemize}
 \end{defi}
 \begin{defi}
-Diremos que $(X,d)$ es un espacio métrico si $X$ es un conjunto y $d$ es una distancia en $X$.
+Diremos que $(X,d)$ es un \textbf{espacio métrico} si $X$ es un conjunto y $d$ es una distancia en $X$.
 \end{defi}
 \begin{nota}
 Sea $x\in X$, $\varepsilon >0$. Denotamos
 $$
 B(x,\varepsilon) = \{y \in X \mid d(x,y)<\varepsilon\}
 $$
+\end{nota}
 \begin{defi}
 Sea $A\subset X$. Diremos que $A$ es \textbf{abierto} si $\forall x \in A$ $\exists \varepsilon>0$ tal que $B(x,\varepsilon)\subset A$. Diremos que $A$ es \textbf{cerrado} si $A^c$ es abierto.
 \end{defi}
+\begin{example}
+Algunos ejemplos de espacios métricos son 
+\begin{itemize}
+\item $(\R,|\cdot|)$, donde $d(x,y)=|x-y|$.
+\item $(\R^n,d_e)$, donde $d_e = \sqrt{(x-y)'(x-y)}$.
+\item $(\R^n,d_1)$, donde $d_1 = \sum_{i=1}^n |x_i-y_i|$.
+\item $(\R^n,d_\infty)$, donde $d_\infty = \max_{1\leq i \leq n} |x_i-y_i|$.
+\end{itemize}
+\end{example}
+\begin{defi}
+Sea $(X,d)$ un espacio métrico y sea $A\subset X$. Definimos el \textbf{interior de $A$} y notaremos $\int(A)$ como el conjunto
+$$
+\int(A) = \{x\in A \min \exists \varepsilon >0 B(x,\varepsilon)\subset A\}
+$$
+Definimos además la \textbf{clausura de $A$} y notaremos $\overline{A}$ como el conjunto
+$$
+\overline{A} = \{ x\in X \mid \forall \varepsilon > 0 \; B(x,\varepsilon)\cap A \neq \emptyset\}
+$$
+\end{defi}
+\begin{prop}
+En las condiciones de la definición anterior, se verifica
+$$
+\int(A)\subset A \subset \overline{A}
+$$
+\end{prop}
+\begin{ejer}
+En las condiciones de la definición anterior, $\int(A)$ es el mayor abierto contenido en $A$ y $\overline{A}$ es el menor cerrado que contiene a $A$.
+\end{ejer}
+\begin{defi}
+Sea $(X,d)$ un espacio métrico. Una \textbf{sucesión} en $X$ es una aplicación $\phi:\N\to X$. Usualmente notaremos a la sucesión $\{x_n\}_n$.
+\end{defi}
+\begin{defi}
+Sea $\{x_n\}_n$ una sucesión en $X$ y sea $\phi:\N\to \N$ una aplicación creciente de $\{x_n\}$. Una \textbf{subsucesión} de $\{x_n\}_n$ es $\{x_{\phi(n)}\}_n$. Usualmente notaremos $\{x_{n_k}\}_k$ . 
+\end{defi}
+\begin{defi}
+Sea $(x,d)$ un espacio métrico y $\{x_n\}_n$ una sucesión $X$ y $x\in X$. Diremos que $\{x_n\}_n$ \textbf{converge a} $x$ y notaremos 
+$$
+\lim_n x_n = x
+$$
+si se verifica
+$$
+\lim_n d(x_n,x) = 0
+$$
+\end{defi}
+\begin{defi} Sea $(X,d)$ un espacio métrico $K\subset X$. Decimos que $K$ es compacto si toda sucesión $\{x_u\}\subset K$ tiene una sucesión convergente a un punto $K$.
+\end{defi}
+\begin{ejer}
+Sea $(X,d)$ espacio métrico, entonces $A$ es cerrado si y solo sí contiene todos los puntos límites de las sucesiones contenidas en $A$.
+\end{ejer}
+\begin{ejer}
+Sea $K$ compacto y $A\subset K$ cerrado. Entonces $A$ es compacto.
+\end{ejer}
+\begin{ejer}
+Sea $K\subset X$ un compacto, entonces $K$ es cerrado y acotado.
+\end{ejer}
+\begin{theorem}[Heine] En cualquiera de los espacios métricos $(\R^n,d_e)$, $(\R^n,d_1)$ o $(\R^n,d_\infty)$ ser compacto es equivalente a ser cerrado y acotado.
+\end{theorem}
+\begin{defi}
+Sea $\{x_n\}$ una sucesión en un espacio métrico $(X,d)$. Diremos que $\{x_n\}$ es una \textbf{sucesión Cauchy} si 
+$$
+\lim_{m,n}d(x_n,x_m) = 0
+$$ 
+Esto es, si $\forall \varepsilon >0$ $\exists n_0$ tal que $\forall n,m>n_0$ $d(x_n,x_m)<\varepsilon$.
+\end{defi}
+\begin{defi}
+Sea $(X,d)$ un espacio métrico. Diremos $(X,d)$ es un espacio métrico completo si toda sucesión de Cauchy es convergente.
+\end{defi}
+\begin{theorem}
+Cualquiera de los espacios métricos $(\R^n,d_e)$, $(\R^n,d_1)$ o $(\R^n,d_\infty)$  son espacios métricos completos.
+\end{theorem}
+\begin{lema}
+Sea $(X,d)$ un espacio métrico y sea $\{x_n\} \subset X$ una sucesión. Si $d(x_n,x_{n+1})\leq a_n$ y $\sum_n a_n < \infty$ entonces $\{x_n\}$ es de Cauchy.
+\end{lema}
+\begin{dem}
+Sea $\varepsilon >0$ y supongamos que $m>n$. Aplicando la desigualdad triangular
+\begin{align*}
+d(x_m,x_n) &\leq \sum_{i=n}^{m-1} d(x_{i+1},x_i)\leq \sum_{i=n}^{m-1} a_i 
+\end{align*}
+Como la serie es convergente, el resto de la serie tiende a $0$. Por tanto, $\exists n_0$ tal que $\forall k> n_0$ $\sum_{i=n}^\infty a_i < \varepsilon$. Por tanto, si $m,n>n_0$ tenemos que $d(x_m,x_n)<\varepsilon$ y, por tanto, el resultado.
+\end{dem}
+\begin{ejer}
+Sea $(X,d)$ un espacio métrico y sea $F\subset X$ cerrado. entonces $(F,d)$ es un espacio métrico completo.
+\end{ejer}
+\begin{lema}
+Sea $(X,d)$ un espacio métrico y $\{x_n\}$ una sucesión de Cauchy. Si $\{x_n\}$ tiene una sucesión convergente, entonces $\{x_n\}$ también lo es.
+\end{lema}
+\begin{dem}
+Sea $\{x_{n_k}\}$ subsucesión convergente a $x$ de $\{x_n\}$. Basta aplicar la desigualdad triangular de la siguiente forma. Tomamos $x_{n_k}$ suficientemente cerano a $x_n$, lo cuál es posible por ser de Cauchy, y lo suficientemente cerca de $x$, de manera que 
+$$
+d(x_n,x) \leq d(x_n,x_{n_k}) + d(x_{n_k},x) < \varepsilon
+$$
+\end{dem}
+\section{Teorema de la aplicación contractiva}
+\begin{defi}
+Sea $(X,d)$ un espacio métrico y sea $T:X\to X$. Diremos que $T$ es una \textbf{contracción} si $\exists 0<c<1$ tal que $d(T(x),T(y))\leq c d(x,y)$ $\forall x,y \in X$.
+\end{defi}
+\begin{example}
+Las aplicaciones $T_0$ y $T_1$ definidas en el epígrafe del conjunto de Cantor, con respecto a $(\R,d_e)$, y $T_0,T_1,T_2$ para el triángulo de Sierpinski, con respecto a $(\R^2,d_e)$, son contractivas.
+\end{example}
+\begin{defi}
+Sea $T:X\to X$ una aplicación. Diremos que $x \in X$ es un \textbf{punto fijo de} $T$ si $T(x)=x$. 
+\end{defi}
+\begin{theorem}[Banach (1922)] Sea $(X,d)$ espacio métrico completo y sea $T:X\to X$ una contracción de constante $0<c<1$. Entonces $\exists! x^*$ tal que $x^*$ es punto fijo. Además, $\forall x\in X$ la sucesión iterada $\{T^n(x)\}$ converge al punto fijo y una cota del error que cometemos es
+$$
+d(T^n(x),x_0) \leq \frac{c^n}{1-c}d(x,T(x))
+$$
+\end{theorem}
+\begin{dem}
+Si hubiese dos puntos fijos $x^*,y^*$, entonces
+$$
+d(T(x^*),T(y^*)) \leq c d(x^*,y^*) < d(x^*,y^*)
+$$
+Pero si $x^*$ e $y^*$ son puntos fijos, esto es una contradicción. Por tanto, a lo sumo, existe un único punto fijo. Además, sea $x\in X$, consideremos la sucesión $\{T^n(x)\}$. Veamos que es de Cauchy. Para ello, comprobamos
+\begin{align*}
+d(T^{n+1}(x),T^n(x)) \leq c d(T^n(x),T^{n-1}(x)) \leq c^n d(T(x),x)
+\end{align*}
+Como $0<c <1$, $\{c^n d(T(x),x)\}$ es convergente. Por el razonamiento anterior, tenemos que $\{T^n(x)\}$ de Cauchy y, al estar en un espacio métrico, es convergente. 
+
+Veamos que el límite, que denotamos $x_0$ es un punto fijo. Para ello, basta tener en cuenta que si $\{T^n(x)\}\to x_0$ entonces $\{T^{n+1}(x)\}\to T(x_0)$, pero las series son exactamente la misma salvo el primer término, luego convergen al mismo límite. Luego $T(x_0)=x_0$. Por tanto, el límite es nuestro punto fijo $x^*$.
+
+Finalmente, para obtener la cota basta usar las propiedades del punto fijo. Supongamos que $m>n$
+\begin{align*}
+d(T^m(x),T^n(x^*)) & = d(T^m(x),T^{m-1}(x) + \dotsc + d(T^{n+1}(x),T^n(x))\\
+& \leq c^{m-1}d(x,T(x)) + \dotsc + c^n d(x,T(x)) \\
+& \leq \sum_{i=n}^\infty c^i d(x,T_(x))\\
+&= \frac{c^n}{1-c}d(x,T(x))
+\end{align*}
+\end{dem}
+
+\section{Métrica de Hausdorff}
+\begin{defi}
+Dado un espacio métrico completo $(X,d)$, definimos 
+$$
+K(X) = \{ A\subset X\mid A\neq \emptyset, \; \text{$A$ es compacto}\}
+$$
+\end{defi}
+\begin{nota}
+Sea $A \in K(X)$ y sea $\varepsilon >0$, entonces notamos
+$$
+A(\varepsilon) = \{x\in X \mid \exists a\in A \; d(x,a)\leq \varepsilon\}
+$$
 \end{nota}
+\begin{defi}
+En las condiciones anteriores, definimos la distancia de Hausforff como 
+\begin{gather*}d_H:K(X)\times K(X)\to [0,\infty)\\
+d_H(A,B) = \inf\{\varepsilon>0,A\subset B(\varepsilon)\subset A, B\subset A(\varepsilon)\}
+\end{gather*}
+\end{defi}
+\begin{prop} La distancia de Hausodorf es, precisamente, una distancia.
+\end{prop}
+\begin{dem}
+\begin{itemize}
+\item[]
+\item Primero probaremos que $d_H(A,B) = 0 \Leftrightarrow A=B$. Naturalmente, una de las implicaciones es trivial. Supongamos que $d_H(A,B)=0$. Vamos a probar que $A\subset B$, pues la inclusión recíproca es análoga. Sea $x \in A$. Sea $\{\varepsilon_n\}$ positiva con límite $0$. Entonces, $\forall n>0$ $x \in B(\varepsilon_n)$, lueg $A\subset B(\varepsilon_n)$. Por tanto, $\forall n \in \N$ $\exists b_n \in B$ tal que $d(x,b_n) \leq \varepsilon_n$. Como $B$ es cerrado y $\{b_n\}\to x$, tenemos el resultado.
+\item La simetría es trivial.
+\item Para la desigualdad triangular, consideremos $A,B,C$. Sean $\varepsilon_1,\varepsilon_2$ tales que $d_H(A,C)<\varepsilon_1$ y $d_H(C,B)<\varepsilon_2$. Entonces
+$$
+A\subset C(\varepsilon_1) \qquad C \subset B(\varepsilon_2)
+$$
+Tenemos por tanto que $A \subset B(\varepsilon_1+\varepsilon_2)$.
+Análogamente, podemos probar que $B\subset Az(\varepsilon_1+\varepsilon_2)$.
+\end{itemize}
+\end{dem}
 \end{document}
