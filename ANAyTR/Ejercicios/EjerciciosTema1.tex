@@ -253,7 +253,7 @@ h_A(t) = \sum_{n\geq 0} \dim(A[n])t^n = \sum_{n=0}^m \binom{m}{n}t^n = (t+1)^m
 $$
 \item Consideremos $A[n]$ como el espacio vectorial generado por caminos entre cualesquiera vértices que tienen longitud (y por tanto, grado) $n$. Esos caminos están precisamente dados por la suma de todos los elementos de $M_Q^n$. Por tanto, considerando $|\cdot|$ la suma de los elementos de la matriz, entonces
 $$
-h_A(t) = \sum_{n\geq 0} \dim(A[n])t^n =  \sum_{n\geq 0} |M_Q^n|t^n 
+h_A(t) = \sum_{n\geq 0} \dim(A[n])t^n =  \sum_{n\geq 0}1_n'M_Q^n1_nt^n = 1_n' \left(\sum_{n\geq 0} (tM_Q)^n \right)1_n = 1'_n (I-tM_Q)^{-1}1_n
 $$
 Nótese que el caso $n=0$ está correctamente definido.
 \end{enumerate}
