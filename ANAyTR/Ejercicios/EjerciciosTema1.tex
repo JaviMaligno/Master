@@ -323,7 +323,7 @@ El ejemplo 	1 es $(\R^3,\times)$, donde $\times$ denota el producto vectorial. E
 0 & -1& 0
 \end{pmatrix}
 \]
-lo cual es una mera cuestión artimética. 
+lo cual es un sencillo cálculo matricial. Para el resto de vectores, la distributividad y $\R$-linealidad del producto permite reducirlo a la base canónica.
 \end{solucion}
 \newpage
 
@@ -332,6 +332,7 @@ Explain why a representation of a Lie algebra is the same thing as a representat
 of its universal enveloping algebra.
 \end{ejercicio}
 \begin{solucion}
+Sea $\mathfrak{g}$ un álgebra de Lie con base $x_i$ y con corchete definido como $[x_i,x_j]=\sum_k c_{ij}^kx_k$. Cualquier representación $\rho:\mathfrak{g}\to\gl(V)$ debe verificar $\rho([x_i,x_j])=[\rho(x_i),\rho(x_j)]=\sum_kc_{ij}\rho(x_k)$. Por tanto, las representaciones de $\g$ están en biyección con las familias $(y_i)$ de elementos de $\gl(V)$ que verifican $[y_i,y_j]=\sum_k c_{ij}y_k$, que son las posibles imágenes de $\rho(x_i)$. Por la propiedad universal del cociente, estas familias están en biyección con las representaciones de $U(\g)$. 
 \end{solucion}
 \end{document}
 http://brianbi.ca/etingof/2.3
