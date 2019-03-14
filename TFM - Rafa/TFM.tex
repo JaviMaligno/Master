@@ -28,7 +28,8 @@
 % \usepackage[font=small]{caption}
 % \usepackage{framed}
 % \usepackage{cancel}
-% \usepackage{tikz}
+\usepackage{tikz}
+\usetikzlibrary{snakes}
 % \usepackage{epstopdf}
 % \usepackage{float}
 % Plantillas de código
@@ -364,10 +365,102 @@ El problema del viajante o \textit{travelling salesman problem} (TSP) en un graf
 Aunque no puede utilizarse el problema del matching para resolver este problema, Nicos Christofides encontró un algoritmo \cite{nico} para obtener, bajo ciertas condiciones, una aproximación no mayor que $1.5$ el valor óptimo del TSP. Para este resultado es necesario imponer que las distancias estén en el marco de un espacio métrico, es decir, han de ser simétricas y verifica la desigualdad triangular.
 
 
-\chapter{Método SAP}
+\chapter{Algoritmo SAP}
+En este capítulo vamos a explicar el funcionamiento del método SAP o \textit{shortest augmenting path} a partir del cuál puede obtenerse un matching perfecto de mínimo coste y, además, nos permitirá realizar una reoptimización eficiente.
+\section{Propiedades teóricas}
+\begin{defi}
+Sea $G=(V,E)$ un grafo, $M$ un matching en $G$ y $v\in V$. Diremos que $v$ es textbf{expuesto} con respecto a $M$ si no es extremo de ninguna arista de $M$.
+\end{defi}
+\begin{defi}
+Sea $G=(V,E)$ un grafo y $M$ un matching en $G$, un \textbf{camino alternante} o \textit{alternating path} con respecto a $M$ es un camino en el cual se van alternando aristas que están en $M$ y fuera del matching. Análogamente pueden definirse \textbf{árboles y ciclos alternantes}.
+\end{defi}
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[scale=.8,auto=left,every node/.style={circle,fill=blue!10}]
+	\node (nA) at (1,10) {};
+	\node (nB) at (3,10) {};
+	\node (nC) at (5,10) {};
+	\node (nD) at (7,10) {};
+	\node (nE) at (9,10) {};
+
+  \path[every node/.style={sloped,anchor=south,auto=false}]
+        (nA) edge              node {\scriptsize $e\in M$} (nB)            
+        (nB) edge              node {\scriptsize  $e\in E\setminus M$} (nC)
+        (nC) edge              node {\scriptsize $e\in M$} (nD)
+        (nD) edge              node {\scriptsize $e\in E\setminus M$} (nE);     
+\end{tikzpicture}
+\caption{Camino alternante}
+\end{figure}
+
+\begin{defi}
+En las condiciones de la definición anterior, se define un \textbf{camino de aumento} o \textit{augmenting path} como un camino alternante cuyos nodos extremos son expuestos.
+\end{defi}
+Resulta claro que si tenemos un matching $M$ y un camino de aumento con respecto a $M$, podemos obtener un matching de mayor cardinalidad intercambiando el rol que tienen. Las que pertenecen al matching pasan a no pertencer y recíprocramente.
+
+\begin{defi} 
+Dado un matching $M$ y un camino de aumento $P$, definimos la operación 
+$$
+M\oplus P = (M\setminus P)\cup (P\setminus M)
+$$
+\end{defi}
+En \cite{inte} podemos encontrar una demostración del siguiente resultado.
+\begin{prop}
+Un matching $M$ contiene el máximo número de ejes si y solo si no existe ningún camino de aumento relativo a $M$.
+\end{prop}
+Dejamos los caminos a un lado y pasamos a definir otro tipo de conceptos relacionados con distintas familias de grafos y subgrafos.
+\begin{defi}
+Sea $G=(V,E)$ un grafo y $B \subset V$. Definimos el \textbf{grafo inducido por }$B$ como $G[B] = \{B,\gamma(B)\}$.  
+\end{defi}
+\begin{defi}
+Sea $G=(V,E)$ y $H$ un subgrafo de $G$. Si $H$ tiene el mismo conjunto de nodos que $V$, decimos que \textbf{abarca }$G$.
+\end{defi}
+\begin{defi}
+Sea $G=(V,E)$ un grafo y $B\subset V$. Definimos $G \times B=(V_B,E_B)$ como \textbf{el grafo obtenido por la contracción de} $B$, donde $V_B = (V \setminus B)\cup \{v_B\}$ y $E_B$ es el conjunto $E$ salvo que, cada arista con un único extremo en algún vértice de $B$ en $G$, ahora este vértice es $v_B$. Si existen varias solo se mantiene una para no tener un multigrafo. El vértice $v_B$ es llamado \textbf{pseudonodo}. Podemos definir además $M_B:= M\cap E_B$.
+\end{defi}
+
+\begin{defi}
+Sea $A\subset V$, decimos que es un conjunto \textbf{anidado} si $|A|\geq 3$ y $\forall W,Z\subset A$ se verifica que 
+$$
+W\cap Z \neq \emptyset \Rightarrow W\subset Z \text{ o bien } Z\subset W
+$$
+Además, sea $W \in A$, definimos $A[W] =\{Z\in A \mid Z\subset W, Z\neq W\}$.
+\end{defi}
+\begin{defi}
+En las condiciones de la definición anterior, sean $\{W_1,\dotsc,W_n\}$ el conjunto de los elementos maximales de $A$. Entonces definimos
+$$
+G\times A = (\cdots((G\times W_1)\times W_2)\times \cdots \times W_n)
+$$
+Notemos que el orden no relevante. Si denotamos $E_A$ al conjunto de aristas del grafo anterior, podemos definir $M_A = M\cap E_A$. 
+\end{defi}
+\begin{defi}
+Diremos que $A \subset V$ anidado es una \textbf{familia de contracción} si verifica además que
+$$
+G[W]\times A[W] \text{ es abarcado por un ciclo impar $\forall W \in A$}
+$$ 
+Además, si un elemento $W$ (maximal) de una familia de contracción $A$ es tal que $|M\cap\gamma(W)| = \frac{1}{2}(|W|-1)$ diremos que un \textbf{blossom} (exterior).
+\end{defi}
+Como veremos posteriormente, estas familias son un concepto capital a la hora de desarrollar un algoritmo para encontrar un matching perfecto cuando el grafo involucrado es no bipartito, que es realmente más simple. Una propiedad fundamental al respecto fue probada también por Edmonds en \cite{edmon2}.
+\begin{thm}
+Sea $M$ un matching en $G$ y sea $A$ una familia de contracción tal que todo $W\in A$ es un blossom con respecto a $M$. Entonces, todo camino de aumento en $G\times A$ con respecto a $M_A$ induce un camino de aumento $P$ con respecto a $M$.
+\end{thm}
+\begin{cor}
+Sea $A$ una familia de contracción de $G$ y $M_A$ un matching (perfecto) en $G\times A$. Entonces $M_A$ induce (de manera única) un matching (perfecto) $M$ en $G$ tal que $\forall W\in A$ es un blossom con respecto a $M$.
+\end{cor}
+\section{Fundamentos del algoritmo}
+\begin{defi}
+Sea $M$ un matching en $G$ y sea $P$ un camino (o ciclo) alternante con respecto a $M$. Definimos la longitud de $P$ respecto a $M$ como
+$$
+c(P) = \sum_{(u,v)\in P\setminus M}c_{uv} - \sum_{(u,v)\in P\cap M}c_{uv}
+$$
+\end{defi}
+\begin{defi}
+Sea $M$ un matching en $G$ y sea $s\in V$ expuesto con respecto a $M$. Definimos $\mathcal{P}_s(M)$ como el conjunto de todos los caminos de aumento con nodo inicial $s$.
+\end{defi}
+De la definición se deduce inmediatamente el siguiente resultado.
+¡
 \chapter{Análisis de sensitividad}
-\subsection{Método de reoptimización}
-\subsection{Lo importante va aquí}
+\section{Método de reoptimización}
+\section{Lo importante va aquí}
 
 
 \newpage
@@ -387,5 +480,10 @@ Papadimitriou, C.H.; Steiglitz, K. (1998), Combinatorial optimization: algorithm
 
 \bibitem{nico}
 Nicos Christofides, Worst-case analysis of a new heuristic for the travelling salesman problem, Report 388, Graduate School of Industrial Administration, CMU, 1976
+
+\bibitem{inte}
+George L. Nemhauser and Laurence A. Wolsey. 1988. Integer and Combinatorial Optimization. Wiley-Interscience, New York, NY, USA.
+\bibitem{edmon2}
+J. Edmonds, “Paths, Trees, and Flowers,” Can. J. Math., 17,449-467 (1965).
 \end{thebibliography}
 \end{document} 
