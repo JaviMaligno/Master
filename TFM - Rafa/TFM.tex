@@ -353,6 +353,7 @@ El problema del viajante o \textit{travelling salesman problem} (TSP) en un graf
 
 Aunque no puede utilizarse el problema del matching para resolver este problema, Nicos Christofides encontró un algoritmo \cite{nico} para obtener, bajo ciertas condiciones, una aproximación no mayor que $1.5$ el valor óptimo del TSP. Para este resultado es necesario imponer que las distancias estén en el marco de un espacio métrico, es decir, han de ser simétricas y verificar la desigualdad triangular.
 
+\subsection{•}
 
 \chapter{Algoritmo SAP}
 En este capítulo vamos a explicar el funcionamiento del método SAP o \textit{shortest augmenting path} a partir del cuál puede obtenerse un matching perfecto de mínimo coste y, además, nos permitirá realizar una reoptimización eficiente.
@@ -469,7 +470,7 @@ s.a.&\;y_u+y_v + \sum_{S\in B,(u,v)\in \delta(S)}y_S  \geq c_{uv} \quad \forall 
 \begin{defi}
 Sea $y$ una solución factible del problema dual anterior. Definimos el coste reducido de un eje $(u,v)$ con respecto a $y$
 $$
-c_{uv}'(y) = c_{uv} - y_u -y_v - \sum_{S\in B,(u,v)\in \delta(S)} y_S
+c_{uv}'(y) = c_{uv} - y_u -y_v - \sum_{S\in \mathcal{A}(G),(u,v)\in \delta(S)} y_S
 $$ 
 \end{defi}
 \section{Fundamentos del algoritmo}
@@ -540,6 +541,50 @@ l(P_0) &= l'(P_0) + d(P_0)\\
 \end{align*}
 
 \end{dem}
+\begin{defi}
+Sea $B=\{S\subset V \mid |S| \text{ es impar, }|S|\geq 3\}$. A cada $u\in V$ y $S\in B$ podemos asociar unos pesos $y_u \in \R$  e $y_S \in \R_{\geq 0}$. Definimos la transformación $T:c_{uv}\to c'_{uv}$ tal que
+$$
+c_{uv}' =c_{uv}-y_u-y_v - \sum_{S\in B, (u,v)\in \delta(S)}y_S
+$$
+\end{defi}
+\begin{nota}
+Notemos que si consideramos $y$ una solución factible del problema dual del matching, la transformación asocia a los costes de cada arista los costes reducidos asociados a $y$, pues puede establecerse a través de las condiciones de holgura complementaria que si $S$ no pertenece a una familia de contracción, $y_S =0$.
+\end{nota}
+\begin{defi}
+En las condiciones de la definición anterior, definimos el \textbf{grafo de admisibilidad} $G' = (V,E')$ donde $E' = \{(u,v)\in E\mid c'_{uv}=0\}$.
+\end{defi}
+\begin{defi}
+Una transformación admisible $T$ del tipo definida en la Definición 2.2.4 se dice \textbf{adecuada} con respecto a $M$ si existe una familia de contracción $A$ en $G'$ tal que
+\begin{align*}
+\text{$u,v$ no emparejados con respecto a $M$}&\Rightarrow y_v= y_u\\
+y_S>0&\Rightarrow S\in A \text{ y } |M\cap \gamma(S)| = \frac{1}{2}(|S|-1)
+\end{align*}
+\end{defi}
+Con estas definiciones en mente pasamos a probar el criterio de optimalidad que utilizaremos en el nuestro algoritmo, cuya demostración puede encontrarse en \cite{derigs}.
+\begin{thm}
+Sea $M$ un matching y sea $T$ una transformación adecuada. Sea $A = \{S \in B\mid y_S>0\}$. Si existe $P\in \mathbb{P}(M)$ tal que $c'(P)=0$ y $P_A$ es un camino de aumento respecto $M_A$, entonces $P$ es el camino alternante de menor costo en $\mathcal{P}(M)$.
+\end{thm}
+\section{Algoritmo del camino de aumento más corto}
+Antes de dar el algoritmo es preciso notar que utilizaremos un etiquetado de manera que todo nodo de $G\times A$ tendrá tres etiquetas temporales $d_v^+,d_v^-$ y $p(v)$ con la información:
+\begin{itemize}
+\item $d_v^+$ es el límite superior de la longitud del camino alternante más corto que conecta $v$ con un cierto nodo $s$ y tiene un número par de ejes.
+\item $d_v^-$ es análogo para un número impar de ejes.
+\item $p(v)$ es el predecesor de $v$ en el camino alternante que define $d_v^-$. 
+\end{itemize}
+Estas distancias y medidas están tomadas respecto de los costes $c'_{uv}$. Pasemos a describir el algoritmo.
+\begin{align*}
+\text{Inicialización: }& y_u:= y_S:= 0 \quad \forall u \in V,\; S\in B\\
+& M:=A:=\emptyset\\
+& c_{uv}' = c_{uv} \quad \forall (u,v)\in E\\
+\text{Paso 1: }& \text{Determinar si existe un nodo $s$ no emparejado en $G\times A$ con respecto a $M_A$}\\
+&\text{Si no existe ninguno, ir al Paso 8}\\
+&\text{En caso contrario, ir al Paso 2}
+\end{align*}
+\begin{align*}
+\text{Paso 2: }& \text{[Inicialización de una fase]}\\
+&=d_j^+ := \infty \quad \forall j\in G\times A,\; j\neq s
+\end{align*}
+
 \chapter{Análisis de sensitividad}
 \section{Método de reoptimización}
 \section{Lo importante va aquí}
@@ -570,5 +615,8 @@ J. Edmonds, “Paths, Trees, and Flowers,” Can. J. Math., 17,449-467 (1965).
 
 \bibitem{edmon3}
 Pulleyblank, William and Edmonds, Jack. (1970). Facets of 1-Matching Polyhedra. 10.1007/BFb0066196. 
+
+\bibitem{derigs}
+Derigs, U. (1981), A shortest augmenting path method for solving minimal perfect matching problems. Networks, 11: 379-390. doi:10.1002/net.3230110407
 \end{thebibliography}
 \end{document} 
