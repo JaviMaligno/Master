@@ -305,11 +305,11 @@ $$
 B = \{S\subset V \mid |S| \text{ es impar},\;|S|\geq 3\}
 $$
 Entonces, la envolvente convexa del politopo del matching viene dada por
-\begin{align}
-\sum_{(u,v)\in\delta(u)} x_{uv} &\leq 1, \quad \forall u\in V\tag{1.1}\\
-x_{uv} &\geq 0\tag{1.2}\\
-\sum_{(u,v)\in \gamma(S)} x_{uv}& \leq \frac{1}{2}(|S|-1)\quad \forall S \in B	\tag{1.4} \label{esoes}
-\end{align}
+\begin{align*}
+\sum_{(u,v)\in\delta(u)} x_{uv} &\leq 1, \quad \forall u\in V\\
+x_{uv} &\geq 0\\
+\sum_{(u,v)\in \gamma(S)} x_{uv}& \leq \frac{1}{2}(|S|-1)\quad \forall S \in B	
+\end{align*}
 Además, si nos restringimos a los emparejamientos perfectos, entonces basta considerar únicamente la igualdad en el primer bloque de restricciones.
 \end{thm}
 
@@ -320,18 +320,7 @@ s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} \leq 1, \quad \forall u \in V\\
 &\sum_{(u,v)\in \gamma(S)} x_{uv} \leq \frac{1}{2}(|S|-1)\quad \forall S \in B	\\
 &x_{uv} \geq 0 \qquad \forall(u,v)\in E
 \end{align*}
-Dado que estamos ante la formulación de un problema de Programación Lineal, tiene sentido que consideremos el problema dual asociado
-\begin{align*}
-\max_{y} &\; \sum_{v\in V} y_v - \sum_{S\in B} \frac{1}{2}(|S|-1)y_S\\
-s.a.&\;y_u+y_v - \sum_{S\in B,(u,v)\in \gamma(S)}y_S  \leq c_{uv} \quad \forall (u,v)\in E\\
-&y_S\geq 0 \quad \forall S\in B
-\end{align*}
-\begin{defi}
-Sea $y$ una solución factible del problema dual, definimos el \textbf{coste reducido de un eje $(u,v)$ asociado a $y$} como
-$$
-c_{uv}'(y) = c_{uv} - y_u -y_v + \sum_{S\in B,(u,v)\in \gamma(S)} y_S
-$$ 
-\end{defi}
+A pesar de que esta no será nuestra formulación final, pues para ello debemos profundizar en conceptos más complejos de teoría de grafos, tenemos una primera aproximación al problema del matching con una formulación propia de la Programación Lineal. 
 \subsection{El problema del emparejamiento paramétrico y biobjetivo}
 Una vez que hemos presentado los conceptos básicos para entender el MCPM, podemos definir una clase más general de problemas a los cuáles dedicaremos especial atención durante los procesos de reoptimización. Definimos el \textit{problema del emparejamiento paramétrico respecto de $R\subset E$} con parámetro $\lambda$ como
 \begin{align*}
@@ -362,7 +351,7 @@ Para ilustrar las distintas aplicaciones que tiene el problema del matchig, come
 \subsection{Aproximación al problema del viajante}
 El problema del viajante o \textit{travelling salesman problem} (TSP) en un grafo no dirigido consiste en encontrar el ciclo hamiltoniano de peso mínimo. Computacionalmente hablando, se sabe que es NP-duro. Este problema aparece para responder a la pregunta: ¿Dada una lista de ciudades y las distancias entre cada pareja de ciudades, cuál es la ruta más corta para visitar todas las ciudades y volver a la ciudad de origen? Este problema puede formularse como problema de programación entera, como puede encontrarse en \cite{papa}. 
 
-Aunque no puede utilizarse el problema del matching para resolver este problema, Nicos Christofides encontró un algoritmo \cite{nico} para obtener, bajo ciertas condiciones, una aproximación no mayor que $1.5$ el valor óptimo del TSP. Para este resultado es necesario imponer que las distancias estén en el marco de un espacio métrico, es decir, han de ser simétricas y verifica la desigualdad triangular.
+Aunque no puede utilizarse el problema del matching para resolver este problema, Nicos Christofides encontró un algoritmo \cite{nico} para obtener, bajo ciertas condiciones, una aproximación no mayor que $1.5$ el valor óptimo del TSP. Para este resultado es necesario imponer que las distancias estén en el marco de un espacio métrico, es decir, han de ser simétricas y verificar la desigualdad triangular.
 
 
 \chapter{Algoritmo SAP}
@@ -446,18 +435,111 @@ Sea $M$ un matching en $G$ y sea $A$ una familia de contracción tal que todo $W
 \begin{cor}
 Sea $A$ una familia de contracción de $G$ y $M_A$ un matching (perfecto) en $G\times A$. Entonces $M_A$ induce (de manera única) un matching (perfecto) $M$ en $G$ tal que $\forall W\in A$ es un blossom con respecto a $M$.
 \end{cor}
+\subsection{El problema del matching y las familias de contracción}
+Los las familias de contracción también son conocidas en la literatura como \textit{hypomatchable set} o \textit{shrinkable set} y en \cite{edmon3} se usan para caracterizarlos de la siguiente manera.
+\begin{thm}
+Sea $A \subset V$. Entonces $A$ es una familia de contracción si y solo si $\forall u \in A$ $\exists M_i$ matching tal que 
+$$
+|M_i\cap \gamma(A)| = \frac{1}{2}(|A|-1)
+$$
+\end{thm}
+Esta caracterización es esencial, pues nos permite reformular el Teorema 1.1.1 de la siguiente forma, tal y como prueban Edmonds y Pulleyblank también en \cite{edmon3}.
+\begin{thm}
+Sea $G=(V,E)$ un grafo y sea $\mathcal{A}(G)$ el conjunto de todos las familias de contracción de $G$. Entonces, la envolvente convexa del politopo del matching viene dada por
+\begin{align*}
+\sum_{(u,v)\in\delta(u)} x_{uv} &\leq 1, \quad \forall u\in V\\
+x_{uv} &\geq 0\\
+\sum_{(u,v)\in \delta(S)} x_{uv}& \geq 1 \quad \forall S \in \mathcal{A}(G)	
+\end{align*}
+Además, si nos restringimos a los emparejamientos perfectos, entonces basta considerar únicamente la igualdad en el primer bloque de restricciones.
+\end{thm}
+Utilizando este teorema, podemos formular el MCPM como
+\begin{align*}
+\min_x & \sum_{(u,v) \in E}x_{uv}c_{uv}\\
+s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} \leq 1, \quad \forall u \in V\\
+&\sum_{(u,v)\in \delta(S)} x_{uv} \geq 1\quad \forall S \in \mathcal{A}(G)	\\
+&x_{uv} \geq 0 \qquad \forall(u,v)\in E
+\end{align*}
+Con esta formulación del MCPM vamos a considerar el problema dual asociado.
+\begin{align*}
+\max_{y} &\; \sum_{v\in V} y_v - \sum_{S\in \mathbb{A}(G)} y_S\\
+s.a.&\;y_u+y_v + \sum_{S\in B,(u,v)\in \delta(S)}y_S  \geq c_{uv} \quad \forall (u,v)\in E\\
+&y_S\geq 0 \quad \forall S\in \mathbb{A}(G)
+\end{align*}
+\begin{defi}
+Sea $y$ una solución factible del problema dual anterior. Definimos el coste reducido de un eje $(u,v)$ con respecto a $y$
+$$
+c_{uv}'(y) = c_{uv} - y_u -y_v - \sum_{S\in B,(u,v)\in \delta(S)} y_S
+$$ 
+\end{defi}
 \section{Fundamentos del algoritmo}
 \begin{defi}
 Sea $M$ un matching en $G$ y sea $P$ un camino (o ciclo) alternante con respecto a $M$. Definimos la longitud de $P$ respecto a $M$ como
 $$
-c(P) = \sum_{(u,v)\in P\setminus M}c_{uv} - \sum_{(u,v)\in P\cap M}c_{uv}
+l(P) = \sum_{(u,v)\in P\setminus M}c_{uv} - \sum_{(u,v)\in P\cap M}c_{uv}
 $$
 \end{defi}
 \begin{defi}
-Sea $M$ un matching en $G$ y sea $s\in V$ expuesto con respecto a $M$. Definimos $\mathcal{P}_s(M)$ como el conjunto de todos los caminos de aumento con nodo inicial $s$.
+Sea $M$ un matching en $G$ y sea $s\in V$ expuesto con respecto a $M$. Definimos $\mathcal{P}(M)$ como el conjunto de todos los caminos de aumento con respecto a $M$.
 \end{defi}
-De la definición se deduce inmediatamente el siguiente resultado.
-¡
+\begin{prop}
+En las condiciones de la definición anterior se tiene que
+$$
+c(M\oplus P) = l(P) + c(M)
+$$
+\end{prop}
+
+Usando estas definiciones podemos probar ahora una primera caracterización de optimalidad para el MCPM.
+\begin{thm}
+Un matching perfecto es de coste mínimo si y solo si no existe un ciclo alternante de longitud negativa.
+\end{thm}
+\begin{dem}
+Demostremos el enunciado equivalente, un matching perfecto no es de coste mínimo si y solo si existe un ciclo alternante de longitud negativa.
+
+Si existe un ciclo alternante de longitud negativa $P$ con respecto a un matching $M$ perfecto, entonces se deduce de la proposición anterior que $c(M\oplus P) < c(M)$. 
+
+Sea un matching $M$ perfecto que no sea de coste mínimo y sea entonces $M'$ un matching de coste mínimo. Sabemos por teoría de grafos que existe un conjunto finito de ciclos alternantes $P_1,\dotsc,P_r$ con respecto a $M$ tales que
+$$
+M' = M \oplus P_1 \oplus \cdots \oplus P_r
+$$
+Si $l(P_i) \geq 0$ $\forall i=1,\dotsc, r$ entonces $c(M') \geq c(M)$, pero por hipótesis $c(M')<c(M)$. Por tanto, ha de existir $i \in \{1,\dotsc,r\}$ tal que $l(P_i)<0$. \qed
+\end{dem}
+A continuación enunciamos y probamos un resultado crucial para el algoritmo.
+\begin{thm}
+Sea $M$ un matching que no admite ningún ciclo alternante de longitud negativa y sea $P$ el camino alternante de menor coste (\textit{shortest alternanting path}) entre todos los relativos a $M$. Entonces $M\oplus P$ no admite ningún ciclo alternante de longitud negativa.
+\end{thm}
+\begin{dem}
+Sea $K$ un ciclo alternante de longitud negativa con respecto a $M\oplus P$. Podemos suponer que $K\cap P \neq \emptyset$, pues en otro caso $K$ sería un ciclo alternante de longitud negativa con respecto a $M$. Definamos entonces
+$$
+P' = (P\setminus K)\cup (K\setminus P)
+$$
+Entonces $P'$ es un camino de aumento con respecto a $M$ y
+$$
+c(M \oplus P') = c(M \oplus P \oplus K) < c(M \oplus P)
+$$
+Por tanto $l(P')<l(P)$ (con respecto a $M$), lo cuál es una contradicción.
+\qed
+\end{dem}
+\subsection{Transformaciones admisibles}
+\begin{defi}
+Sea $M$ un matching y sea $\mathcal{P}(M)$ definido en la Definición 2.2.2. Una transformación $T:c_{uv}\to c_{uv}'$ es llamado \textbf{admisible} si
+$$
+l'(P)\geq 0\quad \forall P \in \mathcal{P}(M)
+$$
+Además, se define $d(P):= l(P)-l'(P)$.
+\end{defi}
+A partir de la definición de transformación admisible podemos probar un criterio de optimalidad para que un camino de aumento sea de longitud mínima.
+\begin{thm}
+Sea $T$ una transformación admisible y $P_0 \in \mathbb{P}(M)$ con $l'(P_0) =0$ y 	$d(P_0)\leq d(P)$ $\forall P \in \mathcal{P}(M)$. Entonces $P_0$ es el camino de aumento con menor longitud con respecto a la función de coste $c$ y matching $M$.
+\end{thm}
+\begin{dem}
+Se deduce inmediatamente a partir de la definición y las hipótesis a través de la siguiente cadena de igualdades / desigualdades.
+\begin{align*}
+l(P_0) &= l'(P_0) + d(P_0)\\
+&=d(P_0)\leq d(P) \leq l'(P) + d(P) = l(P)  \quad \forall P \in \mathcal{P}(M)
+\end{align*}
+
+\end{dem}
 \chapter{Análisis de sensitividad}
 \section{Método de reoptimización}
 \section{Lo importante va aquí}
@@ -485,5 +567,8 @@ Nicos Christofides, Worst-case analysis of a new heuristic for the travelling sa
 George L. Nemhauser and Laurence A. Wolsey. 1988. Integer and Combinatorial Optimization. Wiley-Interscience, New York, NY, USA.
 \bibitem{edmon2}
 J. Edmonds, “Paths, Trees, and Flowers,” Can. J. Math., 17,449-467 (1965).
+
+\bibitem{edmon3}
+Pulleyblank, William and Edmonds, Jack. (1970). Facets of 1-Matching Polyhedra. 10.1007/BFb0066196. 
 \end{thebibliography}
 \end{document} 
