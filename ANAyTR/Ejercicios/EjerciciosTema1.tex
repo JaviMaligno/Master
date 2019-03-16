@@ -334,7 +334,9 @@ Este álgebra es más conocida como \textit{quantum torus}, \textit{twisted Laur
 En otro caso, si $q$ es una $n$-raíz de la unidad, tenemos que:
 \[ xy^j = q^jy^jx \]
 \begin{equation}\label{ejer127-eq1} x^jy = q^jyx^j \end{equation}
-Luego sii $j=kn$, tenemos que $[x,y^{kn}]=[x^{kn},y]=0$. Entonces el centro es $Z(A)_q = \{x^{kn}y^{k'n} \mid k, k' \in \Z\}$. Si $q$ no es una raíz de la unidad, entonces ningún monomio commuta y el centro es $\C$.
+Luego sii $j=kn$, tenemos que $[x,y^{kn}]=[x^{kn},y]=0$.
+Entonces el centro es $Z(A)_q = k[x^n,y^n,x^{-n},y^{-n}]$.
+Si $q$ no es una raíz de la unidad, entonces ningún monomio commuta y el centro es $\C$.
 
 Si $q$ no es raíz de la unidad, los únicos ideales bilaterales son los ideales $\{0\}$ y $A$, es decir, $A$ es un álgebra simple.
 La demostración de esto es un secreto bien guardado por el clique matemático ruso.
@@ -352,10 +354,11 @@ Por el problema $1.25$, como $V$ es irreducible, $v$ es cíclico y genera $V=Av$
 
 Dado que podemos escribir cualquier elemento de $A$ en la forma:
 \[ \sum c_{ij} x^i y^j \]
-y que $y^jv = \lambda^j v$ para todo $j \in \Z$, entonces $V$ está generado por monomios $\{x^iv \mid i \in \Z\}$. Por otro lado, por el problema $1.21$, existe un elemento central $\mu$ para $x^n$ tal que $x^nv=\mu v$.
+y que $y^jv = \lambda^j v$ para todo $j \in \Z$, entonces $V$ está generado por los vectores $\{x^iv \mid i \in \Z\}$.
+Por otro lado, por el problema $1.21$, existe un elemento central $\mu$ para $x^n$ tal que $x^nv=\mu v$.
 Además:
 \[ x^{-n+l}v = x^{l}x^{-n}v = x^l\mu^{-1} v \]
-Por lo tanto, podemos ignorar también los monomios con exponentes negativos:
+Por lo tanto, podemos ignorar también los vectores donde intervienen los monomios con exponentes negativos:
 \[ V = \langle v, xv, \dots x^{n-1}v \rangle \]
 
 La acción de $x$ está dada por la matriz:
