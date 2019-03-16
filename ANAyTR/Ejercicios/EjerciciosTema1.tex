@@ -483,7 +483,7 @@ Let $V$ be a finite dimensional representation of $\mathfrak{sl}(2)$ (the ground
 
 \begin{enumerate}[(a)]
 \item Take eigenvalues of $H$ and pick one with the biggest real part. Call it $λ$. Let $\bar{V} (λ)$ be the
-generalized eigenspace corresponding to $λ$. Show that $E|_{\bar{V}} (λ) = 0$.
+generalized eigenspace corresponding to $λ$. Show that $E|_{\bar{V} (λ)} = 0$.
 \item Let $W$ be any representation of $\mathfrak{sl}(2)$ and $w ∈ W$ be a nonzero vector such that $Ew = 0$.
 For any $k > 0$ find a polynomial $P_k(x)$ of degree $k$ such that $E^kF^kw = P^k(H)w$. (First compute
 $EF^kw$, then use induction in $k$).
@@ -518,7 +518,42 @@ of $V$ (establish that if $Fx = 0$ and $Hx = μx$ then $Cx = \frac{μ(μ−2)}{2
 contradiction with the fact that $V$ cannot be decomposed.
 \end{enumerate}
 \end{ejercicio}
-\begin{solucion}
+\begin{solucion}\
+\begin{enumerate}[(a)]
+\item Sea $\lambda$ el autovalor de $H$ con mayor parte real y sea $v$ un autovector asociado. De la ecuación $HE-EH=2E$ obtenemos 
+\[
+2Ev=HEv-E\lambda v=HEv-\lambda Ev\Rightarrow (2+\lambda)Ev=HEv.
+\]
+Esto implica que $Ev$ es un autovector de $H$ para el autovalor $\lambda+2$, pero como $\lambda$ era el de mayor parte real, se tiene necesariamente que $Ev=0$. 
+
+\item Primero probamos que $[H,F^k]=-2kF^k$ por inducción. Para $k=1$ se tiene por las relaciones del álgebra. Para $k>1$ basta usar que el corchete es una derivación en la segunda coordenada, es decir, $[A,BC]=[A,B]C+B[A,C]$ (por la identidad de Jacobi). Tomando $A=H$, $B=F^{k-1}$ y $C=F$, se deduce el resultado con la hipótesis de inducción. 
+
+Ahora por inducción también, $[E,F^k]=kF^{k-1}H-k(k-1)F^{k-1}$. Para $k=1$ es evidente por las relaciones del álgebra. Para $k\geq 1$ tenemos lo siguiente:
+\begin{align*}
+[E,F^k]&=F[E,F^{k-1}]+[E,F]F^{k-1}\\
+&=F((k-1)F^{k-2}H-(k-1)(k-2)F^{k-2})+HF^{k-1}\\
+&=(k-1)F^{k-1}H-(k-1)(k-2)F^{k-1}+F{k-1}H+[H,F^{k-1}]\\
+&=kF^{k-1}H-(k-1)(k-2)F^{k-1}-2(k1)F^{k-1}\\
+&=kF^{k-1}H-k(k-1)F^{k-1}
+\end{align*}
+
+Probamos como último resultado previo que $EH^kw=0$ para $k\geq 0$. Es suficiente usar que $EH^k=(HE+[E,H])H^{k-1}$ e inducción. Es inmediato a partir de esto que $EP(H)w=0$ para cualquier polinomio $P$. 
+
+Sea entonces $P$ un polinomio arbitrario. Tenemo
+\begin{align*}
+E^kF^kP(H)w&=E^{k-1}(EF^k)P(H)w\\
+&=E^{k-1}(F^kE+[E,F^k])P(H)w\\
+&=E^{k-1}(kF^{k-1}H-k(k-1)F^{k-1})P(H)w\\
+&=E^{k-1}F^{k-1}(H-(k-1))P(H)w.
+\end{align*}
+
+Por tanto
+\[
+E^kF^kw=k!H(H-1)(H-2)\cdots (H-(k-1))w
+\]
+
+\item Podemos razonar como en (a), solo que ahora obtendríamos que ahora la parte real de $\lambda$ se reduciría en 2, por lo que elegimos el autovalor con menor parte real para el razonamiento. Como $V$ tiene dimensión finita, solo puede tener una cantidad finita de autovalores, por lo que la sucesión $v,Fv,F^2v,\dots$ debe acabar en 0. 
+\end{enumerate}
 \end{solucion}
 \end{document}
 http://brianbi.ca/etingof/2.3
