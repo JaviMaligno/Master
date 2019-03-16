@@ -303,7 +303,9 @@ Este álgebra es más conocida como \textit{quantum torus}, \textit{twisted Laur
 En otro caso, si $q$ es una $n$-raíz de la unidad, tenemos que:
 \[ xy^j = q^jy^jx \]
 \begin{equation}\label{ejer127-eq1} x^jy = q^jyx^j \end{equation}
-Luego sii $j=kn$, tenemos que $[x,y^{kn}]=[x^{kn},y]=0$. Entonces el centro es $Z(A)_q = \{x^{kn}y^{k'n} \mid k, k' \in \Z\}$. Si $q$ no es una raíz de la unidad, entonces ningún monomio commuta y el centro es $\C$.
+Luego sii $j=kn$, tenemos que $[x,y^{kn}]=[x^{kn},y]=0$.
+Entonces el centro es $Z(A)_q = k[x^n,y^n,x^{-n},y^{-n}]$.
+Si $q$ no es una raíz de la unidad, entonces ningún monomio commuta y el centro es $\C$.
 
 Si $q$ no es raíz de la unidad, los únicos ideales bilaterales son los ideales $\{0\}$ y $A$, es decir, $A$ es un álgebra simple. Para probarlo, sea $I$ un ideal. Consideremos $p = p(x,y) = \sum a_{ij}x^i y^j$ de grado mínimo usando orden graded lexicographic order. Sea $h>0$ el grado en $x$ de este monomio. Si su grado es $0$, hemos acabado. Notemos que por minimalidad $p$ ha de tener término independiente. Ahora bien, es fácil comprobar que
 $$
@@ -323,10 +325,16 @@ Por el problema $1.25$, como $V$ es irreducible, $v$ es cíclico y genera $V=Av$
 
 Dado que podemos escribir cualquier elemento de $A$ en la forma:
 \[ \sum c_{ij} x^i y^j \]
+<<<<<<< .mine
 y que $y^jv = \lambda^j v$ para todo $j \in \Z$, entonces $V$ está generado por los vectores $\{x^iv \mid i \in \Z\}$. Por otro lado, por el problema $1.21$, existe un elemento central $\mu$ para $x^n$ tal que $x^nv=\mu v$.
+
+=======
+y que $y^jv = \lambda^j v$ para todo $j \in \Z$, entonces $V$ está generado por los vectores $\{x^iv \mid i \in \Z\}$.
+Por otro lado, por el problema $1.21$, existe un elemento central $\mu$ para $x^n$ tal que $x^nv=\mu v$.
+>>>>>>> .theirs
 Además:
 \[ x^{-n+l}v = x^{l}x^{-n}v = x^l\mu^{-1} v \]
-Por lo tanto, podemos ignorar también los monomios con exponentes negativos:
+Por lo tanto, podemos ignorar también los vectores donde intervienen los monomios con exponentes negativos:
 \[ V = \langle v, xv, \dots x^{n-1}v \rangle \]
 
 La acción de $x$ está dada por la matriz:
@@ -438,6 +446,90 @@ of its universal enveloping algebra.
 \end{ejercicio}
 \begin{solucion}
 Sea $\mathfrak{g}$ un álgebra de Lie con base $x_i$ y con corchete definido como $[x_i,x_j]=\sum_k c_{ij}^kx_k$. Cualquier representación $\rho:\mathfrak{g}\to\gl(V)$ debe verificar $\rho([x_i,x_j])=[\rho(x_i),\rho(x_j)]=\sum_kc_{ij}\rho(x_k)$. Por tanto, las representaciones de $\g$ están en biyección con las familias $(y_i)$ de elementos de $\gl(V)$ que verifican $[y_i,y_j]=\sum_k c_{ij}y_k$, que son las posibles imágenes de $\rho(x_i)$. Por la propiedad universal del cociente, estas familias están en biyección con las representaciones de $U(\g)$. 
+\end{solucion}
+
+\newpage
+
+\begin{ejercicio}{1.55}
+According to the above, a representation of $\mathfrak{sl}(2)$ is just a vector space $V$ with a
+triple of operators $E$, $F$, $H$ such that $HE − EH = 2E$, $HF − FH = −2F$, $EF − FE = H$ (the
+corresponding map $ρ$ is given by $ρ(e) = E$, $ρ(f) = F$, $ρ(h) = H$).
+
+Let $V$ be a finite dimensional representation of $\mathfrak{sl}(2)$ (the ground field in this problem is $\C$).
+
+\begin{enumerate}[(a)]
+\item Take eigenvalues of $H$ and pick one with the biggest real part. Call it $λ$. Let $\bar{V} (λ)$ be the
+generalized eigenspace corresponding to $λ$. Show that $E|_{\bar{V} (λ)} = 0$.
+\item Let $W$ be any representation of $\mathfrak{sl}(2)$ and $w ∈ W$ be a nonzero vector such that $Ew = 0$.
+For any $k > 0$ find a polynomial $P_k(x)$ of degree $k$ such that $E^kF^kw = P^k(H)w$. (First compute
+$EF^kw$, then use induction in $k$).
+\item Let $v ∈  \bar{V} (λ)$ be a generalized eigenvector of $H$ with eigenvalue $λ$. Show that there exists
+$N > 0$ such that $F^Nv = 0$.
+\item Show that $H$ is diagonalizable on $ \bar{V} (λ)$. (Take $N$ to be such that $F^N = 0$ on $\bar{V} (λ)$, and
+compute $E^NF^Nv$, $v ∈ \bar{ V} (λ)$, by (b). Use the fact that $P^k(x)$ does not have multiple roots).
+\item Let $N_v$ be the smallest $N$ satisfying (c). Show that $λ = N_v − 1$.
+\item Show that for each $N > 0$, there exists a unique up to isomorphism irreducible representation
+of $\mathfrak{sl}(2)$ of dimension $N$. Compute the matrices $E$, $F$, $H$ in this representation using a convenient
+basis. (For $V$ finite dimensional irreducible take $λ$ as in (a) and $v ∈ V (λ)$ an eigenvector of $H$.
+Show that $v, Fv, \dots, F^λv$ is a basis of $V$, and compute the matrices of the operators $E$, $F$, $H$ in this
+basis.)
+
+\item[] Denote the $λ + 1$-dimensional irreducible representation from (f) by $V_λ$. Below you will show
+that any finite dimensional representation is a direct sum of $V_λ$.
+\item Show that the operator $C = EF + FE + H^2/2$ (the so-called Casimir operator) commutes
+with $E$, $F$, $H$ and equals $\frac{λ(λ+2)}{2} Id$ on $V_λ$.
+
+\item[] Now it will be easy to prove the direct sum decomposition. Namely, assume the contrary, and
+let $V$ be a reducible representation of the smallest dimension, which is not a direct sum of smaller
+representations.
+
+\item Show that $C$ has only one eigenvalue on $V$, namely $\frac{λ(λ+2)}{2}$ for some nonnegative integer $λ$
+(use that the generalized eigenspace decomposition of $C$ must be a decomposition of representations).
+\item Show that $V$ has a subrepresentation $W = V_λ$ such that $V/W = nV_λ$ for some $n$ (use (h)
+and the fact that $V$ is the smallest which cannot be decomposed).
+\item Deduce from (i) that the eigenspace $V(λ)$ of $H$ is $n + 1$-dimensional. If $v_1, \dots, v_{n+1}$ is its
+basis, show that $F^jv_i$, $1 ≤ i ≤ n+1$, $0 ≤ j ≤ λ$ are linearly independent and therefore form a basis
+of $V$ (establish that if $Fx = 0$ and $Hx = μx$ then $Cx = \frac{μ(μ−2)}{2}x$ and hence $μ = −λ$).
+\item Define $W_i = \gene{v_i, Fv_i, \dots, F^λv_i}$. Show that $V_i$ are subrepresentations of $V$ and derive a
+contradiction with the fact that $V$ cannot be decomposed.
+\end{enumerate}
+\end{ejercicio}
+\begin{solucion}\
+\begin{enumerate}[(a)]
+\item Sea $\lambda$ el autovalor de $H$ con mayor parte real y sea $v$ un autovector asociado. De la ecuación $HE-EH=2E$ obtenemos 
+\[
+2Ev=HEv-E\lambda v=HEv-\lambda Ev\Rightarrow (2+\lambda)Ev=HEv.
+\]
+Esto implica que $Ev$ es un autovector de $H$ para el autovalor $\lambda+2$, pero como $\lambda$ era el de mayor parte real, se tiene necesariamente que $Ev=0$. 
+
+\item Primero probamos que $[H,F^k]=-2kF^k$ por inducción. Para $k=1$ se tiene por las relaciones del álgebra. Para $k>1$ basta usar que el corchete es una derivación en la segunda coordenada, es decir, $[A,BC]=[A,B]C+B[A,C]$ (por la identidad de Jacobi). Tomando $A=H$, $B=F^{k-1}$ y $C=F$, se deduce el resultado con la hipótesis de inducción. 
+
+Ahora por inducción también, $[E,F^k]=kF^{k-1}H-k(k-1)F^{k-1}$. Para $k=1$ es evidente por las relaciones del álgebra. Para $k\geq 1$ tenemos lo siguiente:
+\begin{align*}
+[E,F^k]&=F[E,F^{k-1}]+[E,F]F^{k-1}\\
+&=F((k-1)F^{k-2}H-(k-1)(k-2)F^{k-2})+HF^{k-1}\\
+&=(k-1)F^{k-1}H-(k-1)(k-2)F^{k-1}+F{k-1}H+[H,F^{k-1}]\\
+&=kF^{k-1}H-(k-1)(k-2)F^{k-1}-2(k1)F^{k-1}\\
+&=kF^{k-1}H-k(k-1)F^{k-1}
+\end{align*}
+
+Probamos como último resultado previo que $EH^kw=0$ para $k\geq 0$. Es suficiente usar que $EH^k=(HE+[E,H])H^{k-1}$ e inducción. Es inmediato a partir de esto que $EP(H)w=0$ para cualquier polinomio $P$. 
+
+Sea entonces $P$ un polinomio arbitrario. Tenemo
+\begin{align*}
+E^kF^kP(H)w&=E^{k-1}(EF^k)P(H)w\\
+&=E^{k-1}(F^kE+[E,F^k])P(H)w\\
+&=E^{k-1}(kF^{k-1}H-k(k-1)F^{k-1})P(H)w\\
+&=E^{k-1}F^{k-1}(H-(k-1))P(H)w.
+\end{align*}
+
+Por tanto
+\[
+E^kF^kw=k!H(H-1)(H-2)\cdots (H-(k-1))w
+\]
+
+\item Podemos razonar como en (a), solo que ahora obtendríamos que ahora la parte real de $\lambda$ se reduciría en 2, por lo que elegimos el autovalor con menor parte real para el razonamiento. Como $V$ tiene dimensión finita, solo puede tener una cantidad finita de autovalores, por lo que la sucesión $v,Fv,F^2v,\dots$ debe acabar en 0. 
+\end{enumerate}
 \end{solucion}
 \end{document}
 http://brianbi.ca/etingof/2.3
