@@ -576,17 +576,76 @@ Estas distancias y medidas están tomadas respecto de los costes $c'_{uv}$. Pase
 \text{Inicialización: }& y_u:= y_S:= 0 \quad \forall u \in V,\; S\in B\\
 & M:=A:=\emptyset\\
 & c_{uv}' = c_{uv} \quad \forall (u,v)\in E\\
-\text{Paso 1: }& \text{Determinar si existe un nodo $s$ no emparejado en $G\times A$ con respecto a $M_A$}\\
-&\text{Si no existe ninguno, ir al Paso 8}\\
-&\text{En caso contrario, ir al Paso 2}
+\text{Paso 1: }& \text{Determinar si existe un nodo $s$ no emparejado en $G\times A$ con respecto a $M_A$.}\\
+&\text{Si no existe ninguno, ir al Paso 8.}\\
+&\text{En caso contrario, ir al Paso 2.}
 \end{align*}
 \begin{align*}
-\text{Paso 2: }& \text{[Inicialización de una fase]}\\
-&=d_j^+ := \infty \quad \forall j\in G\times A,\; j\neq s
+\text{Paso 2: }& \text{[Inicialización de una fase.]}\\
+&d_v^+ := \infty \quad \forall j\in G\times A,\; v\neq s\\
+&d_s^+:=0\\
+&d_v^-:=c'_{sv},\;p(v):=s\quad \forall j\in G\times A,\; v\neq s\\
+&d^-_s:=\infty\\
+&\text{Etiquetamos $s$ con una $S$ y avanzamos al Paso 3.}\\
+\text{Paso 3: }& \text{Determinamos:}\\
+&\delta_1 = \min\{d_v^-\mid \text{$v$ no está etiqetado ni emparejado}\},\\
+&\delta_2 =\min\{d_v^-\mid \text{$v$ no está etiquedato pero sí emparejado}\},\\
+&\delta_3 =\min\{\frac{1}{2}(\delta_v^+ + \delta_v^-)\mid \text{$v$ está $S$-etiquetado}\}\\
+&\delta_4 =\min\{y_B+d_B^- \mid \text{$v_B$ es un pseudonodo $T$-etiquetado}\}\\
+&\delta\;= \min\{\delta_1,\delta_2,\delta_3,\delta_4\}\\
+&\text{Si $\delta=\delta_1$ ir al Paso 7}\\
+&\text{Si $\delta=\delta_2$ ir al Paso 4}\\
+&\text{Si $\delta=\delta_3$ ir al Paso 5}\\
+&\text{Si $\delta=\delta_4$ ir al Paso 6}\\
+\text{Paso 4: }&\text{[Crecimiendo de un arbol alternante.]}\\
+&\text{Sea $u$ el nodo que define $\delta$ y sea $(u,v)\in M_A$. Entonces el árbol crece}\\
+&\text{asignando un $T$-etiquetado a $u$ y un $S$ etiquetado a $v$.}\\
+&\text{Establecemos $d^+_v:=\delta$ y escaneamos $v$, es decir,}\\
+&d^-_k:= \min\{d_k^-,d_j^++c'_{vk}\}\quad \forall k\neq u,v\\
+&p(k):=v \text{ si } d_k^-= d_v^++c'_{vk}\\
+&\text{Ir al Paso 3}\\
+\text{ Paso 5: }&\text{[Contracción de un blossom.]}\\
+&\text{Sea $u$ el nodo que define $\delta$ y sea $v:=p(u)$. Introduciendo la arista $(u,v)$}\\
+&\text{al arbol alternante genera un blossom $B$. Este blossom se contrae en un}\\
+&\text{pseudono $v_B$. Establecemos:}\\
+&A:=A-\{B\},\;d^+_B:=\delta,\;y_B:=0 \text{ y asignamos una $S$-etiqueda a $v_B$}\\
+&\text{Para todo $i \in B$ $S$-etiqueado}\\
+&y_i:=y_i + (\delta-d_i^+)\\
+&c_{ij}' := c_{ij}' -(\delta-d_i^+) \quad \forall j\neq i\\
+&\text{Para todo $i \in B$ $T$-etiquedado}\\
+&y_i:=y_i + (d^-_i-\delta)\\
+&c_{ij}' := c_{ij}' -(d_i^- -\delta) \quad \forall j\neq i\\
+&\text{Escaneamos $v_B$ (como en el Paso 4 para el nodo $v$) y vamos al Paso 3.}
 \end{align*}
-
+\begin{align*}
+\text{Paso 6: }&\text{[Expansión de un pseudonodo.]}\\
+&\text{Sea $v_B$ el pseudonodo que define $\delta$. Establecemos}\\
+&c_{uv}':=c_{uv}'+y_B\quad \forall (u,v)\in\delta(B)\\
+&y_B:=0\\
+&\text{y extendemos el matching $M_A$. El blossom $B$ se particiona en dos}\\
+&\text{caminos, uno tiene un número par de ejes y el otro un número impar}\\
+&\text{Todos los nodos $v$ del camino par se etiquetan con $S$ y $T$ alternativamente}\\
+&\text{y $d_v^+:=d_v^-:=\delta$. Los nodos $S$-etiqueados son escaneados. Los nodos $u$}\\
+&\text{del camino impar no se etiquetan. Establecemos}\\
+&d^-_v=\min\{d_i^++c_{iu}'\mid i\text{ está $S$ etiquetado}\}\\
+&\text{y $p(v):=i$ si el mínimo se alcanza en $i$. Si no existe, $d_v^-:=\infty$.}\\
+&\text{Finalmente, $A:=A\setminus\{B\}$. Vamos al Paso 3.}\\
+\text{Paso 7: }&\text{[Aumento.]}\\
+&\text{Hemos detectado un camino de aumento $P_A$ con respecto a $M_A$.}\\
+&\text{Actualizamos $M_A = M_A \oplus P_A$ y definimos y definimos para todos los}\\
+&\text{(pseudo)nodos $S$-etiquetados $v$:}\\
+&y_v:=y_v+(\delta-d_v^+)\\
+&c_{uv}' := c_{uv}' - (\delta-d_i^+) \quad u\neq v\\
+&\text{y para los $T$-etiquedados}\\
+&y_v:=y_v-(\delta-d_i^-)\\
+&c_{uv}'=c_{uv}'+(\delta-d_i^-)\\
+&\text{Eliminamos todas las etiquetas y vamos al Paso 1}\\
+\text{Paso 8: }& \text{Expandimos todos los pseudonodos y extendemos el matching $M_A$ a un}\\
+&\text{matching perfecto $M$ en $G$. Este matching es óptimo.} 
+\end{align*}
 \chapter{Análisis de sensitividad}
 \section{Método de reoptimización}
+En esta sección vamos a presentar un método de reoptimización para el problema del MCPM y cómo aplicarlo al problema biobjetivo. Antes de presentar este método hemos revisado diversos análsis de postoptimalidad como el de Ball y Taberna \cite{balltab} o el de Weber \cite{webber},
 \section{Lo importante va aquí}
 
 
@@ -618,5 +677,8 @@ Pulleyblank, William and Edmonds, Jack. (1970). Facets of 1-Matching Polyhedra. 
 
 \bibitem{derigs}
 Derigs, U. (1981), A shortest augmenting path method for solving minimal perfect matching problems. Networks, 11: 379-390. doi:10.1002/net.3230110407
+
+\bibitem{webber}
+Weber, G. M. (1981), Sensitivity analysis of optimal matchings. Networks, 11: 41-56. doi:10.1002/net.3230110105
 \end{thebibliography}
 \end{document} 
