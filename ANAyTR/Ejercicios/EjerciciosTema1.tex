@@ -9,8 +9,7 @@
 \maketitle
 
 \section{Ejercicio del profesor}
-
-
+(x+1)|| xy+y = qyx - 1
 \begin{ejercicio}{1}
 Demostrar que si $A$ es conmutativa y $k$ es algebraicamente cerrado, todas las representaciones irreducibles de dimensión finita de $A$ son de dimensión 1. 
 \end{ejercicio}
@@ -225,13 +224,13 @@ Hint. Let $V$ be an irreducible finite dimensional representation of $A$, and $v
 
 \begin{enumerate}[(a)]
 \item
-Si la característica del cuerpo $k$ es cero, entonces no hay representaciones de dimensión finita no triviales de $A$, ya que en tal representación $x, y$ deben actuar como matrices y la identidad $[x,y]=1$ no puede darse, porque el comutador de dos matrices tiene traza nula $Tr([x,y])=0$, pero $Tr(I)\neq 0$.
+Si la característica del cuerpo $k$ es cero, entonces no hay representaciones de dimensión finita no triviales de $A$, ya que en tal representación $x, y$ deben actuar como matrices y la identidad $[x,y]=1$ no puede darse, porque el conmutador de dos matrices tiene traza nula $Tr([x,y])=0$, pero $Tr(I)\neq 0$.
 
-Es fácil provar por inducción que $y^jx = xy^j + jy^{j-1}$.
-Supongase que $I$ es un ideal bilateral de $A$ que contiene un elemento no nulo $p(x,y)$ donde $x$ e $y$ aparecen con coeficientes no nulos.
+Es fácil probar por inducción que $y^jx = xy^j + jy^{j-1}$.
+Supóngase que $I$ es un ideal bilateral de $A$ que contiene un elemento no nulo $p(x,y)$ donde $x$ e $y$ aparecen con coeficientes no nulos.
 Con la identidad anterior podemos ver que $xp-px = p'(y)$, donde $p'$ es la derivada formal de $p$ respecto a $y$ evaluada en $x=1$.
 De esta forma, podemos encontrar siempre un polinomio $q$ que dependa sólo de $y$.
-Análogamente, usando que $x^jy = yx^j + jx^{j-1}$ llegamos a que siempre existe un polinomio $q$ que depeda sólo de $x$.
+Análogamente, usando que $x^jy = yx^j + jx^{j-1}$ llegamos a que siempre existe un polinomio $q$ que dependa sólo de $x$.
 
 Tomando un polinomio $q(x) \in I$, entonces, $I \ni yq-qy = q(1)$, que es una unidad del álgebra.
 Luego el único ideal no nulo es todo el álgebra.
@@ -293,37 +292,7 @@ Hint. Use determinants.
 Hint. This is similar to part (c) of the previous problem.
 \end{enumerate}
 \end{ejercicio}
-\begin{solucion}
-\begin{enumerate}[(a)]
-\item[]
-\item Denotemos $Z(A)_q$ el centro del álgebra de $q$-Weyl. Si $q=1$ entonces es claro que $Z(A)_1 = A$. Consideremos $k[u,v,u^{-1},v^{-1}]$ y la acción de $A$ dada por la extensión lineal de $x(u^iv^j) = u^{i+1}v^j$, $y(u^iv^j) = q^iu^i v^{j+1}$. Entonces, 
-\begin{itemize}
-\item Si $j=0$, entonces $x^i$ no puede estar en el centro, pues
-$$
-x^iy(1) = x^i(v) = u^iv \qquad yx^i(1) = y(u^i) = q^i u^iv
-$$
-\item Si $j\neq 0$ entonces $x^iy^j$ no pueden estar en el centro pues
-$$
-xx^i y^j (1) = u^{i+1}v^j \qquad x^i y^jx(1) = qu^{i+1}v^j
-$$
-\end{itemize}
-Luego, siempre que $q$ no sea una raíz de la unidad, ningún monomio (no trivial) está en $Z(A)_q$, por lo que $Z(A)_q = \C$. Si $q$ es raíz $n$-ésima de la unidad (distinta de $1$), es claro que ningún monomio de la forma $x^i y^j$ con $j\neq 0$ puede conmutar, así como ningún monomio $x^i$ con $i\neq kn$ con $k\in Z$. Estos monomios, de hecho
-$$
-xx^i = x^i x \qquad x^{-1}x^i = x^ix^{-1}
-$$
-También conmutan con $y$, pues
-$$
-xy = qyx \Rightarrow x^2y = qxyx= q^2yx^2 \Rightarrow x^sy = q^s yx^s
-$$
-$$
-xy = qyx \Rightarrow x^{-1}y = q^{-1}yx^{-1} \Rightarrow x^{-s}y = q^{-s}yx^{-s}
-$$
-Análogamente puede obtenerse que conmutan con $y^{-1}$. Por tanto, si $q$ es raíz $n$-ésima de la unidad, con $n$ el mínimo natural tal que $q^n =1$, entonces $Z(A)_q$ es el álgebra generada por $\{1,x^n\}$.
 
-
-\item 
-\end{enumerate}
-\end{solucion}
 
 
 \begin{solucion} (Alternativa por Diego)
@@ -336,9 +305,11 @@ En otro caso, si $q$ es una $n$-raíz de la unidad, tenemos que:
 \begin{equation}\label{ejer127-eq1} x^jy = q^jyx^j \end{equation}
 Luego sii $j=kn$, tenemos que $[x,y^{kn}]=[x^{kn},y]=0$. Entonces el centro es $Z(A)_q = \{x^{kn}y^{k'n} \mid k, k' \in \Z\}$. Si $q$ no es una raíz de la unidad, entonces ningún monomio commuta y el centro es $\C$.
 
-Si $q$ no es raíz de la unidad, los únicos ideales bilaterales son los ideales $\{0\}$ y $A$, es decir, $A$ es un álgebra simple.
-La demostración de esto es un secreto bien guardado por el clique matemático ruso.
-
+Si $q$ no es raíz de la unidad, los únicos ideales bilaterales son los ideales $\{0\}$ y $A$, es decir, $A$ es un álgebra simple. Para probarlo, sea $I$ un ideal. Consideremos $p = p(x,y) = \sum a_{ij}x^i y^j$ de grado mínimo usando orden graded lexicographic order. Sea $h>0$ el grado en $x$ de este monomio. Si su grado es $0$, hemos acabado. Notemos que por minimalidad $p$ ha de tener término independiente. Ahora bien, es fácil comprobar que
+$$
+y^{-1}(x^i y^j)y = q^i x^i y^j
+$$
+Dado que $q$ no es raíz de la unidad, entonces $q^hp - y^{-1}py \in I$, es un polinomio en $x,y$ y tiene grado menor que $q$, lo cuál es una contradicción. Si $h=0$ se puede razonar análogamente con $x^{-1}px$.
 \item Consideramos una representación de dimensión $n$ del álgebra.
 Tomamos determinante de $xy=qyx$:
 \[ |xy| = |qyx| \Rightarrow |x||y| = q^n |y||x| \Rightarrow q^n = 1 \]
@@ -352,7 +323,7 @@ Por el problema $1.25$, como $V$ es irreducible, $v$ es cíclico y genera $V=Av$
 
 Dado que podemos escribir cualquier elemento de $A$ en la forma:
 \[ \sum c_{ij} x^i y^j \]
-y que $y^jv = \lambda^j v$ para todo $j \in \Z$, entonces $V$ está generado por monomios $\{x^iv \mid i \in \Z\}$. Por otro lado, por el problema $1.21$, existe un elemento central $\mu$ para $x^n$ tal que $x^nv=\mu v$.
+y que $y^jv = \lambda^j v$ para todo $j \in \Z$, entonces $V$ está generado por los vectores $\{x^iv \mid i \in \Z\}$. Por otro lado, por el problema $1.21$, existe un elemento central $\mu$ para $x^n$ tal que $x^nv=\mu v$.
 Además:
 \[ x^{-n+l}v = x^{l}x^{-n}v = x^l\mu^{-1} v \]
 Por lo tanto, podemos ignorar también los monomios con exponentes negativos:
