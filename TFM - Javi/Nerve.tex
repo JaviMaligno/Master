@@ -58,7 +58,7 @@ Again, we can express this concept in terms of the families $X_n$ and $Y_n$. A s
 \[f_n\circ d_i=d_i\circ f_{n+1}\]
 \[f_n\circ s_i=s_i\circ f_{n-1}\]
 
-More generally, one can also define a \emph{simplicial object} in a category $\CC$ as a functor $X:\mathbf{\Delta}^{op}\to\CC$. 
+More generally, one can also define a \emph{simplicial object} in a category $\CC$ as a functor $X:\mathbf{\Delta}^{op}\to\CC$. The category of simplicial objects in $\CC$ is denoted by $\SCC$. 
 %QUEDA MUY BIEN EL CASO DE AB DE MAY. AÑADIR MAY A LA BIBLIOGRAFÍA
 \begin{ex}[Nerve of a Category]
 Let $\CC$ be a small category. We're going to build a simplicial object in the category of morphisms in $C$ (which is a set, and therefore the simplicial object is actually a simplicial set), called the \emph{nerve} of $\CC$ and written $N(\CC)$. Its $n$-simplices for $n>0$ are the strings $X_0→X_1→\cdots →X_n$ of morphisms in $\CC$. For $n=0$ there is a $0$-simplex for each object of $\CC$. The faces $d_i:N(\CC)_n\to N(\CC)_{n-1}$ of a $n$-simplex are obtained by deleting $X_i$, and then composing the two adjacent morphisms if $i ≠ 0,n$. Thus when $n = 2$ the three faces of
