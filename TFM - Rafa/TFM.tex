@@ -507,7 +507,7 @@ Si $l(P_i) \geq 0$ $\forall i=1,\dotsc, r$ entonces $c(M') \geq c(M)$, pero por 
 \end{dem}
 A continuación enunciamos y probamos un resultado crucial para el algoritmo.
 \begin{thm}
-Sea $M$ un matching que no admite ningún ciclo alternante de longitud negativa y sea $P$ el camino alternante de menor coste (\textit{shortest alternanting path}) entre todos los relativos a $M$. Entonces $M\oplus P$ no admite ningún ciclo alternante de longitud negativa.
+Sea $M$ un matching que no admite ningún ciclo alternante de longitud negativa y sea $P$ el camino alternante de menor coste (\textit{shortest alternanting path}) entre todos los relativos a $M$. Entonces $M\oplus P$ no admite ningún ciclo alternante de longitud negativa.\qed
 \end{thm}
 \begin{dem}
 Sea $K$ un ciclo alternante de longitud negativa con respecto a $M\oplus P$. Podemos suponer que $K\cap P \neq \emptyset$, pues en otro caso $K$ sería un ciclo alternante de longitud negativa con respecto a $M$. Definamos entonces
@@ -539,7 +539,7 @@ Se deduce inmediatamente a partir de la definición y las hipótesis a través d
 l(P_0) &= l'(P_0) + d(P_0)\\
 &=d(P_0)\leq d(P) \leq l'(P) + d(P) = l(P)  \quad \forall P \in \mathcal{P}(M)
 \end{align*}
-
+\qed
 \end{dem}
 \begin{defi}
 Sea $B=\{S\subset V \mid |S| \text{ es impar, }|S|\geq 3\}$. A cada $u\in V$ y $S\in B$ podemos asociar unos pesos $y_u \in \R$  e $y_S \in \R_{\geq 0}$. Definimos la transformación $T:c_{uv}\to c'_{uv}$ tal que
@@ -556,7 +556,7 @@ En las condiciones de la definición anterior, definimos el \textbf{grafo de adm
 \begin{defi}
 Una transformación admisible $T$ del tipo definida en la Definición 2.2.4 se dice \textbf{adecuada} con respecto a $M$ si existe una familia de contracción $A$ en $G'$ tal que
 \begin{align*}
-\text{$u,v$ no emparejados con respecto a $M$}&\Rightarrow y_v= y_u\\
+(u,v)\in M &\Rightarrow c'_{uv} = 0\\
 y_S>0&\Rightarrow S\in A \text{ y } |M\cap \gamma(S)| = \frac{1}{2}(|S|-1)
 \end{align*}
 \end{defi}
@@ -576,20 +576,131 @@ Estas distancias y medidas están tomadas respecto de los costes $c'_{uv}$. Pase
 \text{Inicialización: }& y_u:= y_S:= 0 \quad \forall u \in V,\; S\in B\\
 & M:=A:=\emptyset\\
 & c_{uv}' = c_{uv} \quad \forall (u,v)\in E\\
-\text{Paso 1: }& \text{Determinar si existe un nodo $s$ no emparejado en $G\times A$ con respecto a $M_A$}\\
-&\text{Si no existe ninguno, ir al Paso 8}\\
-&\text{En caso contrario, ir al Paso 2}
+\text{Paso 1: }& \text{Determinar si existe un nodo $s$ no emparejado en $G\times A$ con respecto a $M_A$.}\\
+&\text{Si no existe ninguno, ir al Paso 8.}\\
+&\text{En caso contrario, ir al Paso 2.}
 \end{align*}
 \begin{align*}
-\text{Paso 2: }& \text{[Inicialización de una fase]}\\
-&=d_j^+ := \infty \quad \forall j\in G\times A,\; j\neq s
+\text{Paso 2: }& \text{[Inicialización de una fase.]}\\
+&d_v^+ := \infty \quad \forall j\in G\times A,\; v\neq s\\
+&d_s^+:=0\\
+&d_v^-:=c'_{sv},\;p(v):=s\quad \forall j\in G\times A,\; v\neq s\\
+&d^-_s:=\infty\\
+&\text{Etiquetamos $s$ con una $S$ y avanzamos al Paso 3.}\\
+\text{Paso 3: }& \text{Determinamos:}\\
+&\delta_1 = \min\{d_v^-\mid \text{$v$ no está etiqetado ni emparejado}\},\\
+&\delta_2 =\min\{d_v^-\mid \text{$v$ no está etiquedato pero sí emparejado}\},\\
+&\delta_3 =\min\{\frac{1}{2}(\delta_v^+ + \delta_v^-)\mid \text{$v$ está $S$-etiquetado}\}\\
+&\delta_4 =\min\{y_B+d_B^- \mid \text{$v_B$ es un pseudonodo $T$-etiquetado}\}\\
+&\delta\;= \min\{\delta_1,\delta_2,\delta_3,\delta_4\}\\
+&\text{Si $\delta=\delta_1$ ir al Paso 7}\\
+&\text{Si $\delta=\delta_2$ ir al Paso 4}\\
+&\text{Si $\delta=\delta_3$ ir al Paso 5}\\
+&\text{Si $\delta=\delta_4$ ir al Paso 6}\\
+\text{Paso 4: }&\text{[Crecimiendo de un arbol alternante.]}\\
+&\text{Sea $u$ el nodo que define $\delta$ y sea $(u,v)\in M_A$. Entonces el árbol crece}\\
+&\text{asignando un $T$-etiquetado a $u$ y un $S$ etiquetado a $v$.}\\
+&\text{Establecemos $d^+_v:=\delta$ y escaneamos $v$, es decir,}\\
+&d^-_k:= \min\{d_k^-,d_j^++c'_{vk}\}\quad \forall k\neq u,v\\
+&p(k):=v \text{ si } d_k^-= d_v^++c'_{vk}\\
+&\text{Ir al Paso 3}\\
+\text{ Paso 5: }&\text{[Contracción de un blossom.]}\\
+&\text{Sea $u$ el nodo que define $\delta$ y sea $v:=p(u)$. Introduciendo la arista $(u,v)$}\\
+&\text{al arbol alternante genera un blossom $B$. Este blossom se contrae en un}\\
+&\text{pseudono $v_B$. Establecemos:}\\
+&A:=A-\{B\},\;d^+_B:=\delta,\;y_B:=0 \text{ y asignamos una $S$-etiqueda a $v_B$}\\
+&\text{Para todo $i \in B$ $S$-etiqueado}\\
+&y_i:=y_i + (\delta-d_i^+)\\
+&c_{ij}' := c_{ij}' -(\delta-d_i^+) \quad \forall j\neq i\\
+&\text{Para todo $i \in B$ $T$-etiquedado}\\
+&y_i:=y_i + (d^-_i-\delta)\\
+&c_{ij}' := c_{ij}' -(d_i^- -\delta) \quad \forall j\neq i\\
+&\text{Escaneamos $v_B$ (como en el Paso 4 para el nodo $v$) y vamos al Paso 3.}
 \end{align*}
-
+\begin{align*}
+\text{Paso 6: }&\text{[Expansión de un pseudonodo.]}\\
+&\text{Sea $v_B$ el pseudonodo que define $\delta$. Establecemos}\\
+&c_{uv}':=c_{uv}'+y_B\quad \forall (u,v)\in\delta(B)\\
+&y_B:=0\\
+&\text{y extendemos el matching $M_A$. El blossom $B$ se particiona en dos}\\
+&\text{caminos, uno tiene un número par de ejes y el otro un número impar}\\
+&\text{Todos los nodos $v$ del camino par se etiquetan con $S$ y $T$ alternativamente}\\
+&\text{y $d_v^+:=d_v^-:=\delta$. Los nodos $S$-etiqueados son escaneados. Los nodos $u$}\\
+&\text{del camino impar no se etiquetan. Establecemos}\\
+&d^-_v=\min\{d_i^++c_{iu}'\mid i\text{ está $S$ etiquetado}\}\\
+&\text{y $p(v):=i$ si el mínimo se alcanza en $i$. Si no existe, $d_v^-:=\infty$.}\\
+&\text{Finalmente, $A:=A\setminus\{B\}$. Vamos al Paso 3.}\\
+\text{Paso 7: }&\text{[Aumento.]}\\
+&\text{Hemos detectado un camino de aumento $P_A$ con respecto a $M_A$.}\\
+&\text{Actualizamos $M_A = M_A \oplus P_A$ y definimos y definimos para todos los}\\
+&\text{(pseudo)nodos $S$-etiquetados $v$:}\\
+&y_v:=y_v+(\delta-d_v^+)\\
+&c_{uv}' := c_{uv}' - (\delta-d_i^+) \quad u\neq v\\
+&\text{y para los $T$-etiquedados}\\
+&y_v:=y_v-(\delta-d_i^-)\\
+&c_{uv}'=c_{uv}'+(\delta-d_i^-)\\
+&\text{Eliminamos todas las etiquetas y vamos al Paso 1}\\
+\text{Paso 8: }& \text{Expandimos todos los pseudonodos y extendemos el matching $M_A$ a un}\\
+&\text{matching perfecto $M$ en $G$. Este matching es óptimo.} 
+\end{align*}
 \chapter{Análisis de sensitividad}
 \section{Método de reoptimización}
-\section{Lo importante va aquí}
+En esta sección vamos a presentar un método de reoptimización para el problema del MCPM y cómo aplicarlo al problema biobjetivo. Antes de presentar este método hemos revisado diversos análsis de postoptimalidad como el de Ball y Taberna \cite{balltab} o el de Weber \cite{webber}, pero el que ofrece mejores resultados computacionales y supone una simplificación importante en el número de casos a considerar es el que ofrece Derigs en \cite{derigs2}***. 
 
+Nuestro objetivo en esta sección es, suponiendo que tenemos un matching óptimo $M$ para el MCPM, vamos a alterar el coste de ciertos ejes. Denotemos $c_{uv}^{new}$ los costes nuevos para estas aristas y sea $c_{uv}'^{new}$ los correspondientes costes reducidos respecto de una solución factible dual $y$. Antes de proseguir, precisemos algunas definiciones.
+\begin{defi}
+Sea $y$ una solución factible del dual descrito gracias al Teorema 2.1.3. Consideremos $c'_{uv}:=c'_{uv}(y)$, es decir, los costes reducidos asociados a $y$. Consideremos $G'$ el grafo de admisibilidad asociado. Diremos que $y$ es \textbf{fuértemente dual factible} si $y_S>0$ implica que $S$ es contractible en $G'$.
+\end{defi}
+\begin{defi}
+En las mismas condiciones de la definición anterior, diremos que $(M,y)$ es un \textbf{par compatible} si $y$ es fuertemente dual factible y verifican
+\begin{align*}
+(u,v)\in M &\Rightarrow c'_{uv} = 0\\
+y_S>0&\Rightarrow |M\cap \gamma(S)| = \frac{1}{2}(|S|-1)
+\end{align*}
+\end{defi}
+Se puede probar que el método que hemos establecido anteriormente comienza con un par compatible $(M,y)$ y encuentra el menor camino de aumento $P$ y una solución fuertemente dual factible $y'$ de manera que $(M\oplus P,y')$ es un par compatible.
+\begin{prop}
+Sea $M$ un matching óptimo y sea $u\in V$ un nodo arbitrario. Entonces existe una solución $y$ fuertamente dual factible tal que $(M,y)$ es un par compatible y además $y_S=0$ $\forall S \in \mathcal{A}(G)$ tal que $u \in S$.
+\end{prop}
+\begin{dem}
+La demostración es constructiva. Podemos suponer que tenemos $(M,y)$ un par compatible obtenido por el algoritmo SAP. Si $y$ verifica la propiedad adicional, no hay nada que demostrar. En caso contrario, sea $v$ tal que $(u,v)\in M$. Vamos a construir un grafo $\overline{G}$ introduciendo dos nuevos nodos artificiales $r,t\notin V$ y aristas $(r,u)$ y $(v,t)$ con costes 
+$$
+c_{ru}:= y_u+\sum_{u\in S}y_S \qquad c_{vt} = y_v + \sum_{u\in S}y_S  +\sum_{v\in S}y_S 
+$$
+Además, extendemos $y$ al nuevo grafo $\overline{G}$ de manera que $y_r:=y_t:=0$ e $y_S = 0$ $\forall S \in \mathcal{A}(\overline{G})$ tal que $S\cap\{r,t\}\neq \emptyset$. Esta extensión hace que $(M,y)$ sea un par compatible en $\overline{G}$. Aplicamos ahora el algoritmo del SAP. Como $M$ era óptimo en $G$, el único camino de aumento que puede generarse es $\{(r,u),(u,v),(v,t)\}$. Dado que $c_{vt}>\sum_{u\in S}y_S$, antes de que se detecte este camino la solución dual será alterada a $y'$ de manera que $y'_S = 0$ $\forall S \in \mathcal{A}(G)$ tal que $u \in S$. Obtenemos por tanto un par $(M,y')$ que verifica la propiedad deseada. \qed
+\end{dem}
+Es importante hacer una consideración para entender por qué es importante el teorema anterior. Sea $y$ una solución fuerfuertemente dual factible, definimos $\mathcal{A}(y)=\{S\in \mathcal{A}(G)\mid y_S>0\}$. Naturalmente, si existe algún $S \in \mathcal{A}(G)$ con $v\in S$ tal que $y_S >0$, el nodo $v$ no estará -estará contraído en algún pseudonodo- en el grafo $G\times \mathcal{A}(y)$. Por tanto, siguiendo el proceso de la demostración anterior, siempre podemos encontrar un par compatible $(M,y)$ de manera que un determinado vértice $v$ esté en el grafo $G\times \mathcal{A}(y)$. Pasamos a ver el algoritmo de repotimización. 
 
+Supongamos que todas las aristas cuyos costes son alteras están en $\delta(v)$.
+\begin{align*}
+\text{Inicialización: }& \text{Sea $(M,y)$ un par compatible óptimo para MCPM}\\
+\text{Paso 1: }& \text{Si $v$ no está contraído en $G\times \mathcal{A}(y)$ vamos al Paso 2.}\\
+&\text{En otro caso, aplicamos el procedimiento anterior}\\
+&\text{ y denotamos $y:=y'$. Vamos al Paso 2.}\\
+\text{Paso 2: }& \text{Para todo $(u,v) \in M$ establecemos}\\
+&\overline{M}:=M\setminus\{(u,v)\}\\
+&\delta:=\min\{c_{vk}'^{new}\mid (v,k)\in \delta(v)\}<0\\
+&c_{vk}:=c_{vk}^{new} \quad \forall (v,k)\delta (v)\\
+&y_v:=y_v+\delta\\
+&\text{Aplicamos el algoritmo SAP y obtenemos }\\
+&\text{PENDIENTEEEEEEEEEEEEEE}
+\end{align*}
+\subsection{Reoptimización del problema biobjetivo}
+En el matching paramétrico, tal y como vimos en la Subsección 1.1.1, la función de coste es $c_{uv}(\lambda) = c^1_{uv} + \lambda c^2_{uv}$. Por tanto, para aplicar el procedimiento anterior, tenemos que considerar $c_{uv}^{new} = c^1_{uv} + (\lambda + \Delta\lambda) c^2_{uv}= c_{uv}(\lambda+\Delta\lambda)$. 
+\section{Mantenemiento de la optimalidad}
+Estamos especialmente interesados en el caso del matching biobjetivo en saber cuánto puede variar $\Delta \Lambda$ de manera que nuestro matching $M$ continúe siendo óptimo. Para realizar este análisis, consideremos el problema de Programación Lineal:
+\begin{align*}
+\min_x & \sum_{(u,v) \in E}x_{uv}c_{uv}(\lambda)\\
+s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} \leq 1, \quad \forall u \in V\\
+&\sum_{(u,v)\in \delta(S)} x_{uv} \geq 1\quad \forall S \in \mathcal{A}(G)	\\
+&x_{uv} \geq 0 \qquad \forall(u,v)\in E
+\end{align*}
+Sea $A$ la matriz de restricciones sin considerar la introducción de las variables de holgura. Si $|V|=2n$, una base $B$ óptima tendrá, en primer lugar, $n$ columnas de $A$ correspondientes a las aristas del matching según el indexado que hayamos hecho de las mismas; y otras $s$ columnas de la base canónica para las holguras cuyas desigualdades se verifiquen de manera estricta. Sean $i_1,\dotsc,i_n$ los índices asociados a las aristas del matching, sean $j_1,\dotsc,j_k$ los índices asociados a dichas variables de holgura, sea $N$ el número total de restricciones del problema tras la introducción de las holguras y denotemos por $e_p$ el $p$-ésimo vector de la base canónica de $R^N$, entonces la matriz $B$ es precisamente
+$$ B= 
+\begin{pmatrix}
+A_{\cdot i_1} & \cdots & A_{\cdot i_n} & e_{j_1} & \cdots & e_{j_k}
+\end{pmatrix}
+$$
 \newpage
 \begin{thebibliography}{9}
 \bibitem{edmond} 
@@ -618,5 +729,8 @@ Pulleyblank, William and Edmonds, Jack. (1970). Facets of 1-Matching Polyhedra. 
 
 \bibitem{derigs}
 Derigs, U. (1981), A shortest augmenting path method for solving minimal perfect matching problems. Networks, 11: 379-390. doi:10.1002/net.3230110407
+
+\bibitem{webber}
+Weber, G. M. (1981), Sensitivity analysis of optimal matchings. Networks, 11: 41-56. doi:10.1002/net.3230110105
 \end{thebibliography}
 \end{document} 
