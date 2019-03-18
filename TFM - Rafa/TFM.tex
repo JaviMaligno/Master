@@ -320,7 +320,7 @@ s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} \leq 1, \quad \forall u \in V\\
 &\sum_{(u,v)\in \gamma(S)} x_{uv} \leq \frac{1}{2}(|S|-1)\quad \forall S \in B	\\
 &x_{uv} \geq 0 \qquad \forall(u,v)\in E
 \end{align*}
-A pesar de que esta no será nuestra formulación final, pues para ello debemos profundizar en conceptos más complejos de teoría de grafos, tenemos una primera aproximación al problema del matching con una formulación propia de la Programación Lineal. 
+Esta formulación es ciertamente útil, pues tenemos una primera aproximación al problema del matching con una formulación propia de la Programación Lineal. Sin embargo veremos más adelante modificaciones del Teorema de Edmonds que nos darán algunas formulaciones equivalentes.
 \subsection{El problema del emparejamiento paramétrico y biobjetivo}
 Una vez que hemos presentado los conceptos básicos para entender el MCPM, podemos definir una clase más general de problemas a los cuáles dedicaremos especial atención durante los procesos de reoptimización. Definimos el \textit{problema del emparejamiento paramétrico respecto de $R\subset E$} con parámetro $\lambda$ como
 \begin{align*}
@@ -338,21 +338,30 @@ d_{uv} = \begin{cases}
 $$
 Este problema puede verse como la relajación lagrangiana del problema del matching con una cota superior y es ampliamente estudiado por Ball y Taverna en \cite{balltab}. 
 
-Más generalmente, si consideramos dos funciones de coste $c^1$ y $c^2$ cualesquiera y un parámetro $\lambda$, podemos formular el problema del emparejamiento biobjetivo
+Más generalmente, si consideramos dos funciones de coste $c^1$ y $c^2$ cualesquiera y un parámetro $\lambda$ escalar, podemos formular el \textit{problema del emparejamiento biobjetivo de parámetro simple}
 \begin{align*}
 \min_x & \sum_{(u,v) \in E}x_{uv}(c^1_{uv}+\lambda c^2_{uv})\\
 s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} \leq 1, \quad \forall u \in V\\
 &\sum_{(u,v)\in \gamma(S)} x_{uv} \leq \frac{1}{2}(|S|-1)\quad \forall S \in B	\\
 &x_{uv} \geq 0 \qquad \forall(u,v)\in E
 \end{align*}
+Denotamos simplemente $c(\lambda)_{uv} = c^1_{uv} + \lambda c_{uv}^2$. Este problema tiene una modificación natural si consideramos $\lambda \in \R^{|E|}$, en cuyo caso $c(\lambda)_{uv} = c_{uv}^1 \lambda_{uv}c^2_{uv}$. En este caso, hablamos del \textit{problema del emparejamiento perfecto de parámetro vectorial}.
 \section{Aplicaciones}
 \subsection{El problema de la asignación}
 Para ilustrar las distintas aplicaciones que tiene el problema del matchig, comenzamos con un problema clásico de la Investigación Operativa. El problema de asignación o \textit{assigment assignment problem} consiste en encontrar la forma de asignar recursos (máquinas, empleados, etc.) a un cierto conjunto de teareas determinadas con coste mínimo. Se supone que cada recurso se destina a una sola tarea, y que cada tarea es ejecutada por uno solo de los recursos. Es claro que este problema puede formularse como un problema de matching de coste mínimo sobre un grafo bipartito.
 \subsection{Aproximación al problema del viajante}
 El problema del viajante o \textit{travelling salesman problem} (TSP) en un grafo no dirigido consiste en encontrar el ciclo hamiltoniano de peso mínimo. Computacionalmente hablando, se sabe que es NP-duro. Este problema aparece para responder a la pregunta: ¿Dada una lista de ciudades y las distancias entre cada pareja de ciudades, cuál es la ruta más corta para visitar todas las ciudades y volver a la ciudad de origen? Este problema puede formularse como problema de programación entera, como puede encontrarse en \cite{papa}. 
 
-Aunque no puede utilizarse el problema del matching para resolver este problema, Nicos Christofides encontró un algoritmo \cite{nico} para obtener, bajo ciertas condiciones, una aproximación no mayor que $1.5$ el valor óptimo del TSP. Para este resultado es necesario imponer que las distancias estén en el marco de un espacio métrico, es decir, han de ser simétricas y verificar la desigualdad triangular.
-
+Aunque no puede utilizarse el problema del matching para resolver este problema, Nicos Christofides encontró un algoritmo \cite{nico} para obtener, bajo ciertas condiciones, una aproximación no mayor que $1.5$ el valor óptimo del TSP. Para este resultado es necesario imponer que las distancias estén en el marco de un espacio métrico, es decir, han de ser simétricas y verificar la desigualdad triangular. El algoritmo consiste en:
+\begin{align*}
+\text{Paso 1: }&\text{Obtener el árbol recubrido mínimo $T$ de $G$.}\\
+\text{Paso 2: }&\text{Consideremos $O$ el conjunto de vértices con grado impar}\\
+&\text{Por el Lema del apretón de manos, $O$ tiene cardinalidad par.}\\
+&\text{Hallar el MCPM sobre el grafo inducido por $O$.}\\
+\text{Paso 3: }& \text{Combinar los ejes del árbol y del matching obteniendo un}\\
+&\text{multigrafo euleriano. Encontrar un circuito euleriano.}\\
+\text{Paso 4: }&\text{Obtener un circuito hamiltoniano descartando nodos ya visitados}
+\end{align*}
 \subsection{•}
 
 \chapter{Algoritmo SAP}
@@ -685,10 +694,11 @@ Supongamos que todas las aristas cuyos costes son alteras están en $\delta(v)$.
 &\text{Aplicamos el algoritmo SAP y obtenemos }\\
 &\text{PENDIENTEEEEEEEEEEEEEE}
 \end{align*}
-\subsection{Reoptimización del problema biobjetivo}
-En el matching paramétrico, tal y como vimos en la Subsección 1.1.1, la función de coste es $c_{uv}(\lambda) = c^1_{uv} + \lambda c^2_{uv}$. Por tanto, para aplicar el procedimiento anterior, tenemos que considerar $c_{uv}^{new} = c^1_{uv} + (\lambda + \Delta\lambda) c^2_{uv}= c_{uv}(\lambda+\Delta\lambda)$. 
-\section{Mantenemiento de la optimalidad}
-Estamos especialmente interesados en el caso del matching biobjetivo en saber cuánto puede variar $\Delta \Lambda$ de manera que nuestro matching $M$ continúe siendo óptimo. Para realizar este análisis, consideremos el problema de Programación Lineal:
+
+\subsection{Problema biobjetivo}
+En el matching paramétrico, tal y como vimos en la Subsección 1.1.1, la función de coste es en el caso de parámetro simple $c_{uv}(\lambda) = c^1_{uv} + \lambda c^2_{uv}$, y en el caso de parámetro vectorial $c_{uv}(\lambda) = c^1_{uv} + \lambda_{uv} c^2_{uv}$. Por tanto, para aplicar el procedimiento anterior, tenemos que considerar $c_{uv}^{new} = c^1_{uv} + (\lambda + \Delta\lambda) c^2_{uv}= c_{uv}(\lambda+\Delta\lambda)$. Para aplicar el procedimiento anterior necesitamos un subconunto $W\subset V$ tal que $E = \delta(W)\cup \gamma(W)$, es decir, el conjunto $W$ debe ser una cobertura por vértices de nuestro grafo $G$. Así, para cada $v\in W$ invocamos nuestro procedimiento para la reoptimización. 
+\section{Mantenimiento de la optimalidad}
+Estamos especialmente interesados en el caso del matching biobjetivo en saber cuánto puede variar $\Delta \lambda$ de manera que nuestro matching $M$ continúe siendo óptimo. Para realizar este análisis, consideremos el problema de Programación Lineal:
 \begin{align*}
 \min_x & \sum_{(u,v) \in E}x_{uv}c_{uv}(\lambda)\\
 s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} \leq 1, \quad \forall u \in V\\
@@ -701,6 +711,30 @@ $$ B=
 A_{\cdot i_1} & \cdots & A_{\cdot i_n} & e_{j_1} & \cdots & e_{j_k}
 \end{pmatrix}
 $$
+Si denotamos por $b$ la columna de términos independientes y por $N$ las columnas no básicas de $A$, sabemos que la condiciones que certifican que $B$ es una base óptima son
+\begin{align*}
+B^{-1}b\geq0\\
+\overline{c_R}^t = c_N^t - c_B^t B^{-1}N\geq 0
+\end{align*}
+\subsection{Problema biobjetivo de parámetro simple}
+Realizamos el análisis para el caso en $\lambda$ es un único parámetro escalar común. Alterar $\lambda$ no modifica en ningún caso la primera condición, luego nos centraremos solo en la segunda. 
+\begin{align*}
+\overline{c_R}(\lambda+\Delta\lambda)^t&= c_N(\lambda + \Delta\lambda)^t  - c_B(\lambda + \Delta\lambda)^t B^{-1}N \\
+& = c_N(\lambda)^t  - c_B(\lambda)^t B^{-1}N + \Delta\lambda {c_N^2}^t  - \Delta\lambda {c_B^2}^t B^{-1}N \\
+&= \overline{c_R}(\lambda)^t + \Delta\lambda \overline{c_R^2}^t \geq 0
+\end{align*}
+En este caso, sabemos que $B$ se mantiene como base óptima siempre que
+$$
+\max_{j:\overline{c^2}_j>0} -\frac{\overline{c}(\lambda)_j}{\overline{c^2}_j} \leq \Delta\lambda \leq \min_{j:\overline{c^2}_j<0} - \frac{\overline{c}(\lambda)_j}{\overline{c^2}_j}
+$$
+\subsection{Problema biobjetivo de parámetro vectorial}
+En este caso consideremos $\lambda, \Delta\lambda \in \R^{|E|}$. Para el análisis denotamos, al igual que antes, $c(\lambda)_{uv} = c^1_{uv}+\delta_{uv}c^2_{uv}$ y sea además $c^2(\lambda)_{uv} = \lambda_{uv}c^2_{uv}$
+\begin{align*}
+\overline{c_R}(\lambda+\Delta\lambda)^t&= c_N(\lambda_N + \Delta\lambda_N)^t  - c_B(\lambda_B + \Delta\lambda_B)^t B^{-1}N \\
+& = c_N(\lambda_N)^t  - c_B^2(\lambda_B)^t B^{-1}N + c_N(\Delta\lambda_N)^t  - c_B^2(\Delta\lambda_B)^t B^{-1}N \\
+&=\overline{c_R}(\lambda)^t + \overline{c_R}^2(\Delta\lambda)^t \geq 0
+\end{align*}
+Cada variable no básica nos da una desigualdad sobre $\Delta\lambda$, de manera que tenemos un poliedro en $\R^{|E|}$ de valor admisibles, los cuales forman un poliedro.  
 \newpage
 \begin{thebibliography}{9}
 \bibitem{edmond} 
