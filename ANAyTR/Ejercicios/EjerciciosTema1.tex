@@ -9,7 +9,6 @@
 \maketitle
 
 \section{Ejercicio del profesor}
-(x+1)|| xy+y = qyx - 1
 \begin{ejercicio}{1}
 Demostrar que si $A$ es conmutativa y $k$ es algebraicamente cerrado, todas las representaciones irreducibles de dimensión finita de $A$ son de dimensión 1. 
 \end{ejercicio}
@@ -293,9 +292,7 @@ Hint. This is similar to part (c) of the previous problem.
 \end{enumerate}
 \end{ejercicio}
 
-
-
-\begin{solucion} (Alternativa por Diego)
+\begin{solucion}
 Este álgebra es más conocida como \textit{quantum torus}, \textit{twisted Laurent polynomial algebra}, \textit{multiplicative analogue of the Weyl algebra} o \textit{McConnell–Pettit algebra}.
 
 \begin{enumerate}[(a)]
@@ -325,13 +322,8 @@ Por el problema $1.25$, como $V$ es irreducible, $v$ es cíclico y genera $V=Av$
 
 Dado que podemos escribir cualquier elemento de $A$ en la forma:
 \[ \sum c_{ij} x^i y^j \]
-<<<<<<< .mine
-y que $y^jv = \lambda^j v$ para todo $j \in \Z$, entonces $V$ está generado por los vectores $\{x^iv \mid i \in \Z\}$. Por otro lado, por el problema $1.21$, existe un elemento central $\mu$ para $x^n$ tal que $x^nv=\mu v$.
-
-=======
 y que $y^jv = \lambda^j v$ para todo $j \in \Z$, entonces $V$ está generado por los vectores $\{x^iv \mid i \in \Z\}$.
 Por otro lado, por el problema $1.21$, existe un elemento central $\mu$ para $x^n$ tal que $x^nv=\mu v$.
->>>>>>> .theirs
 Además:
 \[ x^{-n+l}v = x^{l}x^{-n}v = x^l\mu^{-1} v \]
 Por lo tanto, podemos ignorar también los vectores donde intervienen los monomios con exponentes negativos:
@@ -370,7 +362,6 @@ defining relations:
 \begin{solucion}
 Basta observar que cualquier camino $a\in P_Q$ se descompone de forma única como concatenación de caminos del tipo $a_h$ de longitud 1 entre vértices $h'$ y $h''$, que claramente verifican las relaciones del enunciado. Que los $p_i$ verifican la primera relación es trivial. 
 \end{solucion}
-
 
 \newpage
 \begin{ejercicio}{1.34}
@@ -414,6 +405,21 @@ Nótese que el caso $n=0$ está correctamente definido.
 \end{enumerate}
 \end{solucion}
 
+\begin{solucion}(Alternativa)
+\begin{enumerate}[(a)]
+\item
+Escribiremos $A^m$ para referirnos a $k[x_1,\dots,x_m]$.
+Demostraremos por inducción en $m$ que
+\begin{equation}\label{ejer134-eq1} h_{A^m}(t) = \frac{1}{(1-t)^m} \end{equation}
+Para $m=1$, ya sabemos que $h_{A^1}(t) = 1/(1-t)$.
+Suponemos cierta la ecuación \eqref{ejer134-eq1} y tratamos de demostrar el paso de inducción para $m+1$.
+Sea $n \in \N$ y obsérvese que la base de $A^{m+1}[n]$ como espacio vectorial puede ser a su vez <<graduada>> por el grado de $x_{m+1}$. Entonces:
+\[ \dim A^{m+1}[n] = \sum_{j=0}^{n} \dim A^m[j] = \sum_{j=0}^n c_j\]
+donde $c_j$ es el coeficiente de $1/(1-t)^m$ en $t^j$.
+Entonces usando lo que sabemos de producto de series:
+\[ h_{A^{m+1}}(t) = \sum_{i=0}^{\infty}\sum_{j=0}^i c_jt^i = \left(\sum_{j=0}^{\infty}c_jt^j\right)\left(\sum_{i=0}^{\infty}t^i\right) = \frac{1}{(1-t)^m} \frac{1}{1-t} = \frac{1}{(1-t)^{m+1}}\]
+\end{enumerate}
+\end{solucion}
 \newpage
 
 \begin{ejercicio}{}
