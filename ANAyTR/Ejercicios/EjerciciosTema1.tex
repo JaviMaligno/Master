@@ -495,13 +495,19 @@ contradiction with the fact that $V$ cannot be decomposed.
 \end{ejercicio}
 \begin{solucion}\
 \begin{enumerate}[(a)]
-\item Sea $\lambda$ el autovalor de $H$ con mayor parte real y sea $v$ un autovector asociado. De la ecuación $HE-EH=2E$ obtenemos 
+\item Sea $\lambda$ el autovalor de $H$ con mayor parte real y sea $v$ un autovector generalizado asociado. De la ecuación $HE-EH=2E$ obtenemos 
 \[
-2Ev=HEv-E\lambda v=HEv-\lambda Ev\Rightarrow (2+\lambda)Ev=HEv.
+(H - (\lambda + 2)I)(Ev) = E(H - (\lambda + 2)I)v + 2Ev = E(H - \lambda I)v
 \]
-Esto implica que $Ev$ es un autovector de $H$ para el autovalor $\lambda+2$, pero como $\lambda$ era el de mayor parte real, se tiene necesariamente que $Ev=0$. 
+Esto implica que 
+\[
+(H - (\lambda + 2)I)^n (Ev) = E(H - \lambda I)^n v=0
+\]
+por lo que $Ev$ es un autovector generalizado de $H$ para el autovalor $\lambda+2$, pero como $\lambda$ era el de mayor parte real, se tiene necesariamente que $Ev=0$. 
 
-\item Primero probamos que $[H,F^k]=-2kF^k$ por inducción. Para $k=1$ se tiene por las relaciones del álgebra. Para $k>1$ basta usar que el corchete es una derivación en la segunda coordenada, es decir, $[A,BC]=[A,B]C+B[A,C]$ (por la identidad de Jacobi). Tomando $A=H$, $B=F^{k-1}$ y $C=F$, se deduce el resultado con la hipótesis de inducción. 
+\item Source \url{http://brianbi.ca/etingof/}
+
+Primero probamos que $[H,F^k]=-2kF^k$ por inducción. Para $k=1$ se tiene por las relaciones del álgebra. Para $k>1$ basta usar que el corchete es una derivación en la segunda coordenada, es decir, $[A,BC]=[A,B]C+B[A,C]$ (por la identidad de Jacobi). Tomando $A=H$, $B=F^{k-1}$ y $C=F$, se deduce el resultado con la hipótesis de inducción. 
 
 Ahora por inducción también, $[E,F^k]=kF^{k-1}H-k(k-1)F^{k-1}$. Para $k=1$ es evidente por las relaciones del álgebra. Para $k\geq 1$ tenemos lo siguiente:
 \begin{align*}
@@ -514,7 +520,7 @@ Ahora por inducción también, $[E,F^k]=kF^{k-1}H-k(k-1)F^{k-1}$. Para $k=1$ es 
 
 Probamos como último resultado previo que $EH^kw=0$ para $k\geq 0$. Es suficiente usar que $EH^k=(HE+[E,H])H^{k-1}$ e inducción. Es inmediato a partir de esto que $EP(H)w=0$ para cualquier polinomio $P$. 
 
-Sea entonces $P$ un polinomio arbitrario. Tenemo
+Sea entonces $P$ un polinomio arbitrario. Tenemos
 \begin{align*}
 E^kF^kP(H)w&=E^{k-1}(EF^k)P(H)w\\
 &=E^{k-1}(F^kE+[E,F^k])P(H)w\\
@@ -528,7 +534,14 @@ E^kF^kw=k!H(H-1)(H-2)\cdots (H-(k-1))w
 \]
 
 \item Podemos razonar como en (a), solo que ahora obtendríamos que ahora la parte real de $\lambda$ se reduciría en 2, por lo que elegimos el autovalor con menor parte real para el razonamiento. Como $V$ tiene dimensión finita, solo puede tener una cantidad finita de autovalores, por lo que la sucesión $v,Fv,F^2v,\dots$ debe acabar en 0. 
+
+\item Por el apartado anterior, para cada autovalor $\lambda_i$ de $H$, existe $N_i>0$ tal que $F^{N_i}v_i=0$ para $v_i\in\bar{V}(\lambda_i)$. Como hay una cantidad finita de autovalores, podemos tomar $N=\max_i N_i$, de modo que $F^Nv=0$ para todo $v\in\bar{V}(\lambda)$ para cualquier autovalor $\lambda$. Tenemos por (b) que $0=E^NF^Nv=N! H(H-1)\cdots (H-(N-1))v$, luego $H(H-1)\cdots (H-(N-1))v=0$ para todo $v\in\bar{V}(\lambda)$. Entonces tenemos que, o bien $(H-(N-1))v=0$ (en cuyo caso $\lambda=N-1$) o bien $(H-(N-1))v$ es un autovector con autovalor $\lambda$, e inductivamente llegamos a que $\lambda\in\{1,\dots, N-1\}$. Consideramos entonces el polinomio
+\[
+0 = \left(\prod_{0 \leq i < N, i \neq \lambda} H-i\right) (H-\lambda)v
+\]
+Como ninguno de los $i$ es igual a $\lambda$, $(H-\lambda)v$ no puede ser un autovector generalizado con autovalor $\lambda$ (contrarrecíproco del razonamiento anterior), por lo que $(H-\lambda)v=0$ y $v$ es un autovector ordinario. Como esto ocurre para todo $v\in\bar{V}(\lambda)$ se tiene que $H$ es diagonalizable en $\bar{V}(\lambda)$. 
+
+\item Con el mismo razonamiento del apartado anterior para $N=N_v$ y $\lambda$ el autovalor del apartado (c). 
 \end{enumerate}
 \end{solucion}
 \end{document}
-http://brianbi.ca/etingof/2.3

@@ -17,6 +17,8 @@ First we give the general notion of (topological) operad and some properties of 
 %\url{https://ncatlab.org/nlab/show/operad}
 %
 %NO PARECE QUE ESTA DEFINICIÓN CAPTURE LA COMPOSICIÓN DEL LITTLE DISKS OPERAD, PERO EN VERDAD SÍ, LO QUE FALTA ES RELLENA CON LA IDENTIDAD HASTA COMPLETAR LA ARIDAD DEL PRIMERO
+PROBABLEMENTE TENDRÍA QUE PONER QUE LOS ESPACIOS SON COMPACTLY GENERATED, QUE CREO QUE VIENE EN MAY, Y AQUÍ SE VERIFICA LA PROPOSICIÓN QUE COGÍ DE SIMPLICIAL
+
 An operad is a collection of suitably interrelated spaces $\CC(j)$, the points of which are to
 be thought of as $j$-adic operations $X^j \to X$ for some topological space $X$. Precisely, we have the following definition.
 
@@ -24,7 +26,7 @@ be thought of as $j$-adic operations $X^j \to X$ for some topological space $X$.
 An \emph{operad} (also \emph{symmetric operad}) $\CC$ consists of topological spaces $\CC(j)$ for $j\geq 0$, with $\CC(0)$ a single point $*$, together with the following data:
 \begin{enumerate}[(1)]
 \item Continuous functions $\gamma : \CC(k) × \CC(j_1) × \cdots × \CC(j_k) \to \CC(j)$, $j =\sum_s j_s$, such that the
-following associativity formula is satisfied for all $c\in \CC(k)$, $d_s \in \CC(js)$, and $e_t \in \CC(i_t)$:
+following associativity formula is satisfied for all $c\in \CC(k)$, $d_s \in \CC(j_s)$, and $e_t \in \CC(i_t)$:
 
 \[\gamma(
 \gamma(c; d_1, \dots , d_k); e_1, \dots , e_j) = 
@@ -148,14 +150,14 @@ $$(c_1\circ_i c_2)(\gamma_1,\dots, \gamma_{p+q-1})=c_1(\gamma_1,\dots, \gamma_{i
 \end{enumerate}
 Note that for $n=0$, there is only the map $E_2(0)\to\Omega^2(X)$ inducing $*\mapsto x_0$. 
 
-The action described above turns $\Omega^2(X)$ into an \emph{$E_2$-álgebra}. A formal definition of this concept is given below in terms of the \emph{endomorphism operad}.
+The action described above turns $\Omega^2(X)$ into an \emph{$E_2$-álgebra}. A formal definition of this concept is given below in terms of the \emph{endomorphism operad}. 
 
 
-\begin{defi}
+\begin{defi}\label{endomorphism}
 Let $X$ be a topological space and define the \emph{endomorphism operad} $\xi_X$ as follows. Let $\xi_X(j)$ be the space of based maps $X^j\to X$, $X^0=*$, and $\xi_X(0)$ the inclusion $*\to X$. The data are defined by:
 \begin{enumerate}
 \item $\gamma(f;g_1,\dots, g_k)=f(g_1\times\cdots\times g_k)$ for $f\in \xi_X(k)$ and $g_s\in\xi_X(j_s)$ such that $\sum_s j_s=j$.
-\item The identity element $\mathbbm{1}\in\xi_X(1)$ is the identity map on $X$.
+\item The identity element $1_X\in\xi_X(1)$ is the identity map on $X$.
 \item $(f\sigma)(y)=f(\sigma y)$ for $f\in\xi_X(j)$, $\sigma\in\Sigma_j$ and $y\in X^j$, where $\Sigma_j$ acts on $X^j$ by $\sigma(x_1,\dots, x_j)=(x_{\sigma^{-1}(1)},\dots, x_{\sigma^{-1}(j)})$. 
 \end{enumerate}
 
@@ -165,11 +167,9 @@ Given a morphism of operads $O\to \xi_X$, we say that the pair $(X,O)$ is an \em
 
 Note that giving a morphism $O\to \xi_X$ is equivalent to give a sequence of maps $O(k)\times X^k\to X$, so this definition is consistent with saying that $\Omega^2(X)$ is an $E_2$-algebra. 
 
-ESTO ALOMEJOR LO PONGO DESPUÉS In any other symmetric monoidal category the definition works just as fine performing the obvious substitutions, and the equivalence mentioned before remains true by the well-known andjunction $\Hom(X\otimes Y,Z)\cong\Hom(X,\Hom(Y,Z))$ REFERENCIARLA EN ALGÚN LAO O PROBARLA. 
 
 
 
-NO SÉ DÓNDE PONER LA PARTE DE LAS CADENAS Y TODO ESO. EN CUANTO A ESO PREGUNTAR POR QUÉ SE COGÍA SOLO EL $E_2(2)$ (POR EL GRADO DE LA OPERACIÓN) Y CÓMO SE RELACIONA LA COHOMOLOGÍA DE HOCHSCHILD DE $A$ CON LA HOMOLOGÍA DEL LOOP SPACE (¿Y CUÁL ERA EL OBJETIVO DE ANALIZAR LA ACCIÓN ESA? ERA POR MOTIVACIÓN)
 
 %PREGUNTARLE QUÉ SENTIDO TIENE SER QUASI-ISOMORFO A LA HOMOLOGÍA, SI LA HOMOLOGÍA DE LA HOMOLOGÍA ES 0
 %
@@ -243,6 +243,8 @@ If we drop the braiding from the definition above we obtain what is simply calle
 \item The categories $\Set$ and $\Top$ are symmetric monoidal categories with the cartesian product as tensor product and a singleton as unit. 
 \item For $k$ some field, the category $\Vect_k$ of $k$-vector spaces carries the standard structure of a monoidal category coming from the tensor product, over $k$, of vector spaces. The standard braiding that identifies $V\otimes W$ with $W\otimes V$ by mapping homogeneous elements $v\otimes w$ to $w\otimes v$ obviously makes $\Vect_k$ into a symmetric monoidal category. 
 
+\item For a ring $R$, the category of $R$-modules and the category of $R$-algebras have obvious tensor structures that can be used in the graded case too.
+
 \item The category $\Cat$ of small categories (the collection of objects and the collection of morphisms are both sets) is symmetric monoidal with the product of categories and the category of one object and only the identity morphism as unit.
 
 
@@ -262,12 +264,10 @@ The unit object is the chain complex concentrated in degree 0 on the tensor unit
 \end{enumerate}
 
 
-SI ME HACE FALTA HABLO DE MÓDULOS Y DE ÁLGEBRAS
-
 
 \end{ex}
 
-(LAX) MONOIDAL FUNCTORS \url{https://ncatlab.org/nlab/show/monoidal+functor}
+(LAX) MONOIDAL FUNCTORS \url{https://ncatlab.org/nlab/show/monoidal+functor} SI ME LO PUEDO AHORRAR ME LO AHORRO
 
 For an arbitrary symmetric monoidal category $\DD$ we obtain the following definition of operad, which specializes to the definition \ref{operadtop} for $\DD=\Top$.
 
@@ -281,7 +281,7 @@ Let $M$ be a symmetric monoidal category. A (\emph{symmetric}) \emph{operad} in 
 \[
 O(k) \otimes O(n_1) \otimes O(n_2) \otimes \cdots \otimes O(n_k) \xrightarrow{\gamma} O(n_1 + \ldots + n_k)
 \]
-These data are subject to obvious identities such as associativity and unitality of composition, and compatibility of composition with symmetric group actions. For example, the unit laws say that the evident composite
+These data are subject to obvious identities such as associativity and unitality of composition, and compatibility of composition with symmetric group actions. For example, the unit laws say that the composite
 \[
 F(n) \cong I^{\otimes n} \otimes F(n) \xrightarrow{e^{\otimes n} \otimes 1} F(1)^{\otimes n} \otimes F(n) \xrightarrow{\gamma} F(n)
 \]
@@ -308,16 +308,41 @@ Let $O$ and $P$ be operads in $M$. A map of operads $f:O\to P$ is a collection o
 
 
 
-ALGEBRA OVER AN OPERAD, PRIMERO INTRODUCIR EL DE ENDOMORFISMOS
-\url{https://ncatlab.org/nlab/show/algebra+over+an+operad}
-\begin{defi}
-\end{defi}
+In this context there is also an \emph{endomorphism operad} $\xi_X$ for each $X$ in the monoidal symmetric category $M$ with unit $I$. The $j$-th component $\xi_X(j)$ is just $\Hom(X^{\otimes j},X)$ and the identity of the operad is the map $1_x:I\to \Hom(X,X)$ that sends $I$ to the identity on $X$. The composition map and the action of the symmetric group is defined analogously to the definition \ref{endomorphism}. Therefore, one can define the notion of \emph{algebra over an operad} $O$ as an object $X$ equipped with an operad map $\xi:O\to\xi_X$. Alternatively, the data of an $O$-algebra is given by a sequence of maps
+\[
+O(j) \otimes X^{\otimes j} \to X
+\]
+which specifies an action of $O$ via finitary operations on $X$, with compatibility conditions between the operad multiplication and the structure of plugging in $j$ finitary operations on $X$ into a $j$-ary operation (and compatibility with actions by permutations). This alternative definition is possible due to the well-known tensor-hom adjuntion, i.e., the isomorphism $\Hom(X\otimes Y,Z)\cong \Hom(X,\Hom(Y,Z))$ \cite{tensor-hom}.
+
+Note that a map of operads $O\to O'$ endows an $O'$-operad with a canonical $O$-algebra structure. The converse is also obviously true: in order to define a map of operads it is enough to endow any $O'$-algebra with a canonical $O$-algebra structure. 
+
+\subsection{Connection between $E_2$ and Gerstenhaber algebras}
+
+Now that we've defined operads in a more general context, we're ready to draw the connection between the $E_2$ operad and the Gerstenhaber algebras. Since $E_2=\{E_2(n)\}_{n\geq 0}$ is a collection of topological spaces, one can consider the collection of singular chain complexes $C_*(E_2)=\{C_*(E_2(n))\}_{n\geq 0}$ over a fixed ring $k$ (for our purposes $k=\Q$). We're going to show that this family is an operad of chain complexes making use of the Eilenber-Zilber map \cite{EZ} $C_*(X)\otimes C_*(Y)\to C_*(X\times Y)$ for arbitrary topological spaces $X$ and $Y$. 
+
+\begin{prop}
+PROBAR EN ESTA PARTE LO DE EILENBERG-ZILBER Y YA LUEGO DECIR QUE ESTABA AQUÍ \url{https://ncatlab.org/nlab/show/Eilenberg-Zilber+map} LO QUE PASA ES QUE HABLA DE GRUPOS SIMPLICIALES Y NO ESTOY SEGURO DE SI ESTO VALE
+\end{prop}
+
+This map passes to homology, endowing $H_*(E_2)$ with an structure of operad of graded $k$-modules, so we can consider a $H_*(E_2)$-algebra $A$. It is know that giving an $H_*(E_2)$-algebra is is equivalent to give a Gerstenhaber algebra \cite{cuentas} EN REALIDAD NO ESTOY SEGURO DE DÓNDE SE PRUEBA, PORQUE APARECE LO DE LAS MÓNADAS. We describe here how $A$ can be turned into a Gersternhaber algebra. Since $A$ is a $H_*(E_2)$-algebra, there is a sequence of maps $H_*(E_2(n))\otimes A^{\otimes n}\to A$. From this, we can obtain a commutative product of degree 0 given by the map
+\[
+A^{\otimes 2}\cong k\otimes A^{\otimes 2}\cong H_0(E_2(2))\otimes A^{\otimes 2}\to A
+\]
+and a lie bracket of degree 1 given by the map
+\[
+A^{\otimes 2}\cong k\otimes A^{\otimes 2}\cong H_1(E_2(2))\otimes A^{\otimes 2}\to A
+\]
+NECESITO REFERENCIA DE QUE ESTAS OPERACIONES GENERAN LAS DEMÁS DEL OPERAD
 
 
-COMENTAR QUE UN MORFISMO DE OPERAD INDUCE ESTRUCTURA DE ÁLGEBRA SOBRE LA PRIMERA, PARA ESO ALOMEJOR NECESITO LA ADJUNCIÓN TENSOR HOM PERO NO ESTOY SEGURO
+An important corollary of this construction is that $H_*(\Omega X)$ is a Gersternhaber algebra for any space $X$. This leads to the recognition principle of loop spaces \cite{May}.
+
+The equivalence between Gersternhaber algebras and $E_2$-algebras is the origin of the Deligne conjecture, namely, the Hochschild cohomology of an associative algebra $A$, $H^*(A;A)$, has a Gersternhaber algebra structre, and therefore there is an action of $H_*(E_2)$ on it. It is then natural to wonder whether this action comes from an action of $C_*(E_2)$ on $C^*(A;A)$. 
+
+SÉ QUE ESTO NO ES TAN IMPORTANTE, PERO QUIERO SABER POR QUÉ CUMPLEN LAS PROPIEDADES DE PRODUCTO Y CORCHETE DE LIE
 
 
-PONER EN ALGUNA PARTE LA EQUIVALENCIA ENTRE ALGEBRAS DE GERSTENHABER Y ÁLGEBRAS SOBRE LA HOMOLOGÍA DEL OPERAD, A VER SI PUEDO DAR BIEN LA REFERENCIA ENTRE MAY Y COHEN, SI NO PREGUNTAR A MURO
+%PONER EN ALGUNA PARTE LA EQUIVALENCIA ENTRE ALGEBRAS DE GERSTENHABER Y ÁLGEBRAS SOBRE LA HOMOLOGÍA DEL OPERAD, A VER SI PUEDO DAR BIEN LA REFERENCIA ENTRE MAY Y COHEN, SI NO PREGUNTAR A MURO, SEGÚN ESTO ES COHEN \url{https://ncatlab.org/nlab/show/Gerstenhaber+algebra}
 
 
 \end{document}
