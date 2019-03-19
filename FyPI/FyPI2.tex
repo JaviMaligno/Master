@@ -133,6 +133,7 @@ $$
 \begin{ejer}
 En las condiciones de la definición anterior, $\int(A)$ es el mayor abierto contenido en $A$ y $\overline{A}$ es el menor cerrado que contiene a $A$.
 \end{ejer}
+
 \begin{defi}
 Sea $(X,d)$ un espacio métrico. Una \textbf{sucesión} en $X$ es una aplicación $\phi:\N\to X$. Usualmente notaremos a la sucesión $\{x_n\}_n$.
 \end{defi}
@@ -196,6 +197,28 @@ Sea $\{x_{n_k}\}$ subsucesión convergente a $x$ de $\{x_n\}$. Basta aplicar la 
 $$
 d(x_n,x) \leq d(x_n,x_{n_k}) + d(x_{n_k},x) < \varepsilon
 $$
+\end{dem}
+\begin{defi}
+Sea $(X,d)$ un espacio métrico. Diremos que $A\subset X$ es \textbf{totalmente acotado} si $\forall \varepsilon>0$ existe una cantidad finita de bolas de radio $\varepsilon$ que contiene a $A$.
+\end{defi}
+\begin{defi}
+Sea $(X,d)$ un espacio métrico. Diremos que $K\subset X$ es relativamente compacto si toda sucesión en $K$ tiene una subsucesión convergente a un punto de $X$.
+\end{defi}
+\begin{lema}
+Sea $(X,d)$ un espacio métrico y $K\subset X$
+\begin{enumerate}
+\item Si $K$ es relativamente compacto entonces $\overline{K}$ es compacto.
+\item Si $K$ es compacto entonces $K$ es totalmente acotado.
+\item Si $K$ es totalmente acotado entonces toda subsucesión en $K$ tiene una subsucesión de Cauchy.
+\end{enumerate}
+\end{lema}
+\begin{dem}
+\begin{enumerate}
+\item[]	
+\item El primer apartado es trivial.
+\item Sea $\varepsilon$ que no cumpla la condición. Sea $x_1 \in K$. Naturalmente, $K\neq\subset B(x_1,\varepsilon)$. Entonces $\exists x_2$ que no está en dicha bola. $K$ no está contenida en la unión de dichas y bolas y podemos tomar un $x_3$ que no esté en ninguna. Generamos un sucesión $\{x_n\}$ tal que $\forall m,n$ $d(x_n,x_m)>\varepsilon$, lo cuál no es posible, pues ha de tener una subsucesión convergente por compacidad.
+\item Sea $\{x_n\}\subset K$. Para $\varepsilon=1/2$ tenemos que la sucesión está contenida en un número finito de bolas, luego en una de ellas al menos ha de haber una cantidad infinita. Entre esos dos de estos términos la distancia entre cualesquiera de ellos es menor que $1$. Restringiendonos a estos elementos, consideramos un razonamiento análogo para $\varepsilon=1/2^2$ y así sucesivamente. Para cada $k$ tenemos un sucesión $\{x^k_n\} \subset \{x_n^{k-1}\}$ tal que $d(x_n^k,x_m^k) < 1/2^{k-1}$. Tomando la sucesión diagonal, tenemos la sucesión de Cauchy deseada.
+\end{enumerate}
 \end{dem}
 \section{Teorema de la aplicación contractiva}
 \begin{defi}
@@ -268,4 +291,30 @@ Tenemos por tanto que $A \subset B(\varepsilon_1+\varepsilon_2)$.
 Análogamente, podemos probar que $B\subset Az(\varepsilon_1+\varepsilon_2)$.
 \end{itemize}
 \end{dem}
+
+\begin{theorem}
+Si $(X,d)$ es un espacio métrico completo entonces $(K(X),d_H)$ es un espacio métrico completo.
+\end{theorem}
+%\begin{dem}
+%Sea $\{C_n\}$ una sucesión de Cauchy en $K(X)$. Consideremos la sucesión $\varepsilon_k = 2^{-k+1}$. En particular, $\exists n_1$ tal que $\forall n,m\geq n_1$ $d_H(C_n,C_m)<1/2^2$. Podemos tomar $m=n_1$. Además, $\exists n_2 (>n_1)$ tal que $\forall m\geq 2$ $d_H(C_m,C_{n_2})<1/2^3$. En particular, $d(C_{n_2},C_{n_1})<1/2^2$. Iterando este proceso, podemos encontrar una subsucesión $n_i$ tal que
+%$$
+%d_H(C_{n_{i+1}},C_{n_i}) < \frac{1}{2^{i+1}}
+%$$ 
+%Basta probar que $\{C_k\}:= \{C_{n_k}\}$ es convergente. En particular, $\forall m \geq n$
+%$$
+%d_H(C_m,C_n) < \frac{1}{2^n}
+%$$
+%Sea
+%$$
+%C_0 = \bigcap_n \overline{\bigcup_{k\geq n} C_k}
+%$$
+%Se puede probar que 
+%$$
+%C_0 = \{x \in X \mid \exists \{C_{n_k}\} \subset \{C_n\}, \; \exists x_k \in C_{n_k} \mid \lim_k x_{n_k} = x \}
+%$$
+%Consideremos entonces $x_i \in C_i$. Entonces $d(C_{i+1},C_i)<1/2^{i+1}$ , luego $\exists x_{i+1} \ in C_{i+1}$ tal que $d(x_{i+1},x_i)<1/2^{i+1}$. Esta sucesión tiene límite, pues es de Cauchy y $(X,d)$ es espacio métrico. Naturalmente, $x \in C_0$. Por tanto, $C_0 \neq \emptyset$.
+
+%Veamos que $C_0$ es compacto. Sea $\bigcup_{n\geq 1} C_n$. Sea $\varepsilon >0$, $\exists n_0$ tal que $1/2^{n_0} < \varepsilon/2$. Sabemos que $C_n \subset C_{n_0}(1/2^{n_0})$, pues $d_H(A,B)<\varepsilon$ si y solo si $A\buset B(\varepsilon)$ y $B\subset A(\varepsilon)$. Por 
+%\end{dem}
+
 \end{document}

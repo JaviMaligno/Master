@@ -49,4 +49,40 @@
 \end{enumerate}
 
 \end{solucion}
+\newpage
+
+\begin{ejercicio}{18.2.1}Dos hombres caminan cada uno hacia el otro, por lo que cada uno alcanzará al otro después de una unidad de tiempo. Cada hombre tiene una pistola con un solo disparo y puede disparar en el momento que desee. El duelo (juego) termina si alguno de ellos es herido por el otro, siendo este último el ganador. Si ninguno hiere al otro o si ambos son heridos simultáneamente se dice que el resultado es de empate. Suponemos que la precisión del disparo aumenta al acercase al oponente, de manera que si un jugador dispara en el instante $t$, este tiene una probabilidad $t$ de acertar. Las armas son sonoras, esto es un jugador conoce si su oponente ha disparado y si ha acertado o no
+
+\begin{enumerate}
+\item Determinar la forma de la función kernel $A(x,y)$ en este caso.
+\item Comprobar que 
+$$
+A(1/2,y)= \begin{cases}
+1-2y & y<1/2\\
+0 & y=1/2\\
+0 & y>1/2
+\end{cases}
+$$
+Deducir que $x = y = 1/2$ es una estrategia óptima para este juego con valor $0$.
+\end{enumerate}
+\end{ejercicio}
+\begin{solucion}
+Si I decide disparar en un tiempo $x$, y II en un tiempo y, siendo $(x < y)$. Se tiene entonces, si acierta gana, pero si falla $y$ irá hasta $1$ para disparar, luego
+$$
+A(x,y) =1\cdot x + (1-x)\cdot 1 \cdot (-1) = 2x-1
+$$
+El caso $y=x$, $A(x,y)=0$ y el caso $x>y$, con un análisis análogo obtenemos
+$$
+A(x,y) = y\cdot (-1) + (1-y)\cdot 1 \cdot 1 = 1-2y
+$$
+Por tanto,
+$$
+A(x,y)= \begin{cases}
+2x-1 & x<y\\
+0 & x=x\\
+1-2y & y<x
+\end{cases}
+$$
+Para el segundo apartado, basta tomar $x=1/2$ y es claro que se tiene el resultado.
+\end{solucion}
 \end{document}
