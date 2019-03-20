@@ -1,5 +1,5 @@
 \documentclass[FyPI.tex]{subfiles}
-
+\newcommand*\interior[1]{#1^{\mathsf{o}}}
 \begin{document}
 
 \chapter{Fractales. Introducción.}
@@ -115,9 +115,9 @@ Algunos ejemplos de espacios métricos son
 \end{itemize}
 \end{example}
 \begin{defi}
-Sea $(X,d)$ un espacio métrico y sea $A\subset X$. Definimos el \textbf{interior de $A$} y notaremos $\int(A)$ como el conjunto
+Sea $(X,d)$ un espacio métrico y sea $A\subset X$. Definimos el \textbf{interior de $A$} y notaremos $\interior{A}$ como el conjunto
 $$
-\int(A) = \{x\in A \min \exists \varepsilon >0 B(x,\varepsilon)\subset A\}
+\interior{A} = \{x\in A \min \exists \varepsilon >0 B(x,\varepsilon)\subset A\}
 $$
 Definimos además la \textbf{clausura de $A$} y notaremos $\overline{A}$ como el conjunto
 $$
@@ -127,11 +127,11 @@ $$
 \begin{prop}
 En las condiciones de la definición anterior, se verifica
 $$
-\int(A)\subset A \subset \overline{A}
+\interior{A}\subset A \subset \overline{A}
 $$
 \end{prop}
 \begin{ejer}
-En las condiciones de la definición anterior, $\int(A)$ es el mayor abierto contenido en $A$ y $\overline{A}$ es el menor cerrado que contiene a $A$.
+En las condiciones de la definición anterior, $\interior{A}$ es el mayor abierto contenido en $A$ y $\overline{A}$ es el menor cerrado que contiene a $A$.
 \end{ejer}
 
 \begin{defi}
@@ -316,5 +316,30 @@ Si $(X,d)$ es un espacio métrico completo entonces $(K(X),d_H)$ es un espacio m
 
 %Veamos que $C_0$ es compacto. Sea $\bigcup_{n\geq 1} C_n$. Sea $\varepsilon >0$, $\exists n_0$ tal que $1/2^{n_0} < \varepsilon/2$. Sabemos que $C_n \subset C_{n_0}(1/2^{n_0})$, pues $d_H(A,B)<\varepsilon$ si y solo si $A\buset B(\varepsilon)$ y $B\subset A(\varepsilon)$. Por 
 %\end{dem}
+\begin{defi} Sea $(X,d)$ un espacio métrico. Definimos un \textbf{sistema iterado de funciones} como un conjunto finito de aplicaciones contractivas $\{T_i:X\to X,\;i=1,\dotsc,m\}$. Diremos además que $F\neq \emptyset$ compacto de $X$ es \textbf{atractor} del IFS si 
+$$
+F_0 = \bigcup_{i_1}^m T_i(F_0)
+$$
 
+\end{defi}
+\begin{lema}
+Sea $(C,d)$ espacio métrico y $\{T_1,\dotsc,T_m\}$ un IFS donde cada $T_i$ tiene constante de contractividad $c_i$. Definimos
+$$
+T:(K(X),d_H)\to (K(X),d_H) \qquad T(A) = T_1(A)\cup \cdots \cup T_m(A)
+$$
+entonces $T$ esta bien definida y es una contracción con constante $c=\max_i c_i$.
+\end{lema}
+\begin{dem}
+Claramente $T(A)$ está bien definida. Sea $A,B\in K(X)$. Entonces
+$$
+d = d_H(A,B) < d+ \varepsilon \Rightarrow A\subset B(d+\varepsilon)
+$$
+Sea $x \in T(A)$ $\exists i$ tal que $x \in T_i(A)$, luego $\exists a \ni A$ tal que $x=T_i(a)$. Como $A\subset B(d+\varepsilon)$, $\exists b \in B$ tal que $d(a,b)\leq d+\varepsilon$. Entonces
+$$
+d(x,T_i(b)) = d(T_i(a),T_i(b)) \leq c_{i} d(a,b) \leq c(d+\varepsilon)
+$$
+Por tanto, $T(A)\subset T(B)(c(d+\varepsilon))$ y $T(B)\subset T(A)(c(d+\varepsilon))$, luego
+$$
+d_H(T(A),T(B)) \leq c(d_H(A,B)+\varepsilon)$$
+\end{dem}
 \end{document}
