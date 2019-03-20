@@ -154,5 +154,46 @@ Las representaciones $g\to\End(V)$ están en biyección con las familias de elem
 El álgebra libre se consigue porque un elemento es de la forma $a+\sum a_i x_i+\sum a_{ij}x_i\otimes x_j+\sum a_{ijk}x_i\otimes x_j\otimes x_k+\cdots$ (suma finita) y entonces los monomios estos son los del álgebra libre asociativa. 
 
 El álgebra exterior se puede ver como cociente por $v\otimes v$ pero también como cociente por $u\otimes v+v\otimes u$. 
+
+\section{Subrepresentaciones en álgebras semisimples}
+
+No veremos demostraciones porque son aburridas (sic)
+
+Si $V$ es una representación de $A=k[x]$ dimensión finita, es semisimple si y solo si la matriz de la representacion $F=\rho(x)$ es diagonalizable, ya que si no lo es, mirando en la forma de Jordan, hay subrepresentaciones irreducibles dentro de cada factor. 
+
+Proposición 2.2
+
+Teorema de densidad
+
+\section{2.3}
+
+Hacer el ejercicio
+
+Recordar que la sobreyectividad implica una relación entre las dimensiones.
+
+
+\section{2.5}
+Por ejemplo, si consieramos $\C[x]/\gene{x^2}$, como $x$ es nilpotente, debe tener imagen 0 en cualquier representación irreducible, ya que $\rho(x)(v)=\lambda x$ por Schur, pero $\rho(x)^2=\rho(x)^2=0$, mientras que $\rho(x)^2(v)=\lambda^2 v$, por lo que $\lambda=0$. 
+
+Que actúe coo 0 en irreducibles, implica que actúa como 0 en semisimples, que son suma de irrep.
+
+Si $Rad(A)=0$, entonces $A$ es isomorfa a una suma de álgebras de matrices, además todas las representaciones de dimensión finita son semisimples, en particular, la representación regular de $A$ es semisimple (en este caso se dice que $A$ es semisimple) TODO ESTO SON CARACTERIZACIONES.
+
+ En caso contrario, $A$ no es de esa forma y la representación de $A$ no es semisimple, ya que $\rho(a)(1)=a\cdot 1=a\neq 0$. En consecuencia, no todas las representaciones de dimensión finita de $A$ son semisimples.
+ 
+ \section{2.6}
+ 
+ Si $V$ es semisimple de $A$ y $V\cong\oplus n_i V_i$, entonces $\chi_V=\sum n_i\chi_{V_i}$, donde los $n_i$ están vistos como elementos del cuerpo (es decir, en característica positiva serían sus clases de equivalencia). 
+ 
+ 
+ Como $Tr(AB-BA)=0$ por ser $Tr(AB)=Tr(BA)$ y linealidad, $Tr([A,B])=0$. 
+ 
+ Si $k$ algebraicamente cerrado, $A$ de dimensión finita es semisimple con irrep $V_1,\dots, V_r$, los caracteres asociados a los $V_i$ son linealmente independientes en $A^*$. Como consecuencia, son una base del dual del derivado $(A')^*$
+ 
+ (mirar sección 2.4)
+ 
+ Si $\rho:A\to\End(V)$ es una representación y $V_1$ es una subrepresentación, sobre $V/V_1$ se define una representación como $\rho(a)(v\mod V_1)=\rho(a)(v)\mod V_1$
+ 
+ Teorema de Jordan-Hölder
 \end{document}
 
