@@ -582,7 +582,7 @@ Conclude that $V = S (v_1) ⊕ S (v_2) ⊕ \dots ⊕ S (v_k)$, where $\{v_1, v_2
 \end{enumerate}
 \end{ejercicio}
 \begin{solucion}\
-\begin{enumerate}
+\begin{enumerate}[(a)]
 \item Sea $V$ una representación irreducible de $A$. Por el ejercicio \ref{25}, cualquier vector no nulo de $V$ es cíclico. En particular, eso es cierto si tomamos $v\in 1_iV$. Es decir, para todo $w\in V$ existe $a=(a_1,\dots, a_i,\dots, a_n)$ tal que $w=av_i=\sum_j a_jv_i$. Por tanto, 
 \[
 1_iw=\sum_j 1_ia_jv_i=1_ia_iv_i=a_iv_i
@@ -590,6 +590,23 @@ Conclude that $V = S (v_1) ⊕ S (v_2) ⊕ \dots ⊕ S (v_k)$, where $\{v_1, v_2
 de donde deducimos que todo vector de $1_iV$ es cíclico visto como representación de $A_i$, por lo que $1_i1$ es irreducible. 
 
 Si además de $1_iV$ existiera un $1_jV\neq 0$, tendríamos entonces que cada uno de ellos sería una subrepresentación, y además es claro que deben ser distintas, por lo que $V$ no sería irreducible. El recíproco es trivial. Tenemos entonces que cada representación irreducible $V_i$ de $A_i$ nos da una representación irreducible de $A$, eligiendo $V_i\neq 0$ y la acción $(a_1,\dots, a_i,\dots, a_n)v=a_iv$. 
+
+\item Como $\sum_i E_{ii}=Id$, cualquier $v\in V$ se escribe como $v=\sum_i E_{ii}v$, por lo que $V=\oplus_i E_{ii}$. Ahora, dado $v\in E_{11}V$, tenemos que $v=E_{11}w$, y por tanto $E_{i1}v=E_{i1}E_{11}w=E_{i1}w=E_{ii}E_{i1}w$, luego podemos definir $\phi_i:E_{11}V\to E_{ii}V$ como $\phi_i(v)=E_{i1}v$. Probamos que $\phi_i$ es isomorfismo. Dado  $w\in E_{ii}V$, buscamos $v\in E_{11}V$ tal que $E_{i1}v=w$. Como $E_{1i}E_{i1}=E_{11}$ y $E_{11}v=v$ por ser $E_{11}^2=E_{11}$, tenemos que $v=E_{1i}w$, luego hay exactamente un $v$ para cada $w$, que es lo que queríamos probar. 
+
+Como hemos comentado para $v\in E_{11}v$, $E_{11}v=v$, por lo que claramente $v\in S(v)$. Suponemos ahora que $v\neq 0$, porque en caso contrario el resultado es falso. Es claro que $S(v)$ es una subrepresentación de $V$, ya que para cualquier matriz $M\in Mat_d(k)$, $ME_{i1}$ es una matriz que solo puede tener entradas no nulas en la primera columna, luego es una combinación lineal de las matrices que generan $S(v)$. Por otra parte, ninguno de los $E_{i1}v$ se anula por ser $\phi_i$ inyectiva. Además, estos vectores son linealmente independientes por el isomorfismo $V=\oplus_iE_{ii}$, ya que cada $E_{i1}v$ está en un $E_{ii}V$. Tenemos entonces un isomorfismo de espacios vectoriales canónico $S(v)\to k^d$ dado por $E_{i1}v\mapsto e_i$. Tenemos que comprobar que este isomorfismo lo es también de representaciones. Basta comprobar la conmutatividad del diagrama
+\[
+\begin{tikzcd}
+S(v)\arrow[r]\arrow[d, "M"] & k^d\arrow[d, "M"]\\
+S(v)\arrow[r] & k^d
+\end{tikzcd}
+\]
+para los elementos $E_{i1}v$ de la base de $S(v)$. Para ello observemos que recorriendo el diagrama en sentido horario obtenemos $Me_iv=M_{\cdot i}v$, donde $M_{\cdot i}$ representa la $i$-ésima columna de $M$. En sentido contrario tenemos $ME_{i1}v=M_{\cdot i}v$, luego efectivamente el diagrama conmuta. 
+
+Por último, sea $\{v_1,\dots, v_k\}$ una base de $E_{11}V$. Tenemos mediante los $\phi_i$ y el isomorfismo $V=\oplus_iE_{ii}V$ que $V=\oplus_i E_{11}V$. Ahora, $\oplus_i\phi_i:\oplus_i E_{11}\to \oplus_i E_{ii}$ lleva en cada componente la base $\{v_1,\dots, v_k\}$ a una base $\{E_{i1}v_1,\dots, E_{i1}v_k\}$, luego podemos extraer para cada $1\leq j\leq k$ la base de $S(v_j)$ cogiendo un elemento de cada uno de estos conjuntos. Como además esta elección es exhaustiva, tenemos que $V=S(v_1)\oplus\cdots\oplus S(v_k)$. Es fácil ver que además $S(v_j)$ es irreducible. 
+
+En definitiva, las representaciones finito-dimensionales de $Mat_d(k)$ es isomorfa a una suma de copias de $k^d$ y además cada una de estas copias es irreducible, por lo que una representación $V$ es irreducible si y solo si $V\cong k^d$. 
+
+\item Por el apartado (a), toda representación irreducible de $A=\oplus_i Mat_{d_i}(k)$ se obtiene a partir de cada representación irreducible de $Mat_{d_i}(k)$ y por (b) son precisamente $k^{d_i}$ y cualquier representación de dimensión finita de $A$ es suma directa de ellas. 
 \end{enumerate}
 \end{solucion}
 \newpage
