@@ -567,7 +567,7 @@ EF^k v = F^k Ev + kF^{k-1}Hv -k(k-1)F^{k-1}v = k(\lambda-k+1) F^{k-1}v
 por lo que el subespacio también es invariante por $E$. Como $V$ es irreducible, necesariamente $V=\gene{v, Fv,\dots, F^{N-1}v}$. 
 \begin{itemize}
 \item Claramente la matriz de $F$ tiene $1$ en la subdiagonal y es $0$ en el resto.
-\item Por el razonamiento que hicimos en (c) los autovalores de $H$ asociados a los vectores $F^kv$ son precisamente $\lambda-2k$ $\forall k =0,\dotsc,\lambda$ (o $N - (2k+1)$ $\forall k=0,\dotsc,\lambda$). Por tanto, la acción de $H$ es precisamente la matriz diagonal cuya componente $kk$-ésima es $N-(2k-1)$ $\forall k=1,\dotsc,\lambda+1$.
+\item Por el razonamiento que hicimos en (c) los autovalores de $H$ asociados a los vectores $F^kv$ son precisamente $\lambda-2k$ $\forall k =0,\dotsc,\lambda$ (o $N - (2k+1)$ $\forall k=0,\dotsc,\lambda$). Por tanto, la acción de $H$ es precisamente la matriz diagonal cuya componente $k$-ésima es $N-(2k-1)$ $\forall k=1,\dotsc,\lambda+1$.
 \item Resolviendo $EF-FE =H$ podemos obtener la matriz de $E$. 
 \end{itemize}
 Finalmente, tenemos que probar que $V_\lambda$ es irreducible. Sea $w\in V_\lambda$ no nulo. Entonces $w=\sum_i c_iF^iv$. Sea $m$ el primer entero tal que $c_m$ es no nulo, entonces si multiplicamos por $F^{\lambda-m}$ obtenemos $F^{\lambda-m}w = c_m F^\lambda v$. Como hemos visto arriba, aplicando $E$ obtenemos todos los vectores de la base, luego cualquier subespacio cerrado para las acciones del álgebra tiene que ser el total. 
@@ -588,7 +588,7 @@ Por lo que efectivamente conmutan. Sea ahora $v\in V(\lambda)$, por (a) tenemos 
 Cv=EFv+FEv+H^2v/2=EFv+\lambda^2v/2=Hv+FEv+\lambda^2v/2=\lambda+\lambda^2v/2=\frac{\lambda(\lambda+2)}{2}v
 \]
 
-\item
+\item En el apartado anterior hemos probado que $C$ es central. Por ser $V$ indecomponible, podemos aplicar el ejercicio \ref{ejer:1.21}(b), por lo que $C$ actúa mediante la multiplicación por un escalar determinado por alguna representación irreducible de $V$. Como en $V_\lambda$, que es irreducible, actúa multiplicando por $\frac{\lambda(\lambda+2)}{2}$, este es su único autovalor en todo $V$. 
 \end{enumerate}
 \end{solucion}
 
