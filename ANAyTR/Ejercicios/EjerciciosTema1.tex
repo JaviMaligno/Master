@@ -551,6 +551,33 @@ E^kF^kw=k!H(H-1)(H-2)\cdots (H-(k-1))w
 Como ninguno de los $i$ es igual a $\lambda$, $(H-\lambda)v$ no puede ser un autovector generalizado con autovalor $\lambda$ (contrarrecíproco del razonamiento anterior), por lo que $(H-\lambda)v=0$ y $v$ es un autovector ordinario. Como esto ocurre para todo $v\in\bar{V}(\lambda)$ se tiene que $H$ es diagonalizable en $\bar{V}(\lambda)$. 
 
 \item Con el mismo razonamiento del apartado anterior para $N=N_v$ y $\lambda$ el autovalor del apartado (c). 
+
+\item Sea $V$ de dimensión finita e irreducible. Por el apartado anterior, tenemos que los autovalores de $H$ son reales y el mayor de ellos es $\lambda=N-1$ para el $N$ de los apartados anteriores. Sea $v\in V(N-1)$ un autovector. Como $F^Nv=0$ pero $F^{N-1}v\neq 0$, es es un sencillo ejercicio de álgebra lineal comprobar que son linealmente independientes, simplemente basta aplicar a una combinación lineal $\alpha_0v+\alpha_1Fv+\cdots \alpha_{N-1}F^{N-1}v=0$ el homomorfismo $F^{N-1}$ para concluir que $\alpha_0=0$, después aplicar $F^{N-2}$ y así sucesivamente. Ahora, el subespacio $\gene{v, Fv,\dots, F^{N-1}v}$ es claramente invariante por $F$ y también por $H$ usando directamente la relación $HF-FH=-2F$. Ahora, por el cálculo que hicimos anteriormente en (b) de $[E,F^k]$ tenemos para todo $k>0$
+\[
+EF^k v = F^k Ev + kF^{k-1}Hv -k(k-1)F^{k-1}v = k(\lambda-k+1) F^{k-1}v
+\]
+por lo que el subespacio también es invariante por $E$. Como $V$ es irreducible, $V=\gene{v, Fv,\dots, F^{N-1}v}$.
+
+FALTA CALCULAR LAS MATRICES, CREO QUE AL APLICAR H DEBEN SALIR LOS AUTOVALORES
+
+\item Los papeles de $E$ y $F$ son intercambiables, por lo que calculamos los conmutadores $[E,C]$ y $[H,C]$. 
+\begin{align*}
+[E,C]&=[E, EF + FE + H^2/2]=[E,EF]+[E,FE]+[E,H^2]/2=\\
+&=[E,E]F+E[E,F]+[E,F]E+F[E,E]+[E,H]H/2+H[E,H]/2=\\
+&=E[E,F]+[E,F]E+[E,H]H/2+H[E,H]/2=\\
+&=EH+HE-EH-EH=0
+\end{align*}
+\begin{align*}
+[H,C]&=[H, EF + FE + H^2/2]=[H,EF]+[H,FE]+[H,H^2]/2=\\
+&=[H,E]F+E[H,F]+[H,F]E+F[H,E]+[H,H]H/2+H[H,H]/2=\\
+&=2EF-2EF-2FE+2FE=0
+\end{align*}
+Por lo que efectivamente conmutan. Sea ahora $v\in V(\lambda)$, por (a) tenemos que $Ev=0$. Usando la identidad $FE-EF=H$ obtememos
+\[
+Cv=EFv+FEv+H^2v/2=EFv+\lambda^2v/2=Hv+FEv+\lambda^2v/2=\lambda+\lambda^2v/2=\frac{\lambda(\lambda+2)}{2}v
+\]
+
+\item
 \end{enumerate}
 \end{solucion}
 
