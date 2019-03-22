@@ -1,0 +1,125 @@
+\documentclass[CR.tex]{subfiles}
+
+\begin{document}
+
+
+%\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
+
+\chapter{Tests de primalidad}
+\section{Preliminares}
+Usamos la versión del teorema chino del resto que dice que si $a,b\in\Z_{>0}$ son tales que $\gcd(a,b)=1$ entonces $\Z_{ab}\cong \Z_a\times\Z_b$ mediante el isomorfismo $x\mapsto (x\mod a,x\mod b)$. 
+
+Recordemos que un elemento de $a\in \Z_N$ es unidad si y solo si $\gcd(a,N)=1$: si $ab=1\mod N$, entonces $N|ab-1$, y de la identidad de Bézout se deduce el resultado. Recíprocamente, si $\gcd(a,b)=1$, el inverso es el $\alpha$ de la identidad de Bézout. Por ello, $\varphi(N)$ se puede definir como los primos con $N$ o como el cardinal de las unidades.
+
+\begin{lemma}
+$\varphi$ es multiplicativo si $\gcd(a,b)=1$. 
+\end{lemma}
+\begin{proof}
+Por el teorema chino del resto, $\Z_{ab}\cong\Z_a\times\Z_b$, y como el isomorfismo respeta las unidades, se tiene también $(\Z_{ab})^*\cong(\Z_a)^*\times(\Z_b)^*$. Tomando cardinal se obtiene $\varphi(ab)=\varphi(a)\varphi(b)$. 
+\end{proof}
+\begin{lemma}
+$\varphi(p^e)=p^{e-1}(p-1)$ para $p$ primo y $e\in\Z_{>0}$.
+\end{lemma}
+\begin{proof}
+$\varphi(p^e)=\sharp\{a=1,\dots, p^e-1\mid p\not| a\}=p^e-\sharp\{a=1,\dots, p^e-1\mid p|a\}=p^e-\sharp\{p,2p,\dots\}=p^e-p^{e-1}$.
+\end{proof}
+
+
+\begin{lemma}
+Para todo $p$ primo, el grupo $(\Z_p)^*$ es cíclico 
+\end{lemma}
+\begin{proof}
+Queremos probar que existe $a\in\Z_p$ tal que $ord(a)=p-1$. Sea $mcm\{ord(b)\mid b\in\Z_p\}=m$. Si $p^e|m$ y $p^{e+1}\not| m$; entonces existe $b$ tal que $p^e| ord(b)$, luego $ord(b)=rp^e$, así que $b^{r}$ tiene orden $p^e$. Probamos que $ord(\prod_{p|m}b_p^{r_p})=m$. Si $m=p-1$, ya está. Si no, consideramos $f(x)=x^m-1\in\Z_p(x)$. Para todo $b\in\Z_p$, $f(b)=b^m-1=0$. Esto significa que $f$ tiene $p-1$ raíces distintas, por lo que $m\geq p-1$. Por otra parte, $m\leq p-1$ porque $ord(b)|p-1$ por el teorema de Lagrange, y por ello también lo divide el mínimo común múltiplo de los órdenes, $m$. 
+\end{proof}
+
+\section{Test de primalidad}
+Nos basamos en el pequeño teorema de Fermat, esto es, si $p$ es primo y $a\geq 1$, $a\not| p$, entonces $a^{p-1}\equiv 1\mod p$. Esto es consecuencia del teorema de Lagrange, pues al ser $a$ unidad por no dividir a $p$, su orden debe dividir a $p-1$. 
+
+Sea $N\geq 2$. Sea $a\geq 1$ tal que $\gcd(a,N)=1$ (si no fuera 1, tendríamos divisores de $N$, y por tanto $N$ no es primo). Si $a^{N-1}\not\equiv 1\mod N$, entonces $N$ no es primo.
+
+\begin{ej}
+$N=91$, $a=3$. Haciendo reducciones llegamos a que $3^{90}\equiv 1\mod 91$. Esto no es concluyente. De hecho $91=7\cdot 13$. 
+
+Para $a=2$, el test nos da $2^{90}\equiv 64\mod 91$, lo que sí concluye que no es primo, aunque no conocemos sus factores. 
+\end{ej}
+
+
+\begin{defi}
+Diremos que $N\geq 2$ no primo es un número de Carmichael si para tod $a$ con $\gcd(a,N)=1$, $a^{N-1}\equiv 1\mod N$.
+\end{defi}
+
+Por ejemplo, 561 o 1105. 
+
+\begin{prop}
+Si $N>2$ no es de Carmichael y es compuesto, entonces 
+\[
+\#\{a\mid 1\leq a\leq N-1, gcd(a,N)=1, a^{N-1}\equiv 1\mod N\}\leq \varphi(N)/2 
+\]
+\end{prop}
+\begin{dem}
+Sea $H=\{a\in\Z_N\mid$ mismas condiciones que en el enunciado$\}\subseteq (\Z_N)^*$. Es fácil ver que $H$ es un subgrupo. Si $N$ no es de Carmichael y es compuesto, $H\neq (\Z_N)^*$ porque hay algún $a$ que no verifica la ecuación. Entonces $\#(H)c=\varphi(N)$ con $c\geq 2$, y ya está. 
+\end{dem}
+
+\begin{prop}
+Para $N\geq 2$ son equivalentes:
+\begin{enumerate}
+\item $N$ es de Carmichael
+\item Para todo $p|N$: $p$ es impar, $p^2\not| N$ y $(p-1)\mid (N-1)$. 
+\end{enumerate}
+\end{prop}
+\begin{dem}
+$1\Rightarrow 2$. 
+\begin{enumerate}
+\item Por 2, $2^2\not| N$, luego existe $p>2$ primo dividiendo a $N$.  Por 3, $p-1|N-1$, pero $p-1$ es par y $N-1$ es impar. 
+\item $a^{N-1}\equiv 1\mod N\Rightarrow a^N\equiv a\mod N$. Para $a=p$, $N| p^N-p$, así que $p=p^N-cN$ para algún $c$.
+\item Sea $a$ generador $(\Z_p)^*$, de modo que $ord(a)=p-1$ y $a^{N-1}\equiv 1\mod p$. 
+\end{enumerate}
+
+$2\Rightarrow 1$. Por el teorema chino del resto usando la descomposición $N=p_1\cdots p_r$ ($N$ es libre de cuadrados), tenemos que $a^{N-1}\mod N\mapsto (a^{N-1}\mod p_1,\dots, a^{N-1}\mod p_r)$, y el $1$ va al $(1,\dots, 1)$, de mod oque $a^{N-1}=1\mod p_i$ para todo $i$, de donde se deduce que $a^{N-1}=1\mod p_1\cdots p_r$. 
+\end{dem}
+
+\begin{ej}
+$N=561$ es de Carmichael. $3-1,11-1$ y $17-1$ dividen a $561-1$. 
+\end{ej}
+
+\begin{prop}
+$\#\{x\leq N, x$ es de Carmichael$\}\geq O(N^{2/7})$.
+\end{prop}
+
+Vamos a cambiar el test por $a^{\frac{N-1}{2}}\equiv 2\mod N$ (para $N$ impar). 
+
+\begin{defi}
+Diremos que $a\geq 0$ es un cuadrado $\mod p$ o un residuo cuadrático si $\exists b\geq 0$ tal que $b^2=a\mod p$.
+\end{defi}
+
+\begin{ej}
+$p=3$, podemos hacer todas las cuentas y $2$ no es un cuadrado
+\end{ej}
+
+\begin{lemma}
+Sea $p>2$ primo. Hay $\frac{p-1}{2}$ residuos no nulos  y la misma cantidad de no residuos. 
+\end{lemma}
+\begin{proof}
+Sea $\varphi:(\Z_p)^*\to(\Z_p)^*$, $x\mapsto x^2$. $\ker\varphi\supseteq \{1,-1\}$. El polinomio $x^2-1\in\Z_p[x]$ tiene a lo más 2 raíces en $\Z_p$, por lo que la inclusión anterior es una igualdad. Primer teorema de isomorfía, $\Ima\varphi\cong (\Z_p)^*/\ker\varphi$. Como la imagen tiene $\frac{p-1}{2}$ elementos, y estos son los residuos cuadráticos, se deduce el lema. 
+\end{proof}
+
+
+\begin{prop}
+Sea $N=p_1^{e_1}\cdots p_r^{e_r}$. Sea $a\geq 1$, entonces $a$ es residuo módulo $N$ si y solo si $a$ es residuo módulo $p_i^{e_i}$. 
+\end{prop}
+\begin{dem}
+Hacia la derecha es trivial. Para el otro lado, teorema chino del resto.
+\end{dem}
+
+\begin{lemma}
+Sea $p$ un primo impar y $a\in\Z$ que no divide a $p$. Son equivalentes:
+\begin{enumerate}
+\item $a$ es residuo módulo $p$.
+\item $a$ es residuo módulo $p^n$ para todo $p^n$. 
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+
+\end{proof}
+\end{document}
+
