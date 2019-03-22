@@ -236,7 +236,7 @@ Departamento de Estadística e Investigación Operativa\\
 
 \begin{large}
 \centering
-Sevilla, Junio 2018\\
+Sevilla, Junio 2019\\
  \end{large}
 \end{center}
 
@@ -253,20 +253,21 @@ Sevilla, Junio 2018\\
 
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
-The sample average approximation (SAA) method is an approach for solving stochastic optimization problems by using Monte Carlo simulation. The basic idea of such method is that we can approximate the expected objetive function by the corresponding sample average function using a random sample. We solve the obtained sample average approximating problem by deterministic optimization techniques, and the process is repeated several times with different samples to obtain candidate solutions along with statistical estimates of their optimality gaps until a stopping criterion is satisfied.
+PENDIENTE
+%The sample average approximation (SAA) method is an approach for solving stochastic optimization problems by using Monte Carlo simulation. The basic idea of such method is that we can approximate the expected objetive function by the corresponding sample average function using a random sample. We solve the obtained sample average approximating problem by deterministic optimization techniques, and the process is repeated several times with different samples to obtain candidate solutions along with statistical estimates of their optimality gaps until a stopping criterion is satisfied.
 
 
-In section 1 we describe the expected value and sample average approximation problems and give a few examples of real cases in which it can be useful. In section 2 we show many results related to convergence of estimators (objective value, optimal solution, etc) under certain assumptions. In section 3  we discuss convergence rates of objetive values. In section 4 we implement the method to study two problems (that involve different random variables) to illustrate the power of the method.
+%In section 1 we describe the expected value and sample average approximation problems and give a few examples of real cases in which it can be useful. In section 2 we show many results related to convergence of estimators (objective value, optimal solution, etc) under certain assumptions. In section 3  we discuss convergence rates of objetive values. In section 4 we implement the method to study two problems (that involve different random variables) to illustrate the power of the method.
 \newpage
 \thispagestyle{empty}
 
 \chapter*{Introducci\'on}\label{cap.introduccion}
 \addcontentsline{toc}{chapter}{Introducción}
-En ocasiones, cuando tratamos de resolver problemas de programación estocástica que involucran valores esperados, tenemos que lidiar un tamaño del espacio muestral excesivamente grande o con cálculos de esperanzas que pueden ser tremendamente costosos desde un punto de vista computacional. En este trabajo desarrollamos una técnica que nos permite en una gran variedad de casos aproximar estos problemas mediante mediante el método de Monte Carlo. Esta técnica se conoce como Método de aproximación por media muestral.
+%En ocasiones, cuando tratamos de resolver problemas de programación estocástica que involucran valores esperados, tenemos que lidiar un tamaño del espacio muestral excesivamente grande o con cálculos de esperanzas que pueden ser tremendamente costosos desde un punto de vista computacional. En este trabajo desarrollamos una técnica que nos permite en una gran variedad de casos aproximar estos problemas mediante mediante el método de Monte Carlo. Esta técnica se conoce como Método de aproximación por media muestral.
 
-Tras una presentación inicial del método, proseguiremos dando resultados relacionados con la convergencia, bajo hipótesis adecuadas, de las soluciones, valor objetivo y otros estimadores de los problemas muestrales a los correspondientes del problema real, así como una primera aproximación al orden de convergencia del método. 
+%Tras una presentación inicial del método, proseguiremos dando resultados relacionados con la convergencia, bajo hipótesis adecuadas, de las soluciones, valor objetivo y otros estimadores de los problemas muestrales a los correspondientes del problema real, así como una primera aproximación al orden de convergencia del método. 
 
-Finalmente, ejemplificaremos la eficacia del método con experimentos reales. Expondremos dos casos donde utilizaremos una normal multivariante y una mixtura de normales para tener una primera impresión sobre la capacidad de aproximación del método y la utilidad para casos donde, amén de heurística, resulta infactible resolver los problemas por fuerza bruta.
+%Finalmente, ejemplificaremos la eficacia del método con experimentos reales. Expondremos dos casos donde utilizaremos una normal multivariante y una mixtura de normales para tener una primera impresión sobre la capacidad de aproximación del método y la utilidad para casos donde, amén de heurística, resulta infactible resolver los problemas por fuerza bruta.
 
 
 \newpage
@@ -338,14 +339,13 @@ d_{uv} = \begin{cases}
 $$
 Este problema puede verse como la relajación lagrangiana del problema del matching con una cota superior y es ampliamente estudiado por Ball y Taverna en \cite{balltab}. 
 
-Más generalmente, si consideramos dos funciones de coste $c^1$ y $c^2$ cualesquiera y un parámetro $\lambda$ escalar, podemos formular el \textit{problema del emparejamiento biobjetivo de parámetro simple}
+Más generalmente, si consideramos dos funciones de coste $c^1$ y $c^2$ cualesquiera y un parámetro $\lambda$ escalar, podemos formular el \textit{problema del emparejamiento biobjetivo}
 \begin{align*}
 \min_x & \sum_{(u,v) \in E}x_{uv}(c^1_{uv}+\lambda c^2_{uv})\\
 s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} \leq 1, \quad \forall u \in V\\
 &\sum_{(u,v)\in \gamma(S)} x_{uv} \leq \frac{1}{2}(|S|-1)\quad \forall S \in B	\\
 &x_{uv} \geq 0 \qquad \forall(u,v)\in E
 \end{align*}
-Denotamos simplemente $c(\lambda)_{uv} = c^1_{uv} + \lambda c_{uv}^2$. Este problema tiene una modificación natural si consideramos $\lambda \in \R^{|E|}$, en cuyo caso $c(\lambda)_{uv} = c_{uv}^1 \lambda_{uv}c^2_{uv}$. En este caso, hablamos del \textit{problema del emparejamiento perfecto de parámetro vectorial}.
 \section{Aplicaciones}
 \subsection{El problema de la asignación}
 Para ilustrar las distintas aplicaciones que tiene el problema del matchig, comenzamos con un problema clásico de la Investigación Operativa. El problema de asignación o \textit{assigment assignment problem} consiste en encontrar la forma de asignar recursos (máquinas, empleados, etc.) a un cierto conjunto de teareas determinadas con coste mínimo. Se supone que cada recurso se destina a una sola tarea, y que cada tarea es ejecutada por uno solo de los recursos. Es claro que este problema puede formularse como un problema de matching de coste mínimo sobre un grafo bipartito.
@@ -362,13 +362,13 @@ Aunque no puede utilizarse el problema del matching para resolver este problema,
 &\text{multigrafo euleriano. Encontrar un circuito euleriano.}\\
 \text{Paso 4: }&\text{Obtener un circuito hamiltoniano descartando nodos ya visitados}
 \end{align*}
-\subsection{•}
+\subsection{PEDNIENTE}
 
 \chapter{Algoritmo SAP}
 En este capítulo vamos a explicar el funcionamiento del método SAP o \textit{shortest augmenting path} a partir del cuál puede obtenerse un matching perfecto de mínimo coste y, además, nos permitirá realizar una reoptimización eficiente.
 \section{Propiedades teóricas}
 \begin{defi}
-Sea $G=(V,E)$ un grafo, $M$ un matching en $G$ y $v\in V$. Diremos que $v$ es textbf{expuesto} con respecto a $M$ si no es extremo de ninguna arista de $M$.
+Sea $G=(V,E)$ un grafo, $M$ un matching en $G$ y $v\in V$. Diremos que $v$ es \textbf{expuesto} con respecto a $M$ si no es extremo de ninguna arista de $M$.
 \end{defi}
 \begin{defi}
 Sea $G=(V,E)$ un grafo y $M$ un matching en $G$, un \textbf{camino alternante} o \textit{alternating path} con respecto a $M$ es un camino en el cual se van alternando aristas que están en $M$ y fuera del matching. Análogamente pueden definirse \textbf{árboles y ciclos alternantes}.
@@ -408,7 +408,7 @@ Un matching $M$ contiene el máximo número de ejes si y solo si no existe ning�
 \end{prop}
 Dejamos los caminos a un lado y pasamos a definir otro tipo de conceptos relacionados con distintas familias de grafos y subgrafos.
 \begin{defi}
-Sea $G=(V,E)$ un grafo y $B \subset V$. Definimos el \textbf{grafo inducido por }$B$ como $G[B] = \{B,\gamma(B)\}$.  
+Sea $G=(V,E)$ un grafo y $B \subset V$. Definimos el \textbf{grafo inducido por }$B$ como $G[B] = (B,\gamma(B))$.  
 \end{defi}
 \begin{defi}
 Sea $G=(V,E)$ y $H$ un subgrafo de $G$. Si $H$ tiene el mismo conjunto de nodos que $V$, decimos que \textbf{abarca }$G$.
@@ -438,7 +438,7 @@ G[W]\times A[W] \text{ es abarcado por un ciclo impar $\forall W \in A$}
 $$ 
 Además, si un elemento $W$ (maximal) de una familia de contracción $A$ es tal que $|M\cap\gamma(W)| = \frac{1}{2}(|W|-1)$ diremos que un \textbf{blossom} (exterior).
 \end{defi}
-Como veremos posteriormente, estas familias son un concepto capital a la hora de desarrollar un algoritmo para encontrar un matching perfecto cuando el grafo involucrado es no bipartito, que es realmente más simple. Una propiedad fundamental al respecto fue probada también por Edmonds en \cite{edmon2}.
+Una propiedad fundamental al respecto fue probada también por Edmonds en \cite{edmon2}.
 \begin{thm}
 Sea $M$ un matching en $G$ y sea $A$ una familia de contracción tal que todo $W\in A$ es un blossom con respecto a $M$. Entonces, todo camino de aumento en $G\times A$ con respecto a $M_A$ induce un camino de aumento $P$ con respecto a $M$.
 \end{thm}
@@ -446,7 +446,7 @@ Sea $M$ un matching en $G$ y sea $A$ una familia de contracción tal que todo $W
 Sea $A$ una familia de contracción de $G$ y $M_A$ un matching (perfecto) en $G\times A$. Entonces $M_A$ induce (de manera única) un matching (perfecto) $M$ en $G$ tal que $\forall W\in A$ es un blossom con respecto a $M$.
 \end{cor}
 \subsection{El problema del matching y las familias de contracción}
-Los las familias de contracción también son conocidas en la literatura como \textit{hypomatchable set} o \textit{shrinkable set} y en \cite{edmon3} se usan para caracterizarlos de la siguiente manera.
+Los las familias de contracción también son conocidas en la literatura como \textit{hypomatchable set} o \textit{shrinkable set} y Edmonds en \cite{edmon3} caracteriza estos conjuntos de la siguiente manera.
 \begin{thm}
 Sea $A \subset V$. Entonces $A$ es una familia de contracción si y solo si $\forall u \in A$ $\exists M_i$ matching tal que 
 $$
@@ -551,7 +551,7 @@ l(P_0) &= l'(P_0) + d(P_0)\\
 \qed
 \end{dem}
 \begin{defi}
-Sea $B=\{S\subset V \mid |S| \text{ es impar, }|S|\geq 3\}$. A cada $u\in V$ y $S\in B$ podemos asociar unos pesos $y_u \in \R$  e $y_S \in \R_{\geq 0}$. Definimos la transformación $T:c_{uv}\to c'_{uv}$ tal que
+Sea $B=\{S\subset V \mid |S| \text{ es impar, }|S|\geq 3\}$. A cada $u\in V$ y $S\in B$ podemos asociar unos pesos $y_u \in \R$ e $y_S \in \R_{\geq 0}$. Definimos la transformación $T:c_{uv}\to c'_{uv}$ tal que
 $$
 c_{uv}' =c_{uv}-y_u-y_v - \sum_{S\in B, (u,v)\in \delta(S)}y_S
 $$
@@ -680,27 +680,31 @@ Además, extendemos $y$ al nuevo grafo $\overline{G}$ de manera que $y_r:=y_t:=0
 \end{dem}
 Es importante hacer una consideración para entender por qué es importante el teorema anterior. Sea $y$ una solución fuerfuertemente dual factible, definimos $\mathcal{A}(y)=\{S\in \mathcal{A}(G)\mid y_S>0\}$. Naturalmente, si existe algún $S \in \mathcal{A}(G)$ con $v\in S$ tal que $y_S >0$, el nodo $v$ no estará -estará contraído en algún pseudonodo- en el grafo $G\times \mathcal{A}(y)$. Por tanto, siguiendo el proceso de la demostración anterior, siempre podemos encontrar un par compatible $(M,y)$ de manera que un determinado vértice $v$ esté en el grafo $G\times \mathcal{A}(y)$. Pasamos a ver el algoritmo de repotimización. 
 
-Supongamos que todas las aristas cuyos costes son alteras están en $\delta(v)$.
+Supongamos que todas las aristas cuyos costes son alteras están en $\delta(v)$. Naturalmente, Si $c_{ij}'^{new} \geq 0$ $\forall (u,v) \in \delta(v)$, nuestro matching sigue siendo óptimo, luego podemos suponer que hay alguno que es negativo.
 \begin{align*}
 \text{Inicialización: }& \text{Sea $(M,y)$ un par compatible óptimo para MCPM}\\
 \text{Paso 1: }& \text{Si $v$ no está contraído en $G\times \mathcal{A}(y)$ vamos al Paso 2.}\\
 &\text{En otro caso, aplicamos el procedimiento anterior}\\
 &\text{ y denotamos $y:=y'$. Vamos al Paso 2.}\\
-\text{Paso 2: }& \text{Para todo $(u,v) \in M$ establecemos}\\
+\text{Paso 2: }& \text{Sea $(u,v) \in M$ establecemos}\\
 &\overline{M}:=M\setminus\{(u,v)\}\\
 &\delta:=\min\{c_{vk}'^{new}\mid (v,k)\in \delta(v)\}<0\\
 &c_{vk}:=c_{vk}^{new} \quad \forall (v,k)\delta (v)\\
 &y_v:=y_v+\delta\\
-&\text{Aplicamos el algoritmo SAP y obtenemos }\\
-&\text{PENDIENTEEEEEEEEEEEEEE}
+&\text{Ir al Paso 3.}\\
+\text{Paso 3: }&\text{Aplicar el algoritmo SAP a $(\overline{M},y)$ y determinar el menor}\\
+&\text{camino de aumento $P$ y una solución dual $y'$ tal que el par}\\
+&\text{$(\overline{M}\oplus P,y')$ sea un par compatible}
 \end{align*}
 
 \subsection{Problema biobjetivo}
-En el matching paramétrico, tal y como vimos en la Subsección 1.1.1, la función de coste es en el caso de parámetro simple $c_{uv}(\lambda) = c^1_{uv} + \lambda c^2_{uv}$, y en el caso de parámetro vectorial $c_{uv}(\lambda) = c^1_{uv} + \lambda_{uv} c^2_{uv}$. Por tanto, para aplicar el procedimiento anterior, tenemos que considerar $c_{uv}^{new} = c^1_{uv} + (\lambda + \Delta\lambda) c^2_{uv}= c_{uv}(\lambda+\Delta\lambda)$. Para aplicar el procedimiento anterior necesitamos un subconunto $W\subset V$ tal que $E = \delta(W)\cup \gamma(W)$, es decir, el conjunto $W$ debe ser una cobertura por vértices de nuestro grafo $G$. Así, para cada $v\in W$ invocamos nuestro procedimiento para la reoptimización. 
+En el matching paramétrico, tal y como vimos en la Subsección 1.1.1, la función de coste es $c_{uv}(\lambda) = c^1_{uv} + \lambda c^2_{uv}$. Por tanto, para aplicar el procedimiento anterior, tenemos que considerar $c_{uv}^{new} = c^1_{uv} + (\lambda + \Delta) c^2_{uv}= c_{uv}(\lambda+\Delta)$. Para aplicar el procedimiento anterior necesitamos un subconunto $W\subset V$ tal que $E = \delta(W)\cup \gamma(W)$, es decir, el conjunto $W$ debe ser una cobertura por vértices de nuestro grafo $G$. Así, para cada $v\in W$ invocamos nuestro procedimiento para la reoptimización. 
+
+Notemos que $\Delta$ no tendría por qué ser un parámetro real, sino que podríamos considerar $\Delta \in \R^{|E|}$. En ese caso, $c_{uv}^{new} = c^1_{uv} + (\lambda + \Delta_{uv}) c^2_{uv}$ 
 \section{Mantenimiento de la optimalidad}
-Estamos especialmente interesados en el caso del matching biobjetivo en saber cuánto puede variar $\Delta \lambda$ de manera que nuestro matching $M$ continúe siendo óptimo. Para realizar este análisis, consideremos el problema de Programación Lineal:
+Estamos especialmente interesados en el caso del matching biobjetivo en saber cuánto puede variar $\Delta$ de manera que nuestro matching $M$ continúe siendo óptimo. Para realizar este análisis, consideremos el problema de Programación Lineal:
 \begin{align*}
-\min_x & \sum_{(u,v) \in E}x_{uv}c_{uv}(\lambda)\\
+\min_x & \sum_{(u,v) \in E}x_{uv}(c^1_{uv} + \lambda c^2_{uv})\\
 s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} \leq 1, \quad \forall u \in V\\
 &\sum_{(u,v)\in \delta(S)} x_{uv} \geq 1\quad \forall S \in \mathcal{A}(G)	\\
 &x_{uv} \geq 0 \qquad \forall(u,v)\in E
@@ -716,25 +720,29 @@ Si denotamos por $b$ la columna de términos independientes y por $N$ las column
 B^{-1}b\geq0\\
 \overline{c_R}^t = c_N^t - c_B^t B^{-1}N\geq 0
 \end{align*}
-\subsection{Problema biobjetivo de parámetro simple}
+\subsection{Problema biobjetivo}
 Realizamos el análisis para el caso en $\lambda$ es un único parámetro escalar común. Alterar $\lambda$ no modifica en ningún caso la primera condición, luego nos centraremos solo en la segunda. 
 \begin{align*}
-\overline{c_R}(\lambda+\Delta\lambda)^t&= c_N(\lambda + \Delta\lambda)^t  - c_B(\lambda + \Delta\lambda)^t B^{-1}N \\
-& = c_N(\lambda)^t  - c_B(\lambda)^t B^{-1}N + \Delta\lambda {c_N^2}^t  - \Delta\lambda {c_B^2}^t B^{-1}N \\
-&= \overline{c_R}(\lambda)^t + \Delta\lambda \overline{c_R^2}^t \geq 0
+\overline{c_R}(\lambda+\Delta)^t&= c_N(\lambda + \Delta)^t  - c_B(\lambda + \Delta)^t B^{-1}N \\
+& = c_N(\lambda)^t  - c_B(\lambda)^t B^{-1}N + \Delta {c_N^2}^t  - \Delta {c_B^2}^t B^{-1}N \\
+&= \overline{c_R}(\lambda)^t + \Delta \overline{c_R^2}^t \geq 0
 \end{align*}
 En este caso, sabemos que $B$ se mantiene como base óptima siempre que
 $$
-\max_{j:\overline{c^2}_j>0} -\frac{\overline{c}(\lambda)_j}{\overline{c^2}_j} \leq \Delta\lambda \leq \min_{j:\overline{c^2}_j<0} - \frac{\overline{c}(\lambda)_j}{\overline{c^2}_j}
+\max_{j:\overline{c^2}_j>0} -\frac{\overline{c}(\lambda)_j}{\overline{c^2}_j} \leq \Delta \leq \min_{j:\overline{c^2}_j<0} - \frac{\overline{c}(\lambda)_j}{\overline{c^2}_j}
 $$
-\subsection{Problema biobjetivo de parámetro vectorial}
-En este caso consideremos $\lambda, \Delta\lambda \in \R^{|E|}$. Para el análisis denotamos, al igual que antes, $c(\lambda)_{uv} = c^1_{uv}+\delta_{uv}c^2_{uv}$ y sea además $c^2(\lambda)_{uv} = \lambda_{uv}c^2_{uv}$
+
+Una vez estudiado el caso anterior, consideremos un caso más genérico en el que $\Delta \in \R^{|E|}$. Para simplificar la notación, sea $\lambda \in \R$ y $\Delta \in \R^{|E|}$ podemos escribir $c(\lambda+\Delta)$, donde
+$$
+c(\lambda+\Delta)_{uv} = c^1_{uv}+(\lambda+\Delta)c^2_{uv}
+$$
+y análogamente para $c^2$. Podemos considerar entonces
 \begin{align*}
-\overline{c_R}(\lambda+\Delta\lambda)^t&= c_N(\lambda_N + \Delta\lambda_N)^t  - c_B(\lambda_B + \Delta\lambda_B)^t B^{-1}N \\
-& = c_N(\lambda_N)^t  - c_B^2(\lambda_B)^t B^{-1}N + c_N(\Delta\lambda_N)^t  - c_B^2(\Delta\lambda_B)^t B^{-1}N \\
-&=\overline{c_R}(\lambda)^t + \overline{c_R}^2(\Delta\lambda)^t \geq 0
+\overline{c_R}(\lambda+\Delta)^t&= c_N(\lambda + \Delta_N)^t  - c_B(\lambda + \Delta_B)^t B^{-1}N \\
+& = c_N(\lambda)^t  - c_B^2(\lambda)^t B^{-1}N + c_N(\Delta_N)^t  - c_B^2(\Delta_B)^t B^{-1}N \\
+&=\overline{c_R}(\lambda)^t + \overline{c_R}^2(\Delta)^t \geq 0
 \end{align*}
-Cada variable no básica nos da una desigualdad sobre $\Delta\lambda$, de manera que tenemos un poliedro en $\R^{|E|}$ de valor admisibles, los cuales forman un poliedro.  
+Cada variable no básica nos da una desigualdad sobre $\Delta$, de manera que tenemos un poliedro en $\R^{|E|}$ de valores admisibles. En ambos casos, al llegar a uno de los vértices del poliedro (el extremo del intervalo en el caso más simple), podemos escoger una nueva base y repetir el análisis.
 \newpage
 \begin{thebibliography}{9}
 \bibitem{edmond} 
