@@ -157,9 +157,9 @@ Consideremos la acción $\rho(a)(v) = \pi(a)\pi(v)$ donde $\pi$ es la aplicació
 $$
 \rho(ab)(v) = \pi(ab)\pi(v) =\pi(a)\pi(bv) = \rho(a)\circ \rho(b)(v)
 $$
-Por tanto, $A/I$ es una representación de $A$. Para ver que es indecomponible, consideremos una base de $A/I$. Esta esta formada por las proyecciones de los monomios en $x_1,\dotsc,x_n$. Sea $W_1,\dotsc,W_k$ una desomposición propia en suma directa de $A/I$. $\exists! i$ tal que $\pi(1)\in W_i$. Tiene que existir un monomio $\bar{x}_1,\dotsc,\bar{x}_n$ que no pertenezca a $W_i$, pues en otro caso $W_i = A/I$. Supongamos sin pérdida de generalidad que es $\bar{x}_k$. En tal caso
+Por tanto, $A/I$ es una representación de $A$. Para ver que es indecomponible, consideremos una base de $A/I$. Esta esta formada por las proyecciones de los monomios en $x_1,\dotsc,x_n$. Sea $W_1,\dotsc,W_k$ una desomposición propia en suma directa de $A/I$. $\exists! i$ tal que $\pi(1)\in W_i$. Tiene que existir un monomio $\overline{x}_1,\dotsc,\overline{x}_n$ que no pertenezca a $W_i$, pues en otro caso $W_i = A/I$. Supongamos sin pérdida de generalidad que es $\overline{x}_k$. En tal caso
 $$
-\rho(x_k)(1) = \pi(1)\pi(x_k) = \bar{x}_k \notin W_i
+\rho(x_k)(1) = \pi(1)\pi(x_k) = \overline{x}_k \notin W_i
 $$
 Por tanto, $W_i$ no es subrepresentación. Como esto es independiente de la descomposición escogida, $A/I$ es una representación indecomponible.
 \end{solucion}
@@ -465,15 +465,15 @@ corresponding map $ρ$ is given by $ρ(e) = E$, $ρ(f) = F$, $ρ(h) = H$).
 Let $V$ be a finite dimensional representation of $\mathfrak{sl}(2)$ (the ground field in this problem is $\C$).
 
 \begin{enumerate}[(a)]
-\item Take eigenvalues of $H$ and pick one with the biggest real part. Call it $λ$. Let $\bar{V} (λ)$ be the
-generalized eigenspace corresponding to $λ$. Show that $E|_{\bar{V} (λ)} = 0$.
+\item Take eigenvalues of $H$ and pick one with the biggest real part. Call it $λ$. Let $\overline{V} (λ)$ be the
+generalized eigenspace corresponding to $λ$. Show that $E|_{\overline{V} (λ)} = 0$.
 \item Let $W$ be any representation of $\mathfrak{sl}(2)$ and $w ∈ W$ be a nonzero vector such that $Ew = 0$.
 For any $k > 0$ find a polynomial $P_k(x)$ of degree $k$ such that $E^kF^kw = P_k(H)w$. (First compute
 $EF^kw$, then use induction in $k$).
-\item Let $v ∈  \bar{V} (λ)$ be a generalized eigenvector of $H$ with eigenvalue $λ$. Show that there exists
+\item Let $v ∈  \overline{V} (λ)$ be a generalized eigenvector of $H$ with eigenvalue $λ$. Show that there exists
 $N > 0$ such that $F^Nv = 0$.
-\item Show that $H$ is diagonalizable on $ \bar{V} (λ)$. (Take $N$ to be such that $F^N = 0$ on $\bar{V} (λ)$, and
-compute $E^NF^Nv$, $v ∈ \bar{ V} (λ)$, by (b). Use the fact that $P^k(x)$ does not have multiple roots).
+\item Show that $H$ is diagonalizable on $ \overline{V} (λ)$. (Take $N$ to be such that $F^N = 0$ on $\overline{V} (λ)$, and
+compute $E^NF^Nv$, $v ∈ \overline{ V} (λ)$, by (b). Use the fact that $P^k(x)$ does not have multiple roots).
 \item Let $N_v$ be the smallest $N$ satisfying (c). Show that $λ = N_v − 1$.
 \item Show that for each $N > 0$, there exists a unique up to isomorphism irreducible representation
 of $\mathfrak{sl}(2)$ of dimension $N$. Compute the matrices $E$, $F$, $H$ in this representation using a convenient
@@ -542,15 +542,23 @@ Por tanto
 E^kF^kw=k!H(H-1)(H-2)\cdots (H-(k-1))w
 \]
 
-\item Podemos razonar como en (a), solo que ahora obtendríamos que ahora la parte real de $\lambda$ se reduciría en 2, por lo que elegimos el autovalor con menor parte real para el razonamiento. Como $V$ tiene dimensión finita, solo puede tener una cantidad finita de autovalores, por lo que la sucesión $v,Fv,F^2v,\dots$ debe acabar en 0. 
-
-\item Por el apartado anterior, para cada autovalor $\lambda_i$ de $H$, existe $N_i>0$ tal que $F^{N_i}v_i=0$ para $v_i\in\bar{V}(\lambda_i)$. Como hay una cantidad finita de autovalores, podemos tomar $N=\max_i N_i$, de modo que $F^Nv=0$ para todo $v\in\bar{V}(\lambda)$ para cualquier autovalor $\lambda$. Tenemos por (b) que $0=E^NF^Nv=N! H(H-1)\cdots (H-(N-1))v$, luego $H(H-1)\cdots (H-(N-1))v=0$ para todo $v\in\bar{V}(\lambda)$. Entonces tenemos que, o bien $(H-(N-1))v=0$ (en cuyo caso $\lambda=N-1$) o bien $(H-(N-1))v$ es un autovector con autovalor $\lambda$, e inductivamente llegamos a que $\lambda\in\{1,\dots, N-1\}$. Consideramos entonces el polinomio
+\item Observemos que, en general
+\[
+(H - (\lambda - 2k)I)(F^k v) = F^k(H - \lambda I)v
+\]
+Iterando la primera parte del razonamiento del apartado (a), obtendríamos que $\lambda-2k$ es autovalor $\forall k \in \Z^+$, pero dado que $V$ es de dimensión finita, ha de existir $N$ tal que $\lambda -2N$ no sea autovalor, pero $\lambda - 2(N-1)$ sí. Razonando como en dicho apartado
+$$
+(H-(\lambda - 2N)I)^n(F^Nv) = F^N (H-\lambda I)^nv = 0 
+$$
+Lo cuál implica necesariamente que $F^N v= 0$.
+\item Sea $v\in\overline{V}(\lambda)$, tenemos por (b) y (c)	 que $0=E^NF^Nv=N! H(H-1)\cdots (H-(N-1))v$, luego $$H(H-1)\cdots (H-(N-1))v=0$$
+para todo $v\in\overline{V}(\lambda)$. Entonces tenemos que, o bien $(H-(N-1))v=0$ (en cuyo caso $\lambda=N-1$) o bien $(H-(N-1))v$ es un autovector con autovalor $\lambda$, e inductivamente llegamos a que necesariamente $\lambda\in\{0,1,\dots, N-1\}$. Dado que los polinomios en $H$ conmutan, podemos reescribir el anterior de la siguiente manera
 \[
 0 = \left(\prod_{0 \leq i < N, i \neq \lambda} H-i\right) (H-\lambda)v
 \]
-Como ninguno de los $i$ es igual a $\lambda$, $(H-\lambda)v$ no puede ser un autovector generalizado con autovalor $\lambda$ (contrarrecíproco del razonamiento anterior), por lo que $(H-\lambda)v=0$ y $v$ es un autovector ordinario. Como esto ocurre para todo $v\in\bar{V}(\lambda)$ se tiene que $H$ es diagonalizable en $\bar{V}(\lambda)$. 
+Como ninguno de los $i$ es igual a $\lambda$, $(H-\lambda)v$ no puede ser un autovector generalizado con autovalor $\lambda$ (contrarrecíproco del razonamiento anterior), por lo que $(H-\lambda)v=0$ y $v$ es un autovector ordinario. Como esto ocurre para todo $v\in\overline{V}(\lambda)$ se tiene que $H$ es diagonalizable en $\overline{V}(\lambda)$. 
 
-\item Con el mismo razonamiento del apartado anterior para $N=N_v$ y $\lambda$ el autovalor del apartado (c). 
+\item Es inmediato a partir del razonamiento anterior, aplicado a $P_k(H)v$, pues solo puede ser considerado a partir de $k=N_v$.
 
 \item Sea $V$ de dimensión finita e irreducible. Por el apartado anterior, tenemos que los autovalores de $H$ son reales y el mayor de ellos es $\lambda=N-1$ para el $N$ de los apartados anteriores. Sea $v\in V(N-1)$ un autovector. Como $F^Nv=0$ pero $F^{N-1}v\neq 0$, es es un sencillo ejercicio de álgebra lineal comprobar que son linealmente independientes, simplemente basta aplicar a una combinación lineal $\alpha_0v+\alpha_1Fv+\cdots \alpha_{N-1}F^{N-1}v=0$ el homomorfismo $F^{N-1}$ para concluir que $\alpha_0=0$, después aplicar $F^{N-2}$ y así sucesivamente. Ahora, el subespacio $\gene{v, Fv,\dots, F^{N-1}v}$ es claramente invariante por $F$ y también por $H$ usando directamente la relación $HF-FH=-2F$. Ahora, por el cálculo que hicimos anteriormente en (b) de $[E,F^k]$ tenemos para todo $k>0$
 \[
