@@ -1,0 +1,100 @@
+\documentclass[twoside]{article}
+\usepackage{../../estilo-ejercicios}
+%\renewcommand{\baselinestretch}{1,3}
+%--------------------------------------------------------
+\begin{document}
+
+\title{Ejercicios Extras de Teoría de Representaciones}
+\author{Javier Aguilar Martín, Rafael González López y Diego Pedraza López}
+\maketitle
+
+Estos son ejercicios no propuestos del curso de Teoría de Representaciones.
+
+\begin{ejercicio}{1.49}
+\mbox{}
+\begin{enumerate}[(a)]
+\item Let $U$ be any $k$-vector space.
+Construct a natural bijection between bilinear maps $V \times W \to U$ and linear maps $V \otimes W \to U$.
+\item Show that if $\{v_i\}$ is a basis of $V$ and $\{w_j\}$ is a basis of $W$ then $\{v_i \otimes w_j\}$ is a basis of $V \otimes W$.
+\item Construct a natural isomorphism $V^* \otimes W \to \Hom(V, W)$ in the case when $V$ is finite dimensional (``natural'' means that the isomorphism is defined without choosing bases).
+
+\item Let $V$ be a vector space over a field $k$.
+Let $S^nV$ be the quotient of $V^{\otimes n}$ ($n$-fold tensor product of $V$) by the subspace spanned by the tensors $T - s(T)$ where $T \in V^{\otimes n}$, and $s$ is some transposition.
+Also let $\wedge^n V$ be the quotient of $V^{⊗n}$ by the subspace spanned by the tensors $T$ such that $s(T) = T$ for some transposition $s$.
+These spaces are called the $n$-th symmetric, respectively exterior, power of $V$.
+If $\{v_i\}$ is a basis of V , can you construct a basis of $S^n V$, $\wedge^n V$?
+If $\dim V = m$, what are their dimensions?
+\item If $k$ has characteristic zero, find a natural identification of $S^n V$ with the space of $T ∈ V^{⊗n}$ such that $T = sT$ for all transpositions $s$, and of $\wedge^n V$ with the space of $T ∈ V^{⊗n}$ such that $T = -sT$ for all transpositions $s$.
+\item Let $A : V \to W$ be a linear operator.
+Then we have an operator $A^{⊗n} : V^{⊗n} \to W^{⊗n}$, and its symmetric and exterior powers $S^n A : S^n V \to S^n W$, $\wedge^n A : \wedge^n V → \wedge^n W$ which are defined in an obvious way.
+Suppose $V = W$ and has dimension $N$, and assume that the eigenvalues of $A$ are $λ_1, \dots, λ_N$.
+Find $Tr(S^n A)$, $Tr(\wedge^n A)$.
+\item Show that $\wedge^N A = det(A)Id$, and use this equality to give a one-line proof of the fact that $\det(AB) = \det(A) \det(B)$.
+\end{enumerate}
+\end{ejercicio}
+
+\newpage
+
+\begin{ejercicio}{1.51} Tercer Problema de Hilbert.
+It is known that if $A$ and $B$ are two polygons of the same area then $A$ can be cut by finitely many straight cuts into pieces from which one can make $B$.
+David Hilbert asked in 1900 whether it is true for polyhedra in 3 dimensions.
+In particular, is it true for a cube and a regular tetrahedron of the same volume?
+
+The answer is ``no'', as was found by Dehn in 1901.
+The proof is very beautiful.
+Namely, to any polyhedron $A$ let us attach its ``Dehn invariant'' $D(A)$ in $V = \R ⊗ (\R/\Q)$ (the tensor product of $\Q$-vector spaces).
+Namely,
+\[ D(A) = \sum_a l(a) ⊗ \frac{\beta(a)}{\pi} \]
+where $a$ runs over edges of $A$, and $l(a)$, $β(a)$ are the length of $a$ and the angle at $a$.
+\begin{enumerate}[(a)]
+\item Show that if you cut $A$ into $B$ and $C$ by a straight cut, then $D(A) = D(B) + D(C)$.
+\item Show that $α = \arccos(1/3)/π$ is not a rational number.
+Hint. Assume that $α = 2m/n$, for integers $m, n$.
+Deduce that roots of the equation $x+x^{-1} = 2/3$ are roots of unity of degree $n$.
+Conclude that $x^k + x^{-k}$ has denominator $3^k$ and get a contradiction.
+\item Using (a) and (b), show that the answer to Hilbert's question is negative. (Compute the Dehn invariant of the regular tetrahedron and the cube).
+\end{enumerate}
+\end{ejercicio}
+\begin{solucion}
+\begin{enumerate}[(a)]
+\item Una aclaración: el ángulo $\beta(a)$ se llama también ángulo dihedral, se corresponde con el ángulo interior de los dos planos que se intersecan en $a$.
+
+Nuestro objetivo es probar que $D(B)+D(C) = D(A)$.
+Para una arista $a$, definimos $\tau_A(a) = l(a) ⊗ \frac{\beta(a)}{\pi}$, de manera que $D(A) = \sum_a \tau_A(a)$.
+Nuestra estrategia será ver como afecta el corte a $\tau(a)$.
+Lo primero que podemos decir es que si $a$ pertenece exclusivamente a $B$ o a $C$, entonces el corte no afecta al ángulo o a la longitud de $a$.
+En otro caso, si $a$ --o un corte de $a$-- aparece como $a_1 \in B$ y $a_2 \in C$, hay que ver que $\tau_B(a_1) + \tau_C(a_2) = \tau_A(a)$.
+Por último, cualquier arista $a$ que se añada debe tener valor nulo.
+Veamos los cortes que puede hacer el plano sobre cada cara del polihedro.
+\begin{enumerate}
+	\item \textit{Corte a un plano:} De esa forma se crea una nueva arista $a$ que pertenece a $B$ y a $C$. Los ángulos dihedrales $\alpha$ y $\alpha'$ deben sumar $\pi$ grados.
+	Entonces (recuérdese que en $\R/\Q$, todo racional es congruente al $0$):
+	\[ l(a)\otimes\frac{\alpha}{\pi} + l(a)\otimes\frac{\alpha'}{\pi} = l(a)\otimes\frac{\alpha+\alpha'}{\pi} = l(a) \otimes 0_{\R/\Q} = 0_V \]
+	\item \textit{Corte transversal a una arista:} De esa forma la arista $e$ se divide en dos aristas $e_1$ y $e_2$ tal que $l(e)=l(e_1)+l(e_2)$.
+	El ángulo dihedral es el mismo $\alpha$ en las dos aristas. Entonces:
+	\[ l(a_1)\otimes\frac{\alpha}{\pi} + l(a_2)\otimes\frac{\alpha}{\pi} = l(a_1 + a_2)\otimes\frac{\alpha}{\pi} = l(a)\otimes\frac{\alpha}{\pi} \]
+	Por lo tanto $\tau_B(a_1) + \tau_C(a_2) = \tau_A(a)$
+	\item \textit{Corte a lo largo de una arista:} De esta forma la arista $a$ aparece en $B$ y $C$, pero el ángulo dihedral se divide en dos ángulos $\alpha_1$ y $\alpha_2$ con $\alpha_1+\alpha_2=\alpha$ donde $\alpha$ era el ángulo dihedral de $a$ en $A$.
+	Siguiendo el mismo argumento que antes se llega a que $\tau_B(a) + \tau_C(a) = \tau_A(a)$.
+\end{enumerate}
+Por lo tanto, $D(B)+D(C) = D(A)$.
+
+\item Supongamos que $α$ fuera racional.
+Escribamoslo como $α = 2m/n$.
+
+\[ x+x^{-1} = \frac{2}{3} \]
+\[ e^{ix}+e^{-ix} = \frac{2}{3} \]
+\[ \cos(x)+i\sin(x)+\cos(-x)+i\sin(-x) = \frac{2}{3} \]
+\[ 2\cos(x) = \frac{2}{3} \]
+\[ \cos(x) = \frac{1}{3} \]
+\[ x = \arccos(\frac{1}{3}) \]
+\end{enumerate}
+\end{solucion}
+
+\newpage
+
+\begin{ejercicio}{1.54}
+Let $V$, $W$, $U$ be finite dimensional representations of a Lie algebra $\mathfrak{g}$.
+Show that the space $\Hom_\mathfrak{g} (V ⊗ W, U)$ is isomorphic to $\Hom_\mathfrak{g} (V, U ⊗ W^∗)$. (Here $\Hom_\mathfrak{g} := \Hom_{U (\mathfrak{g})}$).
+\end{ejercicio}
+\end{document}
