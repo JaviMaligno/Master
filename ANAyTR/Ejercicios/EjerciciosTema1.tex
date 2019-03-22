@@ -558,6 +558,25 @@ EF^k v = F^k Ev + kF^{k-1}Hv -k(k-1)F^{k-1}v = k(\lambda-k+1) F^{k-1}v
 por lo que el subespacio también es invariante por $E$. Como $V$ es irreducible, $V=\gene{v, Fv,\dots, F^{N-1}v}$.
 
 FALTA CALCULAR LAS MATRICES, CREO QUE AL APLICAR H DEBEN SALIR LOS AUTOVALORES
+
+\item Los papeles de $E$ y $F$ son intercambiables, por lo que calculamos los conmutadores $[E,C]$ y $[H,C]$. 
+\begin{align*}
+[E,C]&=[E, EF + FE + H^2/2]=[E,EF]+[E,FE]+[E,H^2]/2=\\
+&=[E,E]F+E[E,F]+[E,F]E+F[E,E]+[E,H]H/2+H[E,H]/2=\\
+&=E[E,F]+[E,F]E+[E,H]H/2+H[E,H]/2=\\
+&=EH+HE-EH-EH=0
+\end{align*}
+\begin{align*}
+[H,C]&=[H, EF + FE + H^2/2]=[H,EF]+[H,FE]+[H,H^2]/2=\\
+&=[H,E]F+E[H,F]+[H,F]E+F[H,E]+[H,H]H/2+H[H,H]/2=\\
+&=2EF-2EF-2FE+2FE=0
+\end{align*}
+Por lo que efectivamente conmutan. Sea ahora $v\in V(\lambda)$, por (a) tenemos que $Ev=0$. Usando la identidad $FE-EF=H$ obtememos
+\[
+Cv=EFv+FEv+H^2v/2=EFv+\lambda^2v/2=Hv+FEv+\lambda^2v/2=\lambda+\lambda^2v/2=\frac{\lambda(\lambda+2)}{2}v
+\]
+
+\item
 \end{enumerate}
 \end{solucion}
 
