@@ -570,7 +570,8 @@ por lo que el subespacio también es invariante por $E$. Como $V$ es irreducible
 \item Por el razonamiento que hicimos en (c) los autovalores de $H$ asociados a los vectores $F^kv$ son precisamente $\lambda-2k$ $\forall k =0,\dotsc,\lambda$ (o $N - (2k+1)$ $\forall k=0,\dotsc,\lambda$). Por tanto, la acción de $H$ es precisamente la matriz diagonal cuya componente $kk$-ésima es $N-(2k-1)$ $\forall k=1,\dotsc,\lambda+1$.
 \item Resolviendo $EF-FE =H$ podemos obtener la matriz de $E$. 
 \end{itemize}
-Finalmente, tenemos que probar que $V_\lambda$ es irreducible. Sea $w\in V_\lambda$ no nulo. Entonces $w=\sum_i c_iF^iv$. Sea $m$ el primer entero tal que $c_m$ es no nulo, entonces si multiplicamos por $F^{\lambda-m}$ obtenemos $F^{\lambda-m}w = c_m F^\lambda v$. Como hemos visto arriba, aplicando $E$ obtenemos todos los vectores de la base, luego cualquier subespacio cerrado para las acciones del álgebra tiene que ser el total. 
+Finalmente, tenemos que probar que $V_\lambda$ es irreducible. Sea $w\in V_\lambda$ no nulo. Entonces $w=\sum_i c_iF^iv$. Sea $m$ el primer entero tal que $c_m$ es no nulo, entonces si multiplicamos por $F^{\lambda-m}$ obtenemos $F^{\lambda-m}w = c_m F^\lambda v$. Como hemos visto arriba, aplicando $E$ obtenemos todos los vectores de la base, luego cualquier subespacio cerrado para las acciones del álgebra tiene que ser el total.
+\newpage
 \item Los papeles de $E$ y $F$ son intercambiables, por lo que calculamos los conmutadores $[E,C]$ y $[H,C]$. 
 \begin{align*}
 [E,C]&=[E, EF + FE + H^2/2]=[E,EF]+[E,FE]+[E,H^2]/2=\\
@@ -583,12 +584,13 @@ Finalmente, tenemos que probar que $V_\lambda$ es irreducible. Sea $w\in V_\lamb
 &=[H,E]F+E[H,F]+[H,F]E+F[H,E]+[H,H]H/2+H[H,H]/2=\\
 &=2EF-2EF-2FE+2FE=0
 \end{align*}
-Por lo que efectivamente conmutan. Sea ahora $v\in V(\lambda)$, por (a) tenemos que $Ev=0$. Usando la identidad $FE-EF=H$ obtememos
+Por lo que efectivamente conmutan. Dado que $V_\lambda$ es irreducible y $C$ está en su centro, actúa como la multiplicación por un escalar. por el Problema 1.21 Sea ahora $v\in V(\lambda)\subset V_\lambda$, tenemos que $Ev=0$. Usando la identidad $FE-EF=H$ obtenemos
 \[
 Cv=EFv+FEv+H^2v/2=EFv+\lambda^2v/2=Hv+FEv+\lambda^2v/2=\lambda+\lambda^2v/2=\frac{\lambda(\lambda+2)}{2}v
 \]
 
-\item
+\item Es consecuencia inmediata del apartado (b) del Problema 1.21 y el apartado anterior.
+\item 
 \end{enumerate}
 \end{solucion}
 
