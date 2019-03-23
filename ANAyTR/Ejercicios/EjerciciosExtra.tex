@@ -1,5 +1,6 @@
 \documentclass[twoside]{article}
 \usepackage{../../estilo-ejercicios}
+\usepackage{manfnt}
 %\renewcommand{\baselinestretch}{1,3}
 %--------------------------------------------------------
 \begin{document}
@@ -57,7 +58,7 @@ Conclude that $x^k + x^{-k}$ has denominator $3^k$ and get a contradiction.
 \end{ejercicio}
 \begin{solucion}
 \begin{enumerate}[(a)]
-\item Una aclaración: el ángulo $\beta(a)$ se llama también ángulo dihedral, se corresponde con el ángulo interior de los dos planos que se intersecan en $a$.
+\item Una aclaración: el ángulo $\beta(a)$ se llama también ángulo diedro, se corresponde con el ángulo interior de las dos caras que se intersecan en $a$.
 
 Nuestro objetivo es probar que $D(B)+D(C) = D(A)$.
 Para una arista $a$, definimos $\tau_A(a) = l(a) ⊗ \frac{\beta(a)}{\pi}$, de manera que $D(A) = \sum_a \tau_A(a)$.
@@ -67,27 +68,51 @@ En otro caso, si $a$ --o un corte de $a$-- aparece como $a_1 \in B$ y $a_2 \in C
 Por último, cualquier arista $a$ que se añada debe tener valor nulo.
 Veamos los cortes que puede hacer el plano sobre cada cara del polihedro.
 \begin{enumerate}
-	\item \textit{Corte a un plano:} De esa forma se crea una nueva arista $a$ que pertenece a $B$ y a $C$. Los ángulos dihedrales $\alpha$ y $\alpha'$ deben sumar $\pi$ grados.
+	\item \textit{Corte a un plano:} De esa forma se crea una nueva arista $a$ que pertenece a $B$ y a $C$. Los ángulos diedros $\alpha$ y $\alpha'$ deben sumar $\pi$ grados.
 	Entonces (recuérdese que en $\R/\Q$, todo racional es congruente al $0$):
 	\[ l(a)\otimes\frac{\alpha}{\pi} + l(a)\otimes\frac{\alpha'}{\pi} = l(a)\otimes\frac{\alpha+\alpha'}{\pi} = l(a) \otimes 0_{\R/\Q} = 0_V \]
 	\item \textit{Corte transversal a una arista:} De esa forma la arista $e$ se divide en dos aristas $e_1$ y $e_2$ tal que $l(e)=l(e_1)+l(e_2)$.
-	El ángulo dihedral es el mismo $\alpha$ en las dos aristas. Entonces:
+	El ángulo diedro es el mismo $\alpha$ en las dos aristas. Entonces:
 	\[ l(a_1)\otimes\frac{\alpha}{\pi} + l(a_2)\otimes\frac{\alpha}{\pi} = l(a_1 + a_2)\otimes\frac{\alpha}{\pi} = l(a)\otimes\frac{\alpha}{\pi} \]
 	Por lo tanto $\tau_B(a_1) + \tau_C(a_2) = \tau_A(a)$
-	\item \textit{Corte a lo largo de una arista:} De esta forma la arista $a$ aparece en $B$ y $C$, pero el ángulo dihedral se divide en dos ángulos $\alpha_1$ y $\alpha_2$ con $\alpha_1+\alpha_2=\alpha$ donde $\alpha$ era el ángulo dihedral de $a$ en $A$.
+	\item \textit{Corte a lo largo de una arista:} De esta forma la arista $a$ aparece en $B$ y $C$, pero el ángulo diedro se divide en dos ángulos $\alpha_1$ y $\alpha_2$ con $\alpha_1+\alpha_2=\alpha$ donde $\alpha$ era el ángulo diedro de $a$ en $A$.
 	Siguiendo el mismo argumento que antes se llega a que $\tau_B(a) + \tau_C(a) = \tau_A(a)$.
 \end{enumerate}
 Por lo tanto, $D(B)+D(C) = D(A)$.
 
 \item Supongamos que $α$ fuera racional.
-Escribamoslo como $α = 2m/n$.
+Escribámoslo como $α = 2m/n$, donde $m, n \in \Z$ y $n > 0$.
 
-\[ x+x^{-1} = \frac{2}{3} \]
-\[ e^{ix}+e^{-ix} = \frac{2}{3} \]
-\[ \cos(x)+i\sin(x)+\cos(-x)+i\sin(-x) = \frac{2}{3} \]
-\[ 2\cos(x) = \frac{2}{3} \]
-\[ \cos(x) = \frac{1}{3} \]
-\[ x = \arccos(\frac{1}{3}) \]
+\[ \pi\alpha = \arccos(\frac{1}{3}) \]
+\[ \cos(\pi\alpha) = \frac{1}{3} \]
+\[ \cos(\pi\alpha)+i\sin(\pi\alpha)+\cos(-\pi\alpha)+i\sin(-\pi\alpha) = \frac{2}{3} \]
+\[ e^{i\pi\alpha}+e^{-i\pi\alpha} = \frac{2}{3} \]
+Luego $e^{i\pi\alpha}$ es una raíz de $x+x^{-1}=2/3$.
+Además $e^{i\pi\alpha}$ es una $n$-raíz de la unidad.
+
+Por otro lado, para toda raíz de $x+x^{-1}=2/3$ podemos demostrar por inducción que divide a $x^k+x^{-k} = \frac{a_k}{3^kb_k}$, donde $a_k$ y $b_k$ son enteros no divisibles por $3$.
+Haciendo el paso de inducción suponiendo cierto la hipótesis $k$ y observando que:
+\begin{align*}
+(x^k+x^{-k})(x+x^{-1}) & = x^{k+1}+x^{-k+1}+x^{k-1}+x^{-k-1}\\
+ & = (x^{k+1}+x^{-(k+1)})+(x^{k-1}+x^{-(k-1)})
+\end{align*}
+Entonces:
+\[ x^{k+1}+x^{-(k+1)} = \frac{a_k}{3^k b_k} \cdot \frac{2}{3}- \frac{a_{k-1}}{3^{k-1}b_{k-1}}
+= \frac{2a_k b_{k-1} - a_{k-1}3^2 b_k}{3^{k+1} b_k b_{k+1}} \]
+El numerador necesariamente no es divisible por $3$, por ser la diferencia de un múltiplo y un no múltiplo de $3$.
+
+Con esto se deduce que $3^k$ divide a $x^k+x^{-k}$.
+Sin embargo, tomando $k=n$ llegamos a que $x^n+x^{-n}=1+1=2$ es divisible por $3^n$, lo cual es absurdo.
+
+\item La invariante de Dehn del cubo es sencilla, pues todos sus $12$ ángulos son $\pi/2$. Como $\beta(a)/\pi$ es racional para toda arista $a$, necesariamente
+\[ D(\mbox{\mancube}) = 0 \]
+Para calcular la invariante de Dehn del tetraedro daremos por sabido que todos los ángulos diedros del sólido son $\arccos(1/3)$ (úsese trigonometría y la fórmula generalizada de Pitágoras).
+Recordando que $\arccos(1/3)/\pi$ es irracional por el apartado (b), la invariante de Dehn del tetraedro es:
+\[ D(\triangle) = 6 l \otimes [\arccos(1/3)/\pi] \]
+Donde $l$ es la longitud de las aristas y $[\arccos(1/3)/\pi]$ es una clase no nula en $\R/\Q$.
+
+Como la invariante de Dehn es aditiva respecto al corte como hemos visto en (a), no podemos cortar el cubo en una cantidad finita de trozos que podamos recomponer en un tetraedro.
+Hemos encontrado pues un contraejemplo a la hipótesis del tercer problema de Hilbert.
 \end{enumerate}
 \end{solucion}
 
