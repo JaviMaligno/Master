@@ -121,5 +121,118 @@ Sea $p$ un primo impar y $a\in\Z$ que no divide a $p$. Son equivalentes:
 \begin{proof}
 
 \end{proof}
+
+Con estos resultados tenemos que $a$ es cuadrado $\mod N$ si y solo si para todo $i$ $a$ es un cuadrado $\mod p_i^{e_i}$ si y solo si $a$ es cuadrado $\mod  p_i$ ($p_i>2$). El caso $p_i=2$ lo cubre el siguiente lema.
+
+\begin{lemma}
+Sea $a\in\Z$ impar. Son equivalentes:
+\begin{enumerate}
+\item $a$ es residuo cuadrático $\mod 2^n$
+\item Se verifica alguno de los siguientes: $n=1$, $n=2$ y $a\equiv 1\mod 4$, $n\geq 3$ y $a\equiv mod 8$.
+\end{enumerate}
+\end{lemma}
+La prueba es por inducción, probando a mano los casos $n=1$, $n=2$. 
+
+\begin{defi}
+Se define el símbolo de Legendre como sigue. Para todo primo $p$ y para todo $a\in\Z$, 
+$$\left(\frac{a}{p}\right)=\begin{cases}
+0 & p|a\\
+1 & a \text{residuo no nulo }\mod p\\
+-1 & c.c.
+\end{cases}$$
+\end{defi}
+
+\begin{prop}[Euler]
+Sea $p>2$ primo y $a\in\Z$. Entonces $a^{\frac{p-1}{2}}\equiv (\frac{a}{p}) \mod p$.
+\end{prop}
+\begin{dem}
+Si $p|a$, entonces el resultado es trivial porque $a=0\mod p$. En otro caso, definimos $\phi:(\Z_p)^*\to (\Z_p)^*$ definido como $\phi(x)=x^{\frac{p-1}{2}}$. Se tiene que $\Ima\phi\subseteq \{\pm 1\}$ porque $a^{p-1}\equiv 1\mod p$ y $b=a^{\frac{p-1}{2}}$ es tal que $b^2\equiv 1\mod p$, que como $\Z_p$ es un cuerpo no puede tener más de dos soluciones. Por otro lado, $\ker\phi=\{a, a^{(p-1)/2}=1\}$. 
+
+Tenemos que como $(\Z_p)^*$ es cíclico existe $c\not| p$ tal que $\{1,c,\dots, c^{(p-1)/2},\dot, c^{p-2}\}$ son todos distintos, por lo que $\phi(c)\neq 1$, es decir, $\phi(c)=-1$. Por ello $\Im\phi=\{\pm 1\}$ (tiene cardinal 2). Por el primer teorema de isomorfía, $\ker\phi$ tiene cardinal $\frac{p-1}{2}$.  Queremos probar $\ker\phi=\{b^2+\gene{p}\mid b=1,\dots, p-1\}$. Como tienen el mismo cardinal basta ver una inclusión. La inclusión fácil es hacia la izquierda, si tomamos un cuadrado $b^2+\gene{p}$, entonces $\phi(b^2+\gene{p})=b^{p-1}+\gene{p}=1+\gene{p}$ por el pequeño teorema de Fermat, y por tanto el cuadrado está en el núcleo. 
+
+Tenemos entonces que $(\frac{a}{p})$ y $a^{(p-1)/2}$ toman el valor 1 en los mismos casos, por lo que valen lo mismo $\mod p$. 
+\end{dem}
+
+Queremos ver que la congruencia anterior se da también módulo $N$ cuando $N$ es compuesto definiéndola adecuadamente. 
+
+\begin{defi}
+Sea $N=p_1^{e_1}\cdots p_r^{e_r}$ y $a\in\Z$. Se define el símbolo de Jacobi como 
+\[
+\left(\frac{a}{N}\right)=\prod_{i=1}^r \left(\frac{a}{p_i}\right)^{e_i}
+\]
+\end{defi}
+
+\begin{lemma}\
+\begin{enumerate}
+\item $(\frac{a}{N})$ solo depende de la clase de $a\mod N$.
+\item $(\frac{ab}{N})=(\frac{a}{N})(\frac{b}{N})$
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Se deduce que de la multiplicatividad se deduce de la del símbolo de Legendre. Si $p=2$ es trivial. Si $p|a$ o $p|b$ entonces es 0 en ambos lados. En otro caso, se usa la proposición anterior.
+\end{proof}
+
+\begin{teorema}[Ley de reciprocidad cuadrática de Gauss]
+Sea $p$ un primo impar. \url{https://en.wikipedia.org/wiki/Quadratic_reciprocity}. Además un par de casos concretos
+
+\begin{enumerate}
+\item $(\frac{-1}{p})=(-1)^{(p-1)/2}=\begin{cases}
+1 & p\equiv 1\mod 4\\
+-1 & p\equiv 3\mod 4
+\end{cases}$
+
+\item {enumerate}
+\item $(\frac{2}{p})=(-1)^{(p^2-1)/8}=\begin{cases}
+1 & p\equiv 1,7\mod 8\\
+-1 & p\equiv 3,5\mod 8
+\end{cases}$
+\end{enumerate}
+\end{teorema}
+\begin{dem}
+\end{dem}
+
+\begin{ej}
+$(\frac{127}{31}(=(\frac{3}{31})$ porque $127=4\cdot 31+3$, y por tanto es igual a $(-1)^{(3-1)/2 (31-1)/2}(\frac{31}{3})=-(\frac{1}{3})=-1$, por ser $31=3\cdot 10+1$.
+\end{ej}
+
+\begin{teorema}[Ley de reciprocidad de Jacobi]
+Sean $m,k\geq 3$ enteros impares. Entonces se cumplen los dos primeros apartados del teorema anterior para $p=m$ y adema´s
+\[
+(\frac{m}{k})=(-1)^{(k-1)/2 (m-1)/2}(\frac{k}{m})
+\]
+\end{teorema}
+
+\begin{lemma}
+\begin{enumerate}
+\item $\varepsilon:(\Z_4)^*\to \{\pm 1\}$, $m\mapsto (-1)^{(m-1)/2}$ es morfismo de grupos
+\item $\omega:(\Z_8)\to\{\pm 1\}$, $m\mapsto (-)^{(m^2-1)/8}$ también.
+\end{enumerate}
+\end{lemma}
+La prueba es sencilla. 
+
+\begin{dem}[sketch del teorema]
+Escribimos $m=\prod_i p_i^{e_i}$. Para las dos priemras congruencias basta utilizar $\omega$ y $\tau$ del lema anterior sobre $m$. Para la parte interesante, 
+\[
+(\frac{m}{k})(\frac{k}{m})^{-1}=(\frac{m}{k})(\frac{k}{m})
+\]
+Aplicar la definición y la multiplicatividad, luego reciprocidad cuadrática. Después usar $\varphi$ y listo. 
+\end{dem}
+
+\begin{prop}
+Sea $N>2$ impar, entonces $N$ es primo si y solo si 
+\[
+\left(\frac{a}{N}\right)\equiv a^{\frac{N-1}{2}}\mod N
+\]
+para todo $a$ con $\gcd(a,N)=1$.
+\end{prop}
+\begin{dem}
+Para todo $a$ primo con $N$, tenemos que $a^{N-1}\equiv (\frac{a}{N})^2\equiv 1\mod N$. Entonces $N$ es primo de Carmichael. Supngamos que $N$ es de Carmichael con $N=p_1\dots p_3$ donde los $p_i$ son distintos e impares. Sea $(\Z_{p_i})^*$ generado por $a+\gene{p_i}$. Tenemos que $a^{(p-1)/2}\equiv -1\mod p_i$. Sea $b\in\Z$ tal que $b\equiv a\mod p_i$ y es congruente con 1 módulo cualquier otro de los primos, que existe por el teorema chino del resto. Se tiene de estas ecuaciones que $\gcd(b,N)=1$. Además $b^{(N-1)/2}=(\frac{b}{N})\mod N$. Como $(\frac{b}{p_i})=(\frac{a}{p_i})=-1$ y 1 para cualquier otro de los primos. Tenemos entonces  $b^{N-1)/2}=-1\mod N$ y $1=1^{N-1)/2}=-1\mod p_2$, lo cual es una contradicción.
+\end{dem}
+
+\subsection{Test de primalidad de Solovay-Strassen}
+Sea $N>2$ impar. Escojo $a=1,\dots, N-1$, $d=\gcd(a,N)$. Si $d\neq 1$, entonces $N$ no es primo. Si $d=1$, calculamos $a^{(N-1)/2}$ y $(\frac{a}{N})$. Si no coinciden, $N$ no es primo. Si coinciden, repetimos.
+
+El cardinal de los número que no se descartan para un $a$ concreto está acotado por $\varphi(N)/2$. El razonamiento es similar a uno hecho anteriormente para un cardinal definiendo $\theta:(\Z_N)^*\to\{\pm 1\}$ como $a\mapsto a^{(N-1)/2}(\frac{a}{N})$. 
+
 \end{document}
 
