@@ -4,7 +4,7 @@
 
 %\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
 \chapter{Little disks operad}
-TENER EN CUENTA KONTSEVICH[6] Y PREGUNTAR A MURO LO QUE TENGO APUNTADO ENCUADRADO EN TAMARKIN
+TENER EN CUENTA KONTSEVICH[6] 
 
 ESCRIBIR ALGO AQUÍ, INCLUYENDO ALGO DE QUE ALL MAPS ARE REQUIRED TO BE CONTINUOUS
 
@@ -17,7 +17,7 @@ First we give the general notion of (topological) operad and some properties of 
 %\url{https://ncatlab.org/nlab/show/operad}
 %
 %NO PARECE QUE ESTA DEFINICIÓN CAPTURE LA COMPOSICIÓN DEL LITTLE DISKS OPERAD, PERO EN VERDAD SÍ, LO QUE FALTA ES RELLENA CON LA IDENTIDAD HASTA COMPLETAR LA ARIDAD DEL PRIMERO
-PROBABLEMENTE TENDRÍA QUE PONER QUE LOS ESPACIOS SON COMPACTLY GENERATED, QUE CREO QUE VIENE EN MAY, Y AQUÍ SE VERIFICA LA PROPOSICIÓN QUE COGÍ DE SIMPLICIAL
+
 
 An operad is a collection of suitably interrelated spaces $\CC(j)$, the points of which are to
 be thought of as $j$-adic operations $X^j \to X$ for some topological space $X$. Precisely, we have the following definition.
@@ -267,7 +267,9 @@ The unit object is the chain complex concentrated in degree 0 on the tensor unit
 
 \end{ex}
 
-(LAX) MONOIDAL FUNCTORS \url{https://ncatlab.org/nlab/show/monoidal+functor} SI ME LO PUEDO AHORRAR ME LO AHORRO
+For a functor $F:\CC\to\DD$ between monoidal categories, we would like $F$ to preserve the tensor structures. In most cases, it will be enough to have  morphisms $1_{\DD}\to F(1_\CC)$ and $F(A\otimes_{\CC}B)\to F(A)\otimes_{\DD} F(B)$ satisfying the associativity and unitality properties derived from the definition of monoidal category. Functors fulfilling that last property are called \emph{lax monoidal}. When the morphisms before are isomorphisms, and hence $F$ preserves the monoidal structure, then $F$ is simply called \emph{monoidal}.
+
+% The precise definition(LAX) MONOIDAL FUNCTORS \url{https://ncatlab.org/nlab/show/monoidal+functor} SI ME LO PUEDO AHORRAR ME LO AHORRO
 
 For an arbitrary symmetric monoidal category $\DD$ we obtain the following definition of operad, which specializes to the definition \ref{operadtop} for $\DD=\Top$.
 
@@ -289,7 +291,7 @@ is the identity map, as is
 \[
 F(n) \cong F(n) \otimes I^{\otimes n} \xrightarrow{1 \otimes e^{\otimes n}} F(n) \otimes F(1)^{\otimes n} \xrightarrow{\gamma} F(n)
 \] 
-The reader is referred to page 194 of \cite{Yau} to see the diagrams associated to the axioms. We won't need to show them explicitly since in most cases one can just mimic definition \ref{operadtop}. 
+The reader is referred to page 194 of \cite{Yau} to see the diagrams associated to the axioms. We won't need to show them explicitly since in most cases one can just mimic the definition \ref{operadtop}. 
 \end{enumerate}
 
 %\url{https://ncatlab.org/nlab/show/operad}
@@ -316,15 +318,43 @@ which specifies an action of $O$ via finitary operations on $X$, with compatibil
 
 Note that a map of operads $O\to O'$ endows an $O'$-operad with a canonical $O$-algebra structure. The converse is also obviously true: in order to define a map of operads it is enough to endow any $O'$-algebra with a canonical $O$-algebra structure. 
 
-\subsection{Connection between $E_2$ and Gerstenhaber algebras}
+\subsection{Connection between $E_2$ and Gerstenhaber algebras}\label{zilber}
 
-Now that we've defined operads in a more general context, we're ready to draw the connection between the $E_2$ operad and the Gerstenhaber algebras. Since $E_2=\{E_2(n)\}_{n\geq 0}$ is a collection of topological spaces, one can consider the collection of singular chain complexes $C_*(E_2)=\{C_*(E_2(n))\}_{n\geq 0}$ over a fixed ring $k$ (for our purposes $k=\Q$). We're going to show that this family is an operad of chain complexes making use of the Eilenber-Zilber map \cite{EZ} $C_*(X)\otimes C_*(Y)\to C_*(X\times Y)$ for arbitrary topological spaces $X$ and $Y$. 
+Now that we've defined operads in a more general context, we're ready to draw the connection between the $E_2$ operad and the Gerstenhaber algebras. Since $E_2=\{E_2(n)\}_{n\geq 0}$ is a collection of topological spaces, one can consider the collection of singular chain complexes $C_*(E_2)=\{C_*(E_2(n))\}_{n\geq 0}$ over a fixed ring $k$ (for our purposes $k=\Q$). This family is an operad of chain complexes making use of the Eilenber-Zilber map \cite{EZ} $C_*(X)\otimes C_*(Y)\to C_*(X\times Y)$ for arbitrary topological spaces $X$ and $Y$. 
 
-\begin{prop}
-PROBAR EN ESTA PARTE LO DE EILENBERG-ZILBER Y YA LUEGO DECIR QUE ESTABA AQUÍ \url{https://ncatlab.org/nlab/show/Eilenberg-Zilber+map} LO QUE PASA ES QUE HABLA DE GRUPOS SIMPLICIALES Y NO ESTOY SEGURO DE SI ESTO VALE
-\end{prop}
+In order to properly define the Eilenberg-Zilber map explicitly, we have to construct the singular chain complex in two steps. First, consider the simplicial abelian group $S^{sing}(X)$ whose $n$-simplices are just $n$-singular simplices $\sigma:\Delta^n\to X$. The face and degenerancy maps $d_i$ and $s_i$ are obtained from the corresponding $d^i:\Delta^{n-1}\to \Delta^{n}$ and $s^i:\Delta^n\to\Delta^{n-1}$ by composition i.e. $d_i(\sigma)=\sigma\circ d^i$ and $s_i(\sigma)=\sigma\circ s^i$. Then, on defines $C_*(X)=C(S^{sing}(X))$.
 
-This map passes to homology, endowing $H_*(E_2)$ with an structure of operad of graded $k$-modules, so we can consider a $H_*(E_2)$-algebra $A$. It is know that giving an $H_*(E_2)$-algebra is is equivalent to give a Gerstenhaber algebra \cite{cuentas} EN REALIDAD NO ESTOY SEGURO DE DÓNDE SE PRUEBA, PORQUE APARECE LO DE LAS MÓNADAS. We describe here how $A$ can be turned into a Gersternhaber algebra. Since $A$ is a $H_*(E_2)$-algebra, there is a sequence of maps $H_*(E_2(n))\otimes A^{\otimes n}\to A$. From this, we can obtain a commutative product of degree 0 given by the map
+Recall that the product $\Delta^p\times\Delta^q$ can be triangulated in such a way that $\Delta^{p+q}\subset \Delta^p\times\Delta^q$ \cite{Hatcher}. Therefore, one can take two singular simplices $f:\Delta^p\to X$ and $g:\Delta^q\to X$ and define their product $f\otimes g$ as the restriction of $f\times g$ to $\Delta^{p+q}$. Now, the Eilenberg-Zilber map is the natural transformation on chain complexes
+\[
+\nabla :  C_p(X) \otimes C_q(X) \to C_{p+q}(X \times Y)
+\]
+defined on $a\in C_p(X)$ and $b\in C_q(Y)$ by 
+\[
+\nabla : a \otimes b \mapsto 
+   \sum_{(\mu,\nu)} sign(\mu,\nu) (s_\nu(a)) \otimes (s_\mu(b))
+\]
+where the sum is over all $(p,q)$-shuffles
+\[
+(\mu,\nu) = (\mu_1, \cdots, \mu_p, \nu_1, \cdots, \nu_q)
+\]
+and the corresponding degeneracy maps are
+\[
+s_{\mu} = s_{\mu_p - 1} \circ \cdots s_{\mu_2 - 1} \circ s_{\mu_1 - 1}
+\]
+and
+\[
+s_{\nu} = s_{\nu_q - 1} \circ \cdots s_{\nu_2 - 1} \circ s_{\nu_1 - 1}
+\]
+The shift in the indices is to be coherent with the convention that the shuffle $(μ,ν)$ is a permutation of $\{1,\dots,p+q\}$. It is straightforward to show that this map is a map of chain complexes. Its associativity is equivalent to the commutativity of the diagram
+\[
+\begin{tikzcd}
+C_p(X)\otimes C_q(Y)\otimes C_r(Y)\arrow[r, "\nabla\otimes 1"]\arrow[d, "1\otimes\nabla"] & C_{p+q}(X\times Y)\otimes C_r(Z)\arrow[d,"\nabla"]\\
+C_p(X)\otimes C_{q+r}(Y\times Z)\arrow[r, "\nabla"] & C_{p+q+r}(X\times Y\times Z)
+\end{tikzcd}
+\]
+This is not hard to proof is one is carefull with the shuffles that take place on each step, namely, on one direction one has to combine $(p,q)$-shuffles with $(p+q,r)$-shuffles, and on the other direction one has to combine $(q,r)$-shuffles with $(p,q+r)$-shuffles, and both combinations have to be equivalent in the end, using the properties of the degenerancy maps. Thus, one shows that the functor of singular chains is lax monoidal and therefore carries the operadic structure.
+
+This map we've just defined passes to homology, endowing $H_*(E_2)$ with an structure of operad of graded $k$-modules, so we can consider a $H_*(E_2)$-algebra $A$. It is know that giving an $H_*(E_2)$-algebra is is equivalent to give a Gerstenhaber algebra \cite{cuentas} EN REALIDAD NO ESTOY SEGURO DE DÓNDE SE PRUEBA, PORQUE APARECE LO DE LAS MÓNADAS. We describe here how $A$ can be turned into a Gersternhaber algebra. Since $A$ is a $H_*(E_2)$-algebra, there is a sequence of maps $H_*(E_2(n))\otimes A^{\otimes n}\to A$. From this, we can obtain a commutative product of degree 0 given by the map
 \[
 A^{\otimes 2}\cong k\otimes A^{\otimes 2}\cong H_0(E_2(2))\otimes A^{\otimes 2}\to A
 \]
