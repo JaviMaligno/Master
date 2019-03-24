@@ -29,8 +29,6 @@ where $p_1$, $p_2$ are the projections.
 
 Given a topological $B_\infty$-operad $X$, the corresponding \emph{operad of little disks} is a symmetric operad $X'$ such that $X'(n)=X(n)/PB_n$ with the induced structure maps. The maps \ref{projections} guarantee that any two operads of little disks are connected by a chain of homotopy equivalences.
 
- DEBERÍA COPIAR DE [6] LO DE CHAIN OF HOMOTOPY EQUIVALENCES
-
 
 We now prove that the little disks operad defined in Section \ref{little} is a little disks operad in this sense. We'll make use of the following lemmas.
 
@@ -314,16 +312,14 @@ Let $\widetilde{\alpha}$ denote the lift which starts in $\widetilde{C}_1$. Let 
 
 \end{proof}
 
-We now give a few useful definitions.
-
-Let $P$ be an operad of complexes, and $f : A→B$ be a morphism of two $P$-algebras.
+We now give a few useful definitions. Let $P$ be an operad of complexes, and $f : A→B$ be a morphism of two $P$-algebras.
 \begin{defi}
-$f$ is a quasi-isomorphism iff it induces an isomorphism of the cohomology
+$f$ is a quasi-isomorphism if it induces an isomorphism of the cohomology
 groups of $A$ and $B$ considered just as complexes.
 \end{defi}
 
 \begin{defi}
-Two algebras $A$ and $B$ are called homotopy equivalent iff there exists a chain of quasi-isomorphisms
+Two algebras $A$ and $B$ are called homotopy equivalent if there exists a chain of quasi-isomorphisms
 \[
 A= A_1→A_2←A_3→\cdots←A_{2k+1} = B
 \]
@@ -334,7 +330,7 @@ of complexes.
 
 \begin{defi}
 A morphism $f : P_1→P_2$ between two operads of complexes is called a
-quasi-isomorphism iff the maps of complexes $f(n) : P_1(n)→P_2(n)$ induce isomorphisms of
+quasi-isomorphism if the maps of complexes $f(n) : P_1(n)→P_2(n)$ induce isomorphisms of
 cohomology groups for all $n$.
 \end{defi}
 
@@ -372,9 +368,9 @@ Let us describe the structre map $\circ_k$ of the insertion into the $k$-th posi
 
 \subsection{Operad of classifying spaces}
 
-We have the functor of taking the nerve $N:\Cat\to\SSet$ and the functor of topological realization $|\ |:\SSet\to \CW$. One can easily check that the nerve functor behaves well with respect to the symmetric monoidal structure. Since the nerve $PaB_n$ is countable, the realization also behaves well with its symmetric monoidal structure by \ref{countable}. Let us check that the collection of cellular complexes $X_n=|N(PaB_n)|$ forms a cellular operad. Let $PaB_n'$ be the category whose objects are pairs $(x,y)$, where $x$ belongs to the braid group $B_n$ and $y$ is a parenthesizing of the non-associative product of $n$ elements, and there is a unique morphism between any two objects. We have a free left action of $B_n$ on $PaB_n':(x,y)\to (gx,y)$ and a braided operad structre on $PaB_*'$ (the structre maps are defined similarly to $PaB_n$). We have to show that the corresponding operad of classifying spaces is a topological $B_\infty$-operad and that the corresponding little disks operad is isomorphic to $X_*$ HACERLO.
+We have the functor of taking the nerve $N:\Cat\to\SSet$ and the functor of topological realization $|\ |:\SSet\to \CW$. One can easily check that the nerve functor behaves well with respect to the symmetric monoidal structure. Since the nerve $PaB_n$ is countable, the realization also behaves well with its symmetric monoidal structure by \ref{countable}. Therefore the collection of cellular complexes $X_n=|N(PaB_n)|$ forms a cellular operad. Let us check that this operad is a little disks operad. Let $PaB_n'$ be the category whose objects are pairs $(x,y)$, where $x$ belongs to the braid group $B_n$ and $y$ is a parenthesizing of the non-associative product of $n$ elements, and there is a unique morphism between any two objects. We have a free left action of $B_n$ on $PaB_n':(x,y)\to (gx,y)$ and a braided operad structre on $PaB_*'$ (the structre maps are defined similarly to $PaB_n$). We have to show that the corresponding operad of classifying spaces is a topological $B_\infty$-operad and that the corresponding little disks operad is isomorphic to $X_*$. The action of $B_n$ on $PaB_n'$ induces an action on the vertices (0-simplices) of $|N(PaB_n')|$ and can be extended linearly to the whole complex, and therefore it is automatically free. Then, the quotient $|N(PaB_n')|/PB_n$ is equivalent to $X_n$ since the morphisms $(\sigma_1,\pi_1)\to(\sigma_2,\pi_2)$ in $PaB_n$ can be obtained by choosing one element in $p^{-1}(\sigma_2^{-1}\sigma_1)$ and multiplying it by the elements of $PB_n$. NO ESTOY SEGURO DE QUE ESTÉ BIEN ESTO QUE HE DICHO.
 
-Consider the corresponding chain operad. Let $C_*(PaB_n)$ be the chain complex over $\Q$ of $NPaB_n$ as a simplicial set. The collection $C_*(NPaB_n)$ forms a dg-operad (via the Eilenberg-Zilber map). We have a canonical quasi-isomorphism of operads $C_*(PaB_*)\to C_*^{sing}(|NPaB_*|)$ (just like the quasi-isomorphism between simplicial homology and singular homology). Therefore is suffices to construct a quasi-isomorphism of $C_*(PaB_*)$ and $e_2$ CAMBIAR NOTACIÓN.
+Consider the corresponding chain operad. Let $C_*(PaB_n)$ be the chain complex over $\Q$ of $NPaB_n$ as a simplicial set. The collection $C_*(PaB_n)$ forms a dg-operad (via the Eilenberg-Zilber map). We have a canonical quasi-isomorphism of operads $C_*(PaB_*)\to C_*^{sing}(|NPaB_*|)$ (just like the quasi-isomorphism between simplicial homology and singular homology). Therefore it suffices to construct a quasi-isomorphism of $C_*(PaB_*)$ and $e_2$ CAMBIAR NOTACIÓN.
 
 \section{Operad $O_A(*)$ and construction of a quasi-isomorphism}
 
@@ -382,7 +378,7 @@ Let $A_n$ be the algebra over $\Q$ of power series in the noncommutative variabl
 \begin{equation}\label{canonical}
 \pi:A_n\to A_n/I_n\cong\Q.
 \end{equation}
-The symmetric group $S_n$ acts naturally on $A_n$ via $\sigma\cdot t_{ij}=t_{\sigma(i)\sigma(j)}$ for $\sigma\in S_n$. The collection $\{A_n\}_{n\geq 0}$ (being $A_0$ trivial) forms an operad of algebras as we shall see. The map of the insertion into the $i$-th position $\circ_i: A_n\otimes A_m\to A_{n+m-1}$ looks as follows. Define
+The symmetric group $\Sigma_n$ acts naturally on $A_n$ via $\sigma\cdot t_{ij}=t_{\sigma(i)\sigma(j)}$ for $\sigma\in S_n$. The collection $\{A_n\}_{n\geq 0}$ (being $A_0$ trivial) forms an operad of algebras as we shall see. The map of the insertion into the $i$-th position $\circ_i: A_n\otimes A_m\to A_{n+m-1}$ looks as follows. Define
 \[
 \phi(k)=\begin{cases}
 k, & k\leq i;\\
@@ -397,16 +393,17 @@ t_{\phi(p)\phi(q)}, &p,q\neq i;\\
 \end{cases} \\
 & o_i(1\otimes t_{pq})=t_{i+p-1,i+q-1}
 \end{align*}
-One can verify that this map satisfies the expected propertis of the operadic composition. DEBERÍA 
+One can verify that this map satisfies the expected properties of the operadic composition. DEBERÍA 
 
-Any algebra with unit over $\Q$, say $A$, gives rise to a $\Q$-additive category $C_A$ with one object. Denote by $\Q\Cat$ the category of all small $\Q$-additive categories, and by $\Q\Cat'=\Q\Cat/C_\Q$ the slice category of $\Q\Cat$ over $\C_\Q$. The objects of $\Q\Cat'$ are the elements of $\Hom(x, C_\Q)$ for each $x\in \Q\Cat'$. A morphism between $\varphi:x\to C_\Q$ and $\psi:y\to C_\Q$ is a morphism $\eta: x\to y$ in $\Q\Cat$ such that $\eta\psi=\varphi$.  This category has a clear symmetric monoidal structure obtained by the usual one on $\Cat$. We have the functor of nerve
+Any algebra with unit over $\Q$, say $A$, gives rise to a $\Q$-additive category $C_A$ with one object. Denote by $\Q\Cat$ the category of all small $\Q$-additive categories, and by $\Q\Cat'=\Q\Cat/C_\Q$ the slice category of $\Q\Cat$ over $C_\Q$. The objects of $\Q\Cat'$ are the elements of $\Hom(x, C_\Q)$ for each $x\in \Q\Cat'$. A morphism between $\varphi:x\to C_\Q$ and $\psi:y\to C_\Q$ is a morphism $\eta: x\to y$ in $\Q\Cat$ such that $\eta\psi=\varphi$.  This category has a clear symmetric monoidal structure obtained by the usual one on $\Cat$. We have the functor of nerve
 $N^{\Q}: \Q\Cat'\to \SVect$, which is the straight analogue of the nerve of an arbitrary
-category, and the functor $C_*: \SVect \to\Ch$. Both of these functors are lax monoidal (on the latter functor it is defined via the Eilenberg–Zilber map),
-therefore we have a functor $\Q\Cat'\to\Ch$ and the induced functor $C_*^{\Q}:\Q\Cat'$-Operads $\to$ dg-Operads.
+category, and the functor $C_*: \SVect \to\Ch$ of chain complexes over $\Q$. Both of these functors are lax monoidal (on the latter functor it is defined via the Eilenberg–Zilber map), therefore we have a functor $\Q\Cat'\to\Ch$ and the induced functor $C_*^{\Q}:\Q\Cat'$-Operads $\to$ dg-Operads. CREO QUE DEBO PREGUNTAR CÓMO SE DEFINE EL COMPLEJO DE CADENAS DE UN OBJETO SIMPLICIAL \url{https://ncatlab.org/nlab/show/Dold-Kan+correspondence}
 
 The map \ref{canonical} produces a morphism $\pi_*: C_{A_n}\to C_\Q$ and defines an object
 $O_A(n)\in \Q\Cat'$. The operad structure on $A_n$ defines an operad structure on the
-collection $\{O_A(n)\}$ TENGO QUE PENSAR ESTO. The complex $C_*^{\Q}(O_A(n))$ looks as follows. NO ME PARECE NADA EVIDENTE QUE SALGA LO QUE PONE A CONTINUACIÓN A PARTIR DE LA CONSTRUCCIÓN DEL ANTERIOR PÁRRAFO The degree $k$ component $C_k^{\Q}(O_A(n))$ is $A_n^{\otimes k}$ and the boundary map is given by
+collection $\{O_A(n)\}$. 
+%En los racionales es la identidad porque solo se defien cuando hay algún t, así que pasa como slice. Tal como está definida la inserción se puede entender además desde el producto cartesiano y se puede trasladar al producto en Cat
+The complex $C_*^{\Q}(O_A(n))$ looks as follows. NO ME PARECE NADA EVIDENTE QUE SALGA LO QUE PONE A CONTINUACIÓN A PARTIR DE LA CONSTRUCCIÓN DEL ANTERIOR PÁRRAFO The degree $k$ component $C_k^{\Q}(O_A(n))$ is $A_n^{\otimes k}$ and the boundary map is given by
 \[
 d(a_1\otimes\cdots\otimes a_n)=\pi(a_1)a_2\otimes\cdots\otimes a_n-a_1a_2\otimes \cdots\otimes a_n+\cdots+(-1)^{n-1}a_1\otimes a_{n-1}\pi(a_n)
 \]
@@ -439,6 +436,12 @@ CREO QUE $t_{12}$ ES EL PRODUCTO POR ESTE ELEMENTO, YA QUE YENDO ATRÁS SE ESTÁ
 \begin{prop}
 The map $k$ is a quasi-isomorphism of operads. 
 \end{prop}
+\begin{proof}
+COPIAR LA PARTE DE LA PRUEBA QUE ENTIENDO, ANTES DEFINIR LOS DRINFELD ASSOCIATOR \url{https://ncatlab.org/nlab/show/Drinfeld+associator} CREO QUE GROUPLIKE ES SIMPLEMENTE INVERTIBLE (LO MALO ES QUE NO LO ENTIENDO, OJALÁ TENGA QUE VER CON ESTO \url{https://en.wikipedia.org/wiki/Associator} ) 
+
+AQUÍ SE DEFINE \url{https://en.wikipedia.org/wiki/Quasi-bialgebra}
+\end{proof}
+
 
 
 DEBERÍA ESCRIBIR EN ALGÚN LADO LOS ESQUEMAS DE LAS DEMOSTRACIONES, LA GRANDE, LA DE LA FORMALDIAD, Y SI HAGO LA DE $G_\infty\to G$ TAMBIÉN
