@@ -743,7 +743,23 @@ y análogamente para $c^2$. Podemos considerar entonces
 &=\overline{c_R}(\lambda)^t + \overline{c_R}^2(\Delta)^t \geq 0
 \end{align*}
 Cada variable no básica nos da una desigualdad sobre $\Delta$, de manera que tenemos un poliedro en $\R^{|E|}$ de valores admisibles. En ambos casos, al llegar a uno de los vértices del poliedro (el extremo del intervalo en el caso más simple), podemos escoger una nueva base y repetir el análisis.
-\newpage
+
+\subsection{Lema de Farkas}
+En Programación Lineal el Lema de Farkas es un resultado capital. 
+\begin{lem}
+Sea $A\in\R^{m\times n}$ y $b\in \R^m$. Entonces exactamente uno de los siguientes enunciados es cierto:
+\begin{itemize}
+\item Existe $x\in\R^n$ tal que $Ax=b$ y $x\geq 0$.
+\item Existe $y\in \R^m$ tal que $y^t A \leq0$ e $y^t b>0$. 
+\end{itemize}
+\end{lem}
+Por otro lado, sabemos que una base $B$ es óptima si la función objetivo, es decir, $c(\lambda)$ pertenece al cono que genera $B$. Se tiene que
+$$
+c(\lambda) \in cone(B) \Leftrightarrow \exists x\geq0 \mid Bx = c(\lambda) 
+$$  
+Usando Farkas, esto es equivalente a $\not\exists y \mid u^tB \leq 0$ y $u'c(\lambda)>0$. Por tanto, $B$ es base óptima para $c(\lambda)$ si y solo si
+$$u'B \leq 0 \Rightarrow u^t c(\lambda) \leq 0 \qquad u^t c(\lambda)>0 \Rightarrow u^tB >0$$
+
 \begin{thebibliography}{9}
 \bibitem{edmond} 
 Edmonds, J. (1965). Maximum matching and a polyhedron with 0, 1-vertices. Journal of Research of the National Bureau of Standards B, 69, 125--130. 
