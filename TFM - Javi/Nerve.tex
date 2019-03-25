@@ -8,7 +8,7 @@
 
 
 
-
+In this chapter we introduce an ubiquitous subject in topology which are simplicial sets (and the generalized notion of simplicial object) and their geometric realization. For example, simplicial objects occur in May's work on recognition principles for iterated loop spaces \cite{simplicial}, which is closely related to our study.
 
 %TAMBIÉN ME GUSTA AQUÍ \url{https://ncatlab.org/nlab/show/simplicial+set} VIENE EL NERVE TAMBIÉN EN LOS DOS, AUNQUE QUIZÁ MEJOR COGERLO DE HATCHER
 %
@@ -97,11 +97,7 @@ the relation of inclusion of faces, then $BC(X)$ is the barycentric subdivision 
 A functor $F :\CC→\DD$ induces a map $B\CC→B\DD$. This is the simplicial map that sends an
 $n$-simplex $X_0→X_1→\cdots →X_n$ to the $n$-simplex $F(X_0)→F(X_1)→\cdots →F(X_n)$.
 A natural transformation from a functor $F$ to a functor $G$ induces a homotopy
-between the induced maps of classifying spaces. 
-
-COMPROBAR ESTO We leave this for the reader to
-make explicit, using the subdivision of Δn×I into (n + 1) simplices described
-earlier in the chapter.
+between the induced maps of classifying spaces in the following way. Let $H:F\to G$ a natural transformation. $H$ can be regarded as a functor $\CC\times \{0,1\}\to \DD$, where $\{0,1\}$ is regarded as an ordered set and therefore a category. So $H$ induces a map $B(\CC\times\{0,1\})\to B\DD$. But $B(\CC\times\{0,1\})=B\CC\times B\{0,1\}$ by the theorem below. Since $B\{0,1\}\cong [0,1]$, the induced map is a homotopy.
 \end{ex}
 
 \begin{thm}(\cite[Theorem 14.3]{May})

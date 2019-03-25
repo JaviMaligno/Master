@@ -59,7 +59,32 @@ Este árbol se almacena en un vector ($[11,7,10,3,2,9,8,1,1,2]$). Se puede acced
 \subsection{Construcción de un heap}
 Consideremos la lista de números $[2,5,1,8,3,4]$.  Construiríamos primero un árbol cumpliendo las dos primeras propiedads de heap. Para construirlo se colocan los números de arriba a abajo y de izquierda a derecha.  Dado un árbol binario con estas propiedades, recolocamos de abajo a arriba los nodos comparando los números que tiene cada hijo con el de su padre, intercambiándolos si es necesario. 
 
-DIBUJARLO
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-2.76,1) rectangle (19.14,5);
+\draw [line width=2.pt] (3.,4.)-- (2.24,2.76);
+\draw [line width=2.pt] (3.,4.)-- (3.74,2.78);
+\draw [line width=2.pt] (2.24,2.76)-- (1.6,1.62);
+\draw [line width=2.pt] (2.24,2.76)-- (2.66,1.56);
+\draw [line width=2.pt] (3.74,2.78)-- (3.76,1.6);
+\draw [line width=2.pt] (8.,4.)-- (7.2,2.76);
+\draw [line width=2.pt] (8.,4.)-- (8.72,2.76);
+\draw [line width=2.pt] (7.2,2.76)-- (6.58,1.6);
+\draw [line width=2.pt] (7.2,2.76)-- (7.56,1.62);
+\draw [line width=2.pt] (8.72,2.76)-- (8.72,1.6);
+\draw (2.7,4.5) node[anchor=north west] {$2$};
+\draw (1.84,3.3) node[anchor=north west] {$5$};
+\draw (3.7,3.2) node[anchor=north west] {$1$};
+\draw (1.36,1.6) node[anchor=north west] {$8$};
+\draw (2.48,1.6) node[anchor=north west] {$3$};
+\draw (3.5,1.6) node[anchor=north west] {$4$};
+\draw (8.7,3.24) node[anchor=north west] {$2$};
+\draw (6.8,3.3) node[anchor=north west] {$5$};
+\draw (8.5,1.6) node[anchor=north west] {$1$};
+\draw (7.8,4.5) node[anchor=north west] {$8$};
+\draw (7.46,1.6) node[anchor=north west] {$3$};
+\draw (6.36,1.6) node[anchor=north west] {$4$};
+\draw (5.4,2.96) node[anchor=north west] {$\Rightarrow$};
+\end{tikzpicture}
 
 En general, puede construirse el heap en tiempo $O(n)$. 
 
