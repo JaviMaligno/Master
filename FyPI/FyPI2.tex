@@ -342,4 +342,21 @@ Por tanto, $T(A)\subset T(B)(c(d+\varepsilon))$ y $T(B)\subset T(A)(c(d+\varepsi
 $$
 d_H(T(A),T(B)) \leq c(d_H(A,B)+\varepsilon)$$
 \end{dem}
+\begin{theorem}
+Sea $(X,d)$ un espacio métrico completo y $\{T_1,\dotsc,T_s\}$ un IFS definido en $X$. Entonces $\exists! F_0 \neq \emptyset$ compacto tal que 
+$$
+F_0 = T_1(F_0) \cup \cdots \cup T_s(F_0)
+$$ 
+$F_0$ se conoce como \textbf{atractor o fractal} asociado al IFS.
+
+\end{theorem}
+\begin{prop}
+En las condiciones del teorema anterior, si existe $F \in K(X)$ tal que $T(F)\subset F$ entonces
+$$
+F_0  = \bigcap_n T^n (F)
+$$
+\end{prop}
+\begin{dem}
+Veamos una contención. Sea $x$ en la intersección, tomamos $\varepsilon_n$ tal que $d_H(T^n(F),F_0)<\varepsilon_n$ con $\varepsilon_n\to0$. Por tanto, $x\in T^n(F)\subset F_0(\varepsilon_n)$. Luego $\exists x_n\in F_0$ con $d(x,x_n)<\varepsilon_n$. Es decir, tenemos una sucesión $\{x_n\}\subset F_0$ tal que $x_n \to x$. Por tanto, $x\in F_0$, ya que $F_0$ es compacto (y en particular ceerrado). 
+\end{dem}
 \end{document}
