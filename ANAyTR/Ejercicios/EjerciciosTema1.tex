@@ -43,7 +43,17 @@ Si en $\End_A(V)$ hay solamente la identidad y sus múltiplos, entonces $V$ es i
 \begin{solucion}
 Supongamos que existen una subrepresentaciones $W_1,W_2\subset V$ tales que $W_1\oplus W_2= V$. Dado $v\in V$, podemos descomponerlo de forma única como $v=w_1+w_2$, donde $w_1\in W_1$ y $w_2\in W_2$. Es fácil comprobar que las proyecciones $p_i:V\to W_i$ son morfismos de representaciones, pero $p_i$ es un múltiplo de la identidad si y solo si $W_i=V$ o bien $W_i=0$. 
 \end{solucion}
+\newpage
+\begin{ejercicio}{4}
+Sea $G$ un grupo y sea $k[G]$ el álgebra asociada. Sabemos que entre $k[G]$ y el sspacio de las funciones sobre $G$, $\mathcal{F}(G,k)$ hay un isomorfismo dado por
+$$
+F = \sum_{g\in G} a_h g - g\to a_g
+$$
+Calcular el centro de $k[G]$.
+\end{ejercicio}
+\begin{solucion}
 
+\end{solucion}
 \newpage
 
 \section{Ejercicios del libro}
@@ -591,8 +601,10 @@ Cv=EFv+FEv+H^2v/2=EFv+\lambda^2v/2=Hv+FEv+\lambda^2v/2=\lambda+\lambda^2v/2=\fra
 
 \item En el apartado anterior hemos probado que $C$ es central. Por ser $V$ indecomponible, podemos aplicar el Ejercicio \ref{ejer:1.21}(b), por lo que $C$ actúa mediante la multiplicación por un escalar determinado por alguna representación irreducible de $V$. Como en $V_\lambda$, que es irreducible, actúa multiplicando por $\frac{\lambda(\lambda+2)}{2}$, este es su único autovalor en $V$. 
 \item Dado que $V$ es de dimensión finita, cualquier subrepresentación suya, así como el cocieciente, serán de dimensión finita (y menor estrictamente que la de $V$). Si $V/W$ es irreducible, dado que es una representación de $\mathfrak{sl}(2)$, tenemos por el apartado (f), necesariamente ha de ser isomorfo a $V_\lambda$, por lo que $n=1$ en este caso. Si $V/W$ es reducible, como $V$ era el de menor dimensión idecomponible, $V/W$ debe poder escribirse como suma directa de subrepresentaciones. Estas a su vez, usando un argumento recursivo y dado que $\dim(V)$ es finito, podemos suponer que son irreducibles y, por tanto, son isomorfas a $V_\lambda$.
-\item 
-\item
+\item Supongamos que $V(\lambda)$ es $m$-dimensional. Dado que $W(\lambda)$ tiene dimensión $1$, $V/W(\lambda)$ tiene dimensión $m-1$. Como $V/W = nV_\lambda$, se sigue que $m-1 = n$ y, por tanto, $m=n+1$.
+
+Sea $\{v_1,\dotsc,v_{n+1}\}$ una base de $V(\lambda)$. Por el apartado (e) sabemos que para cada $j\in \{0,\dotsc,\lambda\}$ los vectores $S_j = \{F^jv_1,\dotsc,F^jv_{n+1}\}$ son no nulos.Además, $S_j$ son autovectores de $H$ asociados al autovalor $\lambda-2j$. Por (b) sabemos que $\gene{E^jS_j}$ es $n+1$ dimensional, pues $E^jF^jv_i$ es proporcional a $v_i$, luego $\gene{S_j}$ es $n+1$ dimensional. Dado que autovectores asociados a diferentes autovalores son independientes, tenemos que $|S|=\sum_{j}|S_j| = (n+1)(\lambda+1)=\dim V$. Por tanto, $S$ es una base de $V$. 
+\item Es inmediato teniendo en cuenta que, por los argumento que vimos en (f), $W_i$ es necesariamente invariante mediante $E,F$ y $H$. Además, por el razonamiento de (j) es claro que están en suma directa. Por tanto, tenemos una contradicción.
 \end{enumerate}
 \end{solucion}
 
