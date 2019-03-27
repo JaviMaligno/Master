@@ -152,6 +152,43 @@ Probar el siguiente ``lema infinito-dimensional de Schur'' (debido a Dixmier): s
 Pista. Por el lemma de Schur usual, el álgebra $D=\End_A(V)$ es un álgebra con división. Probar que $D$ es como mucho de dimensión numerable. Suponer que $\phi$ no es escalar y considerar un subcuerpo $\C(\phi)\subset D$. Probar que $\C(\phi)$ es extensión trascendental de $\C$. Deducir de esto que $\C(\phi)$  tiene dimensión no numerable y obtener una contradicción.
 \end{ejercicio}
 \begin{solucion}
+Primero aclaremos por qué $D$ es un álgebra de división.
+Como $V$ es irreducible, todo homomorfismo no nulo de $V \to V$ debe ser un isomorfismo por el lema de Schur.
+En otras palabras, todo elemento no nulo de $\End_A(V)$ debe poseer inverso.
+
+Sea $v$ un generador de la representación irreducible $V$ de manera que $A \cdot v = V$.
+Sea consideramos el morfismo de espacios vectoriales:
+\[ \alpha : D \to V\qquad f \mapsto f(v) \]
+Para todo $w \in V$, existe $a \in A$ tal que $w = a \cdot v$ (o lo que es lo mismo, $\rho(a)(v)$), entonces:
+\[ f(w) = f(a\cdot v) = a f(v) \]
+Luego $f(v)$ determina $f$ y $\alpha$ es inyectiva, luego:
+\[ \dim D = \dim \End_A(V) \leq \dim V \]
+Como $V$ tiene dimensión numerable, $D$ también tiene dimensión numerable.
+
+Supongamos que $\phi$ no es un operador escalar y consideremos la extensión de cuerpo $\C(\phi)$.
+Veamos por reducción al absurdo que $\phi$ no es elemento algebraico sobre $\C$.
+Si lo fuera, entonces habría unos coeficientes $a_{n-1},\dots,a_1,a_0 \in \C$ tales que:
+\[ \phi^n + a_{n-1}\phi^{n-1} + \dots + a_1 \phi + a_0 1 = 0 \]
+Como $\C$ es algebraicamente cerrado, podemos reescribir esta ecuación como:
+\[ (\phi-c_1 1)(\phi-c_2 1) \cdots (\phi-c_n 1) = 0_V \]
+Para ciertos $c_1,\dots,c_n \in C$.
+Entonces existe $c_i$ tal que $\phi = c_i 1$, lo que implicaría que $\phi$ es operador escalar y sería un absurdo.
+
+Luego $\C(\phi)$ es una extensión trascendente.
+Para ver que $\C(\phi)$ es de dimensión incontable, basta tomar un conjunto linealmente independiente de cardinalidad incontable:
+\[ \left\{\frac{1}{\phi - c 1} \mid c \in \C\right\} \]
+
+Veamos que es linealmente independiente.
+Supóngase que hubiera existieran $c_1,\dots,c_n \in \C$ distintos y $a_1,\dots,a_n \in \C^*$ tal que:
+\[ \frac{a_1}{\phi - c_1 1} + \dots + \frac{a_n}{\phi - c_n 1} = 0 \]
+Entonces, eliminando denominadores:
+\[ \sum_{i=1}^n \left(a_i \prod_{j\neq i}(\phi - c_j 1)\right) = 0\]
+Podemos decir que este es un polinomio en $\phi$ de grado $n-1$ porque cada $\prod_{j\neq i}(\phi - c_j 1)$ es distinto, por lo que no hay unos $a_i$ que anulen la suma.
+Pero es un absurdo, ya que $\phi$ es transcendente y no puede ser raíz de un polinomio.
+
+Entonces, como $\{\frac{1}{\phi - c 1} \mid c \in \C\}$ está contenido $\C(\phi)$, esto implica $\C(\phi)$ es de dimensión innumerable.
+Ahora llegamos al absurdo, pues $\C(\phi) \subset D$, pero $\C(\phi)$ es innumerable y $D$ es numerable.
+Esto implica que nuestra hipótesis que $\phi$ no es operador escalar es falsa, lo que demuestra el teorema.
 \end{solucion}
 
 \newpage
