@@ -45,14 +45,22 @@ Supongamos que existen una subrepresentaciones $W_1,W_2\subset V$ tales que $W_1
 \end{solucion}
 \newpage
 \begin{ejercicio}{4}
-Sea $G$ un grupo y sea $k[G]$ el álgebra asociada. Sabemos que entre $k[G]$ y el sspacio de las funciones sobre $G$, $\mathcal{F}(G,k)$ hay un isomorfismo dado por
+Sea $G$ un grupo y sea $k[G]$ el álgebra asociada. Sabemos que entre $k[G]$ y el espacio de las funciones sobre $G$, $\mathcal{F}(G,k)$ hay un isomorfismo de espacios vectoriales dado por
 $$
-F = \sum_{g\in G} a_h g - g\to a_g
+ \sum_{g\in G} a_g g \mapsto (g\mapsto a_g)
 $$
-Calcular el centro de $k[G]$.
+Calcular el centro de $k[G]$ en términos de $\mathcal{F}(G,k)$. 
 \end{ejercicio}
 \begin{solucion}
-
+Si $x\in Z(k[G])$ entonces $hx=xh$ para todo $h\in G$ (de hecho el recíproco también es cierto). Equivalentemente, $x=hxh^{-1}$. Escribiendo $x=\sum_{g\in G}a_gg$ deducimos que $a_g=a_{hgh^{-1}}$ para todo $h\in G$. Efectivamente, tenemos para cada $h$ fijo
+\[
+\sum_{g\in G}a_gg=\sum_{g\in G}a_g hgh^{-1}
+\]
+Haciendo un cambio de variable $u=hgh^{-1}$ obtenemos la igualdad
+\[
+\sum_{u\in G}a_uu=\sum_{u\in G}a_{huh^{-1}} u
+\]
+por lo que se tiene la igualdad de coeficientes que buscábamos. La conclusión es que $x\in Z(k[G])$ si y solo si los coeficientes $a_g$ son constantes en la clase de conjugación de $g$. 
 \end{solucion}
 \newpage
 
