@@ -736,7 +736,43 @@ is $Cl(V )/Rad(Cl(V ))$?
 \end{enumerate}
 \end{ejercicio}
 \begin{solucion}
-\end{solucion}
+\end{solucion}\
+\begin{enumerate}
+\item Supongamos que $\dim V=2n$. Como $(,)$ es bilinear y no degenerada, se puede aplicar el método de Gram-Schmidt (modificado) para conseguir una base $\{a_1,\dots, a_n,b_1,\dots, b_n\}$ para la cual $(a_i,a_j)=(b_i,b_j)=0$ y $(a_i,b_j)=\delta_{ij}/2$. Sea $S=\land (a_1,\dots, a_n)$ y definimos la siguiente acción de $Cl(V)$ en $S$. Para $w\in S$, $\rho(a_i)(w)=a_i\land w$ y $\rho(b_i)(w)=d_{a_i}w=\frac{dw}{da_i}$. La derivación con respecto a $a_i$ de un producto $w_1\land w_2$ donde $w_1$ es de grado $p$ (es una $p$-forma) se define recursivamente por la regla de Leibniz, $d(w_1\land w_2)=dw_1\land w_2+(-1)^pw_1\land w_2$. Tenemos que comprobar que esta acción verifica las relaciones de $Cl(V)$ para que esté bien definida.
+
+\begin{align*}
+\rho(a_i a_j + a_j a_i - 2( a_i, a_j))(w)
+&= \rho(a_i)\rho(a_j)(w) + \rho(a_j)\rho(a_i)(w) \\
+&= a_i \wedge a_j \wedge w + a_j \wedge a_i \wedge w \\
+&= (a_i \wedge a_j + a_j \wedge a_i) \wedge w \\
+&=0
+\end{align*}
+
+\begin{align*}
+\rho(a_i b_j + b_j a_i - 2( a_i, b_j))(w)
+&= a_i \wedge d_{a_j}w + d_{a_j}(a_i \wedge w) -
+\delta_{ij}w \\
+&= a_i \wedge d_{a_j}w\omega + (d_{a_j}a_i) \wedge w -
+a_i \wedge d_{a_j}w - \delta_{ij}w\\
+&= \delta_{ij}w - \delta_{ij}w \\
+&= 0
+\end{align*}
+
+\begin{align*}
+\rho(b_i b_j + b_j b_i - 2( b_i, b_j))(w)
+&= \rho(b_i)\rho(b_j)(w) + \rho(b_j)\rho(b_i)(w) \\
+&= d_{a_i} d_{a_j}w + d_{a_j} d_{a_i}w 
+\end{align*}
+Probamos ahora que $d_{a_i} d_{a_j}w + d_{a_j} d_{a_i}w=0$ para toda $p$-forma $w$. Para $p\leq 1$ es trivial. Sea entonces $w$ una $p$-forma para $p\geq 2$, de modo que podemos escribir $w=a_k\land w_k$, con $w_k$ una $(p-1)$-forma. Entonces
+\begin{align*}
+d_{a_i}d_{a_j}a_k\land w_k+d_{a_j}d_{a_i}a_k\land w_k&=d_{a_i}(\delta_{jk}\land w_k-a_k\land d_{a_j}w_k)+d_{a_j}(\delta_{ik}\land w_k-a_k\land d_{a_i}w_k)\\
+&=\delta_{jk} d_{a_i}w_k-\delta_{ik} d_{a_j}w_k+\delta_{ik}d_{a_j}w_k-\delta_{jk}d_{a_i}w_k\\
+&=0
+\end{align*}
+Lo que prueba que la acción está bien definida.
+
+Probamos ahora que esta representación es irreducible. Sea $w=ca_{i_1}\land\cdots\land a_{i_p}$ una $p$-forma ($c\in\C^*$). Entonces es claro que $\rho(b_{i_p}\cdots b_{i_1})(c^{-1}w)=1$. Como 1 es obviamente cíclico, todo elemento no nulo de $S$ es cíclico, lo cual implica que $S$ es irreducible por el ejercicio \ref{ejer:1.25}. Por el ejercicio \ref{ejer:1.34}(c) tenemos que $\dim S=2^n$. Como además $Cl(V)$ está generado por el mismo tipo de monomios que $S$ pero con base de tamaño $2n$, $\dim Cl(V)\leq 2^{2^n}$. Del teorema 2.12 deducimos que $$\dim Cl(V)-\dim Rad(Cl(V))=\sum_i\dim V_i$$ donde $V_i$ son las representacioens irreducibles de $Cl(V)$. Hemos encontrado una representación de dimensión $2^n$, pero podemos encontrarlas de dimensión $2^i$ para  $0\leq i\leq n$ haciendo que algunas parejas $a_i,a_j$ (y por tanto $b_i,b_j$) induzcan la misma acción. Esto además se puede hacer de tantas formas como parejas haya, por lo que obtenemos $\sum_i\dim V_i\geq 2^{2^n}$, puesto que $\sum_{i=0}^n2^i\geq 2^n$. Entonces, $$\dim Cl(V)-\dim Rad(Cl(V))\geq 2^{2^n},$$ pero $\dim Cl(V)\leq 2^{2^n}$, lo cual implica que necesariamente se da la igualdad y $Rad(Cl(V))$, con lo que concluimos que $Cl(V)$ es semisimple.
+\end{enumerate}
 
 
 \end{document}
