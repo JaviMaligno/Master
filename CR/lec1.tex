@@ -5,7 +5,7 @@
 
 %\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
 
-\chapter{Tests de primalidad}
+\chapter{Algoritmos para problemas criptográficos en teoría de grupos}
 \section{Preliminares}
 Usamos la versión del teorema chino del resto que dice que si $a,b\in\Z_{>0}$ son tales que $\gcd(a,b)=1$ entonces $\Z_{ab}\cong \Z_a\times\Z_b$ mediante el isomorfismo $x\mapsto (x\mod a,x\mod b)$. 
 
@@ -181,7 +181,7 @@ Sea $p$ un primo impar. \url{https://en.wikipedia.org/wiki/Quadratic_reciprocity
 -1 & p\equiv 3\mod 4
 \end{cases}$
 
-\item {enumerate}
+\item 
 \item $(\frac{2}{p})=(-1)^{(p^2-1)/8}=\begin{cases}
 1 & p\equiv 1,7\mod 8\\
 -1 & p\equiv 3,5\mod 8
@@ -189,7 +189,98 @@ Sea $p$ un primo impar. \url{https://en.wikipedia.org/wiki/Quadratic_reciprocity
 \end{enumerate}
 \end{teorema}
 \begin{dem}
+
+\begin{lemma}
+Sea $p$ un primo impar, $n\geq 1$ entero no divisible por $p$. Entonces existe un cuerpo $\F_p(n)\supseteq \F_p$ tal que $\F_p(n)^*$ contiene un subgrupo cíclico de orden $n$. 
+\end{lemma}
+\begin{proof}[Creo que esto es la prueba del lema]
+Consideramos una clasura algebraica $\overline{\F}_p$ de $\F_p$. Sea $f(c)=x^n-1\in\F_p[x]$. No tiene raíces dobles porque $f'(x)=nx^{n-1}\neq 0$ porque $p$ no divide a $n$ y además $\gcd(f(x),f'(x))=1$ ($f(x)$ es separable), esto implica que $f(x)$ no tiene raíces múltiples. Sean $\{\alpha_1,\dots,\alpha_n\}\subseteq\overline{F}_p$ las $n$ raíces de $f(x)$. Sea $\F_p(n)=\F_p(\alpha_1,\dots, \alpha_n)$. Es claro que $H=\{\alpha_1,\dots,\alpha_n\}$ es un subgrupo cíclico de $\F_p(n)^*$. $\F_p(n)$ es un cuerpo finito porque se obtiene mediante $n$ extensiones de grado finito de un cuerpo finito, luego $\F_p(n)^*$ es cíclico.  Como $H$ es subgrupo de un cíclico, entonces es cíclico.
+\end{proof}
+
+Demostramos la parte 3. Sea $\F_p(8)$ el cuerpo del lema anterior. Vamos a dar un elemento $\gamma\in\F_p(8)$ tal que $(\frac{2}{p})=1\Leftrightarrow \gamma\in\F_p$. Definimos $\gamma=\alpha+\alpha^{-1}$. Calculamos $\gamma^2=\alpha^2+\alpha^{-2}+2$. Como $\alpha^8=1$ en $\F_p(8)$, $\alpha^4=\pm 1$, y como $\alpha$ tiene orden 8, el signo es negativo. Entonces $(\alpha^2+\alpha^{-2})^2=0$, por lo que $\alpha^2+\alpha^{-2}=0$ también puedes hacer $\alpha^{-2}=-\alpha^4\alpha^{-2}=-\alpha^2$). Deducimos que $\gamma^2=2$. Si $\gamma\in\F_p$, $\gamma$ es un cuadrado, luego $(\frac{2}{p})=1$. 
+
+Recíprocamente, si $(\frac{2}{p})=1$, existe $a\in\F_p$ con $a^2=2$. Tenemos que $a^2=2=\gamma^2$, luego $a^2-\gamma^2=0\Rightarrow (a+\gamma)(a-\gamma)=0\Rightarrow \gamma=\pm a\in\F_p$. 
+
+Para ver ahora la igualdad del teorema, basta ver que si $p\equiv 1,7\mod 8$ entonces $\gamma\in\F_p$ ($\Leftrightarrow\gamma^p=\gamma$) y que si $p\equiv 3,5\mod 8$ entonces $\gamma\notin\F_p$ ($\Leftrightarrow \gamma^p\neq \gamma$).
+
+\begin{itemize}
+\item $p=1+8m$. $\gamma^p=(\alpha+\alpha^{-1})^p=\alpha^p+\alpha^{-p}$ como $\alpha^8=1$, esto es $\gamma$. 
+\item $p=3+8m$. $\gamma^p=\alpha^{3+8m}+\alpha^{-3-8m}$. Usando $\alpha^4=-1$ tenemos que $\alpha^3+\alpha^{-3}=-\alpha-\alpha^{-1}=-\gamma\neq\gamma$.
+\end{itemize}
+Y to lo demás igual.
+
+
+Ahora probamos la parte 2, que es el caso general. La idea es buscar $\beta\in\F_p(q)$ tal que ``algo'' sea cuadrado $\mod p$ si y solo si $\beta\in\F_p$. Ese ``algo'' serán las sumas de Gauss. Fijamos $\alpha\in\F_p(q)$ de orden $q$. Definimos
+\[
+S_p(q)=\sum_{k=1}^{q-1}\left(\frac{k}{q}\right)\alpha^k
+\]
+$S_p(q)$ depende de la elección de $\alpha$. El índice se puede cambiar por $k\in\F_q^*$.
+\begin{lemma}
+Si $\beta^q=1$, $\beta\neq 1$, entonces $\sum_{j=0}^{q-1}\beta^j=0$. 
+\end{lemma} 
+\begin{proof}
+$\sum_{j=0}^{q-1}\beta^j=0\Leftrightarrow (1-\beta)\sum_{j=0}^{q-1}\beta^j=0\Leftrightarrow 1-\beta^q=0$, que se tiene por hipótesis. 
+\end{proof}
+
+\begin{lemma}
+$S_p(q)=(\frac{-1}{q}q\in\F_p(q)$
+\end{lemma}
+\begin{proof}
+Por la multiplicatividad de Legendre, escribimos el cuadrado como producto por sí mismo y lo que sale es
+\[
+\sum_{k,m\in\F_p^*}(\frac{km}{q})\alpha^{k+m}
+\]
+Cambiamos de variable, $m=kr$
+\[
+\sum_{k}\sum_r(\frac{k^2r}{q})\alpha^{k(1+r)}
+\]
+Tenemos que que $(\frac{k^2r}{q})=(\frac{k}{q})^2(\frac{r}{q})=(\frac{r}{q})$. Así que la suma se reduce a
+\[
+\sum_r(\frac{r}{q})\sum_k(\alpha^{1+r})^k
+\]
+Como $\alpha_{k=0}^{q-1}(\alpha^{1+r})^k=0$, la suma desde 1 puede valer $q-1$ si $\alpha^{1+r}=1$ ($1+r=q$) o $-1$ en caso contrario. 
+\[
+\sum_{r=1}^{q-2}(\frac{r}{q})(1)+(\frac{-1}{q})(q-1)=\sum_{r=1}^{q-1}(\frac{r}{q})(-1)+q(\frac{-1}{q})
+\]
+Basta ver que $\sum_{r=1}^{q-1}(\frac{r}{q})=0$. Como hay el mismo número de no residuos que de residuos no nulos $\mod  p$, la suma se cancela y da 0. Hemos probado que $S_p(q)^2=q(\frac{-1}{q})\in\F_p(q)$ (en particular no depende de $\alpha$). Además, $S_p(q)\neq 0$. 
+
+\begin{lemma}[Fórmula cerrada para el símbolo de Legendre]
+$\left(\frac{p}{q}\right)=S_p(q)^{p-1}$
+\end{lemma}
+\begin{proof}
+$S_p(q)^p=(\sum_{n\in\F_q^*}(\frac{n}{q})\alpha^n)^p=\sum_{n\in\F^*_q}(\frac{n}{q})\alpha^{np}$
+Como $p$ es impar y el símbolo de Legendre es $\pm 1$, la potencia no afecta. 
+Tenemos que por algún motivo (seguramente multiplicatividad) la suma de antes es igual a 
+\[
+\sum(\frac{np^2}{q}\alpha^{np}=\sum_{r=np\in \F_q^*}(\frac{rp}{q})\alpha^r=(\frac{p}{q})\sum_r(\frac{r}{q})\alpha^r=(\frac{p}{q})S_p(q)
+\]
+Como $S_p(q)\neq 0$, entonces $S_p(q)^{p-1})=(\frac{p}{q})$.
+\end{proof}
+Tenemos entonces que $(\frac{p}{q})=1\Leftrightarrow S_p(q)^{p-1}=1\Leftrightarrow S_p(q)\in\F_p\Leftrightarrow q(-1)^{(q-1)/2}$ es un cuadrado en $\F_p$. La última equivalencia es porque $S_p(q)^2=q(\frac{-1}{q})=q(-1)^{(q-1)/2}$. Continuamos la cadena de equivalencias con $(\frac{q(-1)^{(q-1)/2}}{q})=1$, que es equivalente usando la multiplicatividad a que $(\frac{p}{q})(-1)^{(p-1)/2 (q-1)/2}=1$. 
+
+\end{proof}
 \end{dem}
+
+\subsection{Algoritmo de factorización}
+Dado $N$, encontrar $d|N$. 
+
+\textbf{Algoritmo $p-1$ de Pollard}.
+
+Dados $N,R\geq 1$, es fácil calcular $d=\gcd(N,R)$. Si $d\neq 1,N$, $d$ es un divisor propio de $N$. Idea: si $a$ es tal que $\gcd(a,N)=1$ verifica $a^{p-1}\equiv 1\mod p$ para todo $p|N$. Si $p|N$, $\gcd(a^{p-1}-1,N)$ no es divisible por $p$ (en particular no es 1). La idea del algoritmo es tomar $M$ divisible por potencias de primos pequeños y calcular $\gcd(a^M-1,N)$. Si $p-1|M$, entonces $\gcd(a^M-1,N)\neq 1$. 
+
+El algoritmo consiste en lo siguiente. Dado $N$ y $B>0$ (una cota), escogemos $1\leq a\leq N-1$. Si $\gcd(a,N)\neq 1$, todo ok. Sea $M=mcm\{b:b<B\}$, calculamos $d=\gcd(a^M-1,N)$. Si $d=1$, aumentamos $B$, si $1<d<N$ todo ok. Si $d=N$, cambiamos $a$ y repetimos. 
+
+\begin{prop}
+Sea $N=pq$ con $p,q$ primos distintos. Supongamos que existe $M$ con $p-1|M$ y $q-1\not| M$. Entonces
+\[
+\#\{1\leq a\leq N\mid\gcd(a,N)=1, \gcd(a^M-1,N)=p\}\geq (p-1)\varphi(q-1)
+\]
+\end{prop}
+\begin{dem}
+Por el teorema chino del resto, $(\Z_N)^*\cong(\Z_p)^*\times(\Z_q)^*$. Que $\gcd(a^M-1,N)=p$ es equivalente a $q\not| a^M-1$. Si $a$ es un generador de $\F_q^*$, entonces $ord(a)=q-1$ y $q\not| a^M-1\Leftrightarrow (q-1)\not| M$. Hay $\varphi(q-1)$ elementos de orden $q-1$ en $\Z_q^*$ y tenemos los $p-1$ elementos de $\Z_p^*$ de donde sale la cota.
+\end{dem}
+
+
 
 \begin{ej}
 $(\frac{127}{31}(=(\frac{3}{31})$ porque $127=4\cdot 31+3$, y por tanto es igual a $(-1)^{(3-1)/2 (31-1)/2}(\frac{31}{3})=-(\frac{1}{3})=-1$, por ser $31=3\cdot 10+1$.
@@ -234,5 +325,53 @@ Sea $N>2$ impar. Escojo $a=1,\dots, N-1$, $d=\gcd(a,N)$. Si $d\neq 1$, entonces 
 
 El cardinal de los número que no se descartan para un $a$ concreto está acotado por $\varphi(N)/2$. El razonamiento es similar a uno hecho anteriormente para un cardinal definiendo $\theta:(\Z_N)^*\to\{\pm 1\}$ como $a\mapsto a^{(N-1)/2}(\frac{a}{N})$. 
 
+\subsection{Método $\rho$ de Pollard}
+Está inspirado en la paradoja del cumpleaños. El cálculo de probabilidad en esta paradoja nos da un producto $\prod_{i=1}^{k-1}(1-\frac{i}{n})$. Como $e^x=\lim (1+\frac{x}{n})^{1/n}$, podemos aproximar el producto anterior por $\prod_{i=1}^{k-1}e^{-i/n}=e^{-k(k-1)/2n}\approx e^{-k^2/2n}$. Al hacer la probabilidad del complementario tendríamos entonces $1-e^{-k^2/2n}$. Para que la probabilidad sea al menos de $1/2$, tomando logaritmo obtenemos $\log 2=k^2/2n$, por lo que $k\sim O(\sqrt{n})$. 
+
+Basado en esto, queremos un factor de $N$ en el conunto $S=\{1,\dots, N\}$. Tomamos $f(x)=x^2+1\mod N$ y un punto de partida $s\in\{1,\dots, N\}$. Se construye la sucesión seudoaleatoria $s_0=s$, $s_i=f(s_{i-1})$. Podemos esperar por la paradoja del cumpleaños que $s_i=s_j$ para $i\sim\sqrt{N}$. Sea ahora $p|N$ y consideremos la sucesión análoga a la anterior generada por $g(x)=x^2+1\mod p$. Aquí la repetición se esperará en $O(\sqrt{p})$ pasos, que es menor que $O(\sqrt{p})$. De esta forma, $s_i-s_j$ sería divisible por $p$ pero no por $N$. Por tanto, $p|\gcd(s_i-s_j,N)$ y es distinto de $N$, luego será un divisor propio de $N$. El algoritmo sigue estos pasos:
+
+\begin{enumerate}
+\item Calcular $s_0,s_1,\cdots$.
+\item Para cada $i$, calcular $\gcd(s_i-s_j,N)$ para todo $j<i$. 
+\end{enumerate}
+El motivo del nombre se puede ver en \url{https://en.wikipedia.org/wiki/Pollard\%27s_rho_algorithm}. Para encontrar el ciclo donde aparecen las repeticiones se sigue el método de Floyd de la libere y la tortuga (que también aparece en el enlace). La liebre va al doble de velocidad que la tortuga, ¿cuándo pilla la liebre a la tortuga? Es decir, queremos encontrar una repecición $s_i=s_{2i}$. Si $s_i=s_j$, entonces $f(s_i)=f(s_j)$, es decir, $s_{i
+i}=s_{j+1}$. Si llamamos $l=i-j$ ($i=j+l$), para todo $m\geq j$ tendremos $f^{m+l})(s_0)=f^m(s_0)$, e iterando $f^{m+kl}(s_0)=f^m(s_0)$.  Dividiendo $j$ entre $l$, $j=ql+r$. Para $m=(q+1)l\geq j$, $f^m(s_0)=f^{m+kl}(s_0)$ para todo $k$, en particular para $k=q+1$, o sea, $f^m(s_0)=f^{2m}(s_0)$, esto es $s_m=s_{2m}$. Tenemos ademas que como $m=(q+1)l=(j-r)+l$, $i-r\sim \sqrt{N}$. Así que podemos refinar el algoritmo
+\begin{enumerate}
+\item Escogemos $s\in\{1,\dots, N\}$, $s_0=s$. 
+\item Para $i\geq 1$ calculamos $s_i=f(s_{i-1})$, $s_{2i}=f(s_{2i-1})$, $\gcd(s_{2i}-s_i,N)$.
+\end{enumerate}
+
+Para $N=2057$, $s_0=N\equiv 0\mod N$ y $f(x)+x^2+1$ se obtiene en el sexto paso $s_{2i}-s_i=966$, que verifica $\gcd(966,N)=23\neq 1$, luego tenemos un divisor. Además, $\sqrt{23}\sim 4.7$ que no es lejano a 6 (aunque con un ejemplo tan pequeño es normal que se distancie un poco). 
+
+\section{Problema del logaritmo dicreto}
+Dado un grupo $G=\gene{g}$ cíclico y $h\in G$, $n\in\N$ tal que $h=g^n$. Veremos primero un algoritmo general para resolverlo (todos los generales son exponenciales) y después veremos algunos algoritmos más eficientes para grupos concretos, donde los criptosistemas basados en estos grupos no serán tan seguros.
+
+\subsection{Método $\rho$ de Pollard para el logaritmo discreto}
+Sea $N=|G|$. Como $g^N=1$, busamos $n\in\{1,\dots, N\}$. Vamos a construir una sucesión $x_i=h^{a_i}g^{b_i}$ con $(a_i,b_i)\in\{1,\dots, N\}^2$ aleatorios. Si $x_i=x_j$, $h^{a_i}g^{b_i}=h^{a_j}g^{b_j}\Rightarrow g^{n(a_i-a_j)}=h^{a_i-a_j}=g^{b_j-b_i}\Rightarrow N|n(a_i-a_j)-(b_j-b_i)$. Si $\gcd(N,a_i-a_j)=1$, entonces $n\equiv (b_j-b_i)(a_i-a_j)^{-1}\mod N$. Si no, sea $d=\gcd(N,a_i-a_j)$. Tenemos $n(a_i-a_j)\equiv b_j-b_i\mod N$, luego $n(a_i-a_j)/d\equiv (b_j-b_i)/d\mod N/d$. Podemos calcular $n\mod N/d$, con lo que hay $d$ posibilidades $\mod N$, $n_1,\dots, n_d$. Se pueden calcular las respectivas potencias de $g$ y ver cuál es $h$. 
+
+¿Cómo calculamos $(a_i,b_i)$? Se divide $G=G_1\cup G_2\cup G_3$ en tres partes aproximadamente iguales. Partimos de $a_0=b_0=0$. Entonces 
+\[
+(a_{i+1},b_{i+1})=\begin{cases}
+(a_i+1,b_i)\ (\Rightarrow x_{i+1}=hx_i) & x_i\in G_1\\
+(2a_i,2b_i)\ (\Rightarrow x_{i+1}=x_i^2) & x_i\in G_2\\
+(a_i,b_i+1\ (\Rightarrow x_{i+1}=gx_i) & x_i\in G_3
+\end{cases}
+\]
+Esto funciona porque funciona.
+
+\subsection{Método de cáculo del índice (index calculus)}
+Sea $p$ primo, $G=\Z_p^*$, $g$ un generador y $h\in G$. Queremos calcular $n$ tal que $g^n=h$. 
+
+\begin{enumerate}
+\item[Paso 1:] pre-calcular el logaritmo discreto para primos pequeños. Fijamos $B\in\N$ y definimos $S=\{p\leq B, p\text{ primo }\}=\{p_1,\dots, p_k\}$. Vamos a calcular $e_i\in N$ tales que $g^{e_i}=p_i\mod p\in\Z_p^*$. Buscamos exponentes $s$ tales que $g^s=p_1^{r_1}\cdots p_k^{r_k}$ en $\Z$ (estamos eligiendo un representante de $g$, que podemos ir cambiándolo). Entonces $s=e_1r_1+\cdots+e_tr_t\mod p-1$. Esto nos da una ecuación para $e_1,\dots e_k$. Vamos buscando exponentes $s_1,\dots, s_k$  hasta que el sistema de ecuaciones esté formado por $k$ ecuaciones y esté determinado.
+\item[Paso 2:] Buscamos un exponente $R$ tal que $hg^R=p_1^{t_i}\dots, p_k^{t_k}$ (representantes). De esto, $n+R=\sum e_it_i\Rightarrow n=\sum e_it_i-R$. 
+\end{enumerate}
+
+La complejidad de este algoritmo es subesponencial, concretamente $e^{c\sqrt{\log N\log\log N}}$, con $c$ constante. Tomando $G=\F_{p^r}^*$ también podemos aplicar el agoritmo. Lo que hemos usando de $\Z_p^*$ es que tenemos una sobreyección $Z\to \Z_p$ y en $\Z$ tenemos factorización en primos. Podemos usar la sobreyección $\F_p[x]\to \F_{p^r}$ dada por $\F_{p^r}\cong \F_p[x]/\gene{f(x)}$ con $f(x)$ un polinomio irreducible de grado $r$. Como $\F_p[x]$ es un dominio euclídeo tenemos factorización en elementos irreducibles y podemos hacer un algoritmo análogo.
+
+\begin{enumerate}
+\item[Paso 1:] pre-calcular el logaritmo discreto de unos ciertos polinomios irreducibles $f_1,\dots, f_k$ de grado pequeño ($\leq B$). Fijado $g\in F_{p^r}^*$ generador, sea $pC(x)\in\F_p[x]$ representante de $g$. Calcular $p^s(x)\mod f(x)$ de forma que $p^s(x)=f_1^{e_1}\cdots f_k^{e_k}$. Necesitamos buscar ecuaciones independientes igual que en el caso anterior.
+\item[Paso 2:] Se $h\in\F_{p^r}^*$ y $q(x)$ un representante. Buscamos $R$ tal que  $q(x)p(x)^R=f_1^{t_1}\cdots f_k^{t_k}\mod f(x)\Rightarrow n=t_1\log f_1+\cdots t_k\log f_k-R\mod p^r-1$. 
+\end{enumerate} 
 \end{document}
 

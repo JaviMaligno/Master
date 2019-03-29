@@ -1,0 +1,97 @@
+	\documentclass[twoside]{article}
+\usepackage{../estilo-ejercicios}
+%\renewcommand{\baselinestretch}{1,3}
+%--------------------------------------------------------
+\begin{document}
+
+\title{Ejercicios de Modelado y Simulación Topológica\\ Teoría de Morse Discreta}
+\author{Javier Aguilar Martín}
+\maketitle
+
+\begin{ejercicio}{1}
+Considerar $K$ una triangulación de la banda de Möbius en la que dos puntos distintos del borde se han conectado mediante una arista. Se pide:
+\begin{enumerate}[(a)]
+\item Definir sobre $K$ una función de Morse discreta óptima $f$.
+\item Construir el campo gradiente inducido por $f$. 
+\item Determinar en ese caso el CW-complejo con el mismo tipo de homotopía que $K$ dado por el teorema fundamental de la TMD. 
+\item Repetir todo el ejercicio, tomando como $K$ una triangulación de la 2-esfera con una membrana ecuatorial. 
+\end{enumerate}
+\end{ejercicio}
+\begin{solucion}
+
+\end{solucion}
+\newpage
+
+\begin{ejercicio}{2}
+Estudiar si es posible (y si lo es, hazlo) definiren una triangulación de la 2-esfera una función de Morse discreta $f$ con $m_0(f)=2$, $m_1(f)=0$ y $m_2(f)=1$. Repetir el mismo estudio con $m_0(f)=2$, $m_1(f)=1$ y $m_2(f)=1$. Determinar, en caso de existir, la optimalidad de tales funciones. Si alguna no lo es, transformarla en una óptima mediante cancelación. 
+\end{ejercicio}
+\begin{solucion}
+
+\end{solucion}
+
+\newpage
+
+\begin{ejercicio}{3}
+Probar que el mínimo global de una función de Morse discreta corresponde siempre a un vértice crítico. Estudiar qué ocurre en el caso del máximo global.
+\end{ejercicio}
+\begin{solucion}
+
+\end{solucion}
+
+\newpage
+
+\begin{ejercicio}{4}
+Qué propiedad topológicamente relevante tiene un complejo simplicial sobre el que puede definirse una función de Morse discreta con un único símplice crítico.
+\end{ejercicio}
+\begin{solucion}
+
+\end{solucion}
+
+\newpage
+
+\begin{ejercicio}{5}
+Considerar el siguiente complejo simplicial $K$ con la función de Morse discreta $f$ indicada:
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-3.04,0.53333333333333) rectangle (12.293333333333337,5.973333333333328);
+\fill[line width=2.pt,fill=black,fill opacity=0.10000000149011612] (4.026666666666667,1.773333333333333) -- (2.,2.7466666666666653) -- (3.,5.) -- cycle;
+\fill[line width=2.pt,fill=black,fill opacity=0.10000000149011612] (4.026666666666667,1.773333333333333) -- (5.653333333333334,4.56) -- (3.,5.) -- cycle;
+\draw [line width=2.pt] (1.,1.)-- (2.,2.7466666666666653);
+\draw [line width=2.pt] (1.,1.)-- (4.026666666666667,1.773333333333333);
+\draw [line width=2.pt] (4.026666666666667,1.773333333333333)-- (2.,2.7466666666666653);
+\draw [line width=2.pt] (2.,2.7466666666666653)-- (3.,5.);
+\draw [line width=2.pt] (3.,5.)-- (4.026666666666667,1.773333333333333);
+\draw [line width=2.pt] (4.026666666666667,1.773333333333333)-- (5.653333333333334,4.56);
+\draw [line width=2.pt] (5.653333333333334,4.56)-- (3.,5.);
+\draw [line width=2.pt] (3.,5.)-- (4.026666666666667,1.773333333333333);
+\draw [line width=2.pt] (5.653333333333334,4.56)-- (8.,4.);
+\draw (0.7333333333333338,1.12) node[anchor=north west] {$7$};
+\draw (2.4266666666666676,1.4266666666666665) node[anchor=north west] {$8$};
+\draw (8.04,4.506666666666663) node[anchor=north west] {$0$};
+\draw (1.12,2.4) node[anchor=north west] {$6$};
+\draw (1.653333333333334,3.2666666666666644) node[anchor=north west] {$5$};
+\draw (2.1066666666666674,4.4) node[anchor=north west] {$4$};
+\draw (2.3466666666666676,2.52) node[anchor=north west] {$11$};
+\draw (2.653333333333334,3.546666666666664) node[anchor=north west] {$12$};
+\draw (3.5066666666666673,3.76) node[anchor=north west] {$13$};
+\draw (4.28,4.24) node[anchor=north west] {$14$};
+\draw (2.7733333333333343,5.653333333333329) node[anchor=north west] {$3$};
+\draw (4.08,5.44) node[anchor=north west] {$2$};
+\draw (5.586666666666668,5.266666666666662) node[anchor=north west] {$1$};
+\draw (6.773333333333334,4.933333333333329) node[anchor=north west] {$1$};
+\draw (4.84,3.1866666666666648) node[anchor=north west] {$10$};
+\end{tikzpicture}
+Se pide:
+\begin{enumerate}[(a)]
+\item Determinar los símplices críticos de $f$, así como su campo gradiente inducido.
+\item Estudiar si $f$ es óptima. En caso negativo, transformarla en una función de Morse discreta óptima $g$ definida sobre $K$.
+\item Aplicando el teorema fundamental de la teoría de Morse discreta a $g$, construir un CW-complejo con el mismo tipo de homotopía que $K$.
+\item Construir el diagrama de Hasse de $K$.
+\item Construir el emparejamiento de Morse inducido por $f$, comprobando que no es máximo.
+\item Determinar mediante transferencia un emparejamiento de Morse máximo. 
+\end{enumerate}
+\end{ejercicio}
+\begin{solucion}
+\end{solucion}
+
+\end{document}
