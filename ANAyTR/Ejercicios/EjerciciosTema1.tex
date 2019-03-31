@@ -689,11 +689,11 @@ Conclude that $V = S (v_1) ⊕ S (v_2) ⊕ \dots ⊕ S (v_k)$, where $\{v_1, v_2
 \end{ejercicio}
 \begin{solucion}\
 \begin{enumerate}[(a)]
-\item Sea $V$ una representación irreducible de $A$. Por el ejercicio \ref{25}, cualquier vector no nulo de $V$ es cíclico. En particular, eso es cierto si tomamos $v\in 1_iV$. Es decir, para todo $w\in V$ existe $a=(a_1,\dots, a_i,\dots, a_n)$ tal que $w=av_i=\sum_j a_jv_i$. Por tanto, 
+\item Sea $V$ una representación irreducible de $A$. Tengamos en cuenta que $1_i V = 0$ no puede ser cierto para todo $i$, pues entonces $(1_1+ \cdots 1_n)V =0$, lo cuál es absurdo, pues dicha suma es precisamente $1$. Sea $i$ tal que $1_i V \neq 0$ y sea $v\in 1_iV$. Por ser $V$ irreducible, el Ejercicio \ref{25} nos dice que cualquier vector no nulo de $V$ es cíclico. Por tanto, para todo $w\in V$ existe $a=(a_1,\dots, a_i,\dots, a_n)$ tal que $w=av_i=\sum_j a_jv_i$. Por tanto, 
 \[
 1_iw=\sum_j 1_ia_jv_i=1_ia_iv_i=a_iv_i
 \]
-de donde deducimos que todo vector de $1_iV$ es cíclico visto como representación de $A_i$, por lo que $1_i1$ es irreducible. 
+de donde deducimos que todo vector de $1_iV$ es cíclico visto como representación de $A_i$, por lo que $1_iV$ es irreducible. 
 
 Si además de $1_iV$ existiera un $1_jV\neq 0$, tendríamos entonces que cada uno de ellos sería una subrepresentación, y además es claro que deben ser distintas, por lo que $V$ no sería irreducible. El recíproco es trivial. Tenemos entonces que cada representación irreducible $V_i$ de $A_i$ nos da una representación irreducible de $A$, eligiendo $V_i\neq 0$ y la acción $(a_1,\dots, a_i,\dots, a_n)v=a_iv$. 
 
