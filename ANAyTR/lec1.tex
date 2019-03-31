@@ -195,5 +195,25 @@ Si $Rad(A)=0$, entonces $A$ es isomorfa a una suma de álgebras de matrices, ade
  Si $\rho:A\to\End(V)$ es una representación y $V_1$ es una subrepresentación, sobre $V/V_1$ se define una representación como $\rho(a)(v\mod V_1)=\rho(a)(v)\mod V_1$
  
  Teorema de Jordan-Hölder
+ 
+ \section{Representaciones de grupos finitos}
+ Todo algebraicamente cerrado 
+ 
+ Operador de Reynolds ($P$ página 33), es una proyección lineal con imagen el esubespacio de los elementos invariantes. Una proyección lineal es un endomorfismo idempotente. 
+ 
+ La idea de la prueba de 3.1 es modificar la proyección del operador de Reynolds para tener otra proyección, que será un morfismo de representaciones y que tendrá la misma imagen. Es como si en lugar de tomar el complementario, tomas otro un poco más torcido para que sea subrepresentación.
+ 
+ Si la característica de $k$ divide a $|G|$, entonces la suma de los elementos de $g$ es un elemento central y nilpotente (elevas al cuadrado y te sale la suma multiplicada por el cardinal, que es 0 en $k$). El producto por este elemento, usando el lema de Schur de que actúa como multiplicación por escalar, es 0 (porque el escalar al cuadrado tiene que ser 0), es decir, que pertenece al radical y por tanto $k[G]$ no es semisimple. 
+ 
+ Lo de que $|G|=\sum \dim(V_i)^2$ es porque $|G|=\dim k[G]=\sum\dim(V_i)^2$. Se tiene $k[G]\cong \oplus\End(V_i)$ como álgebras y $k[G]\cong\oplus\dim(V_i)V_i$ como representaciones de $G$. 
+ 
+ Recordamos que los caracteres de las irreps forman un abase del dual del abelianizado de $k[G]$. 
+ 
+ \begin{ej}
+ 
+ Representaciones de $S_3$. La representación natural está dada por la permutación de una base de $k^3$. Hay 2 formas de descomponer $6=|S_3|$ como suma de cuadrados. Una de ellas implicaría que todas las representaciones irreducibles son de dimensión 1, pero entonces $S_3$ sería conmutativo porque se correspondería con matrices diagonales. Por tanto, la descomposición es $2^2+1^2+1^2$, por lo que hay una representación de dimensión 2, y dos de dimensión 1, una de ellas triviales. La trivial se puede ver como la recta generada por $e_1+e_2+e_3$ en $k^3$. Una subrepresentación es el plano $x_1+x_2+x_3=0$, porque permutar las coordenadas no altera la suma. Es irreducible porque podemos tomar los vectores $e_1-e_2, e_2-e_3,e_3-e_1$ y encontramos una permutación que lleva cada uno en el otro, concretamente la que hace $e_i\mapsto e_{i+1}$, luego no tiene rectas fijas (esta representación se suele llamar estándar). La que falta de dimensión 1 se obtiene mediante la representación alternada, correspondiente al signo de las permutaciones (la acción es multiplicar por el signo, no importa qué recta cojamos si la hacemos isomorfa a $k$).
+ \end{ej}
+ 
+La tabla de caracteres se hace calculando la traza de la matriz de cada elemento del grupo en cada una de las representaciones irreducibles. La traza de la identidad te da la dimensión de la representación. Elementos de una misma clase de conjugación dan las mismas trazas así que basta con calcular una matriz en que el elemento $(i,j)$ sea la traza de la matriz asociada a la representación $j$ de un elemento de la clase de conjugación $i$. (Teorema) Hay tantas irreps como clases de conjugación, por lo que la matriz sale cuadrada. Recordemos que en un grupo conmutativo hay una clase por cada elemento. 
 \end{document}
 
