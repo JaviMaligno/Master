@@ -7,17 +7,20 @@
 
 
 
-EN GENERAL LO QUE PUEDA DE TAMARKIN
+%EN GENERAL LO QUE PUEDA DE TAMARKIN
+%
+%
+%\url{https://ncatlab.org/nlab/show/augmentation}
+%
+%\url{https://ncatlab.org/nlab/show/Drinfeld+associator}
 
 
-\url{https://ncatlab.org/nlab/show/augmentation}
+In this chapter we review and explain the heart of the prove of the Deligne Conjecture: the formality of the chain operad of little disks. Throughout the chapter we follow \cite{Tamarkin}. The chain operad of little disks is the operad of chain complexes over $\Q$ obtained from the topological little disks operad. By formailty it is meant that there is a \emph{quasi-isomorphism} between this operad and its homology operad, i.e. a morphism of chain operads which induces isomorphism in homology. The strategy is the following:
 
-\url{https://ncatlab.org/nlab/show/Drinfeld+associator}
+ First, we define an operad which is homotopy equivalent to the little disks operad from a category operad $PaB_*$. Then, we take a $\Q$-linear span of $PaB_*$ and find an operad $O_A(*)$ together with a quasi-isomorphism from the homology operad of little disks. Finally, we give a quasi-isomorphism between the span $\Q(PaB_*)$ and $O_A(*)$, which completes the proof. 
 
 
-PONER ALGO DE LO QUE SE VA A HACER EN ESTA SECCIÓN TIPO DICE QUÉ ES LA FORMALIDAD, DECIR QUE SE VA A PROBAR Y ALGO DE CÓMO (LOS PASOS) CITANDO QUE SIGO A TAMARKIN
 
-In this chapter we review and explain the heart of the prove of the Deligne Conjecture: the formality of the chain operad of little disks. SEGUIR
 
 \section{Braided operads and little disks operads}
 
@@ -341,10 +344,10 @@ C_*^{sing}(O(n))\otimes C_*^{sing}(O(m))\xrightarrow{EZ} C_*^{sing}(O(n)\times O
 \]
 where $\circ_i$ is the structure map of the $i$-th insertion in $O$. 
 
-For a little disks operad $X$ consider the operad $E_2(X)=C_*^{sing}(X)$ CREO QUE DEBERÍA CAMBIAR LA NOTACIÓN. Any two such operads are quasi-isomorphic. In particular, the homology operad of any $E_2(X)$ is the operad $e_2$ CAMBIAR ESTA NOTACIÓN TAMBIÉN controlling Gerstenhaber algebras. Our goal in this chapter is to show the following.
+For a little disks operad $X$ consider the operad $C_2(X)=C_*^{sing}(X)$. Any two such operads are quasi-isomorphic. In particular, the homology operad of any $C_2(X)$ is the operad $e_2=H_*(E_2)$ controlling Gerstenhaber algebras. Our goal in this chapter is to show the following.
 
 \begin{thm}
-Any operad $E_2(X)$ is quasi-isomorphic to its homology operad $e_2$.
+Any operad $C_2(X)$ is quasi-isomorphic to its homology operad $e_2$.
 \end{thm}
 
 It suffices to prove this theorem only for one operad $X$ of little disks since they are all homotopy equivalent. We will prove it for the one defined in the next section.
@@ -370,7 +373,7 @@ Let us describe the structre map $\circ_k$ of the insertion into the $k$-th posi
 
 We have the functor of taking the nerve $N:\Cat\to\SSet$ and the functor of topological realization $|\ |:\SSet\to \CW$. One can easily check that the nerve functor behaves well with respect to the symmetric monoidal structure. Since the nerve $PaB_n$ is countable, the realization also behaves well with its symmetric monoidal structure by \ref{countable}. Therefore the collection of cellular complexes $X_n=|N(PaB_n)|$ forms a cellular operad. Let us check that this operad is a little disks operad. Let $PaB_n'$ be the category whose objects are pairs $(x,y)$, where $x$ belongs to the braid group $B_n$ and $y$ is a parenthesizing of the non-associative product of $n$ elements, and there is a unique morphism between any two objects. We have a free left action of $B_n$ on $PaB_n':(x,y)\to (gx,y)$ and a braided operad structre on $PaB_*'$ (the structre maps are defined similarly to $PaB_n$). We have to show that the corresponding operad of classifying spaces is a topological $B_\infty$-operad and that the corresponding little disks operad is isomorphic to $X_*$. The action of $B_n$ on $PaB_n'$ induces an action on the vertices (0-simplices) of $|N(PaB_n')|$ and can be extended linearly to the whole complex, and therefore it is automatically free. Then, the quotient $|N(PaB_n')|/PB_n$ is equivalent to $X_n$ since the morphisms $(\sigma_1,\pi_1)\to(\sigma_2,\pi_2)$ in $PaB_n$ can be obtained by choosing one element in $p^{-1}(\sigma_2^{-1}\sigma_1)$ and multiplying it by the elements of $PB_n$. NO ESTOY SEGURO DE QUE ESTÉ BIEN ESTO QUE HE DICHO.
 
-Consider the corresponding chain operad. Let $C_*(PaB_n)$ be the chain complex over $\Q$ of $NPaB_n$ as a simplicial set. The collection $C_*(PaB_n)$ forms a dg-operad (via the Eilenberg-Zilber map). We have a canonical quasi-isomorphism of operads $C_*(PaB_*)\to C_*^{sing}(|NPaB_*|)$ (just like the quasi-isomorphism between simplicial homology and singular homology). Therefore it suffices to construct a quasi-isomorphism of $C_*(PaB_*)$ and $e_2$ CAMBIAR NOTACIÓN.
+Consider the corresponding chain operad. Let $C_*(PaB_n)$ be the chain complex over $\Q$ of $NPaB_n$ as a simplicial set. The collection $C_*(PaB_n)$ forms a dg-operad (via the Eilenberg-Zilber map). We have a canonical quasi-isomorphism of operads $C_*(PaB_*)\to C_*^{sing}(|NPaB_*|)$ (just like the quasi-isomorphism between simplicial homology and singular homology). Therefore it suffices to construct a quasi-isomorphism of $C_*(PaB_*)$ and $e_2$.
 
 \section{Operad $O_A(*)$ and construction of a quasi-isomorphism}
 
@@ -396,18 +399,39 @@ t_{\phi(p)\phi(q)}, &p,q\neq i;\\
 One can verify that this map satisfies the expected properties of the operadic composition. DEBERÍA 
 
 Any algebra with unit over $\Q$, say $A$, gives rise to a $\Q$-additive category $C_A$ with one object. Denote by $\Q\Cat$ the category of all small $\Q$-additive categories, and by $\Q\Cat'=\Q\Cat/C_\Q$ the slice category of $\Q\Cat$ over $C_\Q$. The objects of $\Q\Cat'$ are the elements of $\Hom(x, C_\Q)$ for each $x\in \Q\Cat'$. A morphism between $\varphi:x\to C_\Q$ and $\psi:y\to C_\Q$ is a morphism $\eta: x\to y$ in $\Q\Cat$ such that $\eta\psi=\varphi$.  This category has a clear symmetric monoidal structure obtained by the usual one on $\Cat$. We have the functor of nerve
-$N^{\Q}: \Q\Cat'\to \SVect$, which is the straight analogue of the nerve of an arbitrary
-category, and the functor $C_*: \SVect \to\Ch$ of chain complexes over $\Q$. Both of these functors are lax monoidal (on the latter functor it is defined via the Eilenberg–Zilber map), therefore we have a functor $\Q\Cat'\to\Ch$ and the induced functor $C_*^{\Q}:\Q\Cat'$-Operads $\to$ dg-Operads. CREO QUE DEBO PREGUNTAR CÓMO SE DEFINE EL COMPLEJO DE CADENAS DE UN OBJETO SIMPLICIAL \url{https://ncatlab.org/nlab/show/Dold-Kan+correspondence} SEGURAMENTE ES PONER CADA NIVEL COMO COMPONENTE Y HACER LA TÍPICA SUMA ALTERNADA CON LAS CARAS PARA LA DIFERENCIAL
+$N^{\Q}: \Q\Cat'\to \SVect$, which is analogue to nerve of an arbitrary
+category (but with slight nuances that we will detail soon), and the functor $C_*: \SVect \to\Ch$ of chain complexes over $\Q$. Both of these functors are lax monoidal (on the latter functor it is defined via the Eilenberg–Zilber map), therefore we have a functor $\Q\Cat'\to\Ch$ and the induced functor $C_*^{\Q}:\Q\Cat'$-Operads $\to$ dg-Operads. 
+%CREO QUE DEBO PREGUNTAR CÓMO SE DEFINE EL COMPLEJO DE CADENAS DE UN OBJETO SIMPLICIAL \url{https://ncatlab.org/nlab/show/Dold-Kan+correspondence} SEGURAMENTE ES PONER CADA NIVEL COMO COMPONENTE Y HACER LA TÍPICA SUMA ALTERNADA CON LAS CARAS PARA LA DIFERENCIAL
 
 The map \ref{canonical} produces a morphism $\pi_*: C_{A_n}\to C_\Q$ and defines an object
 $O_A(n)\in \Q\Cat'$. The operad structure on $A_n$ defines an operad structure on the
 collection $\{O_A(n)\}$. 
 %En los racionales es la identidad porque solo se defien cuando hay algún t, así que pasa como slice. Tal como está definida la inserción se puede entender además desde el producto cartesiano y se puede trasladar al producto en Cat
-The complex $C_*^{\Q}(O_A(n))$ looks as follows. NO ME PARECE NADA EVIDENTE QUE SALGA LO QUE PONE A CONTINUACIÓN A PARTIR DE LA CONSTRUCCIÓN DEL ANTERIOR PÁRRAFO. The degree $k$ component $C_k^{\Q}(O_A(n))$ is $A_n^{\otimes k}$ CREO QUE ES PORQUE CADA ESPACIO VECTORIAL SIMPLICIAL ESTÁ GENERADO POR CADENAS DE MORFISMOS DE LONGITUD FIJA, QUE ES LO MISMO QUE COGER TUPLAS and the boundary map is given by
+To see what the complex $C_*^{\Q}(O_A(n))$ looks like, we explain how the $\Q$-linear nerve functor $N^\Q$ works. For the usual nerve $N$ acting on a category $\CC$, the set of $n$-simplices can be written as
 \[
-d(a_1\otimes\cdots\otimes a_n)=\pi(a_1)a_2\otimes\cdots\otimes a_n-a_1a_2\otimes \cdots\otimes a_n+\cdots+(-1)^{n-1}a_1\otimes a_{n-1}\pi(a_n)
+\coprod_{x_1,\dots, x_n\in\mathrm{Ob}\CC}\CC(x_2,x_1)\times\cdots \times\CC(x_n,x_{n-1})
 \]
-COMPROBAR QUE SIN METERLE EL PI EN MEDIO VALE, PERO DE TODAS FORMAS CONSULTAR
+where $\CC(x_{i+1},x_i)=\Hom_{\CC}(x_{i+1},x_i)$. Since we are in a linear context, we can replace disjoint unions by direct sums and cartesian products by tensor products. In each coordinate of the direct sum, we have elements of the form
+\[
+f_1\otimes\cdots \otimes f_n
+\]
+with $f_i\in \CC(x_{i+1},x_i)$. In particular, when $\CC$ has only one object, these are indeed the $n$-simplices. For $1<i<n$, the face maps are straight analogues to the general case, i.e. $$d_i(f_1\otimes\cdots \otimes f_{i-1}\otimes f_i\otimes \cdots\otimes f_n)=f_1\otimes\cdots \otimes f_{i-1}f_i\otimes\cdots \otimes f_n$$
+For $i=1,n$, we need to modify the face maps, since omitting $f_1$ or $f_n$ doesn't yield a homomorphism (because projections are not bilinear). Instead, we define
+\[
+d_1(f_1\otimes f_2\otimes\cdots\otimes f_n)=g(f_1)f_2\otimes\cdots\otimes f_n
+\]
+and
+\[
+d_n(f_1\otimes\cdots\otimes f_{n-1}\otimes f_n)=f_1\otimes\cdots\otimes f_{n-1} g(f_n),
+\]
+where $g$ is a linear map which can be chosen depending on the context. Generally, $g$ is chosen not to be the identity because in that case $d_1=d_2$ and $d_{n-1}=d_n$. 
+%NO ME PARECE NADA EVIDENTE QUE SALGA LO QUE PONE A CONTINUACIÓN A PARTIR DE LA CONSTRUCCIÓN DEL ANTERIOR PÁRRAFO. 
+
+Thus, the complex $C_*^{\Q}(O_A(n))$ looks as follows. The degree $k$ component $C_k^{\Q}(O_A(n))$ is $A_n^{\otimes k}$ %CREO QUE ES PORQUE CADA ESPACIO VECTORIAL SIMPLICIAL ESTÁ GENERADO POR CADENAS DE MORFISMOS DE LONGITUD FIJA, QUE ES LO MISMO QUE COGER TUPLAS and the boundary map is given by
+\[
+d(a_1\otimes\cdots\otimes a_n)=\pi(a_1)a_2\otimes\cdots\otimes a_n-a_1a_2\otimes \cdots\otimes a_n+\cdots+(-1)^{n}a_1\otimes\cdots\otimes a_{n-1}\pi(a_n)
+\]
+%COMPROBAR QUE SIN METERLE EL PI EN MEDIO VALE, PERO DE TODAS FORMAS CONSULTAR
 
 Let $e_2$ be the operad of graded vector spaces governing the Gerstenhaber algebras.
 It is generated by two binary operations: the commutative associative multiplication
@@ -423,26 +447,52 @@ and the Jacoby identity
 \]
 We have a morphism of operads
 \[
-k:e_2\to C_*^{\Q}(O_A)
+h:e_2\to C_*^{\Q}(O_A)
 \]
 which is defined on $e_2(2)$ as follows:
 \[
-k(\cdot)=1\in C_0^\Q(O_A),\ k([,])=t_{12}\in C_1^\Q(O_A).
+h(\cdot)=1\in C_0^\Q(O_A),\ h([,])=t_{12}\in C_1^\Q(O_A).
 \]
 CREO QUE $t_{12}$ ES EL PRODUCTO POR ESTE ELEMENTO, YA QUE YENDO ATRÁS SE ESTÁ VIENDO EL ÁLGEBRA COMO UNA CATEGORÍA, PERO EN ESE CASO DEBERÍA ESPECIFICAR SI ES A IZQUIERDA O A DERECHA (QUIZÁ SOLO UNA CUMPLA LAS CONDICIONES, ASÍ QUE INTENTAR COMPROBARLO), AUN ASÍ ESTÁ MANDANDO OPERACIONES BINARIAS A OPERACIONES UNARIAS, NO LE VEO SENTIDO. Direct check shows that this map respects the relations in $e_2$ COMPROBAR.
 
+NO ENTIENDO LO QUE ME HA PEDIDO FERNANDO, AUNQUE PARA EMPEZAR NO ENTIENDO LO DE QUE EL OPERAD ESTÉ GENERADO POR ESAS OPERACIONES, CUANDO ESAS OPERACIONES SON DEL ÁLGEBRA, NO DEL OPERAD (SERÁ QUE ES UN ÁLGEBRA SOBRE SÍ MISMA). LUEGO, TENDRÍA QUE VERIFICAR QUE LAS RELACIONES DE ESTAS OPERACIONES SE VERIFICAN CON EL 1 Y EL T12 DE LA LLEGADA. NO SÉ PARA QUÉ ES LO DE EXPRESARLAS EN TÉRMINOS OPERÁDICOS NI CÓMO SE HACE, PORQUE ESTABA MEZCLANDO MU CON LA INSERCCIÓN, PERO SE SUPONE QUE MU ES YA UNA INSERCIÓN O NO SÉ (CREO QUE NO TENGO QUE PENSAR QUE ES UNA INSERCIÓN, SINO QUE ES SIMPLEMENTE UN PRODUCTO, QUE PARTE DE AxA Y LUEGO LA INSERCIÓN METE OTRA COPIA DE A (AUNQUE SI QUIERO HACERLA CON MU NECESITO 2), PARA LO CUAL SE PUEDE USAR LA ASOCIATIVIDAD
+
 
 \begin{prop}\label{4.1}
-The map $k$ is a quasi-isomorphism of operads. 
+The map $h$ is a quasi-isomorphism of operads. 
 \end{prop}
-\begin{proof}[Sketch of the proof]
-COMENTAR LA PRUEBA REFERENCIÁNDOLA SIN DETALLE, ANTES DEFINIR LOS DRINFELD ASSOCIATOR \url{https://ncatlab.org/nlab/show/Drinfeld+associator} CREO QUE GROUPLIKE ES SIMPLEMENTE INVERTIBLE (LO MALO ES QUE NO LO ENTIENDO, OJALÁ TENGA QUE VER CON ESTO \url{https://en.wikipedia.org/wiki/Associator} ) 
+\begin{proof}[Sketch of the proof] We only sketch the proof because it uses some machinery that is out of the scope of this report. The reader is referred to \cite{Tamarkin}.
+
+Let $\mathfrak{g}_n$ be the graded Lie algebra generated by the elements $t_{ij}$ and
+relations $[t_{ij}+t_{ik},t_{jk}]=0$, and the grading is defined by setting $|t_{ij}|= 1$. The universal enveloping algebra $U\mathfrak{g}_n$ is then a graded associative algebra and the algebras $U\mathfrak{g}_*$ form an operad with the same structure maps as $A_*$. There are injections $U\mathfrak{g}_n\to A_n$ which constitute a morphism of operads $i$.
+
+We have a canonical projection $\chi:U\mathfrak{g}_n\to\Q$, therefore the collection $C_{U\mathfrak{g}_*}$ forms an operad in $\Q\Cat'$ and we have a dg-operad $C_*^\Q C_{U\mathfrak{g}_*}$ denoted $C_*^\Q U\mathfrak{g}_*$. The injection $i$ induces a morphism of operads 
+
+\begin{equation}\label{induced}
+i_*:C_*^\Q U\mathfrak{g}_n\to C_*^\Q(O_A)
+\end{equation}
+Then one studies $H_*(\mathfrak{g}_n)\cong H_*(C_*^\Q U\mathfrak{g}_n)$. We have a natural injection $\mathfrak{g}_{n-1}\to \mathfrak{g}_n$. One sees that the Lie subalgebra $\mathfrak{1}_n\subset \mathfrak{g}_n$ generated by $t_{nj}$, $j=1,\dots, n-1$ is free and is an ideal of $\mathfrak{g}_n$. Also, we have $\mathfrak{g}_n=\mathfrak{1}_n\oplus\mathfrak{g}_{n-1}$ as vector spaces. One can show that
+\begin{equation}\label{homology}
+H_*(\mathfrak{g}_n)\cong H_*(\mathfrak{g}_{n-1})\oplus \left(\bigoplus_{j=1}^{n-1}H_*(\mathfrak{g}_{n-1})\right)[-1]
+\end{equation}
+where the first summand is the image of $H_*(\mathfrak{g}_{n-1})$ under the injection $\mathfrak{g}_{n-1}\to \mathfrak{g}_n$. This implies by induction that the homology of $\mathfrak{g}_n$ is finite-dimensional, and one deduce that
+the map \ref{induced} is a quasi-isomorphism. 
+
+We are now going to make the isomorphism \ref{homology} more specific. First, note that $\mathfrak{g}_2$ is
+one-dimensional, therefore $H_0(\mathfrak{g}_2)=\Q$, $H_1(\mathfrak{g}_2)=\Q[-1]$, $H_i\mathfrak{g}_2=0$ for $i > 1$. The operadic maps of insertion into the $k$-th position $\circ_k:U\mathfrak{g}_{n-1}\otimes U\mathfrak{g}_2\to U\mathfrak{g}_n$, where $k=1,\dots, n-1$, induce maps $\circ_k^*:H_*(\mathfrak{g}_{n-1})\otimes H_*(\mathfrak{g}_2)\to H_*(\mathfrak{g}_n)$, and the $(k+1)$-th summand in \ref{homology} is equal to $\circ_k^*(H_*(\mathfrak{g}_{n-1})\otimes H_1(\mathfrak{g}_2))$. The induction argument
+shows that:
+\begin{enumerate}
+\item The homology operad $H_*(\mathfrak{g}_n)\cong H_*(C_*^\Q(U\mathfrak{g}_n))$ is generated by $H_*(\mathfrak{g}_2)$, therefore the homology operad of $C_*^\Q(O_A(n))$ is generated by the homology of $C_*^\Q(O_A(n))$.
+\item The total dimension of $H_*(\mathfrak{g}_n)$ and of the homology of $C_*^\Q(O_A(n))$ is $n!$.  
+\end{enumerate}
+
+The first statement implies that the map $h:e_2\to C_*^{\Q}(O_A)$ is surjective on the homology level, and
+the second statement means that it is bijective since $\dim e_2(n)= n!$. ESTO ÚLTIMO NO LO VEO Y ME GUSTARÍA, LA HOMOLOGÍA EN DIMENSIÓN 2 SERÍA EL ABELIANIZADO DEL GRUPO DE TRENZAS PURAS, EL ABELIANIZADO DEL DE TRENZAS ES Z, LUEGO NO PUEDE TENER MÁS RANGO \url{https://en.wikipedia.org/wiki/Braid_group}
+
+\end{proof}
+DEFINIR LOS DRINFELD ASSOCIATOR \url{https://ncatlab.org/nlab/show/Drinfeld+associator} CREO QUE GROUPLIKE ES SIMPLEMENTE INVERTIBLE (LO MALO ES QUE NO LO ENTIENDO, OJALÁ TENGA QUE VER CON ESTO \url{https://en.wikipedia.org/wiki/Associator} ) 
 
 AQUÍ SE DEFINE \url{https://en.wikipedia.org/wiki/Quasi-bialgebra}
-
-LA PRUEBA TERMINA CUANDO SE DICE QUE ES BIYECTIVA
-\end{proof}
-
 Let $\Q(PaB_n)$ be the $\Q$-additive category generated by $PaB_n$. We have a map
 $\Q(PaB_n)\to C_\Q$ sending all morphisms from $PaB_n$ to $Id$. Thus, $\Q(PaB_n)\in \Q\Cat'$.
 The operadic structure on $PaB_*$ induces the one on $\Q(PaB_*)$.
@@ -459,11 +509,11 @@ $x_1(x_2x_3)$ of $PaB_3$ corresponding to the identical permutation $e \in \Sigm
 $i$ between them, corresponding to the identical braid $e_b\in B_3$. Define $\phi(i)=\Phi$.
 Since the operad $PaB_*$ is generated by $x$ and $i$, these conditions define $\phi$ uniquely. CREO QUE LO GENERAN PORQUE SE ENTIENDE $X$ COMO PERMUTAR DOS CUALESQUIERA, Y A PARTIR DE ESO PUEDES HACER CUALQUIER MORFISMO TAMBIÉN, PORQUE FIJADA UNA PERMUTACIÓN, LAS DEMÁS ES MULTIPLICAR POR TRENZAS PURAS, QUE ES HACER ESA PERMUTACIÓN UN NÚMERO PAR DE VECES. The definition of the associator is equivalent to the fact that $\phi$ is well-defined. ESTO ME GUSTARÍA SABER POR QUÉ, NO VEO QUÉ PROBLEMA DE DEFINICIÓN PODRÍA TENER Y POR QUÉ EL ASOCIADOR LO SOLUCIONA
 
-The map $\phi$ produces a map of operads $C_*(PaB_*)=C_*^\Q(\Q(PaB_*))\to C_*(O_A(*))$. It is
-well known that the homology operad of $C_*(PaB_*)$ is $e_2$ LA NOTACIÓN because $PaB_*$ induces a little disks operad as we saw in \ref{pab}. It is easy to check that $\phi$ is a
-quasi-isomorphism for $*=2$ A VER SI VEO ESTO and hence it is a quasi-isomorphism of operads (since
-$e_2$ NOTACIÓN is generated by $e_2(2)$ NOTACIÓN). By Proposition \ref{4.1}, $k$ is a quasi-isomorphism. Thus, the
-chain operad $C_*(PaB_*)$ is quasi-isomorphic to $e_2$ ESA NOTACIÓN.
+The map $\phi$ produces a map of operads $C_*(PaB_*)=C_*^\Q(\Q(PaB_*))\to C_*(O_A(*))$.
+%C_* ya era sobre Q, y hacerlo sobre PaB_* en realidad era sobre la realización del nervio, así que es linearizar al final. Lo otro es linearizar primero y luego coger el nervio para el caso lineal
+It is well known that the homology operad of $C_*(PaB_*)$ is $e_2$ because $PaB_*$ induces a little disks operad as we saw in \ref{pab}. It is easy to check that $\phi$ is a quasi-isomorphism for $*=2$ A VER SI VEO ESTO and hence it is a quasi-isomorphism of operads (since
+$e_2$ is generated by $e_2(2)$). By Proposition \ref{4.1}, $k$ is a quasi-isomorphism. Thus, the
+chain operad $C_*(PaB_*)$ is quasi-isomorphic to $e_2$.
 
 
 
