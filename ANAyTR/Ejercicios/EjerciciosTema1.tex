@@ -13,17 +13,14 @@
 Demostrar que si $A$ es conmutativa y $k$ es algebraicamente cerrado, todas las representaciones irreducibles de dimensión finita de $A$ son de dimensión 1. 
 \end{ejercicio}
 \begin{solucion}
-Sea $V$ una representación cualquiera de $A$. Para $a,b\in A$ cualquiesquiera, tenemos $ab=ba$, luego para todo $v\in V$ tenemos $ab(v)=ba(v)$
+Sea $V$ una representación irreducible cualquiera de $A$. Para $a,b\in A$ cualquiesquiera, tenemos $ab=ba$, luego para todo $v\in V$ tenemos $a(bv) =ab(v)=ba(v)=b(av)$
 \[
 \begin{tikzcd}
 V\arrow[r, "b"] \arrow[d, "a"] & V\arrow[d, "a"]\\
 V\arrow[r, "b"] & V
 \end{tikzcd}
 \]
-De aquí deducimos que la multiplicación por $b$ es un morfismo de representaciones. Por tanto, $b=\lambda_b Id$ en virtud del lema de Schur, es decir, la multiplicación por $b$ es la multiplicación por un número $\lambda_b\in k$. Supongamos que $V$ tuviera dimensión al menos 2. Entonces podemos escoger dos vectores linealmente independientes $u,v$. Entonces cada recta $ku$ y $kv$ son subrepresentaciones de $V$, pues $bu=\lambda_bu$ y $bv=\lambda_bv$, de modo que las rectas son cerradas bajo el producto. Esto es una contradicción con el hecho de que $V$ sea irreducible. 
-
-Forma alternativa de decirlo: todo subespacio de dimensión 1 de $V$ es subrepresentación y como $V$ es irreducible, $\dim(V)=1$. 
-
+De aquí deducimos que la multiplicación por $b$ es un morfismo de representaciones. Por tanto, $b=\lambda_b Id$ en virtud del lema de Schur, es decir, la multiplicación por $b$ es la multiplicación por un número $\lambda_b\in k$. Supongamos que $V$ tuviera dimensión al menos 2. Podemos escoger dos vectores linealmente independientes $u,v$. Entonces cada recta $\gene{u}$ y $\gene{v}$ son subrepresentaciones de $V$, pues son cerradas para el producto escalar. Esto es una contradicción con el hecho de que $V$ sea irreducible. 
 \end{solucion}
 
 \newpage
@@ -45,14 +42,21 @@ Supongamos que existen una subrepresentaciones $W_1,W_2\subset V$ tales que $W_1
 \end{solucion}
 \newpage
 \begin{ejercicio}{4}
-Sea $G$ un grupo y sea $k[G]$ el álgebra asociada. Sabemos que entre $k[G]$ y el sspacio de las funciones sobre $G$, $\mathcal{F}(G,k)$ hay un isomorfismo dado por
+Sea $G$ un grupo y sea $k[G]$ el álgebra asociada. Sabemos que entre $k[G]$ y el espacio de las funciones de $G$ en $k$, $\mathcal{F}(G,k)$, existe un isomorfismo dado por
 $$
-F = \sum_{g\in G} a_h g - g\to a_g
+F = \sum_{g\in G} a_g g \to (g\to a_g)
 $$
 Calcular el centro de $k[G]$.
 \end{ejercicio}
 \begin{solucion}
-
+Sea $f\in k[G]$. Es claro que $f$ está en el centro si y solo si conmuta con cada elemento de $G$. Sea $h\in G$. Tenemos
+\begin{align*}
+fh =  hf &\Longrightarrow \left(\sum_{g\in G} a_g g \right)h = h\left(\sum_{g\in G} a_g g \right)\\
+&\Longrightarrow \sum_{g \in G} a_g (gh) = \sum_{g \in G} a_g (hg) \\
+&\Longrightarrow \sum_{g \in G} a_g (gh)h^{-1} = \sum_{g \in G} a_g (hg) h^{-1}\\
+&\Longrightarrow \sum_{g \in G} a_g g = \sum_{g \in G} a_g (hgh^{-1}) 
+\end{align*}
+Por tanto, la condición necesaria y suficiente que es que $a_g$ sea constante entre los miembros de una misma clase de conjugación.
 \end{solucion}
 \newpage
 
@@ -64,7 +68,7 @@ Sea $V$ una representación vectorial no trivial de dimensión finita de un álg
 \begin{solucion}
 Si $V$ es irreducible, ya está. Si no, entonces tiene alguna subrepresentación propia $V_1$ no trivial de dimensión estrictamente menor. Repetimos recursivamente sobre este procedimiento con $V_1$ y como la dimensión es finita, el proceso termina, dando una subrepresentación irreducible.
 
-Construimos ahora un contraejemplo para el caso de dimensión infinita. Sea $A=\C[x]$ y consideramos la representación regular (ejemplo 1.10) de $A$ actuando sobre sí mismo con la multiplicación del anillo. Entonces cualquier elemento no nulo de $a$ genera una subrepresentación isomorfa a $A$, por lo que no puede tener subrepresentaciones irreducibles. 
+Construimos ahora un contraejemplo para el caso de dimensión infinita. Sea $A=\C[x]$ y consideramos la representación regular (Ejemplo 1.10) de $A$ actuando sobre sí mismo con la multiplicación del anillo. Entonces cualquier elemento no nulo de $A$ genera una subrepresentación isomorfa a $A$, por lo que no puede tener subrepresentaciones irreducibles. 
 
 %Sea $A=\C[C_\infty]$ el álgebra del grupo cíclico infinito $C_\infty=\gene{c}$. Sea $V=\C[T,T^{-1}]$ el anillo de polinomios de Laurent, es decir, 
 %\[
@@ -97,11 +101,11 @@ Sea $A$ un álgebra sobre un cuerpo $k$ algebraicamente cerrado. El centro $Z(A)
 \begin{solucion}
 \begin{enumerate}[(a)]
 \item[]
-\item Básciamente es seguir la demostración del ejercicio $1$. Si $z$ conmuta con todos los elementos de $a$, naturalmente para $v\in V$ y $a\in A$
+\item Si $z$ conmuta con todos los elementos de $A$, naturalmente para $v\in V$ y $a\in A$
 $$
-\rho(z)(\rho(a)(v)) = \rho(za)(v) = \rho(az)(v) = \rho(a)(\rho(z)(v))
+z(av) = za(v) = az(v)=a(zv)
 $$ 
-Por lo que $\rho(z)$ es un morfismo de representaciones. Por la hipótesis de que $V$ es irreducible y de dimensión finita, y al ser $k$ algebraicamente cerrado, deducimos que $\exists \X_V(z) \in k$ tal que $\rho(z)=\X_V(z)Id$.
+Por lo que mutiplicar por $z$ es un morfismo de representaciones. Por la hipótesis de que $V$ es irreducible y de dimensión finita, y al ser $k$ algebraicamente cerrado, deducimos del Lema de Schur que $\exists \X_V(z) \in k$ tal que $\rho(z)=\X_V(z)Id$.
 
 Es claro que $Z(A)$ es una subálgebra, pues la unidad está y si $z,w$ conmutan con todo $A$, también lo hacen $z+w,zw,sz$ también lo hacen, con $s\in k$. Para ver que $\X_V(z)$ es un morfismo de álgebras (viendo $k$ como álgebra), sean $z,w\in Z(A)$, $s \in k$, entonces
 \begin{align*}
