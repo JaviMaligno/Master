@@ -804,5 +804,54 @@ Vamos ahora al caso de que $\dim V=2n+1$. Tomamos ahora una base como la de dime
 Con esto ya tenemos que las representaciones están bien definidas. La prueba de que $S_+$ y $S_-$ son irreducibles es igual que la de $S$ del caso anterior. Es fácil comprobar que estas representaciones no son isomorfas. Si existiera un isomorfismo de representaciones $f:S_+\to S_-$, $f$ debe llevar $p$-formas en $p$-formas, luego para una $p$-forma $w$ deberíamos tener $(-1)^{p+1}f(w)=\rho_-(c)(f(w))=f(\rho_+(c)(w))=(-1)^pf(w)$, lo cual no es posible. Igual que antes, tanto $S_+$ como $S_-$ tienen dimensión $2^n$ y podemos encontrar un sistema generador de $V$ y podemos recurrir a un argumento combinatorio similar al del anterior caso para demostrar que $Cl(V)$ es semisimple. 
 \end{enumerate}
 
+\newpage
+\begin{ejercicio}{Sec 3.5}
+Sea $G$ un grupo finito. Sea $V_i$ la representaciones irreducibles de $\C[G]$. Para cada $i$ 
+$$
+\psi_i = \frac{\dim V_i}{|G|}\sum_{g\in G}\chi_{V_i}(g)g^{-1}\in \C[G]
+$$
+\begin{itemize}
+\item Probar que $\psi_i$ actúa en $V_j$ como la identidad si $i=j$ y como $0$ en otro caso.
+\item Probar que $\psi_i$ es idempotente, es decir, que $\psi_i^2=\psi_i$ para cualquier $i$ y que $\psi_i\psi_j = 0$ si $i\neq j$.
+\end{itemize}
+\end{ejercicio}
+\begin{solucion}
+\begin{itemize}
+\item[]
+\item Notemos que, sea $h\in G$ entonces basta aplicar que recorrer $g \in G$ es equivalente a recorrer $h^{-1}gh\in G$ y que el carácter es multiplicativo, luego tenemos necesariamente
+$$
+\chi_{V_i}(h^{-1}gh) = \chi_{V_i}(h^{-1})\chi_{V_i}(g)\chi_{V_i}(h)= \chi_{V_i}(h^{-1})\chi_{V_i}(h)\chi_{V_i}(g) = \chi_{V_i}(g)
+$$
+Por tanto, podemos escribir
+\begin{align*}
+h \psi_i &=  h \frac{\dim V_i}{|G|}\sum_{g\in G}\chi_{V_i}(g)g^{-1}\\
+&= h \frac{\dim V_i}{|G|}\sum_{g\in G}\chi_{V_i}(h^{-1}gh)h^{-1}g^{-1}h\\
+&= \frac{\dim V_i}{|G|}\sum_{g\in G}h\chi_{V_i}(g)h^{-1}g^{-1}h\\
+&=\frac{\dim V_i}{|G|}\sum_{g\in G}\chi_{V_i}(g)g^{-1} h\\
+&=\psi_i h
+\end{align*}
+Por tanto $\psi_i$ conmuta con $G$ y, por linealidad, con $\C[G]$. Por el Ejercicio 1.21, $\psi_i$ actúa como un escalar en las representaciones irreducibles de $k[G]$ (pues son todas finitas por el Teorema de Maschke). 
+
+Tenemos que probar las constantes de los caracteres son $1$ si $i=j$ y $0$ en caso contrario.
+\end{itemize}
+\end{solucion}
+
+
+\newpage
+\begin{ejercicio}{3.5}
+
+\end{ejercicio}
+\begin{solucion}
+
+\end{solucion}
+
+
+\newpage
+\begin{ejercicio}{3.5}
+
+\end{ejercicio}
+\begin{solucion}
+
+\end{solucion}
 
 \end{document}
