@@ -832,7 +832,13 @@ h \psi_i &=  h \frac{\dim V_i}{|G|}\sum_{g\in G}\chi_{V_i}(g)g^{-1}\\
 \end{align*}
 Por tanto $\psi_i$ conmuta con $G$ y, por linealidad, con $\C[G]$. Por el Ejercicio 1.21, $\psi_i$ actúa como un escalar en las representaciones irreducibles de $k[G]$ (pues son todas finitas por el Teorema de Maschke). 
 
-Tenemos que probar las constantes de los caracteres son $1$ si $i=j$ y $0$ en caso contrario.
+Tenemos que probar las constantes de los caracteres son $1$ si $i=j$ y $0$ en caso contrario. Calculemos directamente usando la linealidad del caracter
+\begin{align*}
+\chi_{V_j}  \phi_i &= \frac{\dim V_i}{|G|}\sum_{g\in G}\chi_{V_i}(g)\chi_{V_j}(g^{-1})\\
+& = \frac{\dim V_i}{|G|}\sum_{g\in G}\chi_{V_i}(g)\overline{\chi_{V_j}(g)}
+\end{align*}
+Por el Teorema 3.8, dado que si $i\neq j$ $V_i \not \cong V_j$, la suma anterior es $0$. Si $tr(\lambda Id) = \lambda \dim(V_j) = 0$, tenemos que $\lambda = 0$. Si $i=j$, entonces la suma es $|G|$, luego el escalar obtenido es $\dim (V_i)$. Por tanto, $tr(\lambda Id) = \lambda \dim(V_i) = \dim(V_i)$ entonces $\lambda = 1$ y actúa como la identidad.
+\item 
 \end{itemize}
 \end{solucion}
 
