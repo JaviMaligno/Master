@@ -359,4 +359,38 @@ $$
 \begin{dem}
 Veamos una contención. Sea $x$ en la intersección, tomamos $\varepsilon_n$ tal que $d_H(T^n(F),F_0)<\varepsilon_n$ con $\varepsilon_n\to0$. Por tanto, $x\in T^n(F)\subset F_0(\varepsilon_n)$. Luego $\exists x_n\in F_0$ con $d(x,x_n)<\varepsilon_n$. Es decir, tenemos una sucesión $\{x_n\}\subset F_0$ tal que $x_n \to x$. Por tanto, $x\in F_0$, ya que $F_0$ es compacto (y en particular ceerrado). 
 \end{dem}
+
+\begin{defi}
+Sea $T:\R^n\to\R^n$. Diremos que $T$ es una transforrmación afín si $\exists u_0 \in \R^n$ y $L:\R^n\to\R^n$ aplicación lineal tal que $T(x)=L(x)+u_0$.
+\end{defi}
+\begin{defi}
+Diremos que una transformación afín $T(x)=Ax+u_0$ es contractiva si la matriz $A$ que constituye la aplicación lineal tiene norma matricial compatible con la que estemos utilizando en $\R^n$ menor que $1$.
+\end{defi}
+\begin{nota}
+En cuanto a la compatibilidad de las normas matriciales en $\R^2$ tenemos: 
+\begin{itemize}
+\item Si utilizamos $d_1$ entonces tomamos el máximo de las $d_1$ de las columnas.
+\item Si utilizamos $d_\infty$, entonces tomamos el máximo de las $d_1$ por filas.
+\item Si utilizamos $d_2$ entonces tomamos el mayor autovalor de $A^tA$.
+\end{itemize}
+\end{nota}
+\begin{defi}
+Sea $(X,d)$ un espacio métrico y $T:X\to X$. Diremos que $T$ es una similitud si $d(x,y)=c d(x,y)$.
+\end{defi}
+\begin{defi}
+Sea $\{T_1,\dotsc,T_n\}$ un IFS donde cada $T_i$ es una similitud de constante $c_i$. Se denomina dimensión de similitud del fractal asociado a la única solución de la ecuación
+$$
+\sum_{i=1}^n c^S_i = 1
+$$
+
+\end{defi}
+\begin{nota}
+La dimensión de similitud está bien definida.
+\end{nota}
+\begin{example}
+El conjunto de Cantor tiene dimensión $\log_3 2$, el triángulo de Sierpinski $\log_2 3$, la curva de Koch $\log 4_3$. 
+\end{example}
+
+\begin{ejercico}
+Crear un sistema iterado de funciones en $\R^2$. Tomar $A\sbuset \R^2$ no vacío compacto y dibujar las iteradas del conjunto $A$ por el IFS. Aproximar el fractal obtenido como punto fijo del IFS. En caso de ser similitudes, calcular la dimensión de similaridad.
 \end{document}
