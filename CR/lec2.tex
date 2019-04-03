@@ -1,0 +1,107 @@
+\documentclass[CR.tex]{subfiles}
+
+\begin{document}
+
+
+%\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
+
+\chapter{Elliptische Kurven in der Kryptographie}
+\section{Ebene Kurven (Affine und Projektive)}
+Sea $k$ un cuerpo. 
+\begin{defi}
+El plano afín $\A^2(k)=\{(a,b)\mid a,b\in k\}$. Los puntos afines son elementos de $\A^2(k)$. Para un polinomio $f$ con coeficientes en $k$ se define $C_f(k)=\{(a,b)\in\A^2(k)\mid f(a,b)=0\}$. 
+\end{defi}
+
+Consideremos $\{(C,f)\mid C\subseteq\A^2(k), f\in k[x,y], C_f(k)=C\}$. Consideramos una relación de equivalencia: $(C_1,f_1)\sim (C_2,f_2)\Leftrightarrow C_1=C_2$ y $f_1=\lambda f_2$ para algún $\lambda\in k^*$. 
+
+\begin{nota}
+Sea $f\neq 0$ en $k[x,y]$. Entonces $(C_f,f)\sim (C_{\lambda f},\lambda f)$ para cualquier $\lambda\neq 0$ de $k$. Esto tiene que ver con que $\gene{f}=\gene{\lambda f}$.
+\end{nota}
+
+El plano proyectivo ya sabemos todos lo que es. ConsIderamos solo $\PP^2(k)=k^3\setminus\{0\}/\sim$. Hay 3 maneras naturales de meter $\A^2(k)$ en $\PP^2(k)$ ($i_2$, $i_2$, $i_3$), que es poniendo un 1 en alguna coordenada, y de hecho $\PP^2(k)$ es unión de estras 3 inclusiones. Normalmente usaremos $i=i_3$. Denotamos $H=i_1(\{(a,0):a\in k\})$ y $\theta=[0:1:0]$. Tenemos la unión disjunta $\PP^2(k)=\A^2(k)\cup H\cup \{\theta\}$. 
+
+\begin{defi}
+Sea $d\geq 1$ y $f\in k[x,y,z]$ no nulo. Diremos que $f$ es homogéneo de grado $d$ si todos sus monomios tienen grado $d$. 
+\end{defi}
+
+Es claro que si $f$ es homogéneo, entonces $f(a,b,c)=0\Leftrightarrow f(\lambda a,\lambda b,\lambda c)=0$ para todo $\lambda\neq 0$. Podemos definir entonces $C_f(k)$ en $\PP^2(k)$ y la misma relación de antes. 
+
+Si $f\in k[x,y]$, homogeneizar es añadir $z$ en cada monomio tantas veces como haga falta para que salga un polinomio homogéneo en $f^*\in k[x,y,z]$, concretamente, si $d=\max\{n_1+n_2, a_{n_1 n_2}\neq 0\}$, siendo $n_1+n_2$ los grados de los monomios en $x,y$, entonces añadimos $z^{d-n_1-n_2}$ en cada caso. A $C_{f^*}$ se le llama proyectivización de $C_f$. 
+
+\begin{lemma}
+Sea $f\in k[x,y]$ no constante. Entonces $i(C_f(k))=C_{f^*}(k)\cap i(\A^2(k))$. 
+\end{lemma}
+
+\begin{lemma}\
+\begin{enumerate}[(a)]
+\item Sean $P_1,P_2\in\PP^2(k)$ puntos distintos. Existe una única recta proyectiava $L$ que pasa por $P_1$ y $P_2$. 
+\item Sean $L_1$ y $L_2$ dos rectas proyectivas distintas, entonces se cortan en un único punto. 
+\end{enumerate}
+\end{lemma}
+\begin{proof}\
+\begin{enumerate}[(a)]
+\item $P_i=[a_i:b_i:c_i]$. Busco $L=L(\alpha,\beta,\gamma)$ tal que 
+\[
+\begin{pmatrix}
+a_1 & b_1 & c_1\\
+a_2 & b_2 & c_2
+\end{pmatrix}\begin{pmatrix}
+\alpha\\
+\beta\\
+\gamma
+\end{pmatrix}=0
+\]
+El sistema tiene rango 2 porque $P_1\neq P_2$. Supongamos sin pérdida de generalidad que es el el primer cuadrado el que tiene determinante no nulo. Buscamos $\alpha,\beta$ tales que
+\begin{equation}\label{syst}
+\begin{pmatrix}
+a_1 & b_1\\
+a_2 & b_2
+\end{pmatrix}\begin{pmatrix}
+\alpha\\
+\beta
+\end{pmatrix}=\begin{pmatrix}
+-c_1\\
+-c_2
+\end{pmatrix}
+\end{equation}
+Este sistema tiene solución única $L(\alpha,\beta,1)$, que es una recta que pasa por $P_1$ y $P_2$. Si $L(\alpha',\beta',\alpha')$ también pasa por $P_1$ y $P_2$, entonces
+\[
+\begin{cases}
+\alpha'a_1+\beta'b_1=-\gamma'c_1\\
+\alpha'a_1+\beta'b_2=-\gamma'c_2
+\end{cases}
+\]
+Si $\gamma'\neq 0$, $(\frac{\alpha'}{\gamma'},\frac{\beta'}{\gamma'})$ verifica el sistema \ref{syst}, luego
+\[
+\alpha=\alpha'/\gamma'; \beta=\beta'/\gamma'; 1=\gamma'/\gamma'
+\]
+luego $L(\alpha,\beta,1)=L(\alpha',\beta',\gamma')$.
+
+\item Análogo.
+\end{enumerate}
+\end{proof}
+
+\subsection{Cambio de base}
+Sea $K\subseteq E$ una extensión de cuerpos y $f\in K[x,y,z]\subseteq E[x,y]$. Tenemos $C_f/K=(C_f(K),f)/\sim$ y $C_f/E=(C_f(E),f)/\sim$. En general, la inclusión $C_f(K)\subseteq C_f(E)$ conmuta con la inclusión $\A^2(E)\subseteq \A^2(E)$ y $C_f(K)=C_f(E)\cap \A^2(K)$. 
+
+En el plano proyectivo tenemos también estas inclusiones e igualdades de forma natural. 
+
+\begin{defi}[Recta tangente a una curva en un punto]
+La recta tangente de $f$ es la componente homogénea de grado 1, $f_1$, cuando no es nula. Si es nula, pues no está difinida, qué le vamos a hacer.
+\end{defi}
+
+\begin{defi}
+Sea $K$ cuyo $f(x,y)\in K[x,y]$ no nulo y $P=(a,b)\in \A^2(K)$ con $f(a,b)=0$. Decimos que $P$ es singular si las derivadas parciales en $P$ se anulan simultaniamente. Si $P$ es no singular, se dice regular. Decimos que $C$ es lisa si para alguna clausura algebraica $\overline{K}$ de $K$, todo punto $P\in C_f(K)$ es regular. 
+\end{defi}
+
+Las derivadas paraciales de un polinomio homogéneo son polinomios homogéneos, luego podemos hacer las mismas definiciones para el caso proyectivo.
+
+\begin{nota}
+$P=(a,b)\in C_f/K$ es singular si y solo si $[a:b:1]$ es singular en $C_{f^*}/K$. Una curva $C_f$ puede ser lisa pero no serlo $C_{f^*}$ (pueden pasar cosas en el infinito). Por ejemplo $f(x,y)=x^3+yx^2-y$.
+\end{nota}
+\begin{defi}
+Sea $C_f/K$ una curva proyectiva y $P=[a:b:c]\in C_f(K)$ no singular. Se define la recta tangente a $C_f$ en $P$ como $L(\partial{f}{x}(a,b,c),\partial{f}{y}(a,b,c),\partial{f}{z}(a,b,c)$. 
+\end{defi}
+
+
+\end{document}

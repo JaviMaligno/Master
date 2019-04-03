@@ -854,6 +854,108 @@ Let $G$ be the group of symmetries of a regular $N$-gon (it has $2N$ elements).
 \end{enumerate}
 \end{ejercicio}
 \begin{solucion}
+Asumimos en este ejercicio $N\geq 3$, ya que no hay un polígono regular de $N$ lados para $N<3$. 
+\begin{enumerate}[(a)]
+\item El grupo dihédrico de $2N$ elementos tiene presentación $$D_N=\gene{a,b\mid a^N=b^2=1, bab=a^{-1}}.$$ Encontremos en primer lugar las clases de conjugación de $D_N$. Tenemos que $\gene{a}$ es un subgrupo cíclico normal de $D_N$, luego cada elemento de este subgrupo junto con su inverso forman una clase de conjugación. Esto, en el caso de que $N$ sea par, nos da, además de la clase del elemento neutro, nos da de $\frac{N-2}{2}$ clases. Es fácil comprobar con las relaciones del grupo, que para $N$ par los demás elementos forman dos clases de conjugación, una dada por los de la forma $a^{2k}b$ y otra por los de la forma $a^{2k+1}b$. En total tenemos, por tanto, $\frac{N+6}{2}$ clases de conjugación.
+
+En el caso $N$ impar el análisis es similar aunque con algunas diferencias. Ahora, los elementos no triviales del subgrupo $\gene{a}$ nos dan una cantidad de $\frac{N-1}{2}$ clases. Los elementos que no pertenecen a este subgrupo ahora forman todos una misma clase, por lo que en total tenemos $\frac{N+3}{2}$.
+
+%\url{https://math.stackexchange.com/questions/556508/conjugate-class-in-the-dihedral-group}
+
+Ahora buscaremos representaciones irreducibles, ayudándonos del cálculo anterior para saber si las hemos encontrado todas gracias a que hay tantas como clases de conjugación. Empecemos con $N$ par. Buscamos primero representaciones de dimensión 1 (que son necesariamente irreducibles). Por la presentación del grupo, tenemos que si $\rho: D_N\to\End(\C)$ es una representación unidimensional, entonces está dada por $\rho(a)$ y $\rho(b)$. Tenemos que $\rho(a)^N=\rho(a^N)=1$, por lo que $\rho(a)$ es una raíz $N$-ésima de la unidad. Similarmente, $\rho(b)$ es una raíz cuadrada de la unidad, luego $\rho(b)\in\{-1,1\}$. Como además $\rho(b)\rho(a)\rho(b)=\rho(bab)=\rho(a)^{-1}$, necesariamente $\rho(a)=\rho(a)^{-1}$, con lo que en realidad $\rho(a)\in\{-1,1\}$. Combinando las posibilidades obtenemos 4 representaciones irreducibles de dimensión 1: $\rho_+^+$, $\rho_+^-$, $\rho_-^+$, $\rho_-^-$.. 
+
+Vamos ahora a las representaciones irreducibles de dimensión 2. Para definirlas nos inspiramos en la definición geométrica del grupo, es decir, $a$ actuará como una rotación y $b$ como una reflexión. En concreto, sea $w=e^{2\pi i/N}$. Para $h\in\{1,\dots, N\}$ definimos $\rho_h$ como la extensión lineal de
+\[
+\rho_h(a)=\begin{pmatrix}
+w^h & 0\\
+0 & w^{-h}
+\end{pmatrix},\ \rho(b)=\begin{pmatrix}
+0 & 1\\
+1 & 0
+\end{pmatrix}
+\]
+Se comprueba fácilmente que estas matrices verifican las relaciones de la presentación de $D_N$. Es obvio que $\rho_h$ y $\rho_{N-h}$ generan representaciones isomorfas, por lo que podemos reducirnos a estudiar los casos $0\leq h\leq N/2$. Para $h=0$, observamos que $\chi(\rho_0)=\chi(\rho_+^+)+\chi(\rho_+^-)$. Por el corolario 3.7, las representaciones están caracterizadas por sus caracteres, luego $\rho_0$ es isomorfa a la suma directa de las representaciones $\rho_+^+$ y $\rho_+^-$. Para $h=N/2$, tenemos una situación análoga pero con $\rho_-^+$ y $\rho_-^-$, así que podemos limitarnos a $0<h<N/2$. Obsérvese que ahora, para cualquiera de estos valores de $h$, tenemos que $w^h\neq w^{-h}$, por lo que las únicas rectas invariantes por $\rho(a)$ son los ejes generados por $\gene{(1,0)}$ y $\gene{(0,1)}$, pero estos subespacios no son invariantes por $\rho(b)$, de modo que estas representaciones son irreducibles. Hemos encontrado entonces $N/2-1$ representaciones irreducibles de dimensión 2.
+
+Obsérvese ahora que la cantidad total de representaciones irreducibles que hemos encontrado ha sido $4+N/2-1=N/2+3=\frac{N+6}{2}$, que era el número de clases de conjugación, luego ya las hemos encontrado todas. 
+
+
+
+
+Pasamos al caso $N$ impar. Podemos razonar de forma análoga al caso par. Ahora, como $-1^N=-1\neq 1$, $\rho(a)=1$, luego tenemos solo 2 representaciones irreducibles de dimensión 1. Para las de dimensión 2 hacemos la misma definición que para $N$ par, solo que ahora nos quedamos con los valores de $h\in\{1,\dots, \frac{N-1}{2}\}$, que por los mismos razonamientos nos dan representaciones irreducibles. Todas estas representaciones suman $2+\frac{N-1}{2}=\frac{N+3}{2}$, con lo que están todas.
+
+
+Alternativamente, en ambos casos podemos deducir que hemos encontrado todas sin hacer uso de las clases de conjugación, sino simplemente la fórmula de la suma de cuadrados, ya que para el caso par tenemos $4\cdot 1^2+(N/2-1)\cdot 2^2=2N$ y en el caso impar tenemos $2\cdot 1^2+\frac{N-1}{2}\cdot 2^2=2N$. 
+%\url{http://math.webgirand.eu/pdf/dvp_agreg/Dn_en.pdf}
+%\url{https://groupprops.subwiki.org/wiki/Number_of_conjugacy_classes}
+%\url{https://groupprops.subwiki.org/wiki/Element_structure_of_dihedral_groups}
+
+
+\item La complexificación de la representación estándar de $D_N$ se corresponde al $\rho_1$ que hemos definido en el apartado anterior. Empecemos por el caso $N$ impar. Escribimos como $\C_+^+$ la representación asociada a $\rho_+^+$ y análogamente con las otras representaciones unidimensionales. Denotamos además $\C^2_h$ a la representación asociada a $\rho_h$. Tenemos la tabla de caracteres siguiente a partir del apartado anterior:
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+$D_N$ &       $a^k$ & $a^kb$ \\
+\hline
+$\C_+^+$   &    1   &    1 \\
+\hline
+$\C_+^-$   &    1   &    -1\\
+\hline
+$\C^2_h$   &  $2\cos(\frac{2\pi h k}{N})$ & 0\\
+\hline
+\end{tabular}
+
+En el caso concreto de $V=\C^2_1$ tenemos que $\chi_{V\otimes V}=\chi_V^2$, por lo que en $a^k$ vale $4\cos^2(\frac{2\pi k}{N})$ y en $a^kb$ vale 0. la cantidad de copias de $\C_+^+$ en $V\otimes V$ está dada por el producto escalar $(\chi_V^2,\chi_{\C_+^+})$, que lo calculamos a continuación.
+\begin{align*}
+(\chi_{V}^2, \chi_{\mathbb{C}_+^+})
+&= \frac{1}{2N} \sum_{g \in D_N} \chi_{V}^2(g)\overline{\chi_{\mathbb{C}_+^+}(g)} \\
+&= \frac{1}{2N} \sum_{k=0}^{N-1} 4 \cos^2 \frac{2\pi k}{N} \\
+&= \frac{1}{N} \sum_{k=0}^{N-1} \left(1 + \cos \frac{4\pi k}{N}\right)\\
+&= \frac{1}{N} (N + 0) = 1
+\end{align*}
+En las ecuaciones hemos usado la fórmula del producto de cosenos y que la suma de las raíces de la unidad es 0. Análogamente, el número de copias de de $\C_+^-$ es 1. La dimensión de $V\otimes V$ es 4, así que necesariamente contiene una copia de un $\C^2_h$, que lo calculamos usando la linealidad de los caracteres sobre sumas directas.
+
+\begin{align*}
+\chi_{\mathbb{C}^2_h}(a^k)
+&= \chi_{V}^2(a^k) - \chi_{\mathbb{C}_+^+}(a^k) -
+\chi_{\mathbb{C}_+^-}(a^k) \\
+&= 4 \cos^2 \frac{2\pi k}{N} - 2 \\
+&= 2 \cos \frac{4\pi k}{N} \\
+&= \chi_{\mathbb{C}^2_2}(a^k)
+\end{align*}
+por lo que $h=2$. Es decir, $V\otimes V\cong \C_+^+\oplus \C_+^-\oplus \C^2_2$. Cabe destacar el caso $N=3$, para el cual existe realmente $\C_2^2$, por lo que la única copia de dimensión 2 que se puede utilizar es $\C^2_1$, con la que he hecho coincidiría $\C_2^2$ si la definiéramos siguiendo el mismo patrón.
+
+
+
+Veamos ahora el caso $N$ par. Tenemos la siguiente tabla de caracteres (agrupando dos clases de conjugación que tienen los mismos caracteres):
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+$D_N$       &  $a^k$   &  $a^kb$ \\
+\hline
+$\C_+^+$    &   1      &    1    \\
+\hline
+$\C_+^-$    &   1      &   $-1$   \\
+\hline
+$\C_-^+$    & $(-1)^k$ &   $(-1)^k$ \\
+\hline
+$\C_-^-$    & $(-1)^k$ & $(-1)^{k+1}$ \\
+\hline
+$\C^2_h$    & $2\cos(\frac{2\pi h k}{N})$ & 0\\
+\hline
+\end{tabular}
+
+Se observa que las filas de $\C_+^+$ y $\C_+^-$ son iguales respectivamente a las del caso $N$ impar, así como también lo es la de $\C^2_h$, por lo que los cálculos serían los mismos y esto nos vuelve a dar $V\otimes V\cong \C_+^+\oplus C_+^-\oplus \C^2_2$. De nuevo, tenemos una excepción, y es que $\C_2^2$ no está definida para el caso $N=4$. En este caso tenemos que hacer los cálculos con las otras representaciones irreducibles de dimensión 1 (en realidad solo con una de ellas, la otra se deducirá por dimensión). 
+
+\begin{align*}
+(\chi_{V}^2, \chi_{\mathbb{C}_-^+})
+&= \frac{1}{8} \sum_{g \in D_4} \chi_{V}^2(g)\overline{\chi_{\mathbb{C}_-^+}(g)} \\
+&= \frac{1}{8} \sum_{k=0}^{3} (-1)^k4 \cos^2 \frac{2\pi k}{4} \\
+&= \frac{1}{2} \sum_{k=0}^{3} (-1)^k\left(1 + \cos \frac{4\pi k}{4}\right)\\
+&=\frac{1}{2} \sum_{k=0}^{3} (-1)^k\left(1 + (-1)^k)\right)=1
+\end{align*}
+Así que $\C_-^+$ aparece una vez y por dimensión también $\C_-^-$, es decir, para $N=4$ tenemos $V\otimes V\cong \C_+^+ \oplus\C_+^- \oplus \C_-^+ \oplus \C_-^-$. 
+
+\end{enumerate}
 
 \end{solucion}
 
