@@ -963,6 +963,12 @@ Así que $\C_-^+$ aparece una vez y por dimensión también $\C_-^-$, es decir, 
 \newpage
 \begin{ejercicio}{3.19}
 Let $V$ be a finite dimensional complex vector space, and $GL(V)$ be the group of invertible linear transformations of $V$. Then $S^nV$ and $\Lambda^m V$ ($m ≤ \dim(V )$) are representations of $GL(V )$ in a natural way. Show that they are irreducible representations.
+
+Hint: Choose a basis $\{e_i\}$ in $V$. Find a diagonal element $H$ of $GL(V)$ such that $ρ(H)$ has
+distinct eigenvalues. (where $ρ$ is one of the above representations). This shows that if $W$ is a
+subrepresentation, then it is spanned by a subset $S$ of a basis of eigenvectors of $ρ(H)$. Use the
+invariance of $W$ under the operators $ρ(1+E_{ij})$ (where $E_{ij}$ is defined by $E_{ij}e_k = δ_{jk}e_i)$ for all $i \neq j$
+to show that if the subset $S$ is nonempty, it is necessarily the entire basis.
 \end{ejercicio}
 \begin{solucion}
 
