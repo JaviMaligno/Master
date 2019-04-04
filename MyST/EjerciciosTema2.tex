@@ -17,8 +17,121 @@ Considerar $K$ una triangulación de la banda de Möbius en la que dos puntos di
 \item Repetir todo el ejercicio, tomando como $K$ una triangulación de la 2-esfera con una membrana ecuatorial. 
 \end{enumerate}
 \end{ejercicio}
-\begin{solucion}
+\begin{solucion}\
+\begin{enumerate}
+\item[(a) y (b)] Hacemos los dos primeros apartados juntos porque es más sencillo hacer el campo dibujando las flechas y luego asignar valores. Para ello tomamos la siguiente triangulación de la banda de Möbius y elegimos el campo basándonos en el colapso que existe sobre una circunferencia central.
 
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-2.6266666666666674,-0.4466666666666663) rectangle (12.706666666666667,3.6);
+\draw [line width=2.pt] (0.,0.)-- (0.,3.);
+\draw [line width=2.pt] (0.,3.)-- (9.,3.);
+\draw [line width=2.pt] (9.,3.)-- (9.,0.);
+\draw [line width=2.pt] (9.,0.)-- (0.,0.);
+\draw [line width=2.pt] (3.,0.)-- (3.,3.);
+\draw [line width=2.pt] (6.,3.)-- (6.,0.);
+\draw [line width=2.pt] (0.,0.)-- (3.,3.);
+\draw [line width=2.pt] (3.,0.)-- (6.,3.);
+\draw [line width=2.pt] (6.,0.)-- (9.,3.);
+\draw [->,line width=2.pt] (0.,0.) -- (1.49,1.49);
+\draw [->,line width=2.pt] (1.466666666666666,3.) -- (1.4933333333333327,1.9933333333333352);
+\draw [->,line width=2.pt] (0.,3.) -- (0.,1.5533333333333355);
+\draw [->,line width=2.pt] (3.,3.) -- (3.,1.4333333333333351);
+\draw [->,line width=2.pt] (4.48,3.) -- (4.493333333333333,1.98);
+\draw [->,line width=2.pt] (3.,0.) -- (4.456666666666668,1.4566666666666679);
+\draw [->,line width=2.pt] (6.,3.) -- (6.,1.4733333333333352);
+\draw [->,line width=2.pt] (9.,0.) -- (9.,1.5933333333333353);
+\draw [->,line width=2.pt] (7.453333333333334,3.) -- (7.466666666666667,1.9666666666666686);
+\draw [->,line width=2.pt] (1.4133333333333322,0.) -- (1.44,0.9933333333333351);
+\draw [->,line width=2.pt] (4.493333333333334,0.) -- (4.506666666666666,0.98);
+\draw [->,line width=2.pt] (7.466666666666667,0.) -- (7.48,0.9933333333333351);
+\draw (1.2933333333333326,3.46) node[anchor=north west] {$10$};
+\draw (0.6133333333333326,2.4333333333333345) node[anchor=north west] {$10$};
+\draw (2.093333333333333,1.1933333333333342) node[anchor=north west] {$9$};
+\draw (1.3733333333333326,0.033333333333334096) node[anchor=north west] {$9$};
+\draw (4.373333333333333,3.393333333333335) node[anchor=north west] {$8$};
+\draw (3.786666666666666,2.326666666666668) node[anchor=north west] {$8$};
+\draw (4.466666666666666,0.07333333333333411) node[anchor=north west] {$7$};
+\draw (5.066666666666666,0.5133333333333342) node[anchor=north west] {$7$};
+\draw (7.253333333333334,3.46) node[anchor=north west] {$6$};
+\draw (6.84,2.26) node[anchor=north west] {$6$};
+\draw (7.64,0.06) node[anchor=north west] {$5$};
+\draw (8.24,1.0466666666666675) node[anchor=north west] {$5$};
+\draw (-0.24,3.1933333333333347) node[anchor=north west] {$3$};
+\draw (-0.1733333333333341,1.5533333333333343) node[anchor=north west] {$3$};
+\draw (-0.12,0.033333333333334096) node[anchor=north west] {$2$};
+\draw (9.146666666666667,3.18) node[anchor=north west] {$2$};
+\draw (9.173333333333334,1.6333333333333344) node[anchor=north west] {$3$};
+\draw (8.96,0.08666666666666745) node[anchor=north west] {$3$};
+\draw (-0.06666666666666743,3.446666666666668) node[anchor=north west] {$v_0$};
+\draw (9.146666666666667,0.31333333333333413) node[anchor=north west] {$v_0$};
+\draw (-0.42666666666666747,0.14) node[anchor=north west] {$v_4$};
+\draw (9.,3.42) node[anchor=north west] {$v_4$};
+\draw (2.9333333333333327,3.46) node[anchor=north west] {$1$};
+\draw (5.786666666666666,3.46) node[anchor=north west] {$-1$};
+\draw (5.786666666666666,0.11333333333333412) node[anchor=north west] {$-4$};
+\draw (7.44,1.7) node[anchor=north west] {$3$};
+\draw (1.706666666666666,2.0066666666666677) node[anchor=north west] {$2$};
+\draw (2.9066666666666663,0.07333333333333411) node[anchor=north west] {$0$};
+\draw (4.453333333333333,1.8066666666666678) node[anchor=north west] {$0$};
+\draw (2.946666666666666,1.54) node[anchor=north west] {$1$};
+\draw (5.853333333333333,1.7) node[anchor=north west] {$-1$};
+\end{tikzpicture}
+
+Hemos tenido que dejar una arista sin fleca (crítica) para que no se formaran caminos cerrados, lo cual también hace que tenga un vértice crítico. Como el complejo tiene el tipo de homotopía simple de $S^1$, es claro que la función es óptima, ya que verifica las desigualdades de Morse con igualdad, es decir hay un vértice crítico ($b_0=1$) y una arista crítica ($b_1=1$). 
+
+\item Por el apartado anterior, el CW es $S^1$ visto como unión de un punto a los extremos de $[0,1]$. 
+
+\item Solo sombreamos la membrana para no complicar el dibujo. Como $b_0=1$, $b_1=0$ y $b_2=2$, buscamos una función que tenga un vértice crítico y dos caras críticas.
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-3.58,-0.9733333333333318) rectangle (11.753333333333336,4.533333333333332);
+\fill[line width=2.pt,dash pattern=on 3pt off 3pt,fill=black,fill opacity=0.10000000149011612] (1.,2.) -- (4.793333333333334,2.226666666666666) -- (3.6866666666666674,1.52) -- cycle;
+\draw [line width=2.pt] (1.,2.)-- (2.98,4.32);
+\draw [line width=2.pt] (2.98,4.32)-- (3.6866666666666674,1.52);
+\draw [line width=2.pt] (3.6866666666666674,1.52)-- (1.,2.);
+\draw [line width=2.pt] (3.6866666666666674,1.52)-- (4.793333333333334,2.226666666666666);
+\draw [line width=2.pt] (4.793333333333334,2.226666666666666)-- (2.98,4.32);
+\draw [line width=2.pt] (3.6866666666666674,1.52)-- (3.0066666666666677,-0.38666666666666655);
+\draw [line width=2.pt] (3.0066666666666677,-0.38666666666666655)-- (4.793333333333334,2.226666666666666);
+\draw [line width=2.pt] (1.,2.)-- (3.0066666666666677,-0.38666666666666655);
+\draw [line width=2.pt,dash pattern=on 3pt off 3pt] (1.,2.)-- (4.793333333333334,2.226666666666666);
+\draw [line width=2.pt,dash pattern=on 3pt off 3pt] (1.,2.)-- (4.793333333333334,2.226666666666666);
+\draw [line width=2.pt,dash pattern=on 3pt off 3pt] (4.793333333333334,2.226666666666666)-- (3.6866666666666674,1.52);
+\draw [line width=2.pt,dash pattern=on 3pt off 3pt] (3.6866666666666674,1.52)-- (1.,2.);
+\draw [->,line width=2.pt,dash pattern=on 2pt off 2pt] (2.0843728769832737,3.2705783205056544) -- (2.78,3.16);
+\draw [->,line width=2.pt,dash pattern=on 2pt off 2pt] (2.161732178364913,0.6182720270610016) -- (2.7,1.);
+\draw [->,line width=2.pt,dash pattern=on 3pt off 3pt] (1.,2.) -- (2.5932217150841606,2.0952012975621463);
+\draw [->,line width=2.pt] (2.448087251058617,1.7412846598604952) -- (3.18,1.8933333333333326);
+\draw [->,line width=2.pt] (3.4357009399855394,0.8163117859725233) -- (3.793333333333334,1.0666666666666664);
+\draw [->,line width=2.pt] (3.0066666666666677,-0.38666666666666655) -- (3.7790548499254957,0.7430951536223658);
+\draw [->,line width=2.pt] (2.98,4.32) -- (3.9343903889983394,3.2182405068180935);
+\draw [->,line width=2.pt] (3.423141117198548,2.564157837515189) -- (3.8466666666666676,2.6266666666666656);
+\draw [->,line width=2.pt] (3.6866666666666674,1.52) -- (4.2322403244655264,1.8683783597992711);
+\draw (4.9,2.493333333333333) node[anchor=north west] {$0$};
+\draw (4.1,0.9066666666666672) node[anchor=north west] {$1$};
+\draw (2.993333333333334,-0.6266666666666657) node[anchor=north west] {$1$};
+\draw (0.66,2.2) node[anchor=north west] {$4$};
+\draw (1.8733333333333337,0.7733333333333339) node[anchor=north west] {$6$};
+\draw (1.646666666666667,3.4) node[anchor=north west] {$8$};
+\draw (2.806666666666667,3.813333333333333) node[anchor=north west] {$8$};
+\draw (3.0066666666666673,4.72) node[anchor=north west] {$2$};
+\draw (2.246666666666667,2.6533333333333333) node[anchor=north west] {$10$};
+\draw (2.686666666666667,0.8666666666666671) node[anchor=north west] {$11$};
+\draw (2.1533333333333338,2.0533333333333332) node[anchor=north west] {$9$};
+\draw (3.2066666666666674,2.1733333333333333) node[anchor=north west] {$9$};
+\draw (2.4733333333333336,1.1733333333333338) node[anchor=north west] {$6$};
+\draw (3.58,1.84) node[anchor=north west] {$3$};
+\draw (4.113333333333334,2.12) node[anchor=north west] {$3$};
+\draw (3.34,1.1333333333333337) node[anchor=north west] {$4$};
+\draw (3.7266666666666675,1.4533333333333336) node[anchor=north west] {$4$};
+\draw (3.3,3.0933333333333333) node[anchor=north west] {$7$};
+\draw (3.7266666666666675,2.96) node[anchor=north west] {$7$};
+\draw (4.033333333333334,3.293333333333333) node[anchor=north west] {$2$};
+\end{tikzpicture}
+\end{enumerate}
+
+
+Tenemos dos caras críticas (las que dan hacia la izquierda) y un vértice crítico (el de la derecha). Esto coincide con los números de Betti, por lo que la función es óptima. Además nos da que el CW complejo equivalente es una suma puntual de dos esferas. 
 \end{solucion}
 \newpage
 
@@ -26,8 +139,30 @@ Considerar $K$ una triangulación de la banda de Möbius en la que dos puntos di
 Estudiar si es posible (y si lo es, hazlo) definir en una triangulación de la 2-esfera una función de Morse discreta $f$ con $m_0(f)=2$, $m_1(f)=0$ y $m_2(f)=1$. Repetir el mismo estudio con $m_0(f)=2$, $m_1(f)=1$ y $m_2(f)=1$. Determinar, en caso de existir, la optimalidad de tales funciones. Si alguna no lo es, transformarla en una óptima mediante cancelación. 
 \end{ejercicio}
 \begin{solucion}
-La primera no es posible porque $\chi(S^2)=2$, mientras que $m_0(f)-m_1(f)+m_2(f)=3$. SEGUIR
+La primera no es posible porque $\chi(S^2)=2$, mientras que $m_0(f)-m_1(f)+m_2(f)=3$. La siguiente vamos a ver que sí es posible. Para ello, partimos de una función óptima (que sabemos que tiene un vértice y una cara críticas) y añadimos artificialmente una arista crítica (con lo que también añadiríamos un vértice crítico). Para convertirla en óptima solamente habría que deshacer el cambio. 
+
+Tenemos funciones óptimas dadas por el campo siguiente
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-3.46,-0.7866666666666653) rectangle (11.873333333333335,3.2);
+\draw [line width=2.pt] (0.,0.)-- (1.8733333333333337,2.9866666666666655);
+\draw [line width=2.pt] (1.8733333333333337,2.9866666666666655)-- (3.193333333333334,-0.56);
+\draw [line width=2.pt] (0.,0.)-- (3.193333333333334,-0.56);
+\draw [line width=2.pt] (1.8733333333333337,2.9866666666666655)-- (4.,1.);
+\draw [line width=2.pt] (4.,1.)-- (3.193333333333334,-0.56);
+\draw [line width=2.pt,dash pattern=on 3pt off 3pt] (0.,0.)-- (4.,1.);
+\draw [->,line width=2.pt,dash pattern=on 3pt off 3pt] (0.8903030649765497,1.4194155626672385) -- (1.7133333333333336,1.6266666666666663);
+\draw [->,line width=2.pt,dash pattern=on 3pt off 3pt] (0.,0.) -- (1.1419607843137256,0.2854901960784314);
+\draw [->,line width=2.pt] (0.,0.) -- (1.521949820364177,-0.2668972545106281);
+\draw [->,line width=2.pt] (3.193333333333334,-0.56) -- (3.6097494127988243,0.2453005173134286);
+\draw [->,line width=2.pt] (1.8733333333333337,2.9866666666666655) -- (2.9671608112717447,1.9648466402539808);
+\draw [->,line width=2.pt] (2.672408770601355,0.8396558958253162) -- (3.3,0.9733333333333334);
+\end{tikzpicture}
+
+Basta entonces eliminar la flecha que tenemos por detrás, por ejemplo, y luego asignar valores acordes a las flechas.
+
 \end{solucion}
+
 
 \newpage
 
@@ -36,6 +171,8 @@ Probar que el mínimo global de una función de Morse discreta corresponde siemp
 \end{ejercicio}
 \begin{solucion}
 Si $\sigma$ es un mínimo global de $f$, entonces todas sus caras tienen al menos el mismo valor de $f$ que $\sigma$. Cualquier $n$-símplice con $n>0$ tiene al menos 2 caras, si $\sigma$ no es un vértice, entonces $f$ al ser de Morse (como mucho puede haber una cara con valor mayor) debería tomar un valor estrictamente menor en alguna de ellas, lo cual es una contradicción. Por tanto, necesariamente $\sigma$ es un vértice. 
+
+Añadimos que los máximos no corresponden en general a símplices críticos de dimensión máxima (pensar en un vértice con una sola arista incidente), pero sí lo son en variedades cerradas trianguladas. 
 \end{solucion}
 
 \newpage
@@ -44,7 +181,7 @@ Si $\sigma$ es un mínimo global de $f$, entonces todas sus caras tienen al meno
 Qué propiedad topológicamente relevante tiene un complejo simplicial sobre el que puede definirse una función de Morse discreta con un único símplice crítico.
 \end{ejercicio}
 \begin{solucion}
-Se puede tomar el campo gradiente asociado a $f$, que converge al símplice crítico. Este campo nos da un colapso hacia ese símplice, luego el complejo es del mismo tipo de homotopía simple que el símplice crítico ESTO HAY QUE PROBARLO MÁS RIGUROSAMENTE.
+Se puede tomar el campo gradiente asociado a $f$, que converge al símplice crítico. Este campo nos da un colapso hacia ese símplice, luego el complejo es del mismo tipo de homotopía simple que el símplice crítico. De hecho, por el teorema fundamental de la teoría de Morse discreta, este complejo es del mismo tipo de homotopía simple que un CW formado por un solo punto. 
 \end{solucion}
 
 \newpage
@@ -94,7 +231,7 @@ Se pide:
 \end{ejercicio}
 \begin{solucion}\
 \begin{enumerate}[(a)]
-\item Los símplices críticos son: el vértice con 0, la arista con 10 y la cara con 14. El campo gradiente lo dibujo aquí debajo
+\item Los símplices críticos son: el vértice con 0, las aristas con 10 y con 11, y la cara con 14. El campo gradiente lo dibujo aquí debajo
 
 \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
 \clip(-3.04,0.53333333333333) rectangle (12.293333333333337,5.973333333333328);
@@ -136,9 +273,9 @@ Se pide:
 \draw [line width=2.pt,->,color=blue] (5.6666666666667,4.55)--(8.1,3.95);
 \draw [line width=2.pt,->,color=blue] (3.5,3.5)--(2.5,3.);
 \end{tikzpicture}
-\item No es óptima porque no es $\R$-perfecta, ya que tiene un 2-símplice crítico y $b_2=0$. TRANSFORMARLA
+\item No es óptima porque no es $\R$-perfecta, ya que tiene un 2-símplice crítico y $b_2=0$. Para transformarla en óptima basta sustituir el valor 10 de la arista por otro 14, así tanto esta arista como la cara crítica dejarían de ser críticos. Se mantendría un punto crítico y una arista crítica, que por las desigualdades de Morse nos da la optimalidad al ser $b_0=b_1=1$ y $b_2=0$. 
 
-\item 
+\item El complejo es la estructura de $S^1$ con una 0-célula y una 1-célula.
 
 \item ponte debajo dibujo cabrón
 
@@ -202,10 +339,153 @@ Se pide:
 \end{scriptsize}
 \end{tikzpicture}
 
-\item TENGO EL DIBUJO, PERO NO SE PUEDE HACER UN EMPAREJAMIENTO QUE DEJE FUERA SOLO LOS CRÍTICOS (CREO QUE ESO ES LO QUE HACE QUE NO SEA MÁXIMO, PERO NO SÉ CUÁL DE LAS POSIBILIDADES ES EL INDUCIDO POR F)
+\item Debajo joder
 
-\item
+\definecolor{qqqqff}{rgb}{0.,0.,1.}
+\definecolor{ffqqqq}{rgb}{1.,0.,0.}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-1.01,-1.03) rectangle (10.33,4.44);
+\draw (1.,0.12) node[anchor=north west] {$0$};
+\draw (2.,0.12) node[anchor=north west] {$1$};
+\draw (3.,0.12) node[anchor=north west] {$3$};
+\draw (4.,0.12) node[anchor=north west] {$5$};
+\draw (5.,0.12) node[anchor=north west] {$7$};
+\draw (6.,0.12) node[anchor=north west] {$9$};
+\draw (-0.05,2.38) node[anchor=north west] {$1$};
+\draw (0.7,2.39) node[anchor=north west] {$2$};
+\draw (1.6,2.33) node[anchor=north west] {$4$};
+\draw (2.93,2.38) node[anchor=north west] {$6$};
+\draw (3.93,2.37) node[anchor=north west] {$8$};
+\draw (5.01,2.37) node[anchor=north west] {$10$};
+\draw (5.92,2.38) node[anchor=north west] {$11$};
+\draw (6.94,2.35) node[anchor=north west] {$13$};
+\draw (2.89,4.4) node[anchor=north west] {$12$};
+\draw (3.88,4.38) node[anchor=north west] {$14$};
+\draw [line width=2.pt] (1.,0.)-- (0.,2.);
+\draw [line width=2.pt] (2.,0.)-- (0.,2.);
+\draw [line width=2.pt] (2.,0.)-- (1.,2.);
+\draw [line width=2.pt] (2.,0.)-- (5.,2.);
+\draw [line width=2.pt] (3.,0.)-- (1.,2.);
+\draw [line width=2.pt] (3.,0.)-- (2.,2.);
+\draw [line width=2.pt] (3.,0.)-- (7.,2.);
+\draw [line width=2.pt] (4.,0.)-- (2.,2.);
+\draw [line width=2.pt] (4.,0.)-- (3.,2.);
+\draw [line width=2.pt] (4.,0.)-- (6.,2.);
+\draw [line width=2.pt] (5.,0.)-- (3.,2.);
+\draw [line width=2.pt] (5.,0.)-- (4.,2.);
+\draw [line width=2.pt] (6.,0.)-- (6.,2.);
+\draw [line width=2.pt] (6.,0.)-- (5.,2.);
+\draw [line width=2.pt] (6.,0.)-- (7.,2.);
+\draw [line width=2.pt] (1.,2.)-- (4.,4.);
+\draw [line width=2.pt] (2.,2.)-- (3.,4.);
+\draw [line width=2.pt] (6.,2.)-- (3.,4.);
+\draw [line width=2.pt] (5.,2.)-- (4.,4.);
+\draw [line width=2.pt] (7.,2.)-- (3.,4.);
+\draw [line width=2.pt] (7.,2.)-- (4.,4.);
+\draw [line width=2.pt] (6.,0.)-- (4.,2.);
+\draw [line width=2.pt,color=qqqqff] (0.,2.)-- (2.,0.);
+\draw [line width=2.pt,color=qqqqff] (3.,0.)-- (1.,2.);
+\draw [line width=2.pt,color=qqqqff] (4.,0.)-- (2.,2.);
+\draw [line width=2.pt,color=qqqqff] (5.,0.)-- (3.,2.);
+\draw [line width=2.pt,color=qqqqff] (6.,0.)-- (4.,2.);
+\draw [line width=2.pt,color=qqqqff] (7.,2.)-- (3.,4.);
+\begin{scriptsize}
+\draw [fill=ffqqqq] (1.,0.) circle (2.5pt);
+\draw [fill=black] (2.,0.) circle (2.5pt);
+\draw [fill=black] (3.,0.) circle (2.5pt);
+\draw [fill=black] (4.,0.) circle (2.5pt);
+\draw [fill=black] (5.,0.) circle (2.5pt);
+\draw [fill=black] (6.,0.) circle (2.5pt);
+\draw [fill=black] (0.,2.) circle (2.5pt);
+\draw [fill=black] (7.,2.) circle (2.5pt);
+\draw [fill=black] (1.,2.) circle (2.5pt);
+\draw [fill=black] (2.,2.) circle (2.5pt);
+\draw [fill=black] (3.,2.) circle (2.5pt);
+\draw [fill=black] (4.,2.) circle (2.5pt);
+\draw [fill=ffqqqq] (5.,2.) circle (2.5pt);
+\draw [fill=ffqqqq] (6.,2.) circle (2.5pt);
+\draw [fill=black] (3.,4.) circle (2.5pt);
+\draw [fill=ffqqqq] (4.,4.) circle (2.5pt);
+\end{scriptsize}
+\end{tikzpicture}
+
+Se observa que no es máximo porque hay una arista que podría incluirse en el emparejamiento si no fuera porque sus extremos son críticos.
+\item En verde las aristas que hemos añadido por transferencia y en amarillo las que hemos quitado.
+
+\definecolor{qqffqq}{rgb}{0.,1.,0.}
+\definecolor{qqqqff}{rgb}{0.,0.,1.}
+\definecolor{ffffqq}{rgb}{1.,1.,0.}
+\definecolor{ffqqqq}{rgb}{1.,0.,0.}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-1.01,-0.9) rectangle (10.33,4.57);
+\draw (1.,0.12) node[anchor=north west] {$0$};
+\draw (2.,0.12) node[anchor=north west] {$1$};
+\draw (3.,0.12) node[anchor=north west] {$3$};
+\draw (4.,0.12) node[anchor=north west] {$5$};
+\draw (5.,0.12) node[anchor=north west] {$7$};
+\draw (6.,0.12) node[anchor=north west] {$9$};
+\draw (-0.05,2.38) node[anchor=north west] {$1$};
+\draw (0.94,2.39) node[anchor=north west] {$2$};
+\draw (1.83,2.33) node[anchor=north west] {$4$};
+\draw (2.93,2.38) node[anchor=north west] {$6$};
+\draw (3.93,2.37) node[anchor=north west] {$8$};
+\draw (5.01,2.37) node[anchor=north west] {$10$};
+\draw (5.92,2.38) node[anchor=north west] {$11$};
+\draw (6.94,2.35) node[anchor=north west] {$13$};
+\draw (2.89,4.4) node[anchor=north west] {$12$};
+\draw (3.88,4.38) node[anchor=north west] {$14$};
+\draw [line width=2.pt] (1.,0.)-- (0.,2.);
+\draw [line width=2.pt,color=ffffqq] (2.,0.)-- (0.,2.);
+\draw [line width=2.pt] (2.,0.)-- (1.,2.);
+\draw [line width=2.pt] (2.,0.)-- (5.,2.);
+\draw [line width=2.pt] (3.,0.)-- (1.,2.);
+\draw [line width=2.pt] (3.,0.)-- (2.,2.);
+\draw [line width=2.pt] (3.,0.)-- (7.,2.);
+\draw [line width=2.pt] (4.,0.)-- (2.,2.);
+\draw [line width=2.pt] (4.,0.)-- (3.,2.);
+\draw [line width=2.pt] (4.,0.)-- (6.,2.);
+\draw [line width=2.pt] (5.,0.)-- (3.,2.);
+\draw [line width=2.pt] (5.,0.)-- (4.,2.);
+\draw [line width=2.pt] (6.,0.)-- (6.,2.);
+\draw [line width=2.pt] (6.,0.)-- (5.,2.);
+\draw [line width=2.pt] (6.,0.)-- (7.,2.);
+\draw [line width=2.pt] (1.,2.)-- (4.,4.);
+\draw [line width=2.pt] (2.,2.)-- (3.,4.);
+\draw [line width=2.pt] (6.,2.)-- (3.,4.);
+\draw [line width=2.pt] (5.,2.)-- (4.,4.);
+\draw [line width=2.pt,color=ffffqq] (7.,2.)-- (3.,4.);
+\draw [line width=2.pt] (7.,2.)-- (4.,4.);
+\draw [line width=2.pt] (6.,0.)-- (4.,2.);
+\draw [line width=2.pt,color=qqqqff] (3.,0.)-- (1.,2.);
+\draw [line width=2.pt,color=qqqqff] (4.,0.)-- (2.,2.);
+\draw [line width=2.pt,color=qqqqff] (5.,0.)-- (3.,2.);
+\draw [line width=2.pt,color=qqqqff] (6.,0.)-- (4.,2.);
+\draw [line width=2.pt,color=qqffqq] (1.,0.)-- (0.,2.);
+\draw [line width=2.pt,color=qqffqq] (2.,0.)-- (5.,2.);
+\draw [line width=2.pt,color=qqffqq] (6.,2.)-- (3.,4.);
+\draw [line width=2.pt,color=qqffqq] (7.,2.)-- (4.,4.);
+\begin{scriptsize}
+\draw [fill=ffqqqq] (1.,0.) circle (2.5pt);
+\draw [fill=black] (2.,0.) circle (2.5pt);
+\draw [fill=black] (3.,0.) circle (2.5pt);
+\draw [fill=black] (4.,0.) circle (2.5pt);
+\draw [fill=black] (5.,0.) circle (2.5pt);
+\draw [fill=black] (6.,0.) circle (2.5pt);
+\draw [fill=black] (0.,2.) circle (2.5pt);
+\draw [fill=black] (7.,2.) circle (2.5pt);
+\draw [fill=black] (1.,2.) circle (2.5pt);
+\draw [fill=black] (2.,2.) circle (2.5pt);
+\draw [fill=black] (3.,2.) circle (2.5pt);
+\draw [fill=black] (4.,2.) circle (2.5pt);
+\draw [fill=ffqqqq] (5.,2.) circle (2.5pt);
+\draw [fill=ffqqqq] (6.,2.) circle (2.5pt);
+\draw [fill=black] (3.,4.) circle (2.5pt);
+\draw [fill=ffqqqq] (4.,4.) circle (2.5pt);
+\end{scriptsize}
+\end{tikzpicture}
 \end{enumerate}
+
+Todos los vértices están ya en alguna arista del emparejamiento así que no se puede aumentar. 
 \end{solucion}
 
 \end{document}
