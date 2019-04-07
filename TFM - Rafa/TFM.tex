@@ -486,16 +486,55 @@ La demostración del mismo presenta un algoritmo -bastante rápido- para colorea
 \begin{thm}
 El problema de decidir si $\chi(G)\leq 3$ es NP-completo.
 \end{thm}
+Ahora bien, sea $A$ la matriz cuyas filas corresponden a los matching maximales de $G$, entonces podemos formular
+\begin{align*}
+\chi(G)=\min_{y} &\; \sum_{i=1}^m  y_{i}  \nonumber\\ 
+s.a.\;  &  yA_{\cdot i} \geq  1 \qquad \forall i=1,\dotsc,m\\
+& y\in\{0,1\}^{m}\nonumber
+\end{align*}
+La relajación lineal de este problema, así como el dual de la misma, están dados por
+\begin{align*}
+\chi_{LP}(G)=\min_{y} &\; \sum_{i=1}^m  y_{i}  \nonumber\\ 
+s.a.\;  &  yA_{\cdot i} \geq  1 \qquad \forall i=1,\dotsc,m\\
+& y_i \geq 0  \qquad \forall i=1,\dotsc,m 
+\end{align*}
+\begin{align*}
+\Delta_{LP}(G)=\max_{x} &\; \sum_{i=1}^n  x_i  \nonumber\\ 
+s.a.\;  &  Ax_{\cdot i} \leq  1 \qquad \forall i=1,\dotsc,n\\
+& x_i\geq 0  \qquad \forall i=1,\dotsc,n
+\end{align*}
+donde $|E|=n$. El problema dual puede ser resuelto en tiempo polinomial, pues $x^*$ ($0\leq x^*_i \leq 1$) es una solución factible del mismo si y solo si un matching de coste máximo en $G$ tomando como pesos $x^*$ tiene valor no mayor que 1.
+\subsection{T-Enlaces y T-Cortes}
+Continuamos presentando la relación entre los emparejamientos y los $T$-enlaces y $T$-cortes, conceptos capitales para resolver el problema del cartero.
+\begin{defi}
+Dado un grafo $G=(V,E)$, consideremos $T\subset V$ con cardinalidad par y $E'\subset E$. Decimos que $E'$ es un $T$-enlace si en $G'=(V,E')$ si $v\in V$ tiene grado impar si y solo si $v\in T$.
+\end{defi}
+\begin{prop}
+Los $T$-enlaces de cardinalidad mínima son árboles.
+\end{prop}
+Encontrar un $T$-enlace de coste mínimo. Para verlo, veamos que podemos reducir este problema al de encontrar un matching perfecto. Sea $G=(V,E)$ y $T$, reemplazamos cada $v\in V$ por un grafo completo $C_v$ con $\delta(v)+\alpha_v$ vértices, donde
+$$
+\alpha_v = \begin{cases}
+0 & \text{Si $v\in T$ y $|\delta(v)|$ es impar}\\
+0 & \text{Si $v\notin T$ y $|\delta(v)|$ es par}\\
+1 & \text{En otro caso}
+\end{cases}
+$$
+Entonces, para cada $(u,v)\in E$, unimos un nodo de $C_v$ a otro de $C_i$ de manera que dos de estos nuevos ejes no sean incidentes en un mismo vértice. Sea $G'=(V',E\cup E')$ este nuevo grafo, donde $E'$ son las aristas de los grafos completos. Tenemos entonces
+\begin{prop}
+Si $M\subset E\cup E'$ es un matching perfecto en $G'$, entonces $M\cap E$ es un $T$-enlace en $G$. Recíprocamente, si $E^*$ es un $T$-enlace en $G$, entonces existe $K\subset E'$ tal que $E^*\cup K$ es un matching perfecto en $G'$.
+\end{prop}
 \subsection{Envolvente convexa del $b$-matching}
 Aunque el objetivo de este trabajo es analizar el problema relativo al $1$-emparejamiento, podríamos hablar más generalmente, tal y como dijimos al inicio de este capítulo, del problema del $b$-matching. De manera ilustrativa, presentamos el teorema análogo al Teorema 1.1.1. para esta formulación más general del problema. 
 \begin{thm}
-La envolvente convexa de los $b$-emparejamientos, donde $b$ es un vector de coordenadas enteras no negativas,de un grafo $G=(V,E)$ está dada por
+La envolvente convexa de los $b$-emparejamientos, donde $b$ es un vector de coordenadas enteras no negativas, de un grafo $G=(V,E)$ está dada por
 \begin{align*}
 \sum_{(u,v)\in\delta(u)} x_{uv} &\leq b_u, \quad \forall u\in V\\
 x_{uv} &\geq 0 \quad \forall(u,v)\in E\\
 \sum_{(u,v)\in \gamma(S)} x_{uv}& \leq \frac{1}{2}\left(\sum_{v\in S} b_v -1\right) \quad \forall S \text{ con $\sum_{v\in S} b_v$ impar}
 \end{align*}
 \end{thm}
+
 \chapter{Algoritmo SAP}
 En este capítulo vamos a explicar el funcionamiento del método SAP o \textit{shortest augmenting path} a partir del cuál puede obtenerse un matching perfecto de mínimo coste y, además, nos permitirá realizar una reoptimización eficiente.
 \section{Propiedades teóricas}
@@ -784,7 +823,7 @@ Estas distancias y medidas están tomadas respecto de los costes $c'_{uv}$. Pase
 \text{Paso 8: }& \text{Expandimos todos los pseudonodos y extendemos el matching $M_A$ a un}\\
 &\text{matching perfecto $M$ en $G$. Este matching es óptimo.} 
 \end{align*}
-\chapter{Análisis de sensitividad}
+
 \section{Método de reoptimización}
 En esta sección vamos a presentar un método de reoptimización para el problema del MCPM y cómo aplicarlo al problema biobjetivo. Antes de presentar este método hemos revisado diversos análsis de postoptimalidad como el de Ball y Taberna \cite{balltab} o el de Weber \cite{webber}, pero el que presenta mejores resultados computacionales y supone una simplificación importante en el número de casos a considerar es el que presenta Derigs. 
 
@@ -891,6 +930,20 @@ c(\lambda) \in cone(B) \Leftrightarrow \exists x\geq0 \mid Bx = c(\lambda)
 $$  
 Usando Farkas, esto es equivalente a $\not\exists y \mid u^tB \leq 0$ y $u'c(\lambda)>0$. Por tanto, $B$ es base óptima para $c(\lambda)$ si y solo si
 $$u'B \leq 0 \Rightarrow u^t c(\lambda) \leq 0 \qquad u^t c(\lambda)>0 \Rightarrow u^tB >0$$
+
+
+
+
+
+
+
+
+
+
+\chapter{Análisis computacional}
+
+
+
 
 \begin{thebibliography}{9}
 \bibitem{edmond} 
