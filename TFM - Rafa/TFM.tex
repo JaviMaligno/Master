@@ -391,7 +391,7 @@ Para evitar redundar en desarrollo teórico de un algoritmo que no utilizaremos 
 \end{align*}
 A continuación describimos cada uno de los pasos.
 \begin{itemize}
-\item[Paso 1.] Determinamos un conjunto $E'\subset E$ que denominamos ejes candidatos, que utilizaremos como variables para el problema de Programación Lineal inicial. Para cada nodo determinamos los $NN$ ($1\leq NN \leq |V|-1$) ejes de menor coste incidentes en él. $E'$ será la unión de estos ejes. Los autores del algoritmo han probado computacionalmente distintos valores para $NN$ y encuentran que $5\leq NN \leq 10$ es una buena elección para grafos de tamaño mediano.
+\item[Paso 1.] Determinamos un conjunto $E'\subset E$ que denominamos ejes candidatos, que utilizaremos como variables para el problema de Programación Lineal inicial. Para cada nodo determinamos los $NN$ ($1\leq NN \leq |V|-1$) ejes de menor coste incidentes en él. $E'$ será la unión de estos ejes. Los autores del algoritmo han probado computacionalmente distintos valores para $NN$ y encuentran que $5\leq NN \leq 10$ es una buena elección para grafos de tamaño mediano, es decir, de tamaño entre 500 y 1000. Esto significa que el número de varaibles que utilizamos, en principio, supone menos del 1\% del número total de variables. 
 \item[Paso 2.] Los ejes de $E'$ son ordenados (por ejemplo, a través del algoritmo Quickshort) de manera no decreciente con respecto a sus pesos. Utilizamos un algoritmo voraz para encontrar un matching $M$ inicial. Si $M$ no fuese perfecto, tomamos pares arbitrariamente pares de nodos no conectados en $M$ y añadiendo aristas de $E\setminus E'$ a $M$ y, para garantizar la factibilidad del problema, al propio conjunto $E'$. 
 \item[Paso 3.] El primer problema de Programación Lineal que resolveremos es la relajación trivial 
 \begin{align*}
@@ -402,8 +402,10 @@ A continuación describimos cada uno de los pasos.
 del problema inducido por $E'$. Notemos que el grado $\delta(v)$ debe tomarse en el subgrafo $(V,E')$. Como solución inicial de este problema utilizamos el matching $M$ calculado anteriormente.
 \item[Paso 4.] Resolvemos el problema de Programación Lineal considerado. Los autores del algoritmo recomiendan usar IBM-MPSX/370 utilizando. De manera general, cada vez que vayamos a este paso utilizamos la solución óptima obtenida en la llamada anterior como base inicial. En el caso de que hayamos añadido nuevas restricciones, esta base será infactible para el problema primal, pero sí será factible para el dual, que podemos utilizar para encontrar una solución del primal. Sea $x^*$ la solución obtenida.
 \item[Paso 5.] Consideramos el grafo $G_{x^*}=(V,E_{x^*})$, donde $E_{x^*} =\{(u,v)\in E'\mid x^*_{uv}>0\}$. Este grafo servirá como input para la fase de detección de planos de corte. Definimos los costes $k_{uv}:=x^*_{uv}$. Para no escanear dos veces $x^*$, comprobamos si $x^*$ es un vector de coordenadas enteras.
-\item[Paso 6.] Si $x^*$ es entero, entonces induce un matching perfecto en el subproblema considerado. En este caso, comprobamos la optimalidad global (Paso 9). En otro caso, determinamos planos de corte para $x^*$. 
-\item[Paso 7.] Comenzamos utilizando búsqueda en profundidad, comprobamos si $G_{x^*}$ tiene componentes conexas con un número impar de nodos. Si lo hay, sean $(V_i,E_i)$ estas componentes de $G_{x^*}$, estas dan lugar a unas desigualdades
+\item[Paso 6.] Si $x^*$ es entero, entonces induce un matching perfecto en el subproblema considerado. En este caso, comprobamos la optimalidad global (Paso 9). En otro caso, necesitamos determinar planos de corte para obtener una nueva solución $x^*$, es decir, vamos al Paso 7.
+\item[Paso 7.] Si la solución $x^*$ no es entera, entonces no puede inducir un matching en nuestro grafo. Necesitamos encontrar planos de corte y, naturalmente, deseamos encontrarlos en el menor tiempo posible.
+
+Comenzamos utilizando búsqueda en profundidad, comprobamos si $G_{x^*}$ tiene componentes conexas con un número impar de nodos. Si lo hay, sean $(V_i,E_i)$ estas componentes de $G_{x^*}$, estas dan lugar a unas desigualdades
 $$
 \sum_{(u,v)\in E_i} x_{uv} \leq \frac{1}{2}(|V_i|-1)
 $$ 
@@ -411,13 +413,19 @@ que es violada por $x^*$. En este caso no necesitamos buscar más planos de cort
 
 Si nuestra solución no viola las desigualdades anteriores, consideramos el grafo $G^2_{x^*}$ obtenido al eliminar las aristas de $E_{x^*}$ cuyos costes -recordemos, los $k_{uv}$ definidos anteriormente- sean menores que un cierto $\varepsilon$. Aplicamos ahora el procedimiento inicial del Paso 7 al grafo $G^2_{x^*}$. Incluso si encontramos componentes conexas de cardinalidad impar, estas no tendrían por qué inducir desigualdades que se violasen necesariamente, por lo que tenemos que comprobarlo. Si es así, hemos encontrado planos de corte y pasamos al Paso 8. 
 
+Si después de utilizar esta segunda heurística tampoco hemos encontrado planos de corte, consideremos $V_1$ como el conjunto de vértices de $G_{x^*}$ incidentes con alguna arista cuyo peso $k_{uv}=1$. En tal caso, eliminamos de $G_{x^*}$ el conjunto de vértices $V_1$ así como todas las aristas que les sean incidentes. Denotamos por $G'_{x^*} =(V',E'_{x^*})$ al grafo resultante de esta operación. Padberg y Rao presentaron un método para encontrar un plano de corte adecuado \cite{rao} basado en determinar el árbol de Gomory-Hu de $G'_{x^*}$ y encontrar un eje de este árbol de peso mínimo entre aquellos que al ser eliminados dividen el árbol en dos componentes de cardinalidad impar. Notemos que, en particular, $G'_{x^*}$ tiene un número par de nodos.
+Una vez encontrado el plano de corte, continuamos con el Paso 8.
+
+Notemos que el algoritmo de Padberg y Rao que utilizan los autores para encontrar el plano de corte, a pesar de ser polinomial, es $O(n^4)$. Para grafos de gran tamaño, este procedimiento también puede resultar prohibitivo, razón por la cuál se intentan encontrar planos de corte con heurísticas más sencillas. 
+
 \item[Paso 8.] Añadimos los planos de corte encontrados en el paso anterior a nuestro problema y volvemos al Paso 4.
 \item[Paso 9.] Hemos obtenido una solución entera que induce un matching perfecto e $(V,E')$, pero naturalmente no tiene por qué ser un matching óptimo en $K_n$. Para comprobarlo, calculamos el coste reducido a cada eje $(u,v)\in E\setminus E'$. Sea $VAR$ el conjunto de variables que podrían mejorar la solución óptima. Si todos los costes tienen el signo adecuado, entonces $VAR=\emptyset$ y nuestra solución actual es de hecho óptima en $K_n$, por lo que hemos terminado. Si $VAR\neq \emptyset$, entonces establecemos $E'=E'\cup VAR$ y añadimos las correspondientes variables. Volvemos al Paso 4.
 \end{itemize}
 
-\section{Aplicaciones}
+\section{Aplicaciones y problemas relacionados}
+En esta sección presentamos algunas aplicaciones y otros problemas conocidos que guardan cierta relación con el problema del emparejamiento.
 \subsection{El problema de la asignación}
-Para ilustrar las distintas aplicaciones que tiene el problema del matchig, comenzamos con un problema clásico de la Investigación Operativa. El problema de asignación o \textit{assigment assignment problem} consiste en encontrar la forma de asignar recursos (máquinas, empleados, etc.) a un cierto conjunto de teareas determinadas con coste mínimo. Se supone que cada recurso se destina a una sola tarea, y que cada tarea es ejecutada por uno solo de los recursos. Es claro que este problema puede formularse como un problema de matching de coste mínimo sobre un grafo bipartito. 
+Para ilustrar las distintas aplicaciones que tiene el problema del matchig, comenzamos con un problema clásico de la Investigación Operativa. El problema de asignación o \textit{assigment assignment problem} consiste en encontrar la forma de asignar recursos (máquinas, empleados, etc.) a un cierto conjunto de teareas determinadas con coste mínimo. Se supone que cada recurso se destina a una sola tarea, y que cada tarea es ejecutada por uno solo de los recursos. Es claro que este problema puede formularse como un problema de matching de coste mínimo. Notemos que, además, la formulación natural del mismo se realiza sobre un grafo bipartito. 
 
 \subsection{Aproximación al problema del viajante}
 El problema del viajante o \textit{travelling salesman problem} (TSP) en un grafo no dirigido consiste en encontrar el ciclo hamiltoniano de peso mínimo. Computacionalmente hablando, se sabe que es NP-duro. Este problema aparece para responder a la pregunta: ¿Dada una lista de ciudades y las distancias entre cada pareja de ciudades, cuál es la ruta más corta para visitar todas las ciudades y volver a la ciudad de origen? Este problema puede formularse como problema de programación entera, como puede encontrarse en \cite{papa}. 
@@ -432,8 +440,62 @@ Aunque no puede utilizarse el problema del matching para resolver este problema,
 &\text{multigrafo euleriano. Encontrar un circuito euleriano.}\\
 \text{Paso 4: }&\text{Obtener un circuito hamiltoniano descartando nodos ya visitados}
 \end{align*}
-\subsection{PEDNIENTE}
+\subsection{Cobertura de aristas}
+Sea $G=(V,E)$ un grafo. Una \textit{cobertura por aristas} del grafo $G$ es un conjunto $C$ de aristas de manera que todo vértice de $G$ es incidente con, al menos, un arista de $C$. Podemos definir además el \textit{número de cobertura de aristas} de un grafo $G$ como el tamaño de una cobertura de aristas de tamaño mínimo. Se verifica el siguiente resultado.
+\begin{prop}
+Sea $M$ un matching de cardinalidad máxima en $G$ y sea $C$ una cobertura de aristas de cardinalidad mínima en el grafo $G=(V,E)$. Entonces $|M|+|C|=|V|$.
+\end{prop}
+\begin{dem}
+La demostración de este resultado es sencilla. Sea $U$ el conjunto de nodos con grado $0$ relativo a $M$, entonces $|U|=|V|-2|M|$. Dado que añadiendo las aristas de $U$ a $M$ obtendríamos una cobertura por aristas de $G$, necesariamente
+$$
+|C| \leq |M|+|U| = |M| + |V|-2|M| = |V|-|M|
+$$
+Por otro lado, consideremos el grafo inducido por $C$, y sea $M'$ un matching de cardinalidad máxima en este subgrafo. Sea $U'$ el conjunto de nodos con grado $0$ relativo a $M'$ en este subgrafo, entonces
+$$
+|C| = |M'| +|U'| = |V|-|M'|
+$$
+y, por tanto,
+$$
+|M| \geq |M'| = |V|-|C|
+$$
+de donde se deduce el resultado.
+\end{dem}
+Además de la relación anterior, tenemos un teorema análogo al Teorema 1.1.1. para la cobertura de aristas.
+\begin{thm}
+La envolvente convexa de las coberturas en un grafo $G=(V,E)$ está dada por
+\begin{align*}
+\sum_{(u,v)\in\delta(u)} x_{uv} &\geq 1, \quad \forall u\in V\\
+x_{uv} &\geq 0\\
+\sum_{(u,v)\in \gamma(S)\cup\delta(S)} x_{uv}& \geq \frac{1}{2}(|S|+1)\quad \forall S \in B	
+\end{align*}
+\end{thm}
+\subsection{Coloración de aristas}
+Dado un grafo $G=(V,E)$, una \textit{coloración de las aristas} de $G$ con el mínimo número de colores posibles, de manera que aristas que sean incidentes en un mismo vértice tengan colores diferentes. 
 
+El problema de la coloración por aristas está relacionado con el problema del matching dado que una coloración es factible si y solo si cada conjunto de ejes de un mismo color forma un matching. Por tanto, podemos formular el problema de la cobertura de aristas como el problema de cubrir las aristas de $E$ con el mínimo número posible de matching maximales. 
+
+Consideremos $\chi(G)$ como el número de colores mínimo con el que se puede colorear $G$. $\chi(G)$ se conoce usualmente como \textit{número cromático}. Sea además $\Delta(G) = \max_{v\in V} |\delta(v)|$. Veamos algunos resultados relacionados con estos conceptos.
+\begin{prop}
+Si $G$ es un grafo bipartito, entonces $\chi(G)=\Delta(G)$. 
+\end{prop}
+Más generalmente, Vinzing probó el siguiente teorema.
+\begin{thm}
+En general, para cualquier grafo $G$, $\chi(G)$ es $\Delta(G)$ o $\Delta(G)+1$. 
+\end{thm}
+La demostración del mismo presenta un algoritmo -bastante rápido- para colorear $G$ con $\Delta(G)+1$ colores. Esperaríamos que el teorema anterior nos permitiese decidir con facilidad si $\chi(G)$ es o no $\Delta(G)$, pero en realidad este problema es NP-completo. Es más, determinar si $\chi(G)$ es relativamente pequeño puede ser realmente costoso, como muestra el siguiente resultado.
+\begin{thm}
+El problema de decidir si $\chi(G)\leq 3$ es NP-completo.
+\end{thm}
+\subsection{Envolvente convexa del $b$-matching}
+Aunque el objetivo de este trabajo es analizar el problema relativo al $1$-emparejamiento, podríamos hablar más generalmente, tal y como dijimos al inicio de este capítulo, del problema del $b$-matching. De manera ilustrativa, presentamos el teorema análogo al Teorema 1.1.1. para esta formulación más general del problema. 
+\begin{thm}
+La envolvente convexa de los $b$-emparejamientos, donde $b$ es un vector de coordenadas enteras no negativas,de un grafo $G=(V,E)$ está dada por
+\begin{align*}
+\sum_{(u,v)\in\delta(u)} x_{uv} &\leq b_u, \quad \forall u\in V\\
+x_{uv} &\geq 0 \quad \forall(u,v)\in E\\
+\sum_{(u,v)\in \gamma(S)} x_{uv}& \leq \frac{1}{2}\left(\sum_{v\in S} b_v -1\right) \quad \forall S \text{ con $\sum_{v\in S} b_v$ impar}
+\end{align*}
+\end{thm}
 \chapter{Algoritmo SAP}
 En este capítulo vamos a explicar el funcionamiento del método SAP o \textit{shortest augmenting path} a partir del cuál puede obtenerse un matching perfecto de mínimo coste y, además, nos permitirá realizar una reoptimización eficiente.
 \section{Propiedades teóricas}
@@ -863,5 +925,8 @@ Derigs, U. (1981), A shortest augmenting path method for solving minimal perfect
 
 \bibitem{webber}
 Weber, G. M. (1981), Sensitivity analysis of optimal matchings. Networks, 11: 41-56. doi:10.1002/net.3230110105
+
+\bibitem{rao}
+Padberg, Manfred W., and M. R. Rao. “Odd Minimum Cut-Sets and b-Matchings.” Mathematics of Operations Research, vol. 7, no. 1, 1982, pp. 67–80. JSTOR, www.jstor.org/stable/3689360.
 \end{thebibliography}
 \end{document} 
