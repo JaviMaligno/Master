@@ -373,5 +373,89 @@ La complejidad de este algoritmo es subesponencial, concretamente $e^{c\sqrt{\lo
 \item[Paso 1:] pre-calcular el logaritmo discreto de unos ciertos polinomios irreducibles $f_1,\dots, f_k$ de grado pequeño ($\leq B$). Fijado $g\in F_{p^r}^*$ generador, sea $pC(x)\in\F_p[x]$ representante de $g$. Calcular $p^s(x)\mod f(x)$ de forma que $p^s(x)=f_1^{e_1}\cdots f_k^{e_k}$. Necesitamos buscar ecuaciones independientes igual que en el caso anterior.
 \item[Paso 2:] Se $h\in\F_{p^r}^*$ y $q(x)$ un representante. Buscamos $R$ tal que  $q(x)p(x)^R=f_1^{t_1}\cdots f_k^{t_k}\mod f(x)\Rightarrow n=t_1\log f_1+\cdots t_k\log f_k-R\mod p^r-1$. 
 \end{enumerate} 
+
+\begin{defi}
+Sea $k$ un cuerpo y $f\in k[x]$. Se define el orden de $f(x)=\sum_{i=0}^na_ix^i$ en $x=0$ como $ord(f)=\min\{i:a_i\neq 0\}$. 
+\end{defi}
+
+\begin{lemma}
+$f,g\in k[x]$
+\begin{enumerate}
+\item $ord(f\cdot g)=ord(f)+ord(g)$.
+\item $ord(f+g)\geq\min\{ord(f),ord(g)\}$, dándose la igualdad si $ord(f)\neq ord(g)$.
+\item $ord(f\circ g)=ord(f)ord(g)$. 
+\end{enumerate}
+\end{lemma}
+La prueba es muy sencilla.
+
+\begin{nota}
+$ord$ es una valoración discreta sobre $k[x]$. 
+\end{nota}
+
+\begin{defi}
+Si $\psi(x)=k(x)$ con $\psi(x)=\frac{f(x)}{g(x)}$ ($f,g\in k[x], g\neq 0$). Se define $ord\phi=ord f-ord g$.
+\end{defi}
+Se comprueba fácilmente que el orden de una función racional no depende de la expresión como fracción. Además se verifican las propiedades para polinomios.
+
+\begin{defi}[Multiplicidad de intersección entre una curva plana sobre una recta en un punto]
+Sea $C/k=\{f(x,y,z)=0\}$ una curva, $L=L(\alpha,\beta,\gamma)/k$ una recta y $P=[a:b:c]$. Si $P\notin L$, se define $m(C,L,P)=0$. Si $P\in L$, escogemos $P'=[a':b':c']\in L$ distinto de $P$. Consideramos $\psi(t)=f(a+ta',b+tb',c+tc')$. Se define entonces $m(C,L,P)=ord\psi(t)$ (con respecto a la variable $t$, o sea en $t=0$ siguiendo la definición de orden). 
+\end{defi}
+
+Se comprueba que esta definición no depende de ninguna de las elecciones.
+
+\begin{lemma}
+Sea $C_f$ una curva plana, $L$ una recta y $P\in L$. Entonces 
+\begin{enumerate}
+\item $m(C_f,L,P)\geq 1\Leftrightarrow P\in C_f$. 
+\item $P\in C_f$ y $L$ es la tangente a $C_f$ en $P$ implican que $m(C_f,L,P)\geq 2$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Mirar a partir de la definition 2.3.7 de Elliptische Kurven a ver si está por ahí
+\end{proof}
+
+\begin{lemma}
+Sea $A\in GL_3(k)$ y $C_f$ una curva. $P\in C_{f_A}$. $P$ es singular en $C_{f_A}$ si y solo si $\varphi_A(P)$ es singular en $C_f$.  
+\end{lemma}
+EL PHI ESE NO SÉ DE DÓNDE SALE, MIRAR EL LIBRO
+
+\section{Curvas elípticas}
+Muchas veces para definirlas se usa el género\footnote{\url{https://www.encyclopediaofmath.org/index.php/Genus_of_a_curve}} de una curva. 
+
+Ecuación de Weierstrass (tras definición 2.3.1) y definición 2.3.1 (curva elíptica = curva lisa/no singular dada por una ecuación de Weierstrass)
+
+\begin{lemma}
+Si $f(x,y,z)=0$ es una ecuación de Weierstrass, entonces si
+\[
+A=\begin{pmatrix}
+u^2 & 0 & r\\
+u^2s & u^3 & t\\
+0 & 0 & 1
+\end{pmatrix}\in GL_3(k)
+\]
+con $u,s,t\in k$, se tiene que $f_A(x,y,z)=0$ también es de Weierstrass.
+\end{lemma}
+La prueba es directa. CREO QUE EL SUBÍNDICE A ES MULTIPLICAR LA MATRIZ POR EL POLINOMIO VISTO COMO VECTOR
+
+Descripción del punto $O$ y no singularidad. Además la tangente en $O$ a $C_f$ es $L(0,0,1)$. $m(C_f,L,O)=ord\psi(t)$ con $\psi(5)=f(0+t,1+0t,0+0t)=f(t,1,0)$. Sea $P'=[1:0:0]\in L(0,0,1)$. Entonces sale que $m(C_f,L,O)=3$, por lo que tiene multiplicidad de tangente. 
+
+Números $b_i$, $\Delta$ y $j$ de las páginas 27 y 28. 
+
+
+Proposition 2.3.2, aunque creo que la hemso puesto algo distinta:
+
+\begin{lemma}
+Si la característica de $k$ no es 2, sea $g(x,y,z)=y^2z-x^3-\frac{1}{4}b_2x^2z-\frac{1}{2}b_4xz^2-\frac{1}{4}b_6z^3$. Entonces $\varphi:\PP^2\to \PP^2$ dada por $[a:b:c]\mapsto [a:b+\frac{a_1}{2}+\frac{a_3}{2}c:c]$ verifica que $C_f=\varphi(C_f)$.
+\end{lemma}
+
+\begin{lemma}[en la página 26]
+Si la característica de $k$ no es 2 ni 3, y $g(x,y,z)=y^2z-x^3+27c_4xz^2+54c_6z^3$. Entonces el cambio de variables $\varphi:[a:b:c]\mapsto [36a+2b_2c:216b:c]$ lleva $f$ en $g$. 
+\end{lemma}
+
+\begin{prop}[2.3.3]
+Sea $f(x,y,z)=0$ ecuación de Weierstrass. Entonces $C_f$ es lisa si y solo si $\Delta=0$.
+\end{prop}
+
+Esto nos da como conclusión que $C_f$ es elíptica si y solo si $\Delta\neq 0$.
 \end{document}
 
