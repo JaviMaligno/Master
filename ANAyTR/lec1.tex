@@ -215,5 +215,18 @@ Si $Rad(A)=0$, entonces $A$ es isomorfa a una suma de álgebras de matrices, ade
  \end{ej}
  
 La tabla de caracteres se hace calculando la traza de la matriz de cada elemento del grupo en cada una de las representaciones irreducibles. La traza de la identidad te da la dimensión de la representación. Elementos de una misma clase de conjugación dan las mismas trazas así que basta con calcular una matriz en que el elemento $(i,j)$ sea la traza de la matriz asociada a la representación $j$ de un elemento de la clase de conjugación $i$. (Teorema) Hay tantas irreps como clases de conjugación, por lo que la matriz sale cuadrada. Recordemos que en un grupo conmutativo hay una clase por cada elemento. 
+
+\section{3.4}
+Definición de producto tensorial de representaciones
+
+Representación dual (de $V^*$) se define como $g(L)(v)=L(g^{-1}v)$. El motivo es, además de que hay que conseguir que salga un morfismo de álgebras, que $g(L)(gv)=L(v)$. El caracter de la representación dual es el caracter no dual del inverso. 
+
+\section{3.5}
+
+La traza del producto tensorial es el producto de las trazas. Se puede hacer a lo bruto cogiendo bases, mirando las matrices resprectivas y calculando la imagen de $f(v_i)\otimes f(v_j)$, y queda que los coeficientes son los productos de los coeficientes (producto de Kronecker de matrices) \url{https://en.wikipedia.org/wiki/Kronecker_product}
+
+El caracter de la suma directa es la suma de los caracteres (la matriz es coger las de cada base y ponerlas en bloques en diagonal) 
+
+
 \end{document}
 

@@ -743,7 +743,7 @@ is $Cl(V )/Rad(Cl(V ))$?
 \end{ejercicio}
 \begin{solucion}
 \end{solucion}\
-\begin{enumerate}
+\begin{enumerate}[(i)]
 \item Supongamos que $\dim V=2n$. Como $(,)$ es bilinear y no degenerada, se puede aplicar el método de Gram-Schmidt (modificado) para conseguir una base $\{a_1,\dots, a_n,b_1,\dots, b_n\}$ para la cual $(a_i,a_j)=(b_i,b_j)=0$ y $(a_i,b_j)=\delta_{ij}/2$. Sea $S=\land (a_1,\dots, a_n)$ y definimos la siguiente acción de $Cl(V)$ en $S$. Para $w\in S$, $\rho(a_i)(w)=a_i\land w$ y $\rho(b_i)(w)=d_{a_i}w=\frac{dw}{da_i}$. La derivación con respecto a $a_i$ de un producto $w_1\land w_2$ donde $w_1$ es de grado $p$ (es una $p$-forma) se define recursivamente por la regla de Leibniz, $d(w_1\land w_2)=dw_1\land w_2+(-1)^pw_1\land w_2$. Tenemos que comprobar que esta acción verifica las relaciones de $Cl(V)$ para que esté bien definida.
 
 \begin{align*}
@@ -777,7 +777,7 @@ d_{a_i}d_{a_j}a_k\land w_k+d_{a_j}d_{a_i}a_k\land w_k&=d_{a_i}(\delta_{jk}\land 
 \end{align*}
 Lo que prueba que la acción está bien definida.
 
-Probamos ahora que esta representación es irreducible. Sea $w=ca_{i_1}\land\cdots\land a_{i_p}$ una $p$-forma ($c\in\C^*$). Entonces es claro que $\rho(b_{i_p}\cdots b_{i_1})(c^{-1}w)=1$. Como 1 es obviamente cíclico, todo elemento no nulo de $S$ es cíclico, lo cual implica que $S$ es irreducible por el ejercicio \ref{ejer:1.25}. Por el ejercicio \ref{ejer:1.34}(c) tenemos que $\dim S=2^n$. Como además $Cl(V)$ está generado por el mismo tipo de monomios que $S$ pero con base de tamaño $2n$, $\dim Cl(V)\leq 2^{2^n}$. Del teorema 2.12 deducimos que $$\dim Cl(V)-\dim Rad(Cl(V))=\sum_i\dim V_i$$ donde $V_i$ son las representacioens irreducibles de $Cl(V)$. Hemos encontrado una representación de dimensión $2^n$, pero podemos encontrarlas de dimensión $2^i$ para  $0\leq i\leq n$ haciendo que algunas parejas $a_i,a_j$ (y por tanto $b_i,b_j$) induzcan la misma acción. Esto además se puede hacer de tantas formas como parejas haya, por lo que obtenemos $\sum_i\dim V_i\geq 2^{2^n}$, puesto que $\sum_{i=0}^n2^i\geq 2^n$. Entonces, $$\dim Cl(V)-\dim Rad(Cl(V))\geq 2^{2^n},$$ pero $\dim Cl(V)\leq 2^{2^n}$, lo cual implica que necesariamente se da la igualdad y $Rad(Cl(V))$, con lo que concluimos que $Cl(V)$ es semisimple.\\
+Probamos ahora que esta representación es irreducible. Sea $w=ca_{i_1}\land\cdots\land a_{i_p}$ una $p$-forma ($c\in\C^*$). Entonces es claro que $\rho(b_{i_p}\cdots b_{i_1})(c^{-1}w)=1$. Como 1 es obviamente cíclico, todo elemento no nulo de $S$ es cíclico, lo cual implica que $S$ es irreducible por el ejercicio \ref{ejer:1.25}. Por el ejercicio \ref{ejer:1.34}(c) tenemos que $\dim S=2^n$. Como además $Cl(V)$ está generado por el mismo tipo de monomios que $S$ pero con base de tamaño $2n$, $\dim Cl(V)\leq 2^{2^n}$. Del teorema 2.12 deducimos que $$\dim Cl(V)-\dim Rad(Cl(V))=\sum_i\dim V_i$$ donde $V_i$ son las representacioens irreducibles de $Cl(V)$. Hemos encontrado una representación de dimensión $2^n$, pero podemos encontrarlas de dimensión $2^i$ para  $0\leq i\leq n$ haciendo que algunas parejas $a_i,a_j$ (y por tanto $b_i,b_j$) induzcan la misma acción. Esto además se puede hacer de tantas formas como parejas haya, por lo que obtenemos $\sum_i\dim V_i\geq 2^{2^n}$, puesto que $\sum_{i=0}^n2^i\geq 2^n$. Entonces, $$\dim Cl(V)-\dim Rad(Cl(V))\geq 2^{2^n},$$ pero $\dim Cl(V)\leq 2^{2^n}$, lo cual implica que necesariamente se da la igualdad y $Rad(Cl(V))=0$, con lo que concluimos que $Cl(V)$ es semisimple.\\
 
 Vamos ahora al caso de que $\dim V=2n+1$. Tomamos ahora una base como la de dimensión par añadiendo un vector $c$ cumpliendo $(a_i,c)=(b_i,c)=0$ y $(c,c)=1$. Definimos ahora dos acciones $\rho_+,\rho_-$ iguales a $\rho$ del anterior caso sobre los $a_i$ y $b_i$, pero $\rho_+(c)(w)=(-1)^p$ y $\rho_-(c)(w)=(-1)^{p+1}$ para una $p$-forma $w\in S$. Denotamos $S_+$ a la representación inducida por $\rho_+$ y $S_-$ a la representación inducida por $\rho_-$. Igual que antes, tenemos que comprobar que estas acciones están bien definidas, para lo cual solo tenemos que verificar las relaciones en las que interviene $c$, y lo haremos solo en $\rho_+$ porque para la otra es análoga.
 
@@ -802,6 +802,10 @@ Vamos ahora al caso de que $\dim V=2n+1$. Tomamos ahora una base como la de dime
 &= 0
 \end{align*}
 Con esto ya tenemos que las representaciones están bien definidas. La prueba de que $S_+$ y $S_-$ son irreducibles es igual que la de $S$ del caso anterior. Es fácil comprobar que estas representaciones no son isomorfas. Si existiera un isomorfismo de representaciones $f:S_+\to S_-$, $f$ debe llevar $p$-formas en $p$-formas, luego para una $p$-forma $w$ deberíamos tener $(-1)^{p+1}f(w)=\rho_-(c)(f(w))=f(\rho_+(c)(w))=(-1)^pf(w)$, lo cual no es posible. Igual que antes, tanto $S_+$ como $S_-$ tienen dimensión $2^n$ y podemos encontrar un sistema generador de $V$ y podemos recurrir a un argumento combinatorio similar al del anterior caso para demostrar que $Cl(V)$ es semisimple. 
+
+\item Una de las implicaciones ya la hemos probado en el apartado anterior, así que probamos que si $Cl(V)$ es semisimple, entonces $(,)$ es no degenerada. Lo probamos por contrarrecíproco. Supongamos entonces que $(,)$ es degenerada. Entonces podemos elegir una base $x_1,\dots, x_n$ verificando $(x_i,x_j)=0$ para $i\neq j$, $(x_i,x_i)=1$ para $1\leq i\leq d$ y $(x_i,x_i)=0$ para $d<i\leq n$ (para algún $1\leq d\leq n$). Consideremos ahora el ideal $I_n=\gene{x_n}$. Vamos a probar que $I^2=0$ y por tanto el radical no es vacío. Para ello, sean $a,b\in I_n$, que serán combinaciones lineales de elementos de la forma $ex_ne'$, $fx_nf'$ para $e,e',f,f'\in Cl(V)$. Entonces $ab$ estará formado por combinaciones lineales de productos de la forma $ex_ne'fx_nf'$. Como $x_n$ anticonmuta con los demás $x_i$, podemos mover en cada uno de estos sumandos uno de los $x_n$ para obtener en cada uno de ellos el producto $x_n^2=0$, con lo que $ab=0$ para todo $a,b\in \gene{x_n}$. Esto prueba nuestra afirmación. 
+
+Similarmente se puede probar que el ideal $I_d=\gene{x_{d+1},\dots, x_n}$ verifica $I^{n-d+1}=0$, ya que un producto de $n-d+1$ elementos de $I_d$ debe contener repetido algún elemento $x_{d+1},\dots, x_n$. Tenemos entonces que $Cl(V)/I\cong Cl(V')$, donde $V'$ está generado por $x_1,\dots, x_d$. Sobre $Cl(V')$, la forma bilineal $(,)$ es no degenerada, ya que su matriz con respecto a la base de $V'$ es la identidad. Por el apartado anterior, tenemos que $Cl(V)/I$ es semisimple, con lo que concluimos que $I=Rad(Cl(V))$ y $Cl(V)/Rad(Cl(V))=Cl(V')$. 
 \end{enumerate}
 
 \newpage
@@ -854,6 +858,108 @@ Let $G$ be the group of symmetries of a regular $N$-gon (it has $2N$ elements).
 \end{enumerate}
 \end{ejercicio}
 \begin{solucion}
+Asumimos en este ejercicio $N\geq 3$, ya que no hay un polígono regular de $N$ lados para $N<3$. 
+\begin{enumerate}[(a)]
+\item El grupo dihédrico de $2N$ elementos tiene presentación $$D_N=\gene{a,b\mid a^N=b^2=1, bab=a^{-1}}.$$ Encontremos en primer lugar las clases de conjugación de $D_N$. Tenemos que $\gene{a}$ es un subgrupo cíclico normal de $D_N$, luego cada elemento de este subgrupo junto con su inverso forman una clase de conjugación. Esto, en el caso de que $N$ sea par, nos da, además de la clase del elemento neutro, nos da de $\frac{N-2}{2}$ clases. Es fácil comprobar con las relaciones del grupo, que para $N$ par los demás elementos forman dos clases de conjugación, una dada por los de la forma $a^{2k}b$ y otra por los de la forma $a^{2k+1}b$. En total tenemos, por tanto, $\frac{N+6}{2}$ clases de conjugación.
+
+En el caso $N$ impar el análisis es similar aunque con algunas diferencias. Ahora, los elementos no triviales del subgrupo $\gene{a}$ nos dan una cantidad de $\frac{N-1}{2}$ clases. Los elementos que no pertenecen a este subgrupo ahora forman todos una misma clase, por lo que en total tenemos $\frac{N+3}{2}$.
+
+%\url{https://math.stackexchange.com/questions/556508/conjugate-class-in-the-dihedral-group}
+
+Ahora buscaremos representaciones irreducibles, ayudándonos del cálculo anterior para saber si las hemos encontrado todas gracias a que hay tantas como clases de conjugación. Empecemos con $N$ par. Buscamos primero representaciones de dimensión 1 (que son necesariamente irreducibles). Por la presentación del grupo, tenemos que si $\rho: D_N\to\End(\C)$ es una representación unidimensional, entonces está dada por $\rho(a)$ y $\rho(b)$. Tenemos que $\rho(a)^N=\rho(a^N)=1$, por lo que $\rho(a)$ es una raíz $N$-ésima de la unidad. Similarmente, $\rho(b)$ es una raíz cuadrada de la unidad, luego $\rho(b)\in\{-1,1\}$. Como además $\rho(b)\rho(a)\rho(b)=\rho(bab)=\rho(a)^{-1}$, necesariamente $\rho(a)=\rho(a)^{-1}$, con lo que en realidad $\rho(a)\in\{-1,1\}$. Combinando las posibilidades obtenemos 4 representaciones irreducibles de dimensión 1: $\rho_+^+$, $\rho_+^-$, $\rho_-^+$, $\rho_-^-$.. 
+
+Vamos ahora a las representaciones irreducibles de dimensión 2. Para definirlas nos inspiramos en la definición geométrica del grupo, es decir, $a$ actuará como una rotación y $b$ como una reflexión. En concreto, sea $w=e^{2\pi i/N}$. Para $h\in\{1,\dots, N\}$ definimos $\rho_h$ como la extensión lineal de
+\[
+\rho_h(a)=\begin{pmatrix}
+w^h & 0\\
+0 & w^{-h}
+\end{pmatrix},\ \rho(b)=\begin{pmatrix}
+0 & 1\\
+1 & 0
+\end{pmatrix}
+\]
+Se comprueba fácilmente que estas matrices verifican las relaciones de la presentación de $D_N$. Es obvio que $\rho_h$ y $\rho_{N-h}$ generan representaciones isomorfas, por lo que podemos reducirnos a estudiar los casos $0\leq h\leq N/2$. Para $h=0$, observamos que $\chi(\rho_0)=\chi(\rho_+^+)+\chi(\rho_+^-)$. Por el corolario 3.7, las representaciones están caracterizadas por sus caracteres, luego $\rho_0$ es isomorfa a la suma directa de las representaciones $\rho_+^+$ y $\rho_+^-$. Para $h=N/2$, tenemos una situación análoga pero con $\rho_-^+$ y $\rho_-^-$, así que podemos limitarnos a $0<h<N/2$. Obsérvese que ahora, para cualquiera de estos valores de $h$, tenemos que $w^h\neq w^{-h}$, por lo que las únicas rectas invariantes por $\rho(a)$ son los ejes generados por $\gene{(1,0)}$ y $\gene{(0,1)}$, pero estos subespacios no son invariantes por $\rho(b)$, de modo que estas representaciones son irreducibles. Hemos encontrado entonces $N/2-1$ representaciones irreducibles de dimensión 2.
+
+Obsérvese ahora que la cantidad total de representaciones irreducibles que hemos encontrado ha sido $4+N/2-1=N/2+3=\frac{N+6}{2}$, que era el número de clases de conjugación, luego ya las hemos encontrado todas. 
+
+
+
+
+Pasamos al caso $N$ impar. Podemos razonar de forma análoga al caso par. Ahora, como $-1^N=-1\neq 1$, $\rho(a)=1$, luego tenemos solo 2 representaciones irreducibles de dimensión 1. Para las de dimensión 2 hacemos la misma definición que para $N$ par, solo que ahora nos quedamos con los valores de $h\in\{1,\dots, \frac{N-1}{2}\}$, que por los mismos razonamientos nos dan representaciones irreducibles. Todas estas representaciones suman $2+\frac{N-1}{2}=\frac{N+3}{2}$, con lo que están todas.
+
+
+Alternativamente, en ambos casos podemos deducir que hemos encontrado todas sin hacer uso de las clases de conjugación, sino simplemente la fórmula de la suma de cuadrados, ya que para el caso par tenemos $4\cdot 1^2+(N/2-1)\cdot 2^2=2N$ y en el caso impar tenemos $2\cdot 1^2+\frac{N-1}{2}\cdot 2^2=2N$. 
+%\url{http://math.webgirand.eu/pdf/dvp_agreg/Dn_en.pdf}
+%\url{https://groupprops.subwiki.org/wiki/Number_of_conjugacy_classes}
+%\url{https://groupprops.subwiki.org/wiki/Element_structure_of_dihedral_groups}
+
+
+\item La complexificación de la representación estándar de $D_N$ se corresponde al $\rho_1$ que hemos definido en el apartado anterior. Empecemos por el caso $N$ impar. Escribimos como $\C_+^+$ la representación asociada a $\rho_+^+$ y análogamente con las otras representaciones unidimensionales. Denotamos además $\C^2_h$ a la representación asociada a $\rho_h$. Tenemos la tabla de caracteres siguiente a partir del apartado anterior:
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+$D_N$ &       $a^k$ & $a^kb$ \\
+\hline
+$\C_+^+$   &    1   &    1 \\
+\hline
+$\C_+^-$   &    1   &    -1\\
+\hline
+$\C^2_h$   &  $2\cos(\frac{2\pi h k}{N})$ & 0\\
+\hline
+\end{tabular}
+
+En el caso concreto de $V=\C^2_1$ tenemos que $\chi_{V\otimes V}=\chi_V^2$, por lo que en $a^k$ vale $4\cos^2(\frac{2\pi k}{N})$ y en $a^kb$ vale 0. la cantidad de copias de $\C_+^+$ en $V\otimes V$ está dada por el producto escalar $(\chi_V^2,\chi_{\C_+^+})$, que lo calculamos a continuación.
+\begin{align*}
+(\chi_{V}^2, \chi_{\mathbb{C}_+^+})
+&= \frac{1}{2N} \sum_{g \in D_N} \chi_{V}^2(g)\overline{\chi_{\mathbb{C}_+^+}(g)} \\
+&= \frac{1}{2N} \sum_{k=0}^{N-1} 4 \cos^2 \frac{2\pi k}{N} \\
+&= \frac{1}{N} \sum_{k=0}^{N-1} \left(1 + \cos \frac{4\pi k}{N}\right)\\
+&= \frac{1}{N} (N + 0) = 1
+\end{align*}
+En las ecuaciones hemos usado la fórmula del producto de cosenos y que la suma de las raíces de la unidad es 0. Análogamente, el número de copias de de $\C_+^-$ es 1. La dimensión de $V\otimes V$ es 4, así que necesariamente contiene una copia de un $\C^2_h$, que lo calculamos usando la linealidad de los caracteres sobre sumas directas.
+
+\begin{align*}
+\chi_{\mathbb{C}^2_h}(a^k)
+&= \chi_{V}^2(a^k) - \chi_{\mathbb{C}_+^+}(a^k) -
+\chi_{\mathbb{C}_+^-}(a^k) \\
+&= 4 \cos^2 \frac{2\pi k}{N} - 2 \\
+&= 2 \cos \frac{4\pi k}{N} \\
+&= \chi_{\mathbb{C}^2_2}(a^k)
+\end{align*}
+por lo que $h=2$. Es decir, $V\otimes V\cong \C_+^+\oplus \C_+^-\oplus \C^2_2$. Cabe destacar el caso $N=3$, para el cual existe realmente $\C_2^2$, por lo que la única copia de dimensión 2 que se puede utilizar es $\C^2_1$, con la que he hecho coincidiría $\C_2^2$ si la definiéramos siguiendo el mismo patrón.
+
+
+
+Veamos ahora el caso $N$ par. Tenemos la siguiente tabla de caracteres (agrupando dos clases de conjugación que tienen los mismos caracteres):
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+$D_N$       &  $a^k$   &  $a^kb$ \\
+\hline
+$\C_+^+$    &   1      &    1    \\
+\hline
+$\C_+^-$    &   1      &   $-1$   \\
+\hline
+$\C_-^+$    & $(-1)^k$ &   $(-1)^k$ \\
+\hline
+$\C_-^-$    & $(-1)^k$ & $(-1)^{k+1}$ \\
+\hline
+$\C^2_h$    & $2\cos(\frac{2\pi h k}{N})$ & 0\\
+\hline
+\end{tabular}
+
+Se observa que las filas de $\C_+^+$ y $\C_+^-$ son iguales respectivamente a las del caso $N$ impar, así como también lo es la de $\C^2_h$, por lo que los cálculos serían los mismos y esto nos vuelve a dar $V\otimes V\cong \C_+^+\oplus C_+^-\oplus \C^2_2$. De nuevo, tenemos una excepción, y es que $\C_2^2$ no está definida para el caso $N=4$. En este caso tenemos que hacer los cálculos con las otras representaciones irreducibles de dimensión 1 (en realidad solo con una de ellas, la otra se deducirá por dimensión). 
+
+\begin{align*}
+(\chi_{V}^2, \chi_{\mathbb{C}_-^+})
+&= \frac{1}{8} \sum_{g \in D_4} \chi_{V}^2(g)\overline{\chi_{\mathbb{C}_-^+}(g)} \\
+&= \frac{1}{8} \sum_{k=0}^{3} (-1)^k4 \cos^2 \frac{2\pi k}{4} \\
+&= \frac{1}{2} \sum_{k=0}^{3} (-1)^k\left(1 + \cos \frac{4\pi k}{4}\right)\\
+&=\frac{1}{2} \sum_{k=0}^{3} (-1)^k\left(1 + (-1)^k)\right)=1
+\end{align*}
+Así que $\C_-^+$ aparece una vez y por dimensión también $\C_-^-$, es decir, para $N=4$ tenemos $V\otimes V\cong \C_+^+ \oplus\C_+^- \oplus \C_-^+ \oplus \C_-^-$. 
+
+\end{enumerate}
 
 \end{solucion}
 
@@ -861,9 +967,15 @@ Let $G$ be the group of symmetries of a regular $N$-gon (it has $2N$ elements).
 \newpage
 \begin{ejercicio}{3.19}
 Let $V$ be a finite dimensional complex vector space, and $GL(V)$ be the group of invertible linear transformations of $V$. Then $S^nV$ and $\Lambda^m V$ ($m ≤ \dim(V )$) are representations of $GL(V )$ in a natural way. Show that they are irreducible representations.
+
+Hint: Choose a basis $\{e_i\}$ in $V$. Find a diagonal element $H$ of $GL(V)$ such that $ρ(H)$ has
+distinct eigenvalues. (where $ρ$ is one of the above representations). This shows that if $W$ is a
+subrepresentation, then it is spanned by a subset $S$ of a basis of eigenvectors of $ρ(H)$. Use the
+invariance of $W$ under the operators $ρ(1+E_{ij})$ (where $E_{ij}$ is defined by $E_{ij}e_k = δ_{jk}e_i)$ for all $i \neq j$
+to show that if the subset $S$ is nonempty, it is necessarily the entire basis.
 \end{ejercicio}
 \begin{solucion}
-
+Sea $\{e_1,\dots, e_n\}$ una base de $V$. La acción natural en $T^m(V)$ de $GL(V)$ (y por tanto en el álgebra simétrica y el álgebra alternada mediante paso al cociente) es, para una matriz $A\in GL(V)$ y para un tensor puro $e_{i_1}\otimes\cdots\otimes e_{i_m}$, el producto $\rho(A)(e_{i_1}\otimes\cdots\otimes e_{i_m})=(Ae_{i_1}\otimes\cdots\otimes Ae_{i_m})$. Una base de $\Lambda^m(V)$ está dada por los productos $e_{i_1}\land\cdots\land e_{i_m}$ con $1\leq i_1<\cdots< i_m\leq n$. Buscamos, como indica la pista, una matriz diagonal $H\in GL(V)$ tal que $\rho(H)$ tiene autovalores distintos. Aparentemente valdría cualquier matriz diagonal que tenga todos sus entradas distintas entre sí, pero veremos que necesitamos que sus entradas sean primso distintos entre sí. Esto es, sea $H$ tal que $He_i=p_ie_i$, siendo $p_i$ primo tal que $p_i\neq p_j$ si $i\neq j$. Los elementos $e_{i_1}\land\cdots\land e_{i_m}$ de la base son entonces autovectores con autovalores respectivos $\prod_{j=1}^m p_{i_j}$. Ahora, por ser los $p_{i_j}$ primos distintos entre sí podemos asegurar que dos elementos distintos de la base tienen autovalores distintos, luego $\Lambda^m(V)$ se escribe como suma directa de autoespacios generados por cada uno de los elementos de la base, que tienen dimensión 1.
 \end{solucion}
 
 \end{document}
