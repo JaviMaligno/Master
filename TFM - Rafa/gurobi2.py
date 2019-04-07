@@ -71,7 +71,10 @@ IMPARES = []
 for i in range(3,N,2):
     IMPARES = IMPARES + subconj(N,i)
     
-try:
+M = 10
+lambdas = np.array(range(0,M+1,1))/M
+
+def lambdafun(lam):
     # Creamos un modelo
     m = Model("escenarios");
     
@@ -108,14 +111,9 @@ try:
     # Definimos la funcion objetivo y queremos maximizar/minimizar.
     m.ModelSense = GRB.MINIMIZE
     
-    # Añadimos las funciones objetivo, una para cada elemento del mallado.
-    # Sea M el numero de puntos en el que queremos dividir el intervalo [0,1]
-    M = 1
-    lambdas = np.array(range(0,M+1,1))/M
-
-    for i in range(len(lambdas)):
-        m.setObjectiveN((lambdas[i])*cos1+(1-lambdas[i]*cos2,index = i,
-                        abstol = 100, ); 
+    # Añadimos la funcion objetivo
+    m.setObjective((1-lam)*cos1+lam*cos2); 
+    
     # Pasamos a generar las restricciones.
     # Imponemos que cada vertice tenga una pareja.
     for i in range(N):
@@ -127,20 +125,18 @@ try:
         card = len(a)-1
         m.addConstr(suma(S) <= card/2)
     m.optimize();
-        
-    nSolutions = model.SolCount
-    print('Number of solutions found: ' + str(nSolutions))
     
-    print('Objective values for first ' + str(nSolutions) + ' solutions:')
-    for i in range(M+1):
-        m.setParam(GRB.Param.ObjNumber, i)
-        for v in m.getVars():
-            print('%s %g' % (v.varName, v.x))
-        print(' %6g' % m.ObjNVal, end='')
-        print('')
+    # Preparamos la salida por pantalla
+    s=[]
+    for i in range(len(x)):
+        q = m.getVars()
+        v = q[i]
+        s.append(v.x)
+      
+    return([m.objVal,s])
 
-except GurobiError as e:
-    print('Error code ' + str(e.errno) + ": " + str(e))
 
-except AttributeError:
-    print('Encountered an attribute error')
+m = []
+for i in lambdas:
+    m.append(lambdafun(i))    
+m
