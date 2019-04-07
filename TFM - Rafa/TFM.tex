@@ -823,7 +823,7 @@ Estas distancias y medidas están tomadas respecto de los costes $c'_{uv}$. Pase
 \text{Paso 8: }& \text{Expandimos todos los pseudonodos y extendemos el matching $M_A$ a un}\\
 &\text{matching perfecto $M$ en $G$. Este matching es óptimo.} 
 \end{align*}
-
+\newpage
 \section{Método de reoptimización}
 En esta sección vamos a presentar un método de reoptimización para el problema del MCPM y cómo aplicarlo al problema biobjetivo. Antes de presentar este método hemos revisado diversos análsis de postoptimalidad como el de Ball y Taberna \cite{balltab} o el de Weber \cite{webber}, pero el que presenta mejores resultados computacionales y supone una simplificación importante en el número de casos a considerar es el que presenta Derigs. 
 
@@ -860,18 +860,45 @@ Supongamos que todas las aristas cuyos costes son alteradas están en $\delta(v)
 \text{Paso 2: }& \text{Sea $(u,v) \in M$ establecemos}\\
 &\overline{M}:=M\setminus\{(u,v)\}\\
 &\delta:=\min\{c_{vk}'^{new}\mid (v,k)\in \delta(v)\}<0\\
-&c_{vk}:=c_{vk}^{new} \quad \forall (v,k)\delta (v)\\
+&c_{vk}:=c_{vk}^{new} \quad \forall (v,k)\in \delta (v)\\
 &y_v:=y_v+\delta\\
 &\text{Ir al Paso 3.}\\
 \text{Paso 3: }&\text{Aplicar el algoritmo SAP a $(\overline{M},y)$ y determinar el menor}\\
 &\text{camino de aumento $P$ y una solución dual $y'$ tal que el par}\\
 &\text{$(\overline{M}\oplus P,y')$ sea un par compatible}
 \end{align*}
+A continuación explicamos explícitamente cómo aplicar el oráculo anterior para reoptimizar en general un problema de matching y añadimos además una forma algorítima del método.
+
+El proceso de reoptimización que muestra Derigs solo nos permite alterar los costes de las aristas relativas a un vértice en concreto. Por tanto, tenemos que invocarlo secuencialmente. Partimos de un par compatible $(M,y)$ óptimo. Calculamos $V' \subset V$ tal que $\delta(V') \cup \gamma(V')= E$. 	
+
+Enumeramos los vértices de $V' = \{u_1,\dotsc,u_s\}$. En el primer paso, llamamos al método de repotimización inicializandolo mediante $(M,y)$, el vértice $u_1$ y los costes $c_{uv}^{new}$ $\forall (u,v) \in \delta(u_1)$. El oráculo devuelve un par compatible $(M_1,y_1)$. En el paso general, partimos del par compatble $(M_i,y_i)$ y tomamos el vértice $u_{n+1}$ e inicializamos el proceso de repotimización junto con los costes $c_{uv}^{new}$ $\forall (u,v) \in \delta(u_{i+1})$. 
+De manera algoritmica, podemos escribir:
+\begin{align*}
+\text{Inicialización: }& \text{Sea $(M,y)$ un par compatible óptimo para MCPM y}\\
+& \text{sea $V'=\{u_1,\dotsc,u_s\}$ un conjunto de vértices tales que }\\
+& \text{$\delta(V')\cup\gamma(V')=E$.}\\
+\text{Paso 1: }& \text{Invocamos el proceso de repotimización con (M,y), el vértice $u_1$}\\
+&\text{y la función de costes $k^1$, que mantiene los mismos costes}\\
+&\text{$k^1_{uv} = c_{uv}$ $\forall (u,v)\notin \delta(u)$ y $k^1_{uv}=c^{new}_{uv}$ $\forall(u,v) \in \delta(u)$.}\\
+&\text{Obtenemos un par compatible óptimo $(M_1,y_1)$.}\\
+&\text{Avanzamos al Paso 2}\\
+\text{Paso 2: }& \text{Para todo $n =2,\dotsc,s$}\\
+&\text{		Invocamos el proceso de repotimización partiendo de}\\
+&\text{		el par compatible $(M_{n-1},y_{n-1})$, el vértice $u_n$ y la función}\\
+&\text{		de costes $k^n$ definida como $k^n_{uv} =k^{n-1}_{uv}$ si $(u,v)\notin \delta(u_n)$ y}\\
+&\text{		$k^n_{uv}=c^{new}_{uv}$ si $(u,v)\in \delta(u_n)$. Al final de cada iteración }\\
+&\text{obtenemos un par compatible $(M_n,y_n)$ con el cuál se}\\
+&\text{inicializa la siguiente iteración, hasta que $n=s$. En este caso}\\
+&\text{avanzamos al Paso 3.}\\
+\text{Paso 3: }&\text{El par compatible $(M_s,y_s)$ es óptimo para $G$ con la función}\\
+&\text{de coste $c^{new}$}
+\end{align*}
+Notemos que es posible que algunos o todos las aristas cuyos costes alteramos en un paso general pueden haber sido alteras en otros anteriores, pero tiene un efecto inocuo en el desarrollo del algoritmo. 
+
+Los conjuntos $W$ que verifican que $\delta(W)\cup\gamma(W)=E$ se denominan \textit{coberturas por vértices} de $G$. En general, el problema de decidir si un grafo $G$ tiene una cobertura por vértices de tamaño $k$ es NP-completo. A pesar de ello, por la observación anterior, tampoco es estrictamente necesario que obtengamos una cobertura de tamaño mínimo para inicializar el algoritmo. 
 
 \subsection{Problema biobjetivo}
-En el matching paramétrico, tal y como vimos en la Subsección 1.1.1, la función de coste es $c_{uv}(\lambda) = c^1_{uv} + \lambda c^2_{uv}$. Por tanto, para aplicar el procedimiento anterior, tenemos que considerar $c_{uv}^{new} = c^1_{uv} + (\lambda + \Delta) c^2_{uv}= c_{uv}(\lambda+\Delta)$. Para aplicar el procedimiento anterior necesitamos un subconunto $W\subset V$ tal que $E = \delta(W)\cup \gamma(W)$, es decir, el conjunto $W$ debe ser una cobertura por vértices de nuestro grafo $G$. Así, para cada $v\in W$ invocamos nuestro procedimiento para la reoptimización. 
-
-Notemos que $\Delta$ no tendría por qué ser un parámetro real, sino que podríamos considerar $\Delta \in \R^{|E|}$. En ese caso, $c_{uv}^{new} = c^1_{uv} + (\lambda + \Delta_{uv}) c^2_{uv}$ 
+En el matching paramétrico, tal y como vimos en la Subsección 1.1.1, la función de coste es $c_{uv}(\lambda) = c^1_{uv} + \lambda c^2_{uv}$. Por tanto, para aplicar el procedimiento anterior, tenemos que considerar $c_{uv}^{new} = c^1_{uv} + (\lambda + \Delta) c^2_{uv}= c_{uv}(\lambda+\Delta)$. Notemos que $\Delta$ no tendría por qué ser un parámetro real, sino que podríamos considerar $\Delta \in \R^{|E|}$. En ese caso, $c_{uv}^{new} = c^1_{uv} + (\lambda + \Delta_{uv}) c^2_{uv}$ 
 \section{Mantenimiento de la optimalidad}
 Estamos especialmente interesados en el caso del matching biobjetivo en saber cuánto puede variar $\Delta$ de manera que nuestro matching $M$ continúe siendo óptimo. Para realizar este análisis, consideremos el problema de Programación Lineal:
 \begin{align*}
@@ -952,7 +979,7 @@ import itertools
 import operator
 
 # Numeramos los vertices comenzando en 0.
-
+		
 # Matriz de adyacencias del grafo.
 A = np.array([[0,1,1,1],[1,0,1,0],[1,1,0,0],[1,0,0,0]])
 
@@ -1006,6 +1033,73 @@ def subconj(N,m):
 IMPARES = []
 for i in range(3,N,2):
     IMPARES = IMPARES + subconj(N,i)
+
+
+# Sea M el numero de puntos en el que queremos dividir el intervalo [0,1]
+M = 10
+lambdas = np.array(range(0,M+1,1))/M
+
+def lambdafun(lam):
+    # Creamos un modelo
+    m = Model("escenarios");
+    
+    # Creamos las variables. El tipo puede ser 
+    # 'C' para continuas, 'B' para binarias, 'I' para enteras,
+    # 'S' para semicontinuas, or 'N' for semienteras.
+    # El parametro lb nos da una cota inferior a las variables.
+    x = m.addVars(IND, lb = 0, vtype='C', name = "x");
+    
+    # Damos la siguiente función para ayudarnos a escribir las restricciones
+    def suma(S):
+        s = 0
+        for (a,b) in S:
+            s = s + x[a,b]
+        return(s)
+    # También diseñamos una para escribir las funciones objetivo
+    def objind(c):
+        s = 0
+        for i in range(len(IND)):
+            (a,b) = IND[i]
+            s = s + c[i]*x[a,b] 
+        return(s)
+    
+    # De esta forma, generamos las dos funciones objetivo. Notemos que 
+    # escribimos directamente los costes sobre las variables aristas
+    # del modelo, pues si una arista no está en el grafo, no tiene sentido
+    # generar una variable para ella.       
+    c1 = [20,0,0,20,20,20,20,0]
+    c2 = [0,20,20,20,20,0,0,20]       
+    
+    cos1 = objind(c1)
+    cos2 = objind(c2)
+    
+    # Definimos la funcion objetivo y queremos maximizar/minimizar.
+    m.ModelSense = GRB.MINIMIZE
+    
+    # Añadimos la funcion objetivo
+    m.setObjective((1-lam)*cos1+lam*cos2); 
+    
+    # Pasamos a generar las restricciones.
+    # Imponemos que cada vertice tenga una pareja.
+    for i in range(N):
+        m.addConstr(suma(delta(i)) == 1);
+    
+    # Imponemos las condiciones sobre los conjuntos impares.
+    for a in IMPARES:
+        S = gamma(a)
+        card = len(a)-1
+        m.addConstr(suma(S) <= card/2)
+    m.optimize();
+    
+    # Preparamos la salida por pantalla
+    s=[]
+    for i in range(len(x)):
+        q = m.getVars()
+        v = q[i]
+        s.append(v.x)
+      
+    return([m.objVal,s])
+
     
 \end{pythone}
 
