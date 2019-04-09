@@ -744,7 +744,7 @@ is $Cl(V )/Rad(Cl(V ))$?
 \begin{solucion}
 \end{solucion}\
 \begin{enumerate}[(i)]
-\item Supongamos que $\dim V=2n$. Como $(,)$ es bilinear y no degenerada, se puede aplicar el método de Gram-Schmidt (modificado) para conseguir una base $\{a_1,\dots, a_n,b_1,\dots, b_n\}$ para la cual $(a_i,a_j)=(b_i,b_j)=0$ y $(a_i,b_j)=\delta_{ij}/2$. Sea $S=\land (a_1,\dots, a_n)$ y definimos la siguiente acción de $Cl(V)$ en $S$. Para $w\in S$, $\rho(a_i)(w)=a_i\land w$ y $\rho(b_i)(w)=d_{a_i}w=\frac{dw}{da_i}$. La derivación con respecto a $a_i$ de un producto $w_1\land w_2$ donde $w_1$ es de grado $p$ (es una $p$-forma) se define recursivamente por la regla de Leibniz, $d(w_1\land w_2)=dw_1\land w_2+(-1)^pw_1\land w_2$. Tenemos que comprobar que esta acción verifica las relaciones de $Cl(V)$ para que esté bien definida.
+\item Supongamos que $\dim V=2n$. Como $(,)$ es bilinear y no degenerada, se puede aplicar el método de Gram-Schmidt (modificado) para conseguir una base $\{a_1,\dots, a_n,b_1,\dots, b_n\}$ para la cual $(a_i,a_j)=(b_i,b_j)=0$ y $(a_i,b_j)=\delta_{ij}/2$. Sea $S=\land (a_1,\dots, a_n)$ y definimos la siguiente acción de $Cl(V)$ en $S$. Para $w\in S$, $\rho(a_i)(w)=a_i\land w$ y $\rho(b_i)(w)=d_{a_i}w=\frac{dw}{da_i}$. La derivación con respecto a $a_i$ de un producto $w_1\land w_2$ donde $w_1$ es de grado $p$ (es una $p$-forma) se define recursivamente por la regla de Leibniz, $d(w_1\land w_2)=dw_1\land w_2+(-1)^pw_1\land dw_2$. Tenemos que comprobar que esta acción verifica las relaciones de $Cl(V)$ para que esté bien definida.
 
 \begin{align*}
 \rho(a_i a_j + a_j a_i - 2( a_i, a_j))(w)
@@ -758,7 +758,7 @@ is $Cl(V )/Rad(Cl(V ))$?
 \rho(a_i b_j + b_j a_i - 2( a_i, b_j))(w)
 &= a_i \wedge d_{a_j}w + d_{a_j}(a_i \wedge w) -
 \delta_{ij}w \\
-&= a_i \wedge d_{a_j}w\omega + (d_{a_j}a_i) \wedge w -
+&= a_i \wedge d_{a_j}w + (d_{a_j}a_i) \wedge w -
 a_i \wedge d_{a_j}w - \delta_{ij}w\\
 &= \delta_{ij}w - \delta_{ij}w \\
 &= 0
@@ -777,7 +777,9 @@ d_{a_i}d_{a_j}a_k\land w_k+d_{a_j}d_{a_i}a_k\land w_k&=d_{a_i}(\delta_{jk}\land 
 \end{align*}
 Lo que prueba que la acción está bien definida.
 
-Probamos ahora que esta representación es irreducible. Sea $w=ca_{i_1}\land\cdots\land a_{i_p}$ una $p$-forma ($c\in\C^*$). Entonces es claro que $\rho(b_{i_p}\cdots b_{i_1})(c^{-1}w)=1$. Como 1 es obviamente cíclico, todo elemento no nulo de $S$ es cíclico, lo cual implica que $S$ es irreducible por el ejercicio \ref{ejer:1.25}. Por el ejercicio \ref{ejer:1.34}(c) tenemos que $\dim S=2^n$. Como además $Cl(V)$ está generado por el mismo tipo de monomios que $S$ pero con base de tamaño $2n$, $\dim Cl(V)\leq 2^{2^n}$. Del teorema 2.12 deducimos que $$\dim Cl(V)-\dim Rad(Cl(V))=\sum_i\dim V_i$$ donde $V_i$ son las representacioens irreducibles de $Cl(V)$. Hemos encontrado una representación de dimensión $2^n$, pero podemos encontrarlas de dimensión $2^i$ para  $0\leq i\leq n$ haciendo que algunas parejas $a_i,a_j$ (y por tanto $b_i,b_j$) induzcan la misma acción. Esto además se puede hacer de tantas formas como parejas haya, por lo que obtenemos $\sum_i\dim V_i\geq 2^{2^n}$, puesto que $\sum_{i=0}^n2^i\geq 2^n$. Entonces, $$\dim Cl(V)-\dim Rad(Cl(V))\geq 2^{2^n},$$ pero $\dim Cl(V)\leq 2^{2^n}$, lo cual implica que necesariamente se da la igualdad y $Rad(Cl(V))=0$, con lo que concluimos que $Cl(V)$ es semisimple.\\
+Probamos ahora que esta representación es irreducible. Sea $w=ca_{i_1}\land\cdots\land a_{i_p}$ una $p$-forma ($c\in\C^*$). Entonces es claro que $\rho(b_{i_p}\cdots b_{i_1})(c^{-1}w)=1$. Como 1 es obviamente cíclico, todo elemento no nulo de $S$ es cíclico, lo cual implica que $S$ es irreducible por el ejercicio \ref{ejer:1.25}. Por el ejercicio \ref{ejer:1.34}(c) tenemos que $\dim S=2^n$. Como además $Cl(V)$ está generado por el mismo tipo de monomios que $S$ pero con base de tamaño $2n$, $\dim Cl(V)\leq 2^{2n}$. Del Teorema 2.12 deducimos que 
+$$\dim Cl(V)-\dim Rad(Cl(V))=\sum_i\dim V_i$$ 
+donde $V_i$ son las representaciones irreducibles de $Cl(V)$. Hemos encontrado una representación de dimensión $2^n$, pero podemos encontrarlas de dimensión $2^i$ para  $0\leq i\leq n$ haciendo que algunas parejas $a_i,a_j$ (y por tanto $b_i,b_j$) induzcan la misma acción. Esto además se puede hacer de tantas formas como parejas haya, por lo que obtenemos $\sum_i\dim V_i\geq 2^{2^n}$, puesto que $\sum_{i=0}^n2^i\geq 2^n$. Entonces, $$\dim Cl(V)-\dim Rad(Cl(V))\geq 2^{2^n},$$ pero $\dim Cl(V)\leq 2^{2^n}$, lo cual implica que necesariamente se da la igualdad y $Rad(Cl(V))=0$, con lo que concluimos que $Cl(V)$ es semisimple.\\
 
 Vamos ahora al caso de que $\dim V=2n+1$. Tomamos ahora una base como la de dimensión par añadiendo un vector $c$ cumpliendo $(a_i,c)=(b_i,c)=0$ y $(c,c)=1$. Definimos ahora dos acciones $\rho_+,\rho_-$ iguales a $\rho$ del anterior caso sobre los $a_i$ y $b_i$, pero $\rho_+(c)(w)=(-1)^p$ y $\rho_-(c)(w)=(-1)^{p+1}$ para una $p$-forma $w\in S$. Denotamos $S_+$ a la representación inducida por $\rho_+$ y $S_-$ a la representación inducida por $\rho_-$. Igual que antes, tenemos que comprobar que estas acciones están bien definidas, para lo cual solo tenemos que verificar las relaciones en las que interviene $c$, y lo haremos solo en $\rho_+$ porque para la otra es análoga.
 
@@ -834,7 +836,7 @@ h \psi_i &=  h \frac{\dim V_i}{|G|}\sum_{g\in G}\chi_{V_i}(g)g^{-1}\\
 &=\frac{\dim V_i}{|G|}\sum_{g\in G}\chi_{V_i}(g)g^{-1} h\\
 &=\psi_i h
 \end{align*}
-Por tanto $\psi_i$ conmuta con $G$ y, por linealidad, con $\C[G]$. Por el Ejercicio 1.21, $\psi_i$ actúa como un escalar en las representaciones irreducibles de $k[G]$ (pues son todas finitas por el Teorema de Maschke). 
+Por tanto $\psi_i$ conmuta con $G$ y, por linealidad, con $\C[G]$. Por el Ejercicio 1.21, $\psi_i$ actúa como un escalar en las representaciones irreducibles de $k[G]$ (pues son todas finitamente generadas por el Teorema de Maschke). 
 
 Tenemos que probar las constantes de los caracteres son $1$ si $i=j$ y $0$ en caso contrario. Calculemos directamente usando la linealidad del caracter
 \begin{align*}
@@ -860,7 +862,7 @@ Let $G$ be the group of symmetries of a regular $N$-gon (it has $2N$ elements).
 \begin{solucion}
 Asumimos en este ejercicio $N\geq 3$, ya que no hay un polígono regular de $N$ lados para $N<3$. 
 \begin{enumerate}[(a)]
-\item El grupo dihédrico de $2N$ elementos tiene presentación $$D_N=\gene{a,b\mid a^N=b^2=1, bab=a^{-1}}.$$ Encontremos en primer lugar las clases de conjugación de $D_N$. Tenemos que $\gene{a}$ es un subgrupo cíclico normal de $D_N$, luego cada elemento de este subgrupo junto con su inverso forman una clase de conjugación. Esto, en el caso de que $N$ sea par, nos da, además de la clase del elemento neutro, nos da de $\frac{N-2}{2}$ clases. Es fácil comprobar con las relaciones del grupo, que para $N$ par los demás elementos forman dos clases de conjugación, una dada por los de la forma $a^{2k}b$ y otra por los de la forma $a^{2k+1}b$. En total tenemos, por tanto, $\frac{N+6}{2}$ clases de conjugación.
+\item El grupo dihédrico de $2N$ elementos tiene presentación $$D_N=\gene{a,b\mid a^N=b^2=1, bab=a^{-1}}.$$ Encontremos en primer lugar las clases de conjugación de $D_N$. Tenemos que $\gene{a}$ es un subgrupo cíclico normal de $D_N$, luego cada elemento de este subgrupo junto con su inverso forman una clase de conjugación. Esto, en el caso de que $N$ sea par, nos da, además de la clase del elemento neutro, nos da de $\frac{N}{2}$ clases. Es fácil comprobar con las relaciones del grupo, que para $N$ par los demás elementos forman dos clases de conjugación, una dada por los de la forma $a^{2k}b$ y otra por los de la forma $a^{2k+1}b$. En total tenemos, por tanto, $\frac{N+6}{2}$ clases de conjugación.
 
 En el caso $N$ impar el análisis es similar aunque con algunas diferencias. Ahora, los elementos no triviales del subgrupo $\gene{a}$ nos dan una cantidad de $\frac{N-1}{2}$ clases. Los elementos que no pertenecen a este subgrupo ahora forman todos una misma clase, por lo que en total tenemos $\frac{N+3}{2}$.
 
