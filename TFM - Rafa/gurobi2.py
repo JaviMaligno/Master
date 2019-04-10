@@ -70,7 +70,8 @@ def subconj(N,m):
 IMPARES = []
 for i in range(3,N,2):
     IMPARES = IMPARES + subconj(N,i)
-    
+
+# Sea M el numero de puntos en el que queremos dividir el intervalo [0,1]
 M = 10
 lambdas = np.array(range(0,M+1,1))/M
 
