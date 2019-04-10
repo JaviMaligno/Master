@@ -228,5 +228,50 @@ La traza del producto tensorial es el producto de las trazas. Se puede hacer a l
 El caracter de la suma directa es la suma de los caracteres (la matriz es coger las de cada base y ponerlas en bloques en diagonal) 
 
 
+\section{3.8}
+Tabla de caracteres de $S_4$. La representación natural (como matrices de permutación) se descompone como la trivial y la estandar (permutar coordenadas de un hiperplano), esta suma dada por el hiperplano y la recta normal. Así que se calcula el caracter de la estandar a partir de estas dos. La traza de $(12)(34)$ es 0 porque los elementos de la diagonal se corresponden con puntos fijos de la permutación. En general se pueden calcular las de todas las clases así. 
+
+Para ver que la estándar es irreducible se usa que si $V=\oplus n_i V_i$ entonces el producto escalar de su caracter consigo mismo es $\sum n_i^2$. Es necesario y suficiente que esta suma de 1. Como es de dimensión 3 y en el caso complejo de grupos finitos son semisimples (se descomponen), podemos ver que no contiene como subrepresentación ninguna de dimensión 1 (ya que o se descompone como tres de 1 o como una de 2 y una de 1).
+
+Para sacar la de dimensión 3 que falta hacemos producto tensorial de estándar y alternada. Como los caractares se obtienen con el producto, se calculan fácilmente. Y ver si es irreducible se hace igual que antes (o con la descomposición del producto tensorial que se saca con los caracteres).
+
+Para la última (de dimensión 2) se saca por ortonormalidad o ortogonalidad tomando suma en representaciones. Para saber qué forma tiene, se puede usar la proyección del ejercicio de nilpotentes sobre la represenación regular.  
+
+
+Una forma de ver la sobreyección $S_4\to S_3$ es la acción por conjugación, viendo $S_3$ como permutaciones de los 3 elementos de la clase de conjugación de $(12)(34)$. Otra es esta \url{https://math.stackexchange.com/questions/2191483/constructing-a-homomorphism-from-s4-to-s3-that-satisfies-specific-conditions}. La representación de dimensión 2 se obtiene a partir de la representación estándar de $S_3$. 
+
+
+\section{4.6}
+
+Dados dos grupos $G$, $H$, las irresp de $G\times H$ son de la forma $V\otimes W$ para $V$ irrep de $G$ y $W$ irrep de $H$.
+
+Es fácil comprobar que que las clases de conjugación de $G\times H$ son los productos de clases de conjugación.  Para comprobar que los productos tensoriales de irreps, se calculan los productos escalares $\gene{\chi_{V_i\otimes W_j},\chi_{V_i\otimes W_j}}$ usando que $\chi_{V_i\otimes W_j}(g,h)=\chi_{V_i}(g)\chi_{W_j}(h)$, es decir, sale el producto de dos productos escalares que son 1. 
+
+Como los caracteres forman una base del espacio de funciones de clase, cualquier función de clase se escribe de forma única como combinación lineal de ellos. Esto quiere decir que si el caracter de una representación es combinación lineal de otros caracteres, entonces esa representación se descompone como combinación lineal de las representaciones asociadas. De hecho, podemos resolver cualquier descomposición resolviendo un sistema lineal. 
+
+
+Si $V$ es una representación de $G$, entonces $S^nV$ y $\Lambda^nV$ también lo son (la representación es aplicar el elemento a todos los factores).
+
+
+Cálculo de $\chi_{S^2(V)}$. Llamamos $S^2f$ a la aplicación $uv\in S^2V\mapsto f(u)f(v)\in S^2V$. Pongamos que $\dim V=2$ y $f$ es diagonalizable con base $\{e_1,e_1\}$ con respecto a la cual su matriz es diagonal. Si los autovalores son $\lambda_1,\lambda_1$, entonces $Tr(f)=\lambda_1+\lambda2$. $S^2V$ admite como base $e_1^2, e_1e_2, e_2^2$. Calculamos $S^2f$ de estos vectores para obtener su matriz con respecto a esa base, que sale diagonal y la traza es $\lambda_1^2+\lambda_1\lambda_2+\lambda_2^2$. Vamos a creernos que esto funciona cuando $f$ no es diagonalizable. Tendríamos además $\chi_V(g^2)=\lambda_1^2+\lambda_2^2$. Por otra parte, $\chi_V(g)=\lambda_1^2+\lambda_2^2+2\lambda_1\lambda_2$, y con todo esto podemos ya expresarlo en términos conocidos. En concreto, $\chi_{S^2V}=\frac{\chi_V(g)^2+\chi_V(g^2)}{2}$. Esta identidad de trazas vale para todas las matrices diagonales, que son un subespacio denso del espacio de todas las matrices, luego vale para todas por continuidad. 
+
+Si no queremos usar topología, lo que sí sabemos es que las matrices serán triangularizables (pueden ponerse en bloque de Jordan) y la diagonal siguen siendo los autovalores (en dimensión 2 hay un coeficiente que no conocemos pero da igual). Haciendo el mismo razonamiento se obtiene el mismo resultado.
+
+En general, $Tr(S^2f)=\sum\lambda_i^2+\sum_{i<j}\lambda_i\lambda_j$, $Tr(f)=\sum\lambda_i$, $Tr(f^2)=\sum\lambda_i^2$, $Tr(f)^2=\sum_{i<j}\lambda_i^2+2\sim\lambda_i\lambda_j$. Así que el resultado $Tr(S^2f)=\frac{Tr(f)^2+Tr(f^2)}{2}$ es válido para cualquier dimensión. 
+
+Si $V$ es una representación compleja de $G$m a partir de cualquier producto escalar sobre $V$ construimos un producto escalar invariante por $G$
+\[
+\gene{u,v}=\frac{1}{|G|}\sum_{g\in G}\gene{g(u),g(v)}
+\]
+Que sea invariante por $G$ quiere decir que tos los elementos de $G$ actúan como isometrías, es decir, $\gene{h(u),h(v)}=\gene{u,v}$ para todo $h\in G$ y para todo $u,v\in V$ (los $\rho(h)$ son endomorfismos unitarios). 
+
+Si $V$ es irreducible, entonces hay un único producto escalar invariante sobre $G$ (salvo multiplicación por escalar). Esto aunque no lo parezca es una consecuencia del lema de Schur. Es claro que existe uno porque acabaos de construirlo. Un producto escalar induce un isomorfismo $V\to V^*$ dado por $v\mapsto \gene{v,}$. En el caso complejo no es un isomorfismo porque en una de las coordenadas los escalares salen conjugados. Para ello definimos el espacio conjugado $\overline{V}$ como $V$ pero el producto por escalar es $\lambda\cdot v=\overline{\lambda}v$. Esto entonces hace que la aplicación anterior sea isomorfismo como aplicación $\overline{V}\to V^*$ (y en general convierte semilineales en lineales).
+
+Si $\varphi\in\Hom_{Vect}(\overline{V},V^*)$, la propiedad de ser invariante bajo $G$ se puede expresar como $\gene{h(u),w}=\gene{u,h^{-1}(w)}$. Entonces $\varphi(h(u))(w)=\varphi(u)\circ h^{-1}(w)$ para $w=h(v)$.  La acción sobre el dual era precisamente multiplicar por el inverso, así que $\varphi(\rho_V(h)(u))=\rho_{V^*}(h)(\varphi(u))$. 
+
+Este cálculo demuestra que $\varphi$ es de hecho un morfismo de representaciones, y por el lema de Schur $\overline{V}\cong V^*$, y además es único salvo producto por escalar, luego $\dim Hom_G(\overline{V},V^*)=1$. 
+
+
+
 \end{document}
 
