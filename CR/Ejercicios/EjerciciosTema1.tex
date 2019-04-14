@@ -1,0 +1,174 @@
+	\documentclass[twoside]{article}
+\usepackage{../../estilo-ejercicios}
+%\renewcommand{\baselinestretch}{1,3}
+%--------------------------------------------------------
+\begin{document}
+
+\title{Ejercicios de Criptografía}
+\author{Javier Aguilar Martín}
+\maketitle
+
+
+\begin{ejercicio}{1}
+\begin{enumerate}
+\item Sea $k ∈ \Z_{≥0}$, y supongamos que $2^k + 1$ es un número primo. Demuestra que
+existe un número natural $l$ tal que $k = 2^l$
+
+(Ayuda: Para todo par de números naturales
+$m$, $n$ con $m$ impar, se cumple la siguiente fórmula: $a^{mn}+1 = (a^n+1)(a^{n(m−1)}−a^{n(m−2)}+\cdots + (−1)^{i+1}a^{n(m − i)} +\cdots + 1)$).
+
+Para cada número natural $n$, diremos que $F_n := 2^{2^n}+ 1$ es un primo de Fermat si $F_n$ es
+primo.
+
+\item Sea $n ∈ \Z_{≥0}$ tal que $F_n$ es un primo de Fermat. Demuestra que si $a ∈ \Z$ verifica que
+$F_n \not| a$ y que $a$ no es un residuo cuadrático módulo $F_n$, entonces el elemento $a + (Fn)$
+genera el grupo multiplicativo $(\Z/F_n\Z)^×$.
+
+\item Sea $p ≥ 5$ un número primo . Demuestra que se verifica la siguiente fórmula:
+\[
+\left(\frac{3}{p}\right)
+=\begin{cases}
++1 & \text{if }p ≡ ±1 (\mod 12)\\
+−1 & \text{if }p ≡ ±5 (\mod 12).
+\end{cases}
+\]
+Ayuda: Usa la ley de reciprocidad cuadrática de Gauss.
+
+\item Sea $n ∈ \Z_{≥1}$ y consideremos el número $F_n = 2^{2^n}+1$. Prueba que las siguientes condiciones
+son equivalentes:
+\begin{enumerate}[(i)]
+\item $F_n$ es primo.
+\item $3^{(F_n−1)/2} ≡ −1 (\mod F_n)$.
+\end{enumerate}
+Ayuda para la implicación $(ii) → (i)$: Usando el Teorema Chino del Resto, demuestra
+que $F_n$ es primo si y sólo si el cardinal del grupo multiplicativo $(\Z/F_n\Z)^×$ es $F_n − 1$.
+Calcula el orden del grupo generado por $3 + (F_n)$ en el grupo $(\Z/F_n\Z)^×$
+\end{enumerate}
+\end{ejercicio}
+\begin{solucion}
+\begin{enumerate}
+\item \url{https://en.wikipedia.org/wiki/Fermat_number#Other_theorems_about_Fermat_numbers}
+\item (El de Edouard Lucas en el enlace de arriba)
+\item
+\end{enumerate}
+\end{solucion}
+
+\newpage
+
+\begin{ejercicio}{2}
+Para cada uno de los valores de N que se indican, calcula la factorización de $N$
+utilizando el método $p − 1$ de Pollard. 
+\begin{enumerate}[1)]
+\item $N = 63373$;
+\item $N = 75203$;
+\item $N = 75359$;
+\item $N = 98537$.
+\end{enumerate}
+\end{ejercicio}
+\begin{solucion}
+\begin{enumerate}
+\item
+\item
+\item
+\item
+\end{enumerate}
+\end{solucion}
+
+\newpage
+
+\begin{ejercicio}{3}
+Para cada uno de los valores de $N$ que se indican, calcula la factorización de $N$
+utilizando el método $ρ$ de Pollard.
+\begin{enumerate}[1)]
+\item $N = 7081$;
+\item $N = 9047$.
+\end{enumerate}
+\end{ejercicio}
+\begin{solucion}
+\begin{enumerate}
+\item 
+\item
+\end{enumerate}
+\end{solucion}
+\newpage
+\begin{ejercicio}{4}
+Para cada uno de los valores de $p$ y $g$ que se indican, consideramos el grupo
+multiplicativo $\F^×_p$. Calcula, utilizando el método $ρ$ de Pollard, el logaritmo discreto de $h =131 ∈ \F^×_p$.
+\begin{enumerate}[1)]
+\item $p = 491$, $g = 2$;
+\item $p = 499$, $g = 7$.
+\end{enumerate}
+\end{ejercicio}
+\begin{solucion}
+\begin{enumerate}
+\item
+\item
+\end{enumerate}
+\end{solucion}
+\newpage
+\begin{ejercicio}{5}
+Para cada uno de los valores de $p$, $g$, $B$ que se indican, consideramos el grupo
+multiplicativo $\F^×_p$. Calcula: 
+(1) los logaritmos discretos de los primos menores o iguales que
+$B$ en base $g$ (basta utilizar los valores de $g^i$
+, para $i ≤ 50$, en todos los casos); (2) El logaritmo
+discreto del elemento $h = 131$ ∈ $\F^×_p$, utilizando el método de ``index-calculus''.
+\begin{enumerate}[1)] 
+\item $p = 223$, $g = 3$, $B = 19$;
+\item $p = 227$, $g = 2$, $B = 11$.
+\end{enumerate}
+
+
+\end{ejercicio}
+\begin{solucion}
+ 
+\end{solucion}
+\newpage 
+
+Consideremos las siguientes curvas proyectivas planas, definidas sobre el cuerpo $\F_3$ de
+tres elementos:
+\begin{enumerate}[1)]
+\item $E_1 :$ $Y^2Z = X^3 + 2X^2Z + XZ^2 + Z^3$;
+\item $E_2 :$ $Y^2Z + XYZ = X^3 + 2X^2Z + XZ^2 + Z^3$;
+\item $E_3 :$ $Y^2Z + XYZ = X^3 + 2X^2Z + XZ^2$;
+\item $E_4 :$ $Y^2Z + YZ^2 = X^3 + 2X^2Z + XZ^2$.
+\end{enumerate}
+Para cada uno de los casos $i = 1, \dots , 4$, se proponen los siguientes ejercicios:
+
+
+\begin{ejercicio}{6}
+Demuestra que la curva $E_i$ es lisa.
+\end{ejercicio}
+\begin{solucion}
+
+\end{solucion}
+
+\newpage
+
+\begin{ejercicio}{7}
+Sean $L_1 = L(0, 0, 1)$ la recta proyectiva definida por la ecuación $Z = 0$ y
+$L_2 = L(1, 0, 1)$ la recta proyectiva definida por la ecuación $X + Z = 0$. Para cada punto
+proyectivo $P ∈ \PP^2(\F_3)$ y cada índice $j = 1, 2$, denotamos por $m(E_i, L_j , P)$ a la multiplicidad
+de intersección de $E_i$ y $L_j$ en $P$. Calcula la suma
+\[
+\sum_{P ∈\PP^2(\F_3)}m(E_i, L_j , P)
+\]
+para $j = 1, 2$.
+\end{ejercicio}
+\begin{solucion}
+
+\end{solucion}
+
+\newpage
+
+\begin{ejercicio}{8}
+ Calcula el conjunto $E_i(\F_3)$ de puntos de la curva elíptica con coeficientes en $\F_3$.
+Sabemos que este conjunto es un grupo abeliano. Calcula la tabla de multiplicar de este grupo
+\end{ejercicio}
+\begin{solucion}
+
+\end{solucion}
+
+
+
+\end{document}

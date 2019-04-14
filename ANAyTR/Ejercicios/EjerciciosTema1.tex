@@ -69,11 +69,22 @@ fh =  hf &\Longrightarrow \left(\sum_{g\in G} a_g g \right)h = h\left(\sum_{g\in
 Por tanto, la condición necesaria y suficiente que es que $a_g$ sea constante entre los miembros de una misma clase de conjugación.
 \end{solucion}
 \newpage
-\begin{ejercicio}
-Calcular los caracteres del álgebra exterior de la representación estándar de $S_4$.
+\begin{ejercicio}{}
+Calcular los caracteres del álgebra exterior $\Lambda^2 V$ de la representación estándar $V$ de $S_4$.
 \end{ejercicio}
 \begin{solucion}
+De forma general sea $f:V\to V$ un endomorfismo diagonalizable de un espacio vectorial de dimensión finita. Definimos el homomorfismo $\Lambda^2 f:\Lambda^2V\to \Lambda^2 V$ como $$u\land v\mapsto \Lambda^2f(u\land v)=f(u)\land f(v).$$ Sea ahora $\{e_1,\dots, e_n\}$ una base de $V$ con respecto a la cual la matriz de $f$ es diagonal, con autovalores $\lambda_1,\dots, \lambda_n$, de modo que $Tr(f)=\sum_i\lambda_i$. Tenemos claramente que $Tr(f^2)=\sum_i\lambda_i^2$. 
 
+Por otra parte, una base de $\Lambda^2V$ está dada por los productos $e_i\land e_j$ con $i<j$, para la cual $\Lambda^2 f(e_i\land e_j)=\lambda_i\lambda_j e_i\land e_j$. Así pues, obtenemos como matriz de $\Lambda^2 f$ una matriz diagonal que tiene en la diagonal los productos $\lambda_i\lambda_j$ con $i<j$, es decir, $Tr(\Lambda^2 f)=\sum_{i<j}\lambda_i\lambda_j$. 
+
+Es inmediato entonces que $Tr(f)^2-2Tr(\Lambda^2 f)=Tr(f^2)$, con lo que 
+\[
+Tr(\Lambda^2 f)=\frac{Tr(f)^2-Tr(f^2)}{2}
+\]
+
+Las matrices diagonales son densas en el espacio de todas las matrices cuadradas $n\times n$ con la topología usual de $\C^{n\times n}$, y tenemos que la función $Tr(\Lambda^2 f)-\frac{Tr(f)^2+Tr(f^2)}{2}$ es continua y constantemente nula en el subespacio de matrices diagonales, por lo que es constantemente nula en el espacio de todas las matrices cuadradas de su mismo orden. 
+
+Esto se aplica de forma inmediata al cálculo de caracteres de cualquier representación compleja de grupos. 
 \end{solucion}
 \newpage 
 \section{Ejercicios del libro}
