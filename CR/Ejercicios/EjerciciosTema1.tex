@@ -47,9 +47,37 @@ Calcula el orden del grupo generado por $3 + (F_n)$ en el grupo $(\Z/F_n\Z)^×$
 \end{ejercicio}
 \begin{solucion}
 \begin{enumerate}
-\item \url{https://en.wikipedia.org/wiki/Fermat_number#Other_theorems_about_Fermat_numbers}
-\item (El de Edouard Lucas en el enlace de arriba)
-\item
+\item Si $k$ no es de la forma $2^l$ para ningún $l$, entonces $k=rs$ con $r>2$ impar y $s\in\N$. Por la ayuda tenemos $2^s+1$ divide a $2^k+1$. Como $1<2^s+1<2^k+1$, se tiene que $2^k+1$ no es primo y se tiene el resultado por contrarrecíproco. 
+
+
+
+
+%\url{https://en.wikipedia.org/wiki/Fermat_number#Other_theorems_about_Fermat_numbers}
+\item Por las hipótesis sobre $a$ tenemos que $\left(\frac{a}{F_n}\right)=-1$, luego $a^{2^{2^n-1}}=a^{\frac{F_n-1}{2}}\equiv -1\mod F_n$. Sabemos que $(\Z/F_n\Z)^\times$ tiene orden $2^{2^n}$ y $2^{2^n-1}$ generadores, que son los que no son cuadrados, ya que un elemento de un grupo cíclico de orden $r$ es generador si y solo si no es una potencia $q$-ésima para ningún factor primo $q$ de $r$, luego los generadores son justamente los no cuadrados. 
+
+\item Usaré la propiedad siguiente que parece que todo el mundo sabe menos yo: si $p\equiv q\equiv 3\mod 4$, entonces $(p/q)=-(q/p)$ y se da la igualdad sin signo en otro caso. También que si $a\equiv b\mod p$, entonces $(a/p)=(b/p)$. 
+
+Obsérvese que como $p\geq 5$ (es decir, $p\neq 2,3$), tenemos que $p\equiv \pm 1\mod 12$ o $p\equiv \pm 5\mod 12$. Además el símbolo de Legendre en este caso no puede ser 0. 
+\begin{itemize}
+\item Si $p=1+12k$, entonces $p\equiv 1\mod 3,\mod 4$, luego $(3/p)=(p/3)=(1/3)=1$.
+\item Si $p=-1+12k$, entonces $p\equiv -1\mod 3,\mod 3$ ($p\equiv 2\mod 3$ y $p\equiv 3\mod 4$), luego $(3/p)=-(p/3)=-(2/3)=1$.
+\item Si $p=5+12k$, entonces $p\equiv 2\mod 3$ y $p\equiv 1\mod 4$, luego $(3/p)=(p/3)=(2/3)=-1$.
+\item Si $p=5+12k$, entonces $p\equiv 1\mod 3$ y $p\equiv 3\mod 4$, luego $(3/p)=-(p/3)=-(1/3)=-1$. 
+\end{itemize}
+%\url{http://mathonline.wikidot.com/legendre-symbol-rules-for-3-p-and-6-p}, \url{}
+
+\item $(i)\Rightarrow (ii)$ es consecuencia de la proposición de Euler. Efectivamente, tenemos que $3^{(F_n−1)/2} ≡ \left(\frac{3}{F_n}\right) (\mod F_n)$. Es fácil ver que $2^{2^n}\equiv 1\mod 3$, con lo que $F_n\equiv 2\mod 3$, así que $(F_n/3)=-1$. Como $F_n\equiv 1\mod 4$, concluimos que $(3/F_n)=-1$ y aplicando la proposición se deduce el resultado. 
+
+
+Para $(ii)\Rightarrow (i)$, vemos primero que $p$ es primo si y solo si $\#(\Z/p\Z)^\times=p-1$. La implicación directa es consecuencia del teorema de Lagrange, para la inversa, por el teorema Chino del resto tenemos que si $p=ab$ con $ab$ primos, entonces $\#(\Z/p\Z)^\times=(a-1)(b-1)\neq p-1$ (el caso general de una descomposición en primos es similar). 
+
+Ahora, supongamos que $3^{(F_n−1)/2} ≡ −1 (\mod F_n)$, lo cual implica que $3^{F_n−1} ≡ 1 (\mod F_n)$. Esto significa que el orde de 3 divide a $F_n-1$, que es una potencia de 2, pero no divide a $\frac{F_n-1}{2}$, luego es exactamente $F_n-1$. En particular, hay al menos $F_n-1$ coprimos con $F_n$, lo cual solo puede pasar si $F_n$ es primo por lo probado al principio del apartado. 
+
+%\url{https://en.wikipedia.org/wiki/P%C3%A9pin%27s_test}
+
+
+
+ 
 \end{enumerate}
 \end{solucion}
 
