@@ -10,12 +10,18 @@ from gurobipy import *
 import numpy as np
 import itertools 
 import operator
+import networkx as nx
 
-# Numeramos los vertices comenzando en 0.
+# Establecemos una semilla predeterminada para asegurar la reproducibilidad
+# de los resultados
+np.random.seed(1234)
 
-# Matriz de adyacencias del grafo.
-A = np.array([[0,1,0,0,1,0],[1,0,1,0,1,0],[0,1,0,1,0,1],
-             [0,0,1,0,1,1],[1,1,0,1,0,0],[0,0,1,1,0,0]])
+# Construimos un grafo aleatorio
+mat = nx.gnp_random_graph(12,0.6)
+
+# Numerando los vértices a partir de 0, obtenemos la matriz de adyacencia
+# del grafo como un array 
+A = nx.convert_matrix.to_numpy_matrix(mat)
 
 # Numero de vertices
 N = len(A)
@@ -36,6 +42,10 @@ def indices(n,a):
 # Calculamos una vez el conjunto de indices
 IND = indices(N,A)
 
+# Construimos aleatoriamente las funciones de coste
+c1 = np.random.rand(len(IND))
+c2 = np.random.rand(len(IND))
+    
 # Definimos la funcion delta, que nos da los vertices
 # ejes adyacentes a un vertice dado.
 def delta(v):
@@ -72,12 +82,12 @@ for i in range(3,N,2):
     IMPARES = IMPARES + subconj(N,i)
 
 # Sea M el numero de puntos en el que queremos dividir el intervalo [0,1]
-M = 10
+M = 1
 lambdas = np.array(range(0,M+1,1))/M
 
 def lambdafun(lam):
     # Creamos un modelo
-    m = Model("escenarios");
+    m = model("escenarios");
     
     # Creamos las variables. El tipo puede ser 
     # 'C' para continuas, 'B' para binarias, 'I' para enteras,
@@ -103,9 +113,7 @@ def lambdafun(lam):
     # escribimos directamente los costes sobre las variables aristas
     # del modelo, pues si una arista no está en el grafo, no tiene sentido
     # generar una variable para ella.       
-    c1 = [20,0,0,20,20,20,20,0]
-    c2 = [0,20,20,20,20,0,0,20]       
-    
+
     cos1 = objind(c1)
     cos2 = objind(c2)
     
@@ -120,11 +128,14 @@ def lambdafun(lam):
     for i in range(N):
         m.addConstr(suma(delta(i)) == 1);
     
+    m.setParam('Basis',2)
     # Imponemos las condiciones sobre los conjuntos impares.
     for a in IMPARES:
         S = gamma(a)
         card = len(a)-1
         m.addConstr(suma(S) <= card/2)
+        
+    print(m.getParamInfo('basis'))
     m.optimize();
     
     # Preparamos la salida por pantalla
@@ -133,11 +144,22 @@ def lambdafun(lam):
         q = m.getVars()
         v = q[i]
         s.append(v.x)
-      
     return([m.objVal,s])
 
 
 m = []
 for i in lambdas:
     m.append(lambdafun(i))    
-m
+
+sols = [a[1] for a in m]
+
+#for i in range(len(sols)):
+#    print(*sols[i])
+    
+def unique(list1):
+    unique_list = [] 
+    for x in list1:
+        if x not in unique_list:
+            unique_list.append(x)
+    return(unique_list)
+    

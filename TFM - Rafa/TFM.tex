@@ -1,6 +1,4 @@
-\documentclass[twoside,a4paper,openright,12pt]{book}
-\usepackage{makeidx}
-\usepackage{capt-of}
+\documentclass[twoside,a4paper,openright,12pt,tikz]{book}
 \usepackage[T1]{fontenc}
 \usepackage{amsfonts}
 \usepackage{mathtools,amscd,amsthm}
@@ -13,25 +11,15 @@
 \usepackage{fancyhdr}
 \usepackage{hyperref}
 \usepackage{enumerate}
-\usepackage{array}
 \usepackage{comment}
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
-\usepackage[colorinlistoftodos]{todonotes}
 \usepackage{anysize}
-\usepackage{booktabs}
 \usepackage{listings}
-\usepackage{listingsutf8}
 \usepackage{etoolbox}
-% \usepackage{slashbox}
-% \usepackage{verbatim}
-% \usepackage[font=small]{caption}
-% \usepackage{framed}
-% \usepackage{cancel}
 \usepackage{tikz}
-\usetikzlibrary{snakes}
-% \usepackage{epstopdf}
-% \usepackage{float}
+
+
 % Plantillas de código
 \newcommand{\rstyle}{\lstset{ 
   language=R,                     % the language of the code
@@ -81,7 +69,6 @@
 \newcommand*{\ProcessQuote}[1]{#1\iftoggle{InString}{\global\togglefalse{InString}}{\global\toggletrue{InString}}}%
 
 
-% Default fixed font does not support bold face
 \DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
 \DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{11}  % for normal
 
@@ -135,7 +122,30 @@
 \pythonstyle
 \lstset{#1}
 }
-{}  
+{}
+
+
+\newcommand{\graphfromadj}[3][arc/.try]{
+    \foreach [count=\r] \row in {#3}{
+        \foreach [count=\c] \cell in \row{
+            \ifnum\cell=1%
+                \draw[arc/.try=\cell, #1] (#2\r) edge (#2\c);
+            \fi
+        }
+    }
+}
+
+\newcommand{\weigthgraphfromadj}[3][draw,->]{
+    \foreach [count=\r] \row in {#3}{
+        \foreach [count=\c] \cell in \row{
+            \if0\cell%
+            \else
+                \draw[arc/.try=\cell, #1] (#2\r) edge node[arc label/.try=\cell]{\cell} (#2\c);
+            \fi
+        }
+    }
+}
+
 
 \marginsize{3.25cm}{3.25cm}{3cm}{3cm}
 
@@ -299,7 +309,7 @@ s.a.\;  &  Ax\leq b \\
 \end{align*}
 donde $c$ es el vector de pesos, $A$ es la matriz de incidencia del grafo, $|E|=n$ y la variable $x_{uv}=1$ si la arista $(u,v)$ está en el emparejamiento y $0$ en caso contrario. Nótese que si $G$ es un grafo bipartito entonces $A$ es una matriz totalmente unimodular y, en ese caso, los puntos extremos del poliedro $\{x \in \R^n_+\mid Ax\leq b\}$ son precisamente los $b$-emparejamientos.
 
-Es claro que la formulación como problema de programación entera no suele resultar la más conveniente. La mayoría de técnicas y algoritmos para resolver este problema de manera eficiente utilizan instrumentos basados en la dualidad de la Programación Lineal. Esto es posible gracias a un importante resultado que probó Edmond \cite{edmond}, que pasamos a enunciar.
+Es claro que la formulación como problema de programación entera no suele resultar la más conveniente. La mayoría de técnicas y algoritmos para resolver este problema de manera eficiente utilizan instrumentos basados en la dualidad de la Programación Lineal. Esto es posible gracias a un importante resultado que probó Edmonds en \cite{edmond}, que pasamos a enunciar.
 \begin{thm}
 Sea $G=(V,E)$ un grafo. Sea $B$ el conjunto
 $$
@@ -321,11 +331,27 @@ s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} \leq 1, \quad \forall u \in V\\
 &\sum_{(u,v)\in \gamma(S)} x_{uv} \leq \frac{1}{2}(|S|-1)\quad \forall S \in B	\\
 &x_{uv} \geq 0 \qquad \forall(u,v)\in E
 \end{align*}
-Esta formulación es ciertamente útil, pues tenemos una primera aproximación al problema del matching con una formulación propia de la Programación Lineal. Sin embargo veremos más adelante modificaciones del Teorema de Edmonds que nos darán algunas formulaciones equivalentes.
+Esta formulación es ciertamente útil, pues tenemos una primera aproximación al problema del matching con una formulación propia de la Programación Lineal. De hecho, podemos dar la formulación del problema dual
+\begin{align*}
+\max_y & \sum_{u\in V}y_u + \sum_{S\in B}\frac{1}{2}(|S|-1)y_S\\
+s.a.&\;y_u+y_v - \sum_{S\in B,\,(u,v)\in \gamma(S)} y_S \leq c_{uv} \quad \forall (u,v)\in E\\
+&y_u \geq 0 \qquad \forall u\in V\\
+&y_S \geq 0 \qquad \forall S\in B
+\end{align*}
+De manera que podemos hacer la siguiente definición.
+\begin{defi}
+Definimos el coste reducido de una variable $x_{uv}$ asociada a una arista $(u,v)$ con respecto a una solución dual $y$ como
+$$
+c_{uv}' = c_{uv} -y_u - y_v + \sum_{S\in B,\,(u,v)\in \gamma(S)}y_S 
+$$
+\end{defi}
 
-
-
-\subsection{El problema del emparejamiento paramétrico y biobjetivo}
+A pesar de la utilidad del teorema de Edmonds para el desarrollo de numerosos algoritmos, más adelante veremos algunas modificaciones del de dicho teorema que nos darán algunas formulaciones equivalentes pero más interesantes de cara al paradigma de la resolución computacional. Como introducción a esta idea, tenemos la equivalencia
+$$
+\sum_{(u,v)\in \gamma(S)} x_{uv} \leq \frac{1}{2}(|S|-1) \Leftrightarrow \sum_{(u,v)\in \delta(S)} x_{uv} \geq 1
+$$
+\newpage
+\subsection{El problema del emparejamiento biobjetivo}
 Una vez que hemos presentado los conceptos básicos para entender el MCPM, podemos definir una clase más general de problemas a los cuáles dedicaremos especial atención durante los procesos de reoptimización. Definimos el \textit{problema del emparejamiento paramétrico respecto de $R\subset E$} con parámetro $\lambda$ como
 \begin{align*}
 \min_x & \sum_{(u,v) \in E}x_{uv} (c_{uv} + \lambda d_{uv})\\
@@ -341,7 +367,6 @@ d_{uv} = \begin{cases}
 \end{cases}
 $$
 Este problema puede verse como la relajación lagrangiana del problema del matching con una cota superior y es ampliamente estudiado por Ball y Taverna en \cite{balltab}. 
-\newpage
 Más generalmente, si consideramos dos funciones de coste $c^1$ y $c^2$ cualesquiera y un parámetro $\lambda$ escalar, podemos formular el \textit{problema del emparejamiento biobjetivo}
 \begin{align*}
 \min_x & \sum_{(u,v) \in E}x_{uv}(c^1_{uv}+\lambda c^2_{uv})\\
@@ -349,7 +374,6 @@ s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} \leq 1, \quad \forall u \in V\\
 &\sum_{(u,v)\in \gamma(S)} x_{uv} \leq \frac{1}{2}(|S|-1)\quad \forall S \in B	\\
 &x_{uv} \geq 0 \qquad \forall(u,v)\in E
 \end{align*}
-
 \section{El algoritmo de Grötschel-Holland}
 A partir del Teorema 1.1.1, Edmonds desarrolló basándose en ideas de la programación lineal un método combinatorio \cite{edmond} para obtener una solución del problema de emparejamiento en tiempo polinómico. Una de las características más importantes del problema de Programación Lineal asociado es que tiene un número de restricciones exponencial en el número de ejes. A pesar de que, en un principio, encontraríamos esta condición prohibitiva a la hora de resolver el problema, los resultados de Edmonds muestran que la estructura de las restricciones son más importantes que su número. 
 
@@ -361,9 +385,7 @@ Para evitar redundar en desarrollo teórico de un algoritmo que no utilizaremos 
 &\text{Vamos al Paso 2.}\\
 \text{Paso 2: }&\text{Utilizar una heurísitca para encontrar un matching $M$.}\\
 &\text{Establecemos $E':=E'\cup M$.}\\
-&\text{Vamos al Paso 3.}
-\end{align*}
-\begin{align*}
+&\text{Vamos al Paso 3.}\\
 \text{Paso 3: }& \text{Establecemos el problema de Programación Lineal}\\
 & \min_x  \sum_{(u,v) \in E}x_{uv}c_{uv}\\
 &s.a.\;\sum_{(u,v)\in\delta(u)} x_{uv} = 1, \quad \forall u \in V\\
@@ -379,6 +401,8 @@ Para evitar redundar en desarrollo teórico de un algoritmo que no utilizaremos 
 \text{Paso 7: }&\text{Encontramos un hiperplano de corte para $x^*$. Para ello realizamos:}\\
 &\text{Utilizamos la Heurística 1 con $G_{x^*}$. Si encontramos un hiperplano}\\
 &\text{vamos al Paso 8. En otro caso utilizamos la Heurística 2 en $G^2_{x^*}$.}\\
+\end{align*}
+\begin{align*}
 &\text{Si lo encontramos, vamos al Paso 8. En otro caso, utilizamos el}\\
 &\text{procedimiento Padberg-Rao en $G'_{x^*}$. Obtenemos un hiperplano y}\\
 &\text{vamos al Paso 8.}\\
@@ -389,7 +413,7 @@ Para evitar redundar en desarrollo teórico de un algoritmo que no utilizaremos 
 &\text{Si $VAR\neq\emptyset$, establecemos $E'=E\cup VAR$.}\\
 &\text{Vamos al Paso 4.}
 \end{align*}
-A continuación describimos cada uno de los pasos.
+A continuación describimos brevemente cada uno de los pasos del algoritmo.
 \begin{itemize}
 \item[Paso 1.] Determinamos un conjunto $E'\subset E$ que denominamos ejes candidatos, que utilizaremos como variables para el problema de Programación Lineal inicial. Para cada nodo determinamos los $NN$ ($1\leq NN \leq |V|-1$) ejes de menor coste incidentes en él. $E'$ será la unión de estos ejes. Los autores del algoritmo han probado computacionalmente distintos valores para $NN$ y encuentran que $5\leq NN \leq 10$ es una buena elección para grafos de tamaño mediano, es decir, de tamaño entre 500 y 1000. Esto significa que el número de varaibles que utilizamos, en principio, supone menos del 1\% del número total de variables. 
 \item[Paso 2.] Los ejes de $E'$ son ordenados (por ejemplo, a través del algoritmo Quickshort) de manera no decreciente con respecto a sus pesos. Utilizamos un algoritmo voraz para encontrar un matching $M$ inicial. Si $M$ no fuese perfecto, tomamos pares arbitrariamente pares de nodos no conectados en $M$ y añadiendo aristas de $E\setminus E'$ a $M$ y, para garantizar la factibilidad del problema, al propio conjunto $E'$. 
@@ -400,6 +424,7 @@ A continuación describimos cada uno de los pasos.
 &x_{uv} \geq 0 \qquad \forall(u,v)\in E'
 \end{align*}
 del problema inducido por $E'$. Notemos que el grado $\delta(v)$ debe tomarse en el subgrafo $(V,E')$. Como solución inicial de este problema utilizamos el matching $M$ calculado anteriormente.
+\newpage
 \item[Paso 4.] Resolvemos el problema de Programación Lineal considerado. Los autores del algoritmo recomiendan usar IBM-MPSX/370 utilizando. De manera general, cada vez que vayamos a este paso utilizamos la solución óptima obtenida en la llamada anterior como base inicial. En el caso de que hayamos añadido nuevas restricciones, esta base será infactible para el problema primal, pero sí será factible para el dual, que podemos utilizar para encontrar una solución del primal. Sea $x^*$ la solución obtenida.
 \item[Paso 5.] Consideramos el grafo $G_{x^*}=(V,E_{x^*})$, donde $E_{x^*} =\{(u,v)\in E'\mid x^*_{uv}>0\}$. Este grafo servirá como input para la fase de detección de planos de corte. Definimos los costes $k_{uv}:=x^*_{uv}$. Para no escanear dos veces $x^*$, comprobamos si $x^*$ es un vector de coordenadas enteras.
 \item[Paso 6.] Si $x^*$ es entero, entonces induce un matching perfecto en el subproblema considerado. En este caso, comprobamos la optimalidad global (Paso 9). En otro caso, necesitamos determinar planos de corte para obtener una nueva solución $x^*$, es decir, vamos al Paso 7.
@@ -421,12 +446,10 @@ Notemos que el algoritmo de Padberg y Rao que utilizan los autores para encontra
 \item[Paso 8.] Añadimos los planos de corte encontrados en el paso anterior a nuestro problema y volvemos al Paso 4.
 \item[Paso 9.] Hemos obtenido una solución entera que induce un matching perfecto e $(V,E')$, pero naturalmente no tiene por qué ser un matching óptimo en $K_n$. Para comprobarlo, calculamos el coste reducido a cada eje $(u,v)\in E\setminus E'$. Sea $VAR$ el conjunto de variables que podrían mejorar la solución óptima. Si todos los costes tienen el signo adecuado, entonces $VAR=\emptyset$ y nuestra solución actual es de hecho óptima en $K_n$, por lo que hemos terminado. Si $VAR\neq \emptyset$, entonces establecemos $E'=E'\cup VAR$ y añadimos las correspondientes variables. Volvemos al Paso 4.
 \end{itemize}
-
 \section{Aplicaciones y problemas relacionados}
-En esta sección presentamos algunas aplicaciones y otros problemas conocidos que guardan cierta relación con el problema del emparejamiento.
+En esta sección presentamos algunas aplicaciones, como la resolución del problema de la asignación o un algoritmo de aproximación del problema del viajante, y otros problemas interesantes, como el problema de la cobertura por aristas, el de la coloración de aristas o los T-enlaces, que guardan cierta relación con el problema del emparejamiento.
 \subsection{El problema de la asignación}
 Para ilustrar las distintas aplicaciones que tiene el problema del matchig, comenzamos con un problema clásico de la Investigación Operativa. El problema de asignación o \textit{assigment assignment problem} consiste en encontrar la forma de asignar recursos (máquinas, empleados, etc.) a un cierto conjunto de teareas determinadas con coste mínimo. Se supone que cada recurso se destina a una sola tarea, y que cada tarea es ejecutada por uno solo de los recursos. Es claro que este problema puede formularse como un problema de matching de coste mínimo. Notemos que, además, la formulación natural del mismo se realiza sobre un grafo bipartito. 
-
 \subsection{Aproximación al problema del viajante}
 El problema del viajante o \textit{travelling salesman problem} (TSP) en un grafo no dirigido consiste en encontrar el ciclo hamiltoniano de peso mínimo. Computacionalmente hablando, se sabe que es NP-duro. Este problema aparece para responder a la pregunta: ¿Dada una lista de ciudades y las distancias entre cada pareja de ciudades, cuál es la ruta más corta para visitar todas las ciudades y volver a la ciudad de origen? Este problema puede formularse como problema de programación entera, como puede encontrarse en \cite{papa}. 
 
@@ -439,7 +462,7 @@ Aunque no puede utilizarse el problema del matching para resolver este problema,
 \text{Paso 3: }& \text{Combinar los ejes del árbol y del matching obteniendo un}\\
 &\text{multigrafo euleriano. Encontrar un circuito euleriano.}\\
 \text{Paso 4: }&\text{Obtener un circuito hamiltoniano descartando nodos ya visitados}
-\end{align*}
+\end{align*} 
 \subsection{Cobertura de aristas}
 Sea $G=(V,E)$ un grafo. Una \textit{cobertura por aristas} del grafo $G$ es un conjunto $C$ de aristas de manera que todo vértice de $G$ es incidente con, al menos, un arista de $C$. Podemos definir además el \textit{número de cobertura de aristas} de un grafo $G$ como el tamaño de una cobertura de aristas de tamaño mínimo. Se verifica el siguiente resultado.
 \begin{prop}
@@ -469,6 +492,8 @@ x_{uv} &\geq 0\\
 \sum_{(u,v)\in \gamma(S)\cup\delta(S)} x_{uv}& \geq \frac{1}{2}(|S|+1)\quad \forall S \in B	
 \end{align*}
 \end{thm}
+
+
 \subsection{Coloración de aristas}
 Dado un grafo $G=(V,E)$, una \textit{coloración de las aristas} de $G$ con el mínimo número de colores posibles, de manera que aristas que sean incidentes en un mismo vértice tengan colores diferentes. 
 
@@ -504,14 +529,18 @@ s.a.\;  &  Ax_{\cdot i} \leq  1 \qquad \forall i=1,\dotsc,n\\
 & x_i\geq 0  \qquad \forall i=1,\dotsc,n
 \end{align*}
 donde $|E|=n$. El problema dual puede ser resuelto en tiempo polinomial, pues $x^*$ ($0\leq x^*_i \leq 1$) es una solución factible del mismo si y solo si un matching de coste máximo en $G$ tomando como pesos $x^*$ tiene valor no mayor que 1.
-\subsection{T-Enlaces y T-Cortes}
-Continuamos presentando la relación entre los emparejamientos y los $T$-enlaces y $T$-cortes, conceptos capitales para resolver el problema del cartero.
+\subsection{T-Enlaces y el problema del cartero chino}
+Continuamos presentando la relación entre los emparejamientos y los $T$-enlaces, el problema de emparejamiento y el problema del cartero chino.
 \begin{defi}
 Dado un grafo $G=(V,E)$, consideremos $T\subset V$ con cardinalidad par y $E'\subset E$. Decimos que $E'$ es un $T$-enlace si en $G'=(V,E')$ si $v\in V$ tiene grado impar si y solo si $v\in T$.
 \end{defi}
 \begin{prop}
 Los $T$-enlaces de cardinalidad mínima son árboles.
 \end{prop}
+\begin{prop}
+El problema de encontrar un $T$-enlace de peso mínimo puede resolverse en tiempo polinomial.
+\end{prop}
+\begin{dem}
 Encontrar un $T$-enlace de coste mínimo. Para verlo, veamos que podemos reducir este problema al de encontrar un matching perfecto. Sea $G=(V,E)$ y $T$, reemplazamos cada $v\in V$ por un grafo completo $C_v$ con $\delta(v)+\alpha_v$ vértices, donde
 $$
 \alpha_v = \begin{cases}
@@ -524,6 +553,19 @@ Entonces, para cada $(u,v)\in E$, unimos un nodo de $C_v$ a otro de $C_i$ de man
 \begin{prop}
 Si $M\subset E\cup E'$ es un matching perfecto en $G'$, entonces $M\cap E$ es un $T$-enlace en $G$. Recíprocamente, si $E^*$ es un $T$-enlace en $G$, entonces existe $K\subset E'$ tal que $E^*\cup K$ es un matching perfecto en $G'$.
 \end{prop}
+\end{dem}
+Veamos ahora la importancia de encontrar estos conjuntos de cara a la resolución del problema conocido como \textbf{problema del cartero chino}. Este problema trata de encontrar un el circuito de menor coste que visite todas las aristas. Si el grafo es euleriano, necesariamente la solución ha de ser cualquier circuito euleriano. En caso de que nuestro grafo no sea euleriano, podemos utilizar el siguiente algoritmo polinomial basado precisamente en el $T$-enlace.
+\begin{align*}
+\text{Paso 1: }& \text{Si el grafo es euleriano, entonces tomamos un circuito euleriano}\\
+&\text{como solución. En otro caso, vamos al Paso 2.}\\
+\text{Paso 2: }&\text{Obtener el $T$-enlace de coste mínimo. Como hemos visto, este}\\
+&\text{puede obtenerse usando un algoritmo que resuelva el problema}\\
+&\text{del emparejamiento.}\\
+\text{Paso 3: }&\text{Consideramos el multigrafo obtenido a partir de duplicar las}\\
+&\text{aristas de los vértices de $T$. Por el lema del apretón de manos.}\\
+&\text{Este nuevo grafo es euleriano. Obtenemos un circuito euleriano.}\\
+\text{Paso 4: }& \text{El circuito euleriano de este grafo induce una solución del problema.}\\
+\end{align*} 
 \subsection{Envolvente convexa del $b$-matching}
 Aunque el objetivo de este trabajo es analizar el problema relativo al $1$-emparejamiento, podríamos hablar más generalmente, tal y como dijimos al inicio de este capítulo, del problema del $b$-matching. De manera ilustrativa, presentamos el teorema análogo al Teorema 1.1.1. para esta formulación más general del problema. 
 \begin{thm}
@@ -925,9 +967,13 @@ Realizamos el análisis para el caso en $\lambda$ es un único parámetro escala
 & = c_N(\lambda)^t  - c_B(\lambda)^t B^{-1}N + \Delta {c_N^2}^t  - \Delta {c_B^2}^t B^{-1}N \\
 &= \overline{c_R}(\lambda)^t + \Delta \overline{c_R^2}^t \geq 0
 \end{align*}
-En este caso, sabemos que $B$ se mantiene como base óptima siempre que
+Si simplemente utilizamos la aproximación clásica a la reoptimización de un problema de Programación Lineal, sabemos que $B$ se mantiene como base óptima siempre que
 $$
-\max_{j:\overline{c^2}_j>0} -\frac{\overline{c}(\lambda)_j}{\overline{c^2}_j} \leq \Delta \leq \min_{j:\overline{c^2}_j<0} - \frac{\overline{c}(\lambda)_j}{\overline{c^2}_j}
+\max_{(u,v):\overline{c^2}_uv>0} -\frac{\overline{c}(\lambda)_{uv}}{\overline{c^2}_{uv}} \leq \Delta \leq \min_{j:\overline{c^2}_{uv}<0} - \frac{\overline{c}(\lambda)_{uv}}{\overline{c^2}_{uv}}
+$$
+Sea $y$ una solución del problema dual asociado para $\lambda$, entonces sabemos que para cualquier arista $(u,v)\in E$, en particular para una arista representada por una variable no básica, el coste reducido es precisamente 
+$$
+c(\lambda)_{uv}.' =c_{uv}+\lambda-y_u-y_v - \sum_{S\in B, (u,v)\in \delta(S)}y_S
 $$
 
 Una vez estudiado el caso anterior, consideremos un caso más genérico en el que $\Delta \in \R^{|E|}$. Para simplificar la notación, sea $\lambda \in \R$ y $\Delta \in \R^{|E|}$ podemos escribir $c(\lambda+\Delta)$, donde
@@ -1102,8 +1148,15 @@ def lambdafun(lam):
 
     
 \end{pythone}
-
-
+\begin{tikzpicture}[scale=5,
+    vertex/.style={draw,circle},
+    arc/.style={draw=blue!#10,thick,->},
+    arc label/.style={fill=white, font=\tiny, inner sep=1pt}
+    ]
+    \foreach [count=\i] \coord in {(0.809,0.588),(0.309,0.951),(-0.309,0.951),(-0.809,0.588),(-1.,0.),(-0.809,-0.588),(-0.309,-0.951),(0.309,-0.951),(0.809,-0.588),(1.,0.)}{
+        \node[vertex] (p\i) at \coord {\i};
+    }
+\end{tikzpicture}
 
 \begin{thebibliography}{9}
 \bibitem{edmond} 
