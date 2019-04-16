@@ -30,7 +30,7 @@ p_1:X\times Y\to X;\ p_2:X\times Y\to Y,
 \end{equation}
 where $p_1$, $p_2$ are the projections. 
 
-Given a topological $B_\infty$-operad $X$, the corresponding \emph{operad of little disks} is a symmetric operad $X'$ such that $X'(n)=X(n)/PB_n$ with the induced structure maps. The maps \ref{projections} guarantee that any two operads of little disks are connected by a chain of homotopy equivalences. HAY QUE AFINAR EL TIPO DE ESPACIOS QUE SON, MIRAR MI PREGUNTA DE MSE PARA AÑADIRLO A LA DEFINICIÓN
+Given a topological $B_\infty$-operad $X$, the corresponding \emph{operad of little disks} is a symmetric operad $X'$ such that $X'(n)=X(n)/PB_n$ with the induced structure maps. We require in addition that the actions are nice enough so that the maps $X(n)\to X'(n)$ are covering maps. This way, $X'(n)$ is a $K(PB_n,1)$ space, so any two operads of little disks are homotopy equivalent. Using the maps \ref{projections} we can explicitly connect any two operads of little disks are connected by a chain of homotopy equivalences. The projection $X×Y→X$ is $PB_n$-equivariant at each level for the product action on $(X\times Y)(n)=X(n)×Y(n)$ and so induces a map $X(n)×Y(n)/PB_n→X/PB_n$. This map is a fiber bundle with fiber $Y(n)$ (it is trivialized over any open subset of $X(n)/PB_n$ that is evenly covered by $X(n)→X(n)/PB_n$) and thus a homotopy equivalence since $Y(n)$ is contractible. Similarly, the other projection gives a homotopy equivalence $X(n)×Y(n)/PB_n→Y(n)/PB_n$ and combining them we get a homotopy equivalence $X(n)/PB_n→Y(n)/PB_n$.
 
 
 We now prove that the little disks operad defined in Section \ref{little} is a little disks operad in this sense. We'll make use of the following lemmas.
@@ -140,8 +140,9 @@ the braid
 
 %suces
 
-NECESITO QUE LOS RECUBRIDORES SEAN OPERADS Y QUE LA APLICACIÓN DE ARRIBA SEA MORFISMO DE OPERADS
-We will specify the action by this braid to be the lift of the action of $\sigma_i = (i\ i+1)\in\Sigma_n$ on $E_2(n)$ subject to the following basepoint condition. CREO QUE LA IDEA ES QUE LA ACCIÓN SIEMPRE LIFTEA PERO DEPENDE DE LA ELECCIÓN DE PUNTO BASE, SI NO ME ACLARO ESTO PREGUNTARLE A MURO PORQUE AQUÍ NO SE DEFINE LA ACCIÓN EN TODO EL RECUBRIDOR, SOLO EN EL LIFT DE $E_1$ Choose an arbitrary point $x\in E_1(n)$. Let $\alpha:I\to E_2(n)$ denote the path from $x$ to $x\sigma_i$ specified by the following sequence
+%Si defino la composición operádica como la única que hace conmutar el diagrama de recubrimientos entonces necesariamente es morfismo de operads
+We will specify the action by this braid to be the lift of the action of $\sigma_i = (i\ i+1)\in\Sigma_n$ on $E_2(n)$ subject to the following basepoint condition. %CREO QUE LA IDEA ES QUE LA ACCIÓN SIEMPRE LIFTEA PERO DEPENDE DE LA ELECCIÓN DE PUNTO BASE, SI NO ME ACLARO ESTO PREGUNTARLE A MURO PORQUE AQUÍ NO SE DEFINE LA ACCIÓN EN TODO EL RECUBRIDOR, SOLO EN EL LIFT DE $E_1$ 
+Choose an arbitrary point $x\in E_1(n)$. Let $\alpha:I\to E_2(n)$ denote the path from $x$ to $x\sigma_i$ specified by the following sequence
 of pictures
 
 \definecolor{qqqqff}{rgb}{0.,0.,1.}
@@ -286,30 +287,31 @@ of pictures
 \draw (0.4,2.6) node[anchor=north west] {$1$};
 \draw (1.72,2.6) node[anchor=north west] {$i$};
 \draw (0.9,2.5) node[anchor=north west] {$\cdots$};
-\draw (2.48,2.6) node[anchor=north west] {$i+1$};
+\draw (2.5,2.6) node[anchor=north west] {\small{$i+1$}};
 \draw (3.4,2.5) node[anchor=north west] {$\cdots$};
 \draw (4.2,2.6) node[anchor=north west] {$n$};
 \draw (6.4,2.6) node[anchor=north west] {$1$};
 \draw (7.72,2.193333333333332) node[anchor=north west] {$i$};
-\draw (8.48,4.393333333333331) node[anchor=north west] {$i+1$};
+\draw (8.5,4.393333333333331) node[anchor=north west] {\small{$i+1$}};
 \draw (6.9,2.5) node[anchor=north west] {$\cdots$};
 \draw (9.4,2.5) node[anchor=north west] {$\cdots$};
 \draw (0.4,-2.9) node[anchor=north west] {$1$};
-\draw (1.5,-2.) node[anchor=north west] {$i+1$};
+\draw (1.5,-2.) node[anchor=north west] {\small{$i+1$}};
 \draw (2.9,-4.38) node[anchor=north west] {$i$};
 \draw (4.2,-2.9) node[anchor=north west] {$n$};
 \draw (6.4,-2.9) node[anchor=north west] {$1$};
 \draw (0.8,-3.) node[anchor=north west] {$\cdots$};
 \draw (3.493333333333334,-3.0) node[anchor=north west] {$\cdots$};
 \draw (6.8,-3.) node[anchor=north west] {$\cdots$};
-\draw (7.48,-2.9) node[anchor=north west] {$i+1$};
+\draw (7.5,-2.9) node[anchor=north west] {\small{$i+1$}};
 \draw (8.95,-2.9) node[anchor=north west] {$i$};
 \draw (9.48,-3.) node[anchor=north west] {$\cdots$};
 \draw (10.15,-2.9) node[anchor=north west] {$n$};
 \draw (10.2,2.6) node[anchor=north west] {$n$};
 \end{tikzpicture}
 
-Let $\widetilde{\alpha}$ denote the lift which starts in $\widetilde{C}_1$. Let $\widetilde{x}=\widetilde{\alpha}(0)$ and $\widetilde{y}=\widetilde{\alpha}(1)$, then specify $\widetilde{x}\widetilde{\sigma}=\widetilde{y}$. COMPROBAR QUE ESTO DA LA ESTRUCTURA DE $B_\infty$ (ADEMÁS DE LAS PROPIEDADES DE OPERAD, LA ACCIÓN TIENE QUE SER LIBRE, PERO TENGO DUDA PARA EL CASO DE LAS TRENZAS PURAS) Y QUE EL COCIENTE POR LA ACCIÓN DE LAS TRENZAS PURAS ES $E_2$ (QUIZÁ ESTO SEA PORQUE PRECISAMENTE ES EL GRUPO FUNDAMENTAL, PERO TENGO QUE REVISAR SI ES LA MISMA ACCIÓN QUE LA DEL GRUPO FUNDAMENTAL)
+Let $\widetilde{\alpha}$ denote the lift which starts in $\widetilde{C}_1$. Let $\widetilde{x}=\widetilde{\alpha}(0)$ and $\widetilde{y}=\widetilde{\alpha}(1)$, then specify $\widetilde{x}\widetilde{\sigma}=\widetilde{y}$. %COMPROBAR QUE ESTO DA LA ESTRUCTURA DE $B_\infty$ (ADEMÁS DE LAS PROPIEDADES DE OPERAD, LA ACCIÓN TIENE QUE SER LIBRE, PERO TENGO DUDA PARA EL CASO DE LAS TRENZAS PURAS) Y QUE EL COCIENTE POR LA ACCIÓN DE LAS TRENZAS PURAS ES $E_2$ (QUIZÁ ESTO SEA PORQUE PRECISAMENTE ES EL GRUPO FUNDAMENTAL, PERO TENGO QUE REVISAR SI ES LA MISMA ACCIÓN QUE LA DEL GRUPO FUNDAMENTAL)
+This data specifies a $B_\infty$-operad structure on $\widetilde{E}_2$. 
 
 %EL EJEMPLO DE FIEDEROWICZ CON LA PRUEBA DEL EJERCICO QUE ME PUSO MURO (A infinito significa que los espacios del operad son contráctiles, esto para el caso sin acción del grupo simétrico, que es el que usa Fiedorowicz. Con acción significa que cada componente conexa es contráctil, pero en cualquier caso C1 es contráctil \url{https://en.wikipedia.org/wiki/A\%E2\%88\%9E-operad}) 
 
@@ -371,7 +373,7 @@ Let us describe the structre map $\circ_k$ of the insertion into the $k$-th posi
 
 \subsection{Operad of classifying spaces}
 
-We have the functor of taking the nerve $N:\Cat\to\SSet$ and the functor of topological realization $|\ |:\SSet\to \CW$. One can easily check that the nerve functor behaves well with respect to the symmetric monoidal structure. Since the nerve $PaB_n$ is countable, the realization also behaves well with its symmetric monoidal structure by \ref{countable}. Therefore the collection of cellular complexes $X_n=|N(PaB_n)|$ forms a cellular operad. Let us check that this operad is a little disks operad. Let $PaB_n'$ be the category whose objects are pairs $(x,y)$, where $x$ belongs to the braid group $B_n$ and $y$ is a parenthesizing of the non-associative product of $n$ elements, and there is a unique morphism between any two objects. We have a free left action of $B_n$ on $PaB_n':(x,y)\to (gx,y)$ and a braided operad structre on $PaB_*'$ (the structre maps are defined similarly to $PaB_n$). We have to show that the corresponding operad of classifying spaces is a topological $B_\infty$-operad and that the corresponding little disks operad is isomorphic to $X_*$. The action of $B_n$ on $PaB_n'$ induces an action on the vertices (0-simplices) of $|N(PaB_n')|$ and can be extended linearly to the whole complex, and therefore it is automatically free. Then, the quotient $|N(PaB_n')|/PB_n$ is equivalent to $X_n$ since the morphisms $(\sigma_1,\pi_1)\to(\sigma_2,\pi_2)$ in $PaB_n$ can be obtained by choosing one element in $p^{-1}(\sigma_2^{-1}\sigma_1)$ and multiplying it by the elements of $PB_n$. NO ESTOY SEGURO DE QUE ESTÉ BIEN ESTO QUE HE DICHO.
+We have the functor of taking the nerve $N:\Cat\to\SSet$ and the functor of topological realization $|\ |:\SSet\to \CW$. One can easily check that the nerve functor behaves well with respect to the symmetric monoidal structure. Since the nerve $PaB_n$ is countable, the realization also behaves well with its symmetric monoidal structure by \ref{countable}. Therefore the collection of cellular complexes $X_n=|N(PaB_n)|$ forms a cellular operad. Let us check that this operad is a little disks operad. Let $PaB_n'$ be the category whose objects are pairs $(x,y)$, where $x$ belongs to the braid group $B_n$ and $y$ is a parenthesizing of the non-associative product of $n$ elements, and there is a unique morphism between any two objects. We have a free left action of $B_n$ on $PaB_n':(x,y)\to (gx,y)$ and a braided operad structre on $PaB_*'$ (the structre maps are defined similarly to $PaB_n$). We have to show that the corresponding operad of classifying spaces is a topological $B_\infty$-operad and that the corresponding little disks operad is isomorphic to $X_*$. The action of $B_n$ on $PaB_n'$ induces an action on the vertices (0-simplices) of $|N(PaB_n')|$ and can be extended linearly to the whole complex, and therefore it is automatically free. Then, the quotient $|N(PaB_n')|/PB_n$ is equivalent to $X_n$ since the morphisms $(\sigma_1,\pi_1)\to(\sigma_2,\pi_2)$ in $PaB_n$ can be obtained by choosing one element in $p^{-1}(\sigma_2^{-1}\sigma_1)$ and multiplying it by the elements of $PB_n$. %NO ESTOY SEGURO DE QUE ESTÉ BIEN ESTO QUE HE DICHO.
 
 Consider the corresponding chain operad. Let $C_*(PaB_n)$ be the chain complex over $\Q$ of $NPaB_n$ as a simplicial set. The collection $C_*(PaB_n)$ forms a dg-operad (via the Eilenberg-Zilber map). We have a canonical quasi-isomorphism of operads $C_*(PaB_*)\to C_*^{sing}(|NPaB_*|)$ (just like the quasi-isomorphism between simplicial homology and singular homology). Therefore it suffices to construct a quasi-isomorphism of $C_*(PaB_*)$ and $e_2$.
 
@@ -396,7 +398,7 @@ t_{\phi(p)\phi(q)}, &p,q\neq i;\\
 \end{cases} \\
 & o_i(1\otimes t_{pq})=t_{i+p-1,i+q-1}
 \end{align*}
-One can verify that this map satisfies the expected properties of the operadic composition. DEBERÍA 
+One can verify that this map satisfies the expected properties of the operadic composition. %DEBERÍA 
 
 Any algebra with unit over $\Q$, say $A$, gives rise to a $\Q$-additive category $C_A$ with one object. Denote by $\Q\Cat$ the category of all small $\Q$-additive categories, and by $\Q\Cat'=\Q\Cat/C_\Q$ the slice category of $\Q\Cat$ over $C_\Q$. The objects of $\Q\Cat'$ are the elements of $\Hom(x, C_\Q)$ for each $x\in \Q\Cat'$. A morphism between $\varphi:x\to C_\Q$ and $\psi:y\to C_\Q$ is a morphism $\eta: x\to y$ in $\Q\Cat$ such that $\eta\psi=\varphi$.  This category has a clear symmetric monoidal structure obtained by the usual one on $\Cat$. We have the functor of nerve
 $N^{\Q}: \Q\Cat'\to \SVect$, which is analogue to nerve of an arbitrary
@@ -427,15 +429,14 @@ d_n(f_1\otimes\cdots\otimes f_{n-1}\otimes f_n)=f_1\otimes\cdots\otimes f_{n-1} 
 where $g$ is a linear map which can be chosen depending on the context. Generally, $g$ is chosen not to be the identity because in that case $d_1=d_2$ and $d_{n-1}=d_n$. 
 %NO ME PARECE NADA EVIDENTE QUE SALGA LO QUE PONE A CONTINUACIÓN A PARTIR DE LA CONSTRUCCIÓN DEL ANTERIOR PÁRRAFO. 
 
-Thus, the complex $C_*^{\Q}(O_A(n))$ looks as follows. The degree $k$ component $C_k^{\Q}(O_A(n))$ is $A_n^{\otimes k}$ %CREO QUE ES PORQUE CADA ESPACIO VECTORIAL SIMPLICIAL ESTÁ GENERADO POR CADENAS DE MORFISMOS DE LONGITUD FIJA, QUE ES LO MISMO QUE COGER TUPLAS and the boundary map is given by
+Thus, the complex $C_*^{\Q}(O_A(n))$ looks as follows. The degree $k$ component $C_k^{\Q}(O_A(n))$ is $A_n^{\otimes k}$ and the differential is given by %CREO QUE ES PORQUE CADA ESPACIO VECTORIAL SIMPLICIAL ESTÁ GENERADO POR CADENAS DE MORFISMOS DE LONGITUD FIJA, QUE ES LO MISMO QUE COGER TUPLAS and the boundary map is given by
 \[
 d(a_1\otimes\cdots\otimes a_n)=\pi(a_1)a_2\otimes\cdots\otimes a_n-a_1a_2\otimes \cdots\otimes a_n+\cdots+(-1)^{n}a_1\otimes\cdots\otimes a_{n-1}\pi(a_n)
 \]
 %COMPROBAR QUE SIN METERLE EL PI EN MEDIO VALE, PERO DE TODAS FORMAS CONSULTAR
 
 Let $e_2$ be the operad of graded vector spaces governing the Gerstenhaber algebras.
-It is generated by two binary operations: the commutative associative multiplication
-of degree zero, which is denoted by $\cdot$, and the commutative bracket of degree 1 denoted by $[,]$. NECESITO REFERENCIA O ALGO DE QUE LA GENERAN
+It is generated by two binary operations: the commutative associative multiplication of degree zero, which is denoted by $\cdot$, and the commutative bracket of degree 1 denoted by $[,]$. 
 
 These operations satisfy the Leibniz identity
 \[
@@ -443,7 +444,7 @@ These operations satisfy the Leibniz identity
 \]
 and the Jacoby identity
 \[
-(-1)^{|a|}[a,[b,c]]+(-1)^{|a|(|b|+1)}[b,[a,c]]+(-1)^{|a||c|+|b||c|+|c|}[c,[a,b]]=0.
+(-1)^{(|a|-1)(|c|-1)}[[a,b],c]+(-1)^{(|b|-1)(|a|-1)}[[b,c],a]+(-1)^{(|c|-1)(|b|-1)}[[c,a],b]=0.
 \]
 We have a morphism of operads
 \[
@@ -453,13 +454,47 @@ which is defined on $e_2(2)$ as follows:
 \[
 h(\cdot)=1\in C_0^\Q(O_A),\ h([,])=t_{12}\in C_1^\Q(O_A).
 \]
-CREO QUE $t_{12}$ ES EL PRODUCTO POR ESTE ELEMENTO, YA QUE YENDO ATRÁS SE ESTÁ VIENDO EL ÁLGEBRA COMO UNA CATEGORÍA, PERO EN ESE CASO DEBERÍA ESPECIFICAR SI ES A IZQUIERDA O A DERECHA (QUIZÁ SOLO UNA CUMPLA LAS CONDICIONES, ASÍ QUE INTENTAR COMPROBARLO), AUN ASÍ ESTÁ MANDANDO OPERACIONES BINARIAS A OPERACIONES UNARIAS, NO LE VEO SENTIDO. Direct check shows that this map respects the relations in $e_2$ COMPROBAR.
 
-NO ENTIENDO LO QUE ME HA PEDIDO FERNANDO, AUNQUE PARA EMPEZAR NO ENTIENDO LO DE QUE EL OPERAD ESTÉ GENERADO POR ESAS OPERACIONES, CUANDO ESAS OPERACIONES SON DEL ÁLGEBRA, NO DEL OPERAD (SERÁ QUE ES UN ÁLGEBRA SOBRE SÍ MISMA). LUEGO, TENDRÍA QUE VERIFICAR QUE LAS RELACIONES DE ESTAS OPERACIONES SE VERIFICAN CON EL 1 Y EL T12 DE LA LLEGADA. NO SÉ PARA QUÉ ES LO DE EXPRESARLAS EN TÉRMINOS OPERÁDICOS NI CÓMO SE HACE, PORQUE ESTABA MEZCLANDO MU CON LA INSERCCIÓN, PERO SE SUPONE QUE MU ES YA UNA INSERCIÓN O NO SÉ (CREO QUE NO TENGO QUE PENSAR QUE ES UNA INSERCIÓN, SINO QUE ES SIMPLEMENTE UN PRODUCTO, QUE PARTE DE AxA Y LUEGO LA INSERCIÓN METE OTRA COPIA DE A (AUNQUE SI QUIERO HACERLA CON MU NECESITO 2), PARA LO CUAL SE PUEDE USAR LA ASOCIATIVIDAD. PERO SI ENTIENDES LA ANTICONMUTATIVIDAD DE LIE COMO ACCIÓN DE UNA TRASPOSICIÓN, ENTONCES NO PUEDES MANDARLO A T12 PORQUE ES SIMÉTRICO CON RESPECTO A ESA ACCIÓN, ADEMÁS SI LO INTERPRETO COMO OPERACIÓN DE OPERAD LA ASOCIATIVIDAD ME DARÍA QUE ES ASOCIATIVO
+To see that this map is well defined, we shall interpret the properties product and the Lie bracket in terms of element of the operads. Let $\mu(a,b)=a\cdot b$ and $l(a,b)=(-1)^{|a|}[a,b]$. Since both $\mu$ and $l$ are operations in arity 2, we have two insertion maps $\circ_1$, $\circ_2$ corresponding to introduce an element in the first or the second argument respectively. The action of the symmetric group consists of rearranging the arguments according to each permutation.
 
-ME RALLA QUE LA ARIDAD LA DE EL SUBÍNDICE Y NO EL NÚMERO DE COPIAS DEL ÁLGEBRA
+Now, commutativity of $\mu$ can be expressed as $\mu=(12)\mu$, since $\mu(a,b)=(-1)^{|a||b|}\mu(b,a)$, and by the Koszul sign convention, that sign is equivalent to permute $a$ and $b$, so we can write $\mu(a,b)=\mu(12)(a,b)$, which is what we wrote at the beginning.  Associativity can be expressed simply as $\mu\circ_1\mu=\mu\circ_2\mu$.
 
-POSIBLEMENTE SE REFIERE A LA OPERACIÓN DEL OPERAD DE HOMOLOGÍA, PERO TENGO QUE PREGUNTAR IGUALMENTE LO DE QUE ESTE ESTÉ GENERADO POR ESO, QUE NO SÉ SI ES LO MISMO QUE CUANDO SE GENERA PARA OTRO ÁLGEBRA SOBRE EL QUE ACTÚA. ENTIENDO QUE EN LA DE HOMOLOGÍA EL GRADO DE LA HOMOLOGÍA ES EL GRADO DE LA OPERACIÓN Y LA ARIDAD TE LA DA EL $E_2(N)$ CONCRETO AL QUE LE CALCULES LA HOMOLOGÍA. DE TODAS FORMAS NO TENGO CLARO CÓMO INTERPRETARLA PORQUE HAY MUCHAS POSIBILIDADES, AUNQUE SEA DE ARIDAD 2, LE TIENEN QUE ENTRAR COSAS, Y NO SÉ QUÉ ARIDAD SE CORRESPONDE CON CADA $\mu_i$ EN EL FOLIO DEL EXAMEN DE ÁLGEBRA TENGO HECHA ALGUNA CUENTA PERO NO ME ACLARO
+Similarly, we have 
+\[
+l(a,b)=-(-1)^{(|a|-1)(|b|-1)+|a|+|b|}l(b,a=(-1)^{|a||b|}l(b,a)=l(12)(a,b),
+\]
+so $l=(12)l$. Now, let us transcript the Leibniz identity to the operadic language. We have, 
+\[
+(-1)^{|a|+|b|}l(\mu(a,b),c)=\mu((-1)^{|a|+|b|}\mu(a,(-1)^{|b|}l(b,c))+(-1)^{|b|(|c|+1)}\mu((-1)^{|a|}l(a,c),b)
+\]
+which rewrites in terms of operadic composition, using that $|l|=1$ for the signs, as %la a salta sobre l y por eso sale el signo |a|*1, no salta sin embargo sobre (b,c), es decir, tienes l b c y saltas solo l, por eso el signo no es a(b+c-1)
+\[
+(-1)^{|a|+|b|}(l\circ_1\mu)(a,b,c)=(-1)^{|a|+|b|}\mu\circ_2 l(a,b,c)+(-1)^{|b|(|c|+1)+|a|+|b||c|}(23)\mu\circ_1 l(a,b,c).
+\]
+The signs cancel, so we can simplify this as
+\[
+l\circ_1\mu =\mu\circ_2 l +(23)\mu\circ_1 l.
+\]
+
+Finally, let us rewrite the Jacobi identity. Recall that $|[a,b]|=|a|+|b|-1$, so the Jacobi identity is
+\begin{gather*}
+(-1)^{(|a|-1)(|c|-1)+|a|+|b|-1+|a|}l\circ_1 l(a,b,c)+(-1)^{(|b|-1)(|c|-1)+|b|+|c|-1+|b|+|a|(|b|+|c|)}l\circ_1 l(132)(a,b,c)+\\
++(-1)^{(|c|-1)(|b|-1)+|c|+|a|-1+|c|+|c|(|a|+|b|)}l\circ_1 l(123)(a,b,c)=0.
+\end{gather*}
+After computing the signs, one sees that they are all equal to $(-1)^{|a||c|+|a|+|b|+|c|}$, so the equation simplyfies to
+\[
+l\circ_1 l+(132)l\circ_1 l+(123)l\circ_1 l=0
+\]
+
+Having this relations, direct check shows that the map $h$ respects them. 
+
+%CREO QUE $t_{12}$ ES EL PRODUCTO POR ESTE ELEMENTO, YA QUE YENDO ATRÁS SE ESTÁ VIENDO EL ÁLGEBRA COMO UNA CATEGORÍA, PERO EN ESE CASO DEBERÍA ESPECIFICAR SI ES A IZQUIERDA O A DERECHA (QUIZÁ SOLO UNA CUMPLA LAS CONDICIONES, ASÍ QUE INTENTAR COMPROBARLO), AUN ASÍ ESTÁ MANDANDO OPERACIONES BINARIAS A OPERACIONES UNARIAS, NO LE VEO SENTIDO. Direct check shows that this map respects the relations in $e_2$ COMPROBAR.
+%
+%NO ENTIENDO LO QUE ME HA PEDIDO FERNANDO, AUNQUE PARA EMPEZAR NO ENTIENDO LO DE QUE EL OPERAD ESTÉ GENERADO POR ESAS OPERACIONES, CUANDO ESAS OPERACIONES SON DEL ÁLGEBRA, NO DEL OPERAD (SERÁ QUE ES UN ÁLGEBRA SOBRE SÍ MISMA). LUEGO, TENDRÍA QUE VERIFICAR QUE LAS RELACIONES DE ESTAS OPERACIONES SE VERIFICAN CON EL 1 Y EL T12 DE LA LLEGADA. NO SÉ PARA QUÉ ES LO DE EXPRESARLAS EN TÉRMINOS OPERÁDICOS NI CÓMO SE HACE, PORQUE ESTABA MEZCLANDO MU CON LA INSERCCIÓN, PERO SE SUPONE QUE MU ES YA UNA INSERCIÓN O NO SÉ (CREO QUE NO TENGO QUE PENSAR QUE ES UNA INSERCIÓN, SINO QUE ES SIMPLEMENTE UN PRODUCTO, QUE PARTE DE AxA Y LUEGO LA INSERCIÓN METE OTRA COPIA DE A (AUNQUE SI QUIERO HACERLA CON MU NECESITO 2), PARA LO CUAL SE PUEDE USAR LA ASOCIATIVIDAD. PERO SI ENTIENDES LA ANTICONMUTATIVIDAD DE LIE COMO ACCIÓN DE UNA TRASPOSICIÓN, ENTONCES NO PUEDES MANDARLO A T12 PORQUE ES SIMÉTRICO CON RESPECTO A ESA ACCIÓN, ADEMÁS SI LO INTERPRETO COMO OPERACIÓN DE OPERAD LA ASOCIATIVIDAD ME DARÍA QUE ES ASOCIATIVO
+%
+%ME RALLA QUE LA ARIDAD LA DE EL SUBÍNDICE Y NO EL NÚMERO DE COPIAS DEL ÁLGEBRA
+%
+%POSIBLEMENTE SE REFIERE A LA OPERACIÓN DEL OPERAD DE HOMOLOGÍA, PERO TENGO QUE PREGUNTAR IGUALMENTE LO DE QUE ESTE ESTÉ GENERADO POR ESO, QUE NO SÉ SI ES LO MISMO QUE CUANDO SE GENERA PARA OTRO ÁLGEBRA SOBRE EL QUE ACTÚA. ENTIENDO QUE EN LA DE HOMOLOGÍA EL GRADO DE LA HOMOLOGÍA ES EL GRADO DE LA OPERACIÓN Y LA ARIDAD TE LA DA EL $E_2(N)$ CONCRETO AL QUE LE CALCULES LA HOMOLOGÍA. DE TODAS FORMAS NO TENGO CLARO CÓMO INTERPRETARLA PORQUE HAY MUCHAS POSIBILIDADES, AUNQUE SEA DE ARIDAD 2, LE TIENEN QUE ENTRAR COSAS, Y NO SÉ QUÉ ARIDAD SE CORRESPONDE CON CADA $\mu_i$ EN EL FOLIO DEL EXAMEN DE ÁLGEBRA TENGO HECHA ALGUNA CUENTA PERO NO ME ACLARO
 
 
 \begin{prop}\label{4.1}
@@ -491,17 +526,67 @@ shows that:
 \end{enumerate}
 
 The first statement implies that the map $h:e_2\to C_*^{\Q}(O_A)$ is surjective on the homology level, and
-the second statement means that it is bijective since $\dim e_2(n)= n!$. SÉ QUE EL ABELIANIZADO DEL DE TRENZAS ENTERO ES $\Z$, QUIZÁ EL DE PURAS ES TAMBIÉN $\Z$ AUNQUE VIENDO EL 1 COMO EL 2 DEL $\Z$ ANTERIOR (DAR DOS VUELTAS), ENTONCES POR CADA PERMUTACIÓN TE DA RANGO 1 \url{https://mathoverflow.net/questions/115047/the-first-homology-group-of-configuration-space-and-knot-theory} NECESITARÉ SABER ALGO DE LA HOMOLOGÍA DEL ESPACIO DE CONFIGURACIONES
+the second statement means that it is bijective since $\dim e_2(n)=\dim H_*(E_2(n))= n!$ by the computations of \cite{cuentas}.
+% SÉ QUE EL ABELIANIZADO DEL DE TRENZAS ENTERO ES $\Z$, QUIZÁ EL DE PURAS ES TAMBIÉN $\Z$ AUNQUE VIENDO EL 1 COMO EL 2 DEL $\Z$ ANTERIOR (DAR DOS VUELTAS), ENTONCES POR CADA PERMUTACIÓN TE DA RANGO 1 \url{https://mathoverflow.net/questions/115047/the-first-homology-group-of-configuration-space-and-knot-theory} NECESITARÉ SABER ALGO DE LA HOMOLOGÍA DEL ESPACIO DE CONFIGURACIONES
 
 \end{proof}
-DEFINIR LOS DRINFELD ASSOCIATOR \url{https://ncatlab.org/nlab/show/Drinfeld+associator} CREO QUE GROUPLIKE ES SIMPLEMENTE INVERTIBLE (LO MALO ES QUE NO LO ENTIENDO, OJALÁ TENGA QUE VER CON ESTO \url{https://en.wikipedia.org/wiki/Associator} ) 
-
-EN [1] DE TAMARKING APERECE (USA LÍMITES PARA DECIR DÓNDE ESTÁN LOS ASOCIADORES, PERO DONDE APARECE EL LÍMITE ANTES DICE QUE SON LAS POWER SERIES ASÍ QUE DA IGUAL)
-
-AQUÍ SE DEFINE \url{https://en.wikipedia.org/wiki/Quasi-bialgebra}
+%DEFINIR LOS DRINFELD ASSOCIATOR \url{https://ncatlab.org/nlab/show/Drinfeld+associator} CREO QUE GROUPLIKE ES SIMPLEMENTE INVERTIBLE (LO MALO ES QUE NO LO ENTIENDO, OJALÁ TENGA QUE VER CON ESTO \url{https://en.wikipedia.org/wiki/Associator} ) 
+%
+%EN [1] DE TAMARKING APERECE (USA LÍMITES PARA DECIR DÓNDE ESTÁN LOS ASOCIADORES, PERO DONDE APARECE EL LÍMITE ANTES DICE QUE SON LAS POWER SERIES ASÍ QUE DA IGUAL)
+%
+%AQUÍ SE DEFINE \url{https://en.wikipedia.org/wiki/Quasi-bialgebra}
 Let $\Q(PaB_n)$ be the $\Q$-additive category generated by $PaB_n$. We have a map
 $\Q(PaB_n)\to C_\Q$ sending all morphisms from $PaB_n$ to $Id$. Thus, $\Q(PaB_n)\in \Q\Cat'$.
-The operadic structure on $PaB_*$ induces the one on $\Q(PaB_*)$.
+The operadic structure on $PaB_*$ induces the one on $\Q(PaB_*)$. 
+
+We have left to show that the operads $\Q(PaB_*)$ and $O_A(*)$ are quasi-isomorphic. To define a quasi-isomorphism between them we make use of \emph{Drinfeld associators}, which we proceed to define, but first we need to introduce the following maps.
+
+\begin{defi}
+Let $d_i = d^n_i : A_n → A_{n+1}$ for $0 ≤ i ≤ n + 1$ and $s_i = s^n_i : A_n → A_{n−1}$
+for $1 ≤ i ≤ n$ be the algebra morphisms defined by their action on the generators $t_{jk}$ (with
+$j < k$) as follows:
+\[
+d_it_{jk} =\begin{cases}
+t_{j+1,k+1} & i < j < k\\
+t_{j,k+1} + t_{j+1,k+1} & i = j < k\\
+t_{j,k+1} & j < i < k\\
+t_{jk} + t_{j,k+1} & j < i = k\\
+t_{jk} & j < k < i
+\end{cases}\ \ \ \
+s_it_{jk} =\begin{cases}
+t_{j−1,k−1} & i < j < k\\
+0 & i = j < k\\
+t_{j,k−1} & j < i < k\\
+0 & j < i = k\\
+t_{jk} & j < k < i.
+\end{cases}
+\]
+
+
+\end{defi}
+An interpretation of these maps can be found in \cite{1deTamarkin}. 
+
+\begin{defi}
+Let $\Delta:A_n\to A_n\otimes A_n$ the coproduct defined by $\Delta(t_{ij})=t_{ij}\otimes 1+1\otimes t_{ij}$. 
+\end{defi}
+
+\begin{defi}
+A \emph{Drinfeld associator} (or simply, an \emph{associator}) is an invertible element $\Phi\in A_3$ satisfying the following
+axioms:
+\begin{itemize}
+\item The \emph{pentagon} axiom holds in $A_4$:
+\[
+d_4\Phi\cdot d_2\Phi=d_1\Phi\cdot d_3\Phi.
+\]
+\item The \emph{hexagon} axioms hold in $A_3$:
+\[
+d_1\exp\left(\pm\frac{1}{2}t_{12}\right)=\Phi\cdot\exp\left(\pm\frac{1}{2}t_{23}\right)\cdot ((123)\Phi^{-1})\cdot\exp\left(\pm\frac{1}{2}t_{13}\right)\cdot((312)\Phi)
+\]
+where $\exp$ means the series expansion of the exponential. 
+\item $\Phi$ is \emph{non-degenerate}: $s_1\Phi=s_2\Phi=s_3\Phi=1$.
+\item $\Phi$ is \emph{group-like}: $\Delta(\Phi)=\Phi\otimes\Phi$. %group-like elements form a group
+\end{itemize}
+\end{defi}
 
 Any associator $\Phi\in A_3$ over $\Q$ produces a map of operads
 \[
@@ -513,15 +598,16 @@ between these two objects correspond to the non-pure braids. Let $x\in B_2$
 be the generator. We define $\phi(x)=e^{t_{12}/2}$ (thought as its power series expansion). Take the two objects $(x_1x_2)x_3$ and
 $x_1(x_2x_3)$ of $PaB_3$ corresponding to the identical permutation $e \in \Sigma_3$, and the morphism
 $i$ between them, corresponding to the identical braid $e_b\in B_3$. Define $\phi(i)=\Phi$.
-Since the operad $PaB_*$ is generated by $x$ and $i$, these conditions define $\phi$ uniquely. CREO QUE LO GENERAN PORQUE SE ENTIENDE $X$ COMO PERMUTAR DOS CUALESQUIERA, Y A PARTIR DE ESO PUEDES HACER CUALQUIER MORFISMO TAMBIÉN, PORQUE FIJADA UNA PERMUTACIÓN, LAS DEMÁS ES MULTIPLICAR POR TRENZAS PURAS, QUE ES HACER ESA PERMUTACIÓN UN NÚMERO PAR DE VECES. The definition of the associator is equivalent to the fact that $\phi$ is well-defined. ESTO ME GUSTARÍA SABER POR QUÉ, NO VEO QUÉ PROBLEMA DE DEFINICIÓN PODRÍA TENER Y POR QUÉ EL ASOCIADOR LO SOLUCIONA
+Since the operad $PaB_*$ is generated by $x$ and $i$, these conditions define $\phi$ uniquely. %CREO QUE LO GENERAN PORQUE SE ENTIENDE $X$ COMO PERMUTAR DOS CUALESQUIERA, Y A PARTIR DE ESO PUEDES HACER CUALQUIER MORFISMO TAMBIÉN, PORQUE FIJADA UNA PERMUTACIÓN, LAS DEMÁS ES MULTIPLICAR POR TRENZAS PURAS, QUE ES HACER ESA PERMUTACIÓN UN NÚMERO PAR DE VECES. 
+The definition of the associator is equivalent to the fact that $\phi$ is well-defined (see Proposition 3.4 of \cite{1deTamarkin}).
 
 The map $\phi$ produces a map of operads $C_*(PaB_*)=C_*^\Q(\Q(PaB_*))\to C_*(O_A(*))$.
 %C_* ya era sobre Q, y hacerlo sobre PaB_* en realidad era sobre la realización del nervio, así que es linearizar al final. Lo otro es linearizar primero y luego coger el nervio para el caso lineal
-It is well known that the homology operad of $C_*(PaB_*)$ is $e_2$ because $PaB_*$ induces a little disks operad as we saw in \ref{pab}. It is easy to check that $\phi$ is a quasi-isomorphism for $*=2$ A VER SI VEO ESTO and hence it is a quasi-isomorphism of operads (since
+It is well known that the homology operad of $C_*(PaB_*)$ is $e_2$ because $PaB_*$ induces a little disks operad as we saw in \ref{pab}. One checks that $\phi$ is a quasi-isomorphism for $*=2$ by an argument of dimension similar to the one in the proof of \ref{4.1} it induces a surjective homomorphism (it sends generators to generators) between spaces of the same dimension. Hence it is a quasi-isomorphism of operads (since
 $e_2$ is generated by $e_2(2)$). By Proposition \ref{4.1}, $k$ is a quasi-isomorphism. Thus, the
 chain operad $C_*(PaB_*)$ is quasi-isomorphic to $e_2$.
 
 
 
-DEBERÍA ESCRIBIR EN ALGÚN LADO LOS ESQUEMAS DE LAS DEMOSTRACIONES, LA GRANDE, LA DE LA FORMALDIAD, Y SI HAGO LA DE $G_\infty\to G$ TAMBIÉN
+%DEBERÍA ESCRIBIR EN ALGÚN LADO LOS ESQUEMAS DE LAS DEMOSTRACIONES, LA GRANDE, LA DE LA FORMALDIAD, Y SI HAGO LA DE $G_\infty\to G$ TAMBIÉN
 \end{document}
