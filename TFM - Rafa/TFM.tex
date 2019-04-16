@@ -344,6 +344,7 @@ Definimos el coste reducido de una variable $x_{uv}$ asociada a una arista $(u,v
 $$
 c_{uv}' = c_{uv} -y_u - y_v + \sum_{S\in B,\,(u,v)\in \gamma(S)}y_S 
 $$
+También notaremos el vector de costes reducidos como $\overline{c}$.
 \end{defi}
 
 A pesar de la utilidad del teorema de Edmonds para el desarrollo de numerosos algoritmos, más adelante veremos algunas modificaciones del de dicho teorema que nos darán algunas formulaciones equivalentes pero más interesantes de cara al paradigma de la resolución computacional. Como introducción a esta idea, tenemos la equivalencia
@@ -615,10 +616,20 @@ $$
 M\oplus P = (M\setminus P)\cup (P\setminus M)
 $$
 \end{defi}
-En \cite{inte} podemos encontrar una demostración del siguiente resultado.
+El concepto de camino de aumento es realmente interesante para nuestros propósitos, como se desprende del siguiente resultado.
 \begin{prop}
 Un matching $M$ contiene el máximo número de ejes si y solo si no existe ningún camino de aumento relativo a $M$.
 \end{prop}
+\begin{dem}
+Veamos la demostración del contrarrecíproco, es decir, $M$ no contiene el número máximo de ejes si y solo sí existe un camino de aumento. Una de las implicaciones es clara, pues si $P$ es un camino de aumento, entonces $M\oplus P$ es un matching y tiene cardinalidad estrictamente mayor que la de $M$. 
+
+Supongamos que $M$ no es de máxima cardinalidad. En particular, ha de existir $M'$ tal que $|M'| = |M| +1$. Consideremos $D$ la diferencia simétrica de $M$ y $M'$. Entonces
+$$
+|D| = |M|+|M'| -2|M\cap M'| = 2|M|+1-2|M\cap M'|
+$$
+Por lo que $D$ tiene cardinalidad impar. Sea $G' = (V,D)$. Dado que $M$ y $M'$ son emparejamientos, el grado de cualquier vértice de $G'$ es a lo sumo $2$. De hecho, si existiese algún vértice de grado $2$ entonces una de las aristas pertenece a $M$ y la otra $M'$. Por tanto, cada componente conexa de $G'$ debe ser vértices aislados, ciclos de cardinalidad par o un camino de alternantes relativos a $M$ y a $M'$. Dado que $|D|$ es impar, debe haber al menos un camino alternante. Es más, dado que $|M'|=|M|+1$ uno de esos caminos debe ser de aumento con respecto a $M$.zD,4 1
+\end{dem}
+
 Dejamos los caminos a un lado y pasamos a definir otro tipo de conceptos relacionados con distintas familias de grafos y subgrafos.
 \begin{defi}
 Sea $G=(V,E)$ un grafo y $B \subset V$. Definimos el \textbf{grafo inducido por }$B$ como $G[B] = (B,\gamma(B))$.  
@@ -694,6 +705,7 @@ Sea $y$ una solución factible del problema dual anterior. Definimos el coste re
 $$
 c_{uv}'(y) = c_{uv} - y_u -y_v - \sum_{S\in \mathcal{A}(G),(u,v)\in \delta(S)} y_S
 $$ 
+
 \end{defi}
 \section{Fundamentos del algoritmo}
 \begin{defi}
@@ -786,7 +798,24 @@ Con estas definiciones en mente pasamos a probar el criterio de optimalidad que 
 \begin{thm}
 Sea $M$ un matching y sea $T$ una transformación adecuada. Sea $A = \{S \in B\mid y_S>0\}$. Si existe $P\in \mathbb{P}(M)$ tal que $c'(P)=0$ y $P_A$ es un camino de aumento respecto $M_A$, entonces $P$ es el camino alternante de menor costo en $\mathcal{P}(M)$.
 \end{thm}
+\begin{dem}
+Sea $s\in V$, consideremos todos los caminos de aumento para $M$ que tienen como nodo inicial $s$. Sea $P'$ un camino de este tipo. Sea $S\in A$, entonces
+\begin{align*}
+s\in S \Rightarrow & |(P'\cap M)\cap \delta(S)| = 0 \text{ y}\\
+& |(P'\setminus M)\cap \delta(S)| = 1\\
+s\notin S \Rightarrow & |(P'\setminus M)\cap \delta(S)| - |(P'\cap M)\cap \delta(S)| \geq 0
+\end{align*}
+
+En particular, $l(P')\geq y_s + \sum_{s\in S}y_S$. Dado que que $P_A$  es un camino de aumento con respecto a $M_A$, se verifica
+\begin{align*}
+s\in S \Rightarrow & |(P\setminus M)\cap \delta(S)|\\
+s\notin S \Rightarrow & |(P\setminus M)\cap \delta(S)| = |(P\cap M)\cap \delta(S)| =1
+\end{align*}
+y, por tanto, $l(P) = y_s  + \sum_{s\in S} y_S$. Aplicando el Teorema 2.2.3 tenemos el resultado.
+\end{dem}
 \section{Algoritmo del camino de aumento más corto}
+Durante el procedimiento un emparejamiento $M$, una familia de contracción $A$ y unos peso $y_u$ ($u \in V$) e $y_S$ ($S$ conjunto impar de vértices) definen una transformación admisible $T:c_{uv}\to c'_{uv}$ que verifica además que $c'_{uv}=0$ si $(u,v)\in M$. Todos los pasos del algoritmo están constituidos en el grafo $G\times A$. En \cite{inte}, utilizan distintas notaciones para los costes $\pi_v$ asociados a los nodos e $y_S$ para los asociados conjuntos impares. Sin embargo, los costes no nulos $y_S$ asociados con un pseudonodo $v_S$ representa el respecto $S\in A$. Que estos costes puedan entenderse como asociados a un pseudonodo justifica que vayamos a utilizar la notación $y$ para ambos pesos. 
+
 Antes de dar el algoritmo es preciso notar que utilizaremos un etiquetado de manera que todo nodo de $G\times A$ tendrá tres etiquetas temporales $d_v^+,d_v^-$ y $p(v)$ con la información:
 \begin{itemize}
 \item $d_v^+$ es el límite superior de la longitud del camino alternante más corto que conecta $v$ con un cierto nodo $s$ y tiene un número par de ejes.
@@ -969,11 +998,11 @@ Realizamos el análisis para el caso en $\lambda$ es un único parámetro escala
 \end{align*}
 Si simplemente utilizamos la aproximación clásica a la reoptimización de un problema de Programación Lineal, sabemos que $B$ se mantiene como base óptima siempre que
 $$
-\max_{(u,v):\overline{c^2}_uv>0} -\frac{\overline{c}(\lambda)_{uv}}{\overline{c^2}_{uv}} \leq \Delta \leq \min_{j:\overline{c^2}_{uv}<0} - \frac{\overline{c}(\lambda)_{uv}}{\overline{c^2}_{uv}}
+\max_{(u,v):\overline{c^2}_{uv}>0} -\frac{\overline{c}(\lambda)_{uv}}{\overline{c^2}_{uv}} \leq \Delta \leq \min_{j:\overline{c^2}_{uv}<0} - \frac{\overline{c}(\lambda)_{uv}}{\overline{c^2}_{uv}}
 $$
 Sea $y$ una solución del problema dual asociado para $\lambda$, entonces sabemos que para cualquier arista $(u,v)\in E$, en particular para una arista representada por una variable no básica, el coste reducido es precisamente 
 $$
-c(\lambda)_{uv}.' =c_{uv}+\lambda-y_u-y_v - \sum_{S\in B, (u,v)\in \delta(S)}y_S
+\overline{c}(\lambda)_{uv} =c_{uv}+\lambda-y_u-y_v - \sum_{S\in B, (u,v)\in \delta(S)}y_S
 $$
 
 Una vez estudiado el caso anterior, consideremos un caso más genérico en el que $\Delta \in \R^{|E|}$. Para simplificar la notación, sea $\lambda \in \R$ y $\Delta \in \R^{|E|}$ podemos escribir $c(\lambda+\Delta)$, donde
