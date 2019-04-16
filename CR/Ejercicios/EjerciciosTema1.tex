@@ -95,10 +95,10 @@ utilizando el método $p − 1$ de Pollard.
 \end{ejercicio}
 \begin{solucion}
 \begin{enumerate}
-\item
-\item
-\item
-\item
+\item  $N = 63373$, $B=7$, $M=420$, $a=2$. $\gcd(2^{420}-1, N)=127$ (primo), $N/127=499$ (primo). 
+\item  $N = 75203$, $B=13$, $M=60060$, $a=2$. $\gcd(2^M-1,N)=157$ (primo), $N/157=479$ (primo). 
+\item  $N = 75359$, $B=7$, $M=420$, $a=2$. $\gcd(2^M-1,N)=421$ (primo), $N/421=179$ (primo).
+\item  $N = 98537$, $B=7$, $M=420$, $a=2$. $\gcd(2^M-1,N)=211$ (primo), $N/211=467$ (primo). 
 \end{enumerate}
 \end{solucion}
 
@@ -113,10 +113,43 @@ utilizando el método $ρ$ de Pollard.
 \end{enumerate}
 \end{ejercicio}
 \begin{solucion}
+He traducido a Sage el algoritmo con el siguiente código
+
+\begin{verbatim}
+def rho(N,s):
+    i=0
+    y=s
+    d=1
+    ZN.<x>=PolynomialRing(Integers(N))
+    g=x^2+1
+    while d==1:
+        i=i+1
+        s=g(s)
+        y=g(g(y))
+        d=gcd(s-y, N)
+    if d==N:
+        return 'Failure'
+    else:
+        dd=Integer(d)
+        return dd, i, N/dd, (N//dd).is_prime()
+\end{verbatim}
+Como en este ejercicio ambos casos da que los números son producto de solo dos primos es suficiente con el que acabo de dar, pero para un caso algo más general se puede usar el que añado al final. En ambos casos he usado la semilla $s=2$. 
 \begin{enumerate}
-\item 
-\item
+\item $7081=97\cdot 73$.
+\item $9047=83\cdot 109$.
 \end{enumerate}
+\begin{verbatim}
+def rho2(N,s):
+    n=N
+    r=rho(N,s)[0]
+    L=[r]
+    while L[-1]=='Failure':
+        l=L[-1]
+        n=n/dd
+        t=rho(n,s)[0]
+        L=L.append(t)
+    return L
+\end{verbatim}
 \end{solucion}
 \newpage
 \begin{ejercicio}{4}
