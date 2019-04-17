@@ -127,7 +127,7 @@ try:
         card = len(a)-1
         m.addConstr(suma(S) <= card/2)
     m.optimize();
-        
+        ++
     nSolutions = model.SolCount
     print('Number of solutions found: ' + str(nSolutions))
     

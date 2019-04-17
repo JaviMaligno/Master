@@ -16,7 +16,7 @@ import itertools
 import operator
 import networkx as nx
 import random 
-
+0,1,2,3,4,5,16,20,23,24,
 
 # DATOS DE ENTRADA
 ##############################################################################
@@ -27,23 +27,11 @@ np.random.seed(1234)
 random.seed(1234)
 
 # Construimos un grafo aleatorio
-mat = nx.gnp_random_graph(12,0.6)
+mat = nx.gnp_random_graph(200,0.3)
 
 # Numerando los vértices a partir de 0, obtenemos la matriz de adyacencia
 # del grafo como un array 
-#A = nx.convert_matrix.to_numpy_matrix(mat)
-A = np.array([[0., 0., 1., 1., 1., 1., 1., 0., 0., 0., 0., 0.],
-        [0., 0., 1., 0., 1., 1., 1., 0., 1., 0., 1., 0.],
-        [1., 1., 0., 1., 1., 0., 1., 0., 1., 1., 0., 0.],
-        [1., 0., 1., 0., 1., 0., 1., 1., 1., 1., 0., 0.],
-        [1., 1., 1., 1., 0., 1., 0., 0., 1., 1., 1., 1.],
-        [1., 1., 0., 0., 1., 0., 1., 0., 1., 1., 1., 1.],
-        [1., 1., 1., 1., 0., 1., 0., 1., 0., 1., 1., 0.],
-        [0., 0., 0., 1., 0., 0., 1., 0., 0., 0., 1., 0.],
-        [0., 1., 1., 1., 1., 1., 0., 0., 0., 1., 1., 0.],
-        [0., 0., 1., 1., 1., 1., 1., 0., 1., 0., 1., 1.],
-        [0., 1., 0., 0., 1., 1., 1., 1., 1., 1., 0., 1.],
-        [0., 0., 0., 0., 1., 1., 0., 0., 0., 1., 1., 0.]])
+A = nx.convert_matrix.to_numpy_matrix(mat)
 
 # Numero de vertices
 N = len(A)
@@ -63,9 +51,8 @@ lambdas = np.array(range(0,M+1,1))/M
 # para las variables
 def indices(a):
     s = []
-    n = len(a[0])
-    for i in range(n):
-        for j in range(i+1,n):
+    for i in range(N):
+        for j in range(i+1,N):
             if (a[i,j] == 1):
                 s.append((i,j))
     return(s)
@@ -80,21 +67,18 @@ c1 = np.random.rand(len(IND))
 c2 = np.random.rand(len(IND))
     
 # Definimos la funcion delta, que nos da los ejes adyacentes a un vertice dado.
-def delta(v):
-    s = [x for x in IND if x[0] == v or x[1] == v]
+def delta(v,A):
+    s = [x for x in indices(A) if x[0] == v or x[1] == v]
     return(s)
-
-# Calculamos una vez el conjunto delta
-deltaV = [delta(v) for v in range(N)]
 
 # A continuacion, definimos la funcion gamma, que dado un conjunto
 # de vertices, debe devolvernos las aristas que tienen extremos dentro
 # de dicho conjunto.
-def gamma(S):
+def gamma(S,A):
     m = []
     s = []
     for v in S:
-        s = s + delta(v)
+        s = s + delta(v,A)
     seti = set(s)
     for (a,b) in seti:
         if (a in S and b in S):
@@ -113,15 +97,18 @@ def subconj(N,m):
     return list(itertools.combinations(S, m))
 
 # Calculamos los conjuntos impares que dan lugar a restricciones
-IMPARES = []
-for i in range(3,N,2):
-    IMPARES = IMPARES + subconj(N,i)
+#IMPARES = []
+#for i in range(3,N,2):
+#    IMPARES = IMPARES + subconj(N,i)
 
 # Construimos una funcion que comprueba si un vector es de coordenadas enteras
 def entero(s):
     a = map(lambda x: x == int(x),s)
     return(all(a))
 
+# OPTIMIZACION
+###############################################################################
+    
 # Pasamos a definir la funcion optimiza, que resuelve el problema del
 # emparejamiento parametro con parametros
 # lamb: Valor de lambda
@@ -141,7 +128,6 @@ def optimiza(lamb, c1 = c1, c2 = c2, indices = IND):
     # Paso 2: En este caso, Holland y Groetschel nos indican que utilicemos un 
     # algoritmo voraz para encontrar una solucion inicial, pero para eso
     # Gurobi tiene implementado un presolve, así que pasamos a crear el modelo
-    
     m = Model("biobjetivo");
 
     # Creamos las variables. El tipo puede ser 
@@ -152,10 +138,13 @@ def optimiza(lamb, c1 = c1, c2 = c2, indices = IND):
     
     # Definimos algunas funciones para ayudarnos a escribir las restricciones
     # asi como la funcion objetivo de manera comoda y general.
-    def suma(S,x):
+    def suma(S):
         s = 0
         for (a,b) in S:
-            s = s + x[a,b]
+            if a<b:
+                s = s + x[a,b]
+            else:
+                s = s + x[b,a]
         return(s)
         
     def objind(c):
@@ -180,27 +169,71 @@ def optimiza(lamb, c1 = c1, c2 = c2, indices = IND):
     
     # Generamos el primer bloque de restricciones.
     for i in range(N):
-        m.addConstr(suma(delta(i)) == 1);
-    
-    m.optimice()
-    
-    # Imponemos las condiciones sobre los conjuntos impares.
-    for a in IMPARES:
-        S = gamma(a)
-        card = len(a)-1
-        m.addConstr(suma(S) <= card/2)
-    print(m.getVars())
-    # En el caso que decidamos utilizar una base inicial ejecutamos
-    if (vbas != []):
-        m.update()
-        for i in range(len(vbas)):
-            m.getVars()[i].setAttr("VBasis",vbas[i])
-        for i in range(len(cbas)):
-            m.getConstrs()[i].setAttr("CBasis",cbas[i])
-    
-    # Resolvemos el modelo
+        m.addConstr(suma(delta(i,A)) == 1, name = "delta" + str(i));
+        
+    # Paso 4: Resolvemos el prolbema.
     m.optimize()
     
+    # Paso 5: Comprobamos si la solucion es entera y, en caso de no serlo,
+    # utilizamos las distintas heuristicas y metodos para encontrar
+    # planos de corte.
+    
+    # Obtenemos el vector de soluciones
+    sols = [m.getVars()[i].X for i in range(len(IND))]
+    num = 0
+    while (not (entero(sols)) and num < 5):        
+        num = num +1
+        
+        # Paso 7.1: Vamos a programar la primera heuristica para detectar 
+        # planos de corte.
+        
+        # Obtenemos las aristas con coste no nulo.
+        aristas = [IND[i] for i in range(len(sols)) if sols[i]>0]
+    
+        # Construimos el grafo en el que solo estan las aristas con solcion 
+        # no nula
+        G = nx.Graph()
+        G.add_edges_from(aristas)
+        
+        # Buscamos las componentes conexas que tengan cardinalidad impar
+        con = [x for x in list(nx.connected_components(G)) if len(x) % 2 == 1 ]
+        
+        # Si las lista con es no vacia, hemos encontrado planos de cortes, los
+        # añadimos a nuestro modelo y volvemos a comprobar. En otro caso, 
+        # utilizamos la segunda heuristica.
+        if (con != []):
+            for a in con:
+                S = list(G.edges(a))
+                card = len(a)-1
+                m.addConstr(suma(S) <= card/2)
+            m.update()
+            m.optimize()
+        
+        
+        # Paso 7.2: En el caso de que no hayamos encontrado dicho plano de
+        # corte usando la heurisitca anterior, utilizamos esta segunda:
+
+            
+        
+            
+
+    
+#    # Imponemos las condiciones sobre los conjuntos impares.
+#    for a in IMPARES:
+
+#    print(m.getVars())
+#    # En el caso que decidamos utilizar una base inicial ejecutamos
+#    if (vbas != []):
+#        m.update()
+#        for i in range(len(vbas)):
+#            m.getVars()[i].setAttr("VBasis",vbas[i])
+#        for i in range(len(cbas)):
+#            m.getConstrs()[i].setAttr("CBasis",cbas[i])
+#    
+#    # Resolvemos el modelo
+#    m.optimize()
+    print(entero(sols))
     return(m)
 
+modelo = optimiza(0)
 #    
