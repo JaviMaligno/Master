@@ -31,8 +31,8 @@ mat = nx.gnp_random_graph(200,0.3)
 
 # Numerando los vértices a partir de 0, obtenemos la matriz de adyacencia
 # del grafo como un array 
-A = nx.convert_matrix.to_numpy_matrix(mat)
-
+#A = nx.convert_matrix.to_numpy_matrix(mat)
+A = np.loadtxt(open("file_name.csv", "rb"), delimiter=",", skiprows=0)
 # Numero de vertices
 N = len(A)
 
@@ -189,7 +189,7 @@ def optimiza(lamb, c1 = c1, c2 = c2, indices = IND):
         
         # Obtenemos las aristas con coste no nulo.
         aristas = [IND[i] for i in range(len(sols)) if sols[i]>0]
-    
+
         # Construimos el grafo en el que solo estan las aristas con solcion 
         # no nula
         G = nx.Graph()
@@ -197,7 +197,7 @@ def optimiza(lamb, c1 = c1, c2 = c2, indices = IND):
         
         # Buscamos las componentes conexas que tengan cardinalidad impar
         con = [x for x in list(nx.connected_components(G)) if len(x) % 2 == 1 ]
-        
+        print(con)
         # Si las lista con es no vacia, hemos encontrado planos de cortes, los
         # añadimos a nuestro modelo y volvemos a comprobar. En otro caso, 
         # utilizamos la segunda heuristica.
@@ -206,8 +206,8 @@ def optimiza(lamb, c1 = c1, c2 = c2, indices = IND):
                 S = list(G.edges(a))
                 card = len(a)-1
                 m.addConstr(suma(S) <= card/2)
-            m.update()
             m.optimize()
+        sols = [m.getVars()[i].X for i in range(len(IND))]
         
         
         # Paso 7.2: En el caso de que no hayamos encontrado dicho plano de
