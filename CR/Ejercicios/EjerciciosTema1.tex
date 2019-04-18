@@ -161,9 +161,45 @@ multiplicativo $\F^×_p$. Calcula, utilizando el método $ρ$ de Pollard, el log
 \end{enumerate}
 \end{ejercicio}
 \begin{solucion}
+Damos el siguiente código de sage
+\begin{verbatim}
+def rholog(p,g,h):
+    def fgh(x,a,b):
+        if mod(x,3)==0:
+            return mod(x*x,p), mod(2*a,p-1), mod(2*b,p-1)
+        elif mod(x,3) == 1:
+            return mod(g*x,p), mod(a+1,p-1), mod(b,p-1)
+        else:
+            return mod(h*x,p), mod(a,p-1), mod(b+1,p-1)
+    
+    a = b = a2 = b2 = 0
+    x = x2 = 1
+    n = 1
+    print( "n  x  a  b  x2  a2  b2")
+    while True:
+        x,a,b = fgh(x,a,b)
+        x2,a2,b2 = fgh(x2,a2,b2)
+        x2,a2,b2 = fgh(x2,a2,b2)
+        print( "{}  {} {} {}  {} {} {}".format(n, x, a, b, x2, a2, b2))
+        n = n+1
+        if x == x2:
+            break;
+    
+    r = Integer(b2-b)
+    a = Integer(a-a2)
+    if r==0:
+        raise Exception('Failure')
+    else:
+        var('xx')
+        S=solve_mod(r*xx==a, p-1)
+        for i in range(0,len(S)):
+            s=S[i][0]
+            if mod(g^s, p)==h:
+                return s
+\end{verbatim}
 \begin{enumerate}
-\item
-\item
+\item $x=284$.
+\item $x=44$.
 \end{enumerate}
 \end{solucion}
 \newpage
@@ -179,10 +215,28 @@ discreto del elemento $h = 131$ ∈ $\F^×_p$, utilizando el método de ``index-
 \item $p = 227$, $g = 2$, $B = 11$.
 \end{enumerate}
 
-
 \end{ejercicio}
 \begin{solucion}
+
+ \begin{enumerate}
+ \item Me da mucha pereza, con el siguiente está claro.
+
  
+ 
+ \item Tras calcular y factorizar $2^k\mod 227$ para $k=1,\dots, 47$, hemos obtenido 5 ecuaciones linealmente independientes (módulo $227-1=226$)
+ \[
+ \begin{cases}
+ 1=x_1\\
+ 11=x_3\\
+ 20=2x_2+x_4\\
+ 28=x_5\\
+ 47=x_1+x_2
+ \end{cases}
+ \]
+ De donde obtenemos $x_1=1,x_2=46,x_3=11,x_4=154,x_5=28$, donde $x_i$ representa el logaritmo discreto en base $2$ del primo $i$-ésimo (se comprueba con el algoritmo del apartado anterior que sale eso). Ahora, una factorización de $2\cdot 131\mod 227$ es $5\cdot 7$, luego $x=1\cdot x_3+1\cdot x_4-1=164$ (se comprueba con el anterior algoritmo que es correcto).
+ 
+
+ \end{enumerate}
 \end{solucion}
 \newpage 
 
