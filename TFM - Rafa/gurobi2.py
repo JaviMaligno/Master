@@ -16,7 +16,6 @@ import itertools
 import operator
 import networkx as nx
 import random 
-0,1,2,3,4,5,16,20,23,24,
 
 # DATOS DE ENTRADA
 ##############################################################################
@@ -29,7 +28,7 @@ random.seed(1234)
 # Construimos un grafo aleatorio
 mat = nx.gnp_random_graph(200,0.3)
 
-# Numerando los vértices a partir de 0, obtenemos la matriz de adyacencia
+# Numerando los vertices a partir de 0, obtenemos la matriz de adyacencia
 # del grafo como un array 
 #A = nx.convert_matrix.to_numpy_matrix(mat)
 A = np.loadtxt(open("file_name.csv", "rb"), delimiter=",", skiprows=0)
@@ -117,17 +116,21 @@ def entero(s):
 
 def optimiza(lamb, c1 = c1, c2 = c2, indices = IND):
     
-    # Paso 1: En primer lugar deberíamos seleccionar un conjunto de aristas
+    # Paso 1: En primer lugar deberiamos seleccionar un conjunto de aristas
     # relativamente pequeño para iniciar el algoritmo, pero dado que ya de por
     # si cuesta lidiar con grafos relativamente grandes, podemos permitirnos
     # utilizar la cantidad total de aristas, ya que estas crecen a lo sumo de 
     # forma cuadratica con respecto los vertices. El problema principal es el
     # de las restricciones, que sabemos con certeza que crecen de manera
-    # exponencial respecto a los vertices.
+    # exponencial respecto a los vertices. 
+    
+    # Al utilizar todos las aristas, si la solucion optima de algun subproblema
+    # es de coordenadas enteras, entonces es optima global y, por tanto, no es
+    # necesario añadir rutinas para acutalizar el conjunto de aristas.
     
     # Paso 2: En este caso, Holland y Groetschel nos indican que utilicemos un 
     # algoritmo voraz para encontrar una solucion inicial, pero para eso
-    # Gurobi tiene implementado un presolve, así que pasamos a crear el modelo
+    # Gurobi tiene implementado un presolve, asi que pasamos a crear el modelo
     m = Model("biobjetivo");
 
     # Creamos las variables. El tipo puede ser 
@@ -156,7 +159,7 @@ def optimiza(lamb, c1 = c1, c2 = c2, indices = IND):
     
     # De esta forma, generamos las dos funciones objetivo. Notemos que 
     # escribimos directamente los costes sobre las variables aristas
-    # del modelo, pues si una arista no está en el grafo, no tiene sentido
+    # del modelo, pues si una arista no esta en el grafo, no tiene sentido
     # generar una variable para ella.       
     cos1 = objind(c1)
     cos2 = objind(c2)
@@ -181,43 +184,75 @@ def optimiza(lamb, c1 = c1, c2 = c2, indices = IND):
     # Obtenemos el vector de soluciones
     sols = [m.getVars()[i].X for i in range(len(IND))]
     num = 0
-    while (not (entero(sols)) and num < 5):        
+    while (not (entero(sols)) and num < 10):        
         num = num +1
         
-        # Paso 7.1: Vamos a programar la primera heuristica para detectar 
+        # Paso 7.1, 7.2: Vamos a programar las heuristica para detectar 
         # planos de corte.
         
-        # Obtenemos las aristas con coste no nulo.
-        aristas = [IND[i] for i in range(len(sols)) if sols[i]>0]
-
-        # Construimos el grafo en el que solo estan las aristas con solcion 
-        # no nula
-        G = nx.Graph()
-        G.add_edges_from(aristas)
+        # Fijamos un parametro epsilon de tolerancia para la segunda heuristica.
+        # Tal y como Groetschel y Holland en su trabajo, tomamos 0.3. 
+        epsilon = 0.3 
+        
+        # Obtenemos las aristas con variables asociadas en
+        aristasN = [IND[i] for i in range(len(sols)) if sols[i]>0]
+        aristasE = [IND[i] for i in range(len(sols)) if sols[i]>epsilon]
+            
+        # Construimos sendos grafos.
+        GN = nx.Graph()
+        GN.add_edges_from(aristasN)
+        
+        GE = nx.Graph()
+        GE.add_edges_from(aristasE)
         
         # Buscamos las componentes conexas que tengan cardinalidad impar
-        con = [x for x in list(nx.connected_components(G)) if len(x) % 2 == 1 ]
-        print(con)
+        conN = [a for a in list(nx.connected_components(GN)) if len(a) %2 == 1]
+        
+        # Tenemos que tener en cuenta que los planos de corte que proporciona
+        # la segunda heuristica pueden no ser utiles, ya que nuestra solucion
+        # no tiene por que violarlos necesariamente y seria un esfuerzo 
+        # innecesario volver a reoptimizar para nada, por lo que solo nos 
+        # quedamos con dichas componentes. Definimos previamente una funcion
+        # que nos haga dicha comprobacion
+        def comprueba(nodos):
+            aristaux = list(GE.edges(nodos))
+            aristord = [(a,b) if a<b else (b,a) for (a,b) in aristaux]
+            indiaux = [IND.index(a) for a in aristord]
+            card = (len(nodos)-1)/2
+            suma = sum([sols[i] for i in indiaux])
+            return(suma <= card)
+        
+        # Generamos las componentes adecuadas
+        conE = [a for a in list(nx.connected_components(GE)) if len(a) %2 == 1 
+                and comprueba(a)]
+        
         # Si las lista con es no vacia, hemos encontrado planos de cortes, los
-        # añadimos a nuestro modelo y volvemos a comprobar. En otro caso, 
-        # utilizamos la segunda heuristica.
-        if (con != []):
-            for a in con:
-                S = list(G.edges(a))
+        # añadimos a nuestro modelo y volvemos a comprobar. 
+        if (conN != []):
+            for a in conN:
+                S = list(GN.edges(a))
                 card = len(a)-1
-                m.addConstr(suma(S) <= card/2)
+                m.addConstr(suma(S) <= card/2) 
             m.optimize()
+        
+        elif (conE != []):
+            for a in conE:
+                S = list(GE.edges(a))
+                card = len(a)-1
+                m.addConstr(suma(S) <= card/2) 
+            m.optimize()
+        
+        # Paso 7.3: En el caso de que las heuristicas no hayan funcionado, 
+        # construimos un plano de corte mediante el procedimiento de Padberg
+        # y Rao.
+        else:
+            
+            m.optimize()
+        
+        # Si en la segunda heuristica tampoco hemos encontrado planos de corte
+        # validos, utilizamos un metodo mas robusto para encontrar dicho plano.
         sols = [m.getVars()[i].X for i in range(len(IND))]
         
-        
-        # Paso 7.2: En el caso de que no hayamos encontrado dicho plano de
-        # corte usando la heurisitca anterior, utilizamos esta segunda:
-
-            
-        
-            
-
-    
 #    # Imponemos las condiciones sobre los conjuntos impares.
 #    for a in IMPARES:
 
