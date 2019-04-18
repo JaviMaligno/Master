@@ -9,27 +9,22 @@ import numpy as np
 # vector de costes, nos calcule el arbol de Gomory
 A = nx.gnp_random_graph(10,0.5)
 N = len(A.edges())
-c = np.random.rand(N)
-
-
-A.edges()
-A
-G = nx.Graph()
-G.add_node(A)
-def gomorytree(A,c):
-    Vt = 
-
-
-# Vamos a definir una funcion cuyas entradas sean una grafo G y un vector x
+x = np.random.rand(N)
 
 def padbergraomod(G,x):
-    # En primer lugar, consideramos el grafo G con los capacidad x, lo cual
-    # sera necesario para aplicar los metodos de cortes minimos.
+    # Para aplicar el algoritmo, consideramos el vector de pesos
+    c = np.array([min(a,1-a) for a in x])
+    
+    # Construimos el nuevo grafo H sobre G con los pesos c 
     H = nx.Graph()
     for i, e in enumerate(G.edges()):
-        H.add_edge(e[0],e[1],capacity = x[i])
+        H.add_edge(e[0],e[1],capacity = c[i])
         
-    # Comenzamos el bucle sobre los conjuntos de T
-    Vt = list(H.nodes())
+    # A continuacion, consideramos el arbol de Gomory-Hu para el grafo H
+    GomHu = nx.gomory_hu_tree(H)
+
+    # Delta(W) es el cutset asociado a cada arista del arbol y, naturalmente,
+    # W es el conjunto de nodos a los que pertenecen esas aristas. Enterate
+    # y programalo de una vez hijo de puta.
     
     return()
