@@ -255,7 +255,55 @@ Para cada uno de los casos $i = 1, \dots , 4$, se proponen los siguientes ejerci
 Demuestra que la curva $E_i$ es lisa.
 \end{ejercicio}
 \begin{solucion}
+Llamamos $g_i$ al polinomio homogéneo que resulta de pasar el polinomio de la derecha al otro lado en la ecuación de $E_i$. Recordemos que las curvas están definidas en $\F_3$.
 
+\begin{enumerate}
+\item $g_1=Y^2Z-X^3-2X^2Z-XZ^2-Z^3$.
+\begin{align*}
+\parcial{g_1}{X}=&-XZ-Z^2=0\\
+\parcial{g_1}{Y}=&-YZ=0\\
+\parcial{g_1}{Z}=&Y^2+X^2+XZ=0
+\end{align*}
+De la segunda ecuación obtenemos dos casos.
+\begin{itemize}
+\item $Z=0$. De la tercera ecuación, $Y^2=2X^2$. En $g_1$, esto implicaría $-X^3=0$, luego $X=Y=Z=0$, que no es un punto del plano proyectivo.
+\item $Y=0$. Podemos factorizar la primera ecuación como $-Z(X+Z)=0$, de donde obtendríamos de nuevo dos casos. Si $Z=0$, deducimos de la última ecuación que $X=0$, luego $X=Y=Z=0$. Si $X=-Z$, en $g_1$ obtendríamos $Z=0$, así que de nuevo $X=Y=Z=0$. 
+\end{itemize}
+
+\item $g_2=Y^2Z + XYZ - X^3 - 2X^2Z - XZ^2 - Z^3$
+\begin{align*}
+\parcial{g_2}{X}=& YZ-XZ-Z^2=0\\
+\parcial{g_2}{Y}=& -YZ+XZ=0\\
+\parcial{g_2}{Z}=& Y^2+XY+X^2+XZ=0
+\end{align*}
+
+A partir de la segunda ecuación distinguimos dos casos.
+\begin{itemize}
+\item $Z=0$. La primera ecuación se hace automáticamente 0 y $g_2$ implica que $X=0$, así que en la tercera ecuación concluimos $X=Y=Z=0$.
+\item $X=Y$. En la tercera ecuación tendríamos que $XZ=0$. El caso $Z=0$ ya lo hemos estudiado, y en el caso $X=0$ nos da en la primera ecuación $Z=0$. 
+\end{itemize}
+
+\item $g_3=Y^2Z + XYZ - X^3 +X^2Z - XZ^2$.
+\begin{align*}
+\parcial{g_3}{X}=& YZ-XZ-Z^2=0\\
+\parcial{g_3}{Y}=& -YZ+XZ=0\\
+\parcial{g_3}{Z}=& Y^2+XY+X^2+XZ=0
+\end{align*}
+
+El estudio es totalmente análogo al de $g_2$.
+
+\item $g_4=Y^2Z + YZ^2 - X^3 + X^2Z - XZ^2$
+\begin{align*}
+\parcial{g_4}{X}=& -XZ-Z^2=0\\
+\parcial{g_4}{Y}=& -YZ+Z^2=0\\
+\parcial{g_4}{Z}=& Y^2-YZ+X^2+XZ=0
+\end{align*}
+\end{enumerate}
+Distinguimos dos casos de la primera ecuación.
+\begin{itemize}
+\item $Z=0$. La segunda ecuación se anula y en $g_4$ obtenemos $X=0$. Ahora, en la tercera esto implica que también $Y=0$.
+\item $X=-Z$. Como el caso $Z=0$ ya lo hemos estudiado, por la segunda ecuación podemos asumir $Y=Z$. La tercera ecuación se vuelve trivial. En $g_4$ tendríamos $Y^3+Y^3+Y^3+Y^3+Y^3=2Y^3=0$, de donde $Y=0$ y por tanto las demás también.
+\end{itemize}
 \end{solucion}
 
 \newpage
