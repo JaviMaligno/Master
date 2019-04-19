@@ -224,4 +224,4 @@ def optimiza(lamb, c1 = c1, c2 = c2, indices = IND):
     return(m)
 
 modelo = optimiza(0)
-#    
+sols = [modelo.getVars()[i].X for i in range(len(IND))]

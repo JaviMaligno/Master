@@ -39,6 +39,8 @@ def padraomod(G,x):
         cutset = set()
         for l, nbrs in ((n, H[n]) for n in U):
             cutset.update((l, y) for y in nbrs if y in V)
+            
+        # Nodos del cutset
         
         # Tenemos que encontrar ahora el conjunto F con las propiedades 
         # deseadas. 
