@@ -227,5 +227,54 @@ La prueba de que O es neutro. El inverso de $P$ es $P*O$.
 
 La asociatividad (no la probamos) y todo: Satz 2.3.12
 
+\section{Puntos de torsión}
 
+Creo que tiene que ver con lo que viene a partir de la página 61.
+
+Sea $E/k$ una curva elíptica y $n\in\Z_{\geq 1}$. Definimos la aplicación
+\[
+n:E\to E
+\]
+\[P\mapsto nP=P+\cdots+P\]
+Sea $\overline{k}$ una clausura algebraica de $k$. Consideramos $E[n]=\{P\in E(\overline{k})\mid nP=0\}$, al que llamamos conjunto de puntos de $n$-torsión. Este conjunto es un subgrupo de $E$. Se puede probar por inducción, ya que por definición $1(P+Q)=P+Q=1P+1Q$ y $(n+1)(P+Q)=n(P+Q)+1(P+Q)$. Esto tiene como consecuencia que $E[n]=\ker n$. 
+
+\begin{prop}
+Sea $m\in\Z_{\geq 1}$. \begin{enumerate}
+\item Si $char(k)\not| m$, entonces $E[m]\cong \Z/n\Z\times \Z/n\Z$. 
+\item Si $p=char(k)$
+\[
+E[p^e]=\begin{cases}
+\{0\} & o\\
+\Z/p^e\Z & 
+\end{cases}
+\]
+\end{enumerate} 
+\end{prop}
+
+
+\begin{prop}
+Si $k$ es un cuerpo finito, entonces o bien $E(k)\cong \Z/n\Z$ o bien $E(k)\cong\Z/ n_1\Z\times \Z/n_2\Z$.
+\end{prop}
+\begin{dem}
+Tenemos que $E(k)$ es finito por estar contenido en $\PP^2(k)$, así que por el teorema de clasificación de grupos abelianos $E(k)\cong\Z/n_1\Z\times\cdots\times\Z/n_r\Z$ con $n_i|n_{i+1}$. Tenemos que probar que $r\leq 2$. Consideremos $A=\{P\in E(k)\mid n_1P=0\}\subseteq E[n_1]$. Se tiene que $\# A\leq \# E[n_1]\leq n_1^2$. Por otro lado, se tiene por magia infusa que $A\cong\Z/n_1/Z\times\cdots\Z/n_1\Z$ ($r$ veces), luego $\# A=n_1^r$, de modo que $r\leq 2$. 
+\end{dem}
+
+\section{Diffie-Hellman en curvas elípticas}
+$A$ quiere ponerse de acuerdo con $B$ en una clave secreta. Entonces:
+\begin{enumerate}
+\item $A$ y $B$ fijan una curva elíptica $E/k$ sobre un cuerpo finito $k$. 
+\item Sea $P\in E(k)$ fijado con orden grande. $A$ escoge en secreto $n_A$ y calcula $n_AP=O_A$, que se hace público. Analógamente, $B$ calcula $n_BP=O_B$. 
+\item $A$ calcula $n_AO_B=n_An_BP$ y $B$ calcula $n_BO_A=n_Bn_AP$. El secreto común es $n_An_BP$. 
+\end{enumerate}
+
+\section{El problema del logaritmo discreto en curvas elítpticas (sección 4, página 75)}
+
+Dado $P\in E(k)$ y dado $Q\in\gene{P}$, encontrar $n$ con $nP=Q$. 
+
+\subsection{Problemas}
+\begin{itemize}
+\item Construir curvas elípticas con cardinal controlado.
+\item Calcular el orden de $P$ (que coincide con el cardinal del subgrupo que genera).
+\item Cómo evitar ataques al problema del logaritmo discreto. 
+\end{itemize}
 \end{document}

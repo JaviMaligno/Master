@@ -292,7 +292,7 @@ A partir de la segunda ecuación distinguimos dos casos.
 
 El estudio es totalmente análogo al de $g_2$.
 
-\item $g_4=Y^2Z + YZ^2 - X^3 + X^2Z - XZ^2$
+\item $g_4=Y^2Z + YZ^2 - X^3 + X^2Z - XZ^2$.
 \begin{align*}
 \parcial{g_4}{X}=& -XZ-Z^2=0\\
 \parcial{g_4}{Y}=& -YZ+Z^2=0\\
@@ -318,8 +318,35 @@ de intersección de $E_i$ y $L_j$ en $P$. Calcula la suma
 \]
 para $j = 1, 2$.
 \end{ejercicio}
-\begin{solucion}
+\begin{solucion}\
+\begin{enumerate}
+\item $E_1: g_1=Y^2Z-X^3-2X^2Z-XZ^2-Z^3$. 
+\begin{itemize}
+ \item $L_1=L(0,0,1)$. Solo los puntos de $L_1\cap E_1$ dan multiplicidad no nula. Sustituyendo $Z=0$ en $g_1$ obtenemos que $X=0$ y por tanto solo hay un punto en la intersección, $P=[0:1:0]$. Tomamos como punto auxiliar $P'=[1:0:0]\in L$. Tenemos entonces $g(t, 1,0)=-t^3$, luego la multiplicidad de interseción es 3. 
+ 
+ \item $L_2=L(1,0,1)$. Dado un punto $P=[x:y:z]\in L_2$, si $z=0$, tenemos solamente el punto $P=[0:1:0]$, que pertenece a $E_1$ y le calculamos la multiplicidad de intersección con ayuda del punto $P'=[-1:0:1]\in L_2$. Tenemos $g(-t,1,t)=-t-t^3$, que da multiplicidad 1. 
+ 
+ Si $z\neq 0$, entonces podemos escribir los puntos de $L_2$ como $[-1:y:1]$. Al sustituir en $g_2$ esto nos da dos puntos, $[-1:1:1]$ y $[-1:2:1]$. Calculamos la multiplicidad de estos puntos con el punto $[0:1:0]$. Esto nos da $g(-1,y+t,1)=(y+t)^2-1$, que para ambos puntos da 1, así que el total es 3. 
+\end{itemize}
 
+\item $E_2: g_2=Y^2Z + XYZ - X^3 - 2X^2Z - XZ^2 - Z^3$. 
+\begin{itemize}
+ \item $L_1=L(0,0,1)$. Análogo al anterior.
+ \item $L_2=L(1,0,1)$. El el punto $P=[0:1:0]$ obtenemos multiplicidad 1. No hay más puntos en la intersección porque el resto de puntos de $L_2$ nos dan en $g_2$ la ecuación $Y^2-Y-1=0$, que no tiene solución en $\F_3$. 
+ \end{itemize}
+ 
+ \item $E_3: g_3=Y^2Z + XYZ - X^3 +X^2Z - XZ^2$.
+ \begin{itemize}
+ \item $L_1=L(0,0,1)$ análogo. 
+ \item $L_2=L(1,0,1)$. $P=[0:1:0]$ tiene multiplicidad 1. Tenemos dos puntos más, $[-1:0:1]$ y $[-1:1:1]$. Sin hacer cuentas, como hay 3 puntos distintos, necesariamente tiene cada uno multiplicidad 1, ya que al menos tienen 1 por estar en $E_3$ y no pueden tener más porque la suma de todos debe ser a lo sumo 3. 
+ \end{itemize}
+ 
+ \item $E_4: g_4=Y^2Z + YZ^2 - X^3 + X^2Z - XZ^2$.
+ \begin{itemize}
+ \item $L_1=L(0,0,1)$ análogo.
+ \item $L_2=L(1,0,1)$. De nuevo $P=[0:1:0]$ tiene multiplicidad 1. Obtenemos ahora las mismas soluciones que en la curva anterior. 
+ \end{itemize}
+\end{enumerate}
 \end{solucion}
 
 \newpage
@@ -328,7 +355,88 @@ para $j = 1, 2$.
  Calcula el conjunto $E_i(\F_3)$ de puntos de la curva elíptica con coeficientes en $\F_3$.
 Sabemos que este conjunto es un grupo abeliano. Calcula la tabla de multiplicar de este grupo
 \end{ejercicio}
-\begin{solucion}
+\begin{solucion}\
+\begin{enumerate}
+\item $E_1: g_1=Y^2Z-X^3-2X^2Z-XZ^2-Z^3$. 
+
+Si $Z=0$, entonces el único punto es $[0:1:0]$. Tenemos que buscar ahora las soluciones a $Y^2-X^3+X^2-X-1=0$. en $\F_3^2$. Si $Y=0$ no hay solución. Si $X=0$ obtenemos $[0:-1:1]$ y $[0:1:1]$ . En los casos en los que $X\neq 0\neq Y$, es cuestión de probar casos, ya que no hay muchos. Obtenemos concretamente $[-1:1:1]$ y $[1:1:-1]$. 
+
+Como $[0:1:0]$ es el neutro, hacemos la tabla solo para los otros, y rellenamos solo el triángulo superior, ya que la operación es conmutativa. Usamos el teorema 2.3.13 para no tener que hacer toda la construcción geométrica. $a_1=0,a_3=0,a_2=2,a_4=1,a_6=1$.
+
+\begin{tabular}{|c||c|c|c|c|}
+\hline
+$+$ & $[0:-1:1]$ & $[0:1:1]$  & $[-1:1:1]$ & $[-1:-1:1]$\\
+\hline
+\hline
+$[0:-1:1]$ &  $[-1:-1:1]$   &       0     &      $[0:1:1]$      &  $[-1:1:1]$\\
+\hline
+$[0:1:1]$  &      &        $[-1:1:1]$   &       $[-1:-1:1]$      & $[0:-1:1]$\\
+\hline
+$[-1:1:1]$ &       &         &         $[0:-1:1]$     & 0\\
+\hline
+$[-1:-1:1]$ &       &        &               &$[0:1:1]$\\
+\hline
+\end{tabular}
+
+\item $E_2: g_2=Y^2Z + XYZ - X^3 - 2X^2Z - XZ^2 - Z^3$. 
+
+Para $Z=0$ tenemos de nuevo como único punto $[0:1:0]$. En los demás casos obtenemos las soluciones $[0:1:1]$, $[0:-1:1]$ y $[1:1:1]$. 
+
+$a_1=1,a_3=0,a_2=2,a_4=1,a_6=1$
+
+\begin{tabular}{|c||c|c|c|}
+\hline
+$+$ & $[0:-1:1]$ & $[0:1:1]$  & $[1:1:1]$ \\
+\hline
+\hline
+$[0:-1:1]$ &   $[1:1:1]$  &     0      &     $[0:1:1]$     \\
+\hline
+$[0:1:1]$  &      &       $[1:1:1]$    &   $[0:-1:1]$      \\
+\hline
+$[1:1:1]$ &       &         &      0    \\
+\hline
+\end{tabular}
+
+\item $E_3: g_3=Y^2Z + XYZ - X^3 +X^2Z - XZ^2$.
+
+Los puntos son $[0:1:0]$, $[0:0:1]$, $[-1:0:1]$, $[-1:1:1]$.
+
+$a_1=1,a_3=0, a_2=2, a_4=1,a_6=0$.
+
+\begin{tabular}{|c||c|c|c|}
+\hline
+$+$ & $[0:0:1]$ & $[-1:0:1]$  & $[-1:1:1]$ \\
+\hline
+\hline
+$[0:0:1]$ &   0  &     $[-1:1:1]$      &    $[-1:0:1]$     \\
+\hline
+$[-1:0:1]$  &      &      $[0:0:1]$  &     0  \\
+\hline
+$[-1:1:1]$ &       &         &     $[0:0:1]$     \\
+\hline
+\end{tabular}
+
+\item $E_4: g_4=Y^2Z + YZ^2 - X^3 + X^2Z - XZ^2$.
+
+$E_4(\F_3)=\{[0:1:0], [0:0:1], [0:-1:1], [-1:0:1], [1:1:-1]\}$. 
+
+$a_1=0,a_3=1,a_2=2,a_4=1,a_6=0$
+
+\begin{tabular}{|c||c|c|c|c|}
+\hline
+$+$ & $[0:0:1]$ & $[0:-1:1]$  & $[-1:0:1]$ & $[-1:-1:1]$ \\
+\hline
+\hline
+$[0:0:1]$ &  $[-1:0:1]$   &     0      &  $[-1:-1:1]$  &  $[0:-1:1]$   \\
+\hline
+$[0:-1:1]$  &      &  $[-1:-1:1]$     &  $[0:0:1]$   &  $[-1:0:1]$\\
+\hline
+$[-1:0:1]$ &        &     & $[0:-1:1]$     & 0\\
+\hline 
+$[-1:-1:1]$ &       &         &     &    $[0:0:1]$ \\
+\hline
+\end{tabular}
+\end{enumerate}
 
 \end{solucion}
 
