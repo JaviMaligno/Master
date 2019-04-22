@@ -450,7 +450,7 @@ Notemos que el algoritmo de Padberg y Rao que utilizan los autores para encontra
 \section{El problema de separación del matching}
 Para aprovechar el potencial del software expresamente diseñados para resolver problemas de programación lineal, nosotros implementaremos el algoritmo de Padberg-Rao, a pesar de que para el análisis de sensitividad vendrá dado por el algoritmo del SAP. Esto está justificado, pues consideramos más interesante intentar utilizar la estructura combinatoria propia del problema para dicho análisis, frente a la aproximación clásica cuyos resultados son conocidos y difícilmente interpretables.
 
-A pesar de que el procedimiento que Padberg y Rao presentan consigue resolver el problema de la separación del poliedro del $b$-matching en tiempo polinómico, nosotros utilizaremos en nuestro análisis computacional una modificación del mismo. Tanto Padberg y Rao como Letchford, Reinelt y Theis en \cite{adam} basan su algoritmo para encontrar planos de cortes en el concepto de corte y arbol de Gomory-Hu. En esta sección vamos a detallar teóricamente y presentar el algoritmo que presentan los segundos autores para resolver el problema de separación para el poliedro del $b$-matching en tiempo polinómico.
+Para entender mejor cómo funciona el algoritmo anterior y en qué se basa el procedimiento de Padberg-Rao, así como qué relación guarda con el problema del $b$-emparejamiento, discutimos una serie de conceptos y problemas en esta sección.
 
 \subsection{Cortes y árbol de Gomory-Hu} 
 \begin{defi}
@@ -476,14 +476,22 @@ Además, notemos que si tenemos el conjunto corte se corresponde biunivocamente 
 Sea $G=(V,E)$ un grafo y sea $\mathcal{C}(G)$ el conjunto de los conjuntos de corte de $G$. Entonces con la operación $\Delta$ diferencia simétrica y el cuerpo $\Z/\Z2$ forma un espacio vectorial, donde $0\cdot H = \emptyset$ y $1\cdot H = H$ $\forall H \in \mathcal{C}(G)$.
 \end{prop}
 
-Los cortes son importantes en teoría de grafos pues están estrechamente conectados con los problemas de flujo.  Gomory y Hu introdujeron en 1961 un algoritmo polinomial para encontrar una base de este espacio vectorial. Esta representación se conoce como el árbol de Gomory-Hu. Y especial por verificar la siguiente propiedad.
+El concepto de corte es importante en Teoría de Grafos, pues no solamente son centrales en el algoritmo que nos ocupa, sino que además están estrechamente conectados con los denominados problemas de flujo.  Gomory y Hu introdujeron en 1961 un algoritmo polinomial para encontrar un grafo de árbol que representa una base del espacio vectorial anterior. Esta representación se conoce como el árbol de Gomory-Hu, y es especial por verificar la siguiente propiedad.
 
 \begin{prop}
 Sea $G=(V,E)$ un grafo cuyas aristas tienen coste $c$, sean $s,t\in V$ y sea $T$ el árbol de Gomory-Hu asociado al grafo y costes anteriores. Sea $P$ el único árbol dentro de $T$ que tiene por extremos $s$ y $t$. Sea $e$ la arista de menor peso dentro de $P$. Entonces la partición de los vértices de $T$ obtenida al eliminar $e$ proporciona precisamente el corte de coste mínimo tanto en $T$ como en $G$.
 \end{prop}
-\subsection{Desigualdades de blossom}
-Como hemos comentado anteriormente y veremos más adelante, el poliedro del $b$-matching puede caracterizarse mediante desigualdades lineales de distintas maneras. Para este propósito, es conveniente caracterizarlo mediante las llamadas \textit{desigualdades de blossom}.
-Edmonds en \cite{edmond} prueba el siguiente teorema.
+\subsection{El problema de separación}
+
+Presentamos ahora el problema de la separación y qué relación tiene con el problema del matching y el procedimiento de Padberg-Rao en el algoritmo de Grötschel-Holland. 
+
+Sea $P\subset \R^n$ un poliedro. El problema de la separación asociado al poliedro $P$ consiste en, dado un vector $y\in \R^n$ decidir si $y\in P$ o bien encontrar $\pi \in \R^n$, $\pi_0\in\R$ tales que $\pi x \leq x_0$ $\forall x \in P$ pero $\pi y > \pi_0$. Este problem es interesante, pues en \cite{sepa} podemos encontrar una demostración del siguiente resultado.
+\begin{thm}
+Dado un poliedro $P\subset \R^n$ y un vector $c\in \R^n$, el problema de optimización $\min\{c'x \mid x \in P\}$ puede resolverse en tiempo polinómico si y solo si el problema de la separación para el poliedro $P$ puede ser resulto en tiempo polinómico.
+\end{thm}
+En \cite{rao} Padberg y Rao presentan un algoritmo que resuelve el problema de la separación del poliedro del $b$-matching en tiempo polinómico, pero para ello utilizan una caracterización del poliedro del matching que no hemos visto todavía, mediante las llamadas \textit{desigualdades de blossom}. Esta caracterización fue probada por Edmonds en \cite{edmond} y pasamos a continuación a presentarla.
+
+
 \begin{thm}
 Sea $G=(V,E)$ un grafo. Entonces, la envolvente convexa del politopo del $b$-matching viene dada por
 \begin{align*}
@@ -494,8 +502,8 @@ x_{uv} &\geq 0\\
 donde $W\subset V$, $F \subset \delta(W)$ y $|F| + \sum_{v \in W} b_v$ es impar. Además, si nos restringimos a los emparejamientos perfectos, entonces basta considerar únicamente la igualdad en el primer bloque de restricciones.
 \end{thm}
 En el caso del problema del emparejamiento que estamos tratando $b_v = 1$ y simplemente $|W|+|F|$ tiene que ser impar. 
-\subsection{El problema de separación}
-A continuación presentamos el algoritmo para la separación del poliedro del matching
+
+En nuestro implementación del algoritmo de Grötschel-Holland nosotros para el análisis computacional no vamos a utilizar directamente el algoritmo de Padberg-Rao, sino un modificación del mismo que presentan Letchford, Reinelt y Theis en \cite{adam}, junto con una demostración de la corrección del mismo.
 \begin{align*}
 \text{Inicialización: }&\text{Un grafo $G$ y un vector $x$}\\
 \text{Paso 1: }&\text{Computamos el árbol de Gomory de $G$ para los pesos}\\
@@ -509,7 +517,9 @@ A continuación presentamos el algoritmo para la separación del poliedro del ma
 & \text{Entonces hemos encontrado la desigualdad deseada.}\\
 &\text{Si tras terminar el bucle no hemos encontrado ninguno,}\\
 &\text{entonces $x$ está en el poliedro del matching.}\\
-\end{align*} 
+\end{align*}
+
+
 \section{Aplicaciones y problemas relacionados}
 En esta sección presentamos algunas aplicaciones, como la resolución del problema de la asignación o un algoritmo de aproximación del problema del viajante, y otros problemas interesantes, como el problema de la cobertura por aristas, el de la coloración de aristas o los T-enlaces, que guardan cierta relación con el problema del emparejamiento.
 \subsection{El problema de la asignación}
@@ -1097,21 +1107,14 @@ Usando Farkas, esto es equivalente a $\not\exists y \mid u^tB \leq 0$ y $u'c(\la
 $$u'B \leq 0 \Rightarrow u^t c(\lambda) \leq 0 \qquad u^t c(\lambda)>0 \Rightarrow u^tB >0$$
 
 
-
-
-
-
-
-
-
 \chapter{Análisis computacional}
-En esta sección presentamos los resultados del análisis de sensitividad del problema del emparejamiento biobjetivo sobre distintos grafos. Para los distintos valores de $\lambda$ hemos resuelto en Python 3.6 utilizando el software Gurobi 8.0 los correspondientes problemas de Programación Lineal. En primer lugar presentamos el código con el que hemos programado nuestra rutina de Padber-Rao:
-\newline
-\begin{pythone}
-# A continuacion vamos a programar en Python 3.7 el metodo de Padberg-Rao 
-# modificado para, dado un grafo G y un vector x, obtener una desigualdad
-# del poliedro del matching -en caso de que exista- que sea violada por x.
+Presentamos a continuación la parte computacional de nuestro trabajo. En primer lugar presentamos las distintas partes de la implementaciones de los algoritmos para pasar después a los resultados obtenidos.
+\section{Implementación en Python}
+Todas las implementaciones están hechas utilizando la distribución de Python 3.7 proporcionada por Anaconda. Además, para la resolución de problemas de Programación Lineal utilizamos el software Gurobi 8.1.0, a cuyo oráculo accedemos a través de Python. 
 
+\subsection{Método de Padberg-Rao modificado}
+En primer lugar presentamos el código para la implementación del método de Padberg-Rao con las modificaciones de Letchford, Reinelt y Thesis. Definimos una función que tiene como entrada un grafo $G$ y un vector $x$ y como salida una desigualdad válida del tipo blossom. 
+\begin{pythone}
 import networkx as nx
 import numpy as np
 
@@ -1119,16 +1122,14 @@ def padraomod(G,x):
     # Para aplicar el algoritmo, consideramos el vector de pesos
     c = np.array([min(a,1-a) for a in x])
     
-    # Construimos el nuevo grafo H sobre G con capacidad c, atributo con el
-    # que calculamos el arbol de Gomory-Hu, y con peso x.
+    # Construimos el nuevo grafo H sobre G con capacidad c, atributo con el que calculamos el arbol de Gomory-Hu, y con peso x.
     H = nx.Graph()
     for i, e in enumerate(G.edges()):
         H.add_edge(e[0],e[1],capacity = c[i], weight = x[i])
     
     
     
-    # Definimos una funcion que nos de la suma de los pesos de un conjunto
-    # de aristas
+    # Definimos una funcion que nos de la suma de los pesos de un conjunto de aristas
     def coste(G,S):
         s = 0
         for e in S:
@@ -1138,11 +1139,9 @@ def padraomod(G,x):
     # A continuacion, consideramos el arbol de Gomory-Hu para el grafo H
     GomHu = nx.gomory_hu_tree(H, capacity = 'capacity')
     
-    # Consideramos ahora el conjunto de corte asociado a cada arista del arbol
-    # y para cada uno de ellos buscamos una desigualdad deseada.
+    # Consideramos ahora el conjunto de corte asociado a cada arista del arbol y para cada uno de ellos buscamos una desigualdad deseada.
     for e in GomHu.edges():
-        # Asignamos una copia de GomHu a la cual eliminamos la arista y 
-        # calculamos las componentes conexas
+        # Asignamos una copia de GomHu a la cual eliminamos la arista y calculamos las componentes conexas
         Te = nx.Graph(GomHu)
         Te.remove_edge(*e)
         U,V = list(nx.connected_components(Te))
@@ -1152,39 +1151,37 @@ def padraomod(G,x):
         for l, nbrs in ((n, H[n]) for n in U):
             cutset.update((l, y) for y in nbrs if y in V)
         
-        # Tenemos que encontrar ahora el conjunto F con las propiedades 
-        # deseadas. 
+        # Tenemos que encontrar ahora el conjunto F con las propiedades deseadas. 
         Fe = set([e for e in cutset if 
         1- H[e[0]][e[1]]['weight'] < H[e[0]][e[1]]['weight']])
         
-        # Si el conjunto anterior verifica la propiedad de que la suma de los
-        # cardinales sea impar, es el optimo. En otro caso obtenemos el optimo
-        # mediante el siguiente metodo
+        # Si el conjunto anterior verifica la propiedad de que la suma de los cardinales sea impar, es el optimo. En otro caso obtenemos el optimo mediante el siguiente metodo
         if ((len(cutset) + len(Fe)) % 2 == 0):
             def term(e):
-                s = max(H[e[0]][e[1]]['weight'],1-H[e[0]][e[1]]['weight'])
-                t = min(H[e[0]][e[1]]['weight'],1-H[e[0]][e[1]]['weight'])
+                s = max(H[e[0]][e[1]]['weight'],
+                	1-H[e[0]][e[1]]['weight'])
+                t = min(H[e[0]][e[1]]['weight'],
+                	1-H[e[0]][e[1]]['weight'])
                 return(s-t)
+                         
             Faux = sorted([(term(e),e) for e in cutset])
             fp = set()
             fp.add(Faux[0][1])
             Fe = Fe.symmetric_difference(fp)
         
-        # Finalmente, comprobamos si se viola la desigualdad y, en dicho caso,
-        # hemos acabado y devolvemos.
-        des = coste(H,cutset.difference(Fe)) + len(Fe) - coste(H,Fe)
+        # Finalmente, comprobamos si se viola la desigualdad y en dicho caso hemos acabado y devolvemos.
+        des = coste(H,cutset.difference(Fe)) + len(Fe)
+        	 - coste(H,Fe)
         if (des<1):
             return((cutset,Fe))
         
-    # Notemos que dado que este algoritmo es correcto, si x es una solcion
-    # fraccional necesariamente ha de encontrarse algun plano de corte.
+    # Notemos que dado que este algoritmo es correcto, si x es una solucion fraccional necesariamente ha de encontrarse algun plano de corte.
     return()
-
 \end{pythone}
-\begin{pythone}# Comenzamos el codigo para resolver el problema del matching mediante 
-# resolucion directa del problema de Programacion Lineal.
-# Utilizamos Python 3.7 como interfaz para el software Gurobi 8.1.1.
 
+\subsection{Algoritmo de Grötschel-Holland}
+A continuación presentamos el código con el cuál vamos a resolver el problema del emparejamiento biobjetivo mediante proramación lineal utilizando una versión modificada del algoritmo de Grötschel-Holland. 
+\begin{pythone}
 # El siguiente codigo genera una solucion y valor objetivo asociado
 # para cada elemento de un mallado de valores de lambda, de manera que
 # podemos observar como varian ambos en funcion de dicho parametro.
@@ -1481,5 +1478,11 @@ Padberg, Manfred W., and M. R. Rao. “Odd Minimum Cut-Sets and b-Matchings.” 
 
 \bibitem{adam}
 Letchford, Adam;  Reinelt, Gerhard; Theis, Dirk Oliver. (2004). A Faster Exact Separation Algorithm for Blossom Inequalities. 10.1007/978-3-540-25960-215. 
+
+\bibitem{sepa}
+M. Grötschel, L. Lovász, and A. Schrijver. The ellipsoid method and its
+consequences in combinatorial optimization. Combinatorica, 1(2):169-197, 1981
+
+
 \end{thebibliography}
 \end{document} 

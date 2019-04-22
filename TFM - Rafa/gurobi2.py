@@ -15,6 +15,7 @@ import numpy as np
 import operator
 import networkx as nx
 import random 
+import itertools
 from padbergmod import *
 
 # DATOS DE ENTRADA
@@ -26,11 +27,21 @@ from padbergmod import *
 #random.seed(1234)
 
 # Construimos un grafo aleatorio
-mat = nx.gnp_random_graph(20,0.5)
+mat = nx.gnp_random_graph(10,0.5)
 
 # Numerando los vertices a partir de 0, obtenemos la matriz de adyacencia
 # del grafo como un array 
-A = nx.convert_matrix.to_numpy_matrix(mat)
+#A = nx.convert_matrix.to_numpy_matrix(mat)
+A = np.array([[0., 1., 1., 1., 0., 0., 0., 0., 1., 1.],
+        [1., 0., 1., 0., 1., 0., 0., 1., 1., 0.],
+        [1., 1., 0., 0., 0., 0., 1., 1., 0., 0.],
+        [1., 0., 0., 0., 1., 1., 0., 1., 0., 1.],
+        [0., 1., 0., 1., 0., 1., 0., 1., 0., 1.],
+        [0., 0., 0., 1., 1., 0., 0., 0., 0., 0.],
+        [0., 0., 1., 0., 0., 0., 0., 1., 0., 0.],
+        [0., 1., 1., 1., 1., 0., 1., 0., 1., 1.],
+        [1., 1., 0., 0., 0., 0., 0., 1., 0., 1.],
+        [1., 0., 0., 1., 1., 0., 0., 1., 1., 0.]])
 #A = np.loadtxt(open("file_name.csv", "rb"), delimiter=",", skiprows=0)
 # Numero de vertices
 N = len(A)
@@ -74,6 +85,30 @@ def delta(v,A):
 def entero(s):
     a = map(lambda x: x == int(x),s)
     return(all(a))
+
+# Por propósitos teóricos, aunque no la utilicemos en nuestro algoritmo, vamos
+# a definir una funcion que comprueba si una solucion x esta en el poliedro
+# del matching de una grafo G mediante la comprobacion del numero exponencial
+# de las desigualdades sobre los conjuntos impares.
+
+def comprueba(G,x):
+    H = nx.Graph()
+    for i, e in enumerate(G.edges()):
+        H.add_edge(e[0],e[1],weight = x[i])
+    conj = set()
+    for i in range(3,N,2):
+        conj.update(set(itertools.combinations(set(G.nodes()), i)))
+    for s in conj:
+        card = (len(s)-1)/2
+        M = H.subgraph(s)
+        aris = [M[e[0]][e[1]]['weight'] for e in M.edges()]
+        val = sum(aris)
+        if (val > card):
+            return("No está colega")
+    return("You've got it")
+    
+    
+
 
 # OPTIMIZACION
 ###############################################################################
@@ -143,7 +178,10 @@ def optimiza(lamb, c1 = c1, c2 = c2, indices = IND):
     # Generamos el primer bloque de restricciones.
     for i in range(N):
         m.addConstr(suma(delta(i,A)) == 1, name = "delta" + str(i));
-        
+    
+    # Dejamos comentado los comandos que añaden el número exponencial de
+    # restricciones del poliedro del matching. 
+    
     # Paso 4: Resolvemos el prolbema.
     m.optimize()
     
@@ -153,6 +191,7 @@ def optimiza(lamb, c1 = c1, c2 = c2, indices = IND):
     
     # Obtenemos el vector de soluciones
     sols = [m.getVars()[i].X for i in range(len(IND))]
+    entero(sols)
     while (not (entero(sols))):        
 #        # Paso 7.1, 7.2: Vamos a programar las heuristica para detectar 
 #        # planos de corte.
@@ -220,6 +259,7 @@ def optimiza(lamb, c1 = c1, c2 = c2, indices = IND):
         m.optimize()
         print("Hemos usado Padberg-Rao")
         sols = [m.getVars()[i].X for i in range(len(IND))]
+        print(entero(sols))
     print(entero(sols))
     return(m)
 

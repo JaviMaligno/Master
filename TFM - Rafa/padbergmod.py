@@ -36,10 +36,10 @@ def padraomod(G,x):
         U,V = list(nx.connected_components(Te))
         
         # Calculamos las arista del conjunto de cortes
-        cutset = set()
-        for l, nbrs in ((n, H[n]) for n in U):
-            cutset.update((l, y) for y in nbrs if y in V)
-            
+        #cutset = set()
+        #for l, nbrs in ((n, H[n]) for n in U):
+        #    cutset.update((l, y) for y in nbrs if y in V)
+        cutset = set(H.edges(U))    
         # Nodos del cutset
         
         # Tenemos que encontrar ahora el conjunto F con las propiedades 
@@ -65,6 +65,7 @@ def padraomod(G,x):
         des = coste(H,cutset.difference(Fe)) + len(Fe) - coste(H,Fe)
         if (des<1):
             return((cutset,Fe))
+            
         
     # Notemos que dado que este algoritmo es correcto, si x es una solcion
     # fraccional necesariamente ha de encontrarse algun plano de corte.
