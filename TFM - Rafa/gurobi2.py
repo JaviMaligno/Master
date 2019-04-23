@@ -95,6 +95,10 @@ def comprueba(G,x):
     H = nx.Graph()
     for i, e in enumerate(G.edges()):
         H.add_edge(e[0],e[1],weight = x[i])
+    for v in H.nodes():
+        val = sum([H[e[0]][e[1]]['weight'] for e in H.edges(v)])
+        if (val > 1):
+            return("No está dentro por los vértices") 
     conj = set()
     for i in range(3,N,2):
         conj.update(set(itertools.combinations(set(G.nodes()), i)))
@@ -104,8 +108,8 @@ def comprueba(G,x):
         aris = [M[e[0]][e[1]]['weight'] for e in M.edges()]
         val = sum(aris)
         if (val > card):
-            return("No está colega")
-    return("You've got it")
+            return("No está dentro del poliedro por los odds")
+    return("Está dentro")
     
     
 

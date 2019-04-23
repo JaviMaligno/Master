@@ -34,62 +34,7 @@ Tenemos entonces
 \end{align*}
 
 \end{solucion}
-
-\newpage
-
-
-\begin{ejercicio}{1} Comprobar que se verifica la dualidad de los juegos de utilidad entre la versión optimista y pesimista del problema de la bancarrota, es decir, que se verifica
-$$
-\overline{v_{op}^{(E,d)}} = v^{(E,d)}
-$$ 
-\end{ejercicio}
-\begin{solucion}
-Escribamos las definiciones
-$$
-v_{op}^{(E,d)}(S) = \min\left\{\sum_{i\in S} d_i,E\right\}
-\qquad
-v^{(E,d)}(S) =\max\left\{0,E-\sum_{i\notin S} d_i\right\}
-$$
-Comprobamos directamente, utilizando que $d(N)>E$ y que $$a-\min(c,b) = \max(a-c,b-c)$$
-Tenemos entonces
-\begin{align*}
-\overline{v_{op}^{(E,d)}}(S) &= v_{op}^{(E,d)}(N)-v_{op}^{(E,d)}(N\setminus S)\\
-&= \min\left\{\sum_{i\in N} d_i,E\right\} -  \min\left\{\sum_{i\in N\setminus S} d_i,E\right\}\\
-&= E -  \min\left\{\sum_{i\notin S} d_i,E\right\}\\
-&= \max\left\{E-\sum_{i\notin S} d_i, E-E\right\}\\
-&= \max\left\{0,E-\sum_{i\notin S} d_i\right\}\\
-&= v^{(E,d)}(S)
-\end{align*}
-\end{solucion}
-\newpage
-
-
-\begin{ejercicio}{1} Comprobar que se verifica la dualidad de los juegos de utilidad entre la versión optimista y pesimista del problema de la bancarrota, es decir, que se verifica
-$$
-\overline{v_{op}^{(E,d)}} = v^{(E,d)}
-$$ 
-\end{ejercicio}
-\begin{solucion}
-Escribamos las definiciones
-$$
-v_{op}^{(E,d)}(S) = \min\left\{\sum_{i\in S} d_i,E\right\}
-\qquad
-v^{(E,d)}(S) =\max\left\{0,E-\sum_{i\notin S} d_i\right\}
-$$
-Comprobamos directamente, utilizando que $d(N)>E$ y que $$a-\min(c,b) = \max(a-c,b-c)$$
-Tenemos entonces
-\begin{align*}
-\overline{v_{op}^{(E,d)}}(S) &= v_{op}^{(E,d)}(N)-v_{op}^{(E,d)}(N\setminus S)\\
-&= \min\left\{\sum_{i\in N} d_i,E\right\} -  \min\left\{\sum_{i\in N\setminus S} d_i,E\right\}\\
-&= E -  \min\left\{\sum_{i\notin S} d_i,E\right\}\\
-&= \max\left\{E-\sum_{i\notin S} d_i, E-E\right\}\\
-&= \max\left\{0,E-\sum_{i\notin S} d_i\right\}\\
-&= v^{(E,d)}(S)
-\end{align*}
-
-\end{solucion}
-
-\newpage
+\newpage 
 
 
 \begin{ejercicio}{2}Consideremos el juego de la bancarrota.
@@ -99,39 +44,122 @@ Tenemos entonces
 \end{enumerate} 
 \end{ejercicio}
 \begin{solucion}
-Vamos a considerar $v = v^{(E,d)}_{op}$.
+Vamos a considerar $v = v^{(E,d)}$.
 \begin{enumerate}
-\item Sea $S,T \subset N$ tales que $S\subset T$. Naturalmente se tiene que
-$$\sum_{i \in S} d_i \leq \sum_{i \in T} d_i$$
+\item Sea $S,T \subset N$ tales que $S\subset T$. Naturalmente se tiene que $T^c \subset S^c$. Por tanto
+\begin{gather*}
+\sum_{i \notin S} d_i \geq \sum_{i \notin T} d_i \Rightarrow E -\sum_{i \notin S} d_i \leq E - \sum_{i \notin T} d_i
+\end{gather*} 
 Por lo que
 \begin{align*}
-v^{(E,d)}_{op}(S) &= \min\left\{\sum_{i\in S} d_i,E\right\}\\
-&\leq \min\left\{\sum_{i\in T} d_i,E\right\} \\
-&= v^{(E,d)}_{op}(T)
+v^{(E,d)}_{}(S) &= \max\left\{0,E-\sum_{i\notin S} d_i\right\}\\
+&\leq \max\left\{0,E-\sum_{i\notin S} d_i\right\} \\
+&= v^{(E,d)}(T)
 \end{align*}
 Por lo que el juego es monótono.
 
 Sean $S,T\subset N$ tales que $S\cap T = \emptyset$. Naturalmente se tiene que
 $$
-\sum_{i \in S\cup T} d_i = \sum_{i \in S} d_i + \sum_{i \in T} d_i
+\sum_{i \notin S\cup T} d_i \leq \sum_{i \notin S} d_i + \sum_{i \notin T} d_i \Rightarrow E - \sum_{i \notin S\cup T} d_i \geq \left(E - \sum_{i \notin S} d_i \right) + \left(E- \sum_{i \notin  T} d_i \right)
 $$
-Además, si $a,b,c\geq 0$ tenemos que $\min(a+b,c) \leq \min(a,c)+\min(b,c)$.  
+Además, si $a,b,c\geq 0$ tenemos que $\max(a+b,c) \geq \max(a,c)+\max(b,c)$.  
 \begin{align*}
-v^{(E,d)}_{op}(S) + v^{(E,d)}_{op}(T) &= \min\left\{\sum_{i\in S} d_i,E\right\} + \min\left\{\sum_{i\in T} d_i,E\right\}\\
-&\geq \min\left\{\sum_{i\in S} d_i + \sum_{i\in T} d_i,E\right\}\\
-&= \min\left\{\sum_{i\in S\cup T} d_i,E\right\} \\
-&= v^{(E,d)}_{op}(T\cup S)
+v^{(E,d)}(S) + v^{(E,d)}(T) &=\max\left\{0,E-\sum_{i\notin S} d_i\right\} + \max\left\{0,E-\sum_{i\notin T} d_i\right\} \\
+&\leq \max\left\{0,E-\sum_{i\notin T\cup S} d_i\right\} \\
+&= v^{(E,d)}(T\cup S)
 \end{align*}
-Por lo que el juego es subaditivo.
-\item En el juego $N=\{1,2,3\}$, $d_1 = 25000$, $d_2 = 20000$ y $d_3 = 40000$; $E=50000$ y $v=v^{(E,d)}_{op}$. Calculamos los dividendos
+Por lo que el juego es superaditivo.
+\newpage
+\item En el juego $N=\{1,2,3\}$, $d_1 = 25000$, $d_2 = 20000$ y $d_3 = 40000$; $E=50000$ y $v=v^{(E,d)}$. Calculamos los dividendos
 \begin{align*}
-v(\emptyset) &= 0\\
-v(\{i\})& = d_i  \qquad \forall i = 1,2,3\\
-v(\{1,2\}) &= 45000 \\ 
-v(\{1,3\}) &= v(\{2,3\}) = v(N) = 50000
+v(\emptyset) &= v(1)=v(2) =0\\
+v(3) &=  \max\{0,50000-45000\} = 5000\\
+v(\{N\setminus \{i\}\})& = 50000- d_i  \qquad \forall i = 1,2,3\\
+v(N) &= 50000
 \end{align*}
 \end{enumerate}
 \end{solucion}
 \newpage
 
+\begin{ejercicio}{3}
+Probar que el Core de $v$ $C(v)$ es un conjunto convexo.
+\end{ejercicio}
+\begin{solucion}
+Recordemos la definición de $C(v)$
+$$
+C(v)=\{x\in \R^N\mid x(N)=v(N),\; x(S)\geq v(S) \,\forall S\subset N\}
+$$
+Sean $x,y \in C(v)$ y sea $\lambda \in [0,1]$, entonces
+\begin{align*}
+(\lambda x + (1-\lambda)y)(N) &= \lambda x (N) + (1-\lambda)y(N)\\
+&= \lambda v(N) + (1-\lambda) v(N) \\
+&= v(N)
+\end{align*}
+Además, sea $S\subset N$
+\begin{align*}
+(\lambda x + (1-\lambda)y)(S) & = \lambda x (S) + (1-\lambda)y(S)\\
+&\geq  \lambda v(S) + (1-\lambda) v(S) \\
+&\geq v(S)
+\end{align*}
+Por tanto, si $x,y\in C(v)$ entonces $\lambda x + (1-\lambda) y \in C(v)$, por lo que $C(v)$ es convexo.
+\end{solucion}
+
+\newpage
+\begin{ejercicio}{4}
+Una finca está valorada en por su propietario en 350 mil euros. Un
+empresario le ofrece al propietario acondicionarla para polígono
+industrial, de manera que podría venderse en 700 mil euros. Una
+empresa constructora le ofrece parcelarla y urbanizarla para obtener
+un beneficio de 775 mil euros. Se pide:
+\begin{enumerate}
+\item Representar la situación con un juego TU.
+\item Esbozar su conjunto de imputaciones y su core.
+\end{enumerate}
+\end{ejercicio}
+\begin{solucion}
+Denotemos por $1$ al dueño de la finca, $2$ al empresario y $3$ a la empresa constructora.
+\begin{enumerate}
+\item El juego está representado por $N=\{1,2,3\}$ y $v(\cdot)$ donde 
+\begin{gather*}
+v(\emptyset) = 0 \qquad v(\{1\}) = 350k \qquad v(\{2\}) = v(\{3\}) = v(\{2,3\}) = 0\\
+v(\{1,2\}) = 700k \qquad v(\{1,3\}) = v(N) = 775000 
+\end{gather*}
+\item Calculamos directamente
+\begin{align*}
+I(v) &= \{x \in \R^3 \mid x_1+x_2+x_3 = 775000,\;x_2,x_3\geq 0,\;x_1\geq 350k\}\\
+&=\{x\in \R^3_+ \mid x_1+x_2+x_3 = 775000,\; x_1 \geq 350k\}
+\end{align*}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.5]{Iv}
+\caption{Imputaciones de $v$.}
+\end{figure}
+
+Si denotamos
+\begin{align*}
+H(v) &= \{x \in \R^3_+ \mid x_2+x_3 \geq 0,\; x_1+x_3 \geq 775000,\;x_1+x_2 \geq 700000\}\\
+&=\{x \in \R^3_+ \mid  x_1+x_3 \geq 775000,\;x_1+x_2 \geq 700000\}
+\end{align*}
+Entonces tenemos
+\begin{align*}
+C(v) &= I(v) \cap H(v)\\
+&=\{x \in \R^3_+ \mid x_1+x_2+x_3 = 775000,\;x_1 \geq 350000,\; x_1+x_3 \geq 775000,\;x_1+x_2 \geq 700000\}\
+\end{align*}
+Naturalmente, si $x_1+x_3 \geq 775000$ y $x_1+x_2+x_3 = 775000$, dado que las variables son no negativas, tenemos que $x_2 = 0$. Por tanto, podemos escribir de manera compacta
+$$
+C(v)=\{x \in \R^3_+ \mid x_1+x_3 =775000,\; x_1 \geq 700000,\; x_2 = 0\}
+$$
+Lo cual puede expresarse de manera paramétrica como un segmento de línea:
+$$
+C(v) = \{(700000 + s, 0, 75000 - s) \in \R^3 \mid s \in [0,75000]\}
+$$
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.45]{Cv}
+\caption{Core de $v$. Representado $x_1$ frente a $x_3$.}
+\end{figure}
+\end{enumerate}
+\end{solucion}
 \end{document}
