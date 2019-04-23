@@ -271,7 +271,19 @@ Si $\varphi\in\Hom_{Vect}(\overline{V},V^*)$, la propiedad de ser invariante baj
 
 Este cálculo demuestra que $\varphi$ es de hecho un morfismo de representaciones, y por el lema de Schur $\overline{V}\cong V^*$, y además es único salvo producto por escalar, luego $\dim Hom_G(\overline{V},V^*)=1$. 
 
+\section{Restricción e inducción de representaciones (4.8)}
+Sea $G$ un grupo finito y $H\leq G$ un subgrupo. Si $V$ es una representación de $G$, también lo es de $H$ por composición $H\hookrightarrow G\to GL(V)$. Esta representación se llama restricción de $V$. Si $V$ es irreducible para $G$, no tiene por qué serlo para $H$. Mirando en la tabla de caracteres, por ejemplo de $S_3$ y tomando como subgrupo $S_2=\gene{(12)}$, evidentemente sobra una fila (porque quitamos la otra columna), la última es suma de las dos primeras. 
+
+Las aplicacioens $G\to W$ se pueden pensar como familias de vectores indexadas por elementos del grupo. 
 
 
+\begin{teorema}[4.33, Frobenius Reciprocity]
+$\Hom_G(V,Ind^G_HW)\cong \Hom_H(Ind^G_H,W)$ (isomorfismo natural de espacios vectoriales)
+\end{teorema}
+$\dim \Hom_G(M,N)=\gene{\chi_M,\chi_N}$. 
+
+Como consecuencia, $\gene{\chi_{Res^G_H V},\chi_W}=\gene{\chi_V,\chi_{Ind^G_H}}$. 
+
+\section{4.6}
 \end{document}
 
