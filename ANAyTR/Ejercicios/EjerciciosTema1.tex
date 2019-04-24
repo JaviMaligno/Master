@@ -1080,7 +1080,7 @@ $\C^5\downarrow^{A_5}_{\Z_2}$ & 3 & 2  \\
 \hline
 \end{tabular}
 \end{center}
-\item Veamos el segundo caso. Consideramos $\Z_3 \cong \{Id,(123)(132)\}$. Sea $w$ una raíz cúbica primitiva 
+\item Veamos el segundo caso. Consideramos $\Z_3 \cong \gene{(123)}$. Sea $w$ una raíz cúbica primitiva de la unidad.
 \begin{center}
 \begin{tabular}{|c|c|c|c|}
 \hline
@@ -1119,6 +1119,56 @@ $\C^3_-\downarrow^{A_5}_{\Z_3}$ & 1 & 1 & 1\\
 $\C^4\downarrow^{A_5}_{\Z_3}$	& 2 & 1 & 1 \\
 \hline
 $\C^5\downarrow^{A_5}_{\Z_3}$ & 1 & 2 & 2  \\
+\hline
+\end{tabular}
+\end{center}
+
+
+
+\item  Veamos el segundo caso. Consideramos $\Z_5 \cong \gene{(12345)}$. Sea $w=e^{2\pi i/5}$ una raíz quinta primitiva de la unidad. 
+\begin{center}
+
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$\Z_5$ & Id & (12345) & (13524) & (12453) & (15432) \\
+\hline
+TRIV & 1 & 1 & 1 & 1 & 1\\
+\hline
+REP1 & 1 & $w$& $w^2$ & $w^3$ & $w^4$ \\
+\hline
+REP2 & 1 & $w^2$ & $w^4$ & $w$ & $w^3$\\
+\hline 
+REP3 & 1 & $w^3$ &  $w$ & $w^4$ & $w^2$\\
+\hline 
+REP4 & 1 & $w^4$ & $w^3$ & $w^2$ & $w$\\
+\hline 
+TRIV$\downarrow^{A_5}_{\Z_5}$	& 1 & 1  					 &  1				  & 1  					& 1  					\\
+\hline                                                                                                                                 
+$\C^3_+\downarrow^{A_5}_{\Z_5}$ & 3 & $\frac{1+\sqrt{5}}{2}$ &  $\frac{1-\sqrt{5}}{2}$ & $\frac{1-\sqrt{5}}{2}$& $\frac{1+\sqrt{5}}{2}$\\
+\hline                                                                                                                                 
+$\C^3_-\downarrow^{A_5}_{\Z_5}$ & 3 & $\frac{1-\sqrt{5}}{2}$ &  $\frac{1+\sqrt{5}}{2}$	& $\frac{1+\sqrt{5}}{2}$& $\frac{1-\sqrt{5}}{2}$\\
+\hline                                                                                                                                 
+$\C^4\downarrow^{A_5}_{\Z_5}$	& 4 & -1					 &  -1					 & -1					& -1					\\
+\hline                                                                                                                                 
+$\C^5\downarrow^{A_5}_{\Z_5}$ 	& 5 & 0 					 &  0 						& 0 					& 0 					\\
+\hline
+\end{tabular}
+\end{center}
+Calculamos la tabla de productos escalares, de donde se deduce la descomposición de las representaciones inducidas como suma de irreps de $A_5$.
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$Z\setminus W$ & TRIV & REP1 & REP2 & REP3 & REP4 \\
+\hline
+TRIV$\downarrow^{A_5}_{\Z_3}$		 & 1 & 0 & 0 & 0 & 0\\
+\hline
+$\C^3_+\downarrow^{A_5}_{\Z_3}$ & 1  &1 & 0 &0 &1\\
+\hline
+$\C^3_-\downarrow^{A_5}_{\Z_3}$ & 1 & 0& 1 & 1 &0\\
+\hline
+$\C^4\downarrow^{A_5}_{\Z_3}$	& 0 & 1 & 1 & 1&1\\
+\hline
+$\C^5\downarrow^{A_5}_{\Z_3}$ & 1 & 1 & 1  &1 &1\\
 \hline
 \end{tabular}
 \end{center}
