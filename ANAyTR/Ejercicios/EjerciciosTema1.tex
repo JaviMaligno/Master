@@ -1009,5 +1009,119 @@ m\binom{m}{j}x^jy^{n-j} = \sum_{p=0}^{m-1}w^{pj}(x+w^py)^m
 $$ 
 donde $w$ es una raíz primitiva $m$-ésima de la unidad. Tomando, por ejemplo $x=e_1$, $y=e_2$ tenemos que $e_1^j e_2^{m-j} \in W$ $\forall j=0,\dotsc, m$. Recursivamente, tenemos que todos los elementos de la base están dentro.
 \end{solucion}
-
+\newpage
+\begin{ejercicio}{4.34}
+Compute the decomposition into irreducibles of all the representations of $A_5$ induced from all the irreducible representations of
+\begin{enumerate}
+\item $\Z_2$
+\item $\Z_3$ 
+\item $\Z_5$
+\item $A_4$
+\item $\Z_2 \times \Z_2$
+\end{enumerate}
+\end{ejercicio}
+\begin{solucion}
+Comenzamos escribiendo la tabla de caracteres de $A_5$
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$A_5$ & Id & (123) & (12)(34) & (12345) & (13245)\\
+\hline
+TRIV & 1 & 1 & 1 & 1 & 1\\
+\hline
+$\C^3_+$ & 3 & 0 &-1 & 	$\frac{1+\sqrt{5}}{2}$ & $\frac{1-\sqrt{5}}{2}$\\
+\hline
+$\C^3_-$ & 3 & 0 &-1 & 	$\frac{1-\sqrt{5}}{2}$ & $\frac{1+\sqrt{5}}{2}$\\
+\hline
+$\C^4$ & 4 & 1 & 0 & -1 & -1\\
+\hline
+$\C^5$ & 5 & -1 & 1 & 0 & 0 \\
+\hline
+\end{tabular}
+\end{center}
+\begin{enumerate}
+\item Veamos el primer caso. Consideramos $\Z_2 \cong \{Id,(12)(34)\}$.
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+$\Z_2$ & Id & (12)(34) \\
+\hline
+TRIV & 1 & 1 \\
+\hline
+ALT & 1 & -1\\
+\hline
+TRIV$\downarrow^{A_5}_{\Z_2}$		 & 1 & 1 \\
+\hline
+$\C^3_+\downarrow^{A_5}_{\Z_2}$ & 3  &-1 \\
+\hline
+$\C^3_-\downarrow^{A_5}_{\Z_2}$ & 3 & -1\\
+\hline
+$\C^4\downarrow^{A_5}_{\Z_2}$	& 4 & 0 \\
+\hline
+$\C^5\downarrow^{A_5}_{\Z_2}$ & 5 & 1  \\
+\hline
+\end{tabular}
+\end{center}
+Calculamos la tabla de productos escalares, de donde se deduce la descomposición de las representaciones inducidas como suma de irreps de $A_5$.
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+$Z\setminus W$ & TRIV & ALT \\
+\hline
+TRIV$\downarrow^{A_5}_{\Z_2}$		 & 1 & 0 \\
+\hline
+$\C^3_+\downarrow^{A_5}_{\Z_2}$ & 1  &2 \\
+\hline
+$\C^3_-\downarrow^{A_5}_{\Z_2}$ & 1 & 2\\
+\hline
+$\C^4\downarrow^{A_5}_{\Z_2}$	& 2 & 2 \\
+\hline
+$\C^5\downarrow^{A_5}_{\Z_2}$ & 3 & 2  \\
+\hline
+\end{tabular}
+\end{center}
+\item Veamos el segundo caso. Consideramos $\Z_3 \cong \{Id,(123)(132)\}$. Sea $w$ una raíz cúbica primitiva 
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+$\Z_3$ & Id & (123) & (132) \\
+\hline
+TRIV & 1 & 1 & 1 \\
+\hline
+REP1 & 1 & $w$ & $w^2$ \\
+\hline
+REP2 & 1 & $w^2$ & $w$\\
+\hline 
+TRIV$\downarrow^{A_5}_{\Z_3}$	& 1 & 1 & 1\\
+\hline
+$\C^3_+\downarrow^{A_5}_{\Z_3}$ & 3 & 0 & 0\\
+\hline
+$\C^3_-\downarrow^{A_5}_{\Z_3}$ & 3 & 0 & 0\\
+\hline
+$\C^4\downarrow^{A_5}_{\Z_3}$	& 4 & 1 & 1\\
+\hline
+$\C^5\downarrow^{A_5}_{\Z_3}$ 	& 5 & -1 & -1\\
+\hline
+\end{tabular}
+\end{center}
+Calculamos la tabla de productos escalares, de donde se deduce la descomposición de las representaciones inducidas como suma de irreps de $A_5$.
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+$Z\setminus W$ & TRIV & REP1 & REP2 \\
+\hline
+TRIV$\downarrow^{A_5}_{\Z_3}$		 & 1 & 0 & 0 \\
+\hline
+$\C^3_+\downarrow^{A_5}_{\Z_3}$ & 1  &1 & 1 \\
+\hline
+$\C^3_-\downarrow^{A_5}_{\Z_3}$ & 1 & 1 & 1\\
+\hline
+$\C^4\downarrow^{A_5}_{\Z_3}$	& 2 & 1 & 1 \\
+\hline
+$\C^5\downarrow^{A_5}_{\Z_3}$ & 1 & 2 & 2  \\
+\hline
+\end{tabular}
+\end{center}
+\end{enumerate}
+\end{solucion}
 \end{document}
