@@ -7,90 +7,32 @@
 %--------------------------------------------------------
 \begin{document}
 
-\title{Procesos Estocásticos. Aplicaciones}
+\title{Fractales y Procesos Iterativos}
 \author{Rafael González López}
 \maketitle
 
-\begin{ejercicio}{6}
-Una máquina tiene dos piezas colocadas en paralelo de manera que para funcionar utiliza solo una de ellas, quedando la otra de repuesto para reemplazar a la que trabaja cuando esta se estropea, si está en condiciones de trabajar. Las piezas trabajan de manera que se estropean durante un periodo de tiempo dado con una probabilidad $q$. Supongamos que la pieza que está trabajando, en caso de que se estropee, lo hace al final de un periodo, de manera que la pieza de repuesto empieza a trabajar, si está en condiciones de hacerlo, al principio del periodo siguiente. Hay un único mecánico para reparar las piezas estropeadas, que tarda dos periodos en reparar una pieza estropeada. El proceso puede describirse mediante un vector $X_t$ de dos componentes $U$ y $V$, donde $U$ representa el número de piezas hábiles, trabajando o en condiciones de trabajar, al final del periodo $t$-ésimo, y $V$ toma el valor $1$ si el mecánico requiere únicamente un periodos adicional para completar una reparación, si está procediendo a ella, y $0$ en caso contrario. Por lo tanto, el espacio de estados consta de cuatro estados
+\begin{ejercicio}{3}
+Sea $\gamma:[0,1]\to \R^n$ una curva en $\R^n$. La curva $\gamma$ se dice rectificable si cumple
 $$
-(2,0), (1,0),(0,1),(1,1)
+L(\gamma) = \sup \sum_{j=1}^N d(\gamma(t_{j-1}),\gamma(t_j)) < +\infty
 $$
-(Por ejemplo, el estado $(1,1)$ implica que una componente opera y la otra necesita un periodo adicional para acabar de ser reparada). Denotemos los cuatro estados por $0,1,2$ y $3$, respectivamente. (Es decir, $X_t=0$ quiere decir $X_t = (2,0)$, por ejemplo). Se pide:
-\begin{itemize}
-\item Comprobar que $X_t$ para $t=0,1,\dotsc$ es una cadena de Markov.
-\item Describir el diagrama de transiciones y hallar la matriz de probabilidades de transición. 
-\end{itemize} 
+donde el supremo se toma en todas las particiones $0 = t_0 < t_1< \cdots< t_N = 1$ de $[0,1]$. En el caso de que $\gamma$ sea rectificable se define la longitud de $\gamma$ como $L(\gamma)$. 
+
+Probar que si $\gamma:[0,1]\to \R^n$ es continua, inyectiva y rectificable, entonces
+$$
+L(\gamma) = H^1(\gamma([0,1]))
+$$
+Deducir que la dimensión de la imagen de cualquier curva continua en $\R^n$, inyectiva salvo a lo más en un número finito de puntos y que sea rectificable es $1$.
 \end{ejercicio}
 \begin{solucion}
-
-\begin{itemize}
-\item[]
-\item Es claro que el espacio de estados consta de cuatro elementos, luego es discreto. Que se verifica la propiedad de Markov se tiene casi por el propio planteamiento del modelo. El estado futuro de la cadena depende a lo sumo del último estado conocido, pero desde luego no de los anteriores. 
-\item El diagrama de trasición es
-
-\begin{center}
-\begin{tikzpicture}
-	% Draw the states
-	\node[state]             (1) {$1$};
-	\node[state, right=of 1] (2) {$2$};
-	\node[state, right=of 2] (3) {$3$};
-	\node[state, above=of 2] (4) {$4$};
-    % Connect the states with arrows
-	\draw[every loop]
-		(1) edge[right, auto=right] node {$q$} (2)
-		(1) edge[loop left] 	   node {$1-q$} (1)
-		(2) edge[bend right, auto=right] node {$q$} (3)
-		(2) edge[bend right, auto=right] node {$1-q$} (4)
-		(3) edge[right, auto=right] node {$1$} (2)
-		(4) edge[loop right, auto=left] node {$q$} (3)
-		(4) edge[bend right, auto=left] node {$1-q$} (1);
-\end{tikzpicture}
-\end{center}
-La matriz de transición es
+En primer lugar, recordemos la definición de $H^1_\varepsilon$.
 $$
-\begin{pmatrix}
-1-q	& q & 0 & 0\\
-0 	& 0	& q	& 1-q\\
-0	& 1 & 0 & 0\\
-1-q & 0 & 0 & q
-\end{pmatrix}
+H^1_\varepsilon(E) = \inf\left\{\sum\limits_{i=1}^\infty\text{diam}(A_i)\,\bigg|\,\bigcup\limits_{i=1}^\infty A_i \supseteq E,\,\text{diam}(A_i)\leq \varepsilon\right\}.
 $$
-\item Es fácil ver, o bien calculando $P^4$ (es $>0$ y por tanto $P$ es regular) o bien directamente sobre el diagrama, que todos los estados están interconectados cuando $q\in(0,1)$. Por tanto, todos deben tener el mismo carácter. Como estamos en una cadena finita, deben ser todos recurrentes no nulos. Se tiene naturalmente que $f_i = 1$, $i=1,2,3,4$.
-\item Que $P$ sea regular implica que la cadena es ergódica. En particular, todos los estados son aperiódicos.
-\item Otra consecuencia de que $P$ sea regular es que existe una única distribución límite que además es la distribución estacionaria, luego podemos calcularla directamente.
+Probemos la igualdad. Si $L(\gamma)$ es el valor del supremo, consideremos $\varepsilon >0$ y una partición $t_0<\cdots < t_1$ que 
 $$
-P =\begin{pmatrix}
-1-q	& q & 0 & 0\\
-0 	& 0	& q	& 1-q\\
-0	& 1 & 0 & 0\\
-1-q & 0 & 0 & q
-\end{pmatrix} \Rightarrow 
-P' =
-\begin{pmatrix}
-1-q	& 0 & 0 & 1-q\\
-q 	& 0	& 1	& 0\\
-0	& q & 0 & 0\\
-0	& 1-q & 0 & q
-\end{pmatrix}
+\sum_{j=1}^n d(\gamma(t_{j-1}),\gamma(t_j)) > L -\varepsilon
 $$
-$$
-P'-I = 
-\begin{pmatrix}
--q	& 0 & 0 & 1-q\\
-q 	& -1	& 1	& 0\\
-0	& q & -1 & 0\\
-0	& 1-q & 0 & q-1
-\end{pmatrix}
-$$
-Resolviendo el sistema e imponiendo que los coeficientes sumen $1$ obtenemos que la distribución estacionaria es
-$$
-\pi(q) = \sqrt{\frac{q^2}{q^4+3q^2-2q+1}}
-\begin{pmatrix}
-\dfrac{1-q}{q} & 1 & q & 1
-\end{pmatrix}
-$$
-Está bien definido porque el denominador solo tiene dos raíces reales y son menores que $-1$. Además, es positivo en $[0,1]$.	
-\end{itemize}
+Podemos suponer que $d(\gamma(t_{j-1}),\gamma(t_j))<\varepsilon$. Tomamos $A_j = \gamma([t_{j-1},t_j])$.
 \end{solucion}
 \end{document}
