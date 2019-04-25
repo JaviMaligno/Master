@@ -628,11 +628,14 @@ Entonces, para cada $(u,v)\in E$, unimos un nodo de $C_v$ a otro de $C_i$ de man
 Si $M\subset E\cup E'$ es un matching perfecto en $G'$, entonces $M\cap E$ es un $T$-enlace en $G$. Recíprocamente, si $E^*$ es un $T$-enlace en $G$, entonces existe $K\subset E'$ tal que $E^*\cup K$ es un matching perfecto en $G'$.
 \end{prop}
 \end{dem}
-Veamos ahora la importancia de encontrar estos conjuntos de cara a la resolución del problema conocido como \textbf{problema del cartero chino}. Este problema trata de encontrar un el circuito de menor coste que visite todas las aristas. Si el grafo es euleriano, necesariamente la solución ha de ser cualquier circuito euleriano. En caso de que nuestro grafo no sea euleriano, podemos utilizar el siguiente algoritmo polinomial basado precisamente en el $T$-enlace.
+Veamos ahora la importancia de encontrar estos conjuntos de cara a la resolución del problema conocido como \textbf{problema del cartero chino}. Este problema trata de encontrar un el circuito de menor coste que visite todas las aristas. Otro nombre para este problema es el \textit{problema de inspección de rutas}. 
+
+Si el grafo es euleriano, necesariamente la solución ha de ser cualquier circuito euleriano. En caso de que nuestro grafo no sea euleriano, podemos utilizar el siguiente algoritmo polinomial basado precisamente en el $T$-enlace.
 \begin{align*}
 \text{Paso 1: }& \text{Si el grafo es euleriano, entonces tomamos un circuito euleriano}\\
 &\text{como solución. En otro caso, vamos al Paso 2.}\\
-\text{Paso 2: }&\text{Obtener el $T$-enlace de coste mínimo. Como hemos visto, este}\\
+\text{Paso 2: }&\text{Obtener el $T$-enlace de coste mínimo, donde consideramos $T$ como}\\
+&\text{el conjunto de los vértices de grado impar. Como hemos visto, este}\\
 &\text{puede obtenerse usando un algoritmo que resuelva el problema}\\
 &\text{del emparejamiento.}\\
 \text{Paso 3: }&\text{Consideramos el multigrafo obtenido a partir de duplicar las}\\

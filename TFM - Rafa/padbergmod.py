@@ -5,6 +5,8 @@
 import networkx as nx
 import numpy as np
 
+x = [1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 0.5, 0.5, 0.5, 0.0, 0.0, 0.5, 0.0, 0.0, 0.5, 0.0, 0.0, 1.0]
+
 def padraomod(G,x):
     # Para aplicar el algoritmo, consideramos el vector de pesos
     c = np.array([min(a,1-a) for a in x])
@@ -36,9 +38,9 @@ def padraomod(G,x):
         U,V = list(nx.connected_components(Te))
         
         # Calculamos las arista del conjunto de cortes
-        #cutset = set()
-        #for l, nbrs in ((n, H[n]) for n in U):
-        #    cutset.update((l, y) for y in nbrs if y in V)
+        cutset = set()
+        for l, nbrs in ((n, H[n]) for n in U):
+            cutset.update((l, y) for y in nbrs if y in V)
         cutset = set(H.edges(U))    
         # Nodos del cutset
         

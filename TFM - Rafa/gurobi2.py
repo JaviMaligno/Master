@@ -27,21 +27,21 @@ from padbergmod import *
 #random.seed(1234)
 
 # Construimos un grafo aleatorio
-mat = nx.gnp_random_graph(10,0.5)
+mat = nx.gnp_random_graph(200,0.5)
 
 # Numerando los vertices a partir de 0, obtenemos la matriz de adyacencia
 # del grafo como un array 
-#A = nx.convert_matrix.to_numpy_matrix(mat)
-A = np.array([[0., 1., 1., 1., 0., 0., 0., 0., 1., 1.],
-        [1., 0., 1., 0., 1., 0., 0., 1., 1., 0.],
-        [1., 1., 0., 0., 0., 0., 1., 1., 0., 0.],
-        [1., 0., 0., 0., 1., 1., 0., 1., 0., 1.],
-        [0., 1., 0., 1., 0., 1., 0., 1., 0., 1.],
-        [0., 0., 0., 1., 1., 0., 0., 0., 0., 0.],
-        [0., 0., 1., 0., 0., 0., 0., 1., 0., 0.],
-        [0., 1., 1., 1., 1., 0., 1., 0., 1., 1.],
-        [1., 1., 0., 0., 0., 0., 0., 1., 0., 1.],
-        [1., 0., 0., 1., 1., 0., 0., 1., 1., 0.]])
+A = nx.convert_matrix.to_numpy_matrix(mat)
+#A = np.array([[0., 1., 1., 1., 0., 0., 0., 0., 1., 1.],
+#        [1., 0., 1., 0., 1., 0., 0., 1., 1., 0.],
+#        [1., 1., 0., 0., 0., 0., 1., 1., 0., 0.],
+#        [1., 0., 0., 0., 1., 1., 0., 1., 0., 1.],
+#        [0., 1., 0., 1., 0., 1., 0., 1., 0., 1.],
+#        [0., 0., 0., 1., 1., 0., 0., 0., 0., 0.],
+#        [0., 0., 1., 0., 0., 0., 0., 1., 0., 0.],
+#        [0., 1., 1., 1., 1., 0., 1., 0., 1., 1.],
+#        [1., 1., 0., 0., 0., 0., 0., 1., 0., 1.],
+#        [1., 0., 0., 1., 1., 0., 0., 1., 1., 0.]])
 #A = np.loadtxt(open("file_name.csv", "rb"), delimiter=",", skiprows=0)
 # Numero de vertices
 N = len(A)
@@ -197,74 +197,71 @@ def optimiza(lamb, c1 = c1, c2 = c2, indices = IND):
     sols = [m.getVars()[i].X for i in range(len(IND))]
     entero(sols)
     while (not (entero(sols))):        
-#        # Paso 7.1, 7.2: Vamos a programar las heuristica para detectar 
-#        # planos de corte.
-#        
-#        # Fijamos un parametro epsilon de tolerancia para la segunda heuristica.
-#        # Tal y como Groetschel y Holland en su trabajo, tomamos 0.3. 
-#        epsilon = 0.3 
-#        
-#        # Obtenemos las aristas con variables asociadas en
-#        aristasN = [IND[i] for i in range(len(sols)) if sols[i]>0]
-#        aristasE = [IND[i] for i in range(len(sols)) if sols[i]>epsilon]
-#            
-#        # Construimos sendos grafos.
-#        GN = nx.Graph()
-#        GN.add_edges_from(aristasN)
-#        
-#        GE = nx.Graph()
-#        GE.add_edges_from(aristasE)
-#        
-#        # Buscamos las componentes conexas que tengan cardinalidad impar
-#        conN = [a for a in list(nx.connected_components(GN)) if len(a) %2 == 1]
-#        
-#        # Tenemos que tener en cuenta que los planos de corte que proporciona
-#        # la segunda heuristica pueden no ser utiles, ya que nuestra solucion
-#        # no tiene por que violarlos necesariamente y seria un esfuerzo 
-#        # innecesario volver a reoptimizar para nada, por lo que solo nos 
-#        # quedamos con dichas componentes. Definimos previamente una funcion
-#        # que nos haga dicha comprobacion
-#        def comprueba(nodos):
-#            aristaux = list(GE.edges(nodos))
-#            aristord = [(a,b) if a<b else (b,a) for (a,b) in aristaux]
-#            indiaux = [IND.index(a) for a in aristord]
-#            card = (len(nodos)-1)/2
-#            suma = sum([sols[i] for i in indiaux])
-#            return(suma <= card)
-#        
-#        # Generamos las componentes adecuadas
-#        conE = [a for a in list(nx.connected_components(GE)) if len(a) %2 == 1 
-#                and comprueba(a)]
-#        
-#        # Si las lista con es no vacia, hemos encontrado planos de cortes, los
-#        # añadimos a nuestro modelo y volvemos a comprobar. 
-#        if (conN != []):
-#            for a in conN:
-#                S = list(GN.edges(a))
-#                card = len(a)-1
-#                m.addConstr(suma(S) <= card/2) 
-#            m.optimize()
-#            print("Hemos usado 1")
-#            
-#        elif (conE != []):
-#            for a in conE:
-#                S = list(GE.edges(a))
-#                card = len(a)-1
-#                m.addConstr(suma(S) <= card/2) 
-#            m.optimize()
-#            print("Hemos usado 2")
-#        
-#        # Paso 7.3: En el caso de que las heuristicas no hayan funcionado, 
-#        # construimos un plano de corte mediante el procedimiento de Padberg
-#        # y Rao.
-#        else:        
-        W,F = padraomod(nx.Graph(A),sols)
-        m.addConstr(suma(W.difference(F))-suma(F) >= 1-len(F))
-        m.optimize()
-        print("Hemos usado Padberg-Rao")
+        # Paso 7.1, 7.2: Vamos a programar las heuristica para detectar 
+        # planos de corte.
+        
+        # Fijamos un parametro epsilon de tolerancia para la segunda heuristica.
+        # Tal y como Groetschel y Holland en su trabajo, tomamos 0.3. 
+        epsilon = 0.3 
+        
+        # Obtenemos las aristas con variables asociadas en
+        aristasN = [IND[i] for i in range(len(sols)) if sols[i]>0]
+        aristasE = [IND[i] for i in range(len(sols)) if sols[i]>epsilon]
+            
+        # Construimos sendos grafos.
+        GN = nx.Graph()
+        GN.add_edges_from(aristasN)
+        
+        GE = nx.Graph()
+        GE.add_edges_from(aristasE)
+        
+        # Buscamos las componentes conexas que tengan cardinalidad impar
+        conN = [a for a in list(nx.connected_components(GN)) if len(a) %2 == 1]
+        
+        # Tenemos que tener en cuenta que los planos de corte que proporciona
+        # la segunda heuristica pueden no ser utiles, ya que nuestra solucion
+        # no tiene por que violarlos necesariamente y seria un esfuerzo 
+        # innecesario volver a reoptimizar para nada, por lo que solo nos 
+        # quedamos con dichas componentes. Definimos previamente una funcion
+        # que nos haga dicha comprobacion
+        def comprueba(nodos):
+            aristaux = list(GE.edges(nodos))
+            aristord = [(a,b) if a<b else (b,a) for (a,b) in aristaux]
+            indiaux = [IND.index(a) for a in aristord]
+            card = (len(nodos)-1)/2
+            suma = sum([sols[i] for i in indiaux])
+            return(suma <= card)
+        
+        # Generamos las componentes adecuadas
+        conE = [a for a in list(nx.connected_components(GE)) if len(a) %2 == 1 
+                and comprueba(a)]
+        
+        # Si las lista con es no vacia, hemos encontrado planos de cortes, los
+        # añadimos a nuestro modelo y volvemos a comprobar. 
+        if (conN != []):
+            for a in conN:
+                S = list(GN.edges(a))
+                card = len(a)-1
+                m.addConstr(suma(S) <= card/2) 
+            m.optimize()
+            print("Hemos usado 1")
+            
+        elif (conE != []):
+            for a in conE:
+                S = list(GE.edges(a))
+                card = len(a)-1
+                m.addConstr(suma(S) <= card/2) 
+            m.optimize()
+            print("Hemos usado 2")
+        
+        # Paso 7.3: En el caso de que las heuristicas no hayan funcionado, 
+        # construimos un plano de corte mediante el procedimiento de Padberg
+        # y Rao.
+        else:        
+            W,F = padraomod(nx.Graph(A),sols)
+            m.addConstr(suma(W.difference(F))-suma(F) >= 1-len(F))
+            m.optimize()
         sols = [m.getVars()[i].X for i in range(len(IND))]
-        print(entero(sols))
-    print(entero(sols))
     return(m)
 
 modelo = optimiza(0)
