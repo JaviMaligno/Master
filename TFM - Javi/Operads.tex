@@ -5,7 +5,7 @@
 %\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
 \chapter{Little disks operad}
 
-In this chapter we define the main object of our study: the operads. We begin with the topological version of operads and construct the operad of little disks, which plays the main role in the proof of the Deligne conjecture. Topological operads give rise to operads in other categories by taking singular chains or homology. Therefore, we also introduce the concept of operad in a symmetric monoidal category. Finally, we motivate the study of operads and the origin of the Deligne conjecture. 
+In this chapter we define the main object of our study: the operads. We begin with the topological version of operads and construct the operad of little disks, which plays the main role in the Deligne conjecture. Topological operads give rise to operads in other categories by taking singular chains or homology. Therefore, we also introduce the concept of operad in a symmetric monoidal category. Finally, we motivate the study of operads and the origin of the Deligne conjecture. 
 
 All maps between topological spaces are required to be continuous. We can restrict ourselves to compactly generated Hausdorff spaces when necessary. 
 
@@ -13,14 +13,12 @@ All maps between topological spaces are required to be continuous. We can restri
 
 
 \section{Operads}
-First we give the general notion of (topological) operad and some properties of this object.
+%First we give the general notion of (topological) operad and some properties of this object.
 % EN PRINCIPIO LO DEFINO EN TOP Y YA PREGUNTO SI HACE FALTA QUE SEA EN UNA MONOIDAL SIMÉTRICA. SI HACE FALTA, HACER UNA SECCIÓN DE CATEGORÍAS SIMÉTRICAS MONOIDALES. SI NO, CITAR A DONALD YAU CON QUE SE PUEDE DEFINIR CON MÁS GENERALIDAD
 %\url{https://ncatlab.org/nlab/show/operad}
 %
 %NO PARECE QUE ESTA DEFINICIÓN CAPTURE LA COMPOSICIÓN DEL LITTLE DISKS OPERAD, PERO EN VERDAD SÍ, LO QUE FALTA ES RELLENA CON LA IDENTIDAD HASTA COMPLETAR LA ARIDAD DEL PRIMERO
-
-
-An operad is a collection of suitably interrelated spaces $\CC(j)$, the points of which are to
+In the spirit of \cite{May}, an operad is a collection of suitably interrelated spaces $\CC(j)$, the points of which are to
 be thought of as $j$-adic operations $X^j \to X$ for some topological space $X$. Precisely, we have the following definition.
 
 \begin{defi}\label{operadtop}
@@ -107,7 +105,7 @@ It is easier to understand the axioms in these terms. Associativity means that i
 \section{Little disks operad}\label{little}
  
  
- Let $E_2(n)$ be the configuration space of $n$ disks $B(x_i,r_i)$ of center $x_i\in D^2$ and radius $r_i\in (0,1)$ (called \emph{little disks}) inside the standard unit disk $D^2$. $E_2(n)$ can be viewed as a subspace of $(D^2\times (0,1])^n$ whose points are of the form $((x_1,r_1),\dots, (x_n,r_n))$ satisfying certain restrictions, namely, $r_i$ must be such that the disk $B(x_i,r_i)\subset D^2$ does not intersect any other disk $B(x_j,r_j)$ and fits inside $D^2$. By convention, $E_2(0)=\{*\}$.  
+ Let $E_2(n)$ be the configuration space of $n$ disks $B(x_i,r_i)$ of center $x_i\in D^2$ and radius $r_i\in (0,1]$ (called \emph{little disks}) inside the standard unit disk $D^2$. $E_2(n)$ can be viewed as a subspace of $(D^2\times (0,1])^n$ whose points are of the form $((x_1,r_1),\dots, (x_n,r_n))$ satisfying certain restrictions, namely, $r_i$ must be such that the disk $B(x_i,r_i)\subset D^2$ does not intersect any other disk $B(x_j,r_j)$ and fits inside $D^2$. By convention, $E_2(0)=\{*\}$.  
  
  There is an obvious homotopy equivalence $E_2(n)\simeq \mathcal{M}_2(n)$ from $E_2(n)$ to the configuration space of $n$ points of $D^2$. This homotopy equivalence is given by ``forgetting the radius'' of each little disk. %Hence $\dim H_0(E_2(n))=\dim H_1(E_2(n))=n!$ and $H_i(E_2(n))=0$ for $i>1$.
    Hence $\pi_1(E_2(n))\cong PB_n$, the pure braid group of order $n$, and $\pi_i(E_2(n))=0$ for $i>1$. Its homology is however rather complicated and it is computed by Cohen et al \cite{cuentas}. 
@@ -170,10 +168,10 @@ In the definition of the structure maps we're omitting the disks on which only t
 
 
 \subsection{Action of $E_2$ on a loop space}
-Given a based space $(X,x_0)$, consider the loop space $\Omega^2(X)$ of based maps $(S^2, (1,0,0))\to (X, x_0)$. One can interpret this maps as maps $\overline{D}^2\to X$ taking the boundary $S^1$ of $\overline{D}^2$ to $x_0$, since they induce a well defined map $\overline{D}^2/S^1\cong S^2\to X$ and we can choose the quotient map to identify the class of $S^1$ in $\overline{D}^2/S^1$ with the point $(1,0,0)\in S^2$. 
+Given a based space $(X,x_0)$, consider the loop space $\Omega^2(X)$ of based maps $(S^2, (1,0,0))\to (X, x_0)$. One can interpret this maps as maps $D^2\to X$ sending the boundary $S^1$ of $D^2$ to $x_0$, since they induce a well defined map $D^2/S^1\cong S^2\to X$ and we can choose the quotient map to identify the class of $S^1$ in $D^2/S^1$ with the point $(1,0,0)\in S^2$. 
 
 Now we can define for $n\geq 1$ an action $E_2(n)\times (\Omega^2(X))^n\to \Omega^2(X)$ given by $(c,\gamma_1,\dots, \gamma_n)\mapsto c(\gamma_1,\dots, \gamma_n)$, where 
-$c(\gamma_1,\dots, \gamma_n):c\to X$ is defined as $\gamma_i$ on $B(x_i,r_i)$ and to be constantly the base point $x_0$ outside the little disks. This map has the following immediate properties:
+$c(\gamma_1,\dots, \gamma_n):c\to X$ is defined as $\gamma_i$ on the interior of $B(x_i,r_i)$ and to be constantly the base point $x_0$ outside the interior of the little disks. This map has the following immediate properties:
 \begin{enumerate}
 \item $Id_{E_2}(\gamma)=\gamma$ for all $\gamma\in \Omega^2(X)$.
 \item For $c_1\in E_2(p)$ and $c_2\in E_2(q)$, 
@@ -227,7 +225,7 @@ We have that the space $\{(x_{\sigma(1)},\dots, x_{\sigma(n)}\in (0,1)^n\mid x_{
 \[
 (1-t)x_{i_j}+t\frac{j}{n+1}<(1-t)x_{i_k}+t\frac{k}{n+1}
 \] 
-Continuity if obvious and we've defined a homotopy from the identity map on $E_1(n)$ to $i\circ q$, where $i:\{p\}\hookrightarrow \mathcal{M}_1(n)$ is the inclusion. 
+Continuity is obvious and we've defined a homotopy from the identity map on $E_1(n)$ to $i\circ q$, where $i:\{p\}\hookrightarrow \mathcal{M}_1(n)$ is the inclusion. 
 \end{proof}
 
 Because of this property of $E_1$ one sometimes consider the \emph{non-equivariant} or non-$\Sigma$ operad $E_1$, defined similarly but we require the centers of the intervals to have a given order. This is the same as selecting one of the components of the equivariant $E_1$, so the non-equivariant operad is contractible. 
@@ -283,7 +281,7 @@ If we drop the braiding from the definition above we obtain what is simply calle
 \item The categories $\Set$ and $\Top$ are symmetric monoidal categories with the cartesian product as tensor product and a singleton as unit. 
 \item For $k$ some field, the category $\Vect_k$ of $k$-vector spaces carries the standard structure of a monoidal category coming from the tensor product, over $k$, of vector spaces. The standard braiding that identifies $V\otimes W$ with $W\otimes V$ by mapping homogeneous elements $v\otimes w$ to $w\otimes v$ obviously makes $\Vect_k$ into a symmetric monoidal category. This is also true for the category $\Vectgr_k$ of graded vector spaces over $k$. 
 
-\item For a ring $R$, the category of $R$-modules and the category of $R$-algebras have obvious tensor structures that can be used in the graded case too.
+\item For a ring $R$, the category of $R$-modules and the category of $R$-algebras have obvious tensor structures that can be used in the graded case too, but this tensor structure is not symmetric in general. Some cases where it is symmetric are $R=\Z_m$ and $R=\Q$. %en la tabla de caracteres de Z_2xZ_2 se ve que TRIVxAlT tiene que ser distinta a ALTxTRIV, como las representaciones son A-modulos para A el álgebra del grupo, se tiene lo que he dicho
 
 \item The category $\Cat$ of small categories (the collection of objects and the collection of morphisms are both sets) is symmetric monoidal with the product of categories and the category of one object and only the identity morphism as unit.
 
@@ -307,7 +305,6 @@ The unit object is the chain complex concentrated in degree 0 on the tensor unit
 
 \end{ex}
 
-For a functor $F:\CC\to\DD$ between monoidal categories, we would like $F$ to preserve the tensor structures. In most cases, it will be enough to have  morphisms $1_{\DD}\to F(1_\CC)$ and $F(A\otimes_{\CC}B)\to F(A)\otimes_{\DD} F(B)$ satisfying the associativity and unitality properties derived from the definition of monoidal category. Functors fulfilling that last property are called \emph{lax monoidal}. When the morphisms before are isomorphisms, and hence $F$ preserves the monoidal structure, then $F$ is simply called \emph{monoidal}.
 
 % The precise definition(LAX) MONOIDAL FUNCTORS \url{https://ncatlab.org/nlab/show/monoidal+functor} SI ME LO PUEDO AHORRAR ME LO AHORRO
 
@@ -323,12 +320,12 @@ Let $M$ be a symmetric monoidal category. A (\emph{symmetric}) \emph{operad} in 
 \[
 \CC(k) \otimes \CC(n_1) \otimes \cdots \otimes \CC(n_k) \xrightarrow{\gamma} \CC(n_1 + \ldots + n_k)
 \]
-These data are subject to following axioms that can be found in \cite{Yau} and \cite{tesis} COMPARAR CON YAU
+These data are subject to following axioms that can be found in \cite{Yau} and \cite{tesis} 
 \begin{itemize}
 \item For $n=\sum_{i=1}^k n_i$, $j=\sum_{i=1}^n j_i$, $g_s=\sum_{i=1}^sn_i$ and $h_s=j_{g_s-1}+\cdots j_{g_s}$ ($1\leq s\leq k$), the following diagram of associativity commutes %el 1 es la identidad
 \[
 \begin{tikzcd}
-\CC(k)\otimes\left(\bigotimes_{i=1}^k\CC(n_i)\right)\otimes\left(\bigotimes_{r=1}^n\CC(j_r)\right)\arrow[dd, "shuffle"]\arrow[r, "\gamma\otimes 1^j"] & 
+\CC(k)\otimes\left(\bigotimes_{i=1}^k\CC(n_i)\right)\otimes\left(\bigotimes_{r=1}^n\CC(j_r)\right)\arrow[dd, "permute"']\arrow[r, "\gamma\otimes 1^j"] & 
 \CC(n)\otimes \left(\bigotimes_{i=1}^n\CC(j_i)\right)\arrow[d, "\gamma"]\\
 & \CC(j)\\
 \CC(k)\otimes \bigotimes_{s=1}^k\left[\CC(n_s)\otimes\left(\bigotimes_{q=1}^{n_s}\CC(j_{g_{s-1+q}})\right)\right]\arrow[r, "1\otimes \gamma^n"] & 
@@ -396,6 +393,8 @@ which specifies an action of $O$ via finitary operations on $X$, with compatibil
 
 Note that a map of operads $O\to O'$ endows an $O'$-operad with a canonical $O$-algebra structure. The converse is also obviously true: in order to define a map of operads it is enough to endow any $O'$-algebra with a canonical $O$-algebra structure. 
 
+For a functor $F:\CC\to\DD$ between monoidal categories, we would like $F$ to preserve the tensor structures so that we can send operads to operads. In most cases, it will be enough to have  morphisms $1_{\DD}\to F(1_\CC)$ and $F(A\otimes_{\CC}B)\to F(A)\otimes_{\DD} F(B)$ satisfying the associativity and unitality properties derived from the definition of monoidal category. Functors fulfilling that last property are called \emph{lax monoidal}. We give an example of a lax monoidal functor in the next section. When the morphisms before are isomorphisms, and hence $F$ preserves the monoidal structure, then $F$ is simply called \emph{monoidal}.
+
 \subsection{Connection between $E_2$ and Gerstenhaber algebras}\label{zilber}
 
 Now that we've defined operads in a more general context, we're ready to draw the connection between the $E_2$ operad and the Gerstenhaber algebras. Since $E_2=\{E_2(n)\}_{n\geq 0}$ is a collection of topological spaces, one can consider the collection of singular chain complexes $C_*(E_2)=\{C_*(E_2(n))\}_{n\geq 0}$ over a fixed ring $k$ (for our purposes $k=\Q$). This family is an operad of chain complexes making use of the Eilenber-Zilber map \cite{EZ} $C_*(X)\otimes C_*(Y)\to C_*(X\times Y)$ for arbitrary topological spaces $X$ and $Y$. 
@@ -409,7 +408,7 @@ Recall that the product $\Delta^p\times\Delta^q$ can be triangulated in such a w
 defined on $a\in C_p(X)$ and $b\in C_q(Y)$ by 
 \[
 \nabla : a \otimes b \mapsto 
-   \sum_{(\mu,\nu)} sign(\mu,\nu) (s_\nu(a)) \otimes (s_\mu(b))
+   \sum_{(\mu,\nu)} sign(\mu,\nu) s_\nu(a) \otimes s_\mu(b)
 \]
 where the sum is over all $(p,q)$-shuffles
 \[
@@ -423,14 +422,56 @@ and
 \[
 s_{\nu} = s_{\nu_q - 1} \circ \cdots s_{\nu_2 - 1} \circ s_{\nu_1 - 1}
 \]
-The shift in the indices is to be coherent with the convention that the shuffle $(μ,ν)$ is a permutation of $\{1,\dots,p+q\}$. It is straightforward to show that this map is a map of chain complexes. Its associativity is equivalent to the commutativity of the diagram
+The shift in the indices is to be coherent with the convention that the shuffle $(μ,ν)$ is a permutation of $\{1,\dots,p+q\}$. It is straightforward to show that this map is a map of chain complexes. We now prove that $\nabla$ is associative, ensuring that an operadic structure is induced in $C_*(E_2)$ from the one in $E_2$. 
+
+\begin{lemma}
+The Eilenberg-Zilberg map $\nabla$ is associative, i.e. the following diagram commutes
 \[
 \begin{tikzcd}
-C_p(X)\otimes C_q(Y)\otimes C_r(Y)\arrow[r, "\nabla\otimes 1"]\arrow[d, "1\otimes\nabla"] & C_{p+q}(X\times Y)\otimes C_r(Z)\arrow[d,"\nabla"]\\
+C_p(X)\otimes C_q(Y)\otimes C_r(Z)\arrow[r, "\nabla\otimes 1"]\arrow[d, "1\otimes\nabla"] & C_{p+q}(X\times Y)\otimes C_r(Z)\arrow[d,"\nabla"]\\
 C_p(X)\otimes C_{q+r}(Y\times Z)\arrow[r, "\nabla"] & C_{p+q+r}(X\times Y\times Z)
 \end{tikzcd}
 \]
-This is not hard to proof if one is carefull with the shuffles that take place on each step, namely, on one direction one has to combine $(p,q)$-shuffles with $(p+q,r)$-shuffles, and on the other direction one has to combine $(q,r)$-shuffles with $(p,q+r)$-shuffles, and both combinations have to be equivalent in the end, using the properties of the degenerancy maps. IR A PREGUNTAR A CÁRDENAS Thus, one shows that the functor of singular chains is lax monoidal and therefore carries the operadic structure.
+for arbitrary spaces $X$, $Y$ and $Z$. 
+\end{lemma} 
+
+\begin{proof}
+The technique used in this proof is inspired by the proof of \cite[Lemma 2.9]{Madsen}. Let us denote $S(p,q)$ the set of all $(p,q)$-shuffles and $S(p,q,r)$ the set of permutations $\sigma\in\Sigma_{p+q+r}$ such that 
+\begin{gather*}
+\sigma(1)<\cdots<\sigma(p)\\
+\sigma(p+1)<\cdots<\sigma(p+q)\\
+\sigma(p+q+1)<\cdots<\sigma(p+q+r)
+\end{gather*}
+We will also need the subsets $S(\overline{p},q,r)$ and $S(p,q,\overline{r})$, where $\sigma\in S(\overline{p},q,r)$ if and only if $\sigma\in S(p,q,r)$ and $\sigma$ is the identity on $\{1,\dots, p\}$, and where $\sigma\in S(p,q,\overline{r})$ if and only if $\sigma\in S(p,q,r)$ and $\sigma$ is the identity on $\{p+q+1,\dots, p+q+r\}$.
+
+Permutations in $S(\overline{p},q,r)$ or $S(p,q,\overline{r})$ can also be denoted by $(\mu,\nu,\delta)$ in a similar fashion to how we denoted $(p,q)$-shuffles in the definition of $\nabla$. 
+
+There are bijections
+\begin{equation}\label{bijections}
+\begin{aligned}
+S(p,q+r)\times &S(\overline{p},q,r)\longrightarrow S(p,q,r)\\
+&(\sigma,\tau)\longmapsto \sigma\tau\\
+\\
+S(p+q,r)\times &S(p,q,\overline{r})\longrightarrow S(p,q,r)\\
+&(\sigma,\tau)\longmapsto \sigma\tau
+\end{aligned}
+\end{equation}
+With these notations we have
+\begin{align*}
+\nabla(\nabla(a\otimes b)\otimes c)=&\nabla\left(\left(\sum_{(\mu,\nu)\in S(p,q)} sign(\mu,\nu) s_\nu(a) \otimes s_\mu(b)\right)\otimes c\right)\\
+=& \sum_{(\eta,\gamma)\in S(p+q,r)}sign(\eta,\gamma)s_\gamma\left(\sum_{(\mu,\nu)\in S(p,q)} sign(\mu,\nu) s_\nu(a) \otimes s_\mu(b)\right)\otimes s_\eta(c)\\
+=&\sum_{(\eta,\gamma)\in S(p+q,r)}sign(\eta,\gamma)\sum_{(\mu,\nu)\in S(p,q)} sign(\mu,\nu) s_\gamma(s_\nu(a) \otimes s_\mu(b))\otimes s_\eta(c).\\
+\end{align*}
+Now, since for a degenerancy map $s_i$ and for simplices $f$ and $g$ we have that $s_i(f\times g)=(f\times g)(s^i)=f(s^i)\times g(s^i)=s_i(f)\times s_i(g)$, the previous equation equals to
+\begin{align*}
+&\sum_{(\eta,\gamma)\in S(p+q,r)}sign(\eta,\gamma)\sum_{(\mu,\nu)\in S(p,q)} sign(\mu,\nu) s_\gamma(s_\nu(a)) \otimes s_\gamma(s_\mu(b))\otimes s_\eta(c)=\\
+&\sum_{(\alpha,\beta,\delta)\in S(p,q,r)}sign(\alpha,\beta,\delta)s_\delta(s_\beta(a))\otimes s_\delta(s_\alpha(b))\otimes s_{(\alpha,\beta)}(c)
+\end{align*}
+where the last equality follows from the second bijection of \ref{bijections}. Quite analogously one can calculate $\nabla(a\otimes\nabla(b\otimes c))$ employing the first bijection in \ref{bijections}.
+\end{proof}
+%Its associativity is equivalent to the commutativity of the diagram
+
+%This is not hard to proof if one is carefull with the shuffles that take place on each step, namely, on one direction one has to combine $(p,q)$-shuffles with $(p+q,r)$-shuffles, and on the other direction one has to combine $(q,r)$-shuffles with $(p,q+r)$-shuffles, and both combinations have to be equivalent in the end, using the properties of the degenerancy maps. MIRAR LEMA 2.9 DE MADSEN (AÑADIR A BIBLIOGRAFÍA) PARA LAS BIYECCIONES (MIRAR EN MIS APUNTES POR SI PUEDO PROBARLAS), DECIR QUE ESA IDEA APARECE EN ESE LEMA Thus, one shows that the functor of singular chains is lax monoidal and therefore carries the operadic structure.
 
 This map we've just defined passes to homology, endowing $H_*(E_2)$ with an structure of operad of graded $k$-modules, so we can consider a $H_*(E_2)$-algebra $A$. It is know that giving an $H_*(E_2)$-algebra is is equivalent to giving a Gerstenhaber algebra \cite{cuentas}. We describe here briefly how $A$ can be turned into a Gersternhaber algebra. Since $A$ is a $H_*(E_2)$-algebra, there is a sequence of maps $H_*(E_2(n))\otimes A^{\otimes n}\to A$. From this, we can obtain a commutative product of degree 0 given by the map
 \[
