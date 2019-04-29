@@ -1,7 +1,13 @@
 \documentclass[TFM.tex]{subfiles}
 
 \begin{document}
+EN LA PARTE DE MONOIDAL 
 
+any symmetric monoidal
+category with infinite sums such that finite sums commute with the monoidal
+structure.
+
+CAMBIAR LA REFERENCIA DE LA TESIS POR LA DE MAY QUE TENGO EN LA BIBLIOGRAFIA
 %\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
 \chapter{Little disks operad}
 
@@ -465,7 +471,7 @@ With these notations we have
 Now, since for a degenerancy map $s_i$ and for simplices $f$ and $g$ we have that $s_i(f\times g)=(f\times g)(s^i)=f(s^i)\times g(s^i)=s_i(f)\times s_i(g)$, the previous equation equals to
 \begin{align*}
 &\sum_{(\eta,\gamma)\in S(p+q,r)}sign(\eta,\gamma)\sum_{(\mu,\nu)\in S(p,q)} sign(\mu,\nu) s_\gamma(s_\nu(a)) \otimes s_\gamma(s_\mu(b))\otimes s_\eta(c)=\\
-&\sum_{(\alpha,\beta,\delta)\in S(p,q,r)}sign(\alpha,\beta,\delta)s_\delta(s_\beta(a))\otimes s_\delta(s_\alpha(b))\otimes s_{(\alpha,\beta)}(c)
+&\sum_{(\alpha,\beta,\delta)\in S(p,q,r)}sign(\alpha,\beta,\delta)s_\delta(s_\beta(a))\otimes s_\delta(s_\alpha(b))\otimes s_\beta(s_\alpha(c))
 \end{align*}
 where the last equality follows from the second bijection of \ref{bijections}. Quite analogously one can calculate $\nabla(a\otimes\nabla(b\otimes c))$ employing the first bijection in \ref{bijections}.
 \end{proof}
