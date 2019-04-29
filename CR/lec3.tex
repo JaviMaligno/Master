@@ -1,0 +1,92 @@
+\documentclass[CR.tex]{subfiles}
+
+\begin{document}
+
+
+%\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
+
+\chapter{Algoritmos en curvas elípticas}
+\section{Diffie-Hellman en curvas elípticas}
+$A$ quiere ponerse de acuerdo con $B$ en una clave secreta. Entonces:
+\begin{enumerate}
+\item $A$ y $B$ fijan una curva elíptica $E/k$ sobre un cuerpo finito $k$. 
+\item Sea $P\in E(k)$ fijado con orden grande. $A$ escoge en secreto $n_A$ y calcula $n_AP=O_A$, que se hace público. Analógamente, $B$ calcula $n_BP=O_B$. 
+\item $A$ calcula $n_AO_B=n_An_BP$ y $B$ calcula $n_BO_A=n_Bn_AP$. El secreto común es $n_An_BP$. 
+\end{enumerate}
+
+\section{El problema del logaritmo discreto en curvas elítpticas (sección 4, página 75)}
+
+Dado $P\in E(k)$ y dado $Q\in\gene{P}$, encontrar $n$ con $nP=Q$. 
+
+\subsection{Problemas}
+\begin{itemize}
+\item Construir curvas elípticas con cardinal controlado.
+\item Calcular el orden de $P$ (que coincide con el cardinal del subgrupo que genera).
+\item Cómo evitar ataques al problema del logaritmo discreto. 
+\end{itemize}
+
+\section{Curvas super singulares (3.4)}
+\begin{defi}[3.4.1]
+$E(F)$ es supersingular si $p=char(F)$ divide a $q+1-\#E(F)$ (No confundir con singular, porque las curvas elípticas no pueden ser singulares). 
+\end{defi}
+
+\begin{ej}
+La curva sobre $\F_2$ dada en afín por $y^2+y=x^3+x+1$ tiene solo $O$, con lo que el número sale 2, que es divisible por 2. 
+\end{ej}
+
+\begin{prop}[3.4.3]
+Criterio para determinar si una curva es supersingular cuando $p\geq 3$. 
+\end{prop}
+\begin{prop}[3.4.4]
+ cuando $p=2$. 
+\end{prop}
+
+\begin{defi}
+Sea $n\in\Z$ y $q=p^r$. El grado de inmersión de $n$ en $\F_q$ es el mínimo $l$ tal que $\mu_n(\overline{\F}_q)\subseteq \F_{q^l}$. 
+\end{defi}
+
+\section{Algoritmo MOV (4.2)}
+
+\begin{teorema}[Formula de Weil, 3.2.1]
+$\#E(\F_q)-q-1\leq q$ y $|\#E(\F_q)-q-1|\leq 2\sqrt{q}$
+\end{teorema}
+
+\begin{prop}[4.2.2]
+
+\end{prop}
+
+WEIL PAIRING \url{https://en.wikipedia.org/wiki/Weil_pairing}(pag 83)
+
+Dados $E/\F_q$, $P$ de orden $n$ y $Q$.
+\begin{enumerate}
+\item Calcular $\#(E)$, $l$, $d$ (en las fotos $l\rightarrow d$, $d\rightarrow f$).
+\item Elgir $R'\in E$ cualquiera y $R=\frac{d}{n}R'$.
+\item Calcular $a=e_n(P,R)$ y $b=e_n(Q,R)$
+\item Resolver el logaritmo discreto $b=a^k$ en $\F_{q^l}^*$
+\end{enumerate}
+\begin{nota}
+Para que sea seguro, hay que comprobar que para todo $l$ con PLD soluble se tiene que $n$ no divide a $q^l-1$.
+\end{nota}
+
+\begin{lemma}
+Son equivalentes:
+\begin{enumerate}
+\item $l$ es el grado de inmersión de $n$ en $\F_q$. 
+\item $l$ es el mínimo exponente con $n|q^l-1$. 
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+$1\Rightarrow 2$. Si $\mu_n(\F_q)\subseteq \F_{q^l}^*$, por Lagrange $n|q^l-1$ y si para algún $l'<l$ se verifica esta divisibilidad, como $\F_{q^l}$ es cíclico, dado $g$ un elemento primitivo, tendríamos que $o(g^{\frac{q^{l'}-1}{n}})$, con lo que el grupo que genera sería justamente $\mu_n(\overline{\F}_q)$, lo cual es una contradicción. 
+
+$2\Rightarrow 1$. Sea $\gene{g}=\F_{q^l}$, de modo que $\mu_n=\gene{g^{\frac{q^{l'}-1}{n}}}$, luego $n|q^l-1$ y $l$ es mínimo porque esta divisibilidad para $l'$ implica que $\mu_n\subseteq \F_{q^{l'}}$
+\end{proof}
+
+
+Así que en el algoritmo tenemos otro modo de calcular el grado de inmersión y elegir $R$ de modo que $a$ sea una raíz primitiva. 
+\section{Algoritmo de factorización de Lenstra}
+\url{https://en.wikipedia.org/wiki/Lenstra_elliptic-curve_factorization} 
+
+
+
+\end{document}
+
