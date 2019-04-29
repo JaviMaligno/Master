@@ -27,7 +27,7 @@ from padbergmod import *
 #random.seed(1234)
 
 # Construimos un grafo aleatorio
-mat = nx.gnp_random_graph(200,0.5)
+H = nx.gnp_random_graph(20,0.5)
 
 # Numerando los vertices a partir de 0, obtenemos la matriz de adyacencia
 # del grafo como un array 
@@ -42,55 +42,43 @@ A = nx.convert_matrix.to_numpy_matrix(mat)
 #        [0., 1., 1., 1., 1., 0., 1., 0., 1., 1.],
 #        [1., 1., 0., 0., 0., 0., 0., 1., 0., 1.],
 #        [1., 0., 0., 1., 1., 0., 0., 1., 1., 0.]])
-#A = np.loadtxt(open("file_name.csv", "rb"), delimiter=",", skiprows=0)
-# Numero de vertices
-N = len(A)
 
-# Sea M el numero de puntos en el que queremos dividir el intervalo [0,1],
-# es decir, los M+1 un puntos que forman la malla de valores de lambda para
-# los cuales vamos a resolver el problema.
-M = 5
-lambdas = np.array(range(0,M+1,1))/M
-
-# FUNCIONES 
-##############################################################################
-
-# Construimos algunas funciones que nos resultaran utiles.
-
-# Comencemos creando el conjunto de indices que vamos a utilizar
-# para las variables
-def indices(a):
-    s = []
-    for i in range(N):
-        for j in range(i+1,N):
-            if (a[i,j] == 1):
-                s.append((i,j))
-    return(s)
-
-# Calculamos una vez el conjunto de indices, que no es mas que las aristas
-# del grafo ordendas de forma lexicografica y sin repeticiciones.
-IND = indices(A)
+# Numero de aristas y vértices
+N = len(H)
+E = len(H.edges())
 
 # Construimos las funciones de coste. En este caso las generamos de forma
 # aleatoria.
-c1 = np.random.rand(len(IND))
-c2 = np.random.rand(len(IND))
-    
-# Definimos la funcion delta, que nos da los ejes adyacentes a un vertice dado.
-def delta(v,A):
-    s = [x for x in indices(A) if x[0] == v or x[1] == v]
-    return(s)
-    
+c1 = np.random.rand(E)
+c2 = np.random.rand(E)
+
+# FUNCIONES 
+####################################################################
+
 # Construimos una funcion que comprueba si un vector es de coordenadas enteras
 def entero(s):
     a = map(lambda x: x == int(x),s)
     return(all(a))
+    
+# Dado un grafo G y un subcojunto de aristas F con capacidad, construimos
+# una funcion que nos de la suma de las capacidades de F.
+def totalcap(G,F,capacity = 'weight'):
+    cap = [G[e[0]][e[1]][capacity] for e in F]
+    val = sum(cap)
+    return(val)
 
+# Definimos la funcion delta, que dado un conjunto U de vertices, nos devuelve
+# las aristas que tienen un unico extremo en U.
+def delta(G,U):
+    ejes = set()
+    for l, nbrs in ((n, H[n]) for n in U):
+        ejes.update((l, y) if l<y else (y,l) for y in nbrs if y not in U)
+    return(ejes)
+    
 # Por propósitos teóricos, aunque no la utilicemos en nuestro algoritmo, vamos
 # a definir una funcion que comprueba si una solucion x esta en el poliedro
 # del matching de una grafo G mediante la comprobacion del numero exponencial
 # de las desigualdades sobre los conjuntos impares.
-
 def comprueba(G,x):
     H = nx.Graph()
     for i, e in enumerate(G.edges()):
@@ -105,13 +93,10 @@ def comprueba(G,x):
     for s in conj:
         card = (len(s)-1)/2
         M = H.subgraph(s)
-        aris = [M[e[0]][e[1]]['weight'] for e in M.edges()]
-        val = sum(aris)
+        val = totalcap(M,M.edges())
         if (val > card):
             return("No está dentro del poliedro por los odds")
     return("Está dentro")
-    
-    
 
 
 # OPTIMIZACION
@@ -119,11 +104,11 @@ def comprueba(G,x):
     
 # Pasamos a definir la funcion optimiza, que resuelve el problema del
 # emparejamiento parametro con parametros
-# lamb: Valor de lambda
+# G: Un grafo.
+# lamb: Valor de lambda.
 # c1,c2: Funciones de coste
-# indices: Conjunto de aristas que definen el problema
 
-def optimiza(lamb, c1 = c1, c2 = c2, indices = IND):
+def optimiza(G, lamb = 0, c1 = c1, c2 = c2):
     
     # Paso 1: En primer lugar deberiamos seleccionar un conjunto de aristas
     # relativamente pequeño para iniciar el algoritmo, pero dado que ya de por
@@ -146,7 +131,7 @@ def optimiza(lamb, c1 = c1, c2 = c2, indices = IND):
     # 'C' para continuas, 'B' para binarias, 'I' para enteras,
     # 'S' para semicontinuas, or 'N' for semienteras.
     # El parametro lb nos da una cota inferior a las variables.
-    x = m.addVars(IND, lb = 0, vtype='C', name = "x");
+    x = m.addVars(list(G.edges()), lb = 0, vtype='C', name = "x");
     
     # Definimos algunas funciones para ayudarnos a escribir las restricciones
     # asi como la funcion objetivo de manera comoda y general.
@@ -161,9 +146,8 @@ def optimiza(lamb, c1 = c1, c2 = c2, indices = IND):
         
     def objind(c):
         s = 0
-        for i in range(len(IND)):
-            (a,b) = IND[i]
-            s = s + c[i]*x[a,b] 
+        for i,e in enumerate(G.edges()):
+            s = s + c[i]*x[e[0],e[1]] 
         return(s)
     
     # De esta forma, generamos las dos funciones objetivo. Notemos que 
@@ -180,8 +164,8 @@ def optimiza(lamb, c1 = c1, c2 = c2, indices = IND):
     m.setObjective((1-lamb)*cos1+lamb*cos2); 
     
     # Generamos el primer bloque de restricciones.
-    for i in range(N):
-        m.addConstr(suma(delta(i,A)) == 1, name = "delta" + str(i));
+    for v in H:
+        m.addConstr(suma(delta(G,[v])) == 1, name = "delta" + str(v));
     
     # Dejamos comentado los comandos que añaden el número exponencial de
     # restricciones del poliedro del matching. 
@@ -195,8 +179,13 @@ def optimiza(lamb, c1 = c1, c2 = c2, indices = IND):
     
     # Obtenemos el vector de soluciones
     sols = [m.getVars()[i].X for i in range(len(IND))]
-    entero(sols)
-    while (not (entero(sols))):        
+    
+    while (not (entero(sols))):     
+        # Construimos un grafo auxiliar con capacidades sols.
+        M = nx.Graph()
+        for i, e in enumerate(G.edges()):
+            H.add_edge(e[0],e[1], weight = sols[i])
+        
         # Paso 7.1, 7.2: Vamos a programar las heuristica para detectar 
         # planos de corte.
         
@@ -205,10 +194,10 @@ def optimiza(lamb, c1 = c1, c2 = c2, indices = IND):
         epsilon = 0.3 
         
         # Obtenemos las aristas con variables asociadas en
-        aristasN = [IND[i] for i in range(len(sols)) if sols[i]>0]
-        aristasE = [IND[i] for i in range(len(sols)) if sols[i]>epsilon]
+        aristasN = [e for e in M.edges() if totalcap(M,[e])>0]
+        aristasE = [e for e in M.edges() if totalcap(M,[e])>epsilon]
             
-        # Construimos sendos grafos.
+        # Construimos nuevos grafos con estas aristas.
         GN = nx.Graph()
         GN.add_edges_from(aristasN)
         
@@ -225,11 +214,9 @@ def optimiza(lamb, c1 = c1, c2 = c2, indices = IND):
         # quedamos con dichas componentes. Definimos previamente una funcion
         # que nos haga dicha comprobacion
         def comprueba(nodos):
-            aristaux = list(GE.edges(nodos))
-            aristord = [(a,b) if a<b else (b,a) for (a,b) in aristaux]
-            indiaux = [IND.index(a) for a in aristord]
+            E = GE.subgraph(nodos).edges()
+            suma = totalcap(H,E)
             card = (len(nodos)-1)/2
-            suma = sum([sols[i] for i in indiaux])
             return(suma <= card)
         
         # Generamos las componentes adecuadas
@@ -252,17 +239,18 @@ def optimiza(lamb, c1 = c1, c2 = c2, indices = IND):
                 card = len(a)-1
                 m.addConstr(suma(S) <= card/2) 
             m.optimize()
-            print("Hemos usado 2")
+            print("Hemos usado H2")
         
         # Paso 7.3: En el caso de que las heuristicas no hayan funcionado, 
         # construimos un plano de corte mediante el procedimiento de Padberg
-        # y Rao.
+        # y Rao modificado.
         else:        
             W,F = padraomod(nx.Graph(A),sols)
             m.addConstr(suma(W.difference(F))-suma(F) >= 1-len(F))
             m.optimize()
+            print("Hemos usar Padberg-Rao")
         sols = [m.getVars()[i].X for i in range(len(IND))]
     return(m)
 
-modelo = optimiza(0)
+modelo = optimiza(H,0)
 sols = [modelo.getVars()[i].X for i in range(len(IND))]

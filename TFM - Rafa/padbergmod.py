@@ -40,7 +40,7 @@ def padraomod(G,x):
         # Calculamos las arista del conjunto de cortes
         cutset = set()
         for l, nbrs in ((n, H[n]) for n in U):
-            cutset.update((l, y) for y in nbrs if y in V)
+            cutset.update((l, y) if l<y else (y,l) for y in nbrs if y in V)
         cutset = set(H.edges(U))    
         # Nodos del cutset
         
@@ -66,6 +66,7 @@ def padraomod(G,x):
         # hemos acabado y devolvemos.
         des = coste(H,cutset.difference(Fe)) + len(Fe) - coste(H,Fe)
         if (des<1):
+            print(des<1)
             return((cutset,Fe))
             
         
