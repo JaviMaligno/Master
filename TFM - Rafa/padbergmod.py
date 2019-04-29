@@ -2,9 +2,7 @@
 # modificado para, dado un grafo G y un vector x, obtener una desigualdad
 # del poliedro del matching -en caso de que exista- que sea violada por x.
 
-import networkx as nx
-import numpy as np
-
+from funcionaux import *
 x = [1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 0.5, 0.5, 0.5, 0.0, 0.0, 0.5, 0.0, 0.0, 0.5, 0.0, 0.0, 1.0]
 
 def padraomod(G,x):
@@ -16,14 +14,6 @@ def padraomod(G,x):
     H = nx.Graph()
     for i, e in enumerate(G.edges()):
         H.add_edge(e[0],e[1],capacity = c[i], weight = x[i])
-    
-    # Definimos una funcion que nos de la suma de los pesos de un conjunto
-    # de aristas
-    def coste(G,S):
-        s = 0
-        for e in S:
-            s = s + G[e[0]][e[1]]['weight']
-        return(s)
         
     # A continuacion, consideramos el arbol de Gomory-Hu para el grafo H
     GomHu = nx.gomory_hu_tree(H, capacity = 'capacity')
@@ -38,10 +28,7 @@ def padraomod(G,x):
         U,V = list(nx.connected_components(Te))
         
         # Calculamos las arista del conjunto de cortes
-        cutset = set()
-        for l, nbrs in ((n, H[n]) for n in U):
-            cutset.update((l, y) if l<y else (y,l) for y in nbrs if y in V)
-        cutset = set(H.edges(U))    
+        cutset = delta(H,U)
         # Nodos del cutset
         
         # Tenemos que encontrar ahora el conjunto F con las propiedades 
@@ -52,7 +39,7 @@ def padraomod(G,x):
         # Si el conjunto anterior verifica la propiedad de que la suma de los
         # cardinales sea impar, es el optimo. En otro caso obtenemos el optimo
         # mediante el siguiente metodo
-        if ((len(cutset) + len(Fe)) % 2 == 0):
+        if ((len(U) + len(Fe)) % 2 == 0):
             def term(e):
                 s = max(H[e[0]][e[1]]['weight'],1-H[e[0]][e[1]]['weight'])
                 t = min(H[e[0]][e[1]]['weight'],1-H[e[0]][e[1]]['weight'])
@@ -64,9 +51,8 @@ def padraomod(G,x):
         
         # Finalmente, comprobamos si se viola la desigualdad y, en dicho caso,
         # hemos acabado y devolvemos.
-        des = coste(H,cutset.difference(Fe)) + len(Fe) - coste(H,Fe)
+        des = totalcap(H,cutset.difference(Fe)) + len(Fe) - totalcap(H,Fe)
         if (des<1):
-            print(des<1)
             return((cutset,Fe))
             
         

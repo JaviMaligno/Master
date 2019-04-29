@@ -11,15 +11,11 @@
 # de coste c1, c2 y parametro lambda.
 
 from gurobipy import *
-import numpy as np
-import operator
-import networkx as nx
-import random 
-import itertools
 from padbergmod import *
+from funcionaux import *
 
 # DATOS DE ENTRADA
-##############################################################################
+#######################################################
 
 # Establecemos una semilla predeterminada para asegurar la reproducibilidad
 # de los resultados
@@ -29,19 +25,12 @@ from padbergmod import *
 # Construimos un grafo aleatorio
 H = nx.gnp_random_graph(20,0.5)
 
-# Numerando los vertices a partir de 0, obtenemos la matriz de adyacencia
-# del grafo como un array 
-A = nx.convert_matrix.to_numpy_matrix(mat)
-#A = np.array([[0., 1., 1., 1., 0., 0., 0., 0., 1., 1.],
-#        [1., 0., 1., 0., 1., 0., 0., 1., 1., 0.],
-#        [1., 1., 0., 0., 0., 0., 1., 1., 0., 0.],
-#        [1., 0., 0., 0., 1., 1., 0., 1., 0., 1.],
-#        [0., 1., 0., 1., 0., 1., 0., 1., 0., 1.],
-#        [0., 0., 0., 1., 1., 0., 0., 0., 0., 0.],
-#        [0., 0., 1., 0., 0., 0., 0., 1., 0., 0.],
-#        [0., 1., 1., 1., 1., 0., 1., 0., 1., 1.],
-#        [1., 1., 0., 0., 0., 0., 0., 1., 0., 1.],
-#        [1., 0., 0., 1., 1., 0., 0., 1., 1., 0.]])
+# Mediante el siguiente comando podemos obtener la matriz de adyacencias
+# del grafo anterior
+A = nx.convert_matrix.to_numpy_matrix(H)
+
+# Ademas, podemos tener una representacion grafica del mismo
+nx.draw_circular(H)
 
 # Numero de aristas y vértices
 N = len(H)
@@ -52,55 +41,9 @@ E = len(H.edges())
 c1 = np.random.rand(E)
 c2 = np.random.rand(E)
 
-# FUNCIONES 
-####################################################################
-
-# Construimos una funcion que comprueba si un vector es de coordenadas enteras
-def entero(s):
-    a = map(lambda x: x == int(x),s)
-    return(all(a))
-    
-# Dado un grafo G y un subcojunto de aristas F con capacidad, construimos
-# una funcion que nos de la suma de las capacidades de F.
-def totalcap(G,F,capacity = 'weight'):
-    cap = [G[e[0]][e[1]][capacity] for e in F]
-    val = sum(cap)
-    return(val)
-
-# Definimos la funcion delta, que dado un conjunto U de vertices, nos devuelve
-# las aristas que tienen un unico extremo en U.
-def delta(G,U):
-    ejes = set()
-    for l, nbrs in ((n, H[n]) for n in U):
-        ejes.update((l, y) if l<y else (y,l) for y in nbrs if y not in U)
-    return(ejes)
-    
-# Por propósitos teóricos, aunque no la utilicemos en nuestro algoritmo, vamos
-# a definir una funcion que comprueba si una solucion x esta en el poliedro
-# del matching de una grafo G mediante la comprobacion del numero exponencial
-# de las desigualdades sobre los conjuntos impares.
-def comprueba(G,x):
-    H = nx.Graph()
-    for i, e in enumerate(G.edges()):
-        H.add_edge(e[0],e[1],weight = x[i])
-    for v in H.nodes():
-        val = sum([H[e[0]][e[1]]['weight'] for e in H.edges(v)])
-        if (val > 1):
-            return("No está dentro por los vértices") 
-    conj = set()
-    for i in range(3,N,2):
-        conj.update(set(itertools.combinations(set(G.nodes()), i)))
-    for s in conj:
-        card = (len(s)-1)/2
-        M = H.subgraph(s)
-        val = totalcap(M,M.edges())
-        if (val > card):
-            return("No está dentro del poliedro por los odds")
-    return("Está dentro")
-
 
 # OPTIMIZACION
-###############################################################################
+########################################################
     
 # Pasamos a definir la funcion optimiza, que resuelve el problema del
 # emparejamiento parametro con parametros
@@ -178,13 +121,13 @@ def optimiza(G, lamb = 0, c1 = c1, c2 = c2):
     # planos de corte.
     
     # Obtenemos el vector de soluciones
-    sols = [m.getVars()[i].X for i in range(len(IND))]
-    
+    sols = [m.getVars()[i].X for i in range(E)]
+    entero(sols)
     while (not (entero(sols))):     
         # Construimos un grafo auxiliar con capacidades sols.
         M = nx.Graph()
         for i, e in enumerate(G.edges()):
-            H.add_edge(e[0],e[1], weight = sols[i])
+            M.add_edge(e[0],e[1], weight = sols[i])
         
         # Paso 7.1, 7.2: Vamos a programar las heuristica para detectar 
         # planos de corte.
@@ -231,7 +174,7 @@ def optimiza(G, lamb = 0, c1 = c1, c2 = c2):
                 card = len(a)-1
                 m.addConstr(suma(S) <= card/2) 
             m.optimize()
-            print("Hemos usado 1")
+            print("Hemos usado H1")
             
         elif (conE != []):
             for a in conE:
@@ -248,9 +191,10 @@ def optimiza(G, lamb = 0, c1 = c1, c2 = c2):
             W,F = padraomod(nx.Graph(A),sols)
             m.addConstr(suma(W.difference(F))-suma(F) >= 1-len(F))
             m.optimize()
-            print("Hemos usar Padberg-Rao")
-        sols = [m.getVars()[i].X for i in range(len(IND))]
+            print("Hemos usado Padberg-Rao")
+        sols = [m.getVars()[i].X for i in range(E)]
     return(m)
 
 modelo = optimiza(H,0)
-sols = [modelo.getVars()[i].X for i in range(len(IND))]
+sols = [1-modelo.getVars()[i].X for i in range(E)]
+nx.draw_circular(H,edge_color = sols)
