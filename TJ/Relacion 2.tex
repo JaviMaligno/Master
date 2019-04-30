@@ -162,4 +162,20 @@ $$
 \end{figure}
 \end{enumerate}
 \end{solucion}
+
+\newpage
+
+\begin{ejercicio}{4}
+Probar que $\phi(v)\in C(v)$ si $v$ es convexo.
+\end{ejercicio}
+\begin{solucion}
+Recordemos las definiciones. Decimos que $v$ es convexo si $\forall S,T\subset N$
+$$
+v(S\cup T) + v(S\cap T) \geq v(S) + v(T) 
+$$
+Además, el core de $v$ es precisamente
+$$
+C(v) = \{x\in \R^{N}\mid x(N) = v(N), \; x(S) \geq v(S)\; \forall S \subset N\}
+$$
+\end{solucion}
 \end{document}

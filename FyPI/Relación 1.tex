@@ -29,10 +29,22 @@ En primer lugar, recordemos la definición de $H^1_\varepsilon$.
 $$
 H^1_\varepsilon(E) = \inf\left\{\sum\limits_{i=1}^\infty\text{diam}(A_i)\,\bigg|\,\bigcup\limits_{i=1}^\infty A_i \supseteq E,\,\text{diam}(A_i)\leq \varepsilon\right\}.
 $$
-Probemos la igualdad. Si $L(\gamma)$ es el valor del supremo, consideremos $\varepsilon >0$ y una partición $t_0<\cdots < t_1$ que 
+Probemos la igualdad. Sea $E\subset \R^n$ conexo. En primer lugar, notemos que la función $f_a:x\to d(x,a)$, para $a\in E$ fijo, tiene como imagen de $E$ un intervalo. Tenemos que $H^1(E)\geq H_1(f_p(E))$. Pero la segunda medida, por ser $f_p(E)$ un intervalo de $\R$ es precisamente $\text{diam}(E)$. Aplicándolo a $E = \gamma([t_{j-1},t_j])$ tenemos que
 $$
-\sum_{j=1}^n d(\gamma(t_{j-1}),\gamma(t_j)) > L -\varepsilon
+L(\gamma) = \sum_{j=1}^N d(\gamma(t_{j-1}),\gamma(t_j)) \leq \sum_{j=1}^N \text{diam}(\gamma([t_{j-1},t_j])) \leq \sum_{j=1}^N H^1(\gamma([t_{j-1},t_j])) = H^1(\gamma([0,1])
 $$
-Podemos suponer que $d(\gamma(t_{j-1}),\gamma(t_j))<\varepsilon$. Tomamos $A_j = \gamma([t_{j-1},t_j])$.
+En la última igualdad utilizamos que $H^1$ es aditiva sobre conjunto disjuntos y $\gamma$ es inyectiva.
+\newpage
+Pasemos a la desigualdad recíproca. Naturalmente, se verifica que $\text{diam}(\gamma([0,1])) \leq L(\gamma)$, pues si el diámetro se alcanza para $0\leq x < y\leq 1$, basta tomar la partición formada por $\{0,x,y,1\}$ (pudiendo ser algunos puntos iguales) y usar que la definición de $L(\gamma)$. Por la inyectividad de $\gamma$ y que claramente la longitud es un operado aditivo sobre curvas con imagen disjuntas (o que tienen un punto de enlace), si denotamos $\gamma_j$ a las curvas que se inducen al restringir $\gamma$ a cada intervalo de una partición,
+$$
+\sum_{j=1}^n \text{diam}(\gamma([t_{j-1},t_j])) \leq \sum_{j=1} L(\gamma_j) = L(\gamma)
+$$
+Naturalmente, tomando particiones suficientemente pequeñas, podemos suponer sin pérdida de generalidad que $\text{diam}(\gamma([t_{j-1},t_j]))<\varepsilon$ para $\varepsilon>0$ fijo. Por tanto, 
+$$
+H^1_\varepsilon(\gamma([0,1])) \leq L(\gamma)
+$$
+dado que $\varepsilon \to H^1_\varepsilon(S)$ es un aplicación uniformemente continua, tomando $\varepsilon\to 0$ tenemos la otra desigualdad.
+
+La última parte del ejercicio es trivial, pues si $\gamma$ no es inyectiva, consideramos las $k$ aplicaciones inyectivas que se induce al restringirnos y aplicamos el resultado anterior a cada una de ellas.
 \end{solucion}
 \end{document}
