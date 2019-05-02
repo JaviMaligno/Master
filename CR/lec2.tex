@@ -18,7 +18,7 @@ Consideremos $\{(C,f)\mid C\subseteq\A^2(k), f\in k[x,y], C_f(k)=C\}$. Considera
 Sea $f\neq 0$ en $k[x,y]$. Entonces $(C_f,f)\sim (C_{\lambda f},\lambda f)$ para cualquier $\lambda\neq 0$ de $k$. Esto tiene que ver con que $\gene{f}=\gene{\lambda f}$.
 \end{nota}
 
-El plano proyectivo ya sabemos todos lo que es. ConsIderamos solo $\PP^2(k)=k^3\setminus\{0\}/\sim$. Hay 3 maneras naturales de meter $\A^2(k)$ en $\PP^2(k)$ ($i_2$, $i_2$, $i_3$), que es poniendo un 1 en alguna coordenada, y de hecho $\PP^2(k)$ es unión de estras 3 inclusiones. Normalmente usaremos $i=i_3$. Denotamos $H=i_1(\{(a,0):a\in k\})$ y $\theta=[0:1:0]$. Tenemos la unión disjunta $\PP^2(k)=\A^2(k)\cup H\cup \{\theta\}$. 
+El plano proyectivo ya sabemos todos lo que es. ConsIderamos solo $\PP^2(k)=k^3\setminus\{0\}/\sim$. Hay 3 maneras naturales de meter $\A^2(k)$ en $\PP^2(k)$ ($i_1$, $i_2$, $i_3$), que es poniendo un 1 en alguna coordenada, y de hecho $\PP^2(k)$ es unión de estras 3 inclusiones. Normalmente usaremos $i=i_3$. Denotamos $H=i_1(\{(a,0):a\in k\})$ y $\theta=[0:1:0]$. Tenemos la unión disjunta $\PP^2(k)=\A^2(k)\cup H\cup \{\theta\}$. 
 
 \begin{defi}
 Sea $d\geq 1$ y $f\in k[x,y,z]$ no nulo. Diremos que $f$ es homogéneo de grado $d$ si todos sus monomios tienen grado $d$. 
@@ -82,7 +82,7 @@ luego $L(\alpha,\beta,1)=L(\alpha',\beta',\gamma')$.
 \end{proof}
 
 \subsection{Cambio de base}
-Sea $K\subseteq E$ una extensión de cuerpos y $f\in K[x,y,z]\subseteq E[x,y]$. Tenemos $C_f/K=(C_f(K),f)/\sim$ y $C_f/E=(C_f(E),f)/\sim$. En general, la inclusión $C_f(K)\subseteq C_f(E)$ conmuta con la inclusión $\A^2(E)\subseteq \A^2(E)$ y $C_f(K)=C_f(E)\cap \A^2(K)$. 
+Sea $K\subseteq E$ una extensión de cuerpos y $f\in K[x,y,z]\subseteq E[x,y]$. Tenemos $C_f/K=(C_f(K),f)/\sim$ y $C_f/E=(C_f(E),f)/\sim$. En general, la inclusión $C_f(K)\subseteq C_f(E)$ conmuta con la inclusión $\A^2(K)\subseteq \A^2(E)$ y $C_f(K)=C_f(E)\cap \A^2(K)$. 
 
 En el plano proyectivo tenemos también estas inclusiones e igualdades de forma natural. 
 
@@ -101,7 +101,7 @@ Las derivadas paraciales de un polinomio homogéneo son polinomios homogéneos, 
 $P=(a,b)\in C_f/K$ es singular si y solo si $[a:b:1]$ es singular en $C_{f^*}/K$. Una curva $C_f$ puede ser lisa pero no serlo $C_{f^*}$ (pueden pasar cosas en el infinito). Por ejemplo $f(x,y)=x^3+yx^2-y$.
 \end{nota}
 \begin{defi}
-Sea $C_f/K$ una curva proyectiva y $P=[a:b:c]\in C_f(K)$ no singular. Se define la recta tangente a $C_f$ en $P$ como $L(\partial{f}{x}(a,b,c),\partial{f}{y}(a,b,c),\partial{f}{z}(a,b,c)$. 
+Sea $C_f/K$ una curva proyectiva y $P=[a:b:c]\in C_f(K)$ no singular. Se define la recta tangente a $C_f$ en $P$ como $L(\parcial{f}{x}(a,b,c),\parcial{f}{y}(a,b,c),\parcial{f}{z}(a,b,c))$. 
 \end{defi}
 \begin{defi}
 Sea $k$ un cuerpo y $f\in k[x]$. Se define el orden de $f(x)=\sum_{i=0}^na_ix^i$ en $x=0$ como $ord(f)=\min\{i:a_i\neq 0\}$. 
@@ -139,21 +139,25 @@ Sea $C_f$ una curva plana, $L$ una recta y $P\in L$. Entonces
 \item $P\in C_f$ y $L$ es la tangente a $C_f$ en $P$ implican que $m(C_f,L,P)\geq 2$.
 \end{enumerate}
 \end{lemma}
-\begin{proof}
-Mirar a partir de la definition 2.3.7 de Elliptische Kurven a ver si está por ahí
-\end{proof}
 
 \begin{lemma}
-Sea $A\in GL_3(k)$ y $C_f$ una curva. $P\in C_{f_A}$. $P$ es singular en $C_{f_A}$ si y solo si $\varphi_A(P)$ es singular en $C_f$.  
+Sea $A\in GL_3(k)$ y $C_f$ una curva. $P\in C_{f_A}$. $P$ es singular en $C_{f_A}$ si y solo si $\varphi_A(P)$ es singular en $C_f$, donde el subíndice $A$ representa la multiplicación de $A$ por los puntos correspondientes.   
 \end{lemma}
-EL PHI ESE NO SÉ DE DÓNDE SALE, MIRAR EL LIBRO
+
 
 
 \section{Curvas elípticas}
 
 Muchas veces para definirlas se usa el género\footnote{\url{https://www.encyclopediaofmath.org/index.php/Genus_of_a_curve}} de una curva. 
 
-Ecuación de Weierstrass (tras definición 2.3.1) y definición 2.3.1 (curva elíptica = curva lisa/no singular dada por una ecuación de Weierstrass)
+\begin{defi}
+Una curva elíptica es una curva projectiva no singular (lisa) $C_g(F)$ donde $g$ es de la forma
+\[
+g(X,Y,Z)=Y^2Z-a_1XYZ+a_3YZ^2-X^3-a_2X^2Z-a_4XZ^2-a_6Z^3.
+\]
+La ecuación que surge de igualar a 0 este polinomio se llama ecuación de Weierstrass. 
+\end{defi}
+
 
 \begin{lemma}
 Si $f(x,y,z)=0$ es una ecuación de Weierstrass, entonces si
@@ -166,11 +170,29 @@ u^2s & u^3 & t\\
 \]
 con $u,s,t\in k$, se tiene que $f_A(x,y,z)=0$ también es de Weierstrass.
 \end{lemma}
-La prueba es directa. CREO QUE EL SUBÍNDICE A ES MULTIPLICAR LA MATRIZ POR EL POLINOMIO VISTO COMO VECTOR
+La prueba es directa. 
 
-Descripción del punto $O$ y no singularidad. Además la tangente en $O$ a $C_f$ es $L(0,0,1)$. $m(C_f,L,O)=ord\psi(t)$ con $\psi(5)=f(0+t,1+0t,0+0t)=f(t,1,0)$. Sea $P'=[1:0:0]\in L(0,0,1)$. Entonces sale que $m(C_f,L,O)=3$, por lo que tiene multiplicidad de tangente. 
+El único punto no afín que hay en una curva elíptica es $O=[0:1:0]$. Este punto es no singular porque $\parcial{g}{Z}(0,1,0)=1$. Además la tangente en $O$ a $C_f$ es $L(0,0,1)$. Se tiene $m(C_f,L,O)=ord\psi(t)$ con $\psi(t)=f(0+t,1+0t,0+0t)=f(t,1,0)$. Sea $P'=[1:0:0]\in L(0,0,1)$. Entonces sale que $m(C_f,L,O)=3$, por lo que tiene multiplicidad de tangente. 
 
-Números $b_i$, $\Delta$ y $j$ de las páginas 27 y 28. 
+\begin{defi}
+Se define el discriminante de una curva elíptica como 
+\[
+\Delta=-b_2^2b_8-8b_4^3-27b_6^2+9b_2b_4b_6
+\]
+donde
+\begin{align*}
+&b_2=a_1^2+4a_2\\
+&b_4=2a_4+a_1a_3\\
+&b_6=a_3^2+4a_6\\
+&b_8=a_1^2a_6+4a_2a_6-a_1a_3a_4+a_2a_3^2-a_4^2
+\end{align*}
+
+Se define además el $j$-invariante como 
+\[
+j=\frac{(b_2^2-24b_4)^3}{\Delta}=\frac{c_4^3}{\Delta}.
+\]
+\end{defi}
+
 
 
 Proposition 2.3.2, aunque creo que la hemso puesto algo distinta:
@@ -189,18 +211,25 @@ Sea $f(x,y,z)=0$ ecuación de Weierstrass. Entonces $C_f$ es lisa si y solo si $
 
 Esto nos da como conclusión que $C_f$ es elíptica si y solo si $\Delta\neq 0$.
 
+\begin{defi}[Definition 2.3.10 usw]
+Existe un asuma en el conjunto de puntos de una curva elíptica. Esta suma forma un grupo abeliano con elemento neutro el punto $O$. La conmutatividad es evidente porque la recta que uno P con Q es la misma que une $Q$ con $P$. El inverso de $P$ es el punto intermedio en el proceso de suma $P*O$. 
+\end{defi}
+
+Para dibujar la recta que corta al infinito se hace una paralela al eje $Y$.
+
+
 
 \begin{prop}[Satz 2.3.13 und 2.3.14]
+Se puede dar una expresión explícita de la suma en términos de las coordenadas afines de los puntos. 
 \end{prop}
 
-Subgrupo de torsión (CREO página 61 en adelante) \url{https://en.wikipedia.org/wiki/Tate_module}
+%Subgrupo de torsión (CREO página 61 en adelante) \url{https://en.wikipedia.org/wiki/Tate_module}
 
-DIFFIE-HELMMAN EN CURVAS ELÍPTICAS
 
 \begin{lemma}[Satz 2.3.8]
 $L=L(\alpha,\beta,\gamma)$, $E$ una curva elíptica. Entonces $\sum_{P\in\PP^2(k)}m(E,L,P)\in\{0,1,3\}$.
 \end{lemma}
-\begin{proof}
+\begin{proof}[Aclaraciones de la prueba]
 Si la raíz tiene multiplicidad 3, solo hay un punto en la intersección, ya que es la única raíz del polinomio y luego el punto de la recta queda determinado por los coeficientes. 
 
 
@@ -214,22 +243,10 @@ Si 2 raíces están en el cuerpo, la otra también porque puedes hacer la divisi
 \end{enumerate}
 \end{coro}
 
-\begin{defi}[Definition 2.3.10]
-
-\end{defi}
-Para dibujar la recta que corta al infinito se hace una paralela al eje y
-
-La conmutatividad es evidente porque la recta que uno P con Q es la misma que une Q con P
-
-
-La prueba de que O es neutro. El inverso de $P$ es $P*O$. 
-
-
-La asociatividad (no la probamos) y todo: Satz 2.3.12
 
 \section{Puntos de torsión}
 
-Creo que tiene que ver con lo que viene a partir de la página 61.
+%Creo que tiene que ver con lo que viene a partir de la página 61.
 
 Sea $E/k$ una curva elíptica y $n\in\Z_{\geq 1}$. Definimos la aplicación
 \[
@@ -267,14 +284,5 @@ $A$ quiere ponerse de acuerdo con $B$ en una clave secreta. Entonces:
 \item $A$ calcula $n_AO_B=n_An_BP$ y $B$ calcula $n_BO_A=n_Bn_AP$. El secreto común es $n_An_BP$. 
 \end{enumerate}
 
-\section{El problema del logaritmo discreto en curvas elítpticas (sección 4, página 75)}
 
-Dado $P\in E(k)$ y dado $Q\in\gene{P}$, encontrar $n$ con $nP=Q$. 
-
-\subsection{Problemas}
-\begin{itemize}
-\item Construir curvas elípticas con cardinal controlado.
-\item Calcular el orden de $P$ (que coincide con el cardinal del subgrupo que genera).
-\item Cómo evitar ataques al problema del logaritmo discreto. 
-\end{itemize}
 \end{document}

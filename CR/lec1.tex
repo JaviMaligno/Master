@@ -45,7 +45,7 @@ Para $a=2$, el test nos da $2^{90}\equiv 64\mod 91$, lo que sí concluye que no 
 
 
 \begin{defi}
-Diremos que $N\geq 2$ no primo es un número de Carmichael si para tod $a$ con $\gcd(a,N)=1$, $a^{N-1}\equiv 1\mod N$.
+Diremos que $N\geq 2$ no primo es un número de Carmichael si para todo $a$ con $\gcd(a,N)=1$, $a^{N-1}\equiv 1\mod N$.
 \end{defi}
 
 Por ejemplo, 561 o 1105. 
@@ -75,7 +75,7 @@ $1\Rightarrow 2$.
 \item Sea $a$ generador $(\Z_p)^*$, de modo que $ord(a)=p-1$ y $a^{N-1}\equiv 1\mod p$. 
 \end{enumerate}
 
-$2\Rightarrow 1$. Por el teorema chino del resto usando la descomposición $N=p_1\cdots p_r$ ($N$ es libre de cuadrados), tenemos que $a^{N-1}\mod N\mapsto (a^{N-1}\mod p_1,\dots, a^{N-1}\mod p_r)$, y el $1$ va al $(1,\dots, 1)$, de mod oque $a^{N-1}=1\mod p_i$ para todo $i$, de donde se deduce que $a^{N-1}=1\mod p_1\cdots p_r$. 
+$2\Rightarrow 1$. Por el teorema chino del resto usando la descomposición $N=p_1\cdots p_r$ ($N$ es libre de cuadrados), tenemos que $a^{N-1}\mod N\mapsto (a^{N-1}\mod p_1,\dots, a^{N-1}\mod p_r)$, y el $1$ va al $(1,\dots, 1)$, de modo que $a^{N-1}=1\mod p_i$ para todo $i$, de donde se deduce que $a^{N-1}=1\mod p_1\cdots p_r$. 
 \end{dem}
 
 \begin{ej}
@@ -128,7 +128,7 @@ Con estos resultados tenemos que $a$ es cuadrado $\mod N$ si y solo si para todo
 Sea $a\in\Z$ impar. Son equivalentes:
 \begin{enumerate}
 \item $a$ es residuo cuadrático $\mod 2^n$
-\item Se verifica alguno de los siguientes: $n=1$, $n=2$ y $a\equiv 1\mod 4$, $n\geq 3$ y $a\equiv mod 8$.
+\item Se verifica alguno de los siguientes: $n=1$, $n=2$ y $a\equiv 1\mod 4$, $n\geq 3$ y $a\equiv 1\mod 8$.
 \end{enumerate}
 \end{lemma}
 La prueba es por inducción, probando a mano los casos $n=1$, $n=2$. 
@@ -137,7 +137,7 @@ La prueba es por inducción, probando a mano los casos $n=1$, $n=2$.
 Se define el símbolo de Legendre como sigue. Para todo primo $p$ y para todo $a\in\Z$, 
 $$\left(\frac{a}{p}\right)=\begin{cases}
 0 & p|a\\
-1 & a \text{residuo no nulo }\mod p\\
+1 & a \text{ residuo no nulo }\mod p\\
 -1 & c.c.
 \end{cases}$$
 \end{defi}
@@ -148,7 +148,7 @@ Sea $p>2$ primo y $a\in\Z$. Entonces $a^{\frac{p-1}{2}}\equiv (\frac{a}{p}) \mod
 \begin{dem}
 Si $p|a$, entonces el resultado es trivial porque $a=0\mod p$. En otro caso, definimos $\phi:(\Z_p)^*\to (\Z_p)^*$ definido como $\phi(x)=x^{\frac{p-1}{2}}$. Se tiene que $\Ima\phi\subseteq \{\pm 1\}$ porque $a^{p-1}\equiv 1\mod p$ y $b=a^{\frac{p-1}{2}}$ es tal que $b^2\equiv 1\mod p$, que como $\Z_p$ es un cuerpo no puede tener más de dos soluciones. Por otro lado, $\ker\phi=\{a, a^{(p-1)/2}=1\}$. 
 
-Tenemos que como $(\Z_p)^*$ es cíclico existe $c\not| p$ tal que $\{1,c,\dots, c^{(p-1)/2},\dot, c^{p-2}\}$ son todos distintos, por lo que $\phi(c)\neq 1$, es decir, $\phi(c)=-1$. Por ello $\Im\phi=\{\pm 1\}$ (tiene cardinal 2). Por el primer teorema de isomorfía, $\ker\phi$ tiene cardinal $\frac{p-1}{2}$.  Queremos probar $\ker\phi=\{b^2+\gene{p}\mid b=1,\dots, p-1\}$. Como tienen el mismo cardinal basta ver una inclusión. La inclusión fácil es hacia la izquierda, si tomamos un cuadrado $b^2+\gene{p}$, entonces $\phi(b^2+\gene{p})=b^{p-1}+\gene{p}=1+\gene{p}$ por el pequeño teorema de Fermat, y por tanto el cuadrado está en el núcleo. 
+Tenemos que como $(\Z_p)^*$ es cíclico existe $c\not| p$ tal que $\{1,c,\dots, c^{(p-1)/2}, c^{p-2}\}$ son todos distintos, por lo que $\phi(c)\neq 1$, es decir, $\phi(c)=-1$. Por ello $\Ima\phi=\{\pm 1\}$ (tiene cardinal 2). Por el primer teorema de isomorfía, $\ker\phi$ tiene cardinal $\frac{p-1}{2}$.  Queremos probar $\ker\phi=\{b^2+\gene{p}\mid b=1,\dots, p-1\}$. Como tienen el mismo cardinal basta ver una inclusión. La inclusión fácil es hacia la izquierda, si tomamos un cuadrado $b^2+\gene{p}$, entonces $\phi(b^2+\gene{p})=b^{p-1}+\gene{p}=1+\gene{p}$ por el pequeño teorema de Fermat, y por tanto el cuadrado está en el núcleo. 
 
 Tenemos entonces que $(\frac{a}{p})$ y $a^{(p-1)/2}$ toman el valor 1 en los mismos casos, por lo que valen lo mismo $\mod p$. 
 \end{dem}
@@ -169,23 +169,22 @@ Sea $N=p_1^{e_1}\cdots p_r^{e_r}$ y $a\in\Z$. Se define el símbolo de Jacobi co
 \end{enumerate}
 \end{lemma}
 \begin{proof}
-Se deduce que de la multiplicatividad se deduce de la del símbolo de Legendre. Si $p=2$ es trivial. Si $p|a$ o $p|b$ entonces es 0 en ambos lados. En otro caso, se usa la proposición anterior.
+Se deduce de la símbolo de Legendre en el caso primo. Si $p=2$ es trivial. Si $p|a$ o $p|b$ entonces es 0 en ambos lados. En otro caso, se usa la proposición anterior.
 \end{proof}
 
 \begin{teorema}[Ley de reciprocidad cuadrática de Gauss]
-Sea $p$ un primo impar. \url{https://en.wikipedia.org/wiki/Quadratic_reciprocity}. Además un par de casos concretos
+Sea $p$ un primo impar. %\url{https://en.wikipedia.org/wiki/Quadratic_reciprocity}. Además un par de casos concretos
 
 \begin{enumerate}
 \item $(\frac{-1}{p})=(-1)^{(p-1)/2}=\begin{cases}
 1 & p\equiv 1\mod 4\\
 -1 & p\equiv 3\mod 4
-\end{cases}$
-
-\item 
+\end{cases}$ 
 \item $(\frac{2}{p})=(-1)^{(p^2-1)/8}=\begin{cases}
 1 & p\equiv 1,7\mod 8\\
 -1 & p\equiv 3,5\mod 8
 \end{cases}$
+\item $(\frac{p}{q})=(-1)^{\frac{(p-1)(q-1)}{4}}(\frac{q}{p})$.
 \end{enumerate}
 \end{teorema}
 \begin{dem}
@@ -223,7 +222,7 @@ $\sum_{j=0}^{q-1}\beta^j=0\Leftrightarrow (1-\beta)\sum_{j=0}^{q-1}\beta^j=0\Lef
 \end{proof}
 
 \begin{lemma}
-$S_p(q)=(\frac{-1}{q}q\in\F_p(q)$
+$S_p(q)=(\frac{-1}{q})q\in\F_p(q)$
 \end{lemma}
 \begin{proof}
 Por la multiplicatividad de Legendre, escribimos el cuadrado como producto por sí mismo y lo que sale es
@@ -283,11 +282,11 @@ Por el teorema chino del resto, $(\Z_N)^*\cong(\Z_p)^*\times(\Z_q)^*$. Que $\gcd
 
 
 \begin{ej}
-$(\frac{127}{31}(=(\frac{3}{31})$ porque $127=4\cdot 31+3$, y por tanto es igual a $(-1)^{(3-1)/2 (31-1)/2}(\frac{31}{3})=-(\frac{1}{3})=-1$, por ser $31=3\cdot 10+1$.
+$(\frac{127}{31})=(\frac{3}{31})$ porque $127=4\cdot 31+3$, y por tanto es igual a $(-1)^{(3-1)/2 (31-1)/2}(\frac{31}{3})=-(\frac{1}{3})=-1$, por ser $31=3\cdot 10+1$.
 \end{ej}
 
 \begin{teorema}[Ley de reciprocidad de Jacobi]
-Sean $m,k\geq 3$ enteros impares. Entonces se cumplen los dos primeros apartados del teorema anterior para $p=m$ y adema´s
+Sean $m,k\geq 3$ enteros impares. Entonces se cumplen los dos primeros apartados del teorema anterior para $p=m$ y además
 \[
 (\frac{m}{k})=(-1)^{(k-1)/2 (m-1)/2}(\frac{k}{m})
 \]
@@ -302,7 +301,7 @@ Sean $m,k\geq 3$ enteros impares. Entonces se cumplen los dos primeros apartados
 La prueba es sencilla. 
 
 \begin{dem}[sketch del teorema]
-Escribimos $m=\prod_i p_i^{e_i}$. Para las dos priemras congruencias basta utilizar $\omega$ y $\tau$ del lema anterior sobre $m$. Para la parte interesante, 
+Escribimos $m=\prod_i p_i^{e_i}$. Para las dos primeras congruencias basta utilizar $\omega$ y $\tau$ del lema anterior sobre $m$. Para la parte interesante, 
 \[
 (\frac{m}{k})(\frac{k}{m})^{-1}=(\frac{m}{k})(\frac{k}{m})
 \]
@@ -317,7 +316,7 @@ Sea $N>2$ impar, entonces $N$ es primo si y solo si
 para todo $a$ con $\gcd(a,N)=1$.
 \end{prop}
 \begin{dem}
-Para todo $a$ primo con $N$, tenemos que $a^{N-1}\equiv (\frac{a}{N})^2\equiv 1\mod N$. Entonces $N$ es primo de Carmichael. Supngamos que $N$ es de Carmichael con $N=p_1\dots p_3$ donde los $p_i$ son distintos e impares. Sea $(\Z_{p_i})^*$ generado por $a+\gene{p_i}$. Tenemos que $a^{(p-1)/2}\equiv -1\mod p_i$. Sea $b\in\Z$ tal que $b\equiv a\mod p_i$ y es congruente con 1 módulo cualquier otro de los primos, que existe por el teorema chino del resto. Se tiene de estas ecuaciones que $\gcd(b,N)=1$. Además $b^{(N-1)/2}=(\frac{b}{N})\mod N$. Como $(\frac{b}{p_i})=(\frac{a}{p_i})=-1$ y 1 para cualquier otro de los primos. Tenemos entonces  $b^{N-1)/2}=-1\mod N$ y $1=1^{N-1)/2}=-1\mod p_2$, lo cual es una contradicción.
+Para todo $a$ primo con $N$, tenemos que $a^{N-1}\equiv (\frac{a}{N})^2\equiv 1\mod N$. Entonces $N$ es primo o es de Carmichael. Supngamos que $N$ es de Carmichael con $N=p_1\dots p_3$ donde los $p_i$ son distintos e impares. Sea $(\Z_{p_i})^*$ generado por $a+\gene{p_i}$. Tenemos que $a^{(p-1)/2}\equiv -1\mod p_i$. Sea $b\in\Z$ tal que $b\equiv a\mod p_i$ y es congruente con 1 módulo cualquier otro de los primos, que existe por el teorema chino del resto. Se tiene de estas ecuaciones que $\gcd(b,N)=1$. Además $b^{(N-1)/2}=(\frac{b}{N})\mod N$. Como $(\frac{b}{p_i})=(\frac{a}{p_i})=-1$ y 1 para cualquier otro de los primos. Tenemos entonces  $b^{N-1)/2}=-1\mod N$ y $1=1^{N-1)/2}=-1\mod p_2$, lo cual es una contradicción.
 \end{dem}
 
 \subsection{Test de primalidad de Solovay-Strassen}
