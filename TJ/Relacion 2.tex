@@ -165,7 +165,7 @@ $$
 
 \newpage
 
-\begin{ejercicio}{4}
+\begin{ejercicio}{5}
 Probar que $\phi(v)\in C(v)$ si $v$ es convexo.
 \end{ejercicio}
 \begin{solucion}
@@ -177,5 +177,61 @@ Además, el core de $v$ es precisamente
 $$
 C(v) = \{x\in \R^{N}\mid x(N) = v(N), \; x(S) \geq v(S)\; \forall S \subset N\}
 $$
+Por otro lado, el valor de Shapley se puede escribirse como
+$$
+\phi(v) = \frac{1}{n!}\sum_{\theta \in \Theta^N}m^\theta(v)
+$$
+donde $m^{\theta}(v)$ se puede definir componente a componente como, si $\theta = (i_1,\dotsc,i,\dotsc,i_n)$,
+$$
+m^\theta(v)_i = v(S^\theta_i) - v(S^\theta_i\setminus\{i\}) \qquad S_i^\theta = \{i_1,\dotsc,i\} 
+$$
+Naturalmente, $|\Theta^N| = n!$, al ser el espacio de las permutaciones de $N$, por lo que $\phi(v)$ es la media de los $m^\theta(v)$. Sabemos por el Ejercicio 3 que $C(v)$ es convexo, luego basta probar que cada $m^\theta(v)\in C(v)$. Denotamos por $v(S_{i_0}^\theta) = 0$. Naturalmente, por la definición de los $m^\theta(v)_i$, tenemos que 
+\begin{align*}
+m^\theta(v)(N) &= \sum_{i=1}^N m^\theta(v)_i \\
+&= \sum_{i=1}^N  v(S^\theta_i) - v(S^\theta_i\setminus\{i\}) \\
+&= \sum_{j=1}^N  v(S^\theta_{i_j}) - v(S^\theta_{i_j}\setminus\{i_j\}) \\
+&= \sum_{j=1}^N  v(S^\theta_{i_j}) - v(S^\theta_{i_{j-1}}) \\
+&= v(S_{i_n}^\theta) \\
+&= v(N) 
+\end{align*}
+\newpage
+Finalmente, tenemos que comprobar que $m^\theta(v)(S) \geq v(S)$. Supongamos que $S=\{a_1,\dotsc,a_k\}$ con $a_1< \cdots < a_k$ en $\theta$. Sabemos que ser convexo es equivalente a
+$$
+v(T) - v(T\setminus\{i\}) \leq v(S) - v(S\setminus\{i\}) \qquad \forall T\subset S \subset N
+$$
+Ahora ben, tengamos en cuenta que por la forma en la que hemos ordenado los elementos de $S$, $\{a_1,\dotsc,a_j\}\subset S_{a_j}^\theta$. Por tanto,
+$$
+v(\{a_1,\dotsc,a_j\}) - v(\{a_1,\dotsc,a_{j-1}\}) \leq v(S_{a_j}^\theta) - v(S_{a_j}^\theta\setminus\{a_j\})
+$$
+Luego
+\begin{align*}
+m^\theta(v)(S) &= \sum_{i\in S}m^\theta(v)_i \\
+&= \sum_{j=1}^k   v(S^\theta_{a_j}) - v(S^\theta_{a_j}\setminus\{a_j\}) \\
+&\geq  \sum_{j=1}^k   v(\{a_1,\dotsc,a_j\}) - v(\{a_1,\dotsc,a_{j-1}\})\\
+&= v(\{a_1,\dotsc,a_k\})\\
+& = v(S)
+\end{align*}
+
+\end{solucion}
+\newpage
+\begin{ejercicio}{6}
+Calcular el nucleolo para el juego de La herencia del tío Pepe. 
+\end{ejercicio}
+\begin{solucion}
+Comencemos escribiendo los conceptos que definen el nucleolo. Definimos el exceso de $x$ para $S$ como $e(S,x) = v(S)-x(S)$. Consideremos entonces el vector de excesos $\lambda(x) \in \R^{2^n}$. Finalmente, definimos el nucleolo como
+$$
+\nu(v)=\{x\in I(v) \mid \lambda(x)\leq_L\lambda(y) \;\forall y \in I(v)\}
+$$
+Recordemos que en el juego del tío de Pepe
+$$
+I(v) = \{(a,b,1-a-b) \mid  0\leq a,b,1-a-b\leq 1\}
+$$
+Para cada $x\in I(v)$ tenemos que sin ordenar todavía de manera decreciente, el vector $\lambda(x)$ sería
+$$
+\lambda(x) =(-a,-b,a+b-1,1-a-b,b,a,0)
+$$ 
+Notemos que las tres primeras componentes siempre serán negativas o nulas, así como la última. Nos interesan principalmente $(a,b,1-a-b)$, que siempre son no negativas. Pensemos en la asignación $a=b=1/3$  que hace que la mayor componente de $\lambda(x)$ sea precisamente $1/3$. Obviamente, si $a>1/3$ o $b>1/3$, tendremos una componente mayor que $1/3$, luego estas imputaciones no pueden ser óptimas. Por tanto, sabemos que $a,b\leq 1/3$. Si $a<1/3$ y $b\leq 1/3$ entones $1-a-b> 1/3$, por lo que nuestra asignación $a=b=1/3$ sigue siendo menor. Análogamente para $a\leq 1/3$, $b<1/3$. Por tanto, se minimiza para precisamente $a=b=1/3$.
+
+Notemos que en este juego $C(v)=\emptyset$. 
 \end{solucion}
 \end{document}
