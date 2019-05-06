@@ -1,26 +1,26 @@
 \documentclass[TFM.tex]{subfiles}
 
 \begin{document}
-EN LA PARTE DE MONOIDAL EN ALGEBRAIC OPERADS DICE:
-
-any symmetric monoidal
-category with infinite sums such that finite sums commute with the monoidal
-structure.
-
-PERO NO APARECE LA SUMA EN NINGÚN LADO
+%EN LA PARTE DE MONOIDAL EN ALGEBRAIC OPERADS DICE:
+%
+%any symmetric monoidal
+%category with infinite sums such that finite sums commute with the monoidal
+%structure.
+%
+%PERO NO APARECE LA SUMA EN NINGÚN LADO
 
 %CAMBIAR LA REFERENCIA DE LA TESIS POR LA DE MAY QUE TENGO EN LA BIBLIOGRAFIA
 %\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
-\chapter{Little disks operad}
+\chapter{Operads}\label{3}
 
-In this chapter we define the main object of our study: the operads. We begin with the topological version of operads and construct the operad of little disks, which plays the main role in the Deligne conjecture. Topological operads give rise to operads in other categories by taking singular chains or homology. Therefore, we also introduce the concept of operad in a symmetric monoidal category. Finally, we motivate the study of operads and the origin of the Deligne conjecture. 
+In this chapter we define the main object of our study: operads. We begin with the topological version of operads and construct the operad of little disks, which plays the main role in the Deligne conjecture. Topological operads give rise to operads in other categories by taking singular chains or homology. Therefore, we also introduce the concept of operad in a symmetric monoidal category. Finally, we motivate the study of operads and the origin of the Deligne conjecture. 
 
 All maps between topological spaces are required to be continuous. We can restrict ourselves to compactly generated Hausdorff spaces when necessary. 
 
 %NECESITO UNA REFERENCIA DE QUE EL LITTLE DISKS ES CW PARA USARLO LUEGO EN LA GENERALIZACIÓN
 
 
-\section{Operads}
+\section{Topological operads}
 %First we give the general notion of (topological) operad and some properties of this object.
 % EN PRINCIPIO LO DEFINO EN TOP Y YA PREGUNTO SI HACE FALTA QUE SEA EN UNA MONOIDAL SIMÉTRICA. SI HACE FALTA, HACER UNA SECCIÓN DE CATEGORÍAS SIMÉTRICAS MONOIDALES. SI NO, CITAR A DONALD YAU CON QUE SE PUEDE DEFINIR CON MÁS GENERALIDAD
 %\url{https://ncatlab.org/nlab/show/operad}
@@ -106,6 +106,27 @@ A very visual way to understand operads is to represent the composition as trees
 
 It is easier to understand the axioms in these terms. Associativity means that it is not necessary to write parentheses. The axiom of the unit element means that $1$ is a neutral element for this product. In the picture, equivariancy can be interpreted in the following way: we can change the order of the inputs of the final operation, obtaining $dabc$, or we can perform a block transposition on the letters $abcd$, which again yields $dabc$. 
 
+Operads can also be described by \emph{insertions} (also called \emph{partial compositions} \cite{das})
+\[
+\circ_i:\CC(p)\otimes\CC(q)\to \CC(p+q-1),\ 1\leq i\leq p
+\]
+satisfying 
+\[
+\begin{cases}
+f\circ_i(g\circ_j h)=(f\circ_i g)\circ_{i+j-1} h & 1\leq i\leq p, 1\leq j\leq q\\
+(f\circ_j h)\circ_i g=(f\circ_i g)\circ_{j+q-1}h & 1\leq i<j\leq m,
+\end{cases}
+\]
+for $f\in\CC(p)$, $g\in\CC(q)$, $h\in\CC(r)$, and an identity element $1\in\CC(1)$ satisfying $f\circ_i 1=1\circ_1 f$ for all $f\in\CC(p)$ and $1\leq i\leq m$. The two definitions of operad are related by
+\[
+f\circ_i g=\gamma(g;1,\dots, 1,\underbrace{g}_{i-th},1,\dots, 1)
+\]
+and
+\[
+\gamma(f;g_1,\dots, g_p)= (\cdots((f\circ_p g_p)\circ_{p-1} g_{p-1})\cdots)\circ_1 g_1.
+\]
+
+Therefore, it is more convenient to use the insertion version when possible, as we will do in the next section. 
 
 %ALOMEJOR HACER DIBUJITOS DE LOS AXIOMAS \url{https://en.wikipedia.org/wiki/Operad#\%22Little_something\%22_operads}
 
@@ -116,7 +137,7 @@ It is easier to understand the axioms in these terms. Associativity means that i
  Let $E_2(n)$ be the configuration space of $n$ disks $B(x_i,r_i)$ of center $x_i\in D^2$ and radius $r_i\in (0,1]$ (called \emph{little disks}) inside the standard unit disk $D^2$. $E_2(n)$ can be viewed as a subspace of $(D^2\times (0,1])^n$ whose points are of the form $((x_1,r_1),\dots, (x_n,r_n))$ satisfying certain restrictions, namely, $r_i$ must be such that the disk $B(x_i,r_i)\subset D^2$ does not intersect any other disk $B(x_j,r_j)$ and fits inside $D^2$. By convention, $E_2(0)=\{*\}$.  
  
  There is an obvious homotopy equivalence $E_2(n)\simeq \mathcal{M}_2(n)$ from $E_2(n)$ to the configuration space of $n$ points of $D^2$. This homotopy equivalence is given by ``forgetting the radius'' of each little disk. %Hence $\dim H_0(E_2(n))=\dim H_1(E_2(n))=n!$ and $H_i(E_2(n))=0$ for $i>1$.
-   Hence $\pi_1(E_2(n))\cong PB_n$, the pure braid group of order $n$, and $\pi_i(E_2(n))=0$ for $i>1$. Its homology is however rather complicated and it is computed by Cohen et al \cite{cuentas}. 
+   Hence $\pi_1(E_2(n))\cong PB_n$, the pure braid group of order $n$, and $\pi_i(E_2(n))=0$ for $i>1$. Another consequence of this homotopy equivalence is that the spaces of the little disks operad have the homotopy type of CW-complexes \cite{CW}. Their homology is however rather complicated and it is computed by Cohen et al \cite{cuentas}.  
  
  
 \definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1.}
@@ -144,32 +165,31 @@ It is easier to understand the axioms in these terms. Associativity means that i
 
  
  
- We define for all positive integers $p$ and $q$ and  each $1\leq i\leq p$ the composition or \emph{insertion} map 
+ We define for all positive integers $p$ and $q$ and  each $1\leq i\leq p$ the insertion map 
  \[
  \begin{tikzcd}[row sep=10]
   E_2(p)\times E_2(q)\arrow[r, "\circ_i"] & E_2(p+q-1)\\
   (c_1,c_2)\arrow[r, mapsto, shorten <= 1em, shorten >= 1em] & c_1\circ_i c_2
  \end{tikzcd}
  \]
- by inserting $c_2$ inside $B(x_i,r_i)$ as shown in the figure. 
- 
-  
-  \begin{figure}[h!]
+ by scaling down $c_2$ and inserting it inside $B(x_i,r_i)$, shifting the numbering of the disks of $c_2$ by $i$ and erasing $B(x_i,r_i)$, as shown in the figure below. 
+ \begin{figure}[h!]
   \centering
 \includegraphics[scale=0.3]{Imagenes/insertion}
 \caption{An insertion $\circ_2:E_2(2)\times E_2(3)\to E_2(4)$.}
  \end{figure}
+ \newpage
 
 Note that there is an element $Id_{E_2}\in E_2(1)$ given by the coordinates $(0,1)$ which acts as the identity for this map. It is easy to check that these maps satisfy the associativity property of an operad. There is an action $E_2(n)\times \Sigma_n\to E_2(n)$ of the symmetric group on $E_2(n)$ given by rearranging the little disks. It is not difficult to check that the maps $\circ_i$ are compatible with this action in the sense of equivariance of operads. Therefore, the familty $E_2=\{E_2(n)\}_{n\geq 0}$ is an operad with identity $Id_{E_2}$ and composition map $\circ_i$. This is what we call the \emph{little disks operad}.
 
 
 
-\begin{remark}
-In the definition of the structure maps we're omitting the disks on which only the identity is acting. If we want to write it with the same notation as we defined operads, the maps should be $\circ_i:E_2(p)\times E_2(q)\times E_2(1)\times\cdots \times E_2(1)\to E_2(p+q-1)$, but since the other spaces act via the identity it is not necessary. In addition, the associativity property of the operad allows us to define every structure maps in terms of the insertions. 
-\end{remark}
+%\begin{remark}
+%In the definition of the structure maps we're omitting the disks on which only the identity is acting. If we want to write it with the same notation as we defined operads, the maps should be $\circ_i:E_2(p)\times E_2(q)\times E_2(1)\times\cdots \times E_2(1)\to E_2(p+q-1)$, but since the other spaces act via the identity it is not necessary. In addition, the associativity property of the operad allows us to define every structure maps in terms of the insertions. 
+%\end{remark}
 
 \begin{figure}[h!]
-\includegraphics[scale=0.3]{Imagenes//accion}
+\includegraphics[scale=0.35]{Imagenes//accion}
 \caption{Action of $\sigma=(231)$ on a point of $E_2(3)$.}
 \end{figure}
 
@@ -249,10 +269,10 @@ Because of this property of $E_1$ one sometimes consider the \emph{non-equivaria
 We've treated operads only in the category of topological spaces, but they can be defined in a more general setting, namely, in any \emph{symmetric monoidal category} \cite{Yau}. We're going to introduce this categories since it becomes more natural to talk about operads and other constructions in other categories having that framework in advance.
 
 \begin{defi}
-A \emph{symmetric monoidal category} is a category $M$ equipped with:
+A \emph{symmetric monoidal category} is a category $\mathscr{M}$ equipped with:
 \begin{enumerate}[(1)]
-\item A functor $\otimes: M\times M\to M$ called the \emph{tensor product}.
-\item An object $I\in M$ called the \emph{unit}.
+\item A functor $\otimes: \mathscr{M}\times \mathscr{M}\to \mathscr{M}$ called the \emph{tensor product}.
+\item An object $I\in \mathscr{M}$ called the \emph{unit}.
 \item Natural isomorphism $a_{x,y,z} : (x \otimes y) \otimes z \to x \otimes (y \otimes z)$ (called the \emph{associator}), $\lambda_x : I \otimes x \to x$ (\emph{left unitor}), $\rho_x : x \otimes I \to x$ (\emph{right unitor}) and $B_{x,y}: x\times y\to y\times x$ (\emph{braiding}).
 \end{enumerate}
 
@@ -319,46 +339,46 @@ The unit object is the chain complex concentrated in degree 0 on the tensor unit
 For an arbitrary symmetric monoidal category $\DD$ we obtain the following definition of operad, which specializes to the definition \ref{operadtop} for $\DD=\Top$.
 
 \begin{defi}
-Let $M$ be a symmetric monoidal category. A (\emph{symmetric}) \emph{operad} in $M$ consists of objects $\CC(n)$ of $M$ indexed over the natural numbers equipped with the following extra structure: 
+Let $\mathscr{M}$ be a symmetric monoidal category. A (\emph{symmetric}) \emph{operad} in $\mathscr{M}$ consists of objects $\OO(n)$ of $\mathscr{M}$ indexed over the natural numbers equipped with the following extra structure: 
 
 \begin{enumerate}
-\item Right actions of symmetric groups $ρ_n:\Sigma_n→\Hom(\CC(n),\CC(n))$.
-\item A \emph{unit} $e:I→\CC(1)$ (which we think of as picking out the identity).
+\item Right actions of symmetric groups $ρ_n:\Sigma_n→\Hom(\OO(n),\OO(n))$.
+\item A \emph{unit} $e:I→\OO(1)$ (which we think of as picking out the identity).
 \item Composition operations
 \[
-\CC(k) \otimes \CC(n_1) \otimes \cdots \otimes \CC(n_k) \xrightarrow{\gamma} \CC(n_1 + \ldots + n_k)
+\OO(k) \otimes \OO(n_1) \otimes \cdots \otimes \OO(n_k) \xrightarrow{\gamma} \OO(n_1 + \ldots + n_k)
 \]
 These data are subject to following axioms that can be found in \cite{Yau} and \cite{tesis} 
 \begin{itemize}
 \item For $n=\sum_{i=1}^k n_i$, $j=\sum_{i=1}^n j_i$, $g_s=\sum_{i=1}^sn_i$ and $h_s=j_{g_s-1}+\cdots j_{g_s}$ ($1\leq s\leq k$), the following diagram of associativity commutes %el 1 es la identidad
 \[
 \begin{tikzcd}
-\CC(k)\otimes\left(\bigotimes_{i=1}^k\CC(n_i)\right)\otimes\left(\bigotimes_{r=1}^n\CC(j_r)\right)\arrow[dd, "permute"']\arrow[r, "\gamma\otimes 1^j"] & 
-\CC(n)\otimes \left(\bigotimes_{i=1}^n\CC(j_i)\right)\arrow[d, "\gamma"]\\
-& \CC(j)\\
-\CC(k)\otimes \bigotimes_{s=1}^k\left[\CC(n_s)\otimes\left(\bigotimes_{q=1}^{n_s}\CC(j_{g_{s-1+q}})\right)\right]\arrow[r, "1\otimes \gamma^n"] & 
-\CC(k)\otimes \left(\bigotimes_{s=1}^k\CC(h_s)\right)\arrow[u, "\gamma"]
+\OO(k)\otimes\left(\bigotimes_{i=1}^k\OO(n_i)\right)\otimes\left(\bigotimes_{r=1}^n\OO(j_r)\right)\arrow[dd, "permute"']\arrow[r, "\gamma\otimes 1^j"] & 
+\OO(n)\otimes \left(\bigotimes_{i=1}^n\OO(j_i)\right)\arrow[d, "\gamma"]\\
+& \OO(j)\\
+\OO(k)\otimes \bigotimes_{s=1}^k\left[\OO(n_s)\otimes\left(\bigotimes_{q=1}^{n_s}\OO(j_{g_{s-1+q}})\right)\right]\arrow[r, "1\otimes \gamma^n"] & 
+\OO(k)\otimes \left(\bigotimes_{s=1}^k\OO(h_s)\right)\arrow[u, "\gamma"]
 \end{tikzcd}
 \]
 \item The following unitality diagrams commute
 \[
 \begin{tikzcd}
-\CC(k)\otimes I^k \arrow[d, "1\otimes e^k"'] \arrow[r, "\cong"] & \CC(k) & I^k\otimes \CC(k) \arrow[d, "e \otimes 1"'] \arrow[r, "\cong"] & \CC(k) \\
-\CC(k)\otimes\CC(1)^k \arrow[ru, "\gamma"']                     &        & \CC(1)^k\otimes\CC(k) \arrow[ru, "\gamma"']           &       
+\OO(k)\otimes I^k \arrow[d, "1\otimes e^k"'] \arrow[r, "\cong"] & \OO(k) & I^k\otimes \OO(k) \arrow[d, "e \otimes 1"'] \arrow[r, "\cong"] & \OO(k) \\
+\OO(k)\otimes\OO(1)^k \arrow[ru, "\gamma"']                     &        & \OO(1)^k\otimes\OO(k) \arrow[ru, "\gamma"']           &       
 \end{tikzcd}
 \]
 \item Finally, the following diagrams expresing $\Sigma_n$-equivariance also commute
 \[
 \begin{tikzcd}
-\CC(k)\otimes \CC(n_1)\otimes \cdots \otimes \CC(n_k)\arrow[d, "\gamma"] \arrow[r, "\sigma\otimes\sigma^{-1}"]& \CC(k)\otimes\CC(n_{\sigma(1)})\otimes\cdots\otimes \CC(n_{\sigma(k)})\arrow[d, "\gamma"]\\
-\CC(n) \arrow[r, "{\sigma(n_{\sigma(1)},\dots,n_{\sigma(k)})}"]& \CC(n)
+\OO(k)\otimes \OO(n_1)\otimes \cdots \otimes \OO(n_k)\arrow[d, "\gamma"] \arrow[r, "\sigma\otimes\sigma^{-1}"]& \OO(k)\otimes\OO(n_{\sigma(1)})\otimes\cdots\otimes \OO(n_{\sigma(k)})\arrow[d, "\gamma"]\\
+\OO(n) \arrow[r, "{\sigma(n_{\sigma(1)},\dots,n_{\sigma(k)})}"]& \OO(n)
 \end{tikzcd}
 \]
 and
 \[
 \begin{tikzcd}
-\CC(k)\otimes \CC(n_1)\otimes \cdots \otimes \CC(n_k)\arrow[r, "1\otimes \tau_1\otimes\cdots\tau_k"]\arrow[d, "\gamma"] & \CC(k)\otimes\CC(n_1))\otimes\cdots\otimes \CC(n_k)\arrow[d,"\gamma"]\\
-\CC(n)\arrow[r, "\tau_1\oplus\cdots\oplus\tau_k"] & \CC(n)
+\OO(k)\otimes \OO(n_1)\otimes \cdots \otimes \OO(n_k)\arrow[r, "1\otimes \tau_1\otimes\cdots\tau_k"]\arrow[d, "\gamma"] & \OO(k)\otimes\OO(n_1))\otimes\cdots\otimes \OO(n_k)\arrow[d,"\gamma"]\\
+\OO(n)\arrow[r, "\tau_1\oplus\cdots\oplus\tau_k"] & \OO(n)
 \end{tikzcd}
 \]
 where for $\sigma\in\Sigma_k$, $\tau_s\in\Sigma_{n_s}$, then $\sigma(n_1,\dots, n_k)\in\Sigma_n$ permutes $k$ blocks $(1,\dots, n_1),\dots, (n_{k-1}+1,\dots, n_k)$ via $\sigma$ and $\tau_1\oplus\cdots\oplus\tau_k$ is the block sum of permutations.
@@ -366,11 +386,11 @@ where for $\sigma\in\Sigma_k$, $\tau_s\in\Sigma_{n_s}$, then $\sigma(n_1,\dots, 
 
 %identities such as associativity and unitality of composition, and compatibility of composition with symmetric group actions. For example, the unit laws say that the composite
 %\[
-%\CC(n) \cong I^{\otimes n} \otimes \CC(n) \xrightarrow{e^{\otimes n} \otimes 1} \CC(1)^{\otimes n} \otimes \CC(n) \xrightarrow{\gamma} \CC(n)
+%\OO(n) \cong I^{\otimes n} \otimes \OO(n) \xrightarrow{e^{\otimes n} \otimes 1} \OO(1)^{\otimes n} \otimes \OO(n) \xrightarrow{\gamma} \OO(n)
 %\]
 %is the identity map, as is
 %\[
-%\CC(n) \cong \CC(n) \otimes I^{\otimes n} \xrightarrow{1 \otimes e^{\otimes n}} \CC(n) \otimes \CC(1)^{\otimes n} \xrightarrow{\gamma} \CC(n)
+%\OO(n) \cong \OO(n) \otimes I^{\otimes n} \xrightarrow{1 \otimes e^{\otimes n}} \OO(n) \otimes \OO(1)^{\otimes n} \xrightarrow{\gamma} \OO(n)
 %\] 
 %The reader is referred to page 194 of \cite{Yau} and to \cite{tesis} to see the diagrams associated to the axioms.  PUEDO COGERLO DE LA TESIS PARA COMPLETARLO SI TENGO TIEMPO
 \end{enumerate}
@@ -384,24 +404,24 @@ In most cases we won't need to use the categorical definition since normaly one 
 
 
 \begin{defi}
-Let $O$ and $P$ be operads in $M$. A map of operads $f:O\to P$ is a collection of maps $O(n)\to P(n)$ such that the two following conditions hold:
+Let $\OO$ and $\mathcal{P}$ be operads in $\mathscr{M}$. A map of operads $f:\OO\to \mathcal{P}$ is a collection of maps $\OO(n)\to \mathcal{P}(n)$ such that the two following conditions hold:
 \begin{enumerate}
-\item Compatibility with units:  $f\circ e_O=e_P$, where $e_O$ and $e_P$ are the units.
-\item Compatibility with operad compositions: $f\circ \gamma_O=\gamma_P\circ (f\otimes\cdots\otimes f)$ where $\gamma_O$ and $\gamma_P$ are the structure maps and the tensor product $f\otimes\cdots\otimes f$ is taken as many times as the number of arguments of $\gamma_P$. 
+\item Compatibility with units:  $f\circ e_\OO=e_\mathcal{P}$, where $e_\OO$ and $e_\mathcal{P}$ are the units.
+\item Compatibility with operad compositions: $f\circ \gamma_\OO=\gamma_\mathcal{P}\circ (f\otimes\cdots\otimes f)$ where $\gamma_\OO$ and $\gamma_\mathcal{P}$ are the structure maps and the tensor product $f\otimes\cdots\otimes f$ is taken as many times as the number of arguments of $\gamma_\mathcal{P}$. 
 \end{enumerate}
 \end{defi}
 
 
 
-In this context there is also an \emph{endomorphism operad} $\xi_X$ for each $X$ in the monoidal symmetric category $M$ with unit $I$. The $j$-th component $\xi_X(j)$ is just $\Hom(X^{\otimes j},X)$ and the identity of the operad is the map $1_x:I\to \Hom(X,X)$ that sends $I$ to the identity on $X$. The composition map and the action of the symmetric group is defined analogously to the definition \ref{endomorphism}. Therefore, one can define the notion of \emph{algebra over an operad} $O$ as an object $X$ equipped with an operad map $\xi:O\to\xi_X$. Alternatively, the data of an $O$-algebra is given by a sequence of maps
+In this context there is also an \emph{endomorphism operad} $\xi_X$ for each $X$ in the monoidal symmetric category $\mathscr{M}$ with unit $I$. The $j$-th component $\xi_X(j)$ is just $\Hom(X^{\otimes j},X)$ and the identity of the operad is the map $1_x:I\to \Hom(X,X)$ that sends $I$ to the identity on $X$. The composition map and the action of the symmetric group is defined analogously to the definition \ref{endomorphism}. Therefore, one can define the notion of \emph{algebra over an operad} $O$ as an object $X$ equipped with an operad map $\xi:O\to\xi_X$. Alternatively, the data of an $\OO$-algebra is given by a sequence of maps
 \[
-O(j) \otimes X^{\otimes j} \to X
+\OO(j) \otimes X^{\otimes j} \to X
 \]
-which specifies an action of $O$ via finitary operations on $X$, with compatibility conditions between the operad multiplication and the structure of plugging in $j$ finitary operations on $X$ into a $j$-ary operation (and compatibility with actions by permutations). This alternative definition is possible due to the well-known tensor-hom adjuntion, i.e., the isomorphism $\Hom(X\otimes Y,Z)\cong \Hom(X,\Hom(Y,Z))$ \cite{tensor-hom}.
+which specifies an action of $\OO$ via finitary operations on $X$, with compatibility conditions between the operad multiplication and the structure of plugging in $j$ finitary operations on $X$ into a $j$-ary operation (and compatibility with actions by permutations). This alternative definition is possible due to the well-known tensor-hom adjuntion, i.e., the isomorphism $\Hom(X\otimes Y,Z)\cong \Hom(X,\Hom(Y,Z))$ \cite{tensor-hom}.
 
-Note that a map of operads $O\to O'$ endows an $O'$-operad with a canonical $O$-algebra structure. The converse is also obviously true: in order to define a map of operads it is enough to endow any $O'$-algebra with a canonical $O$-algebra structure. 
+Note that a map of operads $\OO\to \OO'$ endows an $\OO'$-operad with a canonical $\OO$-algebra structure. The converse is also obviously true: in order to define a map of operads it is enough to endow any $\OO'$-algebra with a canonical $\OO$-algebra structure. 
 
-For a functor $F:\CC\to\DD$ between monoidal categories, we would like $F$ to preserve the tensor structures so that we can send operads to operads. In most cases, it will be enough to have  morphisms $1_{\DD}\to F(1_\CC)$ and $F(A\otimes_{\CC}B)\to F(A)\otimes_{\DD} F(B)$ satisfying the associativity and unitality properties derived from the definition of monoidal category. Functors fulfilling that last property are called \emph{lax monoidal}. We give an example of a lax monoidal functor in the next section. When the morphisms before are isomorphisms, and hence $F$ preserves the monoidal structure, then $F$ is simply called \emph{monoidal}.
+For a functor $F:\mathscr{M}\to\mathscr{N}$ between monoidal categories, we would like $F$ to preserve the tensor structures so that we can send operads to operads. In most cases, it will be enough to have  morphisms $1_{\mathscr{M}}\to F(1_\mathscr{N})$ and $F(A\otimes_{\mathscr{M}}B)\to F(A)\otimes_{\mathscr{N}} F(B)$ satisfying the associativity and unitality properties derived from the definition of monoidal category. Functors fulfilling that last property are called \emph{lax monoidal}. We give an example of a lax monoidal functor in the next section. When the morphisms before are isomorphisms, and hence $F$ preserves the monoidal structure, then $F$ is simply called \emph{monoidal}.
 
 \subsection{Connection between $E_2$ and Gerstenhaber algebras}\label{zilber}
 
@@ -481,7 +501,7 @@ where the last equality follows from the second bijection of \ref{bijections}. Q
 
 %This is not hard to proof if one is carefull with the shuffles that take place on each step, namely, on one direction one has to combine $(p,q)$-shuffles with $(p+q,r)$-shuffles, and on the other direction one has to combine $(q,r)$-shuffles with $(p,q+r)$-shuffles, and both combinations have to be equivalent in the end, using the properties of the degenerancy maps. MIRAR LEMA 2.9 DE MADSEN (AÑADIR A BIBLIOGRAFÍA) PARA LAS BIYECCIONES (MIRAR EN MIS APUNTES POR SI PUEDO PROBARLAS), DECIR QUE ESA IDEA APARECE EN ESE LEMA Thus, one shows that the functor of singular chains is lax monoidal and therefore carries the operadic structure.
 
-This map we've just defined passes to homology, endowing $H_*(E_2)$ with an structure of operad of graded $k$-modules, so we can consider a $H_*(E_2)$-algebra $A$. It is know that giving an $H_*(E_2)$-algebra is is equivalent to giving a Gerstenhaber algebra \cite{cuentas}. We describe here briefly how $A$ can be turned into a Gersternhaber algebra. Since $A$ is a $H_*(E_2)$-algebra, there is a sequence of maps $H_*(E_2(n))\otimes A^{\otimes n}\to A$. From this, we can obtain a commutative product of degree 0 given by the map
+This map we've just defined passes to homology, endowing $H_*(E_2)$ with an structure of operad of graded $k$-modules, so we can consider a $H_*(E_2)$-algebra $A$. It is known that giving an $H_*(E_2)$-algebra is is equivalent to giving a Gerstenhaber algebra \cite{cuentas}. We describe here briefly how $A$ can be turned into a Gersternhaber algebra. Since $A$ is a $H_*(E_2)$-algebra, there is a sequence of maps $H_*(E_2(n))\otimes A^{\otimes n}\to A$. From this, we can obtain a commutative product of degree 0 given by the map
 \[
 A^{\otimes 2}\cong k\otimes A^{\otimes 2}\cong H_0(E_2(2))\otimes A^{\otimes 2}\to A
 \]
@@ -490,11 +510,13 @@ and a Lie bracket of degree 1 given by the map
 A^{\otimes 2}\cong k\otimes A^{\otimes 2}\cong H_1(E_2(2))\otimes A^{\otimes 2}\to A
 \]
 
+The reverse process of obtaining an operad from an algebraic structure is very natural and standard. We will do it explicitly for the case of Gerstenhaber algebras later when we need them, but to give a feel of how this works, one can describe --for instance-- a commutative product as an operation $\mu\in H_0(E_2(2))$ (degree 0 and arity 2) satisfying $\mu=(12)\mu$, where $(12)\in\Sigma_2$ by rearranging the arguments. 
+
 An important corollary of this construction is that $H_*(\Omega X)$ is a Gersternhaber algebra for any space $X$. This leads to the recognition principle of loop spaces \cite{May}.
 
-The equivalence between Gersternhaber algebras and $E_2$-algebras is the origin of the Deligne conjecture, namely, the Hochschild cohomology of an associative algebra $A$, $H^*(A;A)$, has a Gersternhaber algebra structre, and therefore there is an action of $H_*(E_2)$ on it. It is then natural to wonder whether this action comes from an action of $C_*(E_2)$ on $C^*(A;A)$. 
+The equivalence between Gersternhaber algebras and $E_2$-algebras is the origin of the Deligne conjecture, namely, the Hochschild cohomology of an associative algebra $A$, $H^*(A;A)$, has a Gersternhaber algebra structure, and therefore there is an action of $H_*(E_2)$ on it. It is then natural to wonder whether this action comes from an action of $C_*(E_2)$ on $C^*(A;A)$. 
 
-Cohen, May et al also show in \cite{cuentas} that the homology operad $e_2=H_*(E_2)$ is generated as an operad by two operations $\cdot$ and $[,]$, meaning that any other operation is generated by operadic composition of $\cdot$ and $[,]$. The operation $\cdot$ is precisely an associative commutative product of degree 0 (an element of $H_0(E_2(2))$ and $[,]$ is a Lie bracket of degree $1$ (an element of $H_1(E_2(2))$. In fact, these two operations satisfy the axioms of a Gersternhaber algebra. Since both operations belong to $e_2(2)$ we can say that $e_2$ is generated by $e_2(2)$. What's more, those relations --that we will write explicitly later when we need them-- are sufficient to describe the operad $e_2$. That's why $e_2$ es sometimes called \emph{the operad of Gerstenhaber algebras}. %We will make precise the notion of generators and relations of an operad in the last chapter.
+Cohen, May et al also show in \cite{cuentas} that the homology operad $e_2=H_*(E_2)$ is generated as an operad by two operations $\cdot$ and $[,]$, meaning that any other operation is generated by operadic composition of $\cdot$ and $[,]$. The operation $\cdot$ is precisely an associative commutative product of degree 0 (an element of $H_0(E_2(2))$ and $[,]$ is a Lie bracket of degree $1$ (an element of $H_1(E_2(2))$. In fact, these two operations satisfy the axioms of a Gersternhaber algebra. Since both operations belong to $e_2(2)$ we can say that $e_2$ is generated by $e_2(2)$. What's more, those relations are sufficient to describe the operad $e_2$. That's why $e_2$ es sometimes called \emph{the operad of Gerstenhaber algebras}. %We will make precise the notion of generators and relations of an operad in the last chapter.
 
 
 %PONER EN ALGUNA PARTE LA EQUIVALENCIA ENTRE ALGEBRAS DE GERSTENHABER Y ÁLGEBRAS SOBRE LA HOMOLOGÍA DEL OPERAD, A VER SI PUEDO DAR BIEN LA REFERENCIA ENTRE MAY Y COHEN, SI NO PREGUNTAR A MURO, SEGÚN ESTO ES COHEN \url{https://ncatlab.org/nlab/show/Gerstenhaber+algebra}

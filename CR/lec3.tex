@@ -86,6 +86,16 @@ Así que en el algoritmo tenemos otro modo de calcular el grado de inmersión y 
 \section{Algoritmo de factorización de Lenstra}
 \url{https://en.wikipedia.org/wiki/Lenstra_elliptic-curve_factorization} 
 
+Para factorizar $n\in\Z$ consideraremos la curva elíptica $E=E(\Z/n\Z)=\{[x:y:z]\in\PP^2(\Z/n\Z)\mid y^2z=x^3+axz^2+bz^3$. El algoritmo usará que cuando $\Z/n\Z$ la adición no da una operación de grupo.
+\begin{enumerate}
+\item Escoger $x,y,a\in\Z/n\Z$ con $a\neq 0$. 
+\item Calcular $b=y^2-x^3-ax$. La curva elíptica $E$ está dada entonces por la ecuación de Weierstrass $Y^2=X^3+aX+b$, que en coordenadas proyectivas se traduce en $ZY^2=X^3+aZ^2X+bZ^3$, la cual contiene el punto $[x:y:1]$. 
+\item Elegir una cota superior $B\in\Z$. Se encontrarán factores primos $p$ si $|E(\Z/p\Z)|$ tiene solamente factores menores que $B$.
+\item Calcular $k=mcm(1,\dots, B)$. Calcular $kP$. Si $n$ es primo, entonces el resultado es $[0:1:0]$, pero si no es primo se puede encontrar un factor primo tal como sale en el enlace.
+\item Si no se encuentra, volver a 2. 
+
+\end{enumerate}
+
 
 
 \end{document}

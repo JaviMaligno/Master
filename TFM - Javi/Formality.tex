@@ -3,7 +3,7 @@
 \begin{document}
 
 
-\chapter{Formality of Chain Operad of Little Disks}
+\chapter{Formality of Chain Operad of Little Disks}\label{4}
 
 
 
@@ -30,7 +30,9 @@ p_1:X\times Y\to X;\ p_2:X\times Y\to Y,
 \end{equation}
 where $p_1$, $p_2$ are the projections. 
 
-Given a topological $B_\infty$-operad $X$, the corresponding \emph{operad of little disks} is a symmetric operad $X'$ such that $X'(n)=X(n)/PB_n$ with the induced structure maps. We require in addition that the actions are nice enough so that the maps $X(n)\to X'(n)$ are covering maps. This way, $X'(n)$ is a $K(PB_n,1)$ space, so any two operads of little disks are homotopy equivalent. Using the maps \ref{projections} we can explicitly connect any two operads of little disks by a chain of homotopy equivalences. The projection $X×Y→X$ is $PB_n$-equivariant at each level for the product action on $(X\times Y)(n)=X(n)×Y(n)$ and so induces a map $X(n)×Y(n)/PB_n→X/PB_n$. This map is a fiber bundle with fiber $Y(n)$ (it is trivialized over any open subset of $X(n)/PB_n$ that is evenly covered by $X(n)→X(n)/PB_n$) and thus a homotopy equivalence since $Y(n)$ is contractible. Similarly, the other projection gives a homotopy equivalence $X(n)×Y(n)/PB_n→Y(n)/PB_n$ and combining them we get a homotopy equivalence $X(n)/PB_n→Y(n)/PB_n$.
+Given a topological $B_\infty$-operad $X$, the corresponding \emph{operad of little disks} is a symmetric operad $X'$ such that $X'(n)=X(n)/PB_n$ with the induced structure maps. Since the maps in \ref{projections} and their homotopy inverses are $PB_n$-equivariant, any two operads of little disks are connected by a chain of homotopy equivalences, because the equivalence $X\simeq Y$ induces a well-defined homotopy equivalence $X/PB_n\simeq Y/PB_n$. 
+
+%We require in addition that the actions are nice enough so that the maps $X(n)\to X'(n)$ are covering maps. This way, $X'(n)$ is a $K(PB_n,1)$ space, so any two operads of little disks are homotopy equivalent. Using the maps \ref{projections} we can explicitly connect any two operads of little disks by a chain of homotopy equivalences. The projection $X×Y→X$ is $PB_n$-equivariant at each level for the product action on $(X\times Y)(n)=X(n)×Y(n)$ and so induces a map $X(n)×Y(n)/PB_n→X/PB_n$. This map is a fiber bundle with fiber $Y(n)$ (it is trivialized over any open subset of $X(n)/PB_n$ that is evenly covered by $X(n)→X(n)/PB_n$) and thus a homotopy equivalence since $Y(n)$ is contractible. Similarly, the other projection gives a homotopy equivalence $X(n)×Y(n)/PB_n→Y(n)/PB_n$ and combining them we get a homotopy equivalence $X(n)/PB_n→Y(n)/PB_n$.
 
 
 We now prove that the little disks operad defined in Section \ref{little} is a little disks operad in this sense. We'll make use of the following lemmas.
@@ -146,6 +148,7 @@ Choose an arbitrary point $x\in E_1(n)$. Let $\alpha:I\to E_2(n)$ denote the pat
 of pictures
 
 \definecolor{qqqqff}{rgb}{0.,0.,1.}
+\resizebox{13cm}{10.5cm}{%
 \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
 \clip(-1.586666666666667,-6.553333333333329) rectangle (13.293333333333337,5.533333333333328);
 \fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (0.37333333333333335,5.) -- (0.7733333333333334,5.) -- (0.8,0.) -- (0.4,0.) -- cycle;
@@ -309,6 +312,7 @@ of pictures
 \draw (10.15,-2.9) node[anchor=north west] {$n$};
 \draw (10.2,2.6) node[anchor=north west] {$n$};
 \end{tikzpicture}
+}
 
 Let $\widetilde{\alpha}$ denote the lift which starts in $\widetilde{C}_1$. Let $\widetilde{x}=\widetilde{\alpha}(0)$ and $\widetilde{y}=\widetilde{\alpha}(1)$, then specify $\widetilde{x}\widetilde{\sigma}=\widetilde{y}$. %COMPROBAR QUE ESTO DA LA ESTRUCTURA DE $B_\infty$ (ADEMÁS DE LAS PROPIEDADES DE OPERAD, LA ACCIÓN TIENE QUE SER LIBRE, PERO TENGO DUDA PARA EL CASO DE LAS TRENZAS PURAS) Y QUE EL COCIENTE POR LA ACCIÓN DE LAS TRENZAS PURAS ES $E_2$ (QUIZÁ ESTO SEA PORQUE PRECISAMENTE ES EL GRUPO FUNDAMENTAL, PERO TENGO QUE REVISAR SI ES LA MISMA ACCIÓN QUE LA DEL GRUPO FUNDAMENTAL)
 This data specifies a $B_\infty$-operad structure on $\widetilde{E}_2$. 
@@ -342,7 +346,7 @@ cohomology groups for all $n$.
 \end{defi}
 
 
-The functor of singular chains $C_*^{sing}:\Top\to \Ch$ has a natural tensor (lax monoidal) structure given by the Eilenberg-Zilber map $EZ:C_*^{sing}(X)\otimes C_*^{sing}(Y)\to C_*^{sing}(X\times Y)$ as we saw in section \ref{zilber}. Therefore, for a topological operad $O$, the coleccion $C_*^{sin}(O(*))$ has a structure of a dg-operad. The structure map of the $i$-th insertion is 
+The functor of singular chains $C_*^{sing}:\Top\to \Ch$ has a natural tensor (lax monoidal) structure given by the Eilenberg-Zilber map $EZ:C_*^{sing}(X)\otimes C_*^{sing}(Y)\to C_*^{sing}(X\times Y)$ as we saw in section \ref{zilber} of chapter \ref{3}. Therefore, for a topological operad $O$, the coleccion $C_*^{sin}(O(*))$ has a structure of a dg-operad. The structure map of the $i$-th insertion is 
 \[
 C_*^{sing}(O(n))\otimes C_*^{sing}(O(m))\xrightarrow{EZ} C_*^{sing}(O(n)\times O(m))\xrightarrow{\circ_{i*}} C_*^{sing}(O(n+m-1)),
 \]
@@ -605,7 +609,7 @@ The definition of the associator is equivalent to the fact that $\phi$ is well-d
 
 The map $\phi$ produces a map of operads $C_\star(PaB_*)=C_\star^\Q(\Q(PaB_*))\to C_\star(O_A(*))$.
 %C_* ya era sobre Q, y hacerlo sobre PaB_* en realidad era sobre la realización del nervio, así que es linearizar al final. Lo otro es linearizar primero y luego coger el nervio para el caso lineal
-It is well known that the homology operad of $C_\star(PaB_*)$ is $e_2$ because $PaB_*$ induces a little disks operad as we saw in \ref{pab}. One checks that $\phi$ is a quasi-isomorphism for $\star=2$ by an argument of dimension similar to the one in the proof of \ref{4.1} it induces a surjective homomorphism (it sends generators to generators) between spaces of the same dimension. Hence it is a quasi-isomorphism of operads (since
+It is well known that the homology operad of $C_\star(PaB_*)$ is $e_2$ because $PaB_*$ induces a little disks operad as we saw section in \ref{pab}. One checks that $\phi$ is a quasi-isomorphism for $\star=2$ by an argument of dimension similar to the one in the proof of \ref{4.1}: it induces a surjective homomorphism (it sends generators to generators) between spaces of the same dimension. Hence it is a quasi-isomorphism of operads (since
 $e_2$ is generated by $e_2(2)$). By Proposition \ref{4.1}, $k$ is a quasi-isomorphism. Thus, the
 chain operad $C_*(PaB_*)$ is quasi-isomorphic to $e_2$.
 
