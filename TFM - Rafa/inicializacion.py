@@ -59,16 +59,3 @@ def analisis(N, I, par1 = 0, par2 = 0, lamb = 0):
     return([N, I, aristas/I, iter0/I,  iter1/I, iter2/I,  
             t0/I, t1/I, t2/I, bcut/I])
       
-h1 = analisis(290,5,1,0)
-h2 = analisis(400,5,1,0)
-
-df = pd.DataFrame.from_records([h1,h2],
-                                columns = ["N", "I", "Var", 
-                               "S.GH", "S.PE", "S.Match",
-                               "T.GH", "T.PE", "T.Match", 
-                               "Exp B&B"])
-df.to_csv("datos.csv")
-
-#sols = [1-modelo.getVars()[i].X for i in range(E)]
-#nx.draw_circular(H,edge_color = sols)
-

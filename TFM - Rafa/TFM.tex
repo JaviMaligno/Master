@@ -1469,7 +1469,7 @@ def integer(G, c1, c2, lamb = 0):
     return(m, itera, bac, end-start)
 \end{pythone}
 \newpage
-\subsection{Grafos binarios}
+\subsection{Grafos de Erdös-Rényi}
 En el siguiente código vamos a escribir una función que dado que nos compare sobre grafos generados aleatoriamente con una cantidad fija de vértices los métodos que hemos programados anteriormente. Para generar los grafos aletoriamente utilizamos el comando de la librería \textbf{networkx}\\
 \begin{pythone}
 networkx.gnp_random_graph(M,p)
@@ -1477,7 +1477,7 @@ networkx.gnp_random_graph(M,p)
 Esta librería de grafos sobre la que hemos apoyado parte del código utiliza el método de Erdös-Rényi, introducido por dichos matemáticos húngaros en 1959, para generar grafos aleatorios con dos parámetros. El concepto es el siguiente: Supongamos que tenemos una red con $M$ nodos distribuidos aleatoriamente y desconectados. Ahora cada uno de las posibles aristas del grafo completo $K_M$ se añade a nuestra red de manera independiente con probabilidad $p$. Naturalmente cuanto mayor sea $p$ más probable es que el grafo resultante sea \textit{denso}. Si $p$ es demasiado pequeño puede ocurrir que nuestro grafo sea diconexo. 
 \\
 \begin{pythone}
-# A continuacion generamos grafos alaetorios y ponemos a prueba los metodos
+# A continuacion generamos grafos aleatorios y ponemos a prueba los metodos
 # y comparamos resultados.
 
 from holland import *
@@ -1540,6 +1540,54 @@ def analisis(N, I, par1 = 0, par2 = 0, lamb = 0):
       
 \end{pythone}
 \newpage 
+\subsection{Dibujando matchings}
+En \LaTeX\, es común utilizar, tal y como hemos hecho nosotros, el paquete \textbf{tikz} para dibujar grafos (entre otras muchas funcionalidades). Sin embargo, no existe una forma sencilla de dibujar grafos relativamente grandes a partir, por ejemplo, de su matriz de adyacencia. La librería \textbf{networkx} tiene distintas formas de dibujar grafos apoyándose en otra librería conocida de Python, \textbf{matplotlib}. 
+
+Vamos a utilizar estas librerías para representar algunos grafos y respectivos matching perfectos de coste mínimo obtenido por el algoritmo de Grötschel-Holland. En general todos los comandos para dibujar grafos pueden colorear de manera independiente cada nodo o eje, además de una gran cantidad de parámetros. 
+\begin{pythone}
+# Este comando nos permite dibujar el grafo situando los nodos de manera dispersa sobre una elipse.
+networx.draw_circular(G)
+\end{pythone}
+
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.45]{foo}
+\caption{}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.45]{foo1}
+\caption{}
+\end{figure}
+
+\newpage
+\begin{pythone}
+# Si simplemente utilizamos draw, el dibujo es algo mas caotico.
+networx.draw(G)
+\end{pythone}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.5]{foo2}
+\caption{}
+\end{figure}
+
+
+\begin{pythone}
+# Tambien tenemos una opcion para utilziar el algoritmo de Kamada-Kawai para dibujar redes.
+networx.draw_kamada_kawai(G)
+\end{pythone}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.5]{foo3}
+\caption{}
+\end{figure}
+
+\newpage
 \section{Resultados computacionales}
 A continuación presentamos los resultados computacionales obtenidos. En la siguiente tabla tenemos las siguientes variables 
 \begin{itemize}
