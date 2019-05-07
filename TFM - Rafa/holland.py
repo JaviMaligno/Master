@@ -5,6 +5,7 @@
 from gurobipy import *
 from padbergmod import *
 from funcionaux import *
+import networkx as nx
 import time
 
 # Pasamos a definir la funcion optimiza, que resuelve el problema del
@@ -37,6 +38,7 @@ def optimiza(G, c1, c2, lamb = 0):
     # Algunos parametros del grafo
     N = len(G)
     E = len(G.edges())
+    
     # Creamos las variables. El tipo puede ser 
     # 'C' para continuas, 'B' para binarias, 'I' para enteras,
     # 'S' para semicontinuas, or 'N' for semienteras.
@@ -89,6 +91,7 @@ def optimiza(G, c1, c2, lamb = 0):
     
     # Obtenemos el vector de soluciones
     sols = [m.getVars()[i].X for i in range(E)]
+    entero(sols)
     # Guardamos el numero de iteraciones
     itera = m.IterCount
     
@@ -147,7 +150,7 @@ def optimiza(G, c1, c2, lamb = 0):
             
         elif (conE != []):
             for a in conE:
-                S = list(GE.edges(a))
+                S = list(G.edges(a))
                 card = len(a)-1
                 m.addConstr(suma(S) <= card/2) 
             m.optimize()
@@ -157,10 +160,11 @@ def optimiza(G, c1, c2, lamb = 0):
         # construimos un plano de corte mediante el procedimiento de Padberg
         # y Rao modificado.
         else:        
-            W,F = padraomod(nx.Graph(A),sols)
+            W,F = padraomod(nx.Graph(G),sols)
             m.addConstr(suma(W.difference(F))-suma(F) >= 1-len(F))
             m.optimize()
             print("Hemos usado Padberg-Rao")
+            
         sols = [m.getVars()[i].X for i in range(E)]
         itera = itera + m.IterCount
     end = time.time()

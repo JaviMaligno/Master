@@ -57,4 +57,4 @@ def padraomod(G,x):
         
     # Notemos que dado que este algoritmo es correcto, si x es una solcion
     # fraccional necesariamente ha de encontrarse algun plano de corte.
-    return("La has liado")
+    return()

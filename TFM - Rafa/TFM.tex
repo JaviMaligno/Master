@@ -1113,13 +1113,75 @@ $$u'B \leq 0 \Rightarrow u^t c(\lambda) \leq 0 \qquad u^t c(\lambda)>0 \Rightarr
 \chapter{Análisis computacional}
 Presentamos a continuación la parte computacional de nuestro trabajo. En primer lugar presentamos las distintas partes de la implementaciones de los algoritmos para pasar después a los resultados obtenidos.
 \section{Implementación en Python}
-Todas las implementaciones están hechas utilizando la distribución de Python 3.7 proporcionada por Anaconda. Además, para la resolución de problemas de Programación Lineal utilizamos el software Gurobi 8.1.0, a cuyo oráculo accedemos a través de Python. 
+Todas las implementaciones están hechas utilizando la distribución de Python 3.7 proporcionada por Anaconda. Además, para la resolución de problemas de Programación Lineal utilizamos el software Gurobi 8.1.0, a cuyo oráculo accedemos a través de Python. Antes de comenzar presentamos un codigo con algunas funciones auxiliares que utilizamos.
+\begin{pythone}
+# En este codigo pasamos a escribir funciones auxilares para el resto del trabajo.
+
+import networkx as nx
+import numpy as np
+import operator
+import random 
+import itertools
+
+# Construimos una funcion que comprueba si un vector es de coordenadas enteras
+def entero(s):
+    a = map(lambda x: x == int(x),s)
+    return(all(a))
+    
+# Dado un grafo G y un subcojunto de aristas F con capacidad, construimos una funcion que nos de la suma de las capacidades de F.
+def totalcap(G,F,capacity = 'weight'):
+    cap = [G[e[0]][e[1]][capacity] for e in F]
+    val = sum(cap)
+    return(val)
+
+# Definimos la funcion delta, que dado un conjunto U de vertices y una grafo G que los contenga, nos devuelve las aristas de G que tienen un unico extremo en U.
+def delta(G,U):
+    ejes = set()
+    for l, nbrs in ((n, G[n]) for n in U):
+        ejes.update((l, y) if l<y else (y,l) for y in nbrs if y not in U)
+    return(ejes)
+    
+# Por propósitos teóricos, aunque no la utilicemos en nuestro algoritmo, definimos una funcion que comprueba si una solucion x esta en el poliedro del matching.
+def compruebapoli(G,x):
+    H = nx.Graph()
+    for i, e in enumerate(G.edges()):
+        H.add_edge(e[0],e[1],weight = x[i])
+    for v in H.nodes():
+        val = sum([H[e[0]][e[1]]['weight'] for e in H.edges(v)])
+        if (val > 1):
+            return("No está dentro por los vértices") 
+    conj = set()
+    for i in range(3,len(G)+1,2):
+        conj.update(set(itertools.combinations(set(G.nodes()), i)))
+    for s in conj:
+        card = (len(s)-1)/2
+        M = H.subgraph(s)
+        val = totalcap(M,M.edges())
+        if (val > card):
+            return("No está dentro del poliedro por los odds")
+    return("Está dentro")
+# Definimos algunas funciones para ayudarnos a escribir las restricciones y la funcion objetivo.
+def suma(S):
+	s = 0
+    for (a,b) in S:
+        if a<b:
+            s = s + x[a,b]
+		else:
+            s = s + x[b,a]
+        return(s)
+def objind(c):
+    s = 0
+	for i,e in enumerate(G.edges()):
+    	s = s + c[i]*x[e[0],e[1]] 
+    return(s)
+\end{pythone}
 
 \subsection{Método de Padberg-Rao modificado}
 En primer lugar presentamos el código para la implementación del método de Padberg-Rao con las modificaciones de Letchford, Reinelt y Thesis. Definimos una función que tiene como entrada un grafo $G$ y un vector $x$ y como salida una desigualdad válida del tipo blossom. 
 \begin{pythone}
-import networkx as nx
-import numpy as np
+# A continuacion vamos a programar en Python 3.7 el metodo de Padberg-Rao modificado para, dado un grafo G y un vector x, obtener una desigualdad del poliedro del matching -en caso de que exista- que sea violada por x.
+
+from funcionaux import *
 
 def padraomod(G,x):
     # Para aplicar el algoritmo, consideramos el vector de pesos
@@ -1129,18 +1191,10 @@ def padraomod(G,x):
     H = nx.Graph()
     for i, e in enumerate(G.edges()):
         H.add_edge(e[0],e[1],capacity = c[i], weight = x[i])
-    
-    
-    
-    # Definimos una funcion que nos de la suma de los pesos de un conjunto de aristas
-    def coste(G,S):
-        s = 0
-        for e in S:
-            s = s + G[e[0]][e[1]]['weight']
-        return(s)
         
     # A continuacion, consideramos el arbol de Gomory-Hu para el grafo H
     GomHu = nx.gomory_hu_tree(H, capacity = 'capacity')
+    
     
     # Consideramos ahora el conjunto de corte asociado a cada arista del arbol y para cada uno de ellos buscamos una desigualdad deseada.
     for e in GomHu.edges():
@@ -1150,201 +1204,247 @@ def padraomod(G,x):
         U,V = list(nx.connected_components(Te))
         
         # Calculamos las arista del conjunto de cortes
-        cutset = set()
-        for l, nbrs in ((n, H[n]) for n in U):
-            cutset.update((l, y) for y in nbrs if y in V)
+        cutset = delta(H,U)
         
-        # Tenemos que encontrar ahora el conjunto F con las propiedades deseadas. 
-        Fe = set([e for e in cutset if 
-        1- H[e[0]][e[1]]['weight'] < H[e[0]][e[1]]['weight']])
+        #  Encontramos ahora el conjunto F con las propiedades deseadas 
+        Fe = set([e for e in cutset if 1- H[e[0]][e[1]]['weight'] < 
+              H[e[0]][e[1]]['weight']])
         
         # Si el conjunto anterior verifica la propiedad de que la suma de los cardinales sea impar, es el optimo. En otro caso obtenemos el optimo mediante el siguiente metodo
-        if ((len(cutset) + len(Fe)) % 2 == 0):
+        if ((len(U) + len(Fe)) % 2 == 0):
             def term(e):
                 s = max(H[e[0]][e[1]]['weight'],
-                	1-H[e[0]][e[1]]['weight'])
+              	  1-H[e[0]][e[1]]['weight'])
                 t = min(H[e[0]][e[1]]['weight'],
-                	1-H[e[0]][e[1]]['weight'])
+             	   1-H[e[0]][e[1]]['weight'])
                 return(s-t)
-                         
             Faux = sorted([(term(e),e) for e in cutset])
             fp = set()
             fp.add(Faux[0][1])
             Fe = Fe.symmetric_difference(fp)
         
-        # Finalmente, comprobamos si se viola la desigualdad y en dicho caso hemos acabado y devolvemos.
-        des = coste(H,cutset.difference(Fe)) + len(Fe)
-        	 - coste(H,Fe)
+        # Finalmente, comprobamos si se viola la desigualdad y, en dicho caso, hemos acabado y devolvemos.
+        des = totalcap(H,cutset.difference(Fe)) + len(Fe) - totalcap(H,Fe)
         if (des<1):
             return((cutset,Fe))
-        
-    # Notemos que dado que este algoritmo es correcto, si x es una solucion fraccional necesariamente ha de encontrarse algun plano de corte.
+          
     return()
 \end{pythone}
-
+\newpage
 \subsection{Algoritmo de Grötschel-Holland}
 A continuación presentamos el código con el cuál vamos a resolver el problema del emparejamiento biobjetivo mediante proramación lineal utilizando una versión modificada del algoritmo de Grötschel-Holland. 
 \begin{pythone}
-# El siguiente codigo genera una solucion y valor objetivo asociado
-# para cada elemento de un mallado de valores de lambda, de manera que
-# podemos observar como varian ambos en funcion de dicho parametro.
+# En este codigo se encuentra el algoritmo de Groetschel-Holland para resolver el problema biobjetivo del emparejamiento con funciones de coste c1, c2 y parametro lambda, ademas de devolvernos el tiempo de ejecucion.
 
-# A continuacion pasamos a programar el algoritmo de Groetschel-Holland 
-# para resolver el problema biobjetivo del emparejamiento con funciones
-# de coste c1, c2 y parametro lambda.
 
 from gurobipy import *
-import numpy as np
-import itertools 
-import operator
-import networkx as nx
-import random 
-0,1,2,3,4,5,16,20,23,24,
+from padbergmod import *
+from funcionaux import *
+import time
 
-# DATOS DE ENTRADA
-##############################################################################
-
-# Establecemos una semilla predeterminada para asegurar la reproducibilidad
-# de los resultados
-np.random.seed(1234)
-random.seed(1234)
-
-# Construimos un grafo aleatorio
-mat = nx.gnp_random_graph(200,0.3)
-
-# Numerando los vertices a partir de 0, obtenemos la matriz de adyacencia
-# del grafo como un array 
-#A = nx.convert_matrix.to_numpy_matrix(mat)
-A = np.loadtxt(open("file_name.csv", "rb"), delimiter=",", skiprows=0)
-# Numero de vertices
-N = len(A)
-
-# Sea M el numero de puntos en el que queremos dividir el intervalo [0,1],
-# es decir, los M+1 un puntos que forman la malla de valores de lambda para
-# los cuales vamos a resolver el problema.
-M = 5
-lambdas = np.array(range(0,M+1,1))/M
-
-# FUNCIONES 
-##############################################################################
-
-# Construimos algunas funciones que nos resultaran utiles.
-
-# Comencemos creando el conjunto de indices que vamos a utilizar
-# para las variables
-def indices(a):
-    s = []
-    for i in range(N):
-        for j in range(i+1,N):
-            if (a[i,j] == 1):
-                s.append((i,j))
-    return(s)
-
-# Calculamos una vez el conjunto de indices, que no es mas que las aristas
-# del grafo ordendas de forma lexicografica y sin repeticiciones.
-IND = indices(A)
-
-# Construimos las funciones de coste. En este caso las generamos de forma
-# aleatoria.
-c1 = np.random.rand(len(IND))
-c2 = np.random.rand(len(IND))
-    
-# Definimos la funcion delta, que nos da los ejes adyacentes a un vertice dado.
-def delta(v,A):
-    s = [x for x in indices(A) if x[0] == v or x[1] == v]
-    return(s)
-
-# A continuacion, definimos la funcion gamma, que dado un conjunto
-# de vertices, debe devolvernos las aristas que tienen extremos dentro
-# de dicho conjunto.
-def gamma(S,A):
-    m = []
-    s = []
-    for v in S:
-        s = s + delta(v,A)
-    seti = set(s)
-    for (a,b) in seti:
-        if (a in S and b in S):
-            m.append((a,b))
-    return(m)
-    
-# Definimos la operacion diferencia de conjuntos
-def diff(conj1, conj2):
-        conj2 = set(conj2)
-        return [item for item in conj1 if item not in conj2]
-    
-# Definimos una funcion combinatoria para obtener los conjuntos impares
-# de vertices.
-def subconj(N,m):
-    S = list(range(N))
-    return list(itertools.combinations(S, m))
-
-# Calculamos los conjuntos impares que dan lugar a restricciones
-#IMPARES = []
-#for i in range(3,N,2):
-#    IMPARES = IMPARES + subconj(N,i)
-
-# Construimos una funcion que comprueba si un vector es de coordenadas enteras
-def entero(s):
-    a = map(lambda x: x == int(x),s)
-    return(all(a))
-
-# OPTIMIZACION
-###############################################################################
-    
-# Pasamos a definir la funcion optimiza, que resuelve el problema del
-# emparejamiento parametro con parametros
-# lamb: Valor de lambda
+# Pasamos a definir la funcion optimiza, que resuelve el problema del emparejamiento parametro con parametros
+# G: Un grafo.
+# lamb: Valor de lambda.
 # c1,c2: Funciones de coste
-# indices: Conjunto de aristas que definen el problema
 
-def optimiza(lamb, c1 = c1, c2 = c2, indices = IND):
+def optimiza(G, c1, c2, lamb = 0):
+    # Calculamos el tiempo donde comienza el algoritmo
+    start = time.time()
     
-    # Paso 1: En primer lugar deberiamos seleccionar un conjunto de aristas
-    # relativamente pequeño para iniciar el algoritmo, pero dado que ya de por
-    # si cuesta lidiar con grafos relativamente grandes, podemos permitirnos
-    # utilizar la cantidad total de aristas, ya que estas crecen a lo sumo de 
-    # forma cuadratica con respecto los vertices. El problema principal es el
-    # de las restricciones, que sabemos con certeza que crecen de manera
-    # exponencial respecto a los vertices. 
+    # Paso 1: En primer lugar deberiamos seleccionar un conjunto de aristas relativamente pequeño para iniciar el algoritmo, pero dado que ya de por si cuesta lidiar con grafos relativamente grandes, podemos permitirnos utilizar la cantidad total de aristas, ya que estas crecen a lo sumo de forma cuadratica con respecto los vertices. El problema principal es el de las restricciones, que sabemos con certeza que crecen de manera exponencial respecto a los vertices. 
     
-    # Al utilizar todos las aristas, si la solucion optima de algun subproblema
-    # es de coordenadas enteras, entonces es optima global y, por tanto, no es
-    # necesario añadir rutinas para acutalizar el conjunto de aristas.
+    # Al utilizar todos las aristas, si la solucion optima de algun subproblema es de coordenadas enteras, entonces es optima global y, por tanto, no es necesario añadir rutinas para acutalizar el conjunto de aristas.
     
-    # Paso 2: En este caso, Holland y Groetschel nos indican que utilicemos un 
-    # algoritmo voraz para encontrar una solucion inicial, pero para eso
-    # Gurobi tiene implementado un presolve, asi que pasamos a crear el modelo
+    # Paso 2: En este caso, Holland y Groetschel nos indican que utilicemos un algoritmo voraz para encontrar una solucion inicial, pero para eso Gurobi tiene implementado un presolve, asi que pasamos a crear el modelo
     m = Model("biobjetivo");
-
+    
+    # Algunos parametros del grafo
+    N = len(G)
+    E = len(G.edges())
+    
     # Creamos las variables. El tipo puede ser 
     # 'C' para continuas, 'B' para binarias, 'I' para enteras,
     # 'S' para semicontinuas, or 'N' for semienteras.
     # El parametro lb nos da una cota inferior a las variables.
-    x = m.addVars(IND, lb = 0, vtype='C', name = "x");
+    x = m.addVars(list(G.edges()), lb = 0, vtype='C', 
+    	name = "x");
     
-    # Definimos algunas funciones para ayudarnos a escribir las restricciones
-    # asi como la funcion objetivo de manera comoda y general.
-    def suma(S):
-        s = 0
-        for (a,b) in S:
-            if a<b:
-                s = s + x[a,b]
-            else:
-                s = s + x[b,a]
-        return(s)
+    # Dado que las funciones objetivo entran como vecotres o arrays, utilizamos algunas funciones auxiliares para escribirlas en funcion de las variables del modelo.      
+    cos1 = objind(c1)
+    cos2 = objind(c2)
+    
+    # Definimos el sentido de la optimizacion.
+    m.ModelSense = GRB.MINIMIZE
+    
+    # Añadimos la funcion objetivo
+    m.setObjective((1-lamb)*cos1+lamb*cos2); 
+    
+    # Generamos el primer bloque de restricciones.
+    for v in G:
+        m.addConstr(suma(delta(G,[v])) == 1, name = "delta" + str(v));
+    
+    # Paso 4: Resolvemos el problema.
+    m.optimize()
+    
+    # Paso 5, 6: Comprobamos si la solucion es entera y, en caso de no serlo, utilizamos las distintas heuristicas y metodos para encontrar planos de corte.
         
-    def objind(c):
-        s = 0
-        for i in range(len(IND)):
-            (a,b) = IND[i]
-            s = s + c[i]*x[a,b] 
-        return(s)
+    # Obtenemos el vector solucion
+    sols = [m.getVars()[i].X for i in range(E)]
     
-    # De esta forma, generamos las dos funciones objetivo. Notemos que 
-    # escribimos directamente los costes sobre las variables aristas
-    # del modelo, pues si una arista no esta en el grafo, no tiene sentido
-    # generar una variable para ella.       
+    # Guardamos el numero de iteraciones del simplex que hemos utilizado en la anterior optimizacion.
+    itera = m.IterCount
+    
+   	# Si sols no es un vector de coordenadas enteras, tenemos que buscar planos de corte adecuados y reoptimizar.
+    while (not (entero(sols))):     
+        # Construimos un grafo auxiliar con capacidades sols.
+        M = nx.Graph()
+        for i, e in enumerate(G.edges()):
+            M.add_edge(e[0],e[1], weight = sols[i])
+        
+        # Paso 7.1, 7.2: Vamos a programar las heuristica para detectar planos de corte.
+        
+        # Fijamos un parametro epsilon de tolerancia para la segunda heuristica. Tal y como Groetschel y Holland en su trabajo, tomamos 0.3. 
+        epsilon = 0.3 
+        
+        # Obtenemos las aristas con variables asociadas en
+        aristasN = [e for e in M.edges() if totalcap(M,[e])>0]
+        aristasE = [e for e in M.edges() if totalcap(M,[e])>epsilon]
+            
+        # Construimos nuevos grafos con estas aristas.
+        GN = nx.Graph()
+        GN.add_edges_from(aristasN)
+        
+        GE = nx.Graph()
+        GE.add_edges_from(aristasE)
+        
+        # Buscamos las componentes conexas que tengan cardinalidad impar
+        conN = [a for a in list(nx.connected_components(GN)) if len(a) %2 == 1]
+        
+        # Tenemos que tener en cuenta que los planos de corte que proporciona la segunda heuristica pueden no ser utiles, ya que nuestra solucion no tiene por que violarlos necesariamente y seria un esfuerzo innecesario volver a reoptimizar para nada, por lo que solo nos quedamos con dichas componentes. Definimos previamente una funcion que nos haga dicha comprobacion
+        def comprueba(nodos):
+            E = GE.subgraph(nodos).edges()
+            suma = totalcap(M,E)
+            card = (len(nodos)-1)/2
+            return(suma <= card)
+        
+        # Generamos las componentes adecuadas
+        conE = [a for a in list(nx.connected_components(GE)) if len(a) %2 == 1 and comprueba(a)]
+
+        # Si las lista con es no vacia, hemos encontrado planos de cortes, los añadimos a nuestro modelo y volvemos a comprobar. 
+        if (conN != []):
+            for a in conN:
+                S = list(GN.edges(a))
+                card = len(a)-1
+                m.addConstr(suma(S) <= card/2) 
+            m.optimize()
+            print("Hemos usado H1")
+        elif (conE != []):
+            for a in conE:
+                S = list(G.edges(a))
+                card = len(a)-1
+                m.addConstr(suma(S) <= card/2) 
+            m.optimize()
+            print("Hemos usado H2")
+        # Paso 7.3: En el caso de que las heuristicas no hayan funcionado, construimos un plano de corte mediante el procedimiento de Padberg y Rao.
+        else:        
+            W,F = padraomod(nx.Graph(G),sols)
+            m.addConstr(suma(W.difference(F))-suma(F) >= 1-len(F))
+            m.optimize()
+            print("Hemos usado Padberg-Rao")
+        # Actualizamos el vector solucion y las iteraciones.
+        sols = [m.getVars()[i].X for i in range(E)]
+        itera = itera + m.IterCount
+    end = time.time()
+    return(m, itera, end-start)
+\end{pythone}
+\newpage
+\subsection{Método del simplex sobre el poliedro del matching}
+El siguiente código veremos una forma sencilla de programar en Python (y resolver con Gurobi) el problema del emparajamiento usando el método del simplex sobre el poliedro del matching.
+\begin{pythone}
+# En este codigo resolvemos el problema biobjetivo del emparejamiento con funciones de coste c1, c2 y parametro lambda, utilizando el simplex sobre el poliedro del matching tal y como lo describio Edmonds.
+
+from gurobipy import *
+from funcionaux import *
+import time
+
+
+# Pasamos a definir la funcion entero, que resuelve el problema del emparejamiento con parametros
+# G: Un grafo.
+# lamb: Valor de lambda.
+# c1,c2: Funciones de coste
+
+def matching(G, c1, c2, lamb = 0):
+    
+    start = time.time()
+    
+    # Creamos el modelo.
+    m = Model("biobjetivo");
+    
+    
+    # Algunos parametros del grafo
+    N = len(G)
+    E = len(G.edges())
+    
+    # Creamos las variables.
+    x = m.addVars(list(G.edges()), vtype='C', name = "x");
+    
+    # De esta forma, generamos las dos funciones objetivo y procedemos de manera analoga a los codigos anteriores.  
+    cos1 = objind(c1)
+    cos2 = objind(c2)
+    
+    # Definimos el sentido de la optimizacion.
+    m.ModelSense = GRB.MINIMIZE
+    
+    # Añadimos la funcion objetivo
+    m.setObjective((1-lamb)*cos1+lamb*cos2); 
+    
+    # Generamos las restricciones del problema entero
+    for v in G:
+        m.addConstr(suma(delta(G,[v])) == 1, name = "delta" + str(v));
+        
+    for i in range(3,len(G)+1,2):
+        conj1 = set(itertools.combinations(set(G.nodes()), i))
+        for a in conj1:
+            S = G.subgraph(a)
+            m.addConstr(suma(set(S.edges)) <= (len(a)-1)/2)
+    
+    # Resolvemos el prolbema.
+    m.optimize()
+    
+    # Guardamos el numero de iteraciones y el tiempo en el que termina el algoritmo
+    itera = m.IterCount
+    end = time.time()
+    return(m, itera, end-start)
+\end{pythone}
+\subsection{Resolución como problema de Programación Entera}
+Para tener un tercer método con el que comparar, también realizamos una implementación del problema del matching en su formulación como problema de Programación Entera.
+\begin{pythone}
+# En este codigo resolvemos con Gurobi el problema biobjetivo del emparejamiento con funciones de coste c1, c2 y parametro lambda utlizando la formulacion del problema como problema de Progrmacion Entera.
+
+from gurobipy import *
+from funcionaux import *
+import time
+
+# Pasamos a definir la funcion entero, que resuelve el problema del emparejamiento parametro con parametros
+# G: Un grafo.
+# lamb: Valor de lambda.
+# c1,c2: Funciones de coste
+
+def integer(G, c1, c2, lamb = 0):
+ 	# Comenzamos capturando el tiempo de inicio   
+    start = time.time()
+    
+    # Creamos el modelo
+    m = Model("biobjetivo");
+   
+    # Algunos parametros del grafo
+    N = len(G)
+    E = len(G.edges())
+    
+    # Creamos las variables.
+    x = m.addVars(list(G.edges()), vtype='B', name = "x");
+    
+    # De esta forma, generamos las dos funciones objetivo. Notemos que escribimos directamente los costes sobre las variables aristas  del modelo, pues si una arista no esta en el grafo, no tiene sentido generar una variable para ella.       
     cos1 = objind(c1)
     cos2 = objind(c2)
     
@@ -1354,93 +1454,147 @@ def optimiza(lamb, c1 = c1, c2 = c2, indices = IND):
     # Añadimos la funcion objetivo
     m.setObjective((1-lamb)*cos1+lamb*cos2); 
     
-    # Generamos el primer bloque de restricciones.
-    for i in range(N):
-        m.addConstr(suma(delta(i,A)) == 1, name = "delta" + str(i));
-        
-    # Paso 4: Resolvemos el prolbema.
+    # Generamos las restricciones del problema entero
+    for v in G:
+        m.addConstr(suma(delta(G,[v])) == 1, name = "delta" + str(v));
+    
+    # Resolvemos el prolbema.
     m.optimize()
     
-    # Paso 5: Comprobamos si la solucion es entera y, en caso de no serlo,
-    # utilizamos las distintas heuristicas y metodos para encontrar
-    # planos de corte.
+    # Guardamos el numero de iteraciones y de exploraciones de branch and cut
+    itera = m.IterCount
+    bac = m.NodeCount
     
-    # Obtenemos el vector de soluciones
-    sols = [m.getVars()[i].X for i in range(len(IND))]
-    num = 0
-    while (not (entero(sols)) and num < 5):        
-        num = num +1
-        
-        # Paso 7.1: Vamos a programar la primera heuristica para detectar 
-        # planos de corte.
-        
-        # Obtenemos las aristas con coste no nulo.
-        aristas = [IND[i] for i in range(len(sols)) if sols[i]>0]
-
-        # Construimos el grafo en el que solo estan las aristas con solcion 
-        # no nula
-        G = nx.Graph()
-        G.add_edges_from(aristas)
-        
-        # Buscamos las componentes conexas que tengan cardinalidad impar
-        con = [x for x in list(nx.connected_components(G)) if len(x) % 2 == 1 ]
-        print(con)
-        # Si las lista con es no vacia, hemos encontrado planos de cortes, los
-        # añadimos a nuestro modelo y volvemos a comprobar. En otro caso, 
-        # utilizamos la segunda heuristica.
-        if (con != []):
-            for a in con:
-                S = list(G.edges(a))
-                card = len(a)-1
-                m.addConstr(suma(S) <= card/2) 
-            m.optimize()
-       
-        # Paso 7.2: En el caso de que no hayamos encontrado dicho plano de
-        # corte usando la heurisitca anterior, utilizamos esta segunda. Fijamos
-        # un parametro epsilon de tolerancia
-        epsilon = 0.
-
-        
-        
-         else:
-            
-        
-        sols = [m.getVars()[i].X for i in range(len(IND))]
-        
-            
-        
-            
-
-    
-#    # Imponemos las condiciones sobre los conjuntos impares.
-#    for a in IMPARES:
-
-#    print(m.getVars())
-#    # En el caso que decidamos utilizar una base inicial ejecutamos
-#    if (vbas != []):
-#        m.update()
-#        for i in range(len(vbas)):
-#            m.getVars()[i].setAttr("VBasis",vbas[i])
-#        for i in range(len(cbas)):
-#            m.getConstrs()[i].setAttr("CBasis",cbas[i])
-#    
-#    # Resolvemos el modelo
-#    m.optimize()
-    print(entero(sols))
-    return(m)
-
-modelo = optimiza(0)
-#    
+    end = time.time()
+    return(m, itera, bac, end-start)
 \end{pythone}
-\begin{tikzpicture}[scale=5,
-    vertex/.style={draw,circle},
-    arc/.style={draw=blue!#10,thick,->},
-    arc label/.style={fill=white, font=\tiny, inner sep=1pt}
-    ]
-    \foreach [count=\i] \coord in {(0.809,0.588),(0.309,0.951),(-0.309,0.951),(-0.809,0.588),(-1.,0.),(-0.809,-0.588),(-0.309,-0.951),(0.309,-0.951),(0.809,-0.588),(1.,0.)}{
-        \node[vertex] (p\i) at \coord {\i};
-    }
-\end{tikzpicture}
+\newpage
+\subsection{Grafos binarios}
+En el siguiente código vamos a escribir una función que dado que nos compare sobre grafos generados aleatoriamente con una cantidad fija de vértices los métodos que hemos programados anteriormente. Para generar los grafos aletoriamente utilizamos el comando de la librería \textbf{networkx}\\
+\begin{pythone}
+networkx.gnp_random_graph(M,p)
+\end{pythone}
+Esta librería de grafos sobre la que hemos apoyado parte del código utiliza el método de Erdös-Rényi, introducido por dichos matemáticos húngaros en 1959, para generar grafos aleatorios con dos parámetros. El concepto es el siguiente: Supongamos que tenemos una red con $M$ nodos distribuidos aleatoriamente y desconectados. Ahora cada uno de las posibles aristas del grafo completo $K_M$ se añade a nuestra red de manera independiente con probabilidad $p$. Naturalmente cuanto mayor sea $p$ más probable es que el grafo resultante sea \textit{denso}. Si $p$ es demasiado pequeño puede ocurrir que nuestro grafo sea diconexo. 
+\\
+\begin{pythone}
+# A continuacion generamos grafos alaetorios y ponemos a prueba los metodos
+# y comparamos resultados.
+
+from holland import *
+from integer import *
+from matching import *
+import networkx as nx
+import numpy as np
+import time
+import pandas as pd
+
+# Establecemos una semilla predeterminada para asegurar la reproducibilidad
+# de los resultados
+
+# La siguiente funcion nos devuelve el tiempo e iteraciones medias de los 
+# distintos metodos que hemos programado para funciones y grafos aleatorios
+# con un numero de nodos N y utilizando I casos.
+
+def analisis(N, I, par1 = 0, par2 = 0, lamb = 0):
+    iter0, iter1, iter2 = 0, 0, 0
+    t0, t1, t2 = 0, 0, 0
+    bcut = 0
+    aristas = 0
+    for i in range(I):
+        #Construimos un grafo aleatorio
+        H = nx.gnp_random_graph(N,0.5)
+        E = len(H.edges())
+        
+        # Construimos funciones de coste aleatorias
+        c1 = np.random.rand(E)
+        c2 = np.random.rand(E)
+        
+        # Optimizamos utilizando Groetschel-Holland
+        modelo0, simplex0, tiempo0 = optimiza(H,c1,c2,lamb)
+        
+        # Actualizamos los parametros
+        iter0 = iter0 + simplex0
+        t0 = t0 + tiempo0
+        aristas = aristas + E
+        # Si hemos activado la Programacio Entera
+        if (par1 == 1):
+            # Optimizamos usando Programacion Entera
+
+            modelo1, simplex1, bcut1, tiempo1 = integer(H,c1,c2,lamb)
+
+            # Actualizamos los parametros
+            iter1 = iter1 + simplex1
+            t1 = t1 + tiempo1
+            bcut = bcut + bcut1
+        
+        if (par2 == 1):
+            # Utilizamos el simplex normal
+            modelo2, simplex2, tiempo2 = matching(H,c1,c2,lamb)
+            
+            # Actualizamos los parametros
+            iter2 = iter2 + simplex2
+            t2 = t2 + tiempo2
+        
+    return([N, I, aristas/I, iter0/I,  iter1/I, iter2/I,  
+            t0/I, t1/I, t2/I, bcut/I])
+      
+\end{pythone}
+\newpage 
+\section{Resultados computacionales}
+A continuación presentamos los resultados computacionales obtenidos. En la siguiente tabla tenemos las siguientes variables 
+\begin{itemize}
+\item $N$ es el numero de vértices considerados.
+\item $I$ es el número de grafos aleatorios que generamos, es decir, los casos que estudiamos para cada $N$.
+\item $Var$ es el número medio de aristas que tienen los grafos considerados y, por tanto, el número medio de variables que tienen los problemas.
+\item $S.GH$, $S.PE$ y $S.Match$ es el número medio de iteraciones del simplex que se utilizan respectivamente durante el método de Grötschel-Holland, usando Programación Entera y usando el simplex sobre la formulación del poliedro del matching.
+\item Análogamente $T.GH$, $T.PE$ y $T.Match$ son los tiempos medios en los que cada método ha resuelto los correspondientes problemas.
+\item $Exp.B.B$ es el número de nodos de branch and cut explorados cuando utilizamos Programación Entera.
+\end{itemize} 
+Una vez que el tiempo medio necesario para resolver un problema es superior a 30 segundos, dejamos de utilizar dicho método y todos los valores pasan a ser $0$.º
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrrrrrr}
+  \hline
+N & I & Var & S.GH & S.PE & S.Match & T.GH & T.PE & T.Match & Exp.B.B \\ 
+  \hline
+ 10 &  10 & 21.40 & 4.90 & 5.60 & 8.50 & 0.01 & 0.02 & 0.04 & 0.10 \\ 
+   16 &  10 & 59.40 & 8.90 & 13.90 & 17.80 & 0.01 & 0.03 & 3.34 & 0.00 \\ 
+ 18 &   5 & 75.60 & 13.40 & 17.60 & 20.20 & 0.02 & 0.03 & 17.46 & 0.20 \\ 
+ \hline
+18 &   10 & 76.00 & 11.50 & 16.00 & 0.00 & 0.02 & 0.03 & 0.00 & 0.00 \\ 
+   24 &   10 & 139.00 & 20.00 & 25.50 & 0.00 & 0.02 & 0.03 & 0.00 & 0.00 \\ 
+   30 &   10 & 225.00 & 19.00 & 26.50 & 0.00 & 0.03 & 0.04 & 0.00 & 0.00 \\ 
+   40 &   10 & 389.00 & 36.50 & 43.50 & 0.00 & 0.04 & 0.05 & 0.00 & 0.50 \\ 
+    60 &   10 & 886.20 & 56.40 & 62.00 & 0.00 & 0.10 & 0.11 & 0.00 & 0.40 \\ 
+   70 &   10 & 1193.00 & 67.00 & 72.60 & 0.00 & 0.12 & 0.12 & 0.00 & 0.40 \\ 
+   80 &   10 & 1587.00 & 77.40 & 83.80 & 0.00 & 0.16 & 0.15 & 0.00 & 0.00 \\ 
+  100 &   10 & 2469.80 & 102.80 & 108.80 & 0.00 & 0.24 & 0.22 & 0.00 & 0.40 \\ 
+120 &   10 & 3551.80 & 109.20 & 113.60 & 0.00 & 0.33 & 0.32 & 0.00 & 0.00 \\ 
+  150 &   10 & 5551.20 & 153.40 & 160.60 & 0.00 & 0.56 & 0.45 & 0.00 & 0.00 \\ 
+  170 &   10 & 7164.60 & 167.80 & 174.40 & 0.00 & 0.83 & 0.60 & 0.00 & 0.20 \\ 
+  200 &   10 & 10034.00 & 201.80 & 204.00 & 0.00 & 1.31 & 0.80 & 0.00 & 0.20 \\ 
+  \hline
+ \end{tabular}
+ \end{table}
+\begin{table}[h]
+\centering
+\begin{tabular}{rrrrrrrrrr}
+  \hline
+N & I & Var & S.GH & S.PE & S.Match & T.GH & T.PE & T.Match & Exp.B.B \\ 
+  \hline 
+  220 &   5 & 12033.00 & 210.40 & 219.40 & 0.00 & 1.50 & 0.93 & 0.00 & 0.00 \\ 
+  250 &   5 & 15529.20 & 253.80 & 258.00 & 0.00 & 2.65 & 1.28 & 0.00 & 0.40 \\ 
+  270 &   5 & 18139.40 & 286.80 & 291.40 & 0.00 & 4.09 & 1.55 & 0.00 & 0.60 \\ 
+290 &   5 & 20955.60 & 290.00 & 300.20 & 0.00 & 4.67 & 1.73 & 0.00 & 0.60 \\ 
+  300 &   5 & 22416.80 & 298.00 & 306.80 & 0.00 & 4.75 & 1.78 & 0.00 & 0.40 \\ 
+320 &   5 & 25466.80 & 345.40 & 398.00 & 0.00 & 10.20 & 2.12 & 0.00 & 0.60\\
+  350 &   5 & 30601.80 & 385.80 & 390.80 & 0.00 & 10.84 & 2.51 & 0.00 & 0.60 \\
+  370 &   5 & 34050.60 & 387.20 & 399.00 & 0.00 & 11.00 & 2.73 & 0.00 & 0.40\\
+  400 &   5 & 39902.80 & 426.60 & 432.00 & 0.00 & 17.09 & 3.44 & 0.00 & 0.60 \\ 
+   \hline
+ 
+\end{tabular}
+\end{table}
 
 \begin{thebibliography}{9}
 \bibitem{edmond} 
