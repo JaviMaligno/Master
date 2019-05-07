@@ -1,57 +1,21 @@
-# Comenzamos el codigo para resolver el problema del matching mediante 
-# resolucion directa del problema de Programacion Lineal.
-# Utilizamos Python 3.7 como interfaz para el software Gurobi 8.1.1.
-
-# El siguiente codigo genera una solucion y valor objetivo asociado
-# para cada elemento de un mallado de valores de lambda, de manera que
-# podemos observar como varian ambos en funcion de dicho parametro.
-
-# A continuacion pasamos a programar el algoritmo de Groetschel-Holland 
+# En este codigo se encuentra el algoritmo de Groetschel-Holland 
 # para resolver el problema biobjetivo del emparejamiento con funciones
 # de coste c1, c2 y parametro lambda.
 
 from gurobipy import *
 from padbergmod import *
 from funcionaux import *
+import time
 
-# DATOS DE ENTRADA
-#######################################################
-
-# Establecemos una semilla predeterminada para asegurar la reproducibilidad
-# de los resultados
-#np.random.seed(1234)
-#random.seed(1234)
-
-# Construimos un grafo aleatorio
-H = nx.gnp_random_graph(20,0.5)
-
-# Mediante el siguiente comando podemos obtener la matriz de adyacencias
-# del grafo anterior
-A = nx.convert_matrix.to_numpy_matrix(H)
-
-# Ademas, podemos tener una representacion grafica del mismo
-nx.draw_circular(H)
-
-# Numero de aristas y vértices
-N = len(H)
-E = len(H.edges())
-
-# Construimos las funciones de coste. En este caso las generamos de forma
-# aleatoria.
-c1 = np.random.rand(E)
-c2 = np.random.rand(E)
-
-
-# OPTIMIZACION
-########################################################
-    
 # Pasamos a definir la funcion optimiza, que resuelve el problema del
 # emparejamiento parametro con parametros
 # G: Un grafo.
 # lamb: Valor de lambda.
 # c1,c2: Funciones de coste
 
-def optimiza(G, lamb = 0, c1 = c1, c2 = c2):
+def optimiza(G, c1, c2, lamb = 0):
+    
+    start = time.time()
     
     # Paso 1: En primer lugar deberiamos seleccionar un conjunto de aristas
     # relativamente pequeño para iniciar el algoritmo, pero dado que ya de por
@@ -69,7 +33,10 @@ def optimiza(G, lamb = 0, c1 = c1, c2 = c2):
     # algoritmo voraz para encontrar una solucion inicial, pero para eso
     # Gurobi tiene implementado un presolve, asi que pasamos a crear el modelo
     m = Model("biobjetivo");
-
+    
+    # Algunos parametros del grafo
+    N = len(G)
+    E = len(G.edges())
     # Creamos las variables. El tipo puede ser 
     # 'C' para continuas, 'B' para binarias, 'I' para enteras,
     # 'S' para semicontinuas, or 'N' for semienteras.
@@ -107,7 +74,7 @@ def optimiza(G, lamb = 0, c1 = c1, c2 = c2):
     m.setObjective((1-lamb)*cos1+lamb*cos2); 
     
     # Generamos el primer bloque de restricciones.
-    for v in H:
+    for v in G:
         m.addConstr(suma(delta(G,[v])) == 1, name = "delta" + str(v));
     
     # Dejamos comentado los comandos que añaden el número exponencial de
@@ -122,7 +89,9 @@ def optimiza(G, lamb = 0, c1 = c1, c2 = c2):
     
     # Obtenemos el vector de soluciones
     sols = [m.getVars()[i].X for i in range(E)]
-    entero(sols)
+    # Guardamos el numero de iteraciones
+    itera = m.IterCount
+    
     while (not (entero(sols))):     
         # Construimos un grafo auxiliar con capacidades sols.
         M = nx.Graph()
@@ -158,7 +127,7 @@ def optimiza(G, lamb = 0, c1 = c1, c2 = c2):
         # que nos haga dicha comprobacion
         def comprueba(nodos):
             E = GE.subgraph(nodos).edges()
-            suma = totalcap(H,E)
+            suma = totalcap(M,E)
             card = (len(nodos)-1)/2
             return(suma <= card)
         
@@ -193,8 +162,6 @@ def optimiza(G, lamb = 0, c1 = c1, c2 = c2):
             m.optimize()
             print("Hemos usado Padberg-Rao")
         sols = [m.getVars()[i].X for i in range(E)]
-    return(m)
-
-modelo = optimiza(H,0)
-sols = [1-modelo.getVars()[i].X for i in range(E)]
-nx.draw_circular(H,edge_color = sols)
+        itera = itera + m.IterCount
+    end = time.time()
+    return(m, itera, end-start)

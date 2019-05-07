@@ -32,7 +32,7 @@ def delta(G,U):
 # a definir una funcion que comprueba si una solucion x esta en el poliedro
 # del matching de una grafo G mediante la comprobacion del numero exponencial
 # de las desigualdades sobre los conjuntos impares.
-def comprueba(G,x):
+def compruebapoli(G,x):
     H = nx.Graph()
     for i, e in enumerate(G.edges()):
         H.add_edge(e[0],e[1],weight = x[i])
@@ -41,7 +41,7 @@ def comprueba(G,x):
         if (val > 1):
             return("No está dentro por los vértices") 
     conj = set()
-    for i in range(3,len(G),2):
+    for i in range(3,len(G)+1,2):
         conj.update(set(itertools.combinations(set(G.nodes()), i)))
     for s in conj:
         card = (len(s)-1)/2

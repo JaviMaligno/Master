@@ -3,7 +3,6 @@
 # del poliedro del matching -en caso de que exista- que sea violada por x.
 
 from funcionaux import *
-x = [1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 0.5, 0.5, 0.5, 0.0, 0.0, 0.5, 0.0, 0.0, 0.5, 0.0, 0.0, 1.0]
 
 def padraomod(G,x):
     # Para aplicar el algoritmo, consideramos el vector de pesos
