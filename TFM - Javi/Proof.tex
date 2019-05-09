@@ -64,7 +64,7 @@ V\otimes V \arrow[r, "\Delta\otimes Id"]   & V\otimes V\otimes V                
 \]
 \end{defi}
 
-\begin{ex}
+\begin{ex}\label{cofree}
 Maybe the most canonical example of coalgebra is the coalgebra structre on the tensor algebra $TW=\bigoplus_{n=0}^\infty W^{\otimes n}$ for a vector space $W$. The map $\varepsilon$ is just the projection onto the first coordinate. The comultiplication (or coproduct) $\Delta$ is defined on homogeneous elements as
 \[
 \Delta(w_1\otimes\cdots\otimes w_n)=\sum_{p=0}^n(w_0\otimes\cdots \otimes w_p)\otimes (w_{p+1}\otimes\cdots\otimes w_n).
@@ -120,7 +120,7 @@ k                                     & V \arrow[l, "\varepsilon"]
 \end{defi}
 
 \begin{ex}
-There is another coalgebra structure on $TW$ that behaves better with the algebra structure in the sense defined above. One defines $\Delta:TW\to TW\otimes TW$ by $\Delta(w)=w\otimes 1+1\otimes w$ and keeps the same $\varepsilon$. The multiplication is simply $\nabla(x\otimes y)=x\otimes y$ and the unit is the inclusion $\eta:k\to TW$. It is straightfoward that $\eta\circ\varepsilon=Id$. NO ME SALEN LAS COMPATIBILIDADES PREGUNTAR EN MSE Y SI NO PREGUNTARLE A MURO
+There is another coalgebra structure on $TW$ that behaves better with the algebra structure in the sense defined above. One defines $\Delta:TW\to TW\otimes TW$ by linear extension of $\Delta(w)=w\otimes 1+1\otimes w$ for $w\in W$ and $\Delta(1)=1\otimes 1$. The same $\varepsilon$ as in example \ref{cofree} is valid. The multiplication is simply $\nabla(x\otimes y)=x\otimes y$ and the unit is the inclusion $\eta:k\to TW$. It is tedious but straightforward to check all the compatibilities, since it is enough to do it for elements of $W$. 
 \end{ex}
 
 %creo que el dual de epsilon en el caso de las álgebras sería k-> X=X\otimes k, o sea, la multiplicación por escalar en el producto tensorial
@@ -270,13 +270,13 @@ Let us check that a $\BB$-algebra structure is given by an operad that will be d
 %PREGUNTAR POR LAS TRANSFORMACIONES QUE HACE PARA LLEGAR A LA DEFINICIÓN QUE ESTOY PONIENDO PORQUE IGUAL NO TIENE SENTIDO DECIR QUE LAS QUE SALEN SON DIFERENTIAL DE GRADO 1
 The dg bialgebra structure on $TX[1]$ by the following data:
 \begin{itemize}
-\item a differential $D:X[1]^{\otimes n}\to X[1]^{\otimes m}$ of degree 1. The differential is uniquely defined by its $m=1$ part. We denote its $(n,1)$-componets by $m_n:X[1]^{\otimes n}\to X[2]$ or, what is the same, 
+\item a differential $D:TX[1]\to TX[1]$ which decomposes on maps $X[1]^{\otimes n}\to X[1]^{\otimes r}$ of degree 1. The differential is uniquely defined by its $r=1$ part since it must be compatible with the coproduct. We denote its $(n,1)$-componets by $m_n:X[1]^{\otimes n}\to X[2]$ or, what is the same, 
 \begin{equation}\label{mn}
 m_n:X^{\otimes n}\to X[2-n].
 \end{equation}
 %Sería D:TX[1]->TX[1] pero se puede restringir a cada componente
 
-\item a multiplication $M:X[1]^{\otimes p}\otimes X[1]^{\otimes q}\to X[1]^{\otimes r}$ of degree 0. It is also defined by its $r=1$ part. We denote the collection of $r=1$ multiplications by $m_{pq}:X^{\otimes p}[1]\otimes X^{\otimes q}[1]\to X[1]$ or, what is the same, 
+\item a multiplication $M:TX[1]\otimes TX[1]\to TX[1]$ which decomposes on maps $X[1]^{\otimes p}\otimes X[1]^{\otimes q}\to X[1]^{\otimes r}$ of degree 0. It is also defined by its $r=1$ part. We denote the collection of $r=1$ multiplications by $m_{pq}:X^{\otimes p}[1]\otimes X^{\otimes q}[1]\to X[1]$ or, what is the same, 
 
 \begin{equation}\label{mpq}
 m_{pq}:X^{\otimes p}\otimes X^{\otimes q}\to X[1-p-q].
@@ -330,10 +330,10 @@ Finally, the Lebniz rule of $D$ with respect to $M$ is equivalent to the followi
 
 for $a_1,\dots , a_k,b_1, \dots , b_l \in X$. The sign $(−1)^\varepsilon$ is the sign of reordering $[a_1| \cdots |a_k|
 b_1| \cdots |b_l]$ into $[a_1| \cdots |a_{k_1} |b_1| \dots |b_{l_1} | \cdots |a_{k_1+\cdots+k_{n−1}+1}|  \cdots |a_k|b_{l_1+\cdots+l_{n−1}+1}| \cdots |b_l]$
-in $T X [1]$ multiplied by the sign of moving $n − 1$ bars between $M_{k_1,l_1}(\dots ),\dots ,M_{k_n,l_n}(\dots )$ to the place between $M_n$ and $M_{k_1,l_1}$. The sign $(−1)^\delta$ is equal to $|a_1|+\cdots+|a_i|−i$ plus the sign coming from moving the vertical bars in $M_r[a_{i+1}|\cdots|a_{i+r}]$
-to the place between $M_r$ and $a_{i+1}$. Similarly, the sign $(−1)^\eta$ is equal to $|b_1|+\cdots+|b_i|−
-i$ plus the sign coming from moving the vertical bars in $M_s[b_{i+1}|\cdots |b_{i+s}]$ to the
-place between $M_s$ and $b_{i+1}$.
+in $T X [1]$ multiplied by the sign of moving $n − 1$ bars between $m_{k_1,l_1}(\dots ),\dots ,m_{k_n,l_n}(\dots )$ to the place between $m_n$ and $m_{k_1,l_1}$. The sign $(−1)^\delta$ is equal to $|a_1|+\cdots+|a_i|−i$ plus the sign coming from moving the vertical bars in $m_r[a_{i+1}|\cdots|a_{i+r}]$
+to the place between $m_r$ and $a_{i+1}$. Similarly, the sign $(−1)^\eta$ is equal to $|b_1|+\cdots+|b_i|−
+i$ plus the sign coming from moving the vertical bars in $m_s[b_{i+1}|\cdots |b_{i+s}]$ to the
+place between $m_s$ and $b_{i+1}$.
 \subsection{Brace algebra}
 
 
@@ -378,7 +378,10 @@ The identity (\ref{identity}) for $m=n=1$ implies that the degree 1 bracket
 \[
 [x,y]=x\circ y-(-1)^{|x||y|}y\circ x
 \]
-defines the structure of a graded Lie algebra on $\OO$.
+defines the structure of a graded Lie algebra on $\OO$. Indeed, puting $m = n = 1$ in (\ref{identity}), one obtains 
+$$x\{y\}\{z\} − x\{y\{z\}\} = x\{y, z\} + (−1)^{|y||z|}x\{z, y\},$$
+which measures the failure of the operation $(x, y) → x\{y\}$ to be associative. From this the
+graded Jacobi identity easily follows. INTENTAR DEDUCIRLA
 \end{remark}
 
 \begin{defi}
@@ -429,7 +432,7 @@ $m_n$ (\ref{mn}) and $m_{pq}$ (\ref{mpq}) on $C^*(A;A)$ and to check the compati
 \begin{itemize}
 \item $m_0=0$.
 \item $m_1$ is the differential $d$ in $\CC$. 
-\item $m_2$ is the multiplication $m:\CC\otimes\CC\to\CC$ defined by the formula $m(x\otimes y)=\mu(x\boxtimes y)$, where $\mu$ is the multiplication $\mu:A\otimes A\to A$ and $x\boxtimes y:A^{\otimes m+n}\to A^{\otimes 2}$ is the tensor product of maps $x:A^{\otimes m}\to A$ and $y:A^{\otimes n}\to A$. It will be written just as $xy$.
+\item $m_2$ is the multiplication $m:\CC\otimes\CC\to\CC$ defined by the formula $m(x\otimes y)=\mu(x\boxtimes y)$, where $\mu$ is the multiplication $\mu:A\otimes A\to A$ and $x\boxtimes y:A^{\otimes m+n}\to A^{\otimes 2}$ is the tensor product of maps $x:A^{\otimes m}\to A$ and $y:A^{\otimes n}\to A$. It will be written just as $x\cdot y$ or $xy$ when there is no confusion.
 \item $m_n=0$ for all $n>2$. 
 \item $m_{0,1}=m_{1,0}=Id$.
 \item $m_{0,q}=m_{q,0}=0$.
@@ -456,6 +459,30 @@ d^2=0,\\
 d(a_1a_2)=(da_1)a_2+(-1)^{|a_1|}a_1(da_2),\\
 (ab)c=a(bc),
 \end{gather*}
-respectively. The identities (\ref{7}) are nontrivial only for $k = 1$, when they turn into the following. SEGUIR USANDO NOTACION A,B,C. MIRAR LAS REFERENCIAS QUE DA AL FINAL
+respectively. The identities (\ref{7}) are nontrivial only for $k = 1$, when they turn into the following.
+\begin{align*}
+\sum_{0\leq i_1\leq\cdots\leq i_l\leq t}(-1)^{\varepsilon}&a\{c_1,\dots, c_{i_1},b_1\{c_{i+1},\dots\},\dots,c_{i_l},b_l\{b_{i_l+1},\dots,\},\dots,b_t\}\\
+&=a\{b_1,\dots, b_t\}\{c_1,\dots, c_t\}
+\end{align*}
+where $\varepsilon=\sum_{p=1}^l(|y_p|-1)\sum_{q=1}^{i_p}(|z_q|-1)$.
+
+The identities (\ref{8}) are nontrivial only when $k = 1,2$. For $k = 1$ they rewrite
+as the following family of identities:
+\begin{align*}
+d(a\{b_1,\dots, b_l\})-&(-1)^{|a|(|b_1|-1)}y_1\cdot a\{b_2,\dots,b_l\}+(-1)^{|x|+|b_1|+\cdots+|b_{l-1}|+l-1}x\{b_1,\dots, b_{l-1}\}\cdot b_l\\
+=da\{b_1,\dots, b_l\}&-\sum_{i=0}^{l-1}(-1)^{|a|+|b_1|+\cdots+|b_i|-i}a\{b_1,\dots, b_i,db_{i+1},\dots,b_l\}\\
+&-\sum_{i=0}^{l-2}(-1)^{|a|+|b_1|+\cdots+|b_{i+1}|-i}a\{b_1,\dots, b_i,b_{i+1}\cdot b_{i+2},\dots,b_l\}
+\end{align*}
+for each $l ≥ 1$. For $k = 2$, equations (\ref{8}) turn into
+\begin{align*}
+\sum_{0\leq l_1\leq l}(-1)^{|a_2|(|b_1|+\cdots+|b_{l_1}|-l_1}&(a_1\{b_1,\dots, b_{l_1}\})\cdot(a_2\{b_{l_1+1},\dots, b_l\})\\
+&=(a_1\cdot a_2)\{b_1,\dots, b_l\}
+\end{align*}
+for each $l ≥ 1$.
+
+All these identities for the operations on the Hochschild complex may be checked
+directly. In fact, some of these identities were already known by Gerstenhaber in \cite{Gerstenhaber}, while some others were noticed later in \cite{higher}.
 \end{proof}
+
+INTENTAR ENCONTRAR LAS RELACIONES DE GERSTENHABER (SALVO HOMOTOPÍA SI ES NECESARIO) PARA PODER DAR LA IDEA DE HOMOTOPY G-ALGEBRA Y DE QUE LAS COSAS SE CUMPLAN SALVO HOMOTOPÍA, Y SOBRE TODO PARA VER QUE REALMENTE SE INDUCE YA LA ESTRUCTURA DE GERSTENHABER (MIRAR EN EL PAPER VERIFICATION SI HACE FALTA) MIRAR TAMBIÉN HIGHER OPERATIONS PARA SABER EN QUÉ ECUACIONES PROBAR Y PARAR ENUNCIAR LA CONJETURA EN TÉRMINOS DE HOMOTOPY G-ALGEBRA
 \end{document}
