@@ -94,7 +94,8 @@ def optimiza(G, c1, c2, lamb = 0):
     entero(sols)
     # Guardamos el numero de iteraciones
     itera = m.IterCount
-    
+    m.Params.Presolve = 0
+    #m.Params.dualreductions = 0
     while (not (entero(sols))):     
         # Construimos un grafo auxiliar con capacidades sols.
         M = nx.Graph()

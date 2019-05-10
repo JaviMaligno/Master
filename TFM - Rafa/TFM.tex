@@ -18,7 +18,7 @@
 \usepackage{listings}
 \usepackage{etoolbox}
 \usepackage{tikz}
-
+\usepackage{float}
 
 % Plantillas de código
 \newcommand{\rstyle}{\lstset{ 
@@ -1047,7 +1047,7 @@ Los conjuntos $W$ que verifican que $\delta(W)\cup\gamma(W)=E$ se denominan \tex
 \subsection{Problema biobjetivo}
 En el matching paramétrico, tal y como vimos en la Subsección 1.1.1, la función de coste es $c_{uv}(\lambda) = c^1_{uv} + \lambda c^2_{uv}$. Por tanto, para aplicar el procedimiento anterior, tenemos que considerar $c_{uv}^{new} = c^1_{uv} + (\lambda + \Delta) c^2_{uv}= c_{uv}(\lambda+\Delta)$. Notemos que $\Delta$ no tendría por qué ser un parámetro real, sino que podríamos considerar $\Delta \in \R^{|E|}$. En ese caso, $c_{uv}^{new} = c^1_{uv} + (\lambda + \Delta_{uv}) c^2_{uv}$ 
 \section{Mantenimiento de la optimalidad}
-Estamos especialmente interesados en el caso del matching biobjetivo en saber cuánto puede variar $\Delta$ de manera que nuestro matching $M$ continúe siendo óptimo. Para realizar este análisis, consideremos el problema de Programación Lineal:
+Estamos especialmente interesados en el caso del matching biobjetivo en saber cuánto puede variar $\Delta$ de manera que la base óptima que representa a nuestro matching $M$ continúe siendo óptima. Recordemos que aunque la base deje de ser óptima, en principio la solución podría seguir siéndolo, pues una solución puede estar representada por más de una base. Para realizar este análisis, consideremos el problema de Programación Lineal:
 \begin{align*}
 \min_x & \sum_{(u,v) \in E}x_{uv}(c^1_{uv} + \lambda c^2_{uv})\\
 s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} \leq 1, \quad \forall u \in V\\
@@ -1083,7 +1083,7 @@ $$
 
 Una vez estudiado el caso anterior, consideremos un caso más genérico en el que $\Delta \in \R^{|E|}$. Para simplificar la notación, sea $\lambda \in \R$ y $\Delta \in \R^{|E|}$ podemos escribir $c(\lambda+\Delta)$, donde
 $$
-c(\lambda+\Delta)_{uv} = c^1_{uv}+(\lambda+\Delta)c^2_{uv}
+c(\lambda+\Delta)_{uv} = c^1_{uv}+(\lambda+\Delta_{uv})c^2_{uv}
 $$
 y análogamente para $c^2$. Podemos considerar entonces
 \begin{align*}
@@ -1091,23 +1091,8 @@ y análogamente para $c^2$. Podemos considerar entonces
 & = c_N(\lambda)^t  - c_B^2(\lambda)^t B^{-1}N + c_N(\Delta_N)^t  - c_B^2(\Delta_B)^t B^{-1}N \\
 &=\overline{c_R}(\lambda)^t + \overline{c_R}^2(\Delta)^t \geq 0
 \end{align*}
-Cada variable no básica nos da una desigualdad sobre $\Delta$, de manera que tenemos un poliedro en $\R^{|E|}$ de valores admisibles. En ambos casos, al llegar a uno de los vértices del poliedro (el extremo del intervalo en el caso más simple), podemos escoger una nueva base y repetir el análisis.
+Nuevamente, podemos escribir los costes reducidos con respecto a $\lambda$ usando una solución dual asociada. Cada variable no básica nos da una desigualdad sobre $\Delta$, de manera que tenemos un poliedro en $\R^{|E|}$ de valores admisibles. En ambos casos, al llegar a uno de los vértices del poliedro (el extremo del intervalo en el caso más simple), podemos escoger una nueva base y repetir el análisis.
 
-\subsection{Lema de Farkas}
-En Programación Lineal el Lema de Farkas es un resultado capital. 
-\begin{lem}
-Sea $A\in\R^{m\times n}$ y $b\in \R^m$. Entonces exactamente uno de los siguientes enunciados es cierto:
-\begin{itemize}
-\item Existe $x\in\R^n$ tal que $Ax=b$ y $x\geq 0$.
-\item Existe $y\in \R^m$ tal que $y^t A \leq0$ e $y^t b>0$. 
-\end{itemize}
-\end{lem}
-Por otro lado, sabemos que una base $B$ es óptima si la función objetivo, es decir, $c(\lambda)$ pertenece al cono que genera $B$. Se tiene que
-$$
-c(\lambda) \in cone(B) \Leftrightarrow \exists x\geq0 \mid Bx = c(\lambda) 
-$$  
-Usando Farkas, esto es equivalente a $\not\exists y \mid u^tB \leq 0$ y $u'c(\lambda)>0$. Por tanto, $B$ es base óptima para $c(\lambda)$ si y solo si
-$$u'B \leq 0 \Rightarrow u^t c(\lambda) \leq 0 \qquad u^t c(\lambda)>0 \Rightarrow u^tB >0$$
 
 
 \chapter{Análisis computacional}
@@ -1540,6 +1525,61 @@ def analisis(N, I, par1 = 0, par2 = 0, lamb = 0):
       
 \end{pythone}
 \newpage 
+\subsection{Reoptimización}
+\begin{pythone}
+
+# Construimos una funcion que nos resuelva el problema de obtener el siguiente lambda
+def buscalamb(lam,c1,c2,u,l):  
+    m = Model("lambda");
+    m.ModelSense = GRB.MAXIMIZE
+    x = m.addVars(1,lb = lam, ub = 1, vtype='C', name = "x")
+    m.setObjective(x[0])
+    for i in range(len(c1)):
+        m.addConstr(l[i] <= c1[i]+(x[0])*c2[i]);
+        m.addConstr(u[i] >= c1[i]+(x[0])*c2[i])
+    m.optimize()    
+    return(m)
+    
+
+# Construimos una funcion que dado un grafo y 
+def damelam(G,c1,c2):
+    
+    # Inicializamos parametros
+    todos = [0]
+    cambian = [0]
+    lamact = 0
+    sols = []
+    
+    # Resolvemos el modelo para lambda = 0.
+    a1, b1, h1 = optimiza(G,c1,c2,0)
+    
+    # Desactivamos el presolve y gardamos la primera solcion
+    a1.Params.presolve = 0
+    sols.append([a.X for a in a1.getVars()])
+    
+    # Utilizamos un parametro para guardar 
+    q = 0
+    while(lamact <1 and q == 0):
+        if (lamact == 1):
+            q = 1
+            
+        # Capturamos parametros del modelo
+        l = a1.getAttr("SAObjLow")
+        u = a1.getAttr("SAObjUp")
+        H1 = [a.X for a in a1.getVars()]
+        lamact = buscalamb(lamact,c1,c2,u,l).ObjVal
+        for i,a in enumerate(a1.getVars()):
+            a.Obj = c1[i] + (1.03)*lamact*c2[i]
+        a1.optimize()
+        H2 = [a.X for a in a1.getVars()]
+        if (H1 != H2):
+            cambian.append(lamact)
+        sols.append([a.X for a in a1.getVars()])
+        todos.append(lamact)
+    print()
+    return(todos,cambian, sols)
+\end{pythone}
+\newpage
 \subsection{Dibujando matchings}
 En \LaTeX\, es común utilizar, tal y como hemos hecho nosotros, el paquete \textbf{tikz} para dibujar grafos (entre otras muchas funcionalidades). Sin embargo, no existe una forma sencilla de dibujar grafos relativamente grandes a partir, por ejemplo, de su matriz de adyacencia. La librería \textbf{networkx} tiene distintas formas de dibujar grafos apoyándose en otra librería conocida de Python, \textbf{matplotlib}. 
 
@@ -1598,7 +1638,7 @@ A continuación presentamos los resultados computacionales obtenidos. En la sigu
 \item Análogamente $T.GH$, $T.PE$ y $T.Match$ son los tiempos medios en los que cada método ha resuelto los correspondientes problemas.
 \item $Exp.B.B$ es el número de nodos de branch and cut explorados cuando utilizamos Programación Entera.
 \end{itemize} 
-Una vez que el tiempo medio necesario para resolver un problema es superior a 30 segundos, dejamos de utilizar dicho método y todos los valores pasan a ser $0$.º
+Una vez que el tiempo medio necesario para resolver un problema es superior a 30 segundos, dejamos de utilizar dicho método y todos los valores pasan a ser $0$. Observamos que para grafos con 18 vértices ya comienza a ser costroso utilizar la formulación de Edmonds.
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrrrrrrr}
@@ -1609,13 +1649,8 @@ N & I & Var & S.GH & S.PE & S.Match & T.GH & T.PE & T.Match & Exp.B.B \\
 16 & 10 & 59.40 & 8.90 & 13.90 & 17.80 & 0.01 & 0.03 & 3.34 & 0.00 \\ 
 18 &  5 & 75.60 & 13.40 & 17.60 & 20.20& 0.02 & 0.03 & 17.46 & 0.20 \\ 
  \hline
-18 & 10 & 76.00 & 11.50 & 16.00 & 0.00 & 0.02 & 0.03 & 0.00 & 0.00 \\ 
-24 & 10 & 139.00 & 20.00& 25.50 & 0.00 & 0.02 & 0.03 & 0.00 & 0.00 \\ 
-30 & 10 & 225.00 & 19.00& 26.50 & 0.00 & 0.03 & 0.04 & 0.00 & 0.00 \\ 
 40 & 10 & 389.00 & 36.50& 43.50 & 0.00 & 0.04 & 0.05 & 0.00 & 0.50 \\ 
 60 & 10 & 886.20 & 56.40& 62.00 & 0.00 & 0.10 & 0.11 & 0.00 & 0.40 \\ 
-70 & 10 & 1193.00 & 67.00 & 72.60 & 0.00 & 0.12 & 0.12 & 0.00 & 0.40 \\ 
-80 & 10 & 1587.00 & 77.40 & 83.80 & 0.00 & 0.16 & 0.15 & 0.00 & 0.00 \\ 
 100 & 10 & 2469.80 & 102.80 & 108.80 & 0.00 & 0.24 & 0.22 & 0.00 & 0.40 \\ 
 120 &   10 & 3551.80 & 109.20 & 113.60 & 0.00 & 0.33 & 0.32 & 0.00 & 0.00 \\ 
 150 &   10 & 5551.20 & 153.40 & 160.60 & 0.00 & 0.56 & 0.45 & 0.00 & 0.00 \\ 
@@ -1643,30 +1678,64 @@ N & I & Var & S.GH & S.PE & S.Match & T.GH & T.PE & T.Match & Exp.B.B \\
  
 \end{tabular}
 \end{table}
-\begin{figure}[h!]
+\newpage
+A continuación, presentamos algunas gráficas de los resultados anteriores.
+\begin{figure}[h]
 \centering
 \includegraphics[scale=0.75]{plot1}
 \caption{Aristas frente Nodos}
 \end{figure}
 
+En la primera gráfica tratamos de representar la cantidad de aristas frente a los nodos. Dado que como parámetro del grafo de Erdös-Rényi hemos tomado $p=0.5$ y el número posible de aristas es $N(N-1)/2$, hemos dibujado por debajo los puntos de $N(N-1)/4$, es decir, el número de puntos esperados. Como vemos, la gráfica se superpone.
+
+A continuación comparamos el número de iteraciones del método del simplex y el tiempo de computación frente al número de nodos en para el algortimo de Grötschel-Holland y para los métodos de Gurobi para resolver Programación Entera.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.75]{plot2}
 \caption{Iteraciones del Simplex frente a Nodos}
+\includegraphics[scale=0.75]{plot3}
+\caption{Tiempo de computación en segundos frente a Nodos}
+\end{figure}
+
+\section{Reoptimización}
+Al desactivar el pre-solve, nos aseguramos que tras cambiar la función objetivo se parte de la misma base óptima. Ya explicamos anteriormente cómo conseguimos la variación del parámetro y la solución. Veamos un ejemplo.
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.45]{opt}
+\caption{Grafo inicial}
+\end{figure}
+Partimos de las funciones de coste de las aristas (las cuáles están ordenadas según el orden lexicográfico):
+\begin{pythone}
+c1 = [0.58746954, 0.55197378, 0.36236219, 0.45384589, 0.37596628, 0.82303589, 0.19886985, 0.53659101, 0.13014108, 0.58867652, 0.19037534]
+c2 = [0.58746954, 0.55197378, 0.36236219, 0.45384589, 0.37596628, 0.82303589, 0.19886985, 0.53659101, 0.13014108, 0.58867652, 0.19037534]
+\end{pythone}
+Utilizando el código anterior, resolvemos para $\lambda=0$ y vamos indicando los cambios de solución en función del cambio de $\lambda$.
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.5]{opt2}
+\caption{Solución para $\lambda=0$}
 \end{figure}
 
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.75]{plot3}
-\caption{Tiempo de computación frente a Nodos}
+\includegraphics[scale=0.65]{opt3}
+\caption{Solución para $\lambda=0.7406748272040352$}
 \end{figure}
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.65]{opt4}
+\caption{Solución para $\lambda=0.9221961126832589$}
+\end{figure}
+
 \begin{thebibliography}{9}
 \bibitem{edmond} 
 Edmonds, J. (1965). Maximum matching and a polyhedron with 0, 1-vertices. Journal of Research of the National Bureau of Standards B, 69, 125--130. 
 
- 
+  
 \bibitem{holland} 
 Grötschel, M.; Holland, O. Mathematical Programming (1985) 33: 243. https://doi.org/10.1007/BF01584376
 
