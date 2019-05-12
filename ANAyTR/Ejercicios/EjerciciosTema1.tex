@@ -44,7 +44,6 @@ Supongamos que existen una subrepresentaciones $W_1,W_2\subset V$ tales que $W_1
 \begin{ejercicio}{4}
 Sea $G$ un grupo y sea $k[G]$ el álgebra asociada. Sabemos que entre $k[G]$ y el espacio de las funciones sobre $G$, $\mathcal{F}(G,k)$ hay un isomorfismo de espacios vectoriales dado por
 $$
-F = \sum_{g\in G} a_h g - g\to a_g
  \sum_{g\in G} a_g g \mapsto (g\mapsto a_g)
 $$
 Calcular el centro de $k[G]$ en términos de $\mathcal{F}(G,k)$. 
@@ -880,7 +879,7 @@ Let $G$ be the group of symmetries of a regular $N$-gon (it has $2N$ elements).
 \begin{solucion}
 Asumimos en este ejercicio $N\geq 3$, ya que no hay un polígono regular de $N$ lados para $N<3$. 
 \begin{enumerate}[(a)]
-\item El grupo dihédrico de $2N$ elementos tiene presentación $$D_N=\gene{a,b\mid a^N=b^2=1, bab=a^{-1}}.$$ Encontremos en primer lugar las clases de conjugación de $D_N$. Tenemos que $\gene{a}$ es un subgrupo cíclico normal de $D_N$, luego cada elemento de este subgrupo junto con su inverso forman una clase de conjugación. Esto, en el caso de que $N$ sea par, nos da, además de la clase del elemento neutro, nos da de $\frac{N}{2}$ clases. Es fácil comprobar con las relaciones del grupo, que para $N$ par los demás elementos forman dos clases de conjugación, una dada por los de la forma $a^{2k}b$ y otra por los de la forma $a^{2k+1}b$. En total tenemos, por tanto, $\frac{N+6}{2}$ clases de conjugación.
+\item El grupo dihédrico de $2N$ elementos tiene presentación $$D_N=\gene{a,b\mid a^N=b^2=1, bab=a^{-1}}.$$ Encontremos en primer lugar las clases de conjugación de $D_N$. Tenemos que $\gene{a}$ es un subgrupo cíclico normal de $D_N$, luego cada elemento de este subgrupo junto con su inverso forman una clase de conjugación. Esto, en el caso de que $N$ sea par, nos da, además de la clase del elemento neutro, $\frac{N}{2}$ clases. Es fácil comprobar con las relaciones del grupo, que para $N$ par los demás elementos forman dos clases de conjugación, una dada por los de la forma $a^{2k}b$ y otra por los de la forma $a^{2k+1}b$. En total tenemos, por tanto, $\frac{N+6}{2}$ clases de conjugación.
 
 En el caso $N$ impar el análisis es similar aunque con algunas diferencias. Ahora, los elementos no triviales del subgrupo $\gene{a}$ nos dan una cantidad de $\frac{N-1}{2}$ clases. Los elementos que no pertenecen a este subgrupo ahora forman todos una misma clase, por lo que en total tenemos $\frac{N+3}{2}$.
 
@@ -946,7 +945,7 @@ En las ecuaciones hemos usado la fórmula del producto de cosenos y que la suma 
 &= 2 \cos \frac{4\pi k}{N} \\
 &= \chi_{\mathbb{C}^2_2}(a^k)
 \end{align*}
-por lo que $h=2$. Es decir, $V\otimes V\cong \C_+^+\oplus \C_+^-\oplus \C^2_2$. Cabe destacar el caso $N=3$, para el cual existe realmente $\C_2^2$, por lo que la única copia de dimensión 2 que se puede utilizar es $\C^2_1$, con la que he hecho coincidiría $\C_2^2$ si la definiéramos siguiendo el mismo patrón.
+por lo que $h=2$. Es decir, $V\otimes V\cong \C_+^+\oplus \C_+^-\oplus \C^2_2$. Cabe destacar el caso $N=3$, para el cual existe realmente $\C_2^2$, por lo que la única copia de dimensión 2 que se puede utilizar es $\C^2_1$, con la que de hecho coincidiría $\C_2^2$ si la definiéramos siguiendo el mismo patrón.
 
 
 
