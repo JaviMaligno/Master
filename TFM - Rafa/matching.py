@@ -65,7 +65,7 @@ def matching(G, c1, c2, lamb = 0):
     for v in G:
         m.addConstr(suma(delta(G,[v])) == 1, name = "delta" + str(v));
         
-    for i in range(3,len(G),2):
+    for i in range(3,len(G)+1,2):
         conj1 = set(itertools.combinations(set(G.nodes()), i))
         for a in conj1:
             S = G.subgraph(a)

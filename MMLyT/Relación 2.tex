@@ -1,0 +1,222 @@
+\documentclass[twoside]{article}
+
+\usepackage{makeidx}
+\usepackage{capt-of}
+\usepackage[T1]{fontenc}
+\usepackage{amsfonts}
+\usepackage{mathtools,amscd,amsthm}
+\usepackage{tabularx}
+\usepackage{amssymb,eucal,bezier,graphicx}
+\usepackage{times}
+\usepackage{subfig}
+\usepackage[svgnames]{xcolor}
+\usepackage{fancybox}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{array}
+\usepackage{comment}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{anysize}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{listingsutf8}
+\usepackage{etoolbox}
+
+
+\newtheorem{ejercicioaux}{Ejercicio}
+\newenvironment{ejercicio}[1]
+  {\renewcommand\theejercicioaux{#1}\ejercicioaux\label{ejer:#1}}
+  {\endejercicioaux}
+\newenvironment{solucion}{\begin{trivlist}
+ \item[\hskip \labelsep {\textit{Solución}.}\hskip \labelsep]}{\end{trivlist}}
+\setlength{\parindent}{0pt}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+\newtoggle{InString}{}% Keep track of if we are within a string
+\togglefalse{InString}% Assume not initally in string
+\definecolor{majo}{HTML}{CD2626}
+\newcommand*{\ColorIfNotInString}[1]{\iftoggle{InString}{#1}{\color{majo}#1}}%
+\newcommand*{\ProcessQuote}[1]{#1\iftoggle{InString}{\global\togglefalse{InString}}{\global\toggletrue{InString}}}%
+
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{11}  % for normal
+
+\newcommand{\pythonstyle}{\lstset{
+  language=Python,                     % the language of the code
+  basicstyle=\small, % the size of the fonts that are used for the code
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\tiny\color{blue},  % the style that is used for the line-numbers
+  stepnumber=1,                   % the step between two line-numbers. If it is 1, each line
+                                  % will be numbered
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  emph={range,len,print},          
+  emphstyle=\small\color{deepred},
+  keywordstyle=\color{RoyalBlue},      % keyword style
+  commentstyle=\color{Grey},   % comment style
+  stringstyle=\color{LimeGreen},     % string literal style
+     literate=%
+         {á}{{\'a}}1
+         {í}{{\'i}}1
+         {é}{{\'e}}1
+         {ý}{{\'y}}1
+         {ú}{{\'u}}1
+         {ó}{{\'o}}1
+         {ñ}{{\~n}}1
+         {"}{{{\ProcessQuote{"}}}}1% Disable coloring within double q
+         {'}{{{\ProcessQuote{'}}}}1% Disable coloring within single 
+         {0}{{{\ColorIfNotInString{0}}}}1
+    	 {1}{{{\ColorIfNotInString{1}}}}1
+   	 	 {2}{{{\ColorIfNotInString{2}}}}1
+   		 {3}{{{\ColorIfNotInString{3}}}}1
+   		 {4}{{{\ColorIfNotInString{4}}}}1
+   		 {5}{{{\ColorIfNotInString{5}}}}1
+   		 {6}{{{\ColorIfNotInString{6}}}}1
+   		 {7}{{{\ColorIfNotInString{7}}}}1
+   		 {8}{{{\ColorIfNotInString{8}}}}1
+   		 {9}{{{\ColorIfNotInString{9}}}}1
+  }}
+         
+\lstnewenvironment{pythone}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}  
+
+%--------------------------------------------------------
+\begin{document}
+
+\title{Modelos Matemáticos en Logística y Transporte\\
+Práctica 1}
+\author{Rafael González López}
+\maketitle
+
+\begin{ejercicio}{2}
+Considere una grafo completo no dirigido con $n$ vértices. Denotemos por $c(i,j)$ el coste de atravesar la arista $(i,j)$ del grafo. Formule como problema de optimización combinatoria la determinación del recorrido que parte del vértice 1, pasa por todos los restantes de grafo y vuelve de nuevo a 1 y tiene coste total mínimo.
+
+Genere un grafo con costes en las aristas de 10 vértices y resuelva con el solver de su elección el problema anterior sobre este grafo.
+\end{ejercicio}
+
+\begin{solucion}
+Notemos que, en particular, este problema es precisamente la formulación en teoría de grafos del \textit{travelling salesman problem}. El problema se puede formular de la siguiente manera. Consideremos $x_{ij}$ como la variable binaria tal que si $x_{ij}=1$ entonces $(i,j)$ está en nuestro ciclo y $x_{ij}=0$ en caso contrario. Como el grafo es no dirigido, basta considerar las variables con $i<j$. Inicialmente podríamos formular
+\begin{align*}
+\min &\sum_{(i,j)\in E} c_{ij}x_{ij}\\
+s.a.&\, \sum_{j\in V} x_{ij} = 2 \quad \forall i \in V\\
+& x_{ij}\in \{0,1\} \quad \forall i,j\\
+\end{align*}
+El problema es que la restricción que imponemos obliga que cada vértice tenga dos aristas en la solución, pero podríamos tener varios ciclos disjuntos y no un único ciclo. Para que esto no ocurra, consideramos $S\subset V$ y 
+$$
+\gamma(S) = \{(i,j) \in E \mid i,j \in V\}
+$$ 
+Es decir, dado un conjunto $S$ de vértices, $\gamma(S)$ es el conjunto de aristas del grafo que tiene ambos extremos en $S$. En nuestro caso particular, al tener un grafo completo, $(S,\gamma(S))$ será necesariamente un grafo completo. La clave para completar la formulación es la siguiente. Si consideramos para todos los $S\subset V$ propios, es decir, ni el total ni el vacío, entonces que no haya ciclos disjuntos es equivalente a decir que en $\gamma(S)$ haya a lo sumo $|S|-1$ aristas en el ciclo. Luego podemos formular
+\begin{align*}
+\min &\sum_{(i,j)\in E} c_{ij}x_{ij}\\
+s.a.&\, \sum_{j\in V} x_{ij} = 2 \quad \forall i \in V\\
+&\sum_{(i,j)\in \gamma(S)} x_{ij} \leq |S|-1 \quad \text{$S\subset V$ propio}\\
+& x_{ij}\in \{0,1\} \quad \forall i,j\\
+\end{align*}
+\end{solucion}
+\newpage
+A continuación generamos el grafo y resolvemos el problema. Para el grafo 
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.8]{extra}
+\end{figure}
+Con función de coste 
+\begin{pythone}
+coste = [6, 2, 5, 6, 8, 1, 8, 3, 4, 3, 9, 7, 5, 9, 3, 5, 4, 7, 8, 1, 6, 8, 8, 4, 3, 4, 5, 6, 3, 5, 3, 8, 5, 3, 8, 6, 9, 8, 4, 4, 9, 1, 4, 3, 1]
+\end{pythone}
+Obtenemos
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.8]{extra2}
+\end{figure}
+\newpage
+Utilizamos el siguiente código
+\begin{pythone}
+
+from gurobipy import *
+import numpy as np
+import networkx as nx
+
+# Generamos el grafo completo de orden 10
+G = nx.complete_graph(10)
+
+# Generamos una funcion de coste dada por enteros aleatorios entre 1 y 10
+coste = np.random.randint(1,10,len(G.edges()))
+
+
+# Definimos la funcion delta, que dado un conjunto U de vertices, nos devuelve
+# las aristas que tienen un unico extremo en U.
+def delta(G,U):
+    ejes = set()
+    for l, nbrs in ((n, G[n]) for n in U):
+        ejes.update((l, y) if l<y else (y,l) for y in nbrs if y not in U)
+    return(ejes)
+    
+
+def restsp(G, coste):
+    m = Model("TSP");
+    
+    # Creamos las variables.
+    x = m.addVars(list(G.edges()), vtype='B', name = "x");
+    
+    # Definimos algunas funciones para ayudarnos a escribir las restricciones
+    # asi como la funcion objetivo de manera comoda y general.
+    def suma(S):
+        s = 0
+        for (a,b) in S:
+            if a<b:
+                s = s + x[a,b]
+            else:
+                s = s + x[b,a]
+        return(s)
+        
+    def objind(c):
+        s = 0
+        for i,e in enumerate(G.edges()):
+            s = s + c[i]*x[e[0],e[1]] 
+        return(s)
+        
+    cost = objind(coste)
+    
+    # Definimos la funcion objetivo y queremos maximizar/minimizar.
+    m.ModelSense = GRB.MINIMIZE
+    
+    # Añadimos la funcion objetivo
+    m.setObjective(cost); 
+    
+    # Generamos las restricciones del problema entero
+    for v in G:
+            m.addConstr(suma(delta(G,[v])) == 2, name = "delta" + str(v));
+
+    # Y añadimos las restricciones de conjuntos de vertices
+    for i in range(2,len(G)):
+        conj1 = set(itertools.combinations(set(G.nodes()), i))
+        for a in conj1:
+            S = G.subgraph(a)
+            m.addConstr(suma(set(S.edges)) <= i-1)
+    
+    m.optimize()
+    
+    return(m)
+\end{pythone}
+\end{document}
