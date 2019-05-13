@@ -235,7 +235,7 @@ Hinich \cite{Hinich} shows that $G$ is Koszul using Kähler differentials and ot
 \begin{equation*}
 G_\infty\xrightarrow{\simeq} G.
 \end{equation*}
-The operad $G_\infty$ is called the operad of \emph{homotopy Gerstenhaber algebras}. This should not be confused with another \emph{homotopy G-algebra} found in the literature (\cite{VO}, \cite{VGH}). 
+The operad $G_\infty$ is called the operad of \emph{homotopy Gerstenhaber algebras}. This should not be confused with another \emph{homotopy G-algebra} found in the literature (\cite{VO}, \cite{VGH}) and that will be briefly explained later. 
 
 %AQUÍ LO QUE PUEDA SACAR DE HINICH
 
@@ -468,21 +468,51 @@ where $\varepsilon=\sum_{p=1}^l(|y_p|-1)\sum_{q=1}^{i_p}(|z_q|-1)$.
 
 The identities (\ref{8}) are nontrivial only when $k = 1,2$. For $k = 1$ they rewrite
 as the following family of identities:
-\begin{align*}
-d(a\{b_1,\dots, b_l\})-&(-1)^{|a|(|b_1|-1)}y_1\cdot a\{b_2,\dots,b_l\}+(-1)^{|x|+|b_1|+\cdots+|b_{l-1}|+l-1}x\{b_1,\dots, b_{l-1}\}\cdot b_l\\
+\begin{equation}\label{9}
+\begin{aligned}
+d(a\{b_1,\dots, b_l\})-&(-1)^{|a|(|b_1|-1)}b_1\cdot a\{b_2,\dots,b_l\}+(-1)^{|a|+|b_1|+\cdots+|b_{l-1}|+l-1}a\{b_1,\dots, b_{l-1}\}\cdot b_l\\
 =da\{b_1,\dots, b_l\}&-\sum_{i=0}^{l-1}(-1)^{|a|+|b_1|+\cdots+|b_i|-i}a\{b_1,\dots, b_i,db_{i+1},\dots,b_l\}\\
 &-\sum_{i=0}^{l-2}(-1)^{|a|+|b_1|+\cdots+|b_{i+1}|-i}a\{b_1,\dots, b_i,b_{i+1}\cdot b_{i+2},\dots,b_l\}
-\end{align*}
+\end{aligned}
+\end{equation}
 for each $l ≥ 1$. For $k = 2$, equations (\ref{8}) turn into
-\begin{align*}
-\sum_{0\leq l_1\leq l}(-1)^{|a_2|(|b_1|+\cdots+|b_{l_1}|-l_1}&(a_1\{b_1,\dots, b_{l_1}\})\cdot(a_2\{b_{l_1+1},\dots, b_l\})\\
+\begin{equation}
+\begin{aligned}
+\sum_{0\leq l_1\leq l}(-1)^{|a_2|(|b_1|+\cdots+|b_{l_1}|-l_1)}&(a_1\{b_1,\dots, b_{l_1}\})\cdot(a_2\{b_{l_1+1},\dots, b_l\})\\
 &=(a_1\cdot a_2)\{b_1,\dots, b_l\}
-\end{align*}
+\end{aligned}
+\end{equation}
 for each $l ≥ 1$.
 
 All these identities for the operations on the Hochschild complex may be checked
-directly. In fact, some of these identities were already known by Gerstenhaber in \cite{Gerstenhaber}, while some others were noticed later in \cite{higher}.
+directly. In fact, some of these identities were already known by Gerstenhaber in \cite{Gerstenhaber}, while some others were noticed later in \cite{higher} (be careful with the shift on the sign in the last reference).
 \end{proof}
 
-INTENTAR ENCONTRAR LAS RELACIONES DE GERSTENHABER (SALVO HOMOTOPÍA SI ES NECESARIO) PARA PODER DAR LA IDEA DE HOMOTOPY G-ALGEBRA Y DE QUE LAS COSAS SE CUMPLAN SALVO HOMOTOPÍA, Y SOBRE TODO PARA VER QUE REALMENTE SE INDUCE YA LA ESTRUCTURA DE GERSTENHABER (MIRAR EN EL PAPER VERIFICATION SI HACE FALTA) MIRAR TAMBIÉN HIGHER OPERATIONS PARA SABER EN QUÉ ECUACIONES PROBAR Y PARAR ENUNCIAR LA CONJETURA EN TÉRMINOS DE HOMOTOPY G-ALGEBRA
+Since the commutative product induce by $m_2$ and the Lie bracket induced by $m_{1,1}$ are the same defined by Gerstenhaber in \cite{Gerstenhaber}, it is clear that this action induces the wanted structure on cohomology. It is also interesting to see the following relations.
+
+From equation (\ref{9}), specifying $l=1$ we get the \emph{homotopy commutativity}
+\begin{equation}\label{homproduct}
+a\cdot b-(-1)^{(|a|-1)(|b|-1)}b\cdot a=(-1)^{|a|}(da\circ b-(-1)^{|a|}a\circ db-d(a\circ b)),
+\end{equation}
+and specifying $l=2$ we get the \emph{homotopy Leibniz rule}
+
+\begin{align}\label{homleibniz}
+a\circ (bc)-(a\circ b)c&-(-1)^{|a|(|b|-1)}b(a\circ c)\\
+=&(-1)^{|a|+|b|-1}(d\{a,b\})-(da)\{b,c\}-(-1)^{|a|}a\{db,c\}-(-1)^{|a|+|b|}a\{b,dc\})\nonumber.
+\end{align}
+
+Equations (\ref{homproduct}) and (\ref{homleibniz}) express that commutativity and the Liebniz rule are satisfied \emph{up to homotopy}, hence inducing the  true commutativity and Leibniz rule on cohomology. This is exactly what is meant when one says that $C^*(A;A)$ carries a structure of \emph{homotopy G-algebra}, i.e., Gersternhaber algebra up to homotopy. 
+
+In conclusion, we've been able to depict an action of the chain operad of little disks $C_*(E_2)$ on the Hochschild complex $C^*(A;A)$ inducing the same action as the homology operad of little disks $G=H_*(E_2)$ on the Hochschild cohomology $H^*(A;A)$ via the following chain of morphisms of operads
+\[
+C_*(E_2)\to G\to G_\infty\to \BB.
+\]
+The morphism $C_*(E_2)\to G$ is the quasi-isomorphism described in the previous chapter. The morphism $G\to G_\infty$ is obtained from the fact that $G_\infty\to G$ is a qusi-isomorphism between operads of vector spaces \url{https://math.stackexchange.com/questions/566797/finding-example-of-quasi-isomorphism-that-has-no-quasi-inverse} ESTO LO TENGO QUE INTENTAR EXPLICAR O CITAR AQUÍ O CUANDO DIGO QUE ES QUASI-ISOMORFISMO SI ES LARGO, DE TODAS FORMAS PREGUNTAR PORQUE LA QUASI-INVERSA DEBERÍA SER MORFISMO DE OPERADS \url{https://arxiv.org/pdf/math/0312147.pdf} O DECIR QUE ES DE HECHO EQUIVALENCIA DE HOMOTOPÍA (EN ALGEBRAI OPERADS SOLO DICEN QUE SEA QUASI-ISOMORPHISM Y EPI) PERO NECESITARÍA REFERENCIA
+
+EN LA PÁGINA 528 (DEL CUADRADITO DE ADOBE) DICE QUE PARA LA CONJETURA BASTA QUE HAYA EQUIVALENCIA EN ZIGZAG Y LA ESCRIBE, PERO AL MISMO TIEMPO CREO QUE USA QUE ES UNA EQUIVALENCIA DE HOMOTOPÍA LO DE ANTES
+
+and $G_\infty\to\BB$ is described by Hinich in \cite{Hinich}. Since $\BB$ explicitly acts on $C^*(A;A)$, the resulting map $C_*(E_2)\to\BB$ gives us the desired action of $C_*(E_2)$.
+
+%RECAPITULAR LAS EQUIVALENCIAS PARA DECIR CÓMO SE HA LLEGADO A QUE $C_*(E_2)$ ACTÚA EN $C^*(A;A)$
+%INTENTAR ENCONTRAR LAS RELACIONES DE GERSTENHABER (SALVO HOMOTOPÍA SI ES NECESARIO) PARA PODER DAR LA IDEA DE HOMOTOPY G-ALGEBRA Y DE QUE LAS COSAS SE CUMPLAN SALVO HOMOTOPÍA, Y SOBRE TODO PARA VER QUE REALMENTE SE INDUCE YA LA ESTRUCTURA DE GERSTENHABER (MIRAR EN EL PAPER VERIFICATION SI HACE FALTA) MIRAR TAMBIÉN HIGHER OPERATIONS PARA SABER EN QUÉ ECUACIONES PROBAR Y PARAR ENUNCIAR LA CONJETURA EN TÉRMINOS DE HOMOTOPY G-ALGEBRA
 \end{document}
