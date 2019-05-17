@@ -447,6 +447,7 @@ Notemos que el algoritmo de Padberg y Rao que utilizan los autores para encontra
 \item[Paso 8.] Añadimos los planos de corte encontrados en el paso anterior a nuestro problema y volvemos al Paso 4.
 \item[Paso 9.] Hemos obtenido una solución entera que induce un matching perfecto e $(V,E')$, pero naturalmente no tiene por qué ser un matching óptimo en $K_n$. Para comprobarlo, calculamos el coste reducido a cada eje $(u,v)\in E\setminus E'$. Sea $VAR$ el conjunto de variables que podrían mejorar la solución óptima. Si todos los costes tienen el signo adecuado, entonces $VAR=\emptyset$ y nuestra solución actual es de hecho óptima en $K_n$, por lo que hemos terminado. Si $VAR\neq \emptyset$, entonces establecemos $E'=E'\cup VAR$ y añadimos las correspondientes variables. Volvemos al Paso 4.
 \end{itemize}
+Los detalles nuestra implementación pueden verse comentados en el código presente en la tercera parte de este trabajo.
 \section{El problema de separación del matching}
 Para aprovechar el potencial del software expresamente diseñados para resolver problemas de programación lineal, nosotros implementaremos el algoritmo de Padberg-Rao, a pesar de que para el análisis de sensitividad vendrá dado por el algoritmo del SAP. Esto está justificado, pues consideramos más interesante intentar utilizar la estructura combinatoria propia del problema para dicho análisis, frente a la aproximación clásica cuyos resultados son conocidos y difícilmente interpretables.
 
@@ -1460,10 +1461,10 @@ En el siguiente código vamos a escribir una función que dado que nos compare s
 networkx.gnp_random_graph(M,p)
 \end{pythone}
 Esta librería de grafos sobre la que hemos apoyado parte del código utiliza el método de Erdös-Rényi, introducido por dichos matemáticos húngaros en 1959, para generar grafos aleatorios con dos parámetros. El concepto es el siguiente: Supongamos que tenemos una red con $M$ nodos distribuidos aleatoriamente y desconectados. Ahora cada uno de las posibles aristas del grafo completo $K_M$ se añade a nuestra red de manera independiente con probabilidad $p$. Naturalmente cuanto mayor sea $p$ más probable es que el grafo resultante sea \textit{denso}. Si $p$ es demasiado pequeño puede ocurrir que nuestro grafo sea diconexo. 
-\\
+
+Nuestra función tiene como entrada el número $N$ de nodos de los grafos que queremos explorar. Es decir, todos los grafos generados tendrán $N$ vértices. El parámetro $I$ determinar la cantidad de grafos (y por tanto, de problemas) que se van a generar. Finalmente, utilizamos dos parámetros para establecer si queremos o no utilizar métodos alternativos al algoritmo de Grötschel-Holland. 
 \begin{pythone}
-# A continuacion generamos grafos aleatorios y ponemos a prueba los metodos
-# y comparamos resultados.
+# A continuacion generamos grafos aleatorios y ponemos a prueba los metodos y comparamos resultados.
 
 from holland import *
 from integer import *
@@ -1473,14 +1474,9 @@ import numpy as np
 import time
 import pandas as pd
 
-# Establecemos una semilla predeterminada para asegurar la reproducibilidad
-# de los resultados
+# La siguiente funcion nos devuelve el tiempo e iteraciones medias de los distintos metodos que hemos programado para funciones y grafos aleatorios con un numero de nodos N y utilizando I casos.
 
-# La siguiente funcion nos devuelve el tiempo e iteraciones medias de los 
-# distintos metodos que hemos programado para funciones y grafos aleatorios
-# con un numero de nodos N y utilizando I casos.
-
-def analisis(N, I, par1 = 0, par2 = 0, lamb = 0):
+def analisis(N, I, par1 = 0, par2 = 0):
     iter0, iter1, iter2 = 0, 0, 0
     t0, t1, t2 = 0, 0, 0
     bcut = 0
@@ -1495,7 +1491,7 @@ def analisis(N, I, par1 = 0, par2 = 0, lamb = 0):
         c2 = np.random.rand(E)
         
         # Optimizamos utilizando Groetschel-Holland
-        modelo0, simplex0, tiempo0 = optimiza(H,c1,c2,lamb)
+        modelo0, simplex0, tiempo0 = optimiza(H,c1,c2,0)
         
         # Actualizamos los parametros
         iter0 = iter0 + simplex0
@@ -1526,9 +1522,18 @@ def analisis(N, I, par1 = 0, par2 = 0, lamb = 0):
 \end{pythone}
 \newpage 
 \subsection{Reoptimización}
-\begin{pythone}
+Pasamos ahora a presentar el codigo con el que vamos a realizar el análisis de postoptimalidad. En primer lugar, debemos saber que cuando optimizamos un modelo de Programación Lineal en Gurobi, este posee una gran variedad de parámetros y atributos que podemos consultar. Dos de ellos son \textbf{SAObjLow }y \textbf{SAObjUp}, que para cada componente de la función objetivo nos indica hasta dónde podemos variar hacia abajo y hacia arriba respectivamente de manera que la base continúe siendo óptima. 
 
-# Construimos una funcion que nos resuelva el problema de obtener el siguiente lambda
+ Supongamos que hemos resuelto el modelo para un cierto valor de $\lambda^*$, y denotemos por $l$ y $u$ a los vectores definidos anteriormente para este valor $\lambda^*$. Nuestro objetivo es encontrar el máximo valor de $\lambda$ de manera que la base obtenida siga siendo óptima, es decir, queremos resolver el problema
+\begin{align*}
+\max&\, \lambda\\
+s.a.&\,  l \leq c^1 + \lambda c^2\\
+& u \geq c^1 + \lambda c^2 \\
+& \lambda\geq \lambda^* 
+\end{align*}
+Una vez obtenido este valor de $\lambda$ podemos alterar el modelo ya construido de Gurobi y cambiar la función objetivo actualizando el valor de $\lambda$, a la que sumamos un pequeño $\varepsilon$ para que realmente optimice de nuevo, y comprobamos si aun tenemos la misma solución -pues una misma solución puede estar representada por distintas bases- o ésta ha variado. 
+\begin{pythone}
+# Para el estudio de postoptimalidad tenemos primero que definir la siguiente funcion que resuelve un modelo lineal con ciertos parametros tal y como hemos comentado anteriormente.
 def buscalamb(lam,c1,c2,u,l):  
     m = Model("lambda");
     m.ModelSense = GRB.MAXIMIZE
@@ -1541,7 +1546,7 @@ def buscalamb(lam,c1,c2,u,l):
     return(m)
     
 
-# Construimos una funcion que dado un grafo y 
+# Construimos una funcion que dado un grafo y dos funciones de coste resuelva el problema biobjetivo para lambda = 0 y encuentre los valores lambda donde deja de ser optima y una nueva solucion, hasta llegar a lambda = 1.
 def damelam(G,c1,c2):
     
     # Inicializamos parametros
@@ -1643,7 +1648,7 @@ Una vez que el tiempo medio necesario para resolver un problema es superior a 30
 \centering
 \begin{tabular}{rrrrrrrrrr}
   \hline
-N & I & Var & S.GH & S.PE & S.Match & T.GH & T.PE & T.Match & Exp.B.B \\ 
+N & I & Var & S.GH & S.PE & S.Match & T.PE & T.GH & T.Match & Exp.B.B \\ 
   \hline
 10 & 10 & 21.40 & 4.90 & 5.60 & 8.50 &   0.01 & 0.02 & 0.04 & 0.10 \\ 
 16 & 10 & 59.40 & 8.90 & 13.90 & 17.80 & 0.01 & 0.03 & 3.34 & 0.00 \\ 
@@ -1663,7 +1668,7 @@ N & I & Var & S.GH & S.PE & S.Match & T.GH & T.PE & T.Match & Exp.B.B \\
 \centering
 \begin{tabular}{rrrrrrrrrr}
   \hline
-N & I & Var & S.GH & S.PE & S.Match & T.GH & T.PE & T.Match & Exp.B.B \\ 
+N & I & Var & S.GH & S.PE & S.Match & T.PE & T.GH & T.Match & Exp.B.B \\ 
   \hline 
   220 &   5 & 12033.00 & 210.40 & 219.40 & 0.00 & 1.50 & 0.93 & 0.00 & 0.00 \\ 
   250 &   5 & 15529.20 & 253.80 & 258.00 & 0.00 & 2.65 & 1.28 & 0.00 & 0.40 \\ 
