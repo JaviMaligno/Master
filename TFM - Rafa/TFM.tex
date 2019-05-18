@@ -1707,15 +1707,18 @@ A continuación comparamos el número de iteraciones del método del simplex y e
 Al desactivar el pre-solve, nos aseguramos que tras cambiar la función objetivo se parte de la misma base óptima. Ya explicamos anteriormente cómo conseguimos la variación del parámetro y la solución. Veamos un ejemplo.
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.45]{opt}
+\includegraphics[scale=0.5]{opt}
 \caption{Grafo inicial}
 \end{figure}
+
 Partimos de las funciones de coste de las aristas (las cuáles están ordenadas según el orden lexicográfico):
 \begin{pythone}
-c1 = [0.58746954, 0.55197378, 0.36236219, 0.45384589, 0.37596628, 0.82303589, 0.19886985, 0.53659101, 0.13014108, 0.58867652, 0.19037534]
-c2 = [0.58746954, 0.55197378, 0.36236219, 0.45384589, 0.37596628, 0.82303589, 0.19886985, 0.53659101, 0.13014108, 0.58867652, 0.19037534]
+c1 = [0.77783098, 0.26790423, 0.22276086, 0.82550433, 0.552517, 0.18884415, 0.01789486, 0.00243447, 0.04742837, 0.94171732, 0.76081629, 0.70075895, 0.16148063, 0.62424824, 0.95096634, 0.16806133, 0.88617127, 0.57725367, 0.17168492, 0.85295435]
+c2 = [0.64317771, 0.56083433, 0.55490255, 0.29773688, 0.08169206, 0.89175246, 0.56850518, 0.57067846, 0.13329401, 0.15793078, 0.41082069, 0.13778612, 0.39161058, 0.34617111, 0.25853244, 0.79687483, 0.58816817, 0.00892943, 0.18819747, 0.52953081]
 \end{pythone}
-Utilizando el código anterior, resolvemos para $\lambda=0$ y vamos indicando los cambios de solución en función del cambio de $\lambda$.
+Utilizando presentado anteriormente para la reoptimización. Comenzamos resolviendo para $\lambda=0$ calculamos el máximo valor de $\lambda$ para el cuál la base actual sigue siendo óptima. Tras modificar la función objetivo y reoptimizar, obtenemos una solución que puede volver a ser la misma o no. Si no lo fuese, capturamos el valor de $\lambda$ y la solución. Obtenemos así que que para $\lambda\in [0,1]$ encontramos 3 soluciones distintas para valores límite de $\lambda \in \{0,0.5814,0.6626\}$.
+
+En un análisis posterior, resolvemos el mismo problema usando Programación Entera para una regilla de valores $\lambda$ entre $0$ y $1$ con paso $0.1$. Así obtenemos lo que cabría esperar, para $\lambda \leq 0.5$ obtenemos la primera solución, para $\lambda = 0.6$ obtenemos la segunda solución y para $0.7 \leq \lambda \leq 1$ obtenemos la tercera solución. Presentamos una representación gráfica de los distintos emparejamientos asociados a cada $\lambda$. 
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.5]{opt2}
@@ -1725,15 +1728,15 @@ Utilizando el código anterior, resolvemos para $\lambda=0$ y vamos indicando lo
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.65]{opt3}
-\caption{Solución para $\lambda=0.7406748272040352$}
+\includegraphics[scale=0.5]{opt3}
+\caption{Solución para $\lambda=0.5814219436621$}
 \end{figure}
 
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.65]{opt4}
-\caption{Solución para $\lambda=0.9221961126832589$}
+\includegraphics[scale=0.5]{opt4}
+\caption{Solución para $\lambda=0.6626459613176332$}
 \end{figure}
 
 \begin{thebibliography}{9}
