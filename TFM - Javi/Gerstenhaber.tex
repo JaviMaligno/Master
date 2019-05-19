@@ -5,7 +5,7 @@
 %\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
 \chapter{Hochschild cohomology of a ring}
 
-In this chapter we're introducing the cohomology of a ring and showing that it has a \emph{Gerstenhaber algebra} structure, which we shall first define. The reader is referred to \cite{Gerstenhaber} for more details. This algebraic structure turns out to be equiavelent to the notion of an algebra over the \emph{operad of little disks}, which is the main object of our study, whence its importance. 
+In this chapter we're introducing the cohomology of a ring and showing that it has a \emph{Gerstenhaber algebra} structure, which we shall first define. The reader is referred to \cite{Gerstenhaber} for more details. This algebraic structure turns out to be equivelent to the notion of an algebra over the \emph{operad of little disks}, which is the main object of our study, whence its importance. 
 
 
 \section{Gerstenhaber algebras}
@@ -62,29 +62,40 @@ f\smile g(a_1\otimes\cdots\otimes a_m\otimes b_1\otimes\cdots\otimes b_n)=f(a_1\
 Under this multiplication $C^*(A,P)$ becomes an associative ring graded by the integers.
 
 \begin{thm}(\cite[Corollary 1 of \textsection 7]{Gerstenhaber})
-If $A$ is a ring, then the ring $\{H^*(A,A),\smile\}$ is a graded commutative ring, with grading given by dimension, i.e., if $[f]\in H^m(A,A)$ and $[g]\in H^n(A,A)$, then $[f]\smile [g] =(-1)^{mn}[g]\smile [f]$.
+If $A$ is a ring, then the ring $\{H^*(A,A),\smile\}$ is a graded commutative ring, with grading given by dimension, i.e., if $\eta\in H^m(A,A)$ and $\xi\in H^n(A,A)$, then $\eta\smile \xi =(-1)^{mn}\xi\smile \eta$.
 \end{thm} 
 
 The cup product induces a module structure on $C^*(A,P)$ over $C^*(A,A)$ that induces a module structre on $H^*(A,P)$ over $H^*(A,A)$. Using Theorem 3 of \cite{Gerstenhaber} we get the following result.
 
 \begin{thm}(\cite[Corollary 2 of \textsection 7]{Gerstenhaber})
-Let $A$ a ring and $P$ a two-sided $A$-module. If either $[f]\in H^n(A,A)$ and $[g]\in H^m(A,P)$ or $[f]\in H^n(A,P)$ and $[g]\in H^m(A,A)$, then
+Let $A$ a ring and $P$ a two-sided $A$-module. If either $\eta\in H^n(A,A)$ and $\xi\in H^m(A,P)$ or $\eta\in H^n(A,P)$ and $\xi\in H^m(A,A)$, then
 \[
-[f]\smile[g]=(-1)^{mn}[g]\smile [f].
+\eta\smile\xi=(-1)^{mn}\xi\smile \eta.
 \]
 \end{thm}
 
-According to \cite[Theorem 4 of \textsection 8]{Gerstenhaber} we can define a Lie bracket on $C^*(A,A)$ in such a way that $H^*(A,P)$ becomes a two sided module over $\{H^*(A,A),[,]\}$. Finally, we have
+According to \cite[Theorem 4 of \textsection 8]{Gerstenhaber} we can define a Lie bracket on $C^*(A,A)$ in such a way that $H^*(A,P)$ becomes a two sided module over $\{H^*(A,A),[,]\}$. This bracket is defined in several steps. First, for $f\in C^m(A;A)$ and $g\in C^n(A;A)$ set
+\begin{gather*}
+f\circ_i g(a_0\otimes\cdots\otimes a_{i-1}\otimes b_0\otimes\cdots\otimes b_{n-1}\otimes a_{i+1}\otimes\cdots \otimes a_{m-1})\\
+=f(a_0\otimes \cdots a_{i-1}\otimes g(b_0\otimes\cdots\otimes b_{n-1})\otimes a_{i+1}\otimes\cdots\otimes a_{m-1})
+\end{gather*}
+for $i=0,\dots, m-1$. Note that $f\circ_i g\in C^{n+m-1}(A;A)$. More generally, if we take $f\in C^m(A;P)$, then $f\circ_ig\in C^{n+m-1}(A;P)$. Now set
+\[
+f\circ g=\sum_{i=0}^m (-1)^{ni}f\circ_i g.
+\]
+Then the bracket is defined by $[f,g]=f\circ g-(-1)^{(n-1)(m-1)}g\circ f$. Gerstenhaber shows that this bracket induces a well defined Lie bracket of degree 1 on cohomology. 
+
+Finally, we have
 
 \begin{thm}(\cite[Corollary 2 of \textsection 8]{Gerstenhaber}
-Let $A$ be a ring and $[f]$, $[g]$ and $[h]$ elements of $H^m(A,A)$, $H^n(A,A)$ and $H^p(A,A)$, respectively. Then
+Let $A$ be a ring and $\xi$, $\eta$ and $\zeta$ elements of $H^m(A,A)$, $H^n(A,A)$ and $H^p(A,A)$, respectively. Then
 \[
-[[f]\smile[g], [h]]=[[f],[h]]\smile [g]+(-1)^{m(p-1)}[f]\smile[[g],[h]].
+[\eta\smile\xi, \zeta]=[\eta,\xi]\smile \zeta+(-1)^{m(p-1)}\eta\smile[\zeta,\xi].
 \]
 \end{thm}
 
 
-According to \ref{defi1}, we now have that the Hochschild cohomology $H^*(A,A)$ is a Gerstenhaber algebra. 
+According to \ref{defi1}, we now have that the Hochschild cohomology $H^*(A,A)$ is a Gerstenhaber algebra. We will be particulary interested in the case where $A$ is an associative $k$-algebra for $k$ an field of characteristic 0.
 
 
 
