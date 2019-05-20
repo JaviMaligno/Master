@@ -524,7 +524,12 @@ En nuestro implementación del algoritmo de Grötschel-Holland nosotros para el 
 \section{Aplicaciones y problemas relacionados}
 En esta sección presentamos algunas aplicaciones, como la resolución del problema de la asignación o un algoritmo de aproximación del problema del viajante, y otros problemas interesantes, como el problema de la cobertura por aristas, el de la coloración de aristas o los T-enlaces, que guardan cierta relación con el problema del emparejamiento.
 \subsection{El problema de la asignación}
-Para ilustrar las distintas aplicaciones que tiene el problema del matchig, comenzamos con un problema clásico de la Investigación Operativa. El problema de asignación o \textit{assigment assignment problem} consiste en encontrar la forma de asignar recursos (máquinas, empleados, etc.) a un cierto conjunto de teareas determinadas con coste mínimo. Se supone que cada recurso se destina a una sola tarea, y que cada tarea es ejecutada por uno solo de los recursos. Es claro que este problema puede formularse como un problema de matching de coste mínimo. Notemos que, además, la formulación natural del mismo se realiza sobre un grafo bipartito. 
+Para ilustrar las distintas aplicaciones que tiene el problema del matching, comenzamos con un problema clásico de la Investigación Operativa. El problema de asignación o \textit{assignment problem} consiste en encontrar la forma de asignar recursos a un cierto conjunto de tareas determinadas con un cierto criterio para evaluar las asignaciones. Se supone que cada recurso se destina a una sola tarea, y que cada tarea es ejecutada por uno solo de los recursos. En muchos contextos deseamos hacer asignaciones, por ejemplo, entre objetos y personas. Por ejemplo, podemos desear asignar tareas, estancias, maquinas, procesos, asientos, horarios, etc. Algunas posibilidades:
+\begin{enumerate}
+\item Una empresa desea contratar $n$ empleados para $n$ puestos de trabajo. Tras realizar unos test de aptitud la empresa asigna a cada persona $i$ y tarea $j$ un coeficiente de competencia $c_{ij}$. El objetivo del problema es encontrar la asignación que maximiza la competencia total.
+\item En las fuerzas armadas muchos soldados están cualificados para realizar cierto tipo de tareas. A las fuerzas armadas les gustaría asignar al personal minimizando el coste de movimiento. Las reglas especifican la necesidad de que a ciertos destinos solo pueden ir personal con cierto tipo de cualificación. Para cada posible asignación tenemos asociado un coste de movimiento asociado a enviar a una persona, su familia y sus pertenencias a una nueva residencia. En este caso deseamos minimizar este coste.
+\item El dueño de un hostal quiere asignar parejas para ser compañeros de habitación. Dos clientes se pueden emparejar si comparten nacionalidad, religión, trasfondo cultural y hobbys. El problema consiste en encontrar el emparejamiento de máxima cardinalidad.
+\end{enumerate}
 \subsection{Aproximación al problema del viajante}
 El problema del viajante o \textit{travelling salesman problem} (TSP) en un grafo no dirigido consiste en encontrar el ciclo hamiltoniano de peso mínimo. Computacionalmente hablando, se sabe que es NP-duro. Este problema aparece para responder a la pregunta: ¿Dada una lista de ciudades y las distancias entre cada pareja de ciudades, cuál es la ruta más corta para visitar todas las ciudades y volver a la ciudad de origen? Este problema puede formularse como problema de programación entera, como puede encontrarse en \cite{papa}. 
 
@@ -604,6 +609,7 @@ s.a.\;  &  Ax_{\cdot i} \leq  1 \qquad \forall i=1,\dotsc,n\\
 & x_i\geq 0  \qquad \forall i=1,\dotsc,n
 \end{align*}
 donde $|E|=n$. El problema dual puede ser resuelto en tiempo polinomial, pues $x^*$ ($0\leq x^*_i \leq 1$) es una solución factible del mismo si y solo si un matching de coste máximo en $G$ tomando como pesos $x^*$ tiene valor no mayor que 1.
+
 \subsection{T-Enlaces y el problema del cartero chino}
 Continuamos presentando la relación entre los emparejamientos y los $T$-enlaces, el problema de emparejamiento y el problema del cartero chino.
 \begin{defi}
@@ -644,6 +650,31 @@ Si el grafo es euleriano, necesariamente la solución ha de ser cualquier circui
 &\text{Este nuevo grafo es euleriano. Obtenemos un circuito euleriano.}\\
 \text{Paso 4: }& \text{El circuito euleriano de este grafo induce una solución del problema.}\\
 \end{align*} 
+
+\subsection{Localización de objetos en el espacio}
+Para identificar un objeto en un espacio tridimensional podemos utilizar dos sensores infrarrojos colocados en lugares distintos. Cada sensor nos da un ángulo de visión del objeto y, por tanto, una línea en la cuál debe encontrarse. La intersección de ambas lineas, suponiendo que los dos sensores y el objeto no sean colineales, nos de manera única la posición del objeto. 
+
+Consideremos la situación de determinar la localización de $p$ objetos utilizando dos sensores. El primer sensor nos determina $L_1,\dotsc,L_p$ líneas para los $p$ objetos mientras que el segundo nos determina $L'_1,\dotsc,L'_p$. Para identificar los objetos tenemos, utilizando que dos líneas identifican un objeto si intersecan, tenemos que emparejar las líneas del primer conjunto con las del segundo. Esta aproximación tiene dos inconvenientes. Por una lado, una línea de un sensor podría intersecar con más de una líneal del otro, por lo que el matching no sería único. Por otro lado, los errores de medición podrían provocar que dos líneas que identifican un objeto no intersecaran. Para lidiar con estos problemas podemos utilizar la siguiente aproximación. 
+
+Planteemos un problema de asignación de las lineas de un conjunto a las del otro. Definimos el coste $c_{ij}$ de la arista $(i,j)$ como el mínimo de las distancias euclídeas entre $L_i$ y $L'_j$. Estudios con simulaciones han descubierto que esta aproximación identifica correctamente los objetos en la gran mayoría de casos.
+
+
+\subsection{Movimiento de objetos}
+En muchos contextos diferentes nos interesa intentar aproximar la velocidad y dirección de movimiento de una serie de $p$ objetos que se mueven en el espacio (por ejemplo: aeronaves, misiles). Para la localización de los objetos podríamos el método visto anteriormente.   Una posibilidad para estimar la dirección y velocidad del objeto podría ser calcula la localización de dos objetos en dos instantes distintos de tiempo y emparejar los primeros puntos con los segundos. Si este emparejamiento es correcto, es claro que podemos hacer una estimación de los parámetros. 
+
+Sean $(x_i,y_i,z_i)$ las coordenadas de los objetos del primer conjunto y sean $(x_i',y_i',z_i')$ las del segundo. Las formas de emparejar ambos conjuntos son muy diversas. Una posibilidad es minimizar la suma de las diferencias al cuadrado entre los puntos emparejados. Esta idea se adecua bastante a la realidad, pues penaliza la posibilidad de emparejar objetos a gran distancia. Si la diferencia de tiempo en la que tomamos las localizaciones es suficientemente pequeña, el emparejamiento óptimo será probablemente correcto. Si denotamos por $\{1,\dotsc,p\}$ al primer conjunto de puntos y por $\{1',\dotsc,p'\}$ al segundo, entonces un arco $(i,j')$ tendría un coste asociado 
+$$
+c_{ij'} = (x_i-x_j')^2+(y_i-y_j')^2+(z_i-z_j')^2
+$$
+
+\subsection{Orden óptimo del inventario}
+En otros contextos, necesitamos almacenar objetos que pierden o ganan valor con el paso del tiempo. Supongamos que tenemos una pila consistente en $p$ objetos del mismo tipo. Cuando hablamos de una pila, nos referimos al concepto de lista ordenada de manera que solo podemos sacar el último elemento en ser apilado cada vez. Cada objeto $i$ tiene una edad $a_i$. Una función $v(t)$ nos da la utilidad (o valor) esperada para un objeto de edad $t$ cuando lo retiramos del almacén. Tenemos que cumplir con un determinado horario que especifica la hora en la que necesitamos cada elemento. El problema consiste pues en encontrar el orden de emisión de los artículos que maximiza la suma de las utilidades esperadas en los $p$ artículos. Un ejemplo de este tipo situaciones se da cuando almacenamos varias tinas de alcohol, ya que al ser éste un líquido volátil la evaporación del mismo deprecia el valor de cada tina con el tiempo.
+
+Algunas instancias de este problema son particularmente fáciles de resolver. Por ejemplo, cuando la función $v(t)$ es convexa o cóncava. Cuando tenemos una función $v(t)$ arbitraria, entonces podemos resolver el problema como problema de asignación. Sean $t_1,\dotsc, t_p$. Dado que cada objeto $i$ tiene una edad $a_i$ en un tiempo cero, la utilidad esperada del objeto $i$ en el tiempo $t_j$ es
+$$
+c_{ij} = v(a_i+t_j)
+$$
+Tras computar estas utilidades para todos los pares de objetos $i$ y tiempo $t_j$, basta resolver el problema de asignación que maximiza la utilidad asignada.
 \subsection{Envolvente convexa del $b$-matching}
 Aunque el objetivo de este trabajo es analizar el problema relativo al $1$-emparejamiento, podríamos hablar más generalmente, tal y como dijimos al inicio de este capítulo, del problema del $b$-matching. De manera ilustrativa, presentamos el teorema análogo al Teorema 1.1.1. para esta formulación más general del problema. 
 \begin{thm}

@@ -88,10 +88,22 @@ Tal y como definimos anteriormente, el problema del emparejamiento bipartito de 
 
 Para hacer esta transformación hagamos la siguente consideración. Consideremos nuestro grafo bipartito $G=(N_1\cup N_2,E)$. Podemos considerar que cada arista tiene capacidad $1$. Consideremos ahora el grafo dirigido con los mismo nodos de $G$ y con las mismas aristas pero orientas desde $N_1$ a $N_2$. Introducimos ahora dos nodos artificiales $s$ y $t$. Conectamos $s$ con todos los nodos de $N_1$ y conectamos todos los nodos de $N_2$ con $t$.  
 
-\begin{figure}[htbp]
+\begin{figure}[h!]
 \centering
-\includesvg{tangana}
-\caption{}
+\includegraphics[scale=0.45]{tangana}
+\caption{Un ejemplo de grafo transformado}
 \end{figure}
+Una vez planteado el problema, es claro que tenemos una correspondencia biyectiva entre los emparejamiento de cardinalidad $k$ de nuestro grafo inicial y los flujos enteros de capacidad $k$ en el grafo transformado.
+\section{Emparejamiento bipartito con pesos}
+Veamos ahora el caso bipartito cuando las aristas tienen peso. Por simplificar, vamos a estudiar el caso en el que nuestro grafo $G=(N_1\cup N_2,E)$ verifica que $|N_1| = |N_2|$. Esto no supone una pérdida de generalidad pues siempre podemos añadir nodos artificiales. Además, aunque nuestro grafo sea no dirigido, al igual que en el caso anterior vamos a considerar que las aristas van desde $N_1$ hasta $N_2$. Este problema suele conocerse como \textit{problema de asignación}. Denotemos por $c_{ij}$ los costes de cada arista.
+
+Notemos que este problema puede verse como un caso particular de problema de flujo de coste mínimo (en caso de que estemos minimizando), de manera que podemos formular
+\begin{align*}
+\min &\sum_{(i,j)\in E} x_{ij}c_{ij}\\
+s.a.\;& \sum_{(i,j)\in E} x_{ij} = 1 \quad \forall i \in N_1\\
+&\sum_{(i,j) \in E} x_{ij} = 1 \quad \forall j \in N_2\\
+&x_{ij} \geq0 \quad \forall (i,j)\in E
+\end{align*}
+
 
 \end{document}
