@@ -1,0 +1,199 @@
+\documentclass[twoside,12pt]{article}
+
+\usepackage{makeidx}
+\usepackage{capt-of}
+\usepackage[T1]{fontenc}
+\usepackage{amsfonts}
+\usepackage{mathtools,amscd,amsthm}
+\usepackage{tabularx}
+\usepackage{amssymb,eucal,bezier,graphicx}
+\usepackage{times}
+\usepackage{subfig}
+\usepackage[svgnames]{xcolor}
+\usepackage{fancybox}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{array}
+\usepackage{comment}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{anysize}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{listingsutf8}
+\usepackage{etoolbox}
+\usepackage{svg}
+
+
+\newtheorem{theorem}{Teorema}[section]
+
+\newtheorem{prop}{Propiedad}[section]
+%--------------------------------------------------------
+\begin{document}
+
+\title{El Problema del Emparejamiento}
+\author{Rafael González López}
+\maketitle
+\section{Introducción}
+\subsection{Descripción del problema}
+Supongamos que tenemos un grafo $G=(V,E)$. Un emparejamiento o \textit{matching} es un conjunto de arcos o ejes con la propiedad de que cada nodo es incidente a lo sumo a un único arco de dicho conjunto. De esta forma, podemos decir que los matching inducen un emparejamiento -en el sentido cotidiano de la palabra- de los nodos de $G$ usando aristas de $E$. Si hablamos del \textit{problema del matching} es porque podemos distinguir emparejamientos en base a algún tipo de criterio. Como veremos más adelante a la hora de resolver el problema, podemos hacer una distinción importante entre distintos problemas de emparejamiento. En el caso de que nuestro grafo $G$ sea bipartido (es decir, aquellos grafos en los que podemos particionar los vértices en dos conjuntos de manera que nodos de un mismo conjunto no estén conectados) denominamos \textit{problema del matching bipartito}, mientras que si el grafo es no bipartido hablamos del \textit{problema del emparejamiento no-bipartito}.  
+
+En cuanto al tipo de criterio que pretendamos optimizar, podemos distinguir entre si queremos obtener el matching con el mayor número posible de aristas, en cuyo caso hablamos del \textit{problema de matching de máxima cardinalidad}, o si queremos optimizar (minimizar o maximizar) la suma de los pesos asociados a las aristas hablamos del \textit{problema del matching de peso mínimo (o máximo)}. El problema del emparejamiento de peso máximo en un grafo bipartito se conoce como \textit{problema de asignación} 
+
+\subsection{Aplicaciones}
+El problema del emparejamiento se presenta en una gran variedad de contextos. Con el fin de ilustrar la utilidad del problema, presentamos a continuación algunos ejemplos de posibles aplicaciones.
+\subsubsection{Problema de asignación}
+En muchos contextos deseamos hacer asignaciones, por ejemplo, entre objetos y personas. Por ejemplo, podemos desear asignar tareas, estancias, maquinas, procesos, asientos, horarios, etc. Cada posible asignación tiene un cierto valor y, por tanto, tiene sentido que busquemos la asignación que maximice o minimice dicho valor. Algunas posibilidades:
+\begin{enumerate}
+\item Una empresa desea contratar $n$ empleados para $n$ puestos de trabajo. Tras realizar unos test de aptitud la empresa asigna a cada persona $i$ y tarea $j$ un coeficiente de competencia $c_{ij}$. El objetivo del problema es encontrar la asignación que maximiza la competencia total.
+\item En las fuerzas armadas muchos soldados están cualificados para realizar cierto tipo de tareas. A las fuerzas armadas les gustaría asignar al personal minimizando el coste de movimiento. Las reglas especifican la necesidad de que a ciertos destinos solo pueden ir personal con cierto tipo de cualificación. Para cada posible asignación tenemos asociado un coste de movimiento asociado a enviar a una persona, su familia y sus pertenencias a una nueva residencia. En este caso deseamos minimizar este coste.
+\item El dueño de un hostal quiere asignar parejas para ser compañeros de habitación. Dos clientes se pueden emparejar si comparten nacionalidad, religión, trasfondo cultural y hobbys. El problema consiste en encontrar el emparejamiento de máxima cardinalidad.
+\end{enumerate}
+\subsubsection{Localización de objetos en el espacio}
+Para identificar un objeto en un espacio tridimensional podemos utilizar dos sensores infrarrojos colocados en lugares distintos. Cada sensor nos da un ángulo de visión del objeto y, por tanto, una línea en la cuál debe encontrarse. La intersección de ambas lineas, suponiendo que los dos sensores y el objeto no sean colineales, nos de manera única la posición del objeto. 
+
+Consideremos la situación de determinar la localización de $p$ objetos utilizando dos sensores. El primer sensor nos determina $L_1,\dotsc,L_p$ líneas para los $p$ objetos mientras que el segundo nos determina $L'_1,\dotsc,L'_p$. Para identificar los objetos tenemos, utilizando que dos líneas identifican un objeto si intersecan, tenemos que emparejar las líneas del primer conjunto con las del segundo. Esta aproximación tiene dos inconvenientes. Por una lado, una línea de un sensor podría intersecar con más de una líneal del otro, por lo que el matching no sería único. Por otro lado, los errores de medición podrían provocar que dos líneas que identifican un objeto no intersecaran. Para lidiar con estos problemas podemos utilizar la siguiente aproximación. 
+
+Planteemos un problema de asignación de las lineas de un conjunto a las del otro. Definimos el coste $c_{ij}$ de la arista $(i,j)$ como el mínimo de las distancias euclídeas entre $L_i$ y $L'_j$. Estudios con simulaciones han descubierto que esta aproximación identifica correctamente los objetos en la gran mayoría de casos.
+
+\subsubsection{Movimiento de objetos}
+En muchos contextos diferentes nos interesa intentar aproximar la velocidad y dirección de movimiento de una serie de $p$ objetos que se mueven en el espacio (por ejemplo: aeronaves, misiles). Para la localización de los objetos podríamos el método visto anteriormente.   Una posibilidad para estimar la dirección y velocidad del objeto podría ser calcula la localización de dos objetos en dos instantes distintos de tiempo y emparejar los primeros puntos con los segundos. Si este emparejamiento es correcto, es claro que podemos hacer una estimación de los parámetros. 
+
+Sean $(x_i,y_i,z_i)$ las coordenadas de los objetos del primer conjunto y sean $(x_i',y_i',z_i')$ las del segundo. Las formas de emparejar ambos conjuntos son muy diversas. Una posibilidad es minimizar la suma de las diferencias al cuadrado entre los puntos emparejados. Esta idea se adecua bastante a la realidad, pues penaliza la posibilidad de emparejar objetos a gran distancia. Si la diferencia de tiempo en la que tomamos las localizaciones es suficientemente pequeña, el emparejamiento óptimo será probablemente correcto. Si denotamos por $\{1,\dotsc,p\}$ al primer conjunto de puntos y por $\{1',\dotsc,p'\}$ al segundo, entonces un arco $(i,j')$ tendría un coste asociado 
+$$
+c_{ij'} = (x_i-x_j')^2+(y_i-y_j')^2+(z_i-z_j')^2
+$$
+
+\subsubsection{Orden óptimo del inventario}
+En otros contextos, necesitamos almacenar objetos que pierden o ganan valor con el paso del tiempo. Supongamos que tenemos una pila consistente en $p$ objetos del mismo tipo. Cuando hablamos de una pila, nos referimos al concepto de lista ordenada de manera que solo podemos sacar el último elemento en ser apilado cada vez. Cada objeto $i$ tiene una edad $a_i$. Una función $v(t)$ nos da la utilidad (o valor) esperada para un objeto de edad $t$ cuando lo retiramos del almacén. Tenemos que cumplir con un determinado horario que especifica la hora en la que necesitamos cada elemento. El problema consiste pues en encontrar el orden de emisión de los artículos que maximiza la suma de las utilidades esperadas en los $p$ artículos. Un ejemplo de este tipo situaciones se da cuando almacenamos varias tinas de alcohol, ya que al ser éste un líquido volátil la evaporación del mismo deprecia el valor de cada tina con el tiempo.
+
+Algunas instancias de este problema son particularmente fáciles de resolver. Por ejemplo, cuando la función $v(t)$ es convexa o cóncava. Cuando tenemos una función $v(t)$ arbitraria, entonces podemos resolver el problema como problema de asignación. Sean $t_1,\dotsc, t_p$. Dado que cada objeto $i$ tiene una edad $a_i$ en un tiempo cero, la utilidad esperada del objeto $i$ en el tiempo $t_j$ es
+$$
+c_{ij} = v(a_i+t_j)
+$$
+Tras computar estas utilidades para todos los pares de objetos $i$ y tiempo $t_j$, basta resolver el problema de asignación que maximiza la utilidad asignada.
+\subsubsection{Aproximación al problema del viajante}
+El problema del viajante o \textit{travelling salesman problem} (TSP) en un grafo no dirigido consiste en encontrar el ciclo hamiltoniano de peso mínimo. Computacionalmente hablando, se sabe que es NP-duro. Este problema aparece para responder a la pregunta: ¿Dada una lista de ciudades y las distancias entre cada pareja de ciudades, cuál es la ruta más corta para visitar todas las ciudades y volver a la ciudad de origen? 
+
+Aunque no puede utilizarse el problema del matching para resolver este problema, Nicos Christofides encontró un algoritmo para obtener, bajo ciertas condiciones, una aproximación no mayor que $1.5$ el valor óptimo del TSP. Para este resultado es necesario imponer que las distancias estén en el marco de un espacio métrico, es decir, han de ser simétricas y verificar la desigualdad triangular. El algoritmo consiste en:
+\begin{align*}
+\text{Paso 1: }&\text{Obtener el árbol recubrido mínimo $T$ de $G$.}\\
+\text{Paso 2: }&\text{Consideremos $O$ el conjunto de vértices con grado impar}\\
+&\text{Por el Lema del apretón de manos, $O$ tiene cardinalidad par.}\\
+&\text{Hallar el MCPM sobre el grafo inducido por $O$.}\\
+\text{Paso 3: }& \text{Combinar los ejes del árbol y del matching obteniendo un}\\
+&\text{multigrafo euleriano. Encontrar un circuito euleriano.}\\
+\text{Paso 4: }&\text{Obtener un circuito hamiltoniano descartando nodos ya visitados}
+\end{align*} 
+\section{Emparejamiento bipartito de máxima cardinalidad}
+Tal y como definimos anteriormente, el problema del emparejamiento bipartito de máxima cardinalidad consiste en encontrar en un grafo bipartito el emparejamiento con el mayor número posible de aristas. La forma en la que nosotros nos aproximaremos a este problema será la transformarlo en un problema de flujo máximo, los cuáles pueden ser resueltos por multitud de algoritmos ampliamente conocidos como el algoritmo de Ford-Fulkenson o utilizando Programación Lineal. 
+
+Para hacer esta transformación hagamos la siguente consideración. Consideremos nuestro grafo bipartito $G=(N_1\cup N_2,E)$. Podemos considerar que cada arista tiene capacidad $1$. Consideremos ahora el grafo dirigido con los mismo nodos de $G$ y con las mismas aristas pero orientas desde $N_1$ a $N_2$. Introducimos ahora dos nodos artificiales $s$ y $t$. Conectamos $s$ con todos los nodos de $N_1$ y conectamos todos los nodos de $N_2$ con $t$.  
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.45]{tangana}
+\caption{Un ejemplo de grafo transformado}
+\end{figure}
+Una vez planteado el problema, es claro que tenemos una correspondencia biyectiva entre los emparejamiento de cardinalidad $k$ de nuestro grafo inicial y los flujos enteros de capacidad $k$ en el grafo transformado.
+\section{Emparejamiento bipartito con pesos}
+Veamos ahora el caso bipartito cuando las aristas tienen peso. Por simplificar, vamos a estudiar el caso en el que nuestro grafo $G=(N_1\cup N_2,E)$ verifica que $|N_1| = |N_2|$. Esto no supone una pérdida de generalidad pues siempre podemos añadir nodos artificiales. Además, aunque nuestro grafo sea no dirigido, al igual que en el caso anterior vamos a considerar que las aristas van desde $N_1$ hasta $N_2$. Este problema suele conocerse como \textit{problema de asignación}. Denotemos por $c_{ij}$ los costes de cada arista.
+
+Notemos que este problema puede verse como un caso particular de problema de flujo de coste mínimo (en caso de que estemos minimizando), de manera que podemos formular
+\begin{align*}
+\min &\sum_{(i,j)\in E} x_{ij}c_{ij}\\
+s.a.\;& \sum_{(i,j)\in E} x_{ij} = 1 \quad \forall i \in N_1\\
+&\sum_{(i,j) \in E} x_{ij} = 1 \quad \forall j \in N_2\\
+&x_{ij} \geq0 \quad \forall (i,j)\in E
+\end{align*}
+Dado que el problema de asignación puede verse como un caso particular del problema de flujo de coste mínimo, también podemos utilizar algoritmos propios de este problema para resolverlo. Sin embargo, el problema de asignación (como el resto problemas de emparejamiento) posee una estructura que permite afinar y simplificar los algoritmos. A continuación vamos a describir brevemente algunos de ellos.
+\subsection{Algoritmo húngaro}
+El algoritmo húngaro fue inventado por Harold W. Kuhn en 1955, aunque fue revisado por James Munkres en 1957. La gran ventaja de este algoritmo es que resuelve el problema en tiempo polinómico. En la aplicación de este algoritmo transformamos nuestro problema de asignación en un problema con una única fuente de flujo $s$ y único destino $t$. Definimos una función $\pi : N_1\cup N_2 \to \mathbb{R}$ denominada \textbf{potencial} y definimos el \textbf{coste reducido} de un arco como $c_{ij}^\pi = c_{ij}-\pi(i)+\pi(j)$. Inicialmente $\pi(i) = 0$ $\forall i \in N_1\cup N_2$. En cada iteración se utiliza un método primal-dual para computar el camino más corto de $s$ al resto de nodos, actualizamos el potencial de cada nodo según un cierto criterio y resolvemos el problema del flujo máximo de $s$ a $t$ sobre las aristas que tienen coste reducido nulo. 
+
+\subsection{Algoritmo de relajación}
+El algoritmo de relajación es otra aproximación popular al problema de asignación. Este algoritmo relaja el segundo bloque de restricciones, permitiendo que cualquier nodo de $N_2$ pueda ser asignado a más de un nodo de $N_1$. El problema relajado es fácil de resolver: a cada $i\in N_1$ asignemos el nodo $j\in N_2$ con el coste mínimo $c_{ij}$ entre los arcos conectados con $i$. Como resultado, naturalmente, algunos nodos de $N_2$ pueden estar sin asignación y otros pueden quedar sobreasignados. El algoritmo convierte gradualmente esta solución en una asignación factible mientras mantiene la optimalidad de los costes reducidos. En cada iteración el algoritmo selecciona un nodo sobreasignado de $N_2$ y obtiene el camino más corto de $k$ al resto nodos en la red residual, es decir, restringiéndonos a los arcos con coste reducidos no nulos, utilizando los costes reducidos como longitud de las aristas. Seguidamente actualizamos los potenciales y aumenta en $1$ el flujo total desde el nodo escogido hasta $N_2$ de manera que nunca convierta un nodo asignado en uno sin asignar. Por tanto, a lo sumo necesitaremos $|N_1|$ iteraciones de este proceso.
+
+\section{Emparejamiento no bipartito de máxima cardinalidad}
+En este sección vamos a ver el problema de encontrar el emparejamiento de máxima cardinalidad en un grafo no bipartito no dirigido. Recordemos que un emparejamiento $M$ en un grafo $G=(V,E)$ es simplemente un subconjunto de $E$ con la propiedad de que dos arcos de $M$ no son adyacentes a un mismo nodo. A los nodos que sean extremos de alguna arista de $M$ les diremos que están emparejados, mientras que al resto diremos que no lo están. 
+
+En adelantes diremos que un camino $P$ es \textbf{alternante} con respecto a un matching $M$ si cada pareja consecutiva de aristas que escojamos de $P$ una pertenece a $M$ y la otra no. De manera análoga podemos definir un ciclo alternante. Si un camino $P$ alternante con respecto a $M$ tiene un número impar de nodos y los nodos extremos no están emparejados en $M$, entonces diremos que este camino es \textbf{de aumento}. De hecho, tenemos el siguiente resultado.
+\begin{theorem}
+Si $M$ es un emparejamiento y $P$ es un camino de aumento con respecto a $M$ entonces $M\Delta P$, la diferencia simétrica de $M$ y $P$, es un emparejamiento de cardinalidad $|M|+1$. Es más, todos los nodos emparejados en $M$ siguen siéndolo en el nuevo emparejamiento, además de dos nodos adicionales correspondientes a los extremos de $P$.
+\end{theorem}  
+
+El algoritmo con el que resolvemos este problema se fundamenta principalmente en el concepto de camino de aumento. Esto es así debido al siguiente teorema.
+\begin{theorem}
+Si un nodo $p$ no está emparejado respecto a un matching $M$, y no existe un camino de aumento que comience en $p$ con respecto a $M$, entonces existe un emparejamiento de máxima cardinalidad que no contiene a $p$.
+\end{theorem}
+Este teorema es una versión alternativa del siguiente.
+\begin{theorem}
+Un emparejamiento $M$ es de máxima cardinalidad si y solo si el grafo $G$ no contiene caminos de aumento con respecto a $M$.
+\end{theorem}
+
+\subsection{Caso bipartito}
+El teorema anterior nos sugiere una posibilidad para abordar el problema. Comenzamos con un matching $M$ (que puede ser el vacío) y construimos o determinamos un camino de aumento con respecto a $M$ con respecto a cada nodo de $G$, reemplzando $M$ por la diferencia simétrica de $M$ y este camino de aumento. En el caso de no poder encontrarlo, eliminamos dicho nodo y sus aristas adyacentes del grafo.
+
+Utilizando el Teorema 4.1. puede probarse que, de hecho, este algoritmo obtiene un emparejamiento óptimo para el problema. En cada iteración reducimos el número de nodos no emparejados en al menos 1, bien eliminándolos, bien emparejándolos. Por tanto, hemos el problema de encontrar un emparejamiento de máxima carinalidad a decidir (y encontrar en el caso) un camino de aumento con respecto a $M$ con extremo en un nodo $p$. 
+
+Una forma de resolver el problema anterior es, dado un nodo $p$, generar un árbol con raíz en $p$ de manera que cada camino dentro del árbol con extremo en $p$ sea un camino alternante. Nos referimos a este árbol como \textbf{árbol alternante}. Para esto vamos a etiquetar los nodos del grafo, de manera que nos referiremos a nodos etiquetados y no etiquetados. Nuestras etiquetas serán E y O (par e impar en inglés). Comenzamos etiquetando nuestro nodo $p$ como $E$. Almacenamos en una lista LIST todos los nodos etiquetados y los examinamos uno a uno, de manera que tras analizarlo lo eliminamos de la lista. Si examinamos un nodo $i$ etiquetado $E$, comprobamos sus nodos adyacentes $\delta(i)$ y etiquetamos con $O$ a todo nodo $j\in \delta(i)$ que no haya sido previamente etiquetado. En el caso de que $j$ no esté emparejado, hemos encontrado un camino de aumento. En otro caso añadimos los nuevos nodos etiquetados a LIST. Si examinamos un nodo $i$ etiquetado $O$, consideramos su única arista $(i,j) \in M$. Si $j$ no está etiquetado, añadimos dicho nodo a LIST. El algoritmo termina si hemos encontrado un nodo alternante o LIST se vacía. 
+
+Podemos pasar a dar el algoritmo para el caso bipartito:
+
+\begin{align*}
+\text{Paso 1: }&\text{Inicializamos $M=\emptyset$}\\
+\text{Paso 2: }&\text{Para cada $p \in V$:}\\
+&\text{Si $p$ no está emparejado entonces buscamos un camino alternante.}\\
+&\text{Si lo encontramos, aumentamos el matching}\\
+&\text{Si no, eliminamos $p$ de $G$.}\\
+\text{Paso 3: }& \text{Devolvemos el matching resultante}
+\end{align*} 
+Este algoritmo tiene complejidad $O(|V||E|)$. El proceso de encontrar y aumentar el matching se hace $|V|$ veces, el cuál tiene complejidad $O(|E|)$.
+\subsection{Caso no bipartito}
+Aunque el algoritmo anterior es ciertamente correcto para el caso bipartito, tiene ciertos problemas en el caso general. Para entender por qué vamos a definir el siguiente concepto. Un grafo se dice que tiene la \textbf{propiedad de etiquetado único} respecto de un matching $M$ y un nodo $p$ si las asignaciones de etiquetas en el proceso de construcción del árbol alternante las etiquetas son invariantes independientemente del orden con el que examinemos los nodos etiquetados. como es de esperar, todos los grafos bipartitos tienen esta propiedad para cada matching $M$ y nodo $p$. Sin embargo, en general un grafo puede no satisfacer esta propiedad de manera que el algoritmo anterior puede fallar. 
+
+Pero, ¿por qué ocurre esto? ¿Qué hace que el algoritmo falle? La raíz del problema es la presencia de ciertos subgrafos denominados \textit{flowers} (conservaremos la notación en inglés). Vamos a estudiarlos más profundamente. Un \textbf{flower} se define con respecto a un mathcing $M$ y un nodo $p$ como un subgrafo con dos componentes:
+\begin{itemize}
+\item \textbf{Stem}. Un stem es un camino alternante de longitud par que comienza en $p$ y termina en un cierto nodo $w$. Permitimos la posibilidad de que $p=w$, en cuyo caso el stem es vacío.
+\item \textbf{Blossom}. Un blossom es un ciclo alternante de longitud impar que comienza y termina en $w$, y no tiene otro nodo en común con el stem. Nos referimos a $w$ como la base del blossom.
+\end{itemize}
+Pasamos a ver algunas propiedades de estos grafos.
+\begin{prop}Se verifican las siguientes propiedades.
+\begin{itemize}
+\item Un stem abarca $2l$ nodos y contiene $l$ aristas de $M$ para algún $l\geq 0$. 
+\item Un blossom abarca $2k+1$ nodos y contiene $k$ arcos de $M$ para algún $k\geq1$. Dichos arcos emparejan todos los nodos $M$ salvo su nodo base.  
+\item La base de un blossom está se etiquetará con una $E$. 
+\end{itemize}
+\end{prop}
+
+\begin{prop}
+En un  bloosom todo nodo salvo su base puede alcanzarse desde la raíz a través de dos caminos alternantes distintos, uno con longitud par y otro impar.
+\end{prop}
+\subsubsection{Contracción de un blossom}
+Volvamos otra vez al principio. ¿Por qué puede fallar nuestro algoritmo si el grafo no es bipartito? Si nuestro grafo contiene un blossom con respecto al matching actual $M$ y nodo $p$, cada nodo del blossom puede recibir una etiqueta $E$ por existir un camino alternante de $p$ a cada nodo. Sin embargo, nuestro algoritmo de búsqueda dará etiquetas $E$ a algunos nodos y $O$ a otros. La razón por la que es interesante dar a todos los nodos etiquetas $E$ es porque, al analizarlos, nuestro algoritmo puede etiquetar nodos que estén fuera del blossom. Si son $O$, solo etiquetará su nodo emparejado en el matching, que también estará en el blossom. 
+
+Si podemos dar a todos los nodos del blossom la misma etiqueta $E$ es, una vez que hemos detectado la presencia de un blossom siempre tendremos un camino de aumento. La manera más popular de lograr este objetivo es contrayendo el blossom a un único vértice. Para ello llevamos a cabo la siguiente operación. Sea $i_1,\dotsc,i_k,i_1$ un blossom.
+\begin{itemize}
+\item Introducimos un nuevo nodo $b$ y definimos su adyacencia como $\delta(b)=\delta(i_1)\cup\cdots\delta(i_k)$.
+\item Actulizamos la lista de ayacencias del resto de nodos, es decir, para cada $j\in \delta(b)$ consideramos $\delta(j)=\delta(j)\cup\{b\}$.
+\item Para ser capaces de recuperar la información contraída en el nodo $b$, asociamos a este nodo la lista de los nodos del blossom y eliminamos estos (y sus aristas adyacentes) del grafo.	
+\end{itemize}
+Nos referimos al grafo resultante de esta operación $G^c = (N^c,A^c)$ como \textbf{grafo contraído}. Denotamos por $\delta^c(i)$ las adyacencias del nodo $i$ en $G^c$. En general nos referiremos a los nodos creados mediante la contracción de un grafo como \textbf{pseudonodos}. Notemos que los pseudonodos siempre están etiquetados como $E$, pues todos los vértices se contraen sobre el nodo base, la cuál es siempre $E$. 
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.5]{blossom}
+\caption{Stem, blossom, base (root) y contracción.}
+\end{figure}
+\newpage
+\subsubsection{Algoritmo para el emparejamiento no bipartito}
+
+La correctitud del algoritmo se basa en los siguiente teorema.
+\begin{theorem}
+Si el grafo contraído $G^c$ contiene un camino de aumento $P^c$ con inicio en un nodo raíz $p$ (o pseudonodo que contiene a $p$) con respecto a un matching $M^c$, entonces el grafo original $G$ contiene un camino de aumento comenzando en $p$ con respecto a $M$.
+\end{theorem}
+\begin{theorem}
+Si $G$ contiene un camino de aumento desde el nodo $p$  al nodo $q$ con respecto a un matching $M$, entonces $G^c$ contiene un camino de aumento desde $p$ (o un pseudonodo que contenga a $p$) a $q$ con respecto a $M^c$.
+\end{theorem}
+Utilizando ambos teoremas muestran que el grafo contraído contiene un camino de aumento con respecto a $M$ y $p$ si y solo si el grafo original contiene uno. Por tanto, contraer no crea nuevos caminos de aumento que contienen a $p$ ni pierde ninguno. Como consecuencia, nuestro algoritmo computa correctamente un matching óptimo.
+\end{document}

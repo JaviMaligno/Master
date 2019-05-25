@@ -447,6 +447,7 @@ Notemos que el algoritmo de Padberg y Rao que utilizan los autores para encontra
 \item[Paso 8.] Añadimos los planos de corte encontrados en el paso anterior a nuestro problema y volvemos al Paso 4.
 \item[Paso 9.] Hemos obtenido una solución entera que induce un matching perfecto e $(V,E')$, pero naturalmente no tiene por qué ser un matching óptimo en $K_n$. Para comprobarlo, calculamos el coste reducido a cada eje $(u,v)\in E\setminus E'$. Sea $VAR$ el conjunto de variables que podrían mejorar la solución óptima. Si todos los costes tienen el signo adecuado, entonces $VAR=\emptyset$ y nuestra solución actual es de hecho óptima en $K_n$, por lo que hemos terminado. Si $VAR\neq \emptyset$, entonces establecemos $E'=E'\cup VAR$ y añadimos las correspondientes variables. Volvemos al Paso 4.
 \end{itemize}
+Los detalles nuestra implementación pueden verse comentados en el código presente en la tercera parte de este trabajo.
 \section{El problema de separación del matching}
 Para aprovechar el potencial del software expresamente diseñados para resolver problemas de programación lineal, nosotros implementaremos el algoritmo de Padberg-Rao, a pesar de que para el análisis de sensitividad vendrá dado por el algoritmo del SAP. Esto está justificado, pues consideramos más interesante intentar utilizar la estructura combinatoria propia del problema para dicho análisis, frente a la aproximación clásica cuyos resultados son conocidos y difícilmente interpretables.
 
@@ -523,7 +524,12 @@ En nuestro implementación del algoritmo de Grötschel-Holland nosotros para el 
 \section{Aplicaciones y problemas relacionados}
 En esta sección presentamos algunas aplicaciones, como la resolución del problema de la asignación o un algoritmo de aproximación del problema del viajante, y otros problemas interesantes, como el problema de la cobertura por aristas, el de la coloración de aristas o los T-enlaces, que guardan cierta relación con el problema del emparejamiento.
 \subsection{El problema de la asignación}
-Para ilustrar las distintas aplicaciones que tiene el problema del matchig, comenzamos con un problema clásico de la Investigación Operativa. El problema de asignación o \textit{assigment assignment problem} consiste en encontrar la forma de asignar recursos (máquinas, empleados, etc.) a un cierto conjunto de teareas determinadas con coste mínimo. Se supone que cada recurso se destina a una sola tarea, y que cada tarea es ejecutada por uno solo de los recursos. Es claro que este problema puede formularse como un problema de matching de coste mínimo. Notemos que, además, la formulación natural del mismo se realiza sobre un grafo bipartito. 
+Para ilustrar las distintas aplicaciones que tiene el problema del matching, comenzamos con un problema clásico de la Investigación Operativa. El problema de asignación o \textit{assignment problem} consiste en encontrar la forma de asignar recursos a un cierto conjunto de tareas determinadas con un cierto criterio para evaluar las asignaciones. Se supone que cada recurso se destina a una sola tarea, y que cada tarea es ejecutada por uno solo de los recursos. En muchos contextos deseamos hacer asignaciones, por ejemplo, entre objetos y personas. Por ejemplo, podemos desear asignar tareas, estancias, maquinas, procesos, asientos, horarios, etc. Algunas posibilidades:
+\begin{enumerate}
+\item Una empresa desea contratar $n$ empleados para $n$ puestos de trabajo. Tras realizar unos test de aptitud la empresa asigna a cada persona $i$ y tarea $j$ un coeficiente de competencia $c_{ij}$. El objetivo del problema es encontrar la asignación que maximiza la competencia total.
+\item En las fuerzas armadas muchos soldados están cualificados para realizar cierto tipo de tareas. A las fuerzas armadas les gustaría asignar al personal minimizando el coste de movimiento. Las reglas especifican la necesidad de que a ciertos destinos solo pueden ir personal con cierto tipo de cualificación. Para cada posible asignación tenemos asociado un coste de movimiento asociado a enviar a una persona, su familia y sus pertenencias a una nueva residencia. En este caso deseamos minimizar este coste.
+\item El dueño de un hostal quiere asignar parejas para ser compañeros de habitación. Dos clientes se pueden emparejar si comparten nacionalidad, religión, trasfondo cultural y hobbys. El problema consiste en encontrar el emparejamiento de máxima cardinalidad.
+\end{enumerate}
 \subsection{Aproximación al problema del viajante}
 El problema del viajante o \textit{travelling salesman problem} (TSP) en un grafo no dirigido consiste en encontrar el ciclo hamiltoniano de peso mínimo. Computacionalmente hablando, se sabe que es NP-duro. Este problema aparece para responder a la pregunta: ¿Dada una lista de ciudades y las distancias entre cada pareja de ciudades, cuál es la ruta más corta para visitar todas las ciudades y volver a la ciudad de origen? Este problema puede formularse como problema de programación entera, como puede encontrarse en \cite{papa}. 
 
@@ -603,6 +609,7 @@ s.a.\;  &  Ax_{\cdot i} \leq  1 \qquad \forall i=1,\dotsc,n\\
 & x_i\geq 0  \qquad \forall i=1,\dotsc,n
 \end{align*}
 donde $|E|=n$. El problema dual puede ser resuelto en tiempo polinomial, pues $x^*$ ($0\leq x^*_i \leq 1$) es una solución factible del mismo si y solo si un matching de coste máximo en $G$ tomando como pesos $x^*$ tiene valor no mayor que 1.
+
 \subsection{T-Enlaces y el problema del cartero chino}
 Continuamos presentando la relación entre los emparejamientos y los $T$-enlaces, el problema de emparejamiento y el problema del cartero chino.
 \begin{defi}
@@ -643,6 +650,31 @@ Si el grafo es euleriano, necesariamente la solución ha de ser cualquier circui
 &\text{Este nuevo grafo es euleriano. Obtenemos un circuito euleriano.}\\
 \text{Paso 4: }& \text{El circuito euleriano de este grafo induce una solución del problema.}\\
 \end{align*} 
+
+\subsection{Localización de objetos en el espacio}
+Para identificar un objeto en un espacio tridimensional podemos utilizar dos sensores infrarrojos colocados en lugares distintos. Cada sensor nos da un ángulo de visión del objeto y, por tanto, una línea en la cuál debe encontrarse. La intersección de ambas lineas, suponiendo que los dos sensores y el objeto no sean colineales, nos de manera única la posición del objeto. 
+
+Consideremos la situación de determinar la localización de $p$ objetos utilizando dos sensores. El primer sensor nos determina $L_1,\dotsc,L_p$ líneas para los $p$ objetos mientras que el segundo nos determina $L'_1,\dotsc,L'_p$. Para identificar los objetos tenemos, utilizando que dos líneas identifican un objeto si intersecan, tenemos que emparejar las líneas del primer conjunto con las del segundo. Esta aproximación tiene dos inconvenientes. Por una lado, una línea de un sensor podría intersecar con más de una líneal del otro, por lo que el matching no sería único. Por otro lado, los errores de medición podrían provocar que dos líneas que identifican un objeto no intersecaran. Para lidiar con estos problemas podemos utilizar la siguiente aproximación. 
+
+Planteemos un problema de asignación de las lineas de un conjunto a las del otro. Definimos el coste $c_{ij}$ de la arista $(i,j)$ como el mínimo de las distancias euclídeas entre $L_i$ y $L'_j$. Estudios con simulaciones han descubierto que esta aproximación identifica correctamente los objetos en la gran mayoría de casos.
+
+
+\subsection{Movimiento de objetos}
+En muchos contextos diferentes nos interesa intentar aproximar la velocidad y dirección de movimiento de una serie de $p$ objetos que se mueven en el espacio (por ejemplo: aeronaves, misiles). Para la localización de los objetos podríamos el método visto anteriormente.   Una posibilidad para estimar la dirección y velocidad del objeto podría ser calcula la localización de dos objetos en dos instantes distintos de tiempo y emparejar los primeros puntos con los segundos. Si este emparejamiento es correcto, es claro que podemos hacer una estimación de los parámetros. 
+
+Sean $(x_i,y_i,z_i)$ las coordenadas de los objetos del primer conjunto y sean $(x_i',y_i',z_i')$ las del segundo. Las formas de emparejar ambos conjuntos son muy diversas. Una posibilidad es minimizar la suma de las diferencias al cuadrado entre los puntos emparejados. Esta idea se adecua bastante a la realidad, pues penaliza la posibilidad de emparejar objetos a gran distancia. Si la diferencia de tiempo en la que tomamos las localizaciones es suficientemente pequeña, el emparejamiento óptimo será probablemente correcto. Si denotamos por $\{1,\dotsc,p\}$ al primer conjunto de puntos y por $\{1',\dotsc,p'\}$ al segundo, entonces un arco $(i,j')$ tendría un coste asociado 
+$$
+c_{ij'} = (x_i-x_j')^2+(y_i-y_j')^2+(z_i-z_j')^2
+$$
+
+\subsection{Orden óptimo del inventario}
+En otros contextos, necesitamos almacenar objetos que pierden o ganan valor con el paso del tiempo. Supongamos que tenemos una pila consistente en $p$ objetos del mismo tipo. Cuando hablamos de una pila, nos referimos al concepto de lista ordenada de manera que solo podemos sacar el último elemento en ser apilado cada vez. Cada objeto $i$ tiene una edad $a_i$. Una función $v(t)$ nos da la utilidad (o valor) esperada para un objeto de edad $t$ cuando lo retiramos del almacén. Tenemos que cumplir con un determinado horario que especifica la hora en la que necesitamos cada elemento. El problema consiste pues en encontrar el orden de emisión de los artículos que maximiza la suma de las utilidades esperadas en los $p$ artículos. Un ejemplo de este tipo situaciones se da cuando almacenamos varias tinas de alcohol, ya que al ser éste un líquido volátil la evaporación del mismo deprecia el valor de cada tina con el tiempo.
+
+Algunas instancias de este problema son particularmente fáciles de resolver. Por ejemplo, cuando la función $v(t)$ es convexa o cóncava. Cuando tenemos una función $v(t)$ arbitraria, entonces podemos resolver el problema como problema de asignación. Sean $t_1,\dotsc, t_p$. Dado que cada objeto $i$ tiene una edad $a_i$ en un tiempo cero, la utilidad esperada del objeto $i$ en el tiempo $t_j$ es
+$$
+c_{ij} = v(a_i+t_j)
+$$
+Tras computar estas utilidades para todos los pares de objetos $i$ y tiempo $t_j$, basta resolver el problema de asignación que maximiza la utilidad asignada.
 \subsection{Envolvente convexa del $b$-matching}
 Aunque el objetivo de este trabajo es analizar el problema relativo al $1$-emparejamiento, podríamos hablar más generalmente, tal y como dijimos al inicio de este capítulo, del problema del $b$-matching. De manera ilustrativa, presentamos el teorema análogo al Teorema 1.1.1. para esta formulación más general del problema. 
 \begin{thm}
@@ -1460,10 +1492,10 @@ En el siguiente código vamos a escribir una función que dado que nos compare s
 networkx.gnp_random_graph(M,p)
 \end{pythone}
 Esta librería de grafos sobre la que hemos apoyado parte del código utiliza el método de Erdös-Rényi, introducido por dichos matemáticos húngaros en 1959, para generar grafos aleatorios con dos parámetros. El concepto es el siguiente: Supongamos que tenemos una red con $M$ nodos distribuidos aleatoriamente y desconectados. Ahora cada uno de las posibles aristas del grafo completo $K_M$ se añade a nuestra red de manera independiente con probabilidad $p$. Naturalmente cuanto mayor sea $p$ más probable es que el grafo resultante sea \textit{denso}. Si $p$ es demasiado pequeño puede ocurrir que nuestro grafo sea diconexo. 
-\\
+
+Nuestra función tiene como entrada el número $N$ de nodos de los grafos que queremos explorar. Es decir, todos los grafos generados tendrán $N$ vértices. El parámetro $I$ determinar la cantidad de grafos (y por tanto, de problemas) que se van a generar. Finalmente, utilizamos dos parámetros para establecer si queremos o no utilizar métodos alternativos al algoritmo de Grötschel-Holland. 
 \begin{pythone}
-# A continuacion generamos grafos aleatorios y ponemos a prueba los metodos
-# y comparamos resultados.
+# A continuacion generamos grafos aleatorios y ponemos a prueba los metodos y comparamos resultados.
 
 from holland import *
 from integer import *
@@ -1473,14 +1505,9 @@ import numpy as np
 import time
 import pandas as pd
 
-# Establecemos una semilla predeterminada para asegurar la reproducibilidad
-# de los resultados
+# La siguiente funcion nos devuelve el tiempo e iteraciones medias de los distintos metodos que hemos programado para funciones y grafos aleatorios con un numero de nodos N y utilizando I casos.
 
-# La siguiente funcion nos devuelve el tiempo e iteraciones medias de los 
-# distintos metodos que hemos programado para funciones y grafos aleatorios
-# con un numero de nodos N y utilizando I casos.
-
-def analisis(N, I, par1 = 0, par2 = 0, lamb = 0):
+def analisis(N, I, par1 = 0, par2 = 0):
     iter0, iter1, iter2 = 0, 0, 0
     t0, t1, t2 = 0, 0, 0
     bcut = 0
@@ -1495,7 +1522,7 @@ def analisis(N, I, par1 = 0, par2 = 0, lamb = 0):
         c2 = np.random.rand(E)
         
         # Optimizamos utilizando Groetschel-Holland
-        modelo0, simplex0, tiempo0 = optimiza(H,c1,c2,lamb)
+        modelo0, simplex0, tiempo0 = optimiza(H,c1,c2,0)
         
         # Actualizamos los parametros
         iter0 = iter0 + simplex0
@@ -1526,9 +1553,18 @@ def analisis(N, I, par1 = 0, par2 = 0, lamb = 0):
 \end{pythone}
 \newpage 
 \subsection{Reoptimización}
-\begin{pythone}
+Pasamos ahora a presentar el codigo con el que vamos a realizar el análisis de postoptimalidad. En primer lugar, debemos saber que cuando optimizamos un modelo de Programación Lineal en Gurobi, este posee una gran variedad de parámetros y atributos que podemos consultar. Dos de ellos son \textbf{SAObjLow }y \textbf{SAObjUp}, que para cada componente de la función objetivo nos indica hasta dónde podemos variar hacia abajo y hacia arriba respectivamente de manera que la base continúe siendo óptima. 
 
-# Construimos una funcion que nos resuelva el problema de obtener el siguiente lambda
+ Supongamos que hemos resuelto el modelo para un cierto valor de $\lambda^*$, y denotemos por $l$ y $u$ a los vectores definidos anteriormente para este valor $\lambda^*$. Nuestro objetivo es encontrar el máximo valor de $\lambda$ de manera que la base obtenida siga siendo óptima, es decir, queremos resolver el problema
+\begin{align*}
+\max&\, \lambda\\
+s.a.&\,  l \leq c^1 + \lambda c^2\\
+& u \geq c^1 + \lambda c^2 \\
+& \lambda\geq \lambda^* 
+\end{align*}
+Una vez obtenido este valor de $\lambda$ podemos alterar el modelo ya construido de Gurobi y cambiar la función objetivo actualizando el valor de $\lambda$, a la que sumamos un pequeño $\varepsilon$ para que realmente optimice de nuevo, y comprobamos si aun tenemos la misma solución -pues una misma solución puede estar representada por distintas bases- o ésta ha variado. 
+\begin{pythone}
+# Para el estudio de postoptimalidad tenemos primero que definir la siguiente funcion que resuelve un modelo lineal con ciertos parametros tal y como hemos comentado anteriormente.
 def buscalamb(lam,c1,c2,u,l):  
     m = Model("lambda");
     m.ModelSense = GRB.MAXIMIZE
@@ -1541,7 +1577,7 @@ def buscalamb(lam,c1,c2,u,l):
     return(m)
     
 
-# Construimos una funcion que dado un grafo y 
+# Construimos una funcion que dado un grafo y dos funciones de coste resuelva el problema biobjetivo para lambda = 0 y encuentre los valores lambda donde deja de ser optima y una nueva solucion, hasta llegar a lambda = 1.
 def damelam(G,c1,c2):
     
     # Inicializamos parametros
@@ -1643,7 +1679,7 @@ Una vez que el tiempo medio necesario para resolver un problema es superior a 30
 \centering
 \begin{tabular}{rrrrrrrrrr}
   \hline
-N & I & Var & S.GH & S.PE & S.Match & T.GH & T.PE & T.Match & Exp.B.B \\ 
+N & I & Var & S.GH & S.PE & S.Match & T.PE & T.GH & T.Match & Exp.B.B \\ 
   \hline
 10 & 10 & 21.40 & 4.90 & 5.60 & 8.50 &   0.01 & 0.02 & 0.04 & 0.10 \\ 
 16 & 10 & 59.40 & 8.90 & 13.90 & 17.80 & 0.01 & 0.03 & 3.34 & 0.00 \\ 
@@ -1663,7 +1699,7 @@ N & I & Var & S.GH & S.PE & S.Match & T.GH & T.PE & T.Match & Exp.B.B \\
 \centering
 \begin{tabular}{rrrrrrrrrr}
   \hline
-N & I & Var & S.GH & S.PE & S.Match & T.GH & T.PE & T.Match & Exp.B.B \\ 
+N & I & Var & S.GH & S.PE & S.Match & T.PE & T.GH & T.Match & Exp.B.B \\ 
   \hline 
   220 &   5 & 12033.00 & 210.40 & 219.40 & 0.00 & 1.50 & 0.93 & 0.00 & 0.00 \\ 
   250 &   5 & 15529.20 & 253.80 & 258.00 & 0.00 & 2.65 & 1.28 & 0.00 & 0.40 \\ 
@@ -1702,15 +1738,18 @@ A continuación comparamos el número de iteraciones del método del simplex y e
 Al desactivar el pre-solve, nos aseguramos que tras cambiar la función objetivo se parte de la misma base óptima. Ya explicamos anteriormente cómo conseguimos la variación del parámetro y la solución. Veamos un ejemplo.
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.45]{opt}
+\includegraphics[scale=0.5]{opt}
 \caption{Grafo inicial}
 \end{figure}
+
 Partimos de las funciones de coste de las aristas (las cuáles están ordenadas según el orden lexicográfico):
 \begin{pythone}
-c1 = [0.58746954, 0.55197378, 0.36236219, 0.45384589, 0.37596628, 0.82303589, 0.19886985, 0.53659101, 0.13014108, 0.58867652, 0.19037534]
-c2 = [0.58746954, 0.55197378, 0.36236219, 0.45384589, 0.37596628, 0.82303589, 0.19886985, 0.53659101, 0.13014108, 0.58867652, 0.19037534]
+c1 = [0.77783098, 0.26790423, 0.22276086, 0.82550433, 0.552517, 0.18884415, 0.01789486, 0.00243447, 0.04742837, 0.94171732, 0.76081629, 0.70075895, 0.16148063, 0.62424824, 0.95096634, 0.16806133, 0.88617127, 0.57725367, 0.17168492, 0.85295435]
+c2 = [0.64317771, 0.56083433, 0.55490255, 0.29773688, 0.08169206, 0.89175246, 0.56850518, 0.57067846, 0.13329401, 0.15793078, 0.41082069, 0.13778612, 0.39161058, 0.34617111, 0.25853244, 0.79687483, 0.58816817, 0.00892943, 0.18819747, 0.52953081]
 \end{pythone}
-Utilizando el código anterior, resolvemos para $\lambda=0$ y vamos indicando los cambios de solución en función del cambio de $\lambda$.
+Utilizando presentado anteriormente para la reoptimización. Comenzamos resolviendo para $\lambda=0$ calculamos el máximo valor de $\lambda$ para el cuál la base actual sigue siendo óptima. Tras modificar la función objetivo y reoptimizar, obtenemos una solución que puede volver a ser la misma o no. Si no lo fuese, capturamos el valor de $\lambda$ y la solución. Obtenemos así que que para $\lambda\in [0,1]$ encontramos 3 soluciones distintas para valores límite de $\lambda \in \{0,0.5814,0.6626\}$.
+
+En un análisis posterior, resolvemos el mismo problema usando Programación Entera para una regilla de valores $\lambda$ entre $0$ y $1$ con paso $0.1$. Así obtenemos lo que cabría esperar, para $\lambda \leq 0.5$ obtenemos la primera solución, para $\lambda = 0.6$ obtenemos la segunda solución y para $0.7 \leq \lambda \leq 1$ obtenemos la tercera solución. Presentamos una representación gráfica de los distintos emparejamientos asociados a cada $\lambda$. 
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.5]{opt2}
@@ -1720,15 +1759,15 @@ Utilizando el código anterior, resolvemos para $\lambda=0$ y vamos indicando lo
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.65]{opt3}
-\caption{Solución para $\lambda=0.7406748272040352$}
+\includegraphics[scale=0.5]{opt3}
+\caption{Solución para $\lambda=0.5814219436621$}
 \end{figure}
 
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.65]{opt4}
-\caption{Solución para $\lambda=0.9221961126832589$}
+\includegraphics[scale=0.5]{opt4}
+\caption{Solución para $\lambda=0.6626459613176332$}
 \end{figure}
 
 \begin{thebibliography}{9}

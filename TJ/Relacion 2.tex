@@ -234,4 +234,33 @@ Notemos que las tres primeras componentes siempre serán negativas o nulas, así
 
 Notemos que en este juego $C(v)=\emptyset$. 
 \end{solucion}
+\newpage
+\begin{ejercicio}{7}
+Calcular el valor de Shapley para el juego del premio Nobel japonés y comprobar si pertenece al núcleo.
+\end{ejercicio}
+
+\begin{solucion}
+Consideremos  los valores de $v^c$.
+\begin{gather*}
+v^c(\emptyset) = 0 \qquad v^c(\{i\}) = 0 \quad \forall i = 1,2,3 \qquad  v(\{1,2\}) = v(\{1,3\}) = 1300\\
+v(\{2,3\}) = 1600 \qquad v(N)=2900
+\end{gather*}
+Ahora calculemos el valor de Shapley de $v^c$. 
+\begin{align*}
+\phi(v^c)_1& = \frac{2!0!}{3!}(v^c(\{1\})+ v^c(N) -v^c(\{2,3\})) + \frac{1!1!}{3!}\left((v^c(\{1,2\})-v^c(\{2\}) + v^c(\{1,3\})-v^c(\{3\}) \right)\\
+&= \frac{1}{6}(5800-3200 + 1300 + 1300)\\& = \frac{2600}{3}\\
+\phi(v^c)_2& = \frac{2!0!}{3!}(v^c(\{2\})+ v^c(N) -v^c(\{1,3\})) + \frac{1!1!}{3!}\left((v^c(\{1,2\})-v^c(\{1\}) + v^c(\{2,3\})-v^c(\{3\}) \right)\\
+&= \frac{1}{6}(5800-2600 + 1300 + 1600)\\& = \frac{3050}{3}\\
+\phi(v^c)_3& = \frac{2!0!}{3!}(v^c(\{3\})+ v^c(N) -v^c(\{1,3\})) + \frac{1!1!}{3!}\left((v^c(\{1,3\})-v^c(\{1\}) + v^c(\{2,3\})-v^c(\{2\}) \right)\\
+&= \frac{1}{3}(5800-2600 + 1300 + 1600)\\& = \frac{3050}{3}
+\end{align*}
+Por tanto
+$$
+\phi(v^c) = \frac{1}{3}(2600,3050,3050)
+$$
+y el valor de Shapley de $c$ es
+$$
+\phi(c)= \frac{1}{3}(1600,
+$$
+\end{solucion}
 \end{document}
