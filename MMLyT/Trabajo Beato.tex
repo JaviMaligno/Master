@@ -115,6 +115,17 @@ El algoritmo húngaro fue inventado por Harold W. Kuhn en 1955, aunque fue revis
 \subsection{Algoritmo de relajación}
 El algoritmo de relajación es otra aproximación popular al problema de asignación. Este algoritmo relaja el segundo bloque de restricciones, permitiendo que cualquier nodo de $N_2$ pueda ser asignado a más de un nodo de $N_1$. El problema relajado es fácil de resolver: a cada $i\in N_1$ asignemos el nodo $j\in N_2$ con el coste mínimo $c_{ij}$ entre los arcos conectados con $i$. Como resultado, naturalmente, algunos nodos de $N_2$ pueden estar sin asignación y otros pueden quedar sobreasignados. El algoritmo convierte gradualmente esta solución en una asignación factible mientras mantiene la optimalidad de los costes reducidos. En cada iteración el algoritmo selecciona un nodo sobreasignado de $N_2$ y obtiene el camino más corto de $k$ al resto nodos en la red residual, es decir, restringiéndonos a los arcos con coste reducidos no nulos, utilizando los costes reducidos como longitud de las aristas. Seguidamente actualizamos los potenciales y aumenta en $1$ el flujo total desde el nodo escogido hasta $N_2$ de manera que nunca convierta un nodo asignado en uno sin asignar. Por tanto, a lo sumo necesitaremos $|N_1|$ iteraciones de este proceso.
 
+\section{Problema del Matrimonio Estable}
+El problema del matrimonio estable es una aplicación de los emparejamientos en grafos bipartitos. Podemos enunciar el problema de la siguiente manera. Una comunidad tiene un contiene $n$ hombres y $n$ mujeres. Cada persona evalúa a todas las personas del sexo contrario según sus preferencias y les asigna un coeficiente. Dado un emparejamiento, un par hombre-mujer se dice \textbf{inestable} si no están emparejados pero ambos prefieren al otro frente a su pareja actual. El problema del matrimonio estable consiste en identificar el emparejamiento perfecto -todos los nodos están emparejados- estable. 
+
+El input de este problema consiste en dos matrices $n\times n$, la primera de ellas correspondiente a las puntuaciones que cada hombre ha dado a cada mujer, y la segunda las puntuaciones de las mujeres a los hombres. Podemos asumir sin pérdida de generalidad que las puntuaciones están dadas con números enteros entre $1$ y $n$. Para cada individuo podemos considerar el vector de sus puntuaciones del sexo contrario ordenados de forma decreciente. 
+
+Nuestro algoritmo funciona de la siguiente manera. En primer lugar consideramos la asignación a cada hombre de la mujer que más prefiera. Naturalmente habrá mujeres que sean sobreelegidas y algunas que no habrán sido elegidas. El algoritmo mantiene una lista llamada LIST de hombres que aun no han sido asignados y para cada uno de ellos denotamos por \textit{current-woman} que denota la mujer en su lista de preferencias que será la siguiente en ser propuesta para serle emparejado. Inicialmente LIST $=N_1$, el conjunto de los hombres, y \textit{current-woman} es la mujer con más puntuación para cada hombre. 
+
+Nuestro algoritmo procede de la siguiente manera. En cada iteración el algoritmo selecciona un elemento de LIST, digamos $i$, y se propone como posible pareja a su \textit{current-woman}, digamos $u$. En el caso de que $u$ esté sin emparejar, realizamos dicha asignación. Si $u$ está ya emparejado a otro nodo $j$, emparejamos a $u$ con su preferido entre $i$ y $j$. Quien sea rechazado, actualizamos su \textit{current-woman}. Cada vez que seleccionamos un elemento de LIST, lo eliminamos de la lista. Cada vez que un hombre es rechazado (o desemparejado) lo añadimos a LIST. Naturalmente el algoritmo acaba cuando LIST es vacío. Este algoritmo se denomina algoritmo de propuesta y rechazo o \textit{propose-reject algorithm}. Se verifica además el siguiente teorema.
+\begin{theorem}
+Para cualesquiera matriz de rakings, el problema del matrimonio estable tiene una solución. Es decir, siempre existe un emparejamiento estable. Es más, el algoritmo anterior construye un emparejamiento estable en $O(|V|^2)$.
+\end{theorem}
 \section{Emparejamiento no bipartito de máxima cardinalidad}
 En este sección vamos a ver el problema de encontrar el emparejamiento de máxima cardinalidad en un grafo no bipartito no dirigido. Recordemos que un emparejamiento $M$ en un grafo $G=(V,E)$ es simplemente un subconjunto de $E$ con la propiedad de que dos arcos de $M$ no son adyacentes a un mismo nodo. A los nodos que sean extremos de alguna arista de $M$ les diremos que están emparejados, mientras que al resto diremos que no lo están. 
 
@@ -150,7 +161,7 @@ Podemos pasar a dar el algoritmo para el caso bipartito:
 \text{Paso 3: }& \text{Devolvemos el matching resultante}
 \end{align*} 
 Este algoritmo tiene complejidad $O(|V||E|)$. El proceso de encontrar y aumentar el matching se hace $|V|$ veces, el cuál tiene complejidad $O(|E|)$.
-\subsection{Caso no bipartito}
+\subsection{Flowers y blossoms}
 Aunque el algoritmo anterior es ciertamente correcto para el caso bipartito, tiene ciertos problemas en el caso general. Para entender por qué vamos a definir el siguiente concepto. Un grafo se dice que tiene la \textbf{propiedad de etiquetado único} respecto de un matching $M$ y un nodo $p$ si las asignaciones de etiquetas en el proceso de construcción del árbol alternante las etiquetas son invariantes independientemente del orden con el que examinemos los nodos etiquetados. como es de esperar, todos los grafos bipartitos tienen esta propiedad para cada matching $M$ y nodo $p$. Sin embargo, en general un grafo puede no satisfacer esta propiedad de manera que el algoritmo anterior puede fallar. 
 
 Pero, ¿por qué ocurre esto? ¿Qué hace que el algoritmo falle? La raíz del problema es la presencia de ciertos subgrafos denominados \textit{flowers} (conservaremos la notación en inglés). Vamos a estudiarlos más profundamente. Un \textbf{flower} se define con respecto a un mathcing $M$ y un nodo $p$ como un subgrafo con dos componentes:
@@ -170,7 +181,7 @@ Pasamos a ver algunas propiedades de estos grafos.
 \begin{prop}
 En un  bloosom todo nodo salvo su base puede alcanzarse desde la raíz a través de dos caminos alternantes distintos, uno con longitud par y otro impar.
 \end{prop}
-\subsubsection{Contracción de un blossom}
+\subsection{Contracción de un blossom}
 Volvamos otra vez al principio. ¿Por qué puede fallar nuestro algoritmo si el grafo no es bipartito? Si nuestro grafo contiene un blossom con respecto al matching actual $M$ y nodo $p$, cada nodo del blossom puede recibir una etiqueta $E$ por existir un camino alternante de $p$ a cada nodo. Sin embargo, nuestro algoritmo de búsqueda dará etiquetas $E$ a algunos nodos y $O$ a otros. La razón por la que es interesante dar a todos los nodos etiquetas $E$ es porque, al analizarlos, nuestro algoritmo puede etiquetar nodos que estén fuera del blossom. Si son $O$, solo etiquetará su nodo emparejado en el matching, que también estará en el blossom. 
 
 Si podemos dar a todos los nodos del blossom la misma etiqueta $E$ es, una vez que hemos detectado la presencia de un blossom siempre tendremos un camino de aumento. La manera más popular de lograr este objetivo es contrayendo el blossom a un único vértice. Para ello llevamos a cabo la siguiente operación. Sea $i_1,\dotsc,i_k,i_1$ un blossom.
@@ -186,9 +197,12 @@ Nos referimos al grafo resultante de esta operación $G^c = (N^c,A^c)$ como \tex
 \caption{Stem, blossom, base (root) y contracción.}
 \end{figure}
 \newpage
-\subsubsection{Algoritmo para el emparejamiento no bipartito}
+\subsection{Algoritmo para el emparejamiento no bipartito}
+Pasamos ahora a describir el agloritmo para el problema del emparejamiento de máxima cardinalidad en un grafo general, es decir, no necesariamente bipartito. Lo que vamos a hacer es modificar el procedimiento de búsqueda del algoritmo bipartito de la siguiente manera. Nuestro algoritmo funciona etiquetando nodos como pares $E$ o impares $O$. Aunque nuestro algoritmo nunca etiquetará un nodo ya etiquetado, sí que puede presentársele la posibilidad (como ya hemos comentado) de etiquetar un nodo como $O$ cuando este ya tiene una etiqueta $E$, o el caso recíproco. Cuando encontremos por primera vez que podemos asignar a un nodo, digamos $i$, una etiqueta distinta a la que tiene, nosotros detendremos el algoritmo. Encontrarnos en esta situación implica que hemos encontrado un camino alternante de longitud par y otro de longitud impar al nodo $i$. Si ahora volvemos hacia atrás por ambos caminos hasta encontrar el primer nodo donde ambos coinciden, entonces hemos trazado precisamente un blossom, y ese nodo común es la base del mismo. Contraemos el blossom a un pseudonodo, actualizamos las estructuras y continuamos el proceso de búsqueda. 
 
-La correctitud del algoritmo se basa en los siguiente teorema.
+Notemos que antes de encontrar el camino de aumento podemos llevar a cabo más de una contracción. Incluso podemos tener pseudonodos contraídos dentro otros pseudonodos. Si encontramos un camino de aumento desde nuestro nodo $p$ a algún nodo no emparejado $q$, comprobamos si dicho camino contiene pseudonodos. Si es así, expandimos los blossom, en un determinado orden, hasta que el camino de aumento no tenga pseudonodos. 
+
+La correctitud del algoritmo se basa en los siguiente teorema. Denotemos por $M^c$ el matching resultante al contraer las aristas de $M$ en $G^c$.
 \begin{theorem}
 Si el grafo contraído $G^c$ contiene un camino de aumento $P^c$ con inicio en un nodo raíz $p$ (o pseudonodo que contiene a $p$) con respecto a un matching $M^c$, entonces el grafo original $G$ contiene un camino de aumento comenzando en $p$ con respecto a $M$.
 \end{theorem}
