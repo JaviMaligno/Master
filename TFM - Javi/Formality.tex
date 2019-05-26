@@ -15,7 +15,7 @@
 %\url{https://ncatlab.org/nlab/show/Drinfeld+associator}
 
 
-In this chapter we review and explain the heart of the proof of the Deligne Conjecture: the formality of the chain operad of little disks. Throughout the chapter we follow \cite{Tamarkin}. The chain operad of little disks is the operad of chain complexes over $\Q$ obtained from the topological little disks operad. By formailty it is meant that there is a \emph{quasi-isomorphism} between this operad and its homology operad, i.e. a morphism of chain operads which induces isomorphism in homology. The strategy is the following:
+In this chapter we review and explain the heart of the proof of the Deligne Conjecture: the formality of the chain operad of little disks. Throughout the chapter we follow \cite{Tamarkin}. The chain operad of little disks is the operad of chain complexes over $\Q$ obtained from the topological little disks operad. By formailty it is meant that there is a chain of \emph{quasi-isomorphisms} between this operad and its homology operad, i.e. a sequence of incoming and outcoming morphisms of chain operads which induce isomorphisms in homology. The strategy is the following:
 
  First, we define an operad which is homotopy equivalent to the little disks operad from a category operad $PaB_*$. Then, we take a $\Q$-linear span of $PaB_*$ and find an operad $O_A(*)$ together with a quasi-isomorphism from the homology operad of little disks. Finally, we give a quasi-isomorphism between the span $\Q(PaB_*)$ and $O_A(*)$, which completes the proof. 
 
@@ -148,7 +148,7 @@ Choose an arbitrary point $x\in E_1(n)$. Let $\alpha:I\to E_2(n)$ denote the pat
 of pictures
 
 \definecolor{qqqqff}{rgb}{0.,0.,1.}
-\resizebox{13cm}{10.5cm}{%
+\resizebox{12.3cm}{9.8cm}{%
 \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
 \clip(-1.586666666666667,-6.553333333333329) rectangle (13.293333333333337,5.533333333333328);
 \fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (0.37333333333333335,5.) -- (0.7733333333333334,5.) -- (0.8,0.) -- (0.4,0.) -- cycle;
@@ -325,8 +325,8 @@ A more general approach to the previous proposition is taken in propositions 2.2
 
 We now give a few useful definitions. Let $P$ be an operad of complexes, and $f : A→B$ be a morphism of two $P$-algebras.
 \begin{defi}
-$f$ is a quasi-isomorphism if it induces an isomorphism of the cohomology
-groups of $A$ and $B$ considered just as complexes.
+$f$ is a quasi-isomorphism if it induces an isomorphism of the homology
+groups of $A$ and $B$ considered as complexes with zero differential.
 \end{defi}
 
 \begin{defi}
@@ -340,9 +340,16 @@ Analogously to the case of algebras, we can speak about quasi-isomorphisms of op
 of complexes.
 
 \begin{defi}
-A morphism $f : P_1→P_2$ between two operads of complexes is called a
-quasi-isomorphism if the maps of complexes $f(n) : P_1(n)→P_2(n)$ induce isomorphisms of
+A morphism $f : P_1→P_2$ between two operads of complexes (dg operads) is called a
+\emph{quasi-isomorphism} if the maps of complexes $f(n) : P_1(n)→P_2(n)$ induce isomorphisms of
 cohomology groups for all $n$.
+\end{defi}
+
+\begin{defi}
+Two dg operads $A$ and $B$ are said to be \emph{equivalent} if there exists a chain of quasi-isomorphisms
+\[
+A= A_1→A_2←A_3→\cdots←A_{2k+1} = B
+\]
 \end{defi}
 
 
