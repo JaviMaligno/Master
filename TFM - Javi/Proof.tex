@@ -10,13 +10,13 @@
 
  %PUEDE ESTAR BIEN INTRODUCIR LA HOMOTOPY G-ALGEBRA AUNQUE IGUAL ES UN POCO REDUNDANTE.  (COMPARAR LA DEFINICIÓN COMO BRACE ALGEBRA CON LA DE ALGEBRAIC OPERADS O LA QUE SEA QUE TENGO CITADA POR AHÍ)
 
-Now that we know the quasi-isomorphism $C_*(E_2)\simeq H_*(E_2)$, we can prove the Deligne conjecture if we find an action of $H_*(E_2)$ on the Hochschild complex $C^*(A;A)$ inducing the Gerstenhaber algebra structure on $H^*(A;A)$. In this section, we will denote $G=H_*(E_2)$. For an operad $\OO$ of a certain kind that we will call \emph{quadratic}, there is an operad $\OO_\infty$ and a map $\OO_\infty\to\OO$, which is a quasi-isomorphism under certain conditions that $G$ satisfies, so we have a quasi-isomorphism $G_\infty\to G$. From this point, the idea is to factor this map through
+Now that we know the equivalence $C_*(E_2)\simeq H_*(E_2)$, we can prove the Deligne conjecture if we find an action of an operad equivalent to $H_*(E_2)$ on the Hochschild complex $C^*(A;A)$ inducing the Gerstenhaber algebra structure on $H^*(A;A)$. In this chapter, we will denote $G=H_*(E_2)$. For any operad $\OO$ of a certain kind that we will call \emph{quadratic}, there is an operad $\OO_\infty$ and a map $\OO_\infty\to\OO$, which is a quasi-isomorphism under certain conditions that $G$ satisfies, so we have a quasi-isomorphism $G_\infty\to G$. From this point, the idea is to factor this map through
 \[
 G_\infty\to \BB,\BB\to G
 \]
-where $\BB$ is an operad which acts on $C^*(A;A)$ inducing the Gerstenhaber algebra structure on $H^*(A;A)$.  This map won't be constructed explicitly since it relies on an isomorphism of operad $\widetilde{\BB}\cong\BB$, which is obtained using tools of Etingof-Kazhdan quantization theory \cite{EK} (see also Section 7 of \cite{Hinich}). Finally, since $G_\infty\simeq G$, we obtain the wanted action of $G$ on $C^*(A;A)$ via $\BB$. 
+where $\BB$ is an operad which acts on $C^*(A;A)$ inducing the Gerstenhaber algebra structure on $H^*(A;A)$.  This factorization won't be constructed explicitly since it relies on an isomorphism of operads $\widetilde{\BB}\cong\BB$, which is obtained using tools of Etingof-Kazhdan quantization theory \cite{EK} (see also Section 7 of \cite{Hinich}). Finally, since $G_\infty\simeq G$ and $G_\infty\to\BB$ induces an action of $G_\infty$ on $C^*(A;A)$ via $\BB$, we have found an operad equivalent to the chain operad of little disks acting on the Hochschild complex and inducing the Gerstenhaber algebra on cohomology. 
 
-Throughout this section $k$ is a field of characteristic 0 and $A$ is an associative $k$-algebra. 
+Throughout this chapter $k$ is a field of characteristic 0. 
 
 
 \section{Cooperads and coalgebras}
@@ -231,11 +231,11 @@ Using some technical results about dg-operads, Hinich shows that there is a map 
 A quadratic operad $\OO$ is called \emph{Koszul} if the map $\OO_\infty\to \OO$ is a quasi-isomorphism.
 \end{defi}
 
-Hinich \cite{Hinich} shows that $G$ is Koszul using Kähler differentials and other techniques that we won't describe here. Another approach using that $G_\infty$ is the \emph{Koszul resolution} of $G$ is presented in \cite{AlgebraicOperads}. That fact is also proved in \cite{GJHinich}. In any case, we have a  quasi-isomorphism (indeed, an homotopy equivalence \cite{strong})
+Hinich \cite{Hinich} shows that $G$ is Koszul using Kähler differentials and other techniques that we won't describe here. Another approach using that $G_\infty$ is the \emph{Koszul resolution} of $G$ is presented in \cite{AlgebraicOperads}. That fact is also proved in \cite{GJHinich}. In any case, we have a  quasi-isomorphism %(indeed, an homotopy equivalence \cite{strong})
 \begin{equation}\label{equivalence}
 G_\infty\xrightarrow{\simeq} G.
 \end{equation}
-The operad $G_\infty$ is called the operad of \emph{homotopy Gerstenhaber algebras}. This should not be confused with another \emph{homotopy G-algebra} found in the literature (\cite{VO} and \cite{VGH} for example) and that will be briefly explained later. 
+The operad $G_\infty$ is called the operad of \emph{homotopy Gerstenhaber algebras}. This should not be confused with another \emph{homotopy G-algebra} found in the literature (\cite{VO} and \cite{VGH} for example) that will be briefly explained later. 
 
 %AQUÍ LO QUE PUEDA SACAR DE HINICH
 
@@ -530,11 +530,11 @@ a\circ (bc)-(a\circ b)c&-(-1)^{|a|(|b|-1)}b(a\circ c)\\
 Equations (\ref{homproduct}) and (\ref{homleibniz}) express that commutativity and the Liebniz rule are satisfied \emph{up to homotopy}, hence inducing the  true commutativity and Leibniz rule on cohomology. This is exactly what is meant when one says that $C^*(A;A)$ carries a structure of \emph{homotopy G-algebra}, i.e., Gersternhaber algebra up to homotopy. 
 %COMPROBAR CON VORONOV VAYA QUE ME DEJE ALGO Y VAYA QUE DÉ A ENTENDER QUE ES JUSTO ESAS PROPIEDADES Y NO EN GENERAL LAS PROPIEDADES DE GERTS
 
-In conclusion, we've been able to depict an action of the chain operad of little disks $C_*(E_2)$ on the Hochschild complex $C^*(A;A)$ inducing the same action as the homology operad of little disks $G=H_*(E_2)$ on the Hochschild cohomology $H^*(A;A)$ via the following chain of morphisms of operads
+In conclusion, we've been able to depict an action of an operad $G_\infty$ equivalent the chain operad of little disks $C_*(E_2)$ on the Hochschild complex $C^*(A;A)$ inducing the same action as the homology operad of little disks $G=H_*(E_2)$ on the Hochschild cohomology $H^*(A;A)$ via the following chain of equivalences and morphisms of operads
 \[
-C_*(E_2)\to G\to G_\infty\to \BB.
+C_*(E_2)\simeq G \simeq G_\infty \to \BB.
 \]
-The morphism $C_*(E_2)\to G$ is the quasi-isomorphism described in the previous chapter. The morphism $G\to G_\infty$ is obtained from the fact that $G_\infty\to G$ is a homotopy equivalence of operads, and $G_\infty\to\BB$ is described by Hinich in \cite{Hinich}. Since $\BB$ explicitly acts on $C^*(A;A)$, the resulting map $C_*(E_2)\to\BB$ gives us the desired action of $C_*(E_2)$.
+The equivalence $C_*(E_2)\simeq G$ is the one described in the previous chapter and $G \simeq G_\infty$ is the equivalence given by the quasi-isomorphism (\ref{equivalence}). Finally, $G_\infty\to\BB$ is described by Hinich in \cite{Hinich}. Since $\BB$ explicitly acts on $C^*(A;A)$, the map $G_\infty\to\BB$ gives us the desired action of $G_\infty\simeq C_*(E_2)$.
 %\url{https://math.stackexchange.com/questions/566797/finding-example-of-quasi-isomorphism-that-has-no-quasi-inverse} ESTO LO TENGO QUE INTENTAR EXPLICAR O CITAR AQUÍ O CUANDO DIGO QUE ES QUASI-ISOMORFISMO SI ES LARGO, DE TODAS FORMAS PREGUNTAR PORQUE LA QUASI-INVERSA DEBERÍA SER MORFISMO DE OPERADS \url{https://arxiv.org/pdf/math/0312147.pdf} O DECIR QUE ES DE HECHO EQUIVALENCIA DE HOMOTOPÍA (EN ALGEBRAI OPERADS SOLO DICEN QUE SEA QUASI-ISOMORPHISM Y EPI) PERO NECESITARÍA REFERENCIA
 
 %EN LA PÁGINA 528 (DEL CUADRADITO DE ADOBE) DICE QUE PARA LA CONJETURA BASTA QUE HAYA EQUIVALENCIA EN ZIGZAG Y LA ESCRIBE, PERO AL MISMO TIEMPO CREO QUE USA QUE ES UNA EQUIVALENCIA DE HOMOTOPÍA LO DE ANTES

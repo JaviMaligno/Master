@@ -6,15 +6,45 @@
 
 \mychapter{0}{Introduction}
 
-PREGUNTAR A FERNANDO  POR SI LO DEJO COMO ABSTRACT LARGO
+Let $A$ an associative ring. The Hochschild cochains of $A$ are given by $C^p(A;A)=\Hom(A^{\otimes p},A)$ with differential 
+\begin{align*}
+\delta_m f(a_1\otimes\cdots\otimes a_{m+1})&=a_1f(a_2\otimes\cdots\otimes a_{m+1})\\
+& +\sum_{i=1}^m(-1)^if(a_1\otimes\cdots\otimes a_{i-1}\otimes a_ia_{i+1}\otimes a_{i+1}\otimes\cdots a_{m+1})\\
+& +(-1)^{m+1}f(a_1\otimes\cdots\otimes a_m)a_{m+1}.
+\end{align*}
+Then we obtain the Hochschild cohomology $H^*(A;A)=H^*(C^*(A))$. Gerstenhaber showed in 1962 \cite{Gerstenhaber} that $H^*(A;A)$ is a Gerstenhaber algebra, meaning that it has a cup product and a compatible Lie bracket. Compatibility means that the Lie bracket is a derivation with respect to the cup product.
 
-HABLAR MUY SUCINTAMENTE DE LA COHOMOLOGÍA DE HOCHSCHILD Y DE QUE TIENE ESTRUCTURA DE ÁLGEBRA DE GERSTENHABER, QUE ESTAS ÁLGEBRAS SON ÁLGEBRAS SOBRE OPERADS DE DISCOS PEQUEÑOS DICIENDO INTUITIVAMENTE LO QUE SON LAS OPERADS Y DE QUÉ VA LO DE LOS DISCOS PEQUEÑOS, DECIR ENTONCES LO DE LA CONJETURA CITANDO DIVERSAS PRUEBAS. DESPUÉS ESTRUCTURA DEL TRABAJO POR CAPÍTULO Y POR ÚLTIMO COMENTAR LO DE LOS CONOCIMIENTOS PREVIOS DE CATEGORÍAS Y TRENZAS
+Then, in 1973 Fred Cohen \cite{cuentas} showed that a Gerstenhaber algebra is the same as an algebra over the homology operad of little disks. The little disks operad is a collection $E_2=\{E_2(n)\}_{n\geq 0}$ of configuration spaces of $n$ disks inside the standard unit disk. This collection is an operad because it is equipped with composition maps given by inserting a configuration of $n$ disks inside one of the $m$ disks of another configuration, and action of the symmetric groups given by rearranging the little disks. Its singular chain complex $C_*(E_2)$ and its homology $e_2=H_*(E_2)$ are also operads, but of chain complexes instead of operads of topological spaces (as we will see, the notion of operad makes sense in any monoidal category). 
 
-\url{https://ncatlab.org/nlab/show/Deligne+conjecture}
-%\url{https://en.wikipedia.org/wiki/Tensor_algebra}
-%\url{https://ncatlab.org/nlab/show/Eilenberg-Zilber+map} HACE FALTA LA EXPRESIÓN PARA PROBAR LA ASOCIATIVIDAD DE LA OPERACIÓN INDUCIDA POR EL OPERAD QUE HAGA QUE EL COMPLEJO SIGA SIENDO OPERAD
+In 1993, Deligne asked \cite{deligne} whether there was a closer relation between the Hochschild complex and the little disks operad. Specifically, he asked whether the Gerstenhaber algebra structure of $H^*(A;A)$ is induced by an action on $C^*(A;A)$ of a chain operad
+equivalent to the singular chain operad of $C_*(E_2)$. This is usually known as Deligne conjecture, although in the original letter it was expressed as a desire or preference:
 
-\url{https://en.wikipedia.org/wiki/S-object} los S-objetos de Hinich
+\emph{``I would
+like the complex computing Hochschild cohomology to be an algebra over [the singular chain
+operad of the little 2-cubes] or a suitable version of it.''}
 
-CITAR MI TFG PARA TRENZAS Y MACLANE PARA CATEGORÍAS
+The operad of the little 2-cubes mentioned by Deligne is another version of the little disks operad. The ``suitable version of it'' was finally replaced by a notion of equivalence between operads of chain complexes. This notion is made via chains of quasi-isomorphisms (maps that induce isomorphisms in homology). 
+
+Several proofs of the conjecture using different methods have been given in the last two decades. The first was by Getzler-Jones in 1994 \cite{GJ}, but it had a gap; their key ingredient was a cellular decomposition of the Fulton-MacPherson operad, but it wasn’t cellular: they had
+lower cells attached to higher cells. This was fixed by Voronov in 2000 \cite{VO}. Meanwhile, in 1998 there were proofs for $A$ a $k$-algebra, being $k$ of characteristic 0 by Tamarkin and Kontsevich \cite{tk} , and then McClure-Smith \cite{McClure} obtained a proof over $\Z$.
+
+
+We describe here the proof given by Tamarkin. This thesis is structured as follows. In chapters 1 and 2 we give some necessary background, in particular, chapter 1 is devoted to explain the Gerstenhaber algebra structure on the Hochschild cohomology and chapter 2 contains some notions about simplicial objects and their geometric realization. Chapter 3 is an introduction to operads and algebras over operads, first the topological case, defining the little disks operad as main example, and then we extend the definitions to more general categories. In chapter 4 we review in detail the proof of the formality of the chain operad of little disks, due to Tamarkin \cite{TD}, which is the proof that this operad is equivalent to its homology operad. Finally, in chapter 5 we complete the proof of the conjecture following the strategy given by Hinich \cite{Hinich} leaving out some technical details. 
+
+Some elementary knowledge about the braid groups and about category theory is required. References to the first topic are \cite{tfg} and \cite{Meneses}, while for the second topic one can read \cite{working} and \cite{Diego}.
+
+
+
+
+%PREGUNTAR A FERNANDO  POR SI LO DEJO COMO ABSTRACT LARGO
+%
+%HABLAR MUY SUCINTAMENTE DE LA COHOMOLOGÍA DE HOCHSCHILD Y DE QUE TIENE ESTRUCTURA DE ÁLGEBRA DE GERSTENHABER, QUE ESTAS ÁLGEBRAS SON ÁLGEBRAS SOBRE OPERADS DE DISCOS PEQUEÑOS DICIENDO INTUITIVAMENTE LO QUE SON LAS OPERADS Y DE QUÉ VA LO DE LOS DISCOS PEQUEÑOS, DECIR ENTONCES LO DE LA CONJETURA CITANDO DIVERSAS PRUEBAS. DESPUÉS ESTRUCTURA DEL TRABAJO POR CAPÍTULO Y POR ÚLTIMO COMENTAR LO DE LOS CONOCIMIENTOS PREVIOS DE CATEGORÍAS Y TRENZAS
+%
+%\url{https://ncatlab.org/nlab/show/Deligne+conjecture}
+%%\url{https://en.wikipedia.org/wiki/Tensor_algebra}
+%%\url{https://ncatlab.org/nlab/show/Eilenberg-Zilber+map} HACE FALTA LA EXPRESIÓN PARA PROBAR LA ASOCIATIVIDAD DE LA OPERACIÓN INDUCIDA POR EL OPERAD QUE HAGA QUE EL COMPLEJO SIGA SIENDO OPERAD
+%
+%\url{https://en.wikipedia.org/wiki/S-object} los S-objetos de Hinich
+%
+%CITAR MI TFG PARA TRENZAS Y MACLANE PARA CATEGORÍAS
 \end{document}
