@@ -71,6 +71,38 @@ Quizás alguien podría suponer que la asunción de completitud sobre la red tro
 Nuestro problema del diseño topológico puede ser visto como una versión generalizada del problema de localización de plantas con capacidad de producción infinita o \textit{uncapcitated facility location problem} (UFLP). La única diferencia con el UFLP es que en nuestra formulación la red de las plantas o instalaciones debe ser completamente conexa, mientras que en el UFLP no todas las plantas tienen que estar necesariamente interconectadas.
 
 \section{Formulación del problema}
+En esta sección vamos a ver que el problema del diseño topológico de la red puede ser formulado como un problema de progrmación entero binario, pues nos aparecen términos cuadráticos en la función objetivo. En primer lugar, definamos los elementos involucrados en la formulación.
+\begin{itemize}
+\item $I=\{1,\dotsc,m\}$ es el conjunto de lugares potenciales para situar nodos troncales.
+\item $J=\{1,\dotsc,n\}$ es el conjunto de nodos de usuario.
+\item $x_{ij}=1$ si el nodo de usuario $j$ está asignado al nodo troncal $i$ y $0$ en otro caso.
+\item $y_i =1$ si establecemos el nodo troncal $i$ y $0$ en otro caso.
+\item $c_{ij}$ es el coste no negativo de asignar el nodo de usuario $j$ al nodo troncal $i$.
+\item $f_i$ es el coste no negativo de establecer el nodo troncal $i$. 
+\item $d_{il}$ es el coste no negativo establecer un enlace entre $i$ y $l$ $(d_{il} = 0$ si $i\geq l$).
+\end{itemize}
+Entonces, la formulación del problema queda de la siguiente manera.
+\begin{align}
+\min \,& \sum_{i\in I} \sum_{j\in J} c_{ij}x_{ij} + \sum_{i\in I} f_i y_i + \sum_{i \in I}\sum_{l \in I} d_{ij}y_iy_l\\
+s.a.\,& \sum_{i\in I} x_{ij} = 1 \qquad  j \in J\\
+& x_{ij}\leq y_i \quad\;\;\qquad i \in I,\; j\in J\\
+&x_{ij}\in\{0,1\} \qquad i \in I,\; j\in J\\
+&y_i\in\{0,1\} \qquad \;i\in I
+\end{align}
+Expliquemos los bloques de restricciones. Las restricciones del tipo 2 nos aseguran que cada nodo de usuario está conectado a un único nodo troncal, mientras las que las del tipo 3 garantizan que los nodos de usuarios se asignan a nodos troncales que hayan sido realmente establecidos. A pesar de que cada vez se han reportado más avances en el estudio de de programación cuadrática 0-1, la mayoría de ellos están centrados en el caso sin restricciones. Algunos estudios señalables del caso general con restricciones son, por ejemplo, el trabajo de McBride y Yormark \cite{mcbride} donde desarrollan un método  de ramificación y acotación donde las cotas inferiores se obtienen relajando las restricciones 0-1. También Lazimy propone un algoritmo basado en la descomposición de Bender en \cite{lazi}. Sin embargo, el enorme tamaño de los modelos como el nuestro hace que estas técnicas sean computacionelmente prohibitivas. Por esta razón, vamos a utilizar una formulación alternativa equivalente lineal en la que explotamos la estructura particular de nuestro problema.
+\newpage
+Para linealizar los términos cuadráticos de la función objetivo $y_iy_l$, introducimos las variables 0-1 $z_{il} = y_iy_l$ que satisfacen las restricciones para todo $1\leq i \leq l \leq m$
+\begin{align}
+&y_i+y_l\leq z_{il}+1\\
+&z_{il} \leq y_i\\
+&z_{il}\leq y_l\\
+&z_{il}\geq 0\\
+&z_{il}\in \mathbb{Z}
+\end{align}
+Sin embargo, notemos que en la formulación particular de nuestro problema las restricciones 7, 8 y 10 son innecesarias, pues, dado que los costes $d_{il}$ son no negativos y estamos minimizando, $z_{il}$ alcanzará necesariamente su valor mínimo en el óptimo. 
+
+Ahora consideremos una extensión del bloque 6 de restricciones. Sea $\{I^k\}_{k\in K}$ el conjunto de los subconjuntos de $I$ tales que $|I_k|\geq 2$.
+
 \newpage
 \begin{thebibliography}{9}
 \bibitem{bebesita}
@@ -82,7 +114,10 @@ topological optimization", IEEE Transactions on Communications
 Gavish, B., "Topological design of centralized computer
 networks - formulation and algorithms", Networks 12
 (1982) 355-377. 
+\bibitem{mcbride}
+McBride, R.D., and Yormark, J.S., "An implicit enumeration algorithm for quadratic integer programming", Management Science 26 (1980) 282-296.
 
-
+\bibitem{lazi}
+Lazimy, R., "Improved algorithm for mixed-integer quadratic programs and a computational study", Mathematical Programming 32 (1985) 100-113.
 \end{thebibliography} 
 \end{document}
