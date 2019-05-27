@@ -27,9 +27,9 @@
 \usepackage{svg}
 \usepackage{caption}
 
-\newtheorem{theorem}{Teorema}[section]
+\newtheorem{theorem}{Teorema}
 
-\newtheorem{prop}{Propiedad}[section]
+\newtheorem{prop}{Propiedad}
 %--------------------------------------------------------
 \begin{document}
 
@@ -89,7 +89,7 @@ s.a.\,& \sum_{i\in I} x_{ij} = 1 \qquad  j \in J\\
 &x_{ij}\in\{0,1\} \qquad i \in I,\; j\in J\\
 &y_i\in\{0,1\} \qquad \;i\in I
 \end{align}
-Expliquemos los bloques de restricciones. Las restricciones del tipo 2 nos aseguran que cada nodo de usuario está conectado a un único nodo troncal, mientras las que las del tipo 3 garantizan que los nodos de usuarios se asignan a nodos troncales que hayan sido realmente establecidos. A pesar de que cada vez se han reportado más avances en el estudio de de programación cuadrática 0-1, la mayoría de ellos están centrados en el caso sin restricciones. Algunos estudios señalables del caso general con restricciones son, por ejemplo, el trabajo de McBride y Yormark \cite{mcbride} donde desarrollan un método  de ramificación y acotación donde las cotas inferiores se obtienen relajando las restricciones 0-1. También Lazimy propone un algoritmo basado en la descomposición de Bender en \cite{lazi}. Sin embargo, el enorme tamaño de los modelos como el nuestro hace que estas técnicas sean computacionelmente prohibitivas. Por esta razón, vamos a utilizar una formulación alternativa equivalente lineal en la que explotamos la estructura particular de nuestro problema.
+Expliquemos los bloques de restricciones. Las restricciones del tipo (2) nos aseguran que cada nodo de usuario está conectado a un único nodo troncal, mientras las que las del tipo (3) garantizan que los nodos de usuarios se asignan a nodos troncales que hayan sido realmente establecidos. A pesar de que cada vez se han reportado más avances en el estudio de de programación cuadrática 0-1, la mayoría de ellos están centrados en el caso sin restricciones. Algunos estudios señalables del caso general con restricciones son, por ejemplo, el trabajo de McBride y Yormark \cite{mcbride} donde desarrollan un método  de ramificación y acotación donde las cotas inferiores se obtienen relajando las restricciones 0-1. También Lazimy propone un algoritmo basado en la descomposición de Bender en \cite{lazi}. Sin embargo, el enorme tamaño de los modelos como el nuestro hace que estas técnicas sean computacionelmente prohibitivas. Por esta razón, vamos a utilizar una formulación alternativa equivalente lineal en la que explotamos la estructura particular de nuestro problema.
 \newpage
 Para linealizar los términos cuadráticos de la función objetivo $y_iy_l$, introducimos las variables 0-1 $z_{il} = y_iy_l$ que satisfacen las restricciones para todo $1\leq i \leq l \leq m$
 \begin{align}
@@ -99,10 +99,22 @@ Para linealizar los términos cuadráticos de la función objetivo $y_iy_l$, int
 &z_{il}\geq 0\\
 &z_{il}\in \mathbb{Z}
 \end{align}
-Sin embargo, notemos que en la formulación particular de nuestro problema las restricciones 7, 8 y 10 son innecesarias, pues, dado que los costes $d_{il}$ son no negativos y estamos minimizando, $z_{il}$ alcanzará necesariamente su valor mínimo en el óptimo. 
+Sin embargo, notemos que en la formulación particular de nuestro problema las restricciones (7), (8) y (10) son innecesarias, pues, dado que los costes $d_{il}$ son no negativos y estamos minimizando, $z_{il}$ alcanzará necesariamente su valor mínimo en el óptimo. 
 
-Ahora consideremos una extensión del bloque 6 de restricciones. Sea $\{I^k\}_{k\in K}$ el conjunto de los subconjuntos de $I$ tales que $|I_k|\geq 2$.
-
+Ahora consideremos una extensión del bloque (6) de restricciones. Sea $\{I^k\}_{k\in K}$ el conjunto de los subconjuntos de $I$ tales que $|I_k|\geq 2$. Entonces el siguiente bloque de restricciones generaliza a 6:
+\begin{align}
+\sum_{i\in I^k} y_i \leq  \sum_{i\in I^k} \sum_{l\in I^k,\,i<l} z_{il} +1 \qquad k\in K
+\end{align}
+Notemos que las desigualdades del tipo 11 con $|I^k| =2$ son equivalentes a (6) y una desigualdad con $|I^k|\geq 3$ es redundante. Sin embargo, si reemplazamos (11) por (6), la relajación lineal del problema será al menos tan ajustado como la formulación de (6). Es más, se tiene el siguiente teorema.
+\begin{theorem}Todas las desigualdades del tipo (11) definen facetas del politopo entero descrito por las desigualdades (6)-(10). 
+\end{theorem}
+Por tanto, vamos a enfrentarnos al problema de programación entero mixto 0-1.
+\begin{align*}
+\min \,& \sum_{i\in I} \sum_{j\in J} c_{ij}x_{ij} + \sum_{i\in I} f_i y_i + \sum_{i \in I}\sum_{l \in I} d_{ij}z_{il}\\
+s.a.\,& \text{(2), (3), (4), (5), (9) y (11)}
+\end{align*}
+\section{Método de solución}
+Como en otro caso de programación entera mixta 0-1, vamos a utilizar técnicas de ramificación y acotación. 
 \newpage
 \begin{thebibliography}{9}
 \bibitem{bebesita}
