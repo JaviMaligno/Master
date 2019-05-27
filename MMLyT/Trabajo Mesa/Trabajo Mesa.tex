@@ -1,0 +1,88 @@
+\documentclass[twoside,12pt]{article}
+
+\usepackage{makeidx}
+\usepackage{capt-of}
+\usepackage[T1]{fontenc}
+\usepackage{amsfonts}
+\usepackage{mathtools,amscd,amsthm}
+\usepackage{tabularx}
+\usepackage{amssymb,eucal,bezier,graphicx}
+\usepackage{times}
+\usepackage{subfig}
+\usepackage[svgnames]{xcolor}
+\usepackage{fancybox}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{enumerate}
+\usepackage{array}
+\usepackage{comment}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{anysize}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{listingsutf8}
+\usepackage{etoolbox}
+\usepackage{svg}
+\usepackage{caption}
+
+\newtheorem{theorem}{Teorema}[section]
+
+\newtheorem{prop}{Propiedad}[section]
+%--------------------------------------------------------
+\begin{document}
+
+\title{Optimal design of a distributed network with a two-level hierarchical structure}
+\author{María Calvo González\\ Rafael González López\\ Iñigo Ortiz Padilla.}
+\maketitle
+\section{Introducción}
+Hoy en día la mayoría de redes de comunicación diseñadas para grandes cantidades de datos poseen una estructura de dos niveles. Estos niveles suelen denominarse \textbf{red troncal} o  \textit{backbone network} al nivel superior de la red, mientras que al nivel inferior se le denomina \textbf{red de acceso local} o \textit{local access network}. La estructura típica que presentan suele ser distinta: la red troncal suele ser distribuida, la red de acceso local suele ser centralizada.
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.55]{redes}
+\caption{Tipos de redes}
+\end{figure}
+
+El diseño topológico de una red de estas características es un problema enormemente complejo. En la literatura, la forma de abordar el problema del diseño ha consistido particionar el problema en dos subproblemas: uno para la red troncal y otro para la red de acceso local. Estos subproblemas se resuelven alternativamente de manera iterativa, solo uno a la vez, mientras los parámetros que pertenecen al otro problema se consideran fijos. Esta aproximación, que podemos encontrar en \cite{bebesita} o \cite{bebesita2}, y a pesar de ser el único válido para redes grandes, tiene el serio inconveniente de no poder garantizar estar siquiera cerca de la solución óptima incluso para un número grande de iteraciones, cada una de las cuales requiere una gran carga computacional.
+
+En este trabajo vamos a abordar el problema del diseño topológico de una red con estructura de dos niveles de jerarquía. Habida cuenta del inconveniente de las aproximaciones clásicas al problema, no particionaremos el problema. Veremos el ataque directo presentado en \cite{paper}, es decir, trataremos de encontrar simultáneamente el diseño óptimo tanto de la red troncal como de la red de acceso local. Con el fin de hacer factible esta aproximación incluso para redes grandes, nos atendremos a redes con la siguiente configuarción:
+
+\begin{itemize}
+\item La red troncal es complemante conexa o \textit{full-meshed}.
+\item Todas las redes de acceso local adjuntas serán del tipo estrella. 
+\end{itemize}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.1]{star}
+\caption{Ejemplo de grafo de tipo estrella}
+\end{figure}
+Nos referiremos a los nodos de la red troncal como \textbf{nodos troncales} y a los de la red de acceso local como \textbf{nodos de usuarios}. Nuestro problema puede describirse de la siguiente manera:
+\begin{enumerate}[(a)]
+\item Se conocen la localización de los nodos de usuarios y los candidatos a ser nodos troncales. 
+\item No hay límite al número de nodos de usuario que pueden estar conectados a un nodo troncal.
+\item Hay tres tipos de coste asociados: establecer un nodo troncal, interconectar dos nodos troncales establecidos y conectar un nodo de usuario a un nodo troncal.
+\end{enumerate}
+De esta manera podemos definir dos tipos de variables de decisión: una para determinar el número y localización de nodos troncales y otra para asignar los nodos de usuarios a nodos troncales. Más adelante en la formulación del problema veremos esto con mayor claridad. En pocas palabras, nuestro problema consiste en ubicar con el menor coste posible un subgrafo de la red troncal de manera que todos los nodos de usuario estén conectados.
+
+Quizás alguien podría suponer que la asunción de completitud sobre la red troncal es demasiado restrictiva para poder aplicar el procedimiento en problemas reales. Sin embargo, existe una gran cantidad de redes reales de comunicación cuyas redes troncales son \textit{full-meshed}. De hecho, este tipo de conexiones es casi un prerrequisito para las redes de comunicación en los que la fiabilidad del sistema y/o el tiempo de respuesta son los criterios más importantes para evaluar su rendimiento. Por ejemplo, consideremos una red de señalización por canal común o \textit{common-channel signaling} (CSS), la cual se utiliza para transmitir información de control entre centrales en una red de telecomunicaciones. En la red CSS, los centros especializados corresponden a los nodos troncales. La subred de dichos centros suele ser completamente conexa, dado que no hay ningún criterio a satisfacer más importante que la rapidez y fiabilidad de la transferencia de los mensajes. También podemos encontrar ejemplos en otras redes las redes telefónicas en áreas metropolitanas o las redes de transporte con centros de almacenaje. 
+
+Nuestro problema del diseño topológico puede ser visto como una versión generalizada del problema de localización de plantas con capacidad de producción infinita o \textit{uncapcitated facility location problem} (UFLP). La única diferencia con el UFLP es que en nuestra formulación la red de las plantas o instalaciones debe ser completamente conexa, mientras que en el UFLP no todas las plantas tienen que estar necesariamente interconectadas.
+
+\section{Formulación del problema}
+\newpage
+\begin{thebibliography}{9}
+\bibitem{bebesita}
+Boorstyn, R.R., and Frank, H., "Large-scale network
+topological optimization", IEEE Transactions on Communications
+25 (1977) 29-47
+
+\bibitem{bebesita2}
+Gavish, B., "Topological design of centralized computer
+networks - formulation and algorithms", Networks 12
+(1982) 355-377. 
+
+
+\end{thebibliography} 
+\end{document}
