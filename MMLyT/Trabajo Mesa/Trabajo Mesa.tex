@@ -108,13 +108,32 @@ Ahora consideremos una extensión del bloque (6) de restricciones. Sea $\{I^k\}_
 Notemos que las desigualdades del tipo 11 con $|I^k| =2$ son equivalentes a (6) y una desigualdad con $|I^k|\geq 3$ es redundante. Sin embargo, si reemplazamos (11) por (6), la relajación lineal del problema será al menos tan ajustado como la formulación de (6). Es más, se tiene el siguiente teorema.
 \begin{theorem}Todas las desigualdades del tipo (11) definen facetas del politopo entero descrito por las desigualdades (6)-(10). 
 \end{theorem}
-Por tanto, vamos a enfrentarnos al problema de programación entero mixto 0-1.
+Por tanto, vamos a enfrentarnos al problema de programación entero mixto 0-1, al que denominamos (P), dado por
 \begin{align*}
 \min \,& \sum_{i\in I} \sum_{j\in J} c_{ij}x_{ij} + \sum_{i\in I} f_i y_i + \sum_{i \in I}\sum_{l \in I} d_{ij}z_{il}\\
 s.a.\,& \text{(2), (3), (4), (5), (9) y (11)}
 \end{align*}
 \section{Método de solución}
-Como en otro caso de programación entera mixta 0-1, vamos a utilizar técnicas de ramificación y acotación. 
+Como en otro caso de programación entera mixta 0-1, vamos a utilizar técnicas de ramificación y acotación. La eficiencia computacional de este tipo algoritmos va a depender en gran medida de nuestra capacidad para generar buenas cotas inferiores. En nuestro caso, veremos el desarrollo de un procedimiento eficiente para obtener dichas cotas para el problema utilizando las siguientes características propias de su estructura.
+\subsection{Estructura del problema}
+El número exponencial de desigualdades del tipo (11) hace imposible incorporar todas a ellas a la relajación lineal inicial. La aproximación pragmática consiste en generar desigualdades solo cuando se necesitan, de la misma forma se utiliza en los algoritmos planos de corte. Para este propósito, necesitamos un procedimiento para generar desigualdades del tipo (11) y resolver sucesivamente el problema de programación lineal resultante de añadir una nueva desigualdad.
+
+Es más, nuestro problema sin las restricciones (11) es precisamente un UFLP, el cual tiene una estructura dual interesante. Explotando esta estructura especial, Bilde y Karup \cite{bilde} han desarrollado método dual el cual está ampliamente aceptado como el más potente. Denotemos $K(i) = \{k \in K \mid i \in I^k\}$ para todo $i\in I$. Sea además $K(i,l) = K(i)\cap K(l)$ para todo $i,l \in I$ tal que $i<l$. El dual de nuestro problema relajando las condiciones (4) y (5), convirtiéndolo en un problema de programación lineal, está dado por:
+\begin{align*}
+\max \,& \sum_{j\in J} v_j - \sum_{k\in K} \gamma_k \\
+s.a.\,& v_j - w_{ij} \leq c_{ij} \qquad  i\in I,\;j \in J\\
+& \sum_{j\in J} w_{ij} - \sum_{k\in K(i)} \gamma_k \leq f_i \;\qquad i \in I,\; j\in J\\
+&\sum_{k\in K(i,l)} \gamma_k \leq d_{il} \qquad i \in I,\; l\in I,\; i<l\\
+&w_{ij},\gamma_k \geq 0 \qquad \;i\in I,\; j\in J,\; k\in K
+\end{align*}
+donde $v_j$, $w_{ij}$ y $\gamma_k$ son las variables duales asociadas a las restricciones (2), (3) y (11) respectivamente. Para cada elección factible de $v_j$ y $\gamma_k$, cada variable $w_{ij}$ puede tomarse como su menor valor posible dado por $w_{ij} = \max\{0,v_j-c_{ij}\}$. Entonces el problema anterior se puede reemplazar por esta forma condensada, a la que denominamos (D).
+ \begin{align*}
+\max \,& \sum_{j\in J} v_j - \sum_{k\in K} \gamma_k \\
+s.a.\,& s_i:= f_i -\sum_{j \in J} \max\{0,v_i-c_{ij}\} + \sum_{k \in K(i)} \gamma_k \geq 0 \;\quad  i \in I \\
+& s_{il}:= d_{il} - \sum_{k\in K(i,l)} \gamma_k \geq 0 \qquad i \in I,\; l\in I,\; i<l\\
+&\gamma_k \geq 0 \qquad  k\in K
+\end{align*}
+Dado un conjunto de valores de $\gamma$ para el problema (D), el problema resultante se denomina forma condensada dual del UFLP. Podemos construir los valores $v_j$ directamente usando heurísticas desarrolladas también en \cite{bilde}. Este proceso cicla repetidamente los $j\in J$ intentando incrementar $v_j$ desde un valor de $c_{ij}$ al siguiente mayor valor posible. Si para algún valor $j$ el incremento viola la factibilidad, $v_j$ se incrementa solo hasta el mínimo que permitan las restricciones de $s_i$.
 \newpage
 \begin{thebibliography}{9}
 \bibitem{bebesita}
@@ -131,5 +150,10 @@ McBride, R.D., and Yormark, J.S., "An implicit enumeration algorithm for quadrat
 
 \bibitem{lazi}
 Lazimy, R., "Improved algorithm for mixed-integer quadratic programs and a computational study", Mathematical Programming 32 (1985) 100-113.
+
+\bibitem{bilde}
+Bilde, O. and Krarup, J., "Sharp lower bounds and
+efficient algorithms for the simple plant location problem",
+Annals of Discrete Mathematics 1 (1977) 314-325.
 \end{thebibliography} 
 \end{document}

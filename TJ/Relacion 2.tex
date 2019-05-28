@@ -258,9 +258,37 @@ Por tanto
 $$
 \phi(v^c) = \frac{1}{3}(2600,3050,3050)
 $$
-y el valor de Shapley de $c$ es
+y el valor de Shapley de $c$ sabemos que verifica $\phi_i(c) = c(\{i\}) - \phi_i(v^c)$. Luego 
 $$
-\phi(c)= \frac{1}{3}(1600,
+\phi(c)= \frac{1}{3}(1600,1750,2050)
+$$
+Pasemos ahora a comprobar que está en el conjunto $\overline{C}(c)$.  Basta realizar sencillos cálculos para ver que, efectivamente, se verifican las siguientes desigualdades.
+$$
+x\in \overline{C}(x) \Leftrightarrow \begin{cases}
+x_1+x_2+x_3 = 1800\\
+x_1\leq 1400, \; x_2 \leq 1600, \; x_3 \leq 1700\\
+x_1+x_2 \leq 1700,\, x_1+x_3 \leq 1800,\, x_2+x_3 \leq 1700
+\end{cases}
 $$
 \end{solucion}
+\newpage
+
+\begin{ejercicio}{8}
+Para el juego del parlamento de Amigolandia calcular su índice de Banzhaf $\beta(v)$. 
+\end{ejercicio}
+\begin{solucion}
+Vamos a comenzar recordando las definiciones. En primer lugar, recordemos que la definición de índice de Banzha es 
+$$
+\beta_i(v) = \frac{|SW_i(v)|}{2^{n-1}}
+$$
+donde $SW_i(v)$ son los swings de $i$ en $v$, es decir, aquellos conjuntos $S$ que verifican la igualdad $v(S)-v(S\setminus\{i\}) = 1$. Por tanto, el problema se reduce a calcular dichos conjuntos. En nuestro caso $n-1 =4$ y ya sabemos que $\beta_5(v)=1/8$. Calculemos el resto.
+\begin{itemize}
+\item Para $i=1$, tenemos que cualquier subconjunto que tenga tres elementos y contenga a 1 va sumar más de 47, pero sin 1 la suma de dos nos da como máximo 40. Por tanto, los $\binom{4}{2} = 6$ están. Para los de dos, todos son válidos salvo $\{1,5\}$, luego añadimos $3$ más. Resta ver los de tamaño cuatro. Pero estos son todos válidos también salvo $\{1,2,3,4\}$ y $\{1,2,3,5\}$, luego añadimos $\binom{4}{3}-2 =2$. Por tanto, $\beta_1(v) = 11/16$.
+\item Para $i=2$. De tamaño dos tenemos $\{1,2\}$. De tamaño tres $\{1,2,4\}$, $\{1,2,5\}$, $\{2,3,4\}$ y $\{2,3,5\}$. Con cuatro elementos tenemos solo $\{2,3,4,5\}$. Por tanto tenemos que $\beta_2(v)=5/16$.
+\item Para $i=3$. De tamaño dos tenemos $\{1,3\}$. De tamaño tres $\{1,3,4\}$, $\{1,3,5\}$, $\{2,3,4\}$ y $\{2,3,5\}$. De tamaño cuatro tenemos $\{2,3,4,5\}$. Por tanto $\beta_3(v)= 5/16$.
+\item Para $i=4$. De tamaño dos no hay. De tamaño tres tenemos $\{1,4,5\}$ y $\{2,3,4\}$. Con cuatro elementos no hay ninguno. Por tanto, $\beta_4(v) = 2/16$. \end{itemize}
+\end{solucion}
+
+
+
 \end{document}
