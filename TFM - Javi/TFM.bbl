@@ -1,0 +1,145 @@
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{EMHS99}
+
+\bibitem[AM18]{tfg}
+Javier Aguilar~Mart{\'i}n, \emph{El problema de la palabra en los grupos de
+  trenzas} (spa).
+
+\bibitem[BN96]{1deTamarkin}
+Dror Bar-Natan, \emph{On {Associators} and the {Grothendieck}-{Teichmuller}
+  {Group} {I}}, arXiv:q-alg/9606021 (1996) (en), arXiv: q-alg/9606021.
+
+\bibitem[CLM76]{cuentas}
+Frederick~R. Cohen, Thomas~J. Lada, and J.~Peter May, \emph{The {Homology} of
+  {Iterated} {Loop} {Spaces}}, Lecture {Notes} in {Mathematics}, vol. 533,
+  Springer Berlin Heidelberg, Berlin, Heidelberg, 1976.
+
+\bibitem[CW]{tesis}
+Steffen Christensen and Nathalie Wahl, \emph{Equivalenace of {The} {Little}
+  {Disk} and {Cacti} operads}, 63 (en).
+
+\bibitem[Das18]{das}
+Apurba Das, \emph{Homotopy {G}-algebra structure on the cochain complex of
+  hom-type algebras}, arXiv:1808.01464 [math] (2018) (en), arXiv: 1808.01464.
+
+\bibitem[Del93]{deligne}
+P.~Deligne, \emph{Letter to {Stasheff} et al.}, May 1993.
+
+\bibitem[EK98]{EK}
+P.~Etingof and D.~Kazhdan, \emph{Quantization of {Lie} bialgebras, {II}}, Sel.
+  math., New ser. \textbf{4} (1998), no.~2, 213 (en).
+
+\bibitem[EL53]{EZ}
+Samuel Eilenberg and Saunders~Mac Lane, \emph{On the {Groups} {H}($\pi$, n),
+  {I}}, Annals of Mathematics \textbf{58} (1953), no.~1, 55--106.
+
+\bibitem[EMHS99]{McClure}
+James E.~McClure and Jeffrey H.~Smith, \emph{A solution of {Deligne}'s
+  conjecture}.
+
+\bibitem[Fie]{bar}
+Z~Fiedorowicz, \emph{{THE} {SYMMETRIC} {BAR} {CONSTRUCTION}}, 19.
+
+\bibitem[Ger63]{Gerstenhaber}
+Murray Gerstenhaber, \emph{The {Cohomology} {Structure} of an {Associative}
+  {Ring}}, The Annals of Mathematics \textbf{78} (1963), no.~2, 267.
+
+\bibitem[GJ94]{GJ}
+Ezra Getzler and J.~D.~S. Jones, \emph{Operads, homotopy algebra and iterated
+  integrals for double loop spaces}, arXiv:hep-th/9403055 (1994), arXiv:
+  hep-th/9403055.
+
+\bibitem[GM10]{Meneses}
+Juan Gonzalez-Meneses, \emph{Basic results on braid groups}, Annales
+  math{\'e}matiques Blaise Pascal \textbf{18} (2010).
+
+\bibitem[GS12]{CW}
+Chad Giusti and Dev Sinha, \emph{Fox-{Neuwirth} cell structures and the
+  cohomology of symmetric groups}, Configuration {Spaces} (A.~Bjorner,
+  F.~Cohen, C.~De~Concini, C.~Procesi, and M.~Salvetti, eds.), Scuola Normale
+  Superiore, Pisa, 2012, pp.~273--298 (en).
+
+\bibitem[Gur17]{Yau}
+Nick Gurski, \emph{Donald {Yau}: {\textquotedblleft}{Colored}
+  {Operads}{\textquotedblright}}, Jahresber. Dtsch. Math. Ver. \textbf{119}
+  (2017), no.~3, 213--218 (en).
+
+\bibitem[GV95]{VGH}
+Murray Gerstenhaber and Alexander~A. Voronov, \emph{Homotopy
+  \textit{{G}}-algebras and moduli space operad}, Internat. Math. Res. Notices
+  (1995), no.~3, 141--153 (electronic). \MR{1321701}
+
+\bibitem[Hat03]{Hatcher}
+{A}. Hatcher, \emph{{Algebraic} topology}, Proceedings of The Edinburgh
+  Mathematical Society - PROC EDINBURGH MATH SOC \textbf{46} (2003), 511--512.
+
+\bibitem[Hin03]{Hinich}
+V.~Hinich, \emph{Tamarkin's proof of {Kontsevich} formality theorem}, Forum
+  Math. \textbf{15} (2003), no.~4, 591--614.
+
+\bibitem[IM]{Madsen}
+J{\o}rgen~Tornehave Ib~Madsen, \emph{Madsen, {I}. {H}.; {Tornehave}, {J}.
+  {From} {Calculus} {To} {Cohomology} {De} {Rham} {Cohomology} {And}
+  {Characteristic} {Classes} 1996} (English).
+
+\bibitem[Kon99]{Kontsevich}
+Maxim Kontsevich, \emph{Operads and {Motives} in {Deformation} {Quantization}},
+  Letters in Mathematical Physics \textbf{48} (1999), no.~1, 35--72 (en),
+  arXiv: math/9904055.
+
+\bibitem[LV12]{AlgebraicOperads}
+Jean-Louis Loday and Bruno Vallette, \emph{Algebraic operads}, Grundlehren der
+  {Mathematischen} {Wissenschaften} [{Fundamental} {Principles} of
+  {Mathematical} {Sciences}], vol. 346, Springer, Heidelberg, 2012.
+  \MR{2954392}
+
+\bibitem[May89]{May}
+James~P. May, \emph{The geometry of iterated loop spaces}, 1. ed., 2. print
+  ed., Lecture notes in mathematics, no. 271, Springer, Berlin, 1989 (en),
+  OCLC: 258500276.
+
+\bibitem[ML98]{working}
+Saunders Mac~Lane, \emph{Categories for the working mathematician. 2nd ed},
+  January 1998.
+
+\bibitem[MS06]{tensor-hom}
+J.~May and J.~Sigurdsson, \emph{Parametrized {Homotopy} {Theory}}, Mathematical
+  {Surveys} and {Monographs}, vol. 132, American Mathematical Society,
+  Providence, Rhode Island, December 2006 (en).
+
+\bibitem[Osb83]{bundle}
+Howard Osborn, \emph{Vector {Bundles}. {Volume} 1: {Foundations} and
+  {Stiefel}-{Whitney} {Classes}}, Academic Press, New York, January 1983
+  (English).
+
+\bibitem[PL18]{Diego}
+Diego Pedraza~L{\'o}pez, \emph{Teor{\'i}a de categor{\'i}as y programaci{\'o}n
+  funcional} (spa).
+
+\bibitem[PM92]{simplicial}
+J~P.~May, \emph{Simplicial {Objects} in {Algebraic} {Topology}}, Bibliovault
+  OAI Repository, the University of Chicago Press (1992).
+
+\bibitem[Tam98]{tk}
+Dmitry Tamarkin, \emph{Another proof of {M}. {Kontsevich} formality theorem}.
+
+\bibitem[Tam03]{Tamarkin}
+Dmitry~E. Tamarkin, \emph{Formality of {Chain} {Operad} of {Little} {Discs}},
+  Letters in Mathematical Physics \textbf{66} (2003), no.~1/2, 65--72 (en).
+
+\bibitem[VG95]{GH}
+A.~A. Voronov and M.~Gerstenhaber, \emph{Higher operations on the {Hochschild}
+  complex}, Functional Analysis and Its Applications \textbf{29} (1995), no.~1,
+  1--5 (en).
+
+\bibitem[Vor99]{VO}
+Alexander~A. Voronov, \emph{Homotopy {Gerstenhaber} algebras},
+  arXiv:math/9908040 (1999) (en), arXiv: math/9908040.
+
+\end{thebibliography}

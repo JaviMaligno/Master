@@ -15,7 +15,7 @@
 %\url{https://ncatlab.org/nlab/show/Drinfeld+associator}
 
 
-In this chapter we review and explain the heart of the proof of the Deligne Conjecture: the formality of the chain operad of little disks. Throughout the chapter we follow \cite{Tamarkin}. The chain operad of little disks is the operad of chain complexes over $\Q$ obtained from the topological little disks operad. By formailty it is meant that there is a chain of \emph{quasi-isomorphisms} between this operad and its homology operad, i.e. a sequence of incoming and outcoming morphisms of chain operads which induce isomorphisms in homology. The strategy is the following:
+In this chapter we review and explain the heart of the proof of the Deligne Conjecture: the formality of the chain operad of little disks. Throughout the chapter we follow \cite{Tamarkin}. The chain operad of little disks is the operad of chain complexes over $\Q$ obtained from the topological little disks operad. By formailty it is meant that this operad is equivalent to its homology operad in a sense that we will define below in the text. The strategy is the following:
 
  First, we define an operad which is homotopy equivalent to the little disks operad from a category operad $PaB_*$. Then, we take a $\Q$-linear span of $PaB_*$ and find an operad $O_A(*)$ together with a quasi-isomorphism from the homology operad of little disks. Finally, we give a quasi-isomorphism between the span $\Q(PaB_*)$ and $O_A(*)$, which completes the proof. 
 
@@ -113,7 +113,7 @@ Now define the structure map $\widetilde{\gamma}$ for $\widetilde{E}_2$ to be th
 E_2(k)\times E_2(j_1)\times\cdots E_2(j_1+\cdots+j_k) \arrow[r, "\gamma"]                                                                      & E_2(j_1+\cdots+j_k)                                     
 \end{tikzcd}
 \]
-which takes $\widetilde{E}_1(k)\times\widetilde{E}_1(j_1)\times\cdots\widetilde{E}_1(j_k)$ to $\widetilde{E}_1(j_1+\cdots+j_k)$. The existence and uniqueness of this map is guaranteed by lemma \ref{lift} since $\gamma$ clearly takes the embedding $E_1(k)\times E_1(j_1)\times\cdots E_1(j_k)$ to the embedding of $E_1(j_1+\cdots+j_k)$. Here we're implicitly making use of the theory of covering spaces, in particular the lifting properties of the universal cover (see Section 1.3 of \cite{HA} for a complete treatment of the subject). Also recall that the product of covering spaces is a covering space of the product (Exercise 2 from page 79 of \cite{HA}).
+which takes $\widetilde{E}_1(k)\times\widetilde{E}_1(j_1)\times\cdots\widetilde{E}_1(j_k)$ to $\widetilde{E}_1(j_1+\cdots+j_k)$. The existence and uniqueness of this map is guaranteed by lemma \ref{lift} since $\gamma$ clearly takes the embedding $E_1(k)\times E_1(j_1)\times\cdots E_1(j_k)$ to the embedding of $E_1(j_1+\cdots+j_k)$. Here we're implicitly making use of the theory of covering spaces, in particular the lifting properties of the universal cover (see Section 1.3 of \cite{Hatcher} for a complete treatment of the subject). Also recall that the product of covering spaces is a covering space of the product (Exercise 2 from page 79 of \cite{Hatcher}).
 
 Finally we have to define the braid group actions $\widetilde{E}_2(n)\times B_n\to\widetilde{E}_2(n)$. It suffices
 to specify actions by the standard generators $\widetilde{\sigma}_i$, $1 \leq i \leq n - 1$, where $\widetilde{\sigma}_i$ denotes
@@ -148,9 +148,9 @@ Choose an arbitrary point $x\in E_1(n)$. Let $\alpha:I\to E_2(n)$ denote the pat
 of pictures
 
 \definecolor{qqqqff}{rgb}{0.,0.,1.}
-\resizebox{12.3cm}{9.8cm}{%
+\resizebox{13cm}{9.8cm}{%
 \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
-\clip(-1.586666666666667,-6.553333333333329) rectangle (13.293333333333337,5.533333333333328);
+\clip(-4.,-6.1) rectangle (13.293333333333337,5.7);
 \fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (0.37333333333333335,5.) -- (0.7733333333333334,5.) -- (0.8,0.) -- (0.4,0.) -- cycle;
 \fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (1.6,5.) -- (2.186666666666667,5.) -- (2.2,0.) -- (1.6133333333333333,0.) -- cycle;
 \fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (2.6133333333333333,5.) -- (3.3866666666666667,5.) -- (3.4133333333333336,0.) -- (2.6,0.) -- cycle;
@@ -312,18 +312,16 @@ of pictures
 \draw (10.15,-2.9) node[anchor=north west] {$n$};
 \draw (10.2,2.6) node[anchor=north west] {$n$};
 \end{tikzpicture}
-}
+}\\
 
 Let $\widetilde{\alpha}$ denote the lift which starts in $\widetilde{C}_1$. Let $\widetilde{x}=\widetilde{\alpha}(0)$ and $\widetilde{y}=\widetilde{\alpha}(1)$, then specify $\widetilde{x}\widetilde{\sigma}=\widetilde{y}$. %COMPROBAR QUE ESTO DA LA ESTRUCTURA DE $B_\infty$ (ADEMÁS DE LAS PROPIEDADES DE OPERAD, LA ACCIÓN TIENE QUE SER LIBRE, PERO TENGO DUDA PARA EL CASO DE LAS TRENZAS PURAS) Y QUE EL COCIENTE POR LA ACCIÓN DE LAS TRENZAS PURAS ES $E_2$ (QUIZÁ ESTO SEA PORQUE PRECISAMENTE ES EL GRUPO FUNDAMENTAL, PERO TENGO QUE REVISAR SI ES LA MISMA ACCIÓN QUE LA DEL GRUPO FUNDAMENTAL)
 This data specifies a $B_\infty$-operad structure on $\widetilde{E}_2$. 
-
 %EL EJEMPLO DE FIEDEROWICZ CON LA PRUEBA DEL EJERCICO QUE ME PUSO MURO (A infinito significa que los espacios del operad son contráctiles, esto para el caso sin acción del grupo simétrico, que es el que usa Fiedorowicz. Con acción significa que cada componente conexa es contráctil, pero en cualquier caso C1 es contráctil \url{https://en.wikipedia.org/wiki/A\%E2\%88\%9E-operad}) 
-
 \end{proof}
 
 A more general approach to the previous proposition is taken in propositions 2.27 and 2.28 of \cite{tesis}
 
-We now give a few useful definitions. Let $P$ be an operad of complexes, and $f : A→B$ be a morphism of two $P$-algebras.
+We now give a few useful definitions from \cite[\textsection 2.6]{Kontsevich}. Let $P$ be an operad of complexes (dg operad), and $f : A→B$ be a morphism of two $P$-algebras.
 \begin{defi}
 $f$ is a quasi-isomorphism if it induces an isomorphism of the homology
 groups of $A$ and $B$ considered as complexes with zero differential.
@@ -340,9 +338,9 @@ Analogously to the case of algebras, we can speak about quasi-isomorphisms of op
 of complexes.
 
 \begin{defi}
-A morphism $f : P_1→P_2$ between two operads of complexes (dg operads) is called a
-\emph{quasi-isomorphism} if the maps of complexes $f(n) : P_1(n)→P_2(n)$ induce isomorphisms of
-cohomology groups for all $n$.
+A morphism $f : P_1→P_2$ between two dg operads is called a
+\emph{quasi-isomorphism} if the maps of chain complexes $f(n) : P_1(n)→P_2(n)$ induce isomorphisms of
+homology groups for all $n$.
 \end{defi}
 
 \begin{defi}
@@ -584,6 +582,10 @@ Let $\Delta:A_n\to A_n\otimes A_n$ the coproduct defined by $\Delta(t_{ij})=t_{i
 \end{defi}
 
 \begin{defi}
+	
+	Behind some of these algebraic axioms there is a meaning relating them to the axioms of a braided monoidal category. PONER EN EL DE OPERADS QUE BRAIDED ES CUANDO NO LE PIDES QUE HACER BRAID DOS VECES SEA LA IDENTIDAD. COPIAR LOS DIAGRAMAS Y COSAS  DE MURO
+	
+	
 A \emph{Drinfeld associator} (or simply, an \emph{associator}) is an invertible element $\Phi\in A_3$ satisfying the following
 axioms:
 \begin{itemize}
@@ -612,12 +614,12 @@ be the generator. We define $\phi(x)=e^{t_{12}/2}$ (thought as its power series 
 $x_1(x_2x_3)$ of $PaB_3$ corresponding to the identical permutation $e \in \Sigma_3$, and the morphism
 $i$ between them, corresponding to the identical braid $e_b\in B_3$. Define $\phi(i)=\Phi$.
 Since the operad $PaB_*$ is generated by $x$ and $i$, these conditions define $\phi$ uniquely. %CREO QUE LO GENERAN PORQUE SE ENTIENDE $X$ COMO PERMUTAR DOS CUALESQUIERA, Y A PARTIR DE ESO PUEDES HACER CUALQUIER MORFISMO TAMBIÉN, PORQUE FIJADA UNA PERMUTACIÓN, LAS DEMÁS ES MULTIPLICAR POR TRENZAS PURAS, QUE ES HACER ESA PERMUTACIÓN UN NÚMERO PAR DE VECES. 
-The definition of the associator is equivalent to the fact that $\phi$ is well-defined (see Proposition 3.4 of \cite{1deTamarkin}).
+The definition of the associator is equivalent to the fact that $\phi$ is well-defined. We can check this by finding the relations between morphisms in $PaB_n$. COMETAR LO DE MURO Y RELACIONARLO CON LOS AXIOMAS DE ASSOCIATOR
 
 The map $\phi$ produces a map of operads $C_\star(PaB_*)=C_\star^\Q(\Q(PaB_*))\to C_\star(O_A(*))$.
 %C_* ya era sobre Q, y hacerlo sobre PaB_* en realidad era sobre la realización del nervio, así que es linearizar al final. Lo otro es linearizar primero y luego coger el nervio para el caso lineal
 It is well known that the homology operad of $C_\star(PaB_*)$ is $e_2$ because $PaB_*$ induces a little disks operad as we saw section in \ref{pab}. One checks that $\phi$ is a quasi-isomorphism for $\star=2$ by an argument of dimension similar to the one in the proof of \ref{4.1}: it induces a surjective homomorphism (it sends generators to generators) between spaces of the same dimension. Hence it is a quasi-isomorphism of operads (since
-$e_2$ is generated by $e_2(2)$). By Proposition \ref{4.1}, $k$ is a quasi-isomorphism. Thus, the
+$e_2$ is generated by $e_2(2)$). By Proposition \ref{4.1}, $h$ is a quasi-isomorphism. Thus, the
 chain operad $C_*(PaB_*)$ is quasi-isomorphic to $e_2$.
 
 

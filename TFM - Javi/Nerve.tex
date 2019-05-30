@@ -72,7 +72,7 @@ The degenerancy maps $s_i:N(\CC)_{n-1}\to N(\CC)_n$ are given by inserting an id
 
 \section{Geometric Realization}
 
-Denote by $\Delta_n$ the topological $n$-simplex, $\Delta_n=\{(t_0,\dots, t_n)\mid 0\leq t_i\leq 1, \sum_i t_i=1\}\subseteq\R^{n+1}$. We define maps $\delta_i:\Delta_{n-1}\to\Delta_n$ and $\sigma_i:\Delta_{n+1}\to\Delta_n$ by
+As in \cite[Chapter III]{simplicial}, denote by $\Delta_n$ the topological $n$-simplex, $\Delta_n=\{(t_0,\dots, t_n)\mid 0\leq t_i\leq 1, \sum_i t_i=1\}\subseteq\R^{n+1}$. We define maps $\delta_i:\Delta_{n-1}\to\Delta_n$ and $\sigma_i:\Delta_{n+1}\to\Delta_n$ by
 \[
 \delta_i(t_0,\dots, t_{n-1})=(t_0,\dots, t_{i-1},0,t_i,\dots, t_{n-1}),
 \]
@@ -97,14 +97,14 @@ the relation of inclusion of faces, then $BC(X)$ is the barycentric subdivision 
 A functor $F :\CC→\DD$ induces a map $B\CC→B\DD$. This is the simplicial map that sends an
 $n$-simplex $X_0→X_1→\cdots →X_n$ to the $n$-simplex $F(X_0)→F(X_1)→\cdots →F(X_n)$.
 A natural transformation from a functor $F$ to a functor $G$ induces a homotopy
-between the induced maps of classifying spaces in the following way. Let $H:F\to G$ a natural transformation. $H$ can be regarded as a functor $\CC\times \{0,1\}\to \DD$, where $\{0,1\}$ is regarded as an ordered set and therefore a category. So $H$ induces a map $B(\CC\times\{0,1\})\to B\DD$. But $B(\CC\times\{0,1\})=B\CC\times B\{0,1\}$ by the theorem below. Since $B\{0,1\}\cong [0,1]$, the induced map is a homotopy.
+between the induced maps of classifying spaces in the following way. Let $H:F\to G$ a natural transformation. $H$ can be regarded as a functor $\CC\times \{0,1\}\to \DD$, where $\{0,1\}$ is regarded as an ordered set and therefore a category. So $H$ induces a map $B(\CC\times\{0,1\})\to B\DD$. But $B(\CC\times\{0,1\})=B\CC\times B\{0,1\}$ by the theorem below. Since $B\{0,1\}\cong [0,1]$, the induced map is a homotopy. %aparece en Hatcher propuesto como ejercicio pero no de los listados como ejercicio
 \end{ex}
 
-\begin{thm}(\cite[Theorem 14.3]{May})
+\begin{thm}\cite[Theorem 14.3]{simplicial}
 If $K$ and $L$ are simplicial sets, then there exists a bijection $\eta:|K\times L|\to|K|\times|L|$. Furthermore, if $|K|\times|L|$ is a CW-complex, $\eta$ is a homeomorphism.
 \end{thm}
 
-\begin{remark}(\cite[Theorem A.6]{Hatcher})\label{countable}
+\begin{remark}\cite[Theorem A.6]{Hatcher}\label{countable}
 The hypothesis that $|K|\times|L|$ is a CW-complex holds if $K$ and $L$ are both countable. 
 \end{remark}
 
