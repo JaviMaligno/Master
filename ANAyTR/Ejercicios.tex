@@ -1,0 +1,42 @@
+	\documentclass[twoside]{article}
+\usepackage{../estilo-ejercicios}
+%\renewcommand{\baselinestretch}{1,3}
+%--------------------------------------------------------
+\begin{document}
+
+\title{Ejercicios de Teoría de Representaciones}
+\author{Javier Aguilar Martín y Rafael González López}
+\maketitle
+
+\section{Ejercicio}
+\begin{ejercicio}{1}
+Consideremos las subálgebras de $\mathfrak{gl}(n)$ definidas según
+\begin{gather*}
+t(n) = \{ M \in \mathfrak{gl}(n) \mid M\text{ es triangular superior}\}
+\\
+\nu(n) = \{ M \in \mathfrak{gl}(n) \mid M\text{ es estrctamente triangular superior}\}\\
+\delta(n) = \{ M \in \mathfrak{gl}(n) \mid M\text{ es diagonal}\}
+\end{gather*}
+Probar los siguientes enunciados.
+\begin{enumerate}
+\item Probar que las álgebras $\mathfrak{sl}(n)$, $\mathfrak{sp}(2l+1)$ y $\mathfrak{o}(n)$ coinciden con sus álgebra derivadas.
+\item Probar que dichas álgebras son autonormalizadas.
+\item Probar que $t(n)$ y $\delta(n)$ son autonormalizada.
+\item Probar que $\mathcal{N}(\nu(n)) = t(n)$
+\end{enumerate}
+\end{ejercicio}
+\begin{solucion}
+\begin{enumerate}
+\item[]
+\item Sabemos que siempre se tiene una contención. Basta ver que todo elemento de una base de las álgebras, como espacios vectoriales, está en su derivada. 
+
+\item 
+
+\item Al estar trabajado con álgebras, tenemos que estas están contenidas en su normalizador. Tenemos que ver que el recíproco es cierto. 
+\newpage
+
+Para el caso diagonal, hagamos la siguiente consideración. Sea $D$ una matriz diagonal y $M$ una matriz cualquiera. Entonces $DM$ corresponde a multiplicar la fila $i$ de $M$ por el elemento $ii$ de $D$. Queremos ver que no puede ser que $[D,M] \in \mathbb{N}(t(n))$, para todo $D\in t(n)$, sin ser $M$ matriz diagonal. Tomando $D=E_{ii}$ es claro que si imponemos que $[D,M]$ sea una matriz diagonal, necesariamente los elementos $M_{ij}$ y $M_{ji}$ para todo $i,j$ con $i\neq j$ tienen que ser cero. Por inducción sobre $i$, tenemos que $M$ es una matriz diagonal.
+\item Se deduce de las siguientes consideraciones. Si $T$ y $H$ son matrices triangulares superiores, entonces su productos y sus diferencias también, luego $[T,H]$ también lo será. Además, como $TH$ y $HT$ tienen la misma traza, $[T,H]$ es estrictamente triangular superior aunque $T$ y $H$ sean solo triangulares superiores. Por tanto, $t(n) \subset \mathcal{N}(\nu(n))$, pero $t(n)$ es autonormalizado, luego es el mayor ideal que se contiene a sí mismo, por lo que debe darse la igualdad. 
+\end{enumerate}
+\end{solucion}
+\end{document}
