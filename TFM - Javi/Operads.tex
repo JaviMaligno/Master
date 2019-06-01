@@ -268,7 +268,7 @@ Because of this property of $E_1$ one sometimes consider the \emph{non-equivaria
 \section{Operads in symmetric monoidal categories}
 We've treated operads only in the category of topological spaces, but they can be defined in a more general setting, namely, in any \emph{symmetric monoidal category} \cite{Yau}. We're going to introduce this categories since it becomes more natural to talk about operads and other constructions in other categories having that framework in advance.
 
-\begin{defi}
+\begin{defi}\label{monoidal}
 A \emph{symmetric monoidal category} is a category $\mathscr{M}$ equipped with:
 \begin{enumerate}[(1)]
 \item A functor $\otimes: \mathscr{M}\times \mathscr{M}\to \mathscr{M}$ called the \emph{tensor product}.
@@ -302,8 +302,13 @@ We demand that the braiding and associator obey the hexagon identity:
 And lastly, we demand that $B_{y,x}B_{x,y}=1_{x\otimes y}$.
 \end{defi}
 
-If we drop the braiding from the definition above we obtain what is simply called a \emph{monoidal category}. If we only omit the constrain $B_{y,x}B_{x,y}=1_{x\otimes y}$, then we get a \emph{braided monoidal category}.
-
+If we drop the braiding from the definition above we obtain what is simply called a \emph{monoidal category}. If we omit the constrain $B_{y,x}B_{x,y}=1_{x\otimes y}$, then we can get a \emph{braided monoidal category}. In that case we have to add the following diagram, which is deduced from the hexagon identity and the equality $B_{y,x}B_{x,y}=1_{x\otimes y}$ in the case of symmetric monoidal categories:
+\[
+\begin{tikzcd}
+	x\otimes (y\otimes z) \arrow[r, "{a^{-1}_{x,y,z}}"] \arrow[d, "{1_x\otimes B_{y,z}}"'] & (x\otimes y)\otimes z \arrow[r, "{B_{x\otimes y, z}}"]   & (y\otimes z)\otimes x \arrow[d, "{a^{-1}_{z,x,y}}"] \\
+	x\otimes (z\otimes y) \arrow[r, "{a^{-1}_{x,z,y}}"]                                    & (x\otimes z)\otimes y \arrow[r, "{B_{x,z}\otimes 1_y}"] & (z\otimes x)\otimes y                         
+\end{tikzcd}
+\]
 \begin{ex}\
 \begin{enumerate}
 \item The categories $\Set$ and $\Top$ are symmetric monoidal categories with the cartesian product as tensor product and a singleton as unit. 
