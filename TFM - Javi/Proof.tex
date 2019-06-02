@@ -423,18 +423,69 @@ structure of a brace algebra on the underlying graded vector space $\OO$. \qed
 \end{prop}
 
 Now let $A$ be any associative $k$-algebra and $\CC=C^*(A;A)$. $\CC$ naturally becomes a brace algebra using its operadic structure. To avoid the unpleasant signs it is convenient to denote elements $f \in \CC^n$ as boxes having $n$ inputs and one output like this:
-
-\begin{figure}[h!]
-\includegraphics[scale=0.8]{Imagenes//box}
-\end{figure}
+%
+%\begin{figure}[h!]
+%\includegraphics[scale=0.8]{Imagenes//box}
+%\end{figure}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-5.8466666666666676,-1) rectangle (11.486666666666668,3);
+\draw[line width=1.pt] (0.,0.) -- (0.,1.38) -- (2.406666666666667,1.38) -- (2.406666666666667,0.) -- cycle;
+\draw [line width=1.pt] (0.,0.)-- (0.,1.38);
+\draw [line width=1.pt] (0.,1.38)-- (2.406666666666667,1.38);
+\draw [line width=1.pt] (2.406666666666667,1.38)-- (2.406666666666667,0.);
+\draw [line width=1.pt] (2.406666666666667,0.)-- (0.,0.);
+\draw [line width=.pt] (1.2033333333333336,0.)-- (1.2033333333333336,-0.606666666666666);
+\draw [line width=1.pt] (1.2033333333333336,1.38)-- (1.2033333333333336,2.3933333333333344);
+\draw [line width=1.pt] (0.7666666666666668,2.3933333333333344)-- (0.7666666666666668,1.38);
+\draw [line width=1.pt] (0.3933333333333334,2.3933333333333344)-- (0.38,1.38);
+\draw [line width=1.pt] (1.606666666666667,2.3933333333333344)-- (1.606666666666667,1.38);
+\draw [line width=1.pt] (1.9933333333333336,2.3933333333333344)-- (1.9933333333333336,1.38);
+\draw (1.,0.9933333333333343) node[anchor=north west] {$f$};
+\end{tikzpicture}
 
 
 
 Let $f,g_1,\dots, g_n\in \CC$. The the brace $f\{g_1,\dots, g_n\}$ is given by the following formula.\\
 
-\begin{figure}[h!]
-\includegraphics[scale=0.7]{Imagenes//brace}
-\end{figure}
+%\begin{figure}[h!]
+%\includegraphics[scale=0.7]{Imagenes//brace}
+%\end{figure}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-3.8466666666666676,-1) rectangle (11.486666666666668,3);
+\draw[line width=1.pt] (2.833333333333334,0.) -- (2.833333333333334,0.5666666666666675) -- (7.006666666666668,0.5666666666666675) -- (7.,0.) -- cycle;
+\draw[line width=1.pt] (3.193333333333334,1.) -- (4.,1.) -- (4.006666666666668,1.58) -- (3.193333333333334,1.58) -- cycle;
+\draw[line width=1.pt] (6.,1.) -- (6.38,1.) -- (6.38,1.58) -- (5.593333333333335,1.5933333333333344) -- (5.606666666666667,1.) -- cycle;
+\draw (-2.9,0.6) node[anchor=north west] {$f\{g_1,\dots, g_n\}=\displaystyle{\sum_{\text{all possible insertions}}}$};
+\draw [line width=1.pt] (2.833333333333334,0.)-- (2.833333333333334,0.5666666666666675);
+\draw [line width=1.pt] (2.833333333333334,0.5666666666666675)-- (7.006666666666668,0.5666666666666675);
+\draw [line width=1.pt] (7.006666666666668,0.5666666666666675)-- (7.,0.);
+\draw [line width=1.pt] (7.,0.)-- (2.833333333333334,0.);
+\draw [line width=1.pt] (4.92,0.)-- (4.92,-0.36666666666666614);
+\draw [line width=1.pt] (2.993333333333334,0.5666666666666675)-- (3.,2.);
+\draw [line width=1.pt] (3.553333333333334,0.5666666666666675)-- (3.553333333333334,1.);
+\draw [line width=1.pt] (4.273333333333334,0.5666666666666675)-- (4.273333333333334,1.9933333333333345);
+\draw [line width=1.pt] (4.54,0.5666666666666675)-- (4.54,1.9933333333333345);
+\draw [line width=1.pt] (5.993333333333334,0.5666666666666675)-- (6.,1.);
+\draw [line width=1.pt] (6.62,0.5666666666666675)-- (6.62,1.9933333333333345);
+\draw [line width=1.pt] (6.833333333333335,0.5666666666666675)-- (6.833333333333335,1.98);
+\draw [line width=1.pt] (3.193333333333334,1.)-- (4.,1.);
+\draw [line width=1.pt] (4.,1.)-- (4.006666666666668,1.58);
+\draw [line width=1.pt] (4.006666666666668,1.58)-- (3.193333333333334,1.58);
+\draw [line width=1.pt] (3.193333333333334,1.58)-- (3.193333333333334,1.);
+\draw [line width=1.pt] (6.,1.)-- (6.38,1.);
+\draw [line width=1.pt] (6.38,1.)-- (6.38,1.58);
+\draw [line width=1.pt] (6.38,1.58)-- (5.593333333333335,1.5933333333333344);
+\draw [line width=1.pt] (5.593333333333335,1.5933333333333344)-- (5.606666666666667,1.);
+\draw [line width=1.pt] (5.606666666666667,1.)-- (6.,1.);
+\draw [line width=1.pt] (3.5666666666666673,1.58)-- (3.58,2.);
+\draw [line width=1.pt] (6.007451656136321,1.586314378709553)-- (6.,2.);
+\draw [line width=1.pt] (5.4,0.5666666666666675)-- (5.4,2.);
+\draw (3.3,1.5666666666666678) node[anchor=north west] {$g_1$};
+\draw (5.65,1.58) node[anchor=north west] {$g_n$};
+\draw (4.7,0.5666666666666675) node[anchor=north west] {$f$};
+\draw (4.59,1.5533333333333343) node[anchor=north west] {$\cdots$};
+\end{tikzpicture}
 
 Here the sum is taken over all possible order preserving insertions of outpus of $g_i$ into
 inputs of $f$.
