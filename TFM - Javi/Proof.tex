@@ -25,7 +25,7 @@ Throughout this chapter $k$ is a field of characteristic 0.
 
 In order to define $G_\infty$ we need some general constructions. Most of the following definitions can be found in \cite{Hinich}. 
 
-Let $\mathscr{M}$ be a monoidal category that admits indinite direct sums and the tensor product commutes with finite direct sums (usually $\mathscr{M}=\Vect, \Vectgr,\Ch$, where the vector spaces are considered to be finite dimensional). For a graded vector space $X=\bigoplus_{n\in\Z}X_n$, let us write $X[p]=\bigoplus_{n\in\Z}X_{n+p}$. We have for graded vector spaces $X$ and $Y$ that $X[p]\otimes Y[q]\cong (X\otimes Y)[p+q]$ and a map of degree $X\to Y$ of degree $n$ induces a map $X\to Y[n]$ of degree 0. 
+Let $\mathscr{M}$ be a monoidal category that admits indinite direct sums and the tensor product commutes with finite direct sums (usually $\mathscr{M}=\Vect, \Vectgr,\Ch$, where the vector spaces are finite dimensional). For a graded vector space $X=\bigoplus_{n\in\Z}X_n$, let us write $X[p]=\bigoplus_{n\in\Z}X_{n+p}$. We have for graded vector spaces $X$ and $Y$ that $X[p]\otimes Y[q]\cong (X\otimes Y)[p+q]$ and a map of degree $X\to Y$ of degree $n$ induces a map $X\to Y[n]$ of degree 0. 
 
 \begin{defi}
  An \emph{$\mathbb{S}$-object} in $\mathscr{M}$ is a collection $X=\{X(n)\}_{n\geq 0}$ of objects of $\mathscr{M}$ endowed with a right action of the symmetric groups $\Sigma_n$.
@@ -159,7 +159,7 @@ If $X$ is an $\mathbb{S}$-object in $\mathscr{M}$ and $\DD$ a cooperad in $M$. T
 \[
 \F^*_\DD(X)=\oplus_{n\geq 0}\left(\DD(n)\otimes X^{\otimes n}\right)^{\Sigma_n}
 \]
-where the subperscript $\Sigma_n$ stands for the invariant elements under the action of $\Sigma_n$ and the structure maps are dual to those in the free algebra. %como son invariantes, los elementos de V^n tienen que ser los de la diagonal, así que de una ristra de v se divide en los trozos que hacen falta y en la parte de D(n) simplemente se opera con la estructura de cooperad, posiblemente con algún signo también de saltar cosas. Para que no haya infinitos que sean 0 quizá vale con dejar de hacer copias en n=grado del elemento que estás copiando o algo así. A veces se considera el producto directo para no tener que preocuparse.
+where the superscript $\Sigma_n$ stands for the invariant elements under the action of $\Sigma_n$ and the structure maps are dual to those in the free algebra. %como son invariantes, los elementos de V^n tienen que ser los de la diagonal, así que de una ristra de v se divide en los trozos que hacen falta y en la parte de D(n) simplemente se opera con la estructura de cooperad, posiblemente con algún signo también de saltar cosas. Para que no haya infinitos que sean 0 quizá vale con dejar de hacer copias en n=grado del elemento que estás copiando o algo así. A veces se considera el producto directo para no tener que preocuparse.
 \end{defi}
 
 
@@ -407,7 +407,7 @@ Applying similar transformations to the other terms we get
 +(-1)^{\mu\lambda}[(y\circ z -(-1)^{\mu\nu}z\circ y)\circ x-(-1)^{(\mu+\nu)\lambda}((x\circ y)\circ z-(-1)^{\mu\nu}(x\circ z)\circ y)]\\
 +(-1)^{\nu\mu}[(z\circ x -(-1)^{\nu\lambda}x\circ z)\circ z-(-1)^{(\nu+\lambda)\mu}((y\circ z)\circ x-(-1)^{\nu\lambda}(y\circ x)\circ z)]
 \end{gather*}
-which vanished identically.
+which vanishes identically.
 \end{remark}
 
 \begin{defi}
@@ -527,7 +527,7 @@ a\circ (bc)-(a\circ b)c&-(-1)^{|a|(|b|-1)}b(a\circ c)\\
 =&(-1)^{|a|+|b|-1}(d\{a,b\})-(da)\{b,c\}-(-1)^{|a|}a\{db,c\}-(-1)^{|a|+|b|}a\{b,dc\})\nonumber.
 \end{align}
 
-Equations (\ref{homproduct}) and (\ref{homleibniz}) express that commutativity and the Liebniz rule are satisfied \emph{up to homotopy}, hence inducing the  true commutativity and Leibniz rule on cohomology. This is exactly what is meant when one says that $C^*(A;A)$ carries a structure of \emph{homotopy G-algebra}, i.e., Gersternhaber algebra up to homotopy. 
+Equations (\ref{homproduct}) and (\ref{homleibniz}) express that commutativity and the Liebniz rule are satisfied \emph{up to homotopy}, hence inducing the  true commutativity and Leibniz rule on cohomology. This is exactly what is meant when one says that $C^*(A;A)$ carries a structure of \emph{homotopy G-algebra}, i.e. Gersternhaber algebra up to homotopy. 
 %COMPROBAR CON VORONOV VAYA QUE ME DEJE ALGO Y VAYA QUE DÉ A ENTENDER QUE ES JUSTO ESAS PROPIEDADES Y NO EN GENERAL LAS PROPIEDADES DE GERTS
 
 In conclusion, we've been able to depict an action of an operad $G_\infty$ equivalent the chain operad of little disks $C_*(E_2)$ on the Hochschild complex $C^*(A;A)$ inducing the same action as the homology operad of little disks $G=H_*(E_2)$ on the Hochschild cohomology $H^*(A;A)$ via the following chain of equivalences and morphisms of operads

@@ -1,6 +1,11 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: TFM.aux
 The style file: amsalpha.bst
 Database file #1: biblioc.bib
+I was expecting a `,' or a `}'---line 348 of file biblioc.bib
+ :  
+ :  file = {Christensen y Wahl - Equivalenace of The Little Disk and Cacti operads.pdf:C\:\\Users\\Javi\\Zotero\\storage\\MVVGVMTV\\Christensen y Wahl - Equivalenace of The Little Disk and Cacti operads.pdf:application/pdf}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
 Warning--missing journal name in tfg
 Warning--missing journal, volume, and year in tfg
 Warning--missing pages in tfg
@@ -26,4 +31,4 @@ Warning--missing journal name in tk
 Warning--missing journal, volume, and year in tk
 Warning--missing pages in tk
 Warning--missing pages in VO
-(There were 25 warnings)
+(There was 1 error message)

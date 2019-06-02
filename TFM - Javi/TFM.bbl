@@ -9,7 +9,8 @@
 
 \bibitem[AM18]{tfg}
 Javier Aguilar~Mart{\'i}n, \emph{El problema de la palabra en los grupos de
-  trenzas} (spa).
+  trenzas} (spa), Available at
+  \url{https://idus.us.es/xmlui/handle/11441/77489}.
 
 \bibitem[BN96]{1deTamarkin}
 Dror Bar-Natan, \emph{On {Associators} and the {Grothendieck}-{Teichmuller}
@@ -22,7 +23,8 @@ Frederick~R. Cohen, Thomas~J. Lada, and J.~Peter May, \emph{The {Homology} of
 
 \bibitem[CW]{tesis}
 Steffen Christensen and Nathalie Wahl, \emph{Equivalenace of {The} {Little}
-  {Disk} and {Cacti} operads}, 63 (en).
+  {Disk} and {Cacti} operads}, 63 (en), Available at
+  \url{https://www.math.ku.dk/english/research/tfa/top/paststudents/ms-theses/thesis_steffen_christensen.pdf}.
 
 \bibitem[Das18]{das}
 Apurba Das, \emph{Homotopy {G}-algebra structure on the cochain complex of
@@ -49,6 +51,10 @@ Z~Fiedorowicz, \emph{{THE} {SYMMETRIC} {BAR} {CONSTRUCTION}}, 19.
 \bibitem[Ger63]{Gerstenhaber}
 Murray Gerstenhaber, \emph{The {Cohomology} {Structure} of an {Associative}
   {Ring}}, The Annals of Mathematics \textbf{78} (1963), no.~2, 267.
+
+\bibitem[Ger64]{deformation}
+\bysame, \emph{On the {Deformation} of {Rings} and {Algebras}}, The Annals of
+  Mathematics \textbf{79} (1964), no.~1, 59 (en).
 
 \bibitem[GJ94]{GJ}
 Ezra Getzler and J.~D.~S. Jones, \emph{Operads, homotopy algebra and iterated
@@ -120,7 +126,8 @@ Howard Osborn, \emph{Vector {Bundles}. {Volume} 1: {Foundations} and
 
 \bibitem[PL18]{Diego}
 Diego Pedraza~L{\'o}pez, \emph{Teor{\'i}a de categor{\'i}as y programaci{\'o}n
-  funcional} (spa).
+  funcional} (spa), Available at
+  \url{https://idus.us.es/xmlui/handle/11441/77572}.
 
 \bibitem[PM92]{simplicial}
 J~P.~May, \emph{Simplicial {Objects} in {Algebraic} {Topology}}, Bibliovault

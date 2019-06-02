@@ -1,23 +1,18 @@
 \documentclass[TFM.tex]{subfiles}
 
 \begin{document}
-%EN LA PARTE DE MONOIDAL EN ALGEBRAIC OPERADS DICE:
-%
-%any symmetric monoidal
-%category with infinite sums such that finite sums commute with the monoidal
-%structure.
-%
-%PERO NO APARECE LA SUMA EN NINGÚN LADO
 
-%CAMBIAR LA REFERENCIA DE LA TESIS POR LA DE MAY QUE TENGO EN LA BIBLIOGRAFIA
+
 %\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
 \chapter{Operads}\label{3}
 
-In this chapter we define the main object of our study: operads. We begin with the topological version of operads and construct the operad of little disks, which plays the main role in the Deligne conjecture. Topological operads give rise to operads in other categories by taking singular chains or homology. Therefore, we also introduce the concept of operad in a symmetric monoidal category. Finally, we motivate the study of operads and the origin of the Deligne conjecture. 
+%Se usan también en tqft, y sirven para construir muchos tipos de álgebras (por ejemplo Lie en característica no 2 por lo de la simetría, asociativas, commutativas, aunque no fields o grupos intuitivamente por la inversa)
+
+In this chapter we define the main object of our study: operads. This an object that has been gaining importance in mathematics thanks to its ability to encode many kinds of algebras (associative, commutative, Lie...). We begin with the topological version of operads and construct the operad of little disks, which plays the main role in the Deligne conjecture. Topological operads give rise to operads in other categories by taking singular chains or homology. Therefore, we also introduce the concept of operad in a symmetric monoidal category. Finally, we motivate the study of operads and the origin of the Deligne conjecture. 
 
 All maps between topological spaces are required to be continuous. We can restrict ourselves to compactly generated Hausdorff spaces when necessary. 
 
-%NECESITO UNA REFERENCIA DE QUE EL LITTLE DISKS ES CW PARA USARLO LUEGO EN LA GENERALIZACIÓN
+
 
 
 \section{Topological operads}
@@ -273,7 +268,7 @@ A \emph{symmetric monoidal category} is a category $\mathscr{M}$ equipped with:
 \begin{enumerate}[(1)]
 \item A functor $\otimes: \mathscr{M}\times \mathscr{M}\to \mathscr{M}$ called the \emph{tensor product}.
 \item An object $I\in \mathscr{M}$ called the \emph{unit}.
-\item Natural isomorphism $a_{x,y,z} : (x \otimes y) \otimes z \to x \otimes (y \otimes z)$ (called the \emph{associator}), $\lambda_x : I \otimes x \to x$ (\emph{left unitor}), $\rho_x : x \otimes I \to x$ (\emph{right unitor}) and $B_{x,y}: x\times y\to y\times x$ (\emph{braiding}).
+\item Natural isomorphism $a_{x,y,z} : (x \otimes y) \otimes z \to x \otimes (y \otimes z)$ (called the \emph{associator}), $\lambda_x : I \otimes x \to x$ (\emph{left unitor}), $\rho_x : x \otimes I \to x$ (\emph{right unitor}) and $B_{x,y}: x\otimes y\to y\otimes x$ (\emph{braiding}).
 \end{enumerate}
 
 We then demand that the associator obey the pentagon identity, which says this diagram commutes:
@@ -312,7 +307,7 @@ If we drop the braiding from the definition above we obtain what is simply calle
 \begin{ex}\
 \begin{enumerate}
 \item The categories $\Set$ and $\Top$ are symmetric monoidal categories with the cartesian product as tensor product and a singleton as unit. 
-\item For $k$ some field, the category $\Vect_k$ of $k$-vector spaces carries the standard structure of a monoidal category coming from the tensor product, over $k$, of vector spaces. The standard braiding that identifies $V\otimes W$ with $W\otimes V$ by mapping homogeneous elements $v\otimes w$ to $w\otimes v$ obviously makes $\Vect_k$ into a symmetric monoidal category. This is also true for the category $\Vectgr_k$ of graded vector spaces over $k$. 
+\item For a fixed field $k$, the category $\Vect_k$ of $k$-vector spaces carries the standard structure of a monoidal category coming from the tensor product (over $k$) of vector spaces. The standard braiding that identifies $V\otimes W$ with $W\otimes V$ by mapping homogeneous elements $v\otimes w$ to $w\otimes v$ obviously makes $\Vect_k$ into a symmetric monoidal category. This is also true for the category $\Vectgr_k$ of graded vector spaces over $k$. 
 
 \item For a ring $R$, the category of $R$-modules and the category of $R$-algebras have obvious tensor structures that can be used in the graded case too, but this tensor structure is not symmetric in general. Some cases where it is symmetric are $R=\Z_m$ and $R=\Q$. %en la tabla de caracteres de Z_2xZ_2 se ve que TRIVxAlT tiene que ser distinta a ALTxTRIV, como las representaciones son A-modulos para A el álgebra del grupo, se tiene lo que he dicho
 

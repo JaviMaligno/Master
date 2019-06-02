@@ -15,7 +15,7 @@
 %\url{https://ncatlab.org/nlab/show/Drinfeld+associator}
 
 
-In this chapter we review and explain the heart of the proof of the Deligne Conjecture: the formality of the chain operad of little disks. Throughout the chapter we follow \cite{Tamarkin}. The chain operad of little disks is the operad of chain complexes over $\Q$ obtained from the topological little disks operad. By formailty it is meant that this operad is equivalent to its homology operad in a sense that we will define below in the text. The strategy is the following:
+In this chapter we review and explain the heart of the proof of the Deligne Conjecture: the formality of the chain operad of little disks. Throughout this chapter we follow \cite{Tamarkin}. The chain operad of little disks is the operad of chain complexes over $\Q$ obtained from the topological little disks operad. By formailty it is meant that this operad is equivalent to its homology operad in the sense that there is a \emph{zig-zag} of quasi-isomorphisms (i.e. maps inducing isomorphisms on homology) between them. The strategy is the following:
 
  First, we define an operad which is homotopy equivalent to the little disks operad from a category operad $PaB_*$. Then, we take a $\Q$-linear span of $PaB_*$ and find an operad $O_A(*)$ together with a quasi-isomorphism from the homology operad of little disks. Finally, we give a quasi-isomorphism between the span $\Q(PaB_*)$ and $O_A(*)$, which completes the proof. 
 
@@ -321,14 +321,14 @@ This data specifies a $B_\infty$-operad structure on $\widetilde{E}_2$.
 
 A more general approach to the previous proposition is taken in propositions 2.27 and 2.28 of \cite{tesis}
 
-We now give a few useful definitions from \cite[\textsection 2.6]{Kontsevich}. Let $P$ be an operad of complexes (dg operad), and $f : A→B$ be a morphism of two $P$-algebras.
+We now give a few useful definitions from \cite[\textsection 2.6]{Kontsevich}. Let $P$ be an operad of complexes (dg-operad), and $f : A→B$ be a morphism of two $P$-algebras.
 \begin{defi}
 $f$ is a quasi-isomorphism if it induces an isomorphism of the homology
 groups of $A$ and $B$ considered as complexes with zero differential.
 \end{defi}
 
 \begin{defi}
-Two algebras $A$ and $B$ are called homotopy equivalent if there exists a chain (or zig-zag) of quasi-isomorphisms
+Two algebras $A$ and $B$ are called \emph{homotopy equivalent} if there exists a chain (or zig-zag) of quasi-isomorphisms
 \[
 A= A_1→A_2←A_3→\cdots←A_{2k+1} = B
 \]
@@ -338,13 +338,13 @@ Analogously to the case of algebras, we can speak about quasi-isomorphisms of op
 of complexes.
 
 \begin{defi}
-A morphism $f : P_1→P_2$ between two dg operads is called a
+A morphism $f : P_1→P_2$ between two dg-operads is called a
 \emph{quasi-isomorphism} if the maps of chain complexes $f(n) : P_1(n)→P_2(n)$ induce isomorphisms of
 homology groups for all $n$.
 \end{defi}
 
 \begin{defi}
-Two dg operads $A$ and $B$ are said to be \emph{equivalent} if there exists a chain of quasi-isomorphisms
+Two dg-operads $A$ and $B$ are said to be \emph{equivalent} if there exists a chain of quasi-isomorphisms
 \[
 A= A_1→A_2←A_3→\cdots←A_{2k+1} = B
 \]
@@ -367,7 +367,7 @@ It suffices to prove this theorem only for one operad $X$ of little disks since 
 
 \section{The category operad $PaB_n$}\label{pab}
 
-We're going to define a category operad $PaB_n$. Let $B_n$ the group of braids on $n$ strands and $PB_n$ the group of pure braids on $n$ strand. Let $\Sigma_n$ the symmetric group and let $p:B_n\to \Sigma_n$ be the canonical projection with kernel $PB_n$. We assume that the strands of any braid are numbered in the order determined by their origins. 
+We're going to define a category operad $PaB_n$. Let $B_n$ the group of braids on $n$ strands and $PB_n$ the group of pure braids on $n$ strand. Let $\Sigma_n$ the symmetric group and let $p:B_n\to \Sigma_n$ be the canonical projection with kernel $PB_n$. We assume that the strands of any braid are numbered in the order determined by their origins. We also need to add the group $B_1=PB_1=1$.
 
 The objects of the category $PaB_n$ are parenthesized permutations of the set $\{1,\dots, n\}$ (that is pairs $(\sigma,\pi)$, where $\sigma\in\Sigma_n$ and $\pi$ is a parenthesizing of the non-associative product of $n$ elements). The morphisms between $(\sigma_1,\pi_1)$ and $(\sigma_2,\pi_2)$ are such braids in $B_n$ that any strand joins an element of $\sigma_1$ with the same element of $\sigma_2$, in other words, $\Hom((\sigma_1,\pi_1),(\sigma_2,\pi_2))=p^{-1}(\sigma_2^{-1}\sigma_1)$. The composition law is induced from the one on $B_n$. The symmetric group $\Sigma_n$ acts on $PaB_n$ via renumbering the objects: $\tau(\sigma,\pi)=(\tau\sigma,\pi)$ for $\tau\in\Sigma_n$ and $(\sigma,\pi)\in PaB_n$. 
 
@@ -388,29 +388,30 @@ There are a few operations on $PaB_*$ that will be useful later and that can be 
 	\item  \emph{Extension operations}: let $d_0B = d^n_0	B$ ($d_{n+1}B = d^n_{n+1}B$) be $B$ with one straight strand
 	added on the left (right), with ends regarded as outer-most:
 	\begin{figure}[h!]
-		\includegraphics[scale=0.8]{Imagenes/extension}
+		\includegraphics[scale=0.5]{Imagenes/extension}
 	\end{figure}
 	
 	\item \emph{Cabling operations}: let $d_iB = d^n_i B$ for $1 ≤ i ≤ n$ be the parenthesized braid obtained
-from $B$ by doubling its $i$-th strand (counting at the bottom), taking the ends of the
-resulting “daughter strands” as an inner-most product:
+from $B$ by doubling its $i$-th strand (counting at the top):
 \begin{figure}[h!]
-		\includegraphics[scale=0.8]{Imagenes/cabling}
+		\includegraphics[scale=0.5]{Imagenes/cabling}
 	\end{figure}
 	
 	\item \emph{Strand removal operations}: Let $s_iB = s^n_i B$ for $1 ≤ i ≤ n$ be the parenthesized braid
-obtained from $B$ by removing its $i$-th strand (counting at the bottom):
+obtained from $B$ by removing its $i$-th strand (counting at the top):
 	\begin{figure}[h!]
-		\includegraphics[scale=0.8]{Imagenes/removal}
+		\includegraphics[scale=0.5]{Imagenes/removal}
 	\end{figure}
 	
 \end{itemize}
-TENGO QUE HACER YO LOS DIBUJOS PERO HACIENDO QUE LAS TRENZAS VAYAN HACIA ABAJO, LO CUAL CAMBIA LA DE ELIMINAR (Y ALOMEJOR ALGUNA OTRA), SINO SERÍA INCOHERENTE CON LA INSERCIÓN
+
 \subsection{Operad of classifying spaces}
 
 We have the functor of taking the nerve $N:\Cat\to\SSet$ and the functor of topological realization $|\ |:\SSet\to \CW$. One can easily check that the nerve functor behaves well with respect to the symmetric monoidal structure. Since the nerve of $PaB_n$ is countable, the realization also behaves well with its symmetric monoidal structure by \ref{countable}. Therefore the collection of cellular complexes $X_n=|N(PaB_n)|$ forms a cellular operad. Let us check that this operad is a little disks operad. Let $PaB_n'$ be the category whose objects are pairs $(x,y)$, where $x$ belongs to the braid group $B_n$ and $y$ is a parenthesizing of the non-associative product of $n$ elements, and there is a unique morphism between any two objects. We have a free left action of $B_n$ on $PaB_n':(x,y)\to (gx,y)$ and a braided operad structre on $PaB_*'$ (the structre maps are defined similarly to $PaB_n$). We have to show that the corresponding operad of classifying spaces is a topological $B_\infty$-operad and that the corresponding little disks operad is isomorphic to $X_*$. The action of $B_n$ on $PaB_n'$ induces an action on the vertices (0-simplices) of $|N(PaB_n')|$ and can be extended linearly to the whole complex, and therefore it is automatically free. Then, the quotient $|N(PaB_n')|/PB_n$ is equivalent to $X_n$ since the morphisms $(\sigma_1,\pi_1)\to(\sigma_2,\pi_2)$ in $PaB_n$ can be obtained by choosing one element in $p^{-1}(\sigma_2^{-1}\sigma_1)$ and multiplying it by the elements of $PB_n$. %NO ESTOY SEGURO DE QUE ESTÉ BIEN ESTO QUE HE DICHO.
 
-Consider the corresponding chain operad. Let $C_*(PaB_n)$ be the chain complex over $\Q$ of $NPaB_n$ as a simplicial set. The collection $C_*(PaB_n)$ forms a dg-operad (via the Eilenberg-Zilber map). We have a canonical quasi-isomorphism of operads $C_*(PaB_*)\to C_*^{sing}(|NPaB_*|)$ (just like the quasi-isomorphism between simplicial homology and singular homology). Therefore it suffices to construct a quasi-isomorphism of $C_*(PaB_*)$ and $e_2$.
+Consider the corresponding chain operad. Let $C_*(PaB_n)$ be the chain complex over $\Q$ of $NPaB_n$ as a simplicial set. The collection $C_*(PaB_n)$ forms a dg-operad (via the Eilenberg-Zilber map). 
+
+We have a canonical quasi-isomorphism of operads $C_*(PaB_*)\to C_*^{sing}(|NPaB_*|)$ (just like the quasi-isomorphism between simplicial homology and singular homology, see \cite[\textsection 2.1]{Hatcher}). Therefore it suffices to construct a quasi-isomorphism of $C_*(PaB_*)$ and $e_2$.
 
 \section{Operad $O_A(*)$ and construction of a quasi-isomorphisms}
 
@@ -446,11 +447,11 @@ collection $\{O_A(n)\}$.
 %En los racionales es la identidad porque solo se defien cuando hay algún t, así que pasa como slice. Tal como está definida la inserción se puede entender además desde el producto cartesiano y se puede trasladar al producto en Cat
 To see what the complex $C_*^{\Q}(O_A(n))$ looks like, we explain how the $\Q$-linear nerve functor $N^\Q$ works. For the usual nerve $N$ acting on a category $\CC$, the set of $n$-simplices can be written as
 \[
-\coprod_{x_1,\dots, x_n\in\mathrm{Ob}\CC}\CC(x_2,x_1)\times\cdots \times\CC(x_n,x_{n-1})
+\coprod_{x_1,\dots, x_n\in\mathrm{Ob}\CC}\CC(x_2,x_1)\times\cdots \times\CC(x_{n+1},x_{n})
 \]
 where $\CC(x_{i+1},x_i)=\Hom_{\CC}(x_{i+1},x_i)$. Since we are in a linear context, we can replace disjoint unions by direct sums and cartesian products by tensor products. In each coordinate of the direct sum, we have elements of the form
 \[
-f_1\otimes\cdots \otimes f_n
+f_1\otimes\cdots \otimes f_{n}
 \]
 with $f_i\in \CC(x_{i+1},x_i)$. In particular, when $\CC$ has only one object, these are indeed the $n$-simplices. For $1<i<n$, the face maps are straight analogues to the general case, i.e. $$d_i(f_1\otimes\cdots \otimes f_{i-1}\otimes f_i\otimes \cdots\otimes f_n)=f_1\otimes\cdots \otimes f_{i-1}f_i\otimes\cdots \otimes f_n$$
 For $i=1,n$, we need to modify the face maps, since omitting $f_1$ or $f_n$ doesn't yield a homomorphism (because projections are not bilinear). Instead, we define
@@ -661,15 +662,17 @@ The definition of the associator is equivalent to the fact that $\phi$ is well-d
 \begin{figure}[h!]
 \includegraphics[scale=0.6]{Imagenes/left}
 \end{figure}
-This morphism is nothing more than $d_1x$, so it is mapped via $\phi$ to $d^1\exp(t_{12}/2)$. On the other hand, by composition it can be expressed in several steps, moving only one strand or chaging the parenthesizing on each step as follows
+This morphism is nothing more than $d_1x$, so it is mapped via $\phi$ to $d^1\exp(t_{12}/2)$. On the other hand, by composition it can be expressed in several steps, performing one crossing or chaging the parenthesizing on each step as follows
 
-DIBUJO QUE SALE DE LA DERECHA DEL HEXÁGONO
+\begin{figure}[h!]
+\includegraphics[scale=0.6]{Imagenes/right}
+\end{figure}
 
 This is the morphism obtained by the product $i\cdot d_0x\cdot (132)i^{-1}\cdot (13)d_3x\cdot (312)i$. This should be sent to $\Phi\cdot d^0\exp(t_{12}/2)\cdot (132)\Phi^{-1}\cdot (132)d^3\exp(t_{12}/2)\cdot (312)\Phi$. By definition of the $d^i$'s, we have $d^0\exp(t_{12}/2)=\exp(t_{23}/2)$ and $(132)d^3\exp(t_{12}/2)=\exp(t_{13}/2)$, so the morphism is mapped to $$\Phi\cdot \exp(t_{23}/2)\cdot (132)\Phi^{-1}\cdot (132)\exp(t_{13}/2)\cdot (312)\Phi,$$ which is equal to $d^1\exp(t_{12}/2)$ by the hexagon axiom.
 
 Then, the map $\phi$ produces a map of operads $C_\star(PaB_*)=C_\star^\Q(\Q(PaB_*))\to C_\star(O_A(*))$.
 %C_* ya era sobre Q, y hacerlo sobre PaB_* en realidad era sobre la realización del nervio, así que es linearizar al final. Lo otro es linearizar primero y luego coger el nervio para el caso lineal
-It is well known that the homology operad of $C_\star(PaB_*)$ is $e_2$ because $PaB_*$ induces a little disks operad as we saw section in \ref{pab}. One checks that $\phi$ is a quasi-isomorphism for $\star=2$ by an argument of dimension similar to the one in the proof of \ref{4.1}: it induces a surjective homomorphism (it sends generators to generators) between spaces of the same dimension. Hence it is a quasi-isomorphism of operads (since
+It is well known that the homology operad of $C_\star(PaB_*)$ is $e_2$ because $PaB_*$ induces a little disks operad as we saw section in \ref{pab}. One checks that $\phi$ is a quasi-isomorphism for $*=2$ by an argument of dimension similar to the one in the proof of \ref{4.1}: it induces a surjective homomorphism (it sends generators to generators) between spaces of the same dimension. Hence it is a quasi-isomorphism of operads (since
 $e_2$ is generated by $e_2(2)$). By Proposition \ref{4.1}, $h$ is a quasi-isomorphism. Thus, the
 chain operad $C_*(PaB_*)$ is equivalent to $e_2$.
 
