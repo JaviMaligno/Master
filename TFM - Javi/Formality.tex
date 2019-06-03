@@ -122,21 +122,22 @@ the braid
 \begin{figure}[h!]
 \centering
 \begin{tikzpicture}
-\fill[black] ( 6.7 , -1.5 ) circle ( 1 pt ) ;
-\fill[black] ( 7 , -1.5 ) circle ( 1 pt ) ;
-\fill[black] ( 7.3 , -1.5 ) circle ( 1 pt ) ;
 
-\fill[black] ( 1.7 , -1.5 ) circle ( 1 pt ) ;
-\fill[black] ( 2 , -1.5 ) circle ( 1 pt ) ;
-\fill[black] ( 2.3 , -1.5 ) circle ( 1 pt ) ;
-\braid[ number of strands=10, %lower bound
- border height=2pt,style strands={8}{line width=2pt}, style strands={7}{draw=none},style strands={6}{line width=2pt},style strands={5}{line width=2pt},style strands={4}{line width=2pt},style strands={3}{line width=2pt}, style strands={2}{draw=none},style strands={1}{line width=2pt}, style strands={9,10}{draw=none}] (braid) at (1,0)%optional, it's a name
-         a_{9} a_4 a_{9};
-           \node[ at=(braid-1-s),  label=north :  $1$ ] {} ;
-          \node[ at=(braid-4-s),  label=north :  $i$ ] {} ;
-\node[ at=(braid-5-s),  label=north : $i+1$ ] {} ;
-\node[ at=(braid-8-s),  label=north :  $n$ ] {} ;
-%\draw (4.5,-2) node[anchor=south] {$\sigma_i$};
+\braid[ number of strands=12, %lower bound
+ border height=2pt,style strands={10}{line width=2pt}, style strands={9}{draw=none},style strands={8}{line width=2pt},style strands={7}{line width=2pt},style strands={6}{line width=2pt},style strands={5}{line width=2pt}, style strands={4}{draw=none},style strands={3}{line width=2pt}, style strands={11,1,2,12}{draw=none}] (braid) at (1,0)%optional, it's a name
+         a_{11} a_6 a_{11};
+           \node[ at=(braid-3-s),  label=north :  $1$ ] {} ;
+          \node[ at=(braid-6-s),  label=north :  $i$ ] {} ;
+\node[ at=(braid-7-s),  label=north : $i+1$ ] {} ;
+\node[ at=(braid-10-s),  label=north :  $n$ ] {} ;
+%\draw (6.5,-2) node[anchor=south] {$\sigma_i$};
+\fill[black] ( 8.7 , -1.5 ) circle ( 1 pt ) ;
+\fill[black] ( 9 , -1.5 ) circle ( 1 pt ) ;
+\fill[black] ( 9.3 , -1.5 ) circle ( 1 pt ) ;
+
+\fill[black] ( 3.7 , -1.5 ) circle ( 1 pt ) ;
+\fill[black] ( 4 , -1.5 ) circle ( 1 pt ) ;
+\fill[black] ( 4.3 , -1.5 ) circle ( 1 pt ) ;
 \end{tikzpicture}
 \end{figure}
 
@@ -150,7 +151,7 @@ of pictures
 \definecolor{qqqqff}{rgb}{0.,0.,1.}
 \resizebox{13cm}{9.8cm}{%
 \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
-\clip(-4.,-6.1) rectangle (13.293333333333337,5.7);
+\clip(-3.8,-6.1) rectangle (13.293333333333337,5.7);
 \fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (0.37333333333333335,5.) -- (0.7733333333333334,5.) -- (0.8,0.) -- (0.4,0.) -- cycle;
 \fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (1.6,5.) -- (2.186666666666667,5.) -- (2.2,0.) -- (1.6133333333333333,0.) -- cycle;
 \fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (2.6133333333333333,5.) -- (3.3866666666666667,5.) -- (3.4133333333333336,0.) -- (2.6,0.) -- cycle;
