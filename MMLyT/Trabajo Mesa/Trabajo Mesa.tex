@@ -133,7 +133,12 @@ s.a.\,& s_i:= f_i -\sum_{j \in J} \max\{0,v_i-c_{ij}\} + \sum_{k \in K(i)} \gamm
 & s_{il}:= d_{il} - \sum_{k\in K(i,l)} \gamma_k \geq 0 \qquad i \in I,\; l\in I,\; i<l\\
 &\gamma_k \geq 0 \qquad  k\in K
 \end{align*}
-Dado un conjunto de valores de $\gamma$ para el problema (D), el problema resultante se denomina forma condensada dual del UFLP. Podemos construir los valores $v_j$ directamente usando heurísticas desarrolladas también en \cite{bilde}. Este proceso cicla repetidamente los $j\in J$ intentando incrementar $v_j$ desde un valor de $c_{ij}$ al siguiente mayor valor posible. Si para algún valor $j$ el incremento viola la factibilidad, $v_j$ se incrementa solo hasta el mínimo que permitan las restricciones de $s_i$.
+Dado un conjunto de valores de $\gamma$ para el problema (D), el problema resultante se denomina forma condensada dual del UFLP. Podemos construir los valores $v_j$ directamente usando heurísticas desarrolladas también en \cite{bilde}. Este proceso cicla repetidamente los $j\in J$ intentando incrementar $v_j$ desde un valor de $c_{ij}$ al siguiente mayor valor posible. Si para algún valor $j$ el incremento viola la factibilidad, $v_j$ se incrementa solo hasta el mínimo que permitan las restricciones de $s_i$. Cuando todos los $v_j$ son tales que no pueden ser incrementados, entonces hemos terminado.
+\newpage
+\subsection{Procedimiento de ramificación y acotación}
+Como ya hemos comentado, resolveremos la relajación lineal de (P) iterativamente utilizando el método la heurística anterior. Denotemos por $K^t$ el subconjunto de $K$ de índices de $I^k$'s correspondientes a las desigualdades del tipo (11) que han sido generadas antes de la iteración $t$. Denotemos por $(P^t)$ el problema correspondiente a (P) reemplazando $K$ por $K^t$ y por $(D^t)$ el dual de $(P^t)$. En cada iteración $t$, obtenemos una solución factible $(D^t)$ y también una solución entera factible para (P). En el caso de que nuestra solución no sea óptima, generamos una desigualdad del tipo (11) usando una solución dual de $(D^t)$. Para seleccionar dicha desigualdad nuestro criterio debe ser tal que al añadirla a la relajación lineal de $(P^t)$ provoque un aumento de la correspondiente variable dual $\gamma_k$. 
+
+El incremento de $\gamma_k$ crea una holgura $s_i$ para $i\in I^k$ que puede resultar en un incremento de alguna $v_j$. Si más de un $v_j$ puede ser incrementado 
 \newpage
 \begin{thebibliography}{9}
 \bibitem{bebesita}

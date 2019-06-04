@@ -290,7 +290,7 @@ Dado que nuestro objetivo es el estudio paramétrico del problema del emparejami
 Sea $G=(V,E)$ un grafo y sea $S \subset V$, definimos $\delta(S)$ como el conjunto de aristas con un único extremo en $S$. En el caso de un conjunto unitario $\{i\}$, denotamos $\delta(i):=\delta(\{i\})$. Usualmente se denomina \textbf{grado del vértice $i$} al cardinal de $\delta(i)$. Definimos además $\gamma(S)$ como el conjunto de aristas que tienen ambos extremos en $S$.
 \end{defi}
 
-En adelante consideramos siempre $G=(V,E)$ un grafo no dirigido. El problema del \textit{matching} consiste en encontrar un subconjunto $M\subset E$ con la propiedad de que en el subgrafo inducido $G(M)=(V,M)$ ningún vértice tenga grado mayor que $1$, es decir, que ninguna arista tenga vértices en común. Naturalmente, este problema es fácilmente generalizable al problema del $b$-emparejamiento o $b$-\textit{matching}, en el cual cada vértice $v$ debe tener un grado no mayor que $b_v$, donde $b_v$ es un entero positivo. El problema original pasaría a ser el caso particular en el que $b_v = 1$ $\forall v \in V$.
+En adelante consideramos siempre $G=(V,E)$ un grafo no dirigido. El problema del \textit{matching} consiste en encontrar un subconjunto $M\subset E$ con la propiedad de que en el subgrafo inducido $G(M)=(V,M)$ ningún vértice tenga grado mayor que $1$, es decir, que ninguna arista tenga vértices en común con otra. Naturalmente, este problema es fácilmente generalizable al problema del $b$-emparejamiento o $b$-\textit{matching}, en el cual cada vértice $v$ debe tener un grado no mayor que $b_v$, donde $b_v$ es un entero positivo. El problema original pasaría a ser el caso particular en el que $b_v = 1$ $\forall v \in V$.
 
 \begin{defi}
 Sea $G=(V,E)$ un grafo y sea $M\subset E$ un $b$-emparejamiento. Diremos que $M$ es un \textbf{emparejamiento perfecto} si $|\delta(v)|=b_v$ $\forall v \in V$, es decir, si las restricciones se verifican con igualdad.
@@ -309,7 +309,7 @@ s.a.\;  &  Ax\leq b \\
 \end{align*}
 donde $c$ es el vector de pesos, $A$ es la matriz de incidencia del grafo, $|E|=n$ y la variable $x_{uv}=1$ si la arista $(u,v)$ está en el emparejamiento y $0$ en caso contrario. Nótese que si $G$ es un grafo bipartito entonces $A$ es una matriz totalmente unimodular y, en ese caso, los puntos extremos del poliedro $\{x \in \R^n_+\mid Ax\leq b\}$ son precisamente los $b$-emparejamientos.
 
-Es claro que la formulación como problema de programación entera no suele resultar la más conveniente. La mayoría de técnicas y algoritmos para resolver este problema de manera eficiente utilizan instrumentos basados en la dualidad de la Programación Lineal. Esto es posible gracias a un importante resultado que probó Edmonds en \cite{edmond}, que pasamos a enunciar.
+Es claro que la formulación directa como problema de programación entera no suele resultar la más conveniente. La mayoría de técnicas y algoritmos para resolver este problema de manera eficiente utilizan instrumentos basados en la dualidad de la Programación Lineal. Esto es posible gracias a un importante resultado que probó Edmonds en \cite{edmond}, que pasamos a enunciar.
 \begin{thm}
 Sea $G=(V,E)$ un grafo. Sea $B$ el conjunto
 $$
@@ -327,7 +327,7 @@ Además, si nos restringimos a los emparejamientos perfectos, entonces basta con
 Resumiendo nuestras hipótesis, consideraremos que $c_{uv}\geq 0$ $\forall (u,v)\in E$, es decir, los pesos son no negativos. Además, imponemos que los grafos estudiados admiten un matching perfecto. Principalmente, vamos a estudiar técnicas para resolver y reoptimizar el problema del emparejamiento perfecto de coste mínimo o \textit{minimum-cost perfect matching problem} (MCPM). Usando el teorema anterior, este puede ser formulado como
 \begin{align*}
 \min_x & \sum_{(u,v) \in E}x_{uv}c_{uv}\\
-s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} \leq 1, \quad \forall u \in V\\
+s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} = 1, \quad \forall u \in V\\
 &\sum_{(u,v)\in \gamma(S)} x_{uv} \leq \frac{1}{2}(|S|-1)\quad \forall S \in B	\\
 &x_{uv} \geq 0 \qquad \forall(u,v)\in E
 \end{align*}
@@ -347,7 +347,7 @@ $$
 También notaremos el vector de costes reducidos como $\overline{c}$.
 \end{defi}
 
-A pesar de la utilidad del teorema de Edmonds para el desarrollo de numerosos algoritmos, más adelante veremos algunas modificaciones del de dicho teorema que nos darán algunas formulaciones equivalentes pero más interesantes de cara al paradigma de la resolución computacional. Como introducción a esta idea, tenemos la equivalencia
+A pesar de la utilidad del teorema de Edmonds para el desarrollo de numerosos algoritmos, más adelante veremos algunas modificaciones de dicho teorema que nos darán algunas formulaciones equivalentes pero más interesantes de cara al paradigma de la resolución computacional. Como introducción a esta idea, tenemos la equivalencia
 $$
 \sum_{(u,v)\in \gamma(S)} x_{uv} \leq \frac{1}{2}(|S|-1) \Leftrightarrow \sum_{(u,v)\in \delta(S)} x_{uv} \geq 1
 $$
@@ -361,14 +361,16 @@ s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} \leq 1, \quad \forall u \in V\\
 &x_{uv} \geq 0 \qquad \forall(u,v)\in E
 \end{align*}
 donde 
-$$
-d_{uv} = \begin{cases}
-1 & (u,v)\in R\\
-0 & (u,v)\notin R
-\end{cases}
-$$
-Este problema puede verse como la relajación lagrangiana del problema del matching con una cota superior y es ampliamente estudiado por Ball y Taverna en \cite{balltab}. 
+$
+d_{uv} = I_R((u,v))$, es decir, la función indicador del conjunto $R$. Este problema puede verse como la relajación lagrangiana del problema del matching con una cota superior y es ampliamente estudiado por Ball y Taverna en \cite{balltab}. 
 Más generalmente, si consideramos dos funciones de coste $c^1$ y $c^2$ cualesquiera y un parámetro $\lambda$ escalar, podemos formular el \textit{problema del emparejamiento biobjetivo}
+\begin{align*}
+\min_x & \left(\sum_{(u,v) \in E}x_{uv}c^1_{uv},\sum_{(u,v) \in E}x_{uv} c^2_{uv}\right)\\
+s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} \leq 1, \quad \forall u \in V\\
+&\sum_{(u,v)\in \gamma(S)} x_{uv} \leq \frac{1}{2}(|S|-1)\quad \forall S \in B	\\
+&x_{uv} \geq 0 \qquad \forall(u,v)\in E
+\end{align*}
+Este problema puede ser formulado a través de una escalarización en términos del problema paramétrico anterior de la siguiente forma.
 \begin{align*}
 \min_x & \sum_{(u,v) \in E}x_{uv}(c^1_{uv}+\lambda c^2_{uv})\\
 s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} \leq 1, \quad \forall u \in V\\
@@ -376,11 +378,11 @@ s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} \leq 1, \quad \forall u \in V\\
 &x_{uv} \geq 0 \qquad \forall(u,v)\in E
 \end{align*}
 \section{El algoritmo de Grötschel-Holland}
-A partir del Teorema 1.1.1, Edmonds desarrolló basándose en ideas de la programación lineal un método combinatorio \cite{edmond} para obtener una solución del problema de emparejamiento en tiempo polinómico. Una de las características más importantes del problema de Programación Lineal asociado es que tiene un número de restricciones exponencial en el número de ejes. A pesar de que, en un principio, encontraríamos esta condición prohibitiva a la hora de resolver el problema, los resultados de Edmonds muestran que la estructura de las restricciones son más importantes que su número. 
+A partir del Teorema 1.1.1, Edmonds desarrolló basándose en ideas de la programación lineal un método combinatorio \cite{edmond} para obtener una solución del problema de emparejamiento en tiempo polinómico. Una de las características más importantes del problema de Programación Lineal asociado es que tiene un número de restricciones exponencial en el número de ejes. A pesar de que, en un principio, encontraríamos esta condición prohibitiva a la hora de resolver el problema, los resultados de Edmonds muestran que la estructura de las restricciones es más importantes que su número. 
 
 A pesar de que es el algoritmo que finalmente utilizaremos para el proceso de repotimización, Grötschel y Holland presentan en \cite{holland} un método para resolver el problema del emparejamiento basado en el método del simplex. Este algoritmo utiliza varias heurísticas que según los autores mejoran considerablemente su tiempo de ejecución. Teóricamente, el algoritmo que pasamos a presentar no es polinomial, no obstante en la práctica es competitivo con los algoritmos combinatorios conocidos para el problema del emparejamiento.
 
-Para evitar redundar en desarrollo teórico de un algoritmo que no utilizaremos en secciones posteriores pero con el fin de ilustrarlo de manera suficientemente técnica, presentamos seguidamente el algoritmo y explicamos las ideas claves que lo componen. Notemos que originalmente el algoritmo fue detallado por sus autores para un grafo completo $K_n$, lo cuál será respetado en el siguiente análisis.
+Para evitar redundar el desarrollo teórico de un algoritmo que no utilizaremos en secciones posteriores pero con el fin de ilustrarlo de manera suficientemente técnica, presentamos seguidamente el algoritmo y explicamos las ideas claves que lo componen. Notemos que originalmente el algoritmo fue detallado por sus autores para un grafo completo $K_n$, lo cuál será respetado en el siguiente análisis.
 \begin{align*}
 \text{Paso 1: }&\text{Determinar un conjunto $E'\subset E$ de ejes candidatos.}\\
 &\text{Vamos al Paso 2.}\\
@@ -399,7 +401,7 @@ Para evitar redundar en desarrollo teórico de un algoritmo que no utilizaremos 
 &\text{Vamos al Paso 6.}\\
 \text{Paso 6: }& \text{En caso afirmativo, vamos al Paso 9.}\\
 &\text{En otro caso, vamos al Paso 7.}\\
-\text{Paso 7: }&\text{Encontramos un hiperplano de corte para $x^*$. Para ello realizamos:}\\
+\text{Paso 7: }&\text{Encontramos un hiperplano de corte para $x^*$. Para ello:}\\
 &\text{Utilizamos la Heurística 1 con $G_{x^*}$. Si encontramos un hiperplano}\\
 &\text{vamos al Paso 8. En otro caso utilizamos la Heurística 2 en $G^2_{x^*}$.}\\
 \end{align*}
@@ -426,7 +428,7 @@ s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} = 1, \quad \forall u \in V\\
 \end{align*}
 del problema inducido por $E'$. Notemos que el grado $\delta(v)$ debe tomarse en el subgrafo $(V,E')$. Como solución inicial de este problema utilizamos el matching $M$ calculado anteriormente.
 \newpage
-\item[Paso 4.] Resolvemos el problema de Programación Lineal considerado. Los autores del algoritmo recomiendan usar IBM-MPSX/370 utilizando. De manera general, cada vez que vayamos a este paso utilizamos la solución óptima obtenida en la llamada anterior como base inicial. En el caso de que hayamos añadido nuevas restricciones, esta base será infactible para el problema primal, pero sí será factible para el dual, que podemos utilizar para encontrar una solución del primal. Sea $x^*$ la solución obtenida.
+\item[Paso 4.] Resolvemos el problema de Programación Lineal considerado. De manera general, cada vez que vayamos a este paso utilizamos la solución óptima obtenida en la llamada anterior como base inicial. En el caso de que hayamos añadido nuevas restricciones, esta base será infactible para el problema primal, pero sí será factible para el dual, que podemos utilizar para encontrar una solución del primal. Sea $x^*$ la solución obtenida.
 \item[Paso 5.] Consideramos el grafo $G_{x^*}=(V,E_{x^*})$, donde $E_{x^*} =\{(u,v)\in E'\mid x^*_{uv}>0\}$. Este grafo servirá como input para la fase de detección de planos de corte. Definimos los costes $k_{uv}:=x^*_{uv}$. Para no escanear dos veces $x^*$, comprobamos si $x^*$ es un vector de coordenadas enteras.
 \item[Paso 6.] Si $x^*$ es entero, entonces induce un matching perfecto en el subproblema considerado. En este caso, comprobamos la optimalidad global (Paso 9). En otro caso, necesitamos determinar planos de corte para obtener una nueva solución $x^*$, es decir, vamos al Paso 7.
 \item[Paso 7.] Si la solución $x^*$ no es entera, entonces no puede inducir un matching en nuestro grafo. Necesitamos encontrar planos de corte y, naturalmente, deseamos encontrarlos en el menor tiempo posible.
@@ -435,21 +437,21 @@ Comenzamos utilizando búsqueda en profundidad, comprobamos si $G_{x^*}$ tiene c
 $$
 \sum_{(u,v)\in E_i} x_{uv} \leq \frac{1}{2}(|V_i|-1)
 $$ 
-que es violada por $x^*$. En este caso no necesitamos buscar más planos de corte, sino directamente utilizamos estos y continuamos al Paso 8.
+que son violadas por $x^*$. En este caso no necesitamos buscar más planos de corte, sino directamente utilizamos estos y continuamos al Paso 8.
 
 Si nuestra solución no viola las desigualdades anteriores, consideramos el grafo $G^2_{x^*}$ obtenido al eliminar las aristas de $E_{x^*}$ cuyos costes -recordemos, los $k_{uv}$ definidos anteriormente- sean menores que un cierto $\varepsilon$. Aplicamos ahora el procedimiento inicial del Paso 7 al grafo $G^2_{x^*}$. Incluso si encontramos componentes conexas de cardinalidad impar, estas no tendrían por qué inducir desigualdades que se violasen necesariamente, por lo que tenemos que comprobarlo. Si es así, hemos encontrado planos de corte y pasamos al Paso 8. 
 
 Si después de utilizar esta segunda heurística tampoco hemos encontrado planos de corte, consideremos $V_1$ como el conjunto de vértices de $G_{x^*}$ incidentes con alguna arista cuyo peso $k_{uv}=1$. En tal caso, eliminamos de $G_{x^*}$ el conjunto de vértices $V_1$ así como todas las aristas que les sean incidentes. Denotamos por $G'_{x^*} =(V',E'_{x^*})$ al grafo resultante de esta operación. Padberg y Rao presentaron un método para encontrar un plano de corte adecuado \cite{rao} basado en determinar el árbol de Gomory-Hu de $G'_{x^*}$ y encontrar un eje de este árbol de peso mínimo entre aquellos que al ser eliminados dividen el árbol en dos componentes de cardinalidad impar. Notemos que, en particular, $G'_{x^*}$ tiene un número par de nodos.
 Una vez encontrado el plano de corte, continuamos con el Paso 8.
 
-Notemos que el algoritmo de Padberg y Rao que utilizan los autores para encontrar el plano de corte, a pesar de ser polinomial, es $O(n^4)$. Para grafos de gran tamaño, este procedimiento también puede resultar prohibitivo, razón por la cuál se intentan encontrar planos de corte con heurísticas más sencillas. 
+Notemos que el algoritmo de Padberg y Rao que utilizan los autores para encontrar el plano de corte, a pesar de ser polinomial, es $O(n^4)$. Para grafos de gran tamaño, este procedimiento también puede resultar prohibitivo, razón por la cuál se intentan encontrar planos de corte con heurísticas más sencillas. Entre ellas se recomienda el algoritmo de Gusfield.
 
 \item[Paso 8.] Añadimos los planos de corte encontrados en el paso anterior a nuestro problema y volvemos al Paso 4.
 \item[Paso 9.] Hemos obtenido una solución entera que induce un matching perfecto e $(V,E')$, pero naturalmente no tiene por qué ser un matching óptimo en $K_n$. Para comprobarlo, calculamos el coste reducido a cada eje $(u,v)\in E\setminus E'$. Sea $VAR$ el conjunto de variables que podrían mejorar la solución óptima. Si todos los costes tienen el signo adecuado, entonces $VAR=\emptyset$ y nuestra solución actual es de hecho óptima en $K_n$, por lo que hemos terminado. Si $VAR\neq \emptyset$, entonces establecemos $E'=E'\cup VAR$ y añadimos las correspondientes variables. Volvemos al Paso 4.
 \end{itemize}
 Los detalles nuestra implementación pueden verse comentados en el código presente en la tercera parte de este trabajo.
 \section{El problema de separación del matching}
-Para aprovechar el potencial del software expresamente diseñados para resolver problemas de programación lineal, nosotros implementaremos el algoritmo de Padberg-Rao, a pesar de que para el análisis de sensitividad vendrá dado por el algoritmo del SAP. Esto está justificado, pues consideramos más interesante intentar utilizar la estructura combinatoria propia del problema para dicho análisis, frente a la aproximación clásica cuyos resultados son conocidos y difícilmente interpretables.
+Para aprovechar el potencial del software expresamente diseñados para resolver problemas de programación lineal, nosotros implementaremos el algoritmo de Padberg-Rao, a pesar de que para el análisis de sensibilidad vendrá dado por el algoritmo del SAP. Esto está justificado, pues consideramos más interesante intentar utilizar la estructura combinatoria propia del problema para dicho análisis, frente a la aproximación clásica cuyos resultados son conocidos y difícilmente interpretables.
 
 Para entender mejor cómo funciona el algoritmo anterior y en qué se basa el procedimiento de Padberg-Rao, así como qué relación guarda con el problema del $b$-emparejamiento, discutimos una serie de conceptos y problemas en esta sección.
 
@@ -480,7 +482,7 @@ Sea $G=(V,E)$ un grafo y sea $\mathcal{C}(G)$ el conjunto de los conjuntos de co
 El concepto de corte es importante en Teoría de Grafos, pues no solamente son centrales en el algoritmo que nos ocupa, sino que además están estrechamente conectados con los denominados problemas de flujo.  Gomory y Hu introdujeron en 1961 un algoritmo polinomial para encontrar un grafo de árbol que representa una base del espacio vectorial anterior. Esta representación se conoce como el árbol de Gomory-Hu, y es especial por verificar la siguiente propiedad.
 
 \begin{prop}
-Sea $G=(V,E)$ un grafo cuyas aristas tienen coste $c$, sean $s,t\in V$ y sea $T$ el árbol de Gomory-Hu asociado al grafo y costes anteriores. Sea $P$ el único árbol dentro de $T$ que tiene por extremos $s$ y $t$. Sea $e$ la arista de menor peso dentro de $P$. Entonces la partición de los vértices de $T$ obtenida al eliminar $e$ proporciona precisamente el corte de coste mínimo tanto en $T$ como en $G$.
+Sea $G=(V,E)$ un grafo cuyas aristas tienen coste $c$, sean $s,t\in V$ y sea $T$ el árbol de Gomory-Hu asociado al grafo y costes anteriores. Sea $P$ el único camino dentro de $T$ que tiene por extremos $s$ y $t$. Sea $e$ la arista de menor peso dentro de $P$. Entonces la partición de los vértices de $T$ obtenida al eliminar $e$ proporciona precisamente el corte de coste mínimo tanto en $T$ como en $G$.
 \end{prop}
 \subsection{El problema de separación}
 
@@ -507,7 +509,7 @@ En el caso del problema del emparejamiento que estamos tratando $b_v = 1$ y simp
 En nuestro implementación del algoritmo de Grötschel-Holland nosotros para el análisis computacional no vamos a utilizar directamente el algoritmo de Padberg-Rao, sino un modificación del mismo que presentan Letchford, Reinelt y Theis en \cite{adam}, junto con una demostración de la corrección del mismo.
 \begin{align*}
 \text{Inicialización: }&\text{Un grafo $G$ y un vector $x$}\\
-\text{Paso 1: }&\text{Computamos el árbol de Gomory de $G$ para los pesos}\\
+\text{Paso 1: }&\text{Computamos el árbol de Gomory-Hu de $G$ para los pesos}\\
 & w_{uv} = \min\{x_{uv},1-x_{uv}\}\\
 \text{Paso 2: }&\text{Para cada uno de los $|V|-1$ cortes $\delta(W)$ realizamos:}\\
 &\text{Encontramos el mejor conjunto $F$ tal que $F\subset \delta(W)$ con}\\
@@ -532,7 +534,7 @@ Para ilustrar las distintas aplicaciones que tiene el problema del matching, com
 \end{enumerate}
 \subsection{Aproximación al problema del viajante}
 El problema del viajante o \textit{travelling salesman problem} (TSP) en un grafo no dirigido consiste en encontrar el ciclo hamiltoniano de peso mínimo. Computacionalmente hablando, se sabe que es NP-duro. Este problema aparece para responder a la pregunta: ¿Dada una lista de ciudades y las distancias entre cada pareja de ciudades, cuál es la ruta más corta para visitar todas las ciudades y volver a la ciudad de origen? Este problema puede formularse como problema de programación entera, como puede encontrarse en \cite{papa}. 
-
+En el algoritmo se utiliza un conocido teorema de teoría de grafos, denominado lema del apretón de manos.
 Aunque no puede utilizarse el problema del matching para resolver este problema, Nicos Christofides encontró un algoritmo \cite{nico} para obtener, bajo ciertas condiciones, una aproximación no mayor que $1.5$ el valor óptimo del TSP. Para este resultado es necesario imponer que las distancias estén en el marco de un espacio métrico, es decir, han de ser simétricas y verificar la desigualdad triangular. El algoritmo consiste en:
 \begin{align*}
 \text{Paso 1: }&\text{Obtener el árbol recubrido mínimo $T$ de $G$.}\\
@@ -575,7 +577,7 @@ x_{uv} &\geq 0\\
 
 
 \subsection{Coloración de aristas}
-Dado un grafo $G=(V,E)$, una \textit{coloración de las aristas} de $G$ con el mínimo número de colores posibles, de manera que aristas que sean incidentes en un mismo vértice tengan colores diferentes. 
+Consideremos ahora el \textit{problema de la coloración de aristas}: dado un grafo $G=(V,E)$, colorear las aristas de $G$, con el mínimo número de colores posibles, de manera que aristas que sean incidentes en un mismo vértice tengan colores diferentes. 
 
 El problema de la coloración por aristas está relacionado con el problema del matching dado que una coloración es factible si y solo si cada conjunto de ejes de un mismo color forma un matching. Por tanto, podemos formular el problema de la cobertura de aristas como el problema de cubrir las aristas de $E$ con el mínimo número posible de matching maximales. 
 
@@ -654,13 +656,13 @@ Si el grafo es euleriano, necesariamente la solución ha de ser cualquier circui
 \subsection{Localización de objetos en el espacio}
 Para identificar un objeto en un espacio tridimensional podemos utilizar dos sensores infrarrojos colocados en lugares distintos. Cada sensor nos da un ángulo de visión del objeto y, por tanto, una línea en la cuál debe encontrarse. La intersección de ambas lineas, suponiendo que los dos sensores y el objeto no sean colineales, nos de manera única la posición del objeto. 
 
-Consideremos la situación de determinar la localización de $p$ objetos utilizando dos sensores. El primer sensor nos determina $L_1,\dotsc,L_p$ líneas para los $p$ objetos mientras que el segundo nos determina $L'_1,\dotsc,L'_p$. Para identificar los objetos tenemos, utilizando que dos líneas identifican un objeto si intersecan, tenemos que emparejar las líneas del primer conjunto con las del segundo. Esta aproximación tiene dos inconvenientes. Por una lado, una línea de un sensor podría intersecar con más de una líneal del otro, por lo que el matching no sería único. Por otro lado, los errores de medición podrían provocar que dos líneas que identifican un objeto no intersecaran. Para lidiar con estos problemas podemos utilizar la siguiente aproximación. 
+Consideremos la situación de determinar la localización de $p$ objetos utilizando dos sensores. El primer sensor nos determina $L_1,\dotsc,L_p$ líneas para los $p$ objetos mientras que el segundo nos determina $L'_1,\dotsc,L'_p$. Para identificar los objetos, utilizando que dos líneas identifican un objeto si intersecan, tenemos que emparejar las líneas del primer conjunto con las del segundo. Esta aproximación tiene dos inconvenientes. Por una lado, una línea de un sensor podría intersecar con más de una lineal del otro, por lo que el matching no sería único. Por otro lado, los errores de medición podrían provocar que dos líneas que identifican un objeto no intersecaran. Para lidiar con estos problemas podemos utilizar la siguiente aproximación. 
 
 Planteemos un problema de asignación de las lineas de un conjunto a las del otro. Definimos el coste $c_{ij}$ de la arista $(i,j)$ como el mínimo de las distancias euclídeas entre $L_i$ y $L'_j$. Estudios con simulaciones han descubierto que esta aproximación identifica correctamente los objetos en la gran mayoría de casos.
 
 
 \subsection{Movimiento de objetos}
-En muchos contextos diferentes nos interesa intentar aproximar la velocidad y dirección de movimiento de una serie de $p$ objetos que se mueven en el espacio (por ejemplo: aeronaves, misiles). Para la localización de los objetos podríamos el método visto anteriormente.   Una posibilidad para estimar la dirección y velocidad del objeto podría ser calcula la localización de dos objetos en dos instantes distintos de tiempo y emparejar los primeros puntos con los segundos. Si este emparejamiento es correcto, es claro que podemos hacer una estimación de los parámetros. 
+En muchos contextos diferentes nos interesa intentar aproximar la velocidad y dirección de movimiento de una serie de $p$ objetos que se mueven en el espacio (por ejemplo: aeronaves, misiles). Para la localización de los objetos podríamos emplear el método visto anteriormente. Una posibilidad para estimar la dirección y velocidad del objeto podría ser calcular la localización de dos objetos en dos instantes distintos de tiempo y emparejar los primeros puntos con los segundos. Si este emparejamiento es correcto, es claro que podemos hacer una estimación de los parámetros. 
 
 Sean $(x_i,y_i,z_i)$ las coordenadas de los objetos del primer conjunto y sean $(x_i',y_i',z_i')$ las del segundo. Las formas de emparejar ambos conjuntos son muy diversas. Una posibilidad es minimizar la suma de las diferencias al cuadrado entre los puntos emparejados. Esta idea se adecua bastante a la realidad, pues penaliza la posibilidad de emparejar objetos a gran distancia. Si la diferencia de tiempo en la que tomamos las localizaciones es suficientemente pequeña, el emparejamiento óptimo será probablemente correcto. Si denotamos por $\{1,\dotsc,p\}$ al primer conjunto de puntos y por $\{1',\dotsc,p'\}$ al segundo, entonces un arco $(i,j')$ tendría un coste asociado 
 $$
@@ -685,7 +687,7 @@ x_{uv} &\geq 0 \quad \forall(u,v)\in E\\
 \sum_{(u,v)\in \gamma(S)} x_{uv}& \leq \frac{1}{2}\left(\sum_{v\in S} b_v -1\right) \quad \forall S \text{ con $\sum_{v\in S} b_v$ impar}
 \end{align*}
 \end{thm}
-
+Una demostración de este resultado puede encontrarse en \cite{inte}.
 \chapter{Algoritmo SAP}
 En este capítulo vamos a explicar el funcionamiento del método SAP o \textit{shortest augmenting path} a partir del cuál puede obtenerse un matching perfecto de mínimo coste y, además, nos permitirá realizar una reoptimización eficiente.
 \section{Propiedades teóricas}
@@ -735,7 +737,7 @@ Supongamos que $M$ no es de máxima cardinalidad. En particular, ha de existir $
 $$
 |D| = |M|+|M'| -2|M\cap M'| = 2|M|+1-2|M\cap M'|
 $$
-Por lo que $D$ tiene cardinalidad impar. Sea $G' = (V,D)$. Dado que $M$ y $M'$ son emparejamientos, el grado de cualquier vértice de $G'$ es a lo sumo $2$. De hecho, si existiese algún vértice de grado $2$ entonces una de las aristas pertenece a $M$ y la otra $M'$. Por tanto, cada componente conexa de $G'$ debe ser vértices aislados, ciclos de cardinalidad par o un camino de alternantes relativos a $M$ y a $M'$. Dado que $|D|$ es impar, debe haber al menos un camino alternante. Es más, dado que $|M'|=|M|+1$ uno de esos caminos debe ser de aumento con respecto a $M$.zD,4 1
+Por lo que $D$ tiene cardinalidad impar. Sea $G' = (V,D)$. Dado que $M$ y $M'$ son emparejamientos, el grado de cualquier vértice de $G'$ es a lo sumo $2$. De hecho, si existiese algún vértice de grado $2$ entonces una de las aristas pertenece a $M$ y la otra $M'$. Por tanto, cada componente conexa de $G'$ debe ser vértices aislados, ciclos de cardinalidad par o un camino de alternantes relativos a $M$ y a $M'$. Dado que $|D|$ es impar, debe haber al menos un camino alternante. Es más, dado que $|M'|=|M|+1$ uno de esos caminos debe ser de aumento con respecto a $M$.
 \end{dem}
 
 Dejamos los caminos a un lado y pasamos a definir otro tipo de conceptos relacionados con distintas familias de grafos y subgrafos.
@@ -798,7 +800,7 @@ Además, si nos restringimos a los emparejamientos perfectos, entonces basta con
 Utilizando este teorema, podemos formular el MCPM como
 \begin{align*}
 \min_x & \sum_{(u,v) \in E}x_{uv}c_{uv}\\
-s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} \leq 1, \quad \forall u \in V\\
+s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} =	 1, \quad \forall u \in V\\
 &\sum_{(u,v)\in \delta(S)} x_{uv} \geq 1\quad \forall S \in \mathcal{A}(G)	\\
 &x_{uv} \geq 0 \qquad \forall(u,v)\in E
 \end{align*}
@@ -865,7 +867,7 @@ Por tanto $l(P')<l(P)$ (con respecto a $M$), lo cuál es una contradicción.
 \end{dem}
 \subsection{Transformaciones admisibles}
 \begin{defi}
-Sea $M$ un matching y sea $\mathcal{P}(M)$ definido en la Definición 2.2.2. Una transformación $T:c_{uv}\to c_{uv}'$ es llamado \textbf{admisible} si
+Sea $M$ un matching y sea $\mathcal{P}(M)$ definido en la Definición 2.2.2. Diremos que una transformación $T:c_{uv}\to c_{uv}'$  es \textbf{admisible} si
 $$
 l'(P)\geq 0\quad \forall P \in \mathcal{P}(M)
 $$
@@ -890,7 +892,7 @@ c_{uv}' =c_{uv}-y_u-y_v - \sum_{S\in B, (u,v)\in \delta(S)}y_S
 $$
 \end{defi}
 \begin{nota}
-Notemos que si consideramos $y$ una solución factible del problema dual del matching, la transformación asocia a los costes de cada arista los costes reducidos asociados a $y$, pues puede establecerse a través de las condiciones de holgura complementaria que si $S$ no pertenece a una familia de contracción, $y_S =0$.
+Si consideramos $y$ una solución factible del problema dual del matching, la transformación anterior asocia a los costes de cada arista los costes reducidos asociados a $y$. Esta transformación pues puede establecerse a través de las condiciones de holgura complementaria que si $S$ no pertenece a una familia de contracción, $y_S =0$.
 \end{nota}
 \begin{defi}
 En las condiciones de la definición anterior, definimos el \textbf{grafo de admisibilidad} $G' = (V,E')$ donde $E' = \{(u,v)\in E\mid c'_{uv}=0\}$.
@@ -902,7 +904,7 @@ Una transformación admisible $T$ del tipo definida en la Definición 2.2.4 se d
 y_S>0&\Rightarrow S\in A \text{ y } |M\cap \gamma(S)| = \frac{1}{2}(|S|-1)
 \end{align*}
 \end{defi}
-Con estas definiciones en mente pasamos a probar el criterio de optimalidad que utilizaremos en el nuestro algoritmo, cuya demostración puede encontrarse en \cite{derigs}.
+Con estas definiciones en mente pasamos a enunciar y probar el criterio de optimalidad que utilizaremos en el nuestro algoritmo.
 \begin{thm}
 Sea $M$ un matching y sea $T$ una transformación adecuada. Sea $A = \{S \in B\mid y_S>0\}$. Si existe $P\in \mathbb{P}(M)$ tal que $c'(P)=0$ y $P_A$ es un camino de aumento respecto $M_A$, entonces $P$ es el camino alternante de menor costo en $\mathcal{P}(M)$.
 \end{thm}
@@ -922,7 +924,7 @@ s\notin S \Rightarrow & |(P\setminus M)\cap \delta(S)| = |(P\cap M)\cap \delta(S
 y, por tanto, $l(P) = y_s  + \sum_{s\in S} y_S$. Aplicando el Teorema 2.2.3 tenemos el resultado.
 \end{dem}
 \section{Algoritmo del camino de aumento más corto}
-Durante el procedimiento un emparejamiento $M$, una familia de contracción $A$ y unos peso $y_u$ ($u \in V$) e $y_S$ ($S$ conjunto impar de vértices) definen una transformación admisible $T:c_{uv}\to c'_{uv}$ que verifica además que $c'_{uv}=0$ si $(u,v)\in M$. Todos los pasos del algoritmo están constituidos en el grafo $G\times A$. En \cite{inte}, utilizan distintas notaciones para los costes $\pi_v$ asociados a los nodos e $y_S$ para los asociados conjuntos impares. Sin embargo, los costes no nulos $y_S$ asociados con un pseudonodo $v_S$ representa el respecto $S\in A$. Que estos costes puedan entenderse como asociados a un pseudonodo justifica que vayamos a utilizar la notación $y$ para ambos pesos. 
+Durante el procedimiento un emparejamiento $M$, una familia de contracción $A$ y unos peso $y_u$ ($u \in V$) e $y_S$ ($S$ conjunto impar de vértices) definen una transformación admisible $T:c_{uv}\to c'_{uv}$ que verifica además que $c'_{uv}=0$ si $(u,v)\in M$. Todos los pasos del algoritmo están constituidos en el grafo $G\times A$. En \cite{inte} se utilizan distintas notaciones para los costes ($\pi_v$ para los nodos e $y_S$ para los conjuntos impares). Sin embargo, los costes no nulos $y_S$ asociados con un pseudonodo $v_S$ representa ya de por sí al conjunto $S\in A$. Que estos costes puedan entenderse como asociados a un pseudonodo justifica que nosotros vayamos a utilizar la notación $y$ para ambos tipos. 
 
 Antes de dar el algoritmo es preciso notar que utilizaremos un etiquetado de manera que todo nodo de $G\times A$ tendrá tres etiquetas temporales $d_v^+,d_v^-$ y $p(v)$ con la información:
 \begin{itemize}
@@ -1030,7 +1032,7 @@ Además, extendemos $y$ al nuevo grafo $\overline{G}$ de manera que $y_r:=y_t:=0
 \end{dem}
 Es importante hacer una consideración para entender por qué es importante el teorema anterior. Sea $y$ una solución fuertemente dual factible, definimos $\mathcal{A}(y)=\{S\in \mathcal{A}(G)\mid y_S>0\}$. Naturalmente, si existe algún $S \in \mathcal{A}(G)$ con $v\in S$ tal que $y_S >0$, el nodo $v$ no estará -estará contraído en algún pseudonodo- en el grafo $G\times \mathcal{A}(y)$. Por tanto, siguiendo el proceso de la demostración anterior, siempre podemos encontrar un par compatible $(M,y)$ de manera que un determinado vértice $v$ esté en el grafo $G\times \mathcal{A}(y)$. Pasamos a ver el algoritmo de repotimización. 
 
-Supongamos que todas las aristas cuyos costes son alteradas están en $\delta(v)$. Naturalmente, Si $c_{ij}'^{new} \geq 0$ $\forall (u,v) \in \delta(v)$, nuestro matching sigue siendo óptimo, luego podemos suponer que hay alguno que es negativo.
+Supongamos que todas las aristas cuyos costes son alteradas están en $\delta(v)$. Naturalmente, si $c_{ij}'^{new} \geq 0$ $\forall (u,v) \in \delta(v)$, nuestro matching sigue siendo óptimo, luego podemos suponer que hay alguno que es negativo.
 \begin{align*}
 \text{Inicialización: }& \text{Sea $(M,y)$ un par compatible óptimo para MCPM}\\
 \text{Paso 1: }& \text{Si $v$ no está contraído en $G\times \mathcal{A}(y)$ vamos al Paso 2.}\\
@@ -1046,7 +1048,7 @@ Supongamos que todas las aristas cuyos costes son alteradas están en $\delta(v)
 &\text{camino de aumento $P$ y una solución dual $y'$ tal que el par}\\
 &\text{$(\overline{M}\oplus P,y')$ sea un par compatible}
 \end{align*}
-A continuación explicamos explícitamente cómo aplicar el oráculo anterior para reoptimizar en general un problema de matching y añadimos además una forma algorítima del método.
+A continuación explicamos cómo aplicar el oráculo anterior para reoptimizar en general un problema de matching y añadimos además una forma algorítima del método.
 
 El proceso de reoptimización que muestra Derigs solo nos permite alterar los costes de las aristas relativas a un vértice en concreto. Por tanto, tenemos que invocarlo secuencialmente. Partimos de un par compatible $(M,y)$ óptimo. Calculamos $V' \subset V$ tal que $\delta(V') \cup \gamma(V')= E$. 	
 
@@ -1072,7 +1074,7 @@ De manera algoritmica, podemos escribir:
 \text{Paso 3: }&\text{El par compatible $(M_s,y_s)$ es óptimo para $G$ con la función}\\
 &\text{de coste $c^{new}$}
 \end{align*}
-Notemos que es posible que algunos o todos las aristas cuyos costes alteramos en un paso general pueden haber sido alteras en otros anteriores, pero tiene un efecto inocuo en el desarrollo del algoritmo. 
+Notemos que es posible que algunas o todas las aristas cuyos costes alteramos en un paso general pueden haber sido alteras en otros anteriores, pero tiene un efecto inocuo en el desarrollo del algoritmo. 
 
 Los conjuntos $W$ que verifican que $\delta(W)\cup\gamma(W)=E$ se denominan \textit{coberturas por vértices} de $G$. En general, el problema de decidir si un grafo $G$ tiene una cobertura por vértices de tamaño $k$ es NP-completo. A pesar de ello, por la observación anterior, tampoco es estrictamente necesario que obtengamos una cobertura de tamaño mínimo para inicializar el algoritmo. 
 
@@ -1098,7 +1100,7 @@ B^{-1}b\geq0\\
 \overline{c_R}^t = c_N^t - c_B^t B^{-1}N\geq 0
 \end{align*}
 \subsection{Problema biobjetivo}
-Realizamos el análisis para el caso en $\lambda$ es un único parámetro escalar común. Alterar $\lambda$ no modifica en ningún caso la primera condición, luego nos centraremos solo en la segunda. 
+Realizamos el análisis para el caso en que $\lambda$ es un único parámetro escalar común. Alterar $\lambda$ no modifica en ningún caso la primera condición, luego nos centraremos solo en la segunda. 
 \begin{align*}
 \overline{c_R}(\lambda+\Delta)^t&= c_N(\lambda + \Delta)^t  - c_B(\lambda + \Delta)^t B^{-1}N \\
 & = c_N(\lambda)^t  - c_B(\lambda)^t B^{-1}N + \Delta {c_N^2}^t  - \Delta {c_B^2}^t B^{-1}N \\
@@ -1194,7 +1196,7 @@ def objind(c):
 \end{pythone}
 
 \subsection{Método de Padberg-Rao modificado}
-En primer lugar presentamos el código para la implementación del método de Padberg-Rao con las modificaciones de Letchford, Reinelt y Thesis. Definimos una función que tiene como entrada un grafo $G$ y un vector $x$ y como salida una desigualdad válida del tipo blossom. 
+En primer lugar presentamos el código para la implementación del método de Padberg-Rao con las modificaciones de Letchford, Reinelt y Theis. Definimos una función que tiene como entrada un grafo $G$ y un vector $x$ y como salida una desigualdad válida del tipo blossom. 
 \begin{pythone}
 # A continuacion vamos a programar en Python 3.7 el metodo de Padberg-Rao modificado para, dado un grafo G y un vector x, obtener una desigualdad del poliedro del matching -en caso de que exista- que sea violada por x.
 
@@ -1487,7 +1489,7 @@ def integer(G, c1, c2, lamb = 0):
 \end{pythone}
 \newpage
 \subsection{Grafos de Erdös-Rényi}
-En el siguiente código vamos a escribir una función que dado que nos compare sobre grafos generados aleatoriamente con una cantidad fija de vértices los métodos que hemos programados anteriormente. Para generar los grafos aletoriamente utilizamos el comando de la librería \textbf{networkx}\\
+En el siguiente código vamos a escribir una función que nos compare sobre grafos generados aleatoriamente con una cantidad fija de vértices los métodos que hemos programados anteriormente. Para generar los grafos aletoriamente utilizamos el comando de la librería \textbf{networkx}\\
 \begin{pythone}
 networkx.gnp_random_graph(M,p)
 \end{pythone}
