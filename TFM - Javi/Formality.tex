@@ -63,7 +63,7 @@ structure map and symmetric group actions on $E_2$. Let $p:\widetilde{E}_2\to E_
 
 \definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1.}
 \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
-\clip(-3.5866666666666673,-0.4666666666666) rectangle (11.293333333333335,4.5);
+\clip(-5,-0.4666666666666) rectangle (11.293333333333335,4.5);
 \fill[line width=2.pt,color=xdxdff,fill=xdxdff,fill opacity=0.10000000149011612] (0.41333333333333344,4.) -- (0.4,0.) -- (0.7733333333333334,0.) -- (0.7866666666666668,4.) -- cycle;
 \fill[line width=2.pt,color=xdxdff,fill=xdxdff,fill opacity=0.10000000149011612] (1.2,4.) -- (1.2133333333333338,0.) -- (1.586666666666667,0.) -- (1.586666666666667,4.) -- cycle;
 \fill[line width=2.pt,color=xdxdff,fill=xdxdff,fill opacity=0.10000000149011612] (3.,4.) -- (3.,0.) -- (3.386666666666667,0.) -- (3.4,4.) -- cycle;
@@ -408,7 +408,16 @@ obtained from $B$ by removing its $i$-th strand (counting at the top):
 
 \subsection{Operad of classifying spaces}
 
-We have the functor of taking the nerve $N:\Cat\to\SSet$ and the functor of topological realization $|\ |:\SSet\to \CW$. One can easily check that the nerve functor behaves well with respect to the symmetric monoidal structure. Since the nerve of $PaB_n$ is countable, the realization also behaves well with its symmetric monoidal structure by \ref{countable}. Therefore the collection of cellular complexes $X_n=|N(PaB_n)|$ forms a cellular operad. Let us check that this operad is a little disks operad. Let $PaB_n'$ be the category whose objects are pairs $(x,y)$, where $x$ belongs to the braid group $B_n$ and $y$ is a parenthesizing of the non-associative product of $n$ elements, and there is a unique morphism between any two objects. We have a free left action of $B_n$ on $PaB_n':(x,y)\to (gx,y)$ and a braided operad structre on $PaB_*'$ (the structre maps are defined similarly to $PaB_n$). We have to show that the corresponding operad of classifying spaces is a topological $B_\infty$-operad and that the corresponding little disks operad is isomorphic to $X_*$. The action of $B_n$ on $PaB_n'$ induces an action on the vertices (0-simplices) of $|N(PaB_n')|$ and can be extended linearly to the whole complex, and therefore it is automatically free. Then, the quotient $|N(PaB_n')|/PB_n$ is equivalent to $X_n$ since the morphisms $(\sigma_1,\pi_1)\to(\sigma_2,\pi_2)$ in $PaB_n$ can be obtained by choosing one element in $p^{-1}(\sigma_2^{-1}\sigma_1)$ and multiplying it by the elements of $PB_n$. %NO ESTOY SEGURO DE QUE ESTÉ BIEN ESTO QUE HE DICHO.
+We have the functor of taking the nerve $N:\Cat\to\SSet$ and the functor of topological realization $|\ |:\SSet\to \CW$. One can easily check that the nerve functor behaves well with respect to the symmetric monoidal structure. Since the nerve of $PaB_n$ is countable, the realization also behaves well with its symmetric monoidal structure by \ref{countable}. Therefore the collection of cellular complexes $X_n=|N(PaB_n)|$ forms a cellular operad. 
+
+Let us check that this operad is a little disks operad. Let $PaB_n'$ be the category whose objects are pairs $(x,y)$, where $x$ belongs to the braid group $B_n$ and $y$ is a parenthesizing of the non-associative product of $n$ elements, and there is a unique morphism between any two objects. We have a free left action of $B_n$ on $PaB_n':(x,y)\to (gx,y)$ and a braided operad structre on $PaB_*'$ (the structre maps are defined similarly to $PaB_n$). We have to show that the corresponding operad of classifying spaces is a topological $B_\infty$-operad and that the corresponding little disks operad is isomorphic to $X_*$. The action of $B_n$ on $PaB_n'$ induces an action on the vertices (0-simplices) of $|N(PaB_n')|$ and can be extended linearly to the whole complex, and therefore it is automatically free. Then, the quotient $|N(PaB_n')|/PB_n$ is equivalent to $X_n$ since the morphisms $(\sigma_1,\pi_1)\to(\sigma_2,\pi_2)$ in $PaB_n$ can be obtained by choosing one element in $p^{-1}(\sigma_2^{-1}\sigma_1)$ and multiplying it by the elements of $PB_n$. Finally, we have to show that $|PaB_n'|$ is contractible for every $n$. This follows from the following proposition, since every object in $PaB_n'$ is simultaneously initial and terminal. %NO ESTOY SEGURO DE QUE ESTÉ BIEN ESTO QUE HE DICHO.
+\begin{prop}
+	If $X$ is a category that has either an initial object or a terminal object, then $|N(X)|$ is contractible.
+\end{prop}
+\begin{proof}
+	%\url{https://math.stackexchange.com/questions/2920686/is-the-geometric-realization-of-a-pointed-category-contractible}
+	As we saw in example \ref{exnerve} of chapter \ref{ch2}, a natural transformation between functors induces a homotopy between geometric realizations, and thus turns adjoint functors into inverse homotopy equivalences (since the unit and counit of the adjunction become homotopies to the identity). An initial object induces a left adjoint to the unique functor $X→\mathbf{1}$, where $\mathbf{1}$ is the category with one object and one morphism (the functor $\mathbf{1}\to X$ sends the only object to the initial object) and so gives a homotopy equivalence $|N(X)|\simeq|N(\mathbf{1})|$ and hence shows $|N(X)|$ is contractible since $|N(\mathbf{1})|$ is a one-point space. Similarly, a terminal object is a right adjoint to $X→\mathbf{1}$. %COMPLETAR LA PARTE DE QUE ES ADJUNTO, PORQUE NECESITO VER CÓMO LOS OBJETOS INICIALES/TERMINALES GENERAN FUNCTORES (CREO QUE ES MANDAR EL OBJETO DE 1 AL INICIAL Y PARECIDO CON EL TERMINAL\url{https://en.wikipedia.org/wiki/Initial_and_terminal_objects} MIRAR QUE INICIAL CUMPLE ESTO \url{https://en.wikipedia.org/wiki/Universal_property})
+\end{proof}
 
 Consider the corresponding chain operad. Let $C_*(PaB_n)$ be the chain complex over $\Q$ of $NPaB_n$ as a simplicial set. The collection $C_*(PaB_n)$ forms a dg-operad (via the Eilenberg-Zilber map). 
 
@@ -661,13 +670,15 @@ of the $d_i$'s (becasuse every Artin generator of the braid group can be express
 The definition of the associator is equivalent to the fact that $\phi$ is well-defined. One can check this by finding the relations between morphisms in $PaB_n$. Of course, some of these relations come from the presentation of the braid groups. An exhaustive list of relations is contained in the proof of  \cite[Proposition 3.4]{1deTamarkin}. For the sake of clarity, let us describe one of the most intuitive relations and how it is preserved by $\phi$. Consider the following morphism
 
 \begin{figure}[h!]
-\includegraphics[scale=0.6]{Imagenes/left}
+\includegraphics[scale=0.53]{Imagenes/left}
 \end{figure}
 This morphism is nothing more than $d_1x$, so it is mapped via $\phi$ to $d^1\exp(t_{12}/2)$. On the other hand, by composition it can be expressed in several steps, performing one crossing or chaging the parenthesizing on each step as follows
 
 \begin{figure}[h!]
-\includegraphics[scale=0.6]{Imagenes/right}
+\includegraphics[scale=0.53]{Imagenes/right}
 \end{figure}
+
+%\newpage
 
 This is the morphism obtained by the product $i\cdot d_0x\cdot (132)i^{-1}\cdot (13)d_3x\cdot (312)i$. This should be sent to $\Phi\cdot d^0\exp(t_{12}/2)\cdot (132)\Phi^{-1}\cdot (132)d^3\exp(t_{12}/2)\cdot (312)\Phi$. By definition of the $d^i$'s, we have $d^0\exp(t_{12}/2)=\exp(t_{23}/2)$ and $(132)d^3\exp(t_{12}/2)=\exp(t_{13}/2)$, so the morphism is mapped to $$\Phi\cdot \exp(t_{23}/2)\cdot (132)\Phi^{-1}\cdot (132)\exp(t_{13}/2)\cdot (312)\Phi,$$ which is equal to $d^1\exp(t_{12}/2)$ by the hexagon axiom.
 

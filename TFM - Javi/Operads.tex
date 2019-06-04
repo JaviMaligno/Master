@@ -99,7 +99,7 @@ A very visual way to understand operads is to represent the composition as trees
 \caption{Operadic composition is denoted as a product. In a binary operation we insert the result of a ternary operation and of an unary operation.}
 \end{figure}
 
-It is easier to understand the axioms in these terms. Associativity means that it is not necessary to write parentheses. The axiom of the unit element means that $1$ is a neutral element for this product, so we can shrink any edge labelled with 1. In the picture, equivariancy can be interpreted in the following way: we can change the order of the inputs of the final operation, obtaining $dabc$, or we can perform a block transposition on the letters $abcd$, which again yields $dabc$. 
+It is easier to understand the axioms in these terms. Associativity means that one can compose the top three operations with the middle left operation, and then compose the result with the middle right operation, or one can compose the middle operations first, and then insert the three top operations in the appropriate place, giving in both cases the same output. The axiom of the unit element means that $1$ is a neutral element for this product, so we can shrink any edge labelled with $1$. In the picture, equivariancy can be interpreted in the following way: we can change the order of the inputs of the final operation, obtaining $d(abc)$, or we can perform a block transposition on the letters $(abc)d$, which again yields $d(abc)$. 
 
 Operads can also be described by \emph{insertions} (also called \emph{partial compositions} \cite{das})
 \[
@@ -173,7 +173,7 @@ Therefore, it is more convenient to use the insertion version when possible, as 
 \includegraphics[scale=0.3]{Imagenes/insertion}
 \caption{An insertion $\circ_2:E_2(2)\times E_2(3)\to E_2(4)$.}
  \end{figure}
- \newpage
+ %\newpage
 
 Note that there is an element $Id_{E_2}\in E_2(1)$ given by the coordinates $(0,1)$ which acts as the identity for this map. It is easy to check that these maps satisfy the associativity property of an operad. There is an action $E_2(n)\times \Sigma_n\to E_2(n)$ of the symmetric group on $E_2(n)$ given by rearranging the little disks. It is not difficult to check that the maps $\circ_i$ are compatible with this action in the sense of equivariance of operads. Therefore, the familty $E_2=\{E_2(n)\}_{n\geq 0}$ is an operad with identity $Id_{E_2}$ and composition map $\circ_i$. This is what we call the \emph{little disks operad}.
 
@@ -272,14 +272,16 @@ A \emph{symmetric monoidal category} is a category $\mathscr{M}$ equipped with:
 \end{enumerate}
 
 We then demand that the associator obey the pentagon identity, which says this diagram commutes:
+
 \[
-\begin{tikzcd}[column sep=-25, row sep=30]
+\begin{tikzcd}[column sep=-25, row sep=35]
                                                                                                             &                                                                     & (w\otimes x)\otimes (y\otimes z) \arrow[rrd, "{a_{w,x,y\otimes z}}"] &                                                                         &                                \\
 ((w\otimes x)\otimes y)\otimes z \arrow[rru, "{a_{w\otimes x,y,z}}"] \arrow[rdd, "{a_{w,x,y}\otimes 1_z}"'] &                                                                     &                                                                      &                                                                         & w\otimes(x\otimes(y\otimes z)) \\
                                                                                                             &                                                                     &                                                                      &                                                                         &                                \\
                                                                                                             & (w\otimes (x\otimes y))\otimes z \arrow[rr, "{a_{w,x\otimes y,z}}"] &                                                                      & w\otimes ((x\otimes y)\otimes z) \arrow[ruu, "{1_w\otimes a_{x,y,z}}"'] &                               
 \end{tikzcd}
 \]
+
 We demand that the associator and unitors obey the triangle identity, which says this diagram commutes:
 \[
 \begin{tikzcd}
