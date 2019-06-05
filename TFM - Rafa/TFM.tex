@@ -263,27 +263,25 @@ Sevilla, Junio 2019\\
 
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
-PENDIENTE
-%The sample average approximation (SAA) method is an approach for solving stochastic optimization problems by using Monte Carlo simulation. The basic idea of such method is that we can approximate the expected objetive function by the corresponding sample average function using a random sample. We solve the obtained sample average approximating problem by deterministic optimization techniques, and the process is repeated several times with different samples to obtain candidate solutions along with statistical estimates of their optimality gaps until a stopping criterion is satisfied.
+The minimum (maximum) matching problem is a fundamental problem in combinatorial optimization. The special structure of matching found by Edmonds allows to use different approximations. The idea of this work is to present a general insight of the matching problem, different sorts of algorithms for solving its original and the bi-objective formulations and a computational approach. 
 
-
-%In section 1 we describe the expected value and sample average approximation problems and give a few examples of real cases in which it can be useful. In section 2 we show many results related to convergence of estimators (objective value, optimal solution, etc) under certain assumptions. In section 3  we discuss convergence rates of objetive values. In section 4 we implement the method to study two problems (that involve different random variables) to illustrate the power of the method.
+In section 1 we describe the problem, its applications and the Grötschel-Holland algorithm (for solving using linear programming). In section 2 we introduce the theoretical background necessary for understanding the SAP algorithm and the sensitive analysis. In section 3 we implement some methods in Python 3.7 with Gurobi some methods to study their computational properties and sensitive analysis.
 \newpage
 \thispagestyle{empty}
 
 \chapter*{Introducci\'on}\label{cap.introduccion}
 \addcontentsline{toc}{chapter}{Introducción}
-%En ocasiones, cuando tratamos de resolver problemas de programación estocástica que involucran valores esperados, tenemos que lidiar un tamaño del espacio muestral excesivamente grande o con cálculos de esperanzas que pueden ser tremendamente costosos desde un punto de vista computacional. En este trabajo desarrollamos una técnica que nos permite en una gran variedad de casos aproximar estos problemas mediante mediante el método de Monte Carlo. Esta técnica se conoce como Método de aproximación por media muestral.
+El problema del emparejamiento es uno de las cuestiones clásicas de la Programación Matemática. En este trabajo desarrollamos un extenso análisis sobre el trasfondo teórico de ciertos métodos para resolverlo, tanto en su formulación original, como en la formulación biobjetivo.
 
-%Tras una presentación inicial del método, proseguiremos dando resultados relacionados con la convergencia, bajo hipótesis adecuadas, de las soluciones, valor objetivo y otros estimadores de los problemas muestrales a los correspondientes del problema real, así como una primera aproximación al orden de convergencia del método. 
+Tras una presentación inicial del problema, presentamos una primera aproximación a la resolución del problema mediante la Programación Lineal conocida como el algoritmo de Grötschel-Holland. Seguidamente, veremos numerosas aplicaciones que motivan el interés del problema.
 
-%Finalmente, ejemplificaremos la eficacia del método con experimentos reales. Expondremos dos casos donde utilizaremos una normal multivariante y una mixtura de normales para tener una primera impresión sobre la capacidad de aproximación del método y la utilidad para casos donde, amén de heurística, resulta infactible resolver los problemas por fuerza bruta.
+En el segundo capítulo nos centramos en los conceptos y la estructura intrínseca del problema del emparejamiento, la cuál nos permite finalmente detallar el algoritmo del SAP. Además, presentamos el método de reoptimización propuesto por Derigs para este algoritmo.
 
-
+Finalmente, dedicamos un epígrafe a realizar un análisis computacional. Implementamos en Python 3.7 distintos métodos de resolución del problema del emparejamiento con el fin de reportar una comparativa entre ellos. Finalmente, llevamos a cabo un análisis de sensibilidad del problema original y la versión biobjetivo.
 \newpage
 \thispagestyle{empty}
-%\pagenumbering{arabic} % para empezar la numeración con números
 \chapter{El problema del emparejamiento}
+
 \section{El problema del $b$-emparejamiento}
 Dado que nuestro objetivo es el estudio paramétrico del problema del emparejamiento y la versión multiobjetivo del mismo, comenzamos este trabajo exponiendo en qué consiste el problema del ejemparejamiento o problema del \textit{matching}. Para ello, comenzamos definiendo algunos conceptos básicos en el marco de la teoría de grafos.
 \begin{defi}
@@ -411,7 +409,8 @@ Para evitar redundar el desarrollo teórico de un algoritmo que no utilizaremos 
 &\text{vamos al Paso 8.}\\
 \text{Paso 8: }&\text{Añadimos el hiperplano a nuestro problema de Programación Lineal.}\\
 &\text{Vamos al Paso 4.}\\
-\text{Paso 9: }&\text{Determinar las varaibles $VAR$.}\\
+\text{Paso 9: }&\text{Determinar el conjunto $VAR$ de aristas en $E\setminus E'$}\\
+&\text{con coste reducido negativo.}\\
 &\text{Si $VAR=\emptyset$, la solución es óptima. }\\
 &\text{Si $VAR\neq\emptyset$, establecemos $E'=E\cup VAR$.}\\
 &\text{Vamos al Paso 4.}
@@ -648,8 +647,8 @@ Si el grafo es euleriano, necesariamente la solución ha de ser cualquier circui
 &\text{puede obtenerse usando un algoritmo que resuelva el problema}\\
 &\text{del emparejamiento.}\\
 \text{Paso 3: }&\text{Consideramos el multigrafo obtenido a partir de duplicar las}\\
-&\text{aristas de los vértices de $T$. Por el lema del apretón de manos.}\\
-&\text{Este nuevo grafo es euleriano. Obtenemos un circuito euleriano.}\\
+&\text{aristas de los vértices de $T$. Se demuestra que este nuevo grafo}\\
+&\text{es euleriano. Obtenemos un circuito euleriano.}\\
 \text{Paso 4: }& \text{El circuito euleriano de este grafo induce una solución del problema.}\\
 \end{align*} 
 
@@ -895,7 +894,7 @@ $$
 Si consideramos $y$ una solución factible del problema dual del matching, la transformación anterior asocia a los costes de cada arista los costes reducidos asociados a $y$. Esta transformación pues puede establecerse a través de las condiciones de holgura complementaria que si $S$ no pertenece a una familia de contracción, $y_S =0$.
 \end{nota}
 \begin{defi}
-En las condiciones de la definición anterior, definimos el \textbf{grafo de admisibilidad} $G' = (V,E')$ donde $E' = \{(u,v)\in E\mid c'_{uv}=0\}$.
+En las condiciones de la definición anterior, el \textbf{grafo de admisibilidad} $G' = (V,E')$ es aquel en el que $E' = \{(u,v)\in E\mid c'_{uv}=0\}$.
 \end{defi}
 \begin{defi}
 Una transformación admisible $T$ del tipo definida en la Definición 2.2.4 se dice \textbf{adecuada} con respecto a $M$ si existe una familia de contracción $A$ en $G'$ tal que
@@ -1557,7 +1556,7 @@ def analisis(N, I, par1 = 0, par2 = 0):
 \subsection{Reoptimización}
 Pasamos ahora a presentar el codigo con el que vamos a realizar el análisis de postoptimalidad. En primer lugar, debemos saber que cuando optimizamos un modelo de Programación Lineal en Gurobi, este posee una gran variedad de parámetros y atributos que podemos consultar. Dos de ellos son \textbf{SAObjLow }y \textbf{SAObjUp}, que para cada componente de la función objetivo nos indica hasta dónde podemos variar hacia abajo y hacia arriba respectivamente de manera que la base continúe siendo óptima. 
 
- Supongamos que hemos resuelto el modelo para un cierto valor de $\lambda^*$, y denotemos por $l$ y $u$ a los vectores definidos anteriormente para este valor $\lambda^*$. Nuestro objetivo es encontrar el máximo valor de $\lambda$ de manera que la base obtenida siga siendo óptima, es decir, queremos resolver el problema
+ Supongamos que hemos resuelto el modelo para un cierto valor de $\lambda^*$, y denotemos por $l$ y $u$ a los vectores definidos anteriormente para este valor $\lambda^*$. Nuestro objetivo es encontrar el máximo valor de $\lambda$ de manera que la base obtenida siga siendo óptima, es decir, queremos resolver el problema, dada $B$ y funciones objetivos $c^i$, 
 \begin{align*}
 \max&\, \lambda\\
 s.a.&\,  l \leq c^1 + \lambda c^2\\
@@ -1573,8 +1572,8 @@ def buscalamb(lam,c1,c2,u,l):
     x = m.addVars(1,lb = lam, ub = 1, vtype='C', name = "x")
     m.setObjective(x[0])
     for i in range(len(c1)):
-        m.addConstr(l[i] <= c1[i]+(x[0])*c2[i]);
-        m.addConstr(u[i] >= c1[i]+(x[0])*c2[i])
+        m.addConstr(l[i] <= (1-x[0])*c1[i]+(x[0])*c2[i]);
+        m.addConstr(u[i] >= (1-x[0])*c1[i]+(x[0])*c2[i])
     m.optimize()    
     return(m)
     
@@ -1649,7 +1648,7 @@ networx.draw(G)
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.5]{foo2}
+\includegraphics[scale=0.55]{foo2}
 \caption{}
 \end{figure}
 
@@ -1661,13 +1660,80 @@ networx.draw_kamada_kawai(G)
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.5]{foo3}
+\includegraphics[scale=0.55]{foo3}
 \caption{}
 \end{figure}
 
 \newpage
+\subsection{SCIP y soluciones no soportadas}
+En un problema de Programación Lineal las soluciones, en caso de existir, han de situarse en los vértices de la envolvente convexa de nuestro conjunto factible. Cuando trabajamos con problemas multiobjetivo no tiene por qué existir una solución que minimice simultáneamente todas las funciones objetivo. En este sentido, tenemos las denominadas soluciones de Pareto, es decir, aquellas que no pueden ser mejorada en alguna de sus funciones componentes sin empeorar otra. El conjunto de soluciones de Pareto, o vectores Pareto eficientes, se conoce como frontera de Pareto. Este tipo de soluciones se pueden conseguir, en el caso biobjetivo, tal y como hemos planteado en la sección 3.1.6. Sin embargo, aunque las funciones objetivo y resticciones sean lineales pueden existir soluciones de Pareto que no estén en la envolvente convexa de nuestro conjunto factible. Estas soluciones se conocen como no soportadas.
+
+Con el software Gurobi no podemos encontrar las soluciones no dominadas, por lo que tendermos que utilizar el software SCIP, y en particular una de sus aplicaciones, PolySCIP. Este solver solo acepta un tipo determinado de extensión denominada .mop. Nosotros adjuntamos el siguiente código en el que, dado un grafo $G$ y funciones de costo $c_1$ y $c_2$, se genera el archivo .mop del problema de matching asociado escrito con la formulación de Programación Entera.
+
+\begin{pythone}
+# En este codigo vamos a implementar un sencillo programa para convertir un grafo G y dos vectores c1, c2 en un fichero .mop para que PolySCIP pueda resolverlo
+import networkx as nx
+import random
+import math
+
+def pytoscip(name,sense, G, costes):
+    
+    obj = list(enumerate(costes))
+    aristas = list(enumerate(G.edges()))
+    # Creamos el archivo
+    file = open(name + ".mop","w") 
+    file.write("NAME          EX1\n") 
+    
+    # El pararametro sense puede ser MAX o MIN
+    file.write("OBJSENSE\n")    
+    file.write(" " + sense + "\n") 
+
+    # Añadimos el las funciones objetivo y restricciones
+    file.write("ROWS\n")
+    
+    # Funciones objetivo
+    for (i,s) in obj:
+        file.write(" N  Obj" + str(i) + "\n")  
+           
+    # Restricciones de grado
+    for v in G:
+        file.write(" E  Eqn" + str(v) + "\n")
+        
+    # A continuacion pasamos a las columnas
+    file.write("COLUMNS\n")
+    
+    for (i,(a,b)) in aristas:
+        m1,m2,m3 = len(str(i)), len(str(a)), len(str(b))
+        l1 = 8-m1
+        l2 = 18-m2
+        l3 = 18-m3
+        inicio = 4*" " + "x#" + str(i) + l1*" " 
+        file.write(inicio + "Eqn" + str(b) + l3*" " + "1\n")
+        file.write(inicio + "Eqn" + str(a) + l2*" " + "1\n")
+        for (k,s) in reversed(obj):
+            m4 = str(s[i])
+            l4 = 19 - len(str(k)) -len(m4)
+            file.write(inicio + "Obj" + str(k) + l4*" " + m4 + "\n")
+           
+    # Los coeficientes
+    file.write("RHS\n")
+    for v in G:
+        l = len(str(v))
+        m = 18-l
+        file.write(4*" " + "RHS" + 7*" " + "Eqn" + str(v) + m*" " + "1\n")    
+    # Cotas inferiores 
+    file.write("BOUNDS\n")        
+    for (i,q) in aristas:
+        l = len(str(i))
+        m = 19-l
+        file.write(" LI BOUND" + 5*" " + "x#" + str(i) + m*" " + "0\n")    
+    file.write("ENDATA")
+    file.close()
+\end{pythone}
+
+\newpage
 \section{Resultados computacionales}
-A continuación presentamos los resultados computacionales obtenidos. En la siguiente tabla tenemos las siguientes variables 
+A continuación presentamos los resultados computacionales obtenidos. Utilizando los códigos anteriores, vamos a generar una serie de grafos aleatorios con un cierto número de vértices y funciones de coste aleatorias. Resolveremos entonces los problemas de emparejamiento asociados y reportaremos ciertos parámetros relacionados. En la siguiente tabla tenemos las siguientes variables.
 \begin{itemize}
 \item $N$ es el numero de vértices considerados.
 \item $I$ es el número de grafos aleatorios que generamos, es decir, los casos que estudiamos para cada $N$.
@@ -1676,7 +1742,7 @@ A continuación presentamos los resultados computacionales obtenidos. En la sigu
 \item Análogamente $T.GH$, $T.PE$ y $T.Match$ son los tiempos medios en los que cada método ha resuelto los correspondientes problemas.
 \item $Exp.B.B$ es el número de nodos de branch and cut explorados cuando utilizamos Programación Entera.
 \end{itemize} 
-Una vez que el tiempo medio necesario para resolver un problema es superior a 30 segundos, dejamos de utilizar dicho método y todos los valores pasan a ser $0$. Observamos que para grafos con 18 vértices ya comienza a ser costroso utilizar la formulación de Edmonds.
+Una vez que el tiempo medio necesario para resolver un problema es superior a 30 segundos, dejamos de utilizar dicho método y todos los valores pasan a ser $0$. Observamos que para grafos con 18 vértices ya comienza a ser costroso utilizar la formulación de Edmonds debido a que introducimos un número exponencial de restricciones.
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrrrrrrr}
@@ -1749,7 +1815,7 @@ Partimos de las funciones de coste de las aristas (las cuáles están ordenadas 
 c1 = [0.77783098, 0.26790423, 0.22276086, 0.82550433, 0.552517, 0.18884415, 0.01789486, 0.00243447, 0.04742837, 0.94171732, 0.76081629, 0.70075895, 0.16148063, 0.62424824, 0.95096634, 0.16806133, 0.88617127, 0.57725367, 0.17168492, 0.85295435]
 c2 = [0.64317771, 0.56083433, 0.55490255, 0.29773688, 0.08169206, 0.89175246, 0.56850518, 0.57067846, 0.13329401, 0.15793078, 0.41082069, 0.13778612, 0.39161058, 0.34617111, 0.25853244, 0.79687483, 0.58816817, 0.00892943, 0.18819747, 0.52953081]
 \end{pythone}
-Utilizando presentado anteriormente para la reoptimización. Comenzamos resolviendo para $\lambda=0$ calculamos el máximo valor de $\lambda$ para el cuál la base actual sigue siendo óptima. Tras modificar la función objetivo y reoptimizar, obtenemos una solución que puede volver a ser la misma o no. Si no lo fuese, capturamos el valor de $\lambda$ y la solución. Obtenemos así que que para $\lambda\in [0,1]$ encontramos 3 soluciones distintas para valores límite de $\lambda \in \{0,0.5814,0.6626\}$.
+Utilizando el método presentado en la subseción 3.1.6. para la reoptimización, comenzamos resolviendo para $\lambda=0$ calculamos el máximo valor de $\lambda$ para el cuál la base actual sigue siendo óptima. Tras modificar la función objetivo y reoptimizar, obtenemos una solución que puede volver a ser la misma o no. Si no lo fuese, capturamos el valor de $\lambda$ y la solución. Obtenemos así que para $\lambda\in [0,1]$ encontramos 3 soluciones distintas para valores límite de $\lambda \in \{0,0.5814,0.6626\}$.
 
 En un análisis posterior, resolvemos el mismo problema usando Programación Entera para una regilla de valores $\lambda$ entre $0$ y $1$ con paso $0.1$. Así obtenemos lo que cabría esperar, para $\lambda \leq 0.5$ obtenemos la primera solución, para $\lambda = 0.6$ obtenemos la segunda solución y para $0.7 \leq \lambda \leq 1$ obtenemos la tercera solución. Presentamos una representación gráfica de los distintos emparejamientos asociados a cada $\lambda$. 
 \begin{figure}[h!]
@@ -1771,7 +1837,25 @@ En un análisis posterior, resolvemos el mismo problema usando Programación Ent
 \includegraphics[scale=0.5]{opt4}
 \caption{Solución para $\lambda=0.6626459613176332$}
 \end{figure}
-
+\newpage
+Reportamos también el siguiente análisis. Para un cierto número $N$ de vértices, generamos 5 grafos y sendas funciones de costo. A continuación usando las mismas técnicas que usamos anteriormente, calculamos el número de soluciones soportadas, es decir, aquellas que están en la frontera del poliedro y que conseguimos obteniendo al variar $\lambda \in [0,1]$. Mostramos el número promedio de soluciones para cada $N$ considerado.
+\begin{table}[ht]
+\centering
+\begin{tabular}{rr}
+  \hline
+  N & Sols \\ 
+  \hline
+20 & 10.00 \\ 
+40 & 19.80 \\ 
+60 & 31.00 \\ 
+80 & 45.60 \\ 
+100 & 51.60 \\ 
+120 & 63.80 \\ 
+140 & 68.00 \\ 
+   \hline
+\end{tabular}
+\end{table}
+Por desgracia es realmente costoso tratar de buscar las soluciones interiores para el problema biobjetivo. Pero para ciertos valores de $N$ vamos a generar 5 problemas y calcular el porcentaje de soluciones no soportadas frente al total.
 \begin{thebibliography}{9}
 \bibitem{edmond} 
 Edmonds, J. (1965). Maximum matching and a polyhedron with 0, 1-vertices. Journal of Research of the National Bureau of Standards B, 69, 125--130. 
@@ -1816,6 +1900,12 @@ Letchford, Adam;  Reinelt, Gerhard; Theis, Dirk Oliver. (2004). A Faster Exact S
 M. Grötschel, L. Lovász, and A. Schrijver. The ellipsoid method and its
 consequences in combinatorial optimization. Combinatorica, 1(2):169-197, 1981
 
+\bibitem{scip}
+R. Borndörfer, S. Schenker, M. Skutella, T. Strunk: PolySCIP.
+Mathematical Software - Proceedings of ICMS 2016, G.-M. Greuel, T. Koch, P. Paule, A. Sommese (Eds.),
+Lecture Notes in Computer Science Vol. 9725, ISBN: 978-3-319-42431-6
 
+\bibitem{gurobi}
+Gurobi Optimization, Inc. Gurobi Optimizer Reference Manual Version 3.0. Houston, Texas: Gurobi Optimization, April 2010.
 \end{thebibliography}
 \end{document} 
