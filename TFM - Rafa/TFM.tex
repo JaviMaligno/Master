@@ -281,6 +281,7 @@ Finalmente, dedicamos un epígrafe a realizar un análisis computacional. Implem
 \newpage
 \thispagestyle{empty}
 \chapter{El problema del emparejamiento}
+El problema del emparejamiento es uno de los problemas clásicos de la optimización combinatoria. Representa uno de los momentos célebres en la historia de la optimización por ser el primer problema de Programación Entera, descontando aquellos que se resuelven usando la relajación lineal, en ser resuelto en tiempo polinomial. El caso bipartito puede verse como un problema de asginación y fue resuelto en tiempo polinómico por Harowld W. Kuhn con su famoso algoritmo húngaro en 1955 \cite{kuhn}, predecesor de los algoritmos dual-primal. Sin embargo, hubo que esperar hasta 1961 para que Jack Edmonds descubriera la solución del caso general. En su trabajo original (publicado en 1965 \cite{edmond}) no solamente caracterizó linealmente el poliedro del matching -abriendo el camino para métodos basados en el simplex- sino que utilizando estructura especial del problema construyó un algoritmo iterativo denominado \textit{algoritmo de blossom} que resuelve el problema polinomialmente.
 
 \section{El problema del $b$-emparejamiento}
 Dado que nuestro objetivo es el estudio paramétrico del problema del emparejamiento y la versión multiobjetivo del mismo, comenzamos este trabajo exponiendo en qué consiste el problema del ejemparejamiento o problema del \textit{matching}. Para ello, comenzamos definiendo algunos conceptos básicos en el marco de la teoría de grafos.
@@ -349,7 +350,6 @@ A pesar de la utilidad del teorema de Edmonds para el desarrollo de numerosos al
 $$
 \sum_{(u,v)\in \gamma(S)} x_{uv} \leq \frac{1}{2}(|S|-1) \Leftrightarrow \sum_{(u,v)\in \delta(S)} x_{uv} \geq 1
 $$
-\newpage
 \subsection{El problema del emparejamiento biobjetivo}
 Una vez que hemos presentado los conceptos básicos para entender el MCPM, podemos definir una clase más general de problemas a los cuáles dedicaremos especial atención durante los procesos de reoptimización. Definimos el \textit{problema del emparejamiento paramétrico respecto de $R\subset E$} con parámetro $\lambda$ como
 \begin{align*}
@@ -381,6 +381,7 @@ A partir del Teorema 1.1.1, Edmonds desarrolló basándose en ideas de la progra
 A pesar de que es el algoritmo que finalmente utilizaremos para el proceso de repotimización, Grötschel y Holland presentan en \cite{holland} un método para resolver el problema del emparejamiento basado en el método del simplex. Este algoritmo utiliza varias heurísticas que según los autores mejoran considerablemente su tiempo de ejecución. Teóricamente, el algoritmo que pasamos a presentar no es polinomial, no obstante en la práctica es competitivo con los algoritmos combinatorios conocidos para el problema del emparejamiento.
 
 Para evitar redundar el desarrollo teórico de un algoritmo que no utilizaremos en secciones posteriores pero con el fin de ilustrarlo de manera suficientemente técnica, presentamos seguidamente el algoritmo y explicamos las ideas claves que lo componen. Notemos que originalmente el algoritmo fue detallado por sus autores para un grafo completo $K_n$, lo cuál será respetado en el siguiente análisis.
+
 \begin{align*}
 \text{Paso 1: }&\text{Determinar un conjunto $E'\subset E$ de ejes candidatos.}\\
 &\text{Vamos al Paso 2.}\\
@@ -392,8 +393,7 @@ Para evitar redundar el desarrollo teórico de un algoritmo que no utilizaremos 
 &s.a.\;\sum_{(u,v)\in\delta(u)} x_{uv} = 1, \quad \forall u \in V\\
 &\qquad x_{uv} \geq 0 \qquad \forall(u,v)\in E'\\
 &\text{Vamos al Paso 4.}\\
-\text{Paso 4: }&\text{Obtener una solución $x^*$ del problema anterior.}\\
-&\text{Vamos al Paso 5.}\\
+\text{Paso 4: }&\text{Obtener una solución $x^*$ del problema anterior. Vamos al Paso 5.}\\
 \text{Paso 5: }&\text{Construimos el grafo solución $G_{x^*}$.}\\
 &\text{Comprobamos si $x^*$ es entero.}\\
 &\text{Vamos al Paso 6.}\\
@@ -402,8 +402,6 @@ Para evitar redundar el desarrollo teórico de un algoritmo que no utilizaremos 
 \text{Paso 7: }&\text{Encontramos un hiperplano de corte para $x^*$. Para ello:}\\
 &\text{Utilizamos la Heurística 1 con $G_{x^*}$. Si encontramos un hiperplano}\\
 &\text{vamos al Paso 8. En otro caso utilizamos la Heurística 2 en $G^2_{x^*}$.}\\
-\end{align*}
-\begin{align*}
 &\text{Si lo encontramos, vamos al Paso 8. En otro caso, utilizamos el}\\
 &\text{procedimiento Padberg-Rao en $G'_{x^*}$. Obtenemos un hiperplano y}\\
 &\text{vamos al Paso 8.}\\
@@ -415,6 +413,7 @@ Para evitar redundar el desarrollo teórico de un algoritmo que no utilizaremos 
 &\text{Si $VAR\neq\emptyset$, establecemos $E'=E\cup VAR$.}\\
 &\text{Vamos al Paso 4.}
 \end{align*}
+\newpage
 A continuación describimos brevemente cada uno de los pasos del algoritmo.
 \begin{itemize}
 \item[Paso 1.] Determinamos un conjunto $E'\subset E$ que denominamos ejes candidatos, que utilizaremos como variables para el problema de Programación Lineal inicial. Para cada nodo determinamos los $NN$ ($1\leq NN \leq |V|-1$) ejes de menor coste incidentes en él. $E'$ será la unión de estos ejes. Los autores del algoritmo han probado computacionalmente distintos valores para $NN$ y encuentran que $5\leq NN \leq 10$ es una buena elección para grafos de tamaño mediano, es decir, de tamaño entre 500 y 1000. Esto significa que el número de varaibles que utilizamos, en principio, supone menos del 1\% del número total de variables. 
@@ -426,7 +425,6 @@ s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} = 1, \quad \forall u \in V\\
 &x_{uv} \geq 0 \qquad \forall(u,v)\in E'
 \end{align*}
 del problema inducido por $E'$. Notemos que el grado $\delta(v)$ debe tomarse en el subgrafo $(V,E')$. Como solución inicial de este problema utilizamos el matching $M$ calculado anteriormente.
-\newpage
 \item[Paso 4.] Resolvemos el problema de Programación Lineal considerado. De manera general, cada vez que vayamos a este paso utilizamos la solución óptima obtenida en la llamada anterior como base inicial. En el caso de que hayamos añadido nuevas restricciones, esta base será infactible para el problema primal, pero sí será factible para el dual, que podemos utilizar para encontrar una solución del primal. Sea $x^*$ la solución obtenida.
 \item[Paso 5.] Consideramos el grafo $G_{x^*}=(V,E_{x^*})$, donde $E_{x^*} =\{(u,v)\in E'\mid x^*_{uv}>0\}$. Este grafo servirá como input para la fase de detección de planos de corte. Definimos los costes $k_{uv}:=x^*_{uv}$. Para no escanear dos veces $x^*$, comprobamos si $x^*$ es un vector de coordenadas enteras.
 \item[Paso 6.] Si $x^*$ es entero, entonces induce un matching perfecto en el subproblema considerado. En este caso, comprobamos la optimalidad global (Paso 9). En otro caso, necesitamos determinar planos de corte para obtener una nueva solución $x^*$, es decir, vamos al Paso 7.
@@ -1896,6 +1894,8 @@ Adjuntamos además algunas gráficas de la tabla anterior.
 \bibitem{edmond} 
 Edmonds, J. (1965). Maximum matching and a polyhedron with 0, 1-vertices. Journal of Research of the National Bureau of Standards B, 69, 125--130. 
 
+\bibitem{kuhn}
+Kuhn, H. W. (1955), The Hungarian method for the assignment problem. Naval Research Logistics, 2: 83-97. doi:10.1002/nav.3800020109
   
 \bibitem{holland} 
 Grötschel, M.; Holland, O. Mathematical Programming (1985) 33: 243. https://doi.org/10.1007/BF01584376
