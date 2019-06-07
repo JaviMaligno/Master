@@ -15,7 +15,7 @@
 %\url{https://ncatlab.org/nlab/show/Drinfeld+associator}
 
 
-In this chapter we review and explain the heart of the proof of the Deligne Conjecture: the formality of the chain operad of little disks. Throughout the chapter we follow \cite{Tamarkin}. The chain operad of little disks is the operad of chain complexes over $\Q$ obtained from the topological little disks operad. By formailty it is meant that there is a chain of \emph{quasi-isomorphisms} between this operad and its homology operad, i.e. a sequence of incoming and outcoming morphisms of chain operads which induce isomorphisms in homology. The strategy is the following:
+In this chapter we review and explain the heart of the proof of the Deligne Conjecture: the formality of the chain operad of little disks. Throughout this chapter we follow \cite{Tamarkin}. The chain operad of little disks is the operad of chain complexes over $\Q$ obtained from the topological little disks operad. By formailty it is meant that this operad is equivalent to its homology operad in the sense that there is a \emph{zig-zag} of quasi-isomorphisms (i.e. maps inducing isomorphisms on homology) between them. The strategy is the following:
 
  First, we define an operad which is homotopy equivalent to the little disks operad from a category operad $PaB_*$. Then, we take a $\Q$-linear span of $PaB_*$ and find an operad $O_A(*)$ together with a quasi-isomorphism from the homology operad of little disks. Finally, we give a quasi-isomorphism between the span $\Q(PaB_*)$ and $O_A(*)$, which completes the proof. 
 
@@ -63,7 +63,7 @@ structure map and symmetric group actions on $E_2$. Let $p:\widetilde{E}_2\to E_
 
 \definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1.}
 \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
-\clip(-3.5866666666666673,-0.4666666666666) rectangle (11.293333333333335,4.5);
+\clip(-5,-0.4666666666666) rectangle (11.293333333333335,4.5);
 \fill[line width=2.pt,color=xdxdff,fill=xdxdff,fill opacity=0.10000000149011612] (0.41333333333333344,4.) -- (0.4,0.) -- (0.7733333333333334,0.) -- (0.7866666666666668,4.) -- cycle;
 \fill[line width=2.pt,color=xdxdff,fill=xdxdff,fill opacity=0.10000000149011612] (1.2,4.) -- (1.2133333333333338,0.) -- (1.586666666666667,0.) -- (1.586666666666667,4.) -- cycle;
 \fill[line width=2.pt,color=xdxdff,fill=xdxdff,fill opacity=0.10000000149011612] (3.,4.) -- (3.,0.) -- (3.386666666666667,0.) -- (3.4,4.) -- cycle;
@@ -113,7 +113,7 @@ Now define the structure map $\widetilde{\gamma}$ for $\widetilde{E}_2$ to be th
 E_2(k)\times E_2(j_1)\times\cdots E_2(j_1+\cdots+j_k) \arrow[r, "\gamma"]                                                                      & E_2(j_1+\cdots+j_k)                                     
 \end{tikzcd}
 \]
-which takes $\widetilde{E}_1(k)\times\widetilde{E}_1(j_1)\times\cdots\widetilde{E}_1(j_k)$ to $\widetilde{E}_1(j_1+\cdots+j_k)$. The existence and uniqueness of this map is guaranteed by lemma \ref{lift} since $\gamma$ clearly takes the embedding $E_1(k)\times E_1(j_1)\times\cdots E_1(j_k)$ to the embedding of $E_1(j_1+\cdots+j_k)$. Here we're implicitly making use of the theory of covering spaces, in particular the lifting properties of the universal cover (see Section 1.3 of \cite{HA} for a complete treatment of the subject). Also recall that the product of covering spaces is a covering space of the product (Exercise 2 from page 79 of \cite{HA}).
+which takes $\widetilde{E}_1(k)\times\widetilde{E}_1(j_1)\times\cdots\widetilde{E}_1(j_k)$ to $\widetilde{E}_1(j_1+\cdots+j_k)$. The existence and uniqueness of this map is guaranteed by lemma \ref{lift} since $\gamma$ clearly takes the embedding $E_1(k)\times E_1(j_1)\times\cdots E_1(j_k)$ to the embedding of $E_1(j_1+\cdots+j_k)$. Here we're implicitly making use of the theory of covering spaces, in particular the lifting properties of the universal cover (see Section 1.3 of \cite{Hatcher} for a complete treatment of the subject). Also recall that the product of covering spaces is a covering space of the product (Exercise 2 from page 79 of \cite{Hatcher}).
 
 Finally we have to define the braid group actions $\widetilde{E}_2(n)\times B_n\to\widetilde{E}_2(n)$. It suffices
 to specify actions by the standard generators $\widetilde{\sigma}_i$, $1 \leq i \leq n - 1$, where $\widetilde{\sigma}_i$ denotes
@@ -122,21 +122,22 @@ the braid
 \begin{figure}[h!]
 \centering
 \begin{tikzpicture}
-\fill[black] ( 6.7 , -1.5 ) circle ( 1 pt ) ;
-\fill[black] ( 7 , -1.5 ) circle ( 1 pt ) ;
-\fill[black] ( 7.3 , -1.5 ) circle ( 1 pt ) ;
 
-\fill[black] ( 1.7 , -1.5 ) circle ( 1 pt ) ;
-\fill[black] ( 2 , -1.5 ) circle ( 1 pt ) ;
-\fill[black] ( 2.3 , -1.5 ) circle ( 1 pt ) ;
-\braid[ number of strands=10, %lower bound
- border height=2pt,style strands={8}{line width=2pt}, style strands={7}{draw=none},style strands={6}{line width=2pt},style strands={5}{line width=2pt},style strands={4}{line width=2pt},style strands={3}{line width=2pt}, style strands={2}{draw=none},style strands={1}{line width=2pt}, style strands={9,10}{draw=none}] (braid) at (1,0)%optional, it's a name
-         a_{9} a_4 a_{9};
-           \node[ at=(braid-1-s),  label=north :  $1$ ] {} ;
-          \node[ at=(braid-4-s),  label=north :  $i$ ] {} ;
-\node[ at=(braid-5-s),  label=north : $i+1$ ] {} ;
-\node[ at=(braid-8-s),  label=north :  $n$ ] {} ;
-%\draw (4.5,-2) node[anchor=south] {$\sigma_i$};
+\braid[ number of strands=12, %lower bound
+ border height=2pt,style strands={10}{line width=2pt}, style strands={9}{draw=none},style strands={8}{line width=2pt},style strands={7}{line width=2pt},style strands={6}{line width=2pt},style strands={5}{line width=2pt}, style strands={4}{draw=none},style strands={3}{line width=2pt}, style strands={11,1,2,12}{draw=none}] (braid) at (1,0)%optional, it's a name
+         a_{11} a_6 a_{11};
+           \node[ at=(braid-3-s),  label=north :  $1$ ] {} ;
+          \node[ at=(braid-6-s),  label=north :  $i$ ] {} ;
+\node[ at=(braid-7-s),  label=north : $i+1$ ] {} ;
+\node[ at=(braid-10-s),  label=north :  $n$ ] {} ;
+%\draw (6.5,-2) node[anchor=south] {$\sigma_i$};
+\fill[black] ( 8.7 , -1.5 ) circle ( 1 pt ) ;
+\fill[black] ( 9 , -1.5 ) circle ( 1 pt ) ;
+\fill[black] ( 9.3 , -1.5 ) circle ( 1 pt ) ;
+
+\fill[black] ( 3.7 , -1.5 ) circle ( 1 pt ) ;
+\fill[black] ( 4 , -1.5 ) circle ( 1 pt ) ;
+\fill[black] ( 4.3 , -1.5 ) circle ( 1 pt ) ;
 \end{tikzpicture}
 \end{figure}
 
@@ -148,9 +149,9 @@ Choose an arbitrary point $x\in E_1(n)$. Let $\alpha:I\to E_2(n)$ denote the pat
 of pictures
 
 \definecolor{qqqqff}{rgb}{0.,0.,1.}
-\resizebox{12.3cm}{9.8cm}{%
+\resizebox{13cm}{9.8cm}{%
 \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
-\clip(-1.586666666666667,-6.553333333333329) rectangle (13.293333333333337,5.533333333333328);
+\clip(-3.8,-6.1) rectangle (13.293333333333337,5.7);
 \fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (0.37333333333333335,5.) -- (0.7733333333333334,5.) -- (0.8,0.) -- (0.4,0.) -- cycle;
 \fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (1.6,5.) -- (2.186666666666667,5.) -- (2.2,0.) -- (1.6133333333333333,0.) -- cycle;
 \fill[line width=2.pt,color=qqqqff,fill=qqqqff,fill opacity=0.10000000149011612] (2.6133333333333333,5.) -- (3.3866666666666667,5.) -- (3.4133333333333336,0.) -- (2.6,0.) -- cycle;
@@ -312,25 +313,23 @@ of pictures
 \draw (10.15,-2.9) node[anchor=north west] {$n$};
 \draw (10.2,2.6) node[anchor=north west] {$n$};
 \end{tikzpicture}
-}
+}\\
 
 Let $\widetilde{\alpha}$ denote the lift which starts in $\widetilde{C}_1$. Let $\widetilde{x}=\widetilde{\alpha}(0)$ and $\widetilde{y}=\widetilde{\alpha}(1)$, then specify $\widetilde{x}\widetilde{\sigma}=\widetilde{y}$. %COMPROBAR QUE ESTO DA LA ESTRUCTURA DE $B_\infty$ (ADEMÁS DE LAS PROPIEDADES DE OPERAD, LA ACCIÓN TIENE QUE SER LIBRE, PERO TENGO DUDA PARA EL CASO DE LAS TRENZAS PURAS) Y QUE EL COCIENTE POR LA ACCIÓN DE LAS TRENZAS PURAS ES $E_2$ (QUIZÁ ESTO SEA PORQUE PRECISAMENTE ES EL GRUPO FUNDAMENTAL, PERO TENGO QUE REVISAR SI ES LA MISMA ACCIÓN QUE LA DEL GRUPO FUNDAMENTAL)
 This data specifies a $B_\infty$-operad structure on $\widetilde{E}_2$. 
-
 %EL EJEMPLO DE FIEDEROWICZ CON LA PRUEBA DEL EJERCICO QUE ME PUSO MURO (A infinito significa que los espacios del operad son contráctiles, esto para el caso sin acción del grupo simétrico, que es el que usa Fiedorowicz. Con acción significa que cada componente conexa es contráctil, pero en cualquier caso C1 es contráctil \url{https://en.wikipedia.org/wiki/A\%E2\%88\%9E-operad}) 
-
 \end{proof}
 
 A more general approach to the previous proposition is taken in propositions 2.27 and 2.28 of \cite{tesis}
 
-We now give a few useful definitions. Let $P$ be an operad of complexes, and $f : A→B$ be a morphism of two $P$-algebras.
+We now give a few useful definitions from \cite[\textsection 2.6]{Kontsevich}. Let $P$ be an operad of complexes (dg-operad), and $f : A→B$ be a morphism of two $P$-algebras.
 \begin{defi}
 $f$ is a quasi-isomorphism if it induces an isomorphism of the homology
 groups of $A$ and $B$ considered as complexes with zero differential.
 \end{defi}
 
 \begin{defi}
-Two algebras $A$ and $B$ are called homotopy equivalent if there exists a chain of quasi-isomorphisms
+Two algebras $A$ and $B$ are called \emph{homotopy equivalent} if there exists a chain (or zig-zag) of quasi-isomorphisms
 \[
 A= A_1→A_2←A_3→\cdots←A_{2k+1} = B
 \]
@@ -340,13 +339,13 @@ Analogously to the case of algebras, we can speak about quasi-isomorphisms of op
 of complexes.
 
 \begin{defi}
-A morphism $f : P_1→P_2$ between two operads of complexes (dg operads) is called a
-\emph{quasi-isomorphism} if the maps of complexes $f(n) : P_1(n)→P_2(n)$ induce isomorphisms of
-cohomology groups for all $n$.
+A morphism $f : P_1→P_2$ between two dg-operads is called a
+\emph{quasi-isomorphism} if the maps of chain complexes $f(n) : P_1(n)→P_2(n)$ induce isomorphisms of
+homology groups for all $n$.
 \end{defi}
 
 \begin{defi}
-Two dg operads $A$ and $B$ are said to be \emph{equivalent} if there exists a chain of quasi-isomorphisms
+Two dg-operads $A$ and $B$ are said to be \emph{equivalent} if there exists a chain of quasi-isomorphisms
 \[
 A= A_1→A_2←A_3→\cdots←A_{2k+1} = B
 \]
@@ -362,14 +361,14 @@ where $\circ_i$ is the structure map of the $i$-th insertion in $O$.
 For a little disks operad $X$ consider the operad $C_2(X)=C_*^{sing}(X)$. Any two such operads are quasi-isomorphic. In particular, the homology operad of any $C_2(X)$ is the operad $e_2=H_*(E_2)$ controlling Gerstenhaber algebras. Our goal in this chapter is to show the following.
 
 \begin{thm}
-Any operad $C_2(X)$ is quasi-isomorphic to its homology operad $e_2$.
+Any operad $C_2(X)$ is equivalent to its homology operad $e_2$.
 \end{thm}
 
 It suffices to prove this theorem only for one operad $X$ of little disks since they are all homotopy equivalent. We will prove it for the one defined in the next section.
 
 \section{The category operad $PaB_n$}\label{pab}
 
-We're going to define a category operad $PaB_n$. Let $B_n$ the group of braids on $n$ strands and $PB_n$ the group of pure braids on $n$ strand. Let $\Sigma_n$ the symmetric group and let $p:B_n\to \Sigma_n$ be the canonical projection with kernel $PB_n$. We assume that the strands of any braid are numbered in the order determined by their origins. 
+We're going to define a category operad $PaB_n$. Let $B_n$ the group of braids on $n$ strands and $PB_n$ the group of pure braids on $n$ strand. Let $\Sigma_n$ the symmetric group and let $p:B_n\to \Sigma_n$ be the canonical projection with kernel $PB_n$. We assume that the strands of any braid are numbered in the order determined by their origins. We also need to add the grous $B_0=B_1=1$.
 
 The objects of the category $PaB_n$ are parenthesized permutations of the set $\{1,\dots, n\}$ (that is pairs $(\sigma,\pi)$, where $\sigma\in\Sigma_n$ and $\pi$ is a parenthesizing of the non-associative product of $n$ elements). The morphisms between $(\sigma_1,\pi_1)$ and $(\sigma_2,\pi_2)$ are such braids in $B_n$ that any strand joins an element of $\sigma_1$ with the same element of $\sigma_2$, in other words, $\Hom((\sigma_1,\pi_1),(\sigma_2,\pi_2))=p^{-1}(\sigma_2^{-1}\sigma_1)$. The composition law is induced from the one on $B_n$. The symmetric group $\Sigma_n$ acts on $PaB_n$ via renumbering the objects: $\tau(\sigma,\pi)=(\tau\sigma,\pi)$ for $\tau\in\Sigma_n$ and $(\sigma,\pi)\in PaB_n$. 
 
@@ -383,16 +382,50 @@ Let us describe the structre map $\circ_k$ of the insertion into the $k$-th posi
 \includegraphics[scale=0.7]{Imagenes/insercion.png}
 \caption{Insertion of the right braid into the second strand of the left braid.}
 \end{figure}
+\subsection{Operations on $PaB_n$}\label{operations}
+There are a few operations on $PaB_*$ that will be useful later and that can be found in Section 2 of \cite{1deTamarkin}, but adopting the convention that the strands of the braids are parametrized from bottom to top. These are operations on the morphism, so they are operations on each braid group $B_n$. Let $B\in B_n$, then the operations are the following.
+
+\begin{itemize}
+	\item  \emph{Extension operations}: let $d_0B = d^n_0	B$ ($d_{n+1}B = d^n_{n+1}B$) be $B$ with one straight strand
+	added on the left (right), with ends regarded as outer-most:
+	\begin{figure}[h!]
+		\includegraphics[scale=0.5]{Imagenes/extension}
+	\end{figure}
+	
+	\item \emph{Cabling operations}: let $d_iB = d^n_i B$ for $1 ≤ i ≤ n$ be the parenthesized braid obtained
+from $B$ by doubling its $i$-th strand (counting at the top):
+\begin{figure}[h!]
+		\includegraphics[scale=0.5]{Imagenes/cabling}
+	\end{figure}
+	
+	\item \emph{Strand removal operations}: Let $s_iB = s^n_i B$ for $1 ≤ i ≤ n$ be the parenthesized braid
+obtained from $B$ by removing its $i$-th strand (counting at the top):
+	\begin{figure}[h!]
+		\includegraphics[scale=0.5]{Imagenes/removal}
+	\end{figure}
+	
+\end{itemize}
 
 \subsection{Operad of classifying spaces}
 
-We have the functor of taking the nerve $N:\Cat\to\SSet$ and the functor of topological realization $|\ |:\SSet\to \CW$. One can easily check that the nerve functor behaves well with respect to the symmetric monoidal structure. Since the nerve of $PaB_n$ is countable, the realization also behaves well with its symmetric monoidal structure by \ref{countable}. Therefore the collection of cellular complexes $X_n=|N(PaB_n)|$ forms a cellular operad. Let us check that this operad is a little disks operad. Let $PaB_n'$ be the category whose objects are pairs $(x,y)$, where $x$ belongs to the braid group $B_n$ and $y$ is a parenthesizing of the non-associative product of $n$ elements, and there is a unique morphism between any two objects. We have a free left action of $B_n$ on $PaB_n':(x,y)\to (gx,y)$ and a braided operad structre on $PaB_*'$ (the structre maps are defined similarly to $PaB_n$). We have to show that the corresponding operad of classifying spaces is a topological $B_\infty$-operad and that the corresponding little disks operad is isomorphic to $X_*$. The action of $B_n$ on $PaB_n'$ induces an action on the vertices (0-simplices) of $|N(PaB_n')|$ and can be extended linearly to the whole complex, and therefore it is automatically free. Then, the quotient $|N(PaB_n')|/PB_n$ is equivalent to $X_n$ since the morphisms $(\sigma_1,\pi_1)\to(\sigma_2,\pi_2)$ in $PaB_n$ can be obtained by choosing one element in $p^{-1}(\sigma_2^{-1}\sigma_1)$ and multiplying it by the elements of $PB_n$. %NO ESTOY SEGURO DE QUE ESTÉ BIEN ESTO QUE HE DICHO.
+We have the functor of taking the nerve $N:\Cat\to\SSet$ and the functor of topological realization $|\ |:\SSet\to \CW$. One can easily check that the nerve functor behaves well with respect to the symmetric monoidal structure. Since the nerve of $PaB_n$ is countable, the realization also behaves well with its symmetric monoidal structure by \ref{countable}. Therefore the collection of cellular complexes $X_n=|N(PaB_n)|$ forms a cellular operad. 
 
-Consider the corresponding chain operad. Let $C_*(PaB_n)$ be the chain complex over $\Q$ of $NPaB_n$ as a simplicial set. The collection $C_*(PaB_n)$ forms a dg-operad (via the Eilenberg-Zilber map). We have a canonical quasi-isomorphism of operads $C_*(PaB_*)\to C_*^{sing}(|NPaB_*|)$ (just like the quasi-isomorphism between simplicial homology and singular homology). Therefore it suffices to construct a quasi-isomorphism of $C_*(PaB_*)$ and $e_2$.
+Let us check that this operad is a little disks operad. Let $PaB_n'$ be the category whose objects are pairs $(x,y)$, where $x$ belongs to the braid group $B_n$ and $y$ is a parenthesizing of the non-associative product of $n$ elements, and there is a unique morphism between any two objects. We have a free left action of $B_n$ on $PaB_n':(x,y)\to (gx,y)$ and a braided operad structre on $PaB_*'$ (the structre maps are defined similarly to $PaB_n$). We have to show that the corresponding operad of classifying spaces is a topological $B_\infty$-operad and that the corresponding little disks operad is isomorphic to $X_*$. The action of $B_n$ on $PaB_n'$ induces an action on the vertices (0-simplices) of $|N(PaB_n')|$ and can be extended linearly to the whole complex, and therefore it is automatically free. Then, the quotient $|N(PaB_n')|/PB_n$ is equivalent to $X_n$ since the morphisms $(\sigma_1,\pi_1)\to(\sigma_2,\pi_2)$ in $PaB_n$ can be obtained by choosing one element in $p^{-1}(\sigma_2^{-1}\sigma_1)$ and multiplying it by the elements of $PB_n$. Finally, we have to show that $|PaB_n'|$ is contractible for every $n$. This follows from the following proposition, since every object in $PaB_n'$ is simultaneously initial and terminal. %NO ESTOY SEGURO DE QUE ESTÉ BIEN ESTO QUE HE DICHO.
+\begin{prop}
+	If $X$ is a category that has either an initial object or a terminal object, then $|N(X)|$ is contractible.
+\end{prop}
+\begin{proof}
+	%\url{https://math.stackexchange.com/questions/2920686/is-the-geometric-realization-of-a-pointed-category-contractible}
+	As we saw in example \ref{exnerve} of chapter \ref{ch2}, a natural transformation between functors induces a homotopy between geometric realizations, and thus turns adjoint functors into inverse homotopy equivalences (since the unit and counit of the adjunction become homotopies to the identity). An initial object induces a left adjoint to the unique functor $X→\mathbf{1}$, where $\mathbf{1}$ is the category with one object and one morphism (the functor $\mathbf{1}\to X$ sends the only object to the initial object) and so gives a homotopy equivalence $|N(X)|\simeq|N(\mathbf{1})|$ and hence shows $|N(X)|$ is contractible since $|N(\mathbf{1})|$ is a one-point space. Similarly, a terminal object is a right adjoint to $X→\mathbf{1}$. %COMPLETAR LA PARTE DE QUE ES ADJUNTO, PORQUE NECESITO VER CÓMO LOS OBJETOS INICIALES/TERMINALES GENERAN FUNCTORES (CREO QUE ES MANDAR EL OBJETO DE 1 AL INICIAL Y PARECIDO CON EL TERMINAL\url{https://en.wikipedia.org/wiki/Initial_and_terminal_objects} MIRAR QUE INICIAL CUMPLE ESTO \url{https://en.wikipedia.org/wiki/Universal_property})
+\end{proof}
 
-\section{Operad $O_A(*)$ and construction of a quasi-isomorphism}
+Consider the corresponding chain operad. Let $C_*(PaB_n)$ be the chain complex over $\Q$ of $NPaB_n$ as a simplicial set. The collection $C_*(PaB_n)$ forms a dg-operad (via the Eilenberg-Zilber map). 
 
-Let $A_n$ be the algebra over $\Q$ of power series in the noncommutative variables $t_{ij}$, where $i\geq 1$, $j\leq n$, $i\neq j$ and $t_{ij}=t_{ji}$, with relations $[t_{ij}+t_{ik},t_{kj}]=0$. Let $I_n$ be the two-sided ideal generated by all $t_{ij}$. We have a canonical projection 
+We have a canonical quasi-isomorphism of operads $C_*(PaB_*)\to C_*^{sing}(|NPaB_*|)$ (just like the quasi-isomorphism between simplicial homology and singular homology, see \cite[\textsection 2.1]{Hatcher}). Therefore it suffices to construct a quasi-isomorphism of $C_*(PaB_*)$ and $e_2$.
+
+\section{Operad $O_A(*)$ and construction of a quasi-isomorphisms}
+
+Let $A_n$ be the algebra over $\Q$ of power series in the noncommutative variables $t_{ij}$, where $i\geq 1$, $j\leq n$, $i\neq j$ and $t_{ij}=t_{ji}$, with relations $[t_{ij}+t_{ik},t_{kj}]=0$. This algebra is defined in \cite{Tamarkin} and in \cite{1deTamarkin}. Let $I_n$ be the two-sided ideal generated by all $t_{ij}$. We have a canonical projection 
 \begin{equation}\label{canonical}
 \pi:A_n\to A_n/I_n\cong\Q.
 \end{equation}
@@ -424,11 +457,11 @@ collection $\{O_A(n)\}$.
 %En los racionales es la identidad porque solo se defien cuando hay algún t, así que pasa como slice. Tal como está definida la inserción se puede entender además desde el producto cartesiano y se puede trasladar al producto en Cat
 To see what the complex $C_*^{\Q}(O_A(n))$ looks like, we explain how the $\Q$-linear nerve functor $N^\Q$ works. For the usual nerve $N$ acting on a category $\CC$, the set of $n$-simplices can be written as
 \[
-\coprod_{x_1,\dots, x_n\in\mathrm{Ob}\CC}\CC(x_2,x_1)\times\cdots \times\CC(x_n,x_{n-1})
+\coprod_{x_1,\dots, x_n\in\mathrm{Ob}\CC}\CC(x_2,x_1)\times\cdots \times\CC(x_{n+1},x_{n})
 \]
 where $\CC(x_{i+1},x_i)=\Hom_{\CC}(x_{i+1},x_i)$. Since we are in a linear context, we can replace disjoint unions by direct sums and cartesian products by tensor products. In each coordinate of the direct sum, we have elements of the form
 \[
-f_1\otimes\cdots \otimes f_n
+f_1\otimes\cdots \otimes f_{n}
 \]
 with $f_i\in \CC(x_{i+1},x_i)$. In particular, when $\CC$ has only one object, these are indeed the $n$-simplices. For $1<i<n$, the face maps are straight analogues to the general case, i.e. $$d_i(f_1\otimes\cdots \otimes f_{i-1}\otimes f_i\otimes \cdots\otimes f_n)=f_1\otimes\cdots \otimes f_{i-1}f_i\otimes\cdots \otimes f_n$$
 For $i=1,n$, we need to modify the face maps, since omitting $f_1$ or $f_n$ doesn't yield a homomorphism (because projections are not bilinear). Instead, we define
@@ -447,7 +480,7 @@ Thus, the complex $C_*^{\Q}(O_A(n))$ looks as follows. The degree $k$ component 
 d(a_1\otimes\cdots\otimes a_n)=\pi(a_1)a_2\otimes\cdots\otimes a_n-a_1a_2\otimes \cdots\otimes a_n+\cdots+(-1)^{n}a_1\otimes\cdots\otimes a_{n-1}\pi(a_n)
 \]
 %COMPROBAR QUE SIN METERLE EL PI EN MEDIO VALE, PERO DE TODAS FORMAS CONSULTAR
-
+\subsection{Construction of quasi-isomorphisms}
 Let $e_2$ be the operad of graded vector spaces governing the Gerstenhaber algebras.
 It is generated by two binary operations: the commutative associative multiplication of degree zero, which is denoted by $\cdot$, and the commutative bracket of degree 1 denoted by $[,]$. 
 
@@ -510,7 +543,7 @@ Having this relations, direct check shows that the map $h$ respects them.
 %POSIBLEMENTE SE REFIERE A LA OPERACIÓN DEL OPERAD DE HOMOLOGÍA, PERO TENGO QUE PREGUNTAR IGUALMENTE LO DE QUE ESTE ESTÉ GENERADO POR ESO, QUE NO SÉ SI ES LO MISMO QUE CUANDO SE GENERA PARA OTRO ÁLGEBRA SOBRE EL QUE ACTÚA. ENTIENDO QUE EN LA DE HOMOLOGÍA EL GRADO DE LA HOMOLOGÍA ES EL GRADO DE LA OPERACIÓN Y LA ARIDAD TE LA DA EL $E_2(N)$ CONCRETO AL QUE LE CALCULES LA HOMOLOGÍA. DE TODAS FORMAS NO TENGO CLARO CÓMO INTERPRETARLA PORQUE HAY MUCHAS POSIBILIDADES, AUNQUE SEA DE ARIDAD 2, LE TIENEN QUE ENTRAR COSAS, Y NO SÉ QUÉ ARIDAD SE CORRESPONDE CON CADA $\mu_i$ EN EL FOLIO DEL EXAMEN DE ÁLGEBRA TENGO HECHA ALGUNA CUENTA PERO NO ME ACLARO
 
 
-\begin{prop}\label{4.1}
+\begin{prop}\cite[Theorem 4.1]{Tamarkin}\label{4.1}
 The map $h$ is a quasi-isomorphism of operads. 
 \end{prop}
 \begin{proof}[Sketch of the proof] We only sketch the proof because it uses some machinery that is out of the scope of this report. The reader is referred to \cite{Tamarkin}.
@@ -555,18 +588,18 @@ The operadic structure on $PaB_*$ induces the one on $\Q(PaB_*)$.
 We have left to show that the operads $\Q(PaB_*)$ and $O_A(*)$ are quasi-isomorphic. To define a quasi-isomorphism between them we make use of \emph{Drinfeld associators}, which we proceed to define, but first we need to introduce the following maps.
 
 \begin{defi}
-Let $d_i = d^n_i : A_n → A_{n+1}$ for $0 ≤ i ≤ n + 1$ and $s_i = s^n_i : A_n → A_{n−1}$
+Let $d^i = d_n^i : A_n → A_{n+1}$ for $0 ≤ i ≤ n + 1$ and $s^i = s_n^i : A_n → A_{n−1}$
 for $1 ≤ i ≤ n$ be the algebra morphisms defined by their action on the generators $t_{jk}$ (with
 $j < k$) as follows:
 \[
-d_it_{jk} =\begin{cases}
+d^it_{jk} =\begin{cases}
 t_{j+1,k+1} & i < j < k\\
 t_{j,k+1} + t_{j+1,k+1} & i = j < k\\
 t_{j,k+1} & j < i < k\\
 t_{jk} + t_{j,k+1} & j < i = k\\
 t_{jk} & j < k < i
 \end{cases}\ \ \ \
-s_it_{jk} =\begin{cases}
+s^it_{jk} =\begin{cases}
 t_{j−1,k−1} & i < j < k\\
 0 & i = j < k\\
 t_{j,k−1} & j < i < k\\
@@ -577,48 +610,83 @@ t_{jk} & j < k < i.
 
 
 \end{defi}
-An interpretation of these maps can be found in \cite{1deTamarkin}. 
+An interpretation of these maps can be found in \cite{1deTamarkin}. We've chosen here to change the notation from the reference before to avoid confusion with the operations defined in section \ref{operations}, but the geometric interpretation shows that they are essentially the same. This fact will help us showing that the map $\Q(PaB_*)\to O_A(*)$ is well defined.
 
 \begin{defi}
 Let $\Delta:A_n\to A_n\otimes A_n$ the coproduct defined by $\Delta(t_{ij})=t_{ij}\otimes 1+1\otimes t_{ij}$. 
 \end{defi}
 
-\begin{defi}
-A \emph{Drinfeld associator} (or simply, an \emph{associator}) is an invertible element $\Phi\in A_3$ satisfying the following
+\begin{defi}\label{drinfeld}
+	A \emph{Drinfeld associator} (or simply, an \emph{associator}) is an invertible element $\Phi\in A_3$ satisfying the following
 axioms:
 \begin{itemize}
 \item The \emph{pentagon} axiom holds in $A_4$:
 \[
-d_4\Phi\cdot d_2\Phi=d_1\Phi\cdot d_3\Phi.
+d^4\Phi\cdot d^2\Phi\cdot d^0\Phi=d^1\Phi\cdot d^3\Phi.
 \]
 \item The \emph{hexagon} axioms hold in $A_3$:
 \[
-d_1\exp\left(\pm\frac{1}{2}t_{12}\right)=\Phi\cdot\exp\left(\pm\frac{1}{2}t_{23}\right)\cdot ((123)\Phi^{-1})\cdot\exp\left(\pm\frac{1}{2}t_{13}\right)\cdot((312)\Phi)
+d^1\exp\left(\pm\frac{1}{2}t_{12}\right)=\Phi\cdot\exp\left(\pm\frac{1}{2}t_{23}\right)\cdot ((123)\Phi^{-1})\cdot\exp\left(\pm\frac{1}{2}t_{13}\right)\cdot((312)\Phi)
 \]
 where $\exp$ means the series expansion of the exponential. 
-\item $\Phi$ is \emph{non-degenerate}: $s_1\Phi=s_2\Phi=s_3\Phi=1$.
-\item $\Phi$ is \emph{group-like}: $\Delta(\Phi)=\Phi\otimes\Phi$. %group-like elements form a group
+\item $\Phi$ is \emph{non-degenerate}: $s^1\Phi=s^2\Phi=s^3\Phi=1$.
+\item $\Phi$ is \emph{group-like}: $\Delta(\Phi)=\Phi\otimes\Phi$. %group-like elements form a group in a k-Hopf algebra
 \end{itemize}
 \end{defi}
+	
+	Behind some of these algebraic axioms there is a meaning relating them to the axioms of a braided monoidal category. If $A$, $B$ and $C$ are objects of such a category, then $\Phi$ is interpreted as the associator isomorphism $(A\otimes B)\otimes C\xrightarrow{\Phi} A\otimes (B\otimes C)$. If there is another object $D$, then there are five ways to associate the product $A\otimes B\otimes C\otimes D$, one of them labelled by $d^i\Phi$ as in the following commutative diagram (compare it with the first in definition \ref{monoidal}).
+	
+	\[
+	\begin{tikzcd}[column sep=-25, row sep=30]
+	&                                                                     & (A\otimes B)\otimes (C\otimes D) \arrow[rrd, "{d^3\Phi }"] &                                                                         &                                \\
+	((A\otimes B)\otimes C)\otimes D \arrow[rru, "{d^1\Phi}"] \arrow[rdd, "d^4\Phi"'] &                                                                     &                                                                      &                                                                         & A\otimes(B\otimes(C\otimes D)) \\
+	&                                                                     &                                                                      &                                                                         &                                \\
+	& (A\otimes (B\otimes C))\otimes D \arrow[rr, "{d^2\Phi}"] &                                                                      & A\otimes ((B\otimes C)\otimes D) \arrow[ruu, "d^0\Phi"'] &                               
+	\end{tikzcd}
+	\]
+%El subíndice indica cuál se duplica, lo cual se ve más claro con la nocación a_{x,y,z}, porque aparece el producto tensorial en el sitio correspondiente, y para el 0 y el 4 es poner la identidad al principio o al final.
+Then, if we write composition as a product in the inverse order we get the firt axiom of definition \ref{drinfeld}. In order to get the second axiom, we have to think $\exp$ has the braiding isomorphism $A\otimes B\xrightarrow{\exp} B\otimes A$. Then, the subindex of $t_{ij}$ indicates which elements are permuted and the action of $\Sigma_3$ on $\Phi$ indicates the order of the three associated elements. All this information is contained in the following commutative diagram.
 
-Any associator $\Phi\in A_3$ over $\Q$ produces a map of operads
 \[
-\phi:\Q(PaB_*)\to O_A(*)
+\begin{tikzcd}[column sep=50]
+(A\otimes B)\otimes C \arrow[r, "d^1\exp(\pm\frac{1}{2}t_{12})"] \arrow[d, "\Phi"'] & C\otimes (A\otimes B)   & (C\otimes A)\otimes B\arrow[l, "(312)\Phi"']  \\
+A\otimes (B\otimes C) \arrow[r, "\exp(\pm\frac{1}{2}t_{23})"]                                    & A\otimes (C\otimes B) & (A\otimes C)\otimes B\arrow[l, "(132)\Phi"']\arrow[u, "\exp(\pm\frac{1}{2}t_{13})"']                         
+\end{tikzcd}
+\]
+which determines the equation from the second axiom of definition \ref{drinfeld}. The third axiom is also interpretable in this language. Here $s_i$ is a sustitution of the $i$-th object in a tensor product by the unit, so for instance, $s^1\Phi:(1\otimes B)\otimes C\cong B\otimes C\to 1\otimes (B\otimes C)\cong B\otimes C$. The identity $s^1\Phi=1$ forces this automorphism to be the identity, and similarly with $s^2$ and $s^3$. 
+
+Going back to our original purpose, any associator $\Phi\in A_3$ over $\Q$ produces a map of operads
+\[
+\phi:\Q(PaB_*)\to O_A(*).
 \]
 Indeed, define $\phi$ on $\mathrm{Ob}(PaB_n)$ by sending any object to the only object of $O_A(n)$.
 There are only two objects in $PaB_2$, let us denote them $x_1x_2$ and $x_2x_1$. The morphisms
 between these two objects correspond to the non-pure braids. Let $x\in B_2$
-be the generator. We define $\phi(x)=e^{t_{12}/2}$ (thought as its power series expansion). Take the two objects $(x_1x_2)x_3$ and
+be the generator. We define $\phi(x^{\pm 1})=\exp(\pm t_{12}/2)$. Take the two objects $(x_1x_2)x_3$ and
 $x_1(x_2x_3)$ of $PaB_3$ corresponding to the identical permutation $e \in \Sigma_3$, and the morphism
-$i$ between them, corresponding to the identical braid $e_b\in B_3$. Define $\phi(i)=\Phi$.
-Since the operad $PaB_*$ is generated by $x$ and $i$, these conditions define $\phi$ uniquely. %CREO QUE LO GENERAN PORQUE SE ENTIENDE $X$ COMO PERMUTAR DOS CUALESQUIERA, Y A PARTIR DE ESO PUEDES HACER CUALQUIER MORFISMO TAMBIÉN, PORQUE FIJADA UNA PERMUTACIÓN, LAS DEMÁS ES MULTIPLICAR POR TRENZAS PURAS, QUE ES HACER ESA PERMUTACIÓN UN NÚMERO PAR DE VECES. 
-The definition of the associator is equivalent to the fact that $\phi$ is well-defined (see Proposition 3.4 of \cite{1deTamarkin}).
+$i$ between them, corresponding to the identical braid $e_b\in B_3$. Define $\phi(i^{\pm 1})=\Phi^{\pm 1}$.
+Note that the operad $PaB_*$ is generated by $x$, $i$ and their various images by repeated applications
+of the $d_i$'s (becasuse every Artin generator of the braid group can be expressed in those terms). Hence, these conditions define $\phi$ uniquely. %CREO QUE LO GENERAN PORQUE SE ENTIENDE $X$ COMO PERMUTAR DOS CUALESQUIERA, Y A PARTIR DE ESO PUEDES HACER CUALQUIER MORFISMO TAMBIÉN, PORQUE FIJADA UNA PERMUTACIÓN, LAS DEMÁS ES MULTIPLICAR POR TRENZAS PURAS, QUE ES HACER ESA PERMUTACIÓN UN NÚMERO PAR DE VECES. 
+The definition of the associator is equivalent to the fact that $\phi$ is well-defined. One can check this by finding the relations between morphisms in $PaB_n$. Of course, some of these relations come from the presentation of the braid groups. An exhaustive list of relations is contained in the proof of  \cite[Proposition 3.4]{1deTamarkin}. For the sake of clarity, let us describe one of the most intuitive relations and how it is preserved by $\phi$. Consider the following morphism
 
-The map $\phi$ produces a map of operads $C_\star(PaB_*)=C_\star^\Q(\Q(PaB_*))\to C_\star(O_A(*))$.
+\begin{figure}[h!]
+\includegraphics[scale=0.53]{Imagenes/left}
+\end{figure}
+This morphism is nothing more than $d_1x$, so it is mapped via $\phi$ to $d^1\exp(t_{12}/2)$. On the other hand, by composition it can be expressed in several steps, performing one crossing or chaging the parenthesizing on each step as follows
+
+\begin{figure}[h!]
+\includegraphics[scale=0.53]{Imagenes/right}
+\end{figure}
+
+%\newpage
+
+This is the morphism obtained by the product $i\cdot d_0x\cdot (132)i^{-1}\cdot (13)d_3x\cdot (312)i$. This should be sent to $\Phi\cdot d^0\exp(t_{12}/2)\cdot (132)\Phi^{-1}\cdot (132)d^3\exp(t_{12}/2)\cdot (312)\Phi$. By definition of the $d^i$'s, we have $d^0\exp(t_{12}/2)=\exp(t_{23}/2)$ and $(132)d^3\exp(t_{12}/2)=\exp(t_{13}/2)$, so the morphism is mapped to $$\Phi\cdot \exp(t_{23}/2)\cdot (132)\Phi^{-1}\cdot (132)\exp(t_{13}/2)\cdot (312)\Phi,$$ which is equal to $d^1\exp(t_{12}/2)$ by the hexagon axiom.
+
+Then, the map $\phi$ produces a map of operads $C_\star(PaB_*)=C_\star^\Q(\Q(PaB_*))\to C_\star(O_A(*))$.
 %C_* ya era sobre Q, y hacerlo sobre PaB_* en realidad era sobre la realización del nervio, así que es linearizar al final. Lo otro es linearizar primero y luego coger el nervio para el caso lineal
-It is well known that the homology operad of $C_\star(PaB_*)$ is $e_2$ because $PaB_*$ induces a little disks operad as we saw section in \ref{pab}. One checks that $\phi$ is a quasi-isomorphism for $\star=2$ by an argument of dimension similar to the one in the proof of \ref{4.1}: it induces a surjective homomorphism (it sends generators to generators) between spaces of the same dimension. Hence it is a quasi-isomorphism of operads (since
-$e_2$ is generated by $e_2(2)$). By Proposition \ref{4.1}, $k$ is a quasi-isomorphism. Thus, the
-chain operad $C_*(PaB_*)$ is quasi-isomorphic to $e_2$.
+It is well known that the homology operad of $C_\star(PaB_*)$ is $e_2$ because $PaB_*$ induces a little disks operad as we saw section in \ref{pab}. One checks that $\phi$ is a quasi-isomorphism for $*=2$ by an argument of dimension similar to the one in the proof of \ref{4.1}: it induces a surjective homomorphism (it sends generators to generators) between spaces of the same dimension. Hence it is a quasi-isomorphism of operads (since
+$e_2$ is generated by $e_2(2)$). By Proposition \ref{4.1}, $h$ is a quasi-isomorphism. Thus, the
+chain operad $C_*(PaB_*)$ is equivalent to $e_2$.
 
 
 
