@@ -271,7 +271,15 @@ A \emph{symmetric monoidal category} is a category $\mathscr{M}$ equipped with:
 \item Natural isomorphism $a_{x,y,z} : (x \otimes y) \otimes z \to x \otimes (y \otimes z)$ (called the \emph{associator}), $\lambda_x : I \otimes x \to x$ (\emph{left unitor}), $\rho_x : x \otimes I \to x$ (\emph{right unitor}) and $B_{x,y}: x\otimes y\to y\otimes x$ (\emph{braiding}).
 \end{enumerate}
 
-We then demand that the associator obey the pentagon identity, which says this diagram commutes:
+We then demand that the associator and unitors obey the triangle identity, which says this diagram commutes:
+\[
+\begin{tikzcd}
+(x\otimes I)\otimes y \arrow[rr, "{a_{x,I,y}}"] \arrow[rd, "\rho_x\otimes 1_y"'] &            & x\otimes (I\otimes y) \arrow[ld, "1_x\otimes\lambda_y"] \\
+& x\otimes y &                                                        
+\end{tikzcd}
+\]
+
+We demand that the associator obey the pentagon identity, which says this diagram commutes:
 
 \[
 \begin{tikzcd}[column sep=-25, row sep=35]
@@ -282,13 +290,7 @@ We then demand that the associator obey the pentagon identity, which says this d
 \end{tikzcd}
 \]
 
-We demand that the associator and unitors obey the triangle identity, which says this diagram commutes:
-\[
-\begin{tikzcd}
-(x\otimes I)\otimes y \arrow[rr, "{a_{x,I,y}}"] \arrow[rd, "\rho_x\otimes 1_y"'] &            & x\otimes (I\otimes y) \arrow[ld, "1_x\otimes\lambda_y"] \\
-                                                                                 & x\otimes y &                                                        
-\end{tikzcd}
-\]
+
 We demand that the braiding and associator obey the hexagon identity:
 \[
 \begin{tikzcd}

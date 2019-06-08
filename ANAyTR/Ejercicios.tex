@@ -38,10 +38,35 @@ Probar los siguientes enunciados.
 \begin{solucion}
 \begin{enumerate}
 \item[]
-\item Sabemos que siempre se tiene una contención. Basta ver que todo elemento de una base de las álgebras, como espacios vectoriales, está en su derivada. 
+\item Sabemos que siempre se tiene una contención. Basta ver que todo elemento de una base de las álgebras, como espacios vectoriales, está en su derivada. Utilizaremos repetidamente la fórmula $[e_{ij},e_{kl}]=\delta_{jk}e_{il}-\delta_{li}e_{kj}$ para agilizar los cálculos.
 
-En $\mathfrak{sl}(n)$ tenemos la base $\{e_{ij}, h_i=e_{i,i}-e_{i+1,i+1}\}_{1\leq i\leq n-1, i\neq j}$. Tenemos que $[h_i,h_j]=0$ para todo $i,j$. Además, $[e_{ij},e_{kl}]=\delta_{jk}e_{il}-\delta_{il}e_{jk}$. Por último, calculemos $[h_i,e_{jk}]$ para las distintas posibles combinaciones de $i,j,k$. $$[h_i,e_{ik}]=e_{ii}e_{ik}-e_{i+1,i+1}e_{ik}-e_{ik}e_{ii}+e_{i+1,i+1}e_{ik}=e_{ik}$$
-Análogamente se hace el caso $[h_i,e_{ji}]$, obteniendo $e_{ki}$. Por último, si $i\neq j,k$, entonces $[h_i,e_{kj}]=0$. En definitiva, todas las matrices de la base de $\mathfrak{sl}(n)$ están en el derivado.
+En $\mathfrak{sl}(n)$ tenemos la base $\{e_{ij}, h_i=e_{i,i}-e_{i+1,i+1}\}_{1\leq i\leq n-1, i\neq j}$. Es fácil comprobar que para $i\neq j$, $e_{ij}=[e_{ij},e_{jj}]$ y que $h_i=[e_{i,i+1},e_{i+1,i}]$, por lo que tenemos el resultado.
+%$[h_i,h_j]=0$ para todo $i,j$. 
+%$$[h_i,h_j]=[e_{i,i}-e_{i+1,i+1},e_{j,j}-e_{j+1,j+1}]=[e_{i,i}-e_{i+1,i+1},e_{j,j}]-[e_{i,i}-e_{i+1,i+1},e_{j+1,j+1}]=$$
+%$$ [e_{i,i},e_{j,j}]-[e_{i+1,i+1},e_{j,j}]-[e_{i,i},e_{j+1,j+1}]+[e_{i+1,i+1},e_{j+1,j+1}]=$$
+%$$ \delta_{ij}e_{ij}-\delta_{ji}e_{ji}-(\delta_{i+1,j}e_{i+1,j}-\delta_{j,i+1}e_{j,i+1})-(\delta_{i,j+1}e_{i,j+1}-\delta_{j+1,i}e_{j+1,i})+\delta_{i+1,j+1}e_{i+1,j+1}-\delta_{j+1,i+1}e_{j+1,i+1}=$$
+%Distingamos varios casos. Si $i=j$, entonces trivialmente $[h_i,h_j]=0$. Supongamos que $i=j+1$. Entonces $[h_i,h_j]=e_{j+1,j+1}-e_{j+1,j+1}=0$ y análogamente en el caso $j=i+1$. Si $|j-1|>1$ es claro que $[h_i,h_j]=0$.
+%
+%Calculemos $[h_i,e_{jk}]$ para las distintas posibles combinaciones de $i,j,k$. Supongamos $i=j$. %$$[h_i,e_{ik}]=e_{ii}e_{ik}-e_{i+1,i+1}e_{ik}-e_{ik}e_{ii}+e_{i+1,i+1}e_{ik}=e_{ik}$$
+%$$[h_i,e_{ik}]=[e_{i,i}-e_{i+1,i+1},e_{ik}]=[e_{i,i},e_{ik}]-[e_{i+1,i+1},e_{ik}]=$$
+%$$\delta_{ii}e_{ik}-\delta_{ki}e_{ii}-(\delta_{i+1,i}e_{i+1,k}-\delta_{k,i+1}e_{i,i+1})$$
+%Si $i=k$ entonces $[h_i,e_{jk}]=0$, y también se anula si $k=i+1$. En otro caso, $[h_i,e_{jk}]=e_{ik}$. 
+%
+%Supongamos $i=k$ ($j\neq k$ pues el caso $i=j=k$ ya lo hemos tratado). Tenemos ahora análogamente 
+%$$[h_i,e_{ji}]=[e_{i,i}-e_{i+1,i+1},e_{ji}]=[e_{i,i},e_{ji}]-[e_{i+1,i+1},e_{ji}]=$$
+%$$\delta_{ij}e_{ii}-\delta_{ii}e_{ji}-(\delta_{i+1,j}e_{i+1,i}-\delta_{i,i+1}e_{j,i+1})$$
+%
+%Si $j=i+1$ obtenemos $[h_i,e_{ji}]=-2e_{i+1,i}$.
+% Por último, si $i\neq j,k$, entonces (escribo ahora $e_{kl}$ para no liarme en la fórmula del corchete) 
+% $$[h_i,e_{kl}]=[e_{i,i}-e_{i+1,i+1},e_{kl}]=[e_{i,i},e_{kl}]-[e_{i+1,i+1},e_{kl}]=$$
+% $$\delta_{ik}e_{il}-\delta_{li}e_{ki}-(\delta_{i+1,k}e_{i+1,l}-\delta_{l,i+1}e_{k,i+1})$$
+% 
+%Si $k=l=i+1$, entonces $[h_i,e_{kl}]=0$, pero si solo uno de los dos es igual a $i+1$, entonces obtenemos en ambos casos $e_{i+1,i+1}$. En otro caso, $[h_i,e_{kl}]=0$.
+%
+%
+%En definitiva, NO ME SALE NADA%todas las matrices de la base de $\mathfrak{sl}(n)$ están en el derivado.
+
+
 
 %Una forma más conceptual de hacerlo es probar que si $x,y$ son matrices tales que $sx-x's=0$ y $sy-y's=0$ para $s=\begin{pmatrix}
 %0 & I\\
@@ -55,9 +80,14 @@ Análogamente se hace el caso $[h_i,e_{ji}]$, obteniendo $e_{ki}$. Por último, 
 %
 %Sumando ambas ecuaciones obtenemos $syx-y'x's=0$, que era lo que queríamos probar. 
 
-En el caso de $\mathfrak{sp}(2l)$ tenemos la base $$\{e_{ii}-e_{i+l,i+l}, e_{ij}-e_{i+l,j+l},e_{i,i+l}, e_{i,j+l}+e_{j,i+l}, e_{i+l,i}, e_{i+l,j}+e_{j+l,i}\}_{1\leq i\neq j\leq l}.$$
+En el caso de $\mathfrak{sp}(2r)$ tenemos la base $$\{e_{ii}-e_{i+r,i+r}, e_{ij}-e_{i+r,j+r},e_{i,i+r}, e_{i,j+r}+e_{j,i+r}, e_{i+r,i}, e_{i+r,j}+e_{j+r,i}\}_{1\leq i\neq j\leq r}.$$ 
 
-CÁLCULOS
+Tenemos $e_{ii}-e_{i+r,i+r}=[e_{i,i+r},e_{i+r,i}]$, $e_{ij}-e_{j+r,i+r}=[e_{i,i+r},e_{i+r,j}+e_{j+r,i}]$, $e_{i,i+r}=-\frac{1}{2}[e_{i,i+r},e_{ii}-e_{i+r,i+r}]$, $e_{i,j+r}+e_{j,i+r}=[e_{ii}-e_{i+r,i+r},e_{i,j+r}+e_{j,i+r}]$, $e_{i+r,i}=\frac{1}{2}[e_{i+r,i},e_{ii}-e_{i+r,i+r}]$, $e_{i+r,j}+e_{j+r,i}=-[e_{ii}-e_{i+r,i+r},e_{i+r,j}+e_{j+r,i}]$. 
+
+Así pues, tenemos para toda la base expresiones en función de corchetes de la base. 
+
+
+
 
 Para $\mathfrak{o}(n)$ tenemos que considerar dos casos en función de la paridad de $n$. Comenzamos con $n=2l+1$. En este caso una base está dada por 
 \begin{gather*}
