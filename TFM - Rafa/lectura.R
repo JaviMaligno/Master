@@ -1,13 +1,13 @@
 library(xtable)
 library(purrr)
+library(ggplot2)
+library(tidyr)
 
 xs = read.csv("datos.csv")
 xs = xs[,-1]
 
 print(xtable(xs), include.rownames = F)
 
-library(ggplot2)
-library(tidyr)
 N = c(10,16,18,24,30,40,60,70,80,100,120,150,170,200,220,250,270,290,300,320,350,370,400)
 
 Var=c(21.40,59.40,76.00,139.00 ,225.00,389.00 ,886.20,1193.00,1587.00,2469.80,
@@ -51,6 +51,9 @@ tpe = c(0.02,0.03,0.03,0.03,0.04,0.05,0.11,0.12,0.15,0.22,0.32,0.45,0.60,0.80,
         0.93,1.28,1.55,1.73,1.78,2.12,2.51,2.73,3.44)
 
 
+
+
+
 df3 = data.frame(Nodos = N, T.GH = tgh, T.PE = tpe)
 df4 = gather(df3, key = "Método", value = "Tiempo",-Nodos)
 
@@ -60,14 +63,26 @@ dev.off()
 
 
 
+df = data.frame(N=c(14,16,18,20,22,24,26,28,30),
+                "Media Total" = c(9.4,15.8,18.8,22.6,30,39.2,40, 53.8,63), 
+                "Media No Sop" = c(4.6,10.2,10.4,14.8,19.2,27,29.4,38.6,48.4),
+                "Media Porcentaje" = c(45.39,63.72,55.9,65.31,
+                                       63.55,68.81,72.81,73.05,76.91))
 
+df2 = gather(df, key = "Leyenda", value = "Valor",-N,-Media.Porcentaje)
 
-xs = read.csv("datos.csv")
-xs = xs[,-1]
-xs
+pdf("plot10.pdf", height=5, width=7)
+ggplot(df2,aes(x=N,y=Valor,color = Leyenda)) + geom_point() + geom_line() 
+dev.off()
 
+pdf("plot11.pdf", height=5, width=7)
+ggplot(df2,aes(x=N,y=Media.Porcentaje)) + geom_point(color="blue") +
+  geom_line(color ="red")+ geom_hline(yintercept=100,lty = 2) 
+dev.off()
 
-
-
-
-
+16 = 5 9/25 6/14 6/21 8/17
+20 = 6/16 6/14 11/38 7/28 9/23
+22 = 12/37 10/31 10/24 9/29 13/29
+24 = 16/56 13/36 15/46 9/29 8/29
+26 = 13/48 11/44 8/25 11/36 10/47
+28 = 14/48 17/62 18/62 13/49 14/62
