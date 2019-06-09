@@ -289,6 +289,38 @@ donde $SW_i(v)$ son los swings de $i$ en $v$, es decir, aquellos conjuntos $S$ q
 \item Para $i=4$. De tamaño dos no hay. De tamaño tres tenemos $\{1,4,5\}$ y $\{2,3,4\}$. Con cuatro elementos no hay ninguno. Por tanto, $\beta_4(v) = 2/16$. \end{itemize}
 \end{solucion}
 
+\newpage
 
+\begin{ejercicio}{9}
+Encuentra la solución de Owen para el juego de la producción de cerveza.
+\end{ejercicio}
+
+\begin{solucion}
+En primer lugar, vamos a determinar todos los elementos del juego. $N=\{1,2,3\}$ correspondientes a las tres cervezeras. $M=\{\text{cebada, lúpulo}\}$ correspondientes a los recursos. $R=\{\text{cerveza rubia, cerveza negra}\}$ el único producto. Además
+$$
+b^1 = (4,33) \quad b^2 =(6,39) \quad b^3 = (60,0) \qquad A = \begin{pmatrix}
+4 & 5\\
+6 & 2
+\end{pmatrix} \qquad p = (68,52)
+$$
+Para calcular la solución de Owen consideramos el problema
+\begin{align*}
+\min\, & b(N)y\\
+s.a.\,&y'A\geq p\\
+& y\geq 0
+\end{align*}
+Sustituyendo los valores,
+\begin{align*}
+\min\, & 70y_1 + 72y_2\\
+s.a.\,&
+4y_1 + 5y_2\geq 68\\
+&6y_1 + 2y_2 \geq 52\\
+& y\geq 0
+\end{align*}
+Obtenemos la solución $y^* = (8,6)$. La solución de Owen está dada por
+$$
+x = (b^1y^*,b^2y^*,b^3y^*) = (230,282,480) 
+$$
+\end{solucion}
 
 \end{document}

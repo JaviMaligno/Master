@@ -145,11 +145,11 @@ El incremento de $\gamma_k$ crea una holgura $s_i$ para $i\in I^k$ que puede res
     \item $I^{k}$ no está contenido en ningún otro conjunto que satisfaga 1 y 2.
 \end{enumerate}
 
-Sea $G(V,E)$ el grafo asociado a (D) que tiene un nodo por cada $i\in I$ y una arista por cada par $i,l \in I^{*}$ con $s_{il}$ positivo. Entonces seleccionar un $I^{k}$ que satisfaga las tres condiciones anteriores es equivalente a seleccionar un \textbf{clique} en $G$. En primer lugar, establecemos $I^{k}=\{i\}$ eligiendo un $i\in I^{*}$ inicial, que llamaremos \textbf{nodo semilla}, y lo aumentaremos sucesivamente con $l\in I^{*}/I^{k}$ tal que $s_{l}=0$ y $s_{il}(o\ s_{li})>0$ para todo $i\in I^{k}$. Gracias a las propiedades de un clique, podemos construir uno sin repetición, para ello basta elegir un nodo semilla entre los nodos troncales que no estén contenidos in ningún clique generado anteriormente.\\
+Sea $G=(V,E)$ el grafo asociado a (D) que tiene un nodo por cada $i\in I$ y una arista por cada par $i,l \in I^{*}$ con $s_{il}$ positivo. Entonces seleccionar un $I^{k}$ que satisfaga las tres condiciones anteriores es equivalente a seleccionar un \textbf{clique} en $G$. En primer lugar, establecemos $I^{k}=\{i\}$ eligiendo un $i\in I^{*}$ inicial, que llamaremos \textbf{nodo semilla}, y lo aumentaremos sucesivamente con $l\in I^{*}/I^{k}$ tal que $s_{l}=0$ y $s_{il}(o\ s_{li})>0$ para todo $i\in I^{k}$. Gracias a las propiedades de un clique, podemos construir uno sin repetición, para ello basta elegir un nodo semilla entre los nodos troncales que no estén contenidos en ningún clique generado anteriormente.\\
 
 En cada iteración, para unos $s_{i}$ y $s_{il}$ dados, elegimos arbitrariamente un subconjunto de $I^{*}$ que forme un clique tal como indicamos en el párrafo anterior. Ahora determinamos el máximo incremento posible de $\gamma_{k}$, cada uno de los cuales provocando que uno o más $v_{j}$ incrementen conjuntamente con el incremento de $s_{i}$ para $I\in i^{k}$, al mismo tiempo que mantengan factibles las condiciones (13). Para lograrlo, incrementamos primero cada $s_{i}$ para $i\in I^{k}$ usando $\delta=min\{s_{il}:i,l \in i^{k},\ i<l\},$ e incrementado entonces los $v_{j}$ mediante la heurística ascendente dual. Finalmente, determinamos el incremento de $\gamma_{k}$ como la \textbf{máxima holgura absorbida}, es decir, $\Delta\gamma_{k}=\delta-min_{i\in I^{k}}s_{i}$.\\
 
-Usando este procedimiento, por cada unidad incrmentada de $\gamma_{k}$, se incrementa una unidad en al menos uno de los $v_{j}$, lo que hace que el valor objetivo dual no disminuya nunca. Con cada iteración se obtiene además una solución primal entera y factible gracias a la heurística primal ¿add-type?. Primeros incluimos un nodo troncal $i\in I^{*}$ que tenga el mayor número de aristas con $s_{il}=0$ en $G$ dentro del conjunto de nodos troncales abiertos. Ahora se añaden otros nodos troncales en $I^{*}$ con la intención de mejorar el coste total.\\
+Usando este procedimiento, por cada unidad incrmentada de $\gamma_{k}$, se incrementa una unidad en al menos uno de los $v_{j}$, lo que hace que el valor objetivo dual no disminuya nunca. Con cada iteración se obtiene además una solución primal entera y factible gracias a la heurística primal add-type. Primeros incluimos un nodo troncal $i\in I^{*}$ que tenga el mayor número de aristas con $s_{il}=0$ en $G$ dentro del conjunto de nodos troncales abiertos. Ahora se añaden otros nodos troncales en $I^{*}$ con la intención de mejorar el coste total.\\
 
 Para acelerar todo el proceso, limitamos la elección de los nodos semilla. Cuando implementemos una desigualdad correspondiente a un $I^{k}$, si el $\gamma_{k}$ asociado no incrementa una cantidad $\delta$ o su implimentación no mejora el valor objetivo dual, eliminamos en los nodos troncales contenidos en $I^{k}$ el conjunto de nodos semilla candidatos para las siguientes iteraciones. Esto evitará la elección de un clique cuyos nodos estén completamente contenidos en $I^{k}$, puesto que el incremento adicional de $s_{i}$ para un subconjunto de nodos troncales estrictamente contenidos en $I^{k}$ tiene pocas posibilidades de mejorar el valor objetivo dual en las iteraciones siguientes. El procedimiento se describe a continuación:
 
@@ -159,9 +159,9 @@ $Paso\ 1$. Elegir un nodo semilla $i\in$ CAND. Si CAND es un conjunto vacío, en
 
 $Paso\ 2$. Construir un $I^{k}$ usando el nodo semilla elegido. Si el conjunto anterior no existe, entonces $\text{CAND}=\text{CAND}\setminus\{i\}$ e ir al Paso 1. En caso contrario:
 \begin{enumerate}[a.]
-    \item para $i\in I^{k}$, incrementar $s_{i}$ una catidad $\delta=min\{s_{il}:i,l\in I^{k},i<l\},$
-    \item aplicar la heurística ascendente dual,
-    \item calcular el incremento de $\gamma_{k}$ y actualizar $s_{il}$:
+    \item Para $i\in I^{k}$, incrementar $s_{i}$ una catidad $\delta=min\{s_{il}:i,l\in I^{k},i<l\},$
+    \item Aplicar la heurística ascendente dual,
+    \item Calcular el incremento de $\gamma_{k}$ y actualizar $s_{il}$:
         \begin{center}
         $\Delta\gamma_{k}=\delta-min_{i\in I^{k}}s_{i},\newline
         s_{il}\leftarrow s_{il}-\Delta\gamma_{k}$ para $i,l\in I^{k},\ i<l$,
@@ -172,8 +172,7 @@ $Paso\ 2$. Construir un $I^{k}$ usando el nodo semilla elegido. Si el conjunto a
         \end{center}
 \end{enumerate}
 
-
-$Paso\ 3$.Construir una solución primal entera y factible y actualizar la solución asociada si es posible.\\
+$Paso\ 3$. Construir una solución primal entera y factible y actualizar la solución asociada si es posible.\\
 
 $Paso\ 4$. Si $\Delta\gamma_{k}\neq\delta$ o el valor objetivo dual no ha mejorado, entonces establecemos $\text{CAND}=\text{CAND}\setminus\{I^{k}\}$, y volver al Paso 1.\\
 
