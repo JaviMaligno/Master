@@ -1,0 +1,229 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usetheme{Copenhagen}
+\usepackage[spanish]{babel}
+\usepackage{multirow}
+%\usepackage{estilo-apuntes}
+\usepackage{braids}
+\usepackage[]{graphicx}
+\usepackage{rotating}
+\usepackage{pgf,tikz}
+\usepackage{pgfplots}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows}
+\usetikzlibrary{cd}
+\usetikzlibrary{babel}
+\pgfplotsset{compat=1.13}
+\usetikzlibrary{decorations.shapes}
+\pgfkeyssetvalue{/tikz/braid height}{1cm} %no parece hacer nada
+\pgfkeyssetvalue{/tikz/braid width}{1cm}
+\pgfkeyssetvalue{/tikz/braid start}{(0,0)}
+\pgfkeyssetvalue{/tikz/braid colour}{black}
+
+\theoremstyle{definition}
+
+\newtheorem{teorema}{Teorema}
+\newtheorem{defi}{Definición}
+\newtheorem{prop}[teorema]{Proposición}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\providecommand{\gene}[1]{\langle{#1}\rangle}
+
+
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+\setbeamercolor{footline}{fg=black}
+\setbeamerfont{footline}{series=\bfseries}
+
+%-----------------------------------------------------------
+
+\title{Funcionamiento de Bitcoin}
+\author{Javier Aguilar Martín y Jesús López}
+\institute{Universidad de Sevilla}
+\date{}
+ 
+\begin{document}
+\frame{\titlepage}
+%\begin{frame}
+%
+%
+%\title[About Beamer] %optional
+%{About the Beamer class in presentation making}
+% 
+%\subtitle{A short story}
+% 
+%\author[Arthur, Doe] % (optional, for multiple authors)
+%{A.~B.~Arthur\inst{1} \and J.~Doe\inst{2}}
+% 
+%\institute[VFU] % (optional)
+%{
+%  \inst{1}%
+%  Faculty of Physics\\
+%  Very Famous University
+%  \and
+%  \inst{2}%
+%  Faculty of Chemistry\\
+%  Very Famous University
+%}
+
+% 
+%\date[VLC 2013] % (optional)
+%{Very Large Conference, April 2013}
+
+
+%\end{frame}
+\setbeamercovered{highly dynamic}
+
+\newcounter{saveenumi}
+\newcommand{\seti}{\setcounter{saveenumi}{\value{enumi}}}
+\newcommand{\conti}{\setcounter{enumi}{\value{saveenumi}}}
+
+\resetcounteronoverlays{saveenumi}
+%\AtBeginSection[]{
+\begin{frame}
+\frametitle{Tabla de contenidos}
+\tableofcontents
+\end{frame}
+%}
+
+
+\section{Overview}
+\begin{frame}
+	\frametitle{Overview}
+	\begin{itemize}
+		\item<1-> Bitcoin es una criptomoneda sin banco central creada en 2008 por el seudónimo Satoshi Nakamoto.
+		\item<2-> Cada usuario de Bitcoin tiene una dirección (clave pública) con la que recibe Bitcoins y una clave privada con la que los gasta.
+		\item<3-> Cada intercambio de Bitcoins se llama transacción.
+		\item<4-> Las transacciones se almacenan en una cadena de bloques (blockchain) que sirve como libro de cuentas.
+		\item<5-> Bitcoin usa el algoritmo de firma digital sobre la curva elíptica ecp256k1.
+	\end{itemize}
+	
+	
+	
+	
+	
+	
+	
+\end{frame}
+
+
+
+\section{Preliminares}
+\subsection{Árboles de Merkle}
+
+\begin{frame}
+	\frametitle{Árboles de Merkle}
+\end{frame}
+
+\subsection{Prueba de Trabajo}
+\begin{frame}
+\frametitle{Prueba de trabajo}
+\begin{defi}
+	Una \textbf{prueba de trabajo} es un reto criptográfico para asegurar que una parte ha realizado una determinada cantidad de trabajo computacional. La verificación de la prueba debe poder realizarse de forma eficiente.
+\end{defi}\pause
+
+Supongamos que Alice quiere pedirle a Bob que realice un trabajo computacional en cada mensaje que le envíe. Alice puede pedirle a Bob una cadena de texto cuyo hash verifique una cierta estructura. Encontrar esa cadena tiene una probabilidad de acierto que determinará la cantidad media de trabajo realizada por Bob.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Prueba de trabajo de Bitcoin}
+	\begin{itemize}
+	\item<1-> Bitcoin utiliza como algoritmo de hash el doble $SHA256$ ($SHA256^2$).
+	\item<2-> La estructura predefinida es que el hash (en hexadecimal) sea menor o igual que un valor $T$.
+	\item<3-> Para un mensaje $m$, la probabilidad de encontrar un \textbf{nonce} $n$ que verifique $H=SHA256^2(m||n)\leq T$ es
+	$$P(H\leq T)=\frac{T}{2^{256}}$$
+	\item<4-> La verificación de la prueba consiste simplemente en comprobar $SHA256^2(m||n)\leq T$.
+	\end{itemize}
+\end{frame}
+
+
+\section{Transacciones}
+\subsection{Transacciones regulares}
+\begin{frame}
+\frametitle{Transacciones regulares}
+\begin{defi}
+	Una \textbf{transacción regular} es una transferencia de Bitcoins entre usuarios distintos. Coniste en un archivo que contiene los siguientes datos: un número de versión ($nVersion$), un vector de inputs ($vin$), un vector de outputs ($vout$) y una fecha ($nLockTime$). Incluye además $\# vin$ y $\# vout$ (el número de elementos de $vin$ y $vout$, respectivamente). 
+\end{defi}
+
+\end{frame}
+
+\begin{frame}
+	TABLA (NO SÉ SI COPIARLA O HACERLA PARA TRADUCIRLA)
+\end{frame}
+
+
+\begin{frame}
+	\begin{block}{nVersion}
+		Almacena el número de versión del formato de transacción. Actualmente es 1.
+	\end{block}\pause
+
+\begin{block}{vin}
+	Almacena un vector con una o más transacciones. Cada input está compuesto por una referencia a un output previo ($hash,n$), el campo de firma ($scriptSig$), la longitud del campo de firma en bytes ($scriptSigLen$) y un número de secuencia de transacción ($nSequence$).
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+	\item<1-> $(hash,n)$: un output previo se identifica con la tupla $(hash,n)$. El campo $hash$, o \textbf{ID de transacción} ($TxID$) se calcula como el doble $SHA256$ de la transacción anterior: $$TxID=SHA256^2(Transaction)$$
+	El valor $n$ almacenado en el $vout$ de la transacción anterior es la cantidad de Bitcoin transferida.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+	FIGURA 3.2
+\end{frame}
+
+\begin{frame}
+	\begin{itemize}
+		\item<1-> $scriptSig$: es un espacio para introducir una firma digital que se calcula a partir de la clave pública de la anterior transacción. Contiene además la prueba de conocimiento para verificar la firma. %es el mensaje que se firma
+		\item<2-> $nSquence$. DETALLES TÉCNICOS QUE NO CREO QUE IMPORTEN
+		\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{block}{vout}
+		Almacena un vector con una o más transacciones output. Cada transacción output está compuesta por una cantidad de BTC para ser gastada ($nValue$), la clave pública ($scriptPubkey$) y la longitud de la clave pública ($scriptPubkeyLen$).
+	\end{block}
+\begin{itemize}
+	\item<2-> $nValue$: almacena la cantidad de BTC transferida. Esta cantidad está representada en \textbf{Satoshis}, esto es $10^{-18}$ BTC.
+	\item<3->$scriptPubkey$: es un espacio en el que se introduce la clave pública del destinatario y contiene la prueba de conocimiento para que solo el destinatario pueda demostrar que su clave privada se corresponde a esa clave pública.
+\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+
+	\begin{block}{nLockTime}
+		Almacena un tiempo de bloqueo, es decir, el momento (en formato UNIX) a partir del cual la transacción debería ser incluida en un bloque.
+	\end{block}
+\end{frame}
+
+\subsection{Transacciones Coinbase}
+\begin{frame}
+	\frametitle{Transacciones Coinbase}
+\end{frame}
+\section{Blockchain}
+\subsection{Bloques}
+\begin{frame}
+	\frametitle{Bloques}
+\end{frame}
+\subsection{Formación de la cadena}
+\begin{frame}
+	\frametitle{Formación de la cadena}
+\end{frame}
+
+
+\section{¿En qué consiste tener Bitcoin?}
+\begin{frame}
+	\frametitle{¿En qué consiste tener Bitcoin?}
+\end{frame}
+
+
+
+\end{document}
