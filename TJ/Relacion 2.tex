@@ -254,8 +254,8 @@ Calcular el valor de Shapley para el juego del premio Nobel japonés y comprobar
 \begin{solucion}
 Consideremos  los valores de $v^c$.
 \begin{gather*}
-v^c(\emptyset) = 0 \qquad v^c(\{i\}) = 0 \quad \forall i = 1,2,3 \qquad  v(\{1,2\}) = v(\{1,3\}) = 1300\\
-v(\{2,3\}) = 1600 \qquad v(N)=2900
+v^c(\emptyset) = 0 \qquad v^c(\{i\}) = 0 \quad \forall i = 1,2,3 \qquad  v^c(\{1,2\}) = v^c(\{1,3\}) = 1300\\
+v^c(\{2,3\}) = 1600 \qquad v(N)=2900
 \end{gather*}
 Ahora calculemos el valor de Shapley de $v^c$. 
 \begin{align*}
@@ -345,12 +345,13 @@ v(S,T) = \max\left\{\sum_{i\in S} a_{ib(i)} \mid b \in B(S,T)\right\}
 $$
 donde $B(S,T)$ es el conjunto de las asignaciones $b$ entre $S$ y $T$. Supongamos que $N= P\cup Q$. Sean $S_1 \cup T_1$ y $S_2 \cup T_2$ tales que $S_1,S_2 \subset P$, $T_1,T_2 \cup Q$, $S_1\cap S_2 = T_1 \cap T_2 = \emptyset$. Basta tener en cuenta que, dado que los $S_i$ y los $T_i$ son disjuntos, tenemos
 $$
-B(S_1,T_1)\cup B(S_2,T_2) \subset B(S_1\cup S_2, T_1\cup T_2) \qquad B(S_1,T_1)\cap B(S_2,T_2) = \emptyset
+B(S_1,T_1)* B(S_2,T_2) \subset B(S_1\cup S_2, T_1\cup T_2) \qquad B(S_1,T_1)\cap B(S_2,T_2) = \emptyset
 $$
+donde $*$ es como denotamos a la operación que coge dos asignaciones y considera la aplicación unión. Al tener dominios y llegadas distintas, la asignación resultante siempre estará bien definida. Análogamente, la operación $*$ entre dos conjuntos de asignaciones simboliza todas las posibles uniones de asignaciones.
 Luego se sigue de inmediato
 \begin{align*}
 v(S_1\cup S_2, T_1\cup T_2) &= \max\left\{\sum_{i\in S_1 \cup S_2} a_{ib(i)} \mid b \in B(S_1\cup S_2, T_1\cup T_2)\right\}\\
-&\geq  \max\left\{\sum_{i\in S_1 \cup S_2} a_{ib(i)} \mid b \in B(S_1,T_1)\cup B(S_2,T_2)\right\}\\
+&\geq  \max\left\{\sum_{i\in S_1 \cup S_2} a_{ib_1*b_2(i)} \mid b_1*b_2 \in B(S_1,T_1)* B(S_2,T_2)\right\}\\
 &=  \max\left\{\sum_{i\in S_1} a_{ib_1(i)} + \sum_{i \in S_2} a_{ib_2(i)} \mid b_1 \in B(S_1,T_1),\, b_2\in B(S_2,T_2)\right\}\\
 &= \max\left\{\sum_{i\in S_1} a_{ib_1(i)} \mid b_1 \in B(S_1,T_1)\right\}+   \max\left\{\sum_{i \in S_2} a_{ib_2(i)} \mid b_2\in B(S_2,T_2)\right\}\\
 &=v(S_1,T_1) + v(S_2,T_2)
