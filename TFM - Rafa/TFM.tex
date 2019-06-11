@@ -265,7 +265,7 @@ Sevilla, Junio 2019\\
 \addcontentsline{toc}{chapter}{Abstract}
 The minimum (maximum) matching problem is a fundamental problem in combinatorial optimization. The special structure of matching found by Edmonds allows to use different approximations. The idea of this work is to present a general insight of the matching problem, different sorts of algorithms for solving its original and the bi-objective formulations and a computational approach. 
 
-In section 1 we describe the problem, its applications and the Grötschel-Holland algorithm (for solving using linear programming). In section 2 we introduce the theoretical background necessary for understanding the SAP algorithm and the sensitive analysis. In section 3 we implement some methods in Python 3.7 with Gurobi some methods to study their computational properties and sensitive analysis.
+In section 1 we describe the problem, its applications and the Grötschel-Holland algorithm (for solving using linear programming). In section 2 we introduce the theoretical background necessary for understanding the SAP algorithm and the sensitive analysis. In section 3 we implement some methods in Python 3.7 with Gurobi to study their computational properties and sensitive analysis.
 \newpage
 \thispagestyle{empty}
 
@@ -339,14 +339,14 @@ s.a.&\;y_u+y_v - \sum_{S\in B,\,(u,v)\in \gamma(S)} y_S \leq c_{uv} \quad \foral
 \end{align*}
 De manera que podemos hacer la siguiente definición.
 \begin{defi}
-Definimos el \textbf{coste reducido} de una variable $x_{uv}$ asociada a una arista $(u,v)$ con respecto a una solución dual $y$ como
+El \textbf{coste reducido} de una variable $x_{uv}$ asociada a una arista $(u,v)$ con respecto a una solución dual $y$ es
 $$
 c_{uv}' = c_{uv} -y_u - y_v + \sum_{S\in B,\,(u,v)\in \gamma(S)}y_S 
 $$
 También notaremos el vector de costes reducidos como $\overline{c}$.
 \end{defi}
 
-A pesar de la utilidad del teorema de Edmonds para el desarrollo de numerosos algoritmos, más adelante veremos algunas modificaciones de dicho teorema que nos darán algunas formulaciones equivalentes pero más interesantes de cara al paradigma de la resolución computacional. Como introducción a esta idea, tenemos la equivalencia
+A pesar de la utilidad del teorema de Edmonds para el desarrollo de numerosos algoritmos, más adelante veremos algunas modificaciones de dicho teorema que nos darán algunas formulaciones equivalentes pero más interesantes de cara al paradigma de la resolución computacional. Como introducción a esta idea, tenemos la equivalencia para conjuntos $S\subset V$ de cardinalidad impar
 $$
 \sum_{(u,v)\in \gamma(S)} x_{uv} \leq \frac{1}{2}(|S|-1) \Leftrightarrow \sum_{(u,v)\in \delta(S)} x_{uv} \geq 1
 $$
@@ -503,7 +503,7 @@ donde $W\subset V$, $F \subset \delta(W)$ y $|F| + \sum_{v \in W} b_v$ es impar.
 \end{thm}
 En el caso del problema del emparejamiento que estamos tratando $b_v = 1$ y simplemente $|W|+|F|$ tiene que ser impar. 
 
-En nuestro implementación del algoritmo de Grötschel-Holland nosotros para el análisis computacional no vamos a utilizar directamente el algoritmo de Padberg-Rao, sino un modificación del mismo que presentan Letchford, Reinelt y Theis en \cite{adam}, junto con una demostración de la corrección del mismo.
+En nuestra implementación del algoritmo de Grötschel-Holland nosotros para el análisis computacional no vamos a utilizar directamente el algoritmo de Padberg-Rao, sino un modificación del mismo que presentan Letchford, Reinelt y Theis en \cite{adam}, junto con una demostración de la corrección del mismo.
 \begin{align*}
 \text{Inicialización: }&\text{Un grafo $G$ y un vector $x$}\\
 \text{Paso 1: }&\text{Computamos el árbol de Gomory-Hu de $G$ para los pesos}\\
@@ -713,7 +713,7 @@ Sea $G=(V,E)$ un grafo y $M$ un matching en $G$, un \textbf{camino alternante} o
 \end{figure}
 
 \begin{defi}
-En las condiciones de la definición anterior, se define un \textbf{camino de aumento} o \textit{augmenting path} como un camino alternante cuyos nodos extremos son expuestos.
+En las condiciones de la definición anterior,  un \textbf{camino de aumento} o \textit{augmenting path} es un camino alternante cuyos nodos extremos son expuestos.
 \end{defi}
 Resulta claro que si tenemos un matching $M$ y un camino de aumento con respecto a $M$, podemos obtener un matching de mayor cardinalidad intercambiando el rol que tienen. Las que pertenecen al matching pasan a no pertencer y recíprocramente.
 
@@ -739,7 +739,7 @@ Por lo que $D$ tiene cardinalidad impar. Sea $G' = (V,D)$. Dado que $M$ y $M'$ s
 
 Dejamos los caminos a un lado y pasamos a definir otro tipo de conceptos relacionados con distintas familias de grafos y subgrafos.
 \begin{defi}
-Sea $G=(V,E)$ un grafo y $B \subset V$. Definimos el \textbf{grafo inducido por }$B$ como $G[B] = (B,\gamma(B))$.  
+Sea $G=(V,E)$ un grafo y $B \subset V$. El \textbf{grafo inducido por }$B$ es $G[B] = (B,\gamma(B))$.  
 \end{defi}
 \begin{defi}
 Sea $G=(V,E)$ y $H$ un subgrafo de $G$. Si $H$ tiene el mismo conjunto de nodos que $V$, decimos que \textbf{abarca }$G$.
@@ -1127,7 +1127,7 @@ Nuevamente, podemos escribir los costes reducidos con respecto a $\lambda$ usand
 
 
 \chapter{Análisis computacional}
-Presentamos a continuación la parte computacional de nuestro trabajo. En primer lugar presentamos las distintas partes de la implementaciones de los algoritmos para pasar después a los resultados obtenidos.
+Presentamos a continuación la parte computacional de nuestro trabajo. En primer lugar incluimos las distintas partes de la implementaciones de los algoritmos para pasar después a los resultados obtenidos.
 \section{Implementación en Python}
 Todas las implementaciones están hechas utilizando la distribución de Python 3.7 proporcionada por Anaconda. Además, para la resolución de problemas de Programación Lineal utilizamos el software Gurobi 8.1.0, a cuyo oráculo accedemos a través de Python. Antes de comenzar presentamos un codigo con algunas funciones auxiliares que utilizamos.
 \begin{pythone}
@@ -1552,7 +1552,7 @@ def analisis(N, I, par1 = 0, par2 = 0):
 \end{pythone}
 \newpage 
 \subsection{Reoptimización}
-Pasamos ahora a presentar el codigo con el que vamos a realizar el análisis de postoptimalidad. En primer lugar, debemos saber que cuando optimizamos un modelo de Programación Lineal en Gurobi, este posee una gran variedad de parámetros y atributos que podemos consultar. Dos de ellos son \textbf{SAObjLow }y \textbf{SAObjUp}, que para cada componente de la función objetivo nos indica hasta dónde podemos variar hacia abajo y hacia arriba respectivamente de manera que la base continúe siendo óptima. 
+Pasamos ahora a presentar el codigo con el que vamos a realizar el análisis de postoptimalidad. En primer lugar, debemos saber que cuando optimizamos un modelo de Programación Lineal en Gurobi, éste posee una gran variedad de parámetros y atributos que podemos consultar. Dos de ellos son \textbf{SAObjLow }y \textbf{SAObjUp}, que para cada componente de la función objetivo nos indica hasta dónde podemos variar hacia abajo y hacia arriba respectivamente de manera que la base continúe siendo óptima. 
 
  Supongamos que hemos resuelto el modelo para un cierto valor de $\lambda^*$, y denotemos por $l$ y $u$ a los vectores definidos anteriormente para este valor $\lambda^*$. Nuestro objetivo es encontrar el máximo valor de $\lambda$ de manera que la base obtenida siga siendo óptima, es decir, queremos resolver el problema, dada $B$ y funciones objetivos $c^i$, 
 \begin{align*}
@@ -1664,9 +1664,9 @@ networx.draw_kamada_kawai(G)
 
 \newpage
 \subsection{SCIP y soluciones no soportadas}
-En un problema de Programación Lineal las soluciones, en caso de existir, han de situarse en los vértices de la envolvente convexa de nuestro conjunto factible. Cuando trabajamos con problemas multiobjetivo no tiene por qué existir una solución que minimice simultáneamente todas las funciones objetivo. En este sentido, tenemos las denominadas soluciones de Pareto, es decir, aquellas que no pueden ser mejorada en alguna de sus funciones componentes sin empeorar otra. El conjunto de soluciones de Pareto, o vectores Pareto eficientes, se conoce como frontera de Pareto. Este tipo de soluciones se pueden conseguir, en el caso biobjetivo, tal y como hemos planteado en la sección 3.1.6. Sin embargo, aunque las funciones objetivo y resticciones sean lineales pueden existir soluciones de Pareto que no estén en la envolvente convexa de nuestro conjunto factible. Estas soluciones se conocen como no soportadas.
+En un problema de Programación Lineal las soluciones proporcionadas por el método del simplex, en caso de existir, han de situarse en los vértices de la envolvente convexa de nuestro conjunto factible. Cuando trabajamos con problemas multiobjetivo no tiene por qué existir una solución que minimice simultáneamente todas las funciones objetivo. En este sentido, tenemos las denominadas soluciones de Pareto, es decir, aquellas que no pueden ser mejorada en alguna de sus funciones componentes sin empeorar otra. El conjunto de soluciones de Pareto, o vectores Pareto eficientes, se conoce como frontera de Pareto. Este tipo de soluciones se pueden conseguir, en el caso biobjetivo, tal y como hemos planteado en la sección 3.1.6. Sin embargo, aunque las funciones objetivo y resticciones sean lineales pueden existir soluciones de Pareto que no estén en la frontera de la envolvente convexa de nuestro conjunto factible. Estas soluciones se conocen como no soportadas.
 
-Con el software Gurobi no podemos encontrar las soluciones no dominadas, por lo que tendermos que utilizar el software SCIP, y en particular una de sus aplicaciones, PolySCIP. Este solver solo acepta un tipo determinado de extensión denominada .mop. Nosotros adjuntamos el siguiente código en el que, dado un grafo $G$ y funciones de costo $c_1$ y $c_2$, se genera el archivo .mop del problema de matching asociado escrito con la formulación de Programación Entera.
+Con el software Gurobi no podemos encontrar las soluciones no soportadas, por lo que tendermos que utilizar el software SCIP, y en particular una de sus aplicaciones, PolySCIP. Este solver solo acepta un tipo determinado de extensión denominada .mop. Nosotros adjuntamos el siguiente código en el que, dado un grafo $G$ y funciones de costo $c_1$ y $c_2$, se genera el archivo .mop del problema de matching asociado escrito con la formulación de Programación Entera.
 
 \begin{pythone}
 # En este codigo vamos a implementar un sencillo programa para convertir un grafo G y dos vectores c1, c2 en un fichero .mop para que PolySCIP pueda resolverlo
@@ -1731,7 +1731,7 @@ def pytoscip(name,sense, G, costes):
 
 \newpage
 \section{Resultados computacionales}
-A continuación presentamos los resultados computacionales obtenidos. Utilizando los códigos anteriores, vamos a generar una serie de grafos aleatorios con un cierto número de vértices y funciones de coste aleatorias. Resolveremos entonces los problemas de emparejamiento asociados y reportaremos ciertos parámetros relacionados. En la siguiente tabla tenemos las siguientes variables.
+A continuación presentamos los resultados computacionales obtenidos. Utilizando los códigos anteriores, vamos a generar una serie de grafos aleatorios con un cierto número de vértices y funciones de coste aleatorias. Resolveremos entonces los problemas de emparejamiento asociados y reportaremos ciertos resultados relacionados. En la siguiente tabla tenemos las siguientes variables.
 \begin{itemize}
 \item $N$ es el numero de vértices considerados.
 \item $I$ es el número de grafos aleatorios que generamos, es decir, los casos que estudiamos para cada $N$.
@@ -1854,9 +1854,9 @@ Reportamos también el siguiente análisis. Para un cierto número $N$ de vérti
 \end{tabular}
 \end{table}
 
-Por desgracia es realmente costoso tratar de buscar las soluciones interiores para el problema biobjetivo, de manera que para grafos de 30 nodos ya resulta relativamente costoso en un ordenador usual. En nuestro caso, para ciertos valores de $N$ entre $16$ y $30$, vamos a generar 5 problemas para estudiar el comportamiento medio de las soluciones soportadas frente a no soportadas. En nuestra función para generar grafos aleatorios, en este caso, vamos a tomar parámetro $p=0.7$. 
+Por desgracia es realmente costoso tratar de buscar las soluciones interiores para el problema biobjetivo, de manera que para grafos de 30 nodos ya resulta relativamente costoso en un ordenador usual. En nuestro caso, para ciertos valores de $N$ entre $16$ y $30$, vamos a generar 5 problemas para estudiar el comportamiento medio de las soluciones soportadas frente a no soportadas. La función para generar grafos aleatorios toma en este caso el parámetro $p=0.7$. 
 
-En la siguiente tabla encontramos el número $N$ de vértices de los grafos considerados, la Media Total de soluciones (soportadas y no sportadas), la media de soluciones no soportadas y la media de las relaciones soportadas frente al total.
+En la siguiente tabla encontramos el número $N$ de vértices de los grafos considerados, la Media Total de soluciones (soportadas y no soportadas), la media de soluciones no soportadas y la media de las soluciones soportadas frente al total.
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrr}
