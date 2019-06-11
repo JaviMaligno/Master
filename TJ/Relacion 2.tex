@@ -58,18 +58,30 @@ v^{(E,d)}_{}(S) &= \max\left\{0,E-\sum_{i\notin S} d_i\right\}\\
 \end{align*}
 Por lo que el juego es monótono.
 
-Sean $S,T\subset N$ tales que $S\cap T = \emptyset$. Naturalmente se tiene que
-$$
-\sum_{i \notin S\cup T} d_i \leq \sum_{i \notin S} d_i + \sum_{i \notin T} d_i \Rightarrow E - \sum_{i \notin S\cup T} d_i \geq \left(E - \sum_{i \notin S} d_i \right) + \left(E- \sum_{i \notin  T} d_i \right)
-$$
-Además, si $a,b,c\geq 0$ tenemos que $\max(a+b,c) \geq \max(a,c)+\max(b,c)$.  
+Sean $S,T\subset N$ tales que $S\cap T = \emptyset$. Utilizando que $E-\sum_{i\in N} d_i < 0$
+\begin{align*}
+E - \sum_{i \notin S\cup T} d_i &=  E - \left(\sum_{i \in N} d_i-\sum_{i \in S} d_i-\sum_{i \in T} d_i\right) \\
+& \geq  E - \sum_{i \in N} d_i+\sum_{i \in S} d_i-\sum_{i \in T} d_i + E - \sum_{i\in N} d_i\\
+& = \left(E - \sum_{i \in N} d_i + \sum_{i \in S} d_i \right) + \left(E- \sum_{i \in N} d_i  + \sum_{i \in  T} d_i \right) \\
+&= \left(E - \sum_{i \notin S} d_i \right) + \left(E- \sum_{i \notin  T} d_i \right) 
+\end{align*}
+
+Tenemos que probar la desigualdad siguiente
+
 \begin{align*}
 v^{(E,d)}(S) + v^{(E,d)}(T) &=\max\left\{0,E-\sum_{i\notin S} d_i\right\} + \max\left\{0,E-\sum_{i\notin T} d_i\right\} \\
 &\leq \max\left\{0,E-\sum_{i\notin T\cup S} d_i\right\} \\
 &= v^{(E,d)}(T\cup S)
 \end{align*}
+Si $v^{(E,d)}(S)$ o $v^{(E,d)}(T)$ es nulo, el resultado se tiene por la propiedad de monotonía. Si ambos son mayores que $0$, entonces se tiene directamente usando la desigualdad anterior que
+\begin{align*}
+v^{(E,d)}(S) + v^{(E,d)}(T) &=\max\left\{0,E-\sum_{i\notin S} d_i\right\} + \max\left\{0,E-\sum_{i\notin T} d_i\right\} \\
+& = \left(E-\sum_{i\notin S} d_i\right) + \left(E-\sum_{i\notin T} d_i\right)\\
+&\leq E - \sum_{i \notin S\cup T} d_i \\
+&\leq \max\left\{0,E-\sum_{i\notin T\cup S} d_i\right\} \\
+&= v^{(E,d)}(T\cup S)
+\end{align*}
 Por lo que el juego es superaditivo.
-\newpage
 \item En el juego $N=\{1,2,3\}$, $d_1 = 25000$, $d_2 = 20000$ y $d_3 = 40000$; $E=50000$ y $v=v^{(E,d)}$. Calculamos los dividendos
 \begin{align*}
 v(\emptyset) &= v(1)=v(2) =0\\
