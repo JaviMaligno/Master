@@ -95,7 +95,14 @@ Para $\mathfrak{o}(n)$ tenemos que considerar dos casos en función de la parida
 \{e_{i+1,j+l+1}-e_{j+1,i+l+1}\}_{1\leq i<j\leq l}\cup \{e_{i+l+1,j+1}-e_{j+l+1,i+1}\}_{1\leq j<i\leq l}
 \end{gather*}
 
-NI DE COÑA VOY A HACER ESTO CALCULANDO CORCHETES
+Tenemos $e_{i+1,j+l}-e_{j+l+1,i+l+1}=[e_{ii}-e_{i+l,i+l},e_{i+1,j+l}-e_{j+l+1,i+l+1}]$, $e_{i+1,j+l+1}-e_{j+1,i+l+1}=[e_{ii}-e_{i+l,i+l},e_{i+1,j+l+1}-e_{j+1,i+l+1}]$, $e_{i+l+1,j+1}-e_{j+l+1,i+1}=[e_{ii}-e_{i+l,i+l},e_{i+l+1,j+1}-e_{j+l+1,i+1}]$, $e_{1,j+1}-e_{j+l+1}=[e_{1,i+l+1}-e_{i+1,1},e_{i+l+1,j+1}-e_{j+l+1,i+1}]$, $e_{1,j+1}-e_{j+l+1,1}=[e_{1,i+1}-e_{i+l+1,1},e_{i+1,j+l}-e_{j+l+1,i+l+1}]$ ME FALTA EL PRIMERO, EN EL SIGUIENTE TAMBIÉN
+
+Tratamos ahora $n=2l$. Ahora tenemos la base
+\[
+\{e_{i+l,j}-e_{j+l,i}\}_{1\leq j<i\leq l}\cup\{e_{ii}-e_{i+l,i+l}\}_{1\leq i\leq l}\cup\{e_{ij}-e_{i+l,j+l}\}_{1\leq i\neq j\leq l}\cup\{e_{i,j+l}-e_{j,i+l}\}_{1\leq i<j\leq l}
+\]
+
+	Tenemos $e_{i+l,j}-e_{j+l,i}=[e_{i+l,j}-e_{j+l,i},e_{ii}-e_{i+l,i+l}]$, $e_{ij}-e_{i+l,j+l}=[e_{ii}-e_{i+l,i+l},e_{ij}-e_{i+l,j+l}]$ $e_{i,j+l}-e_{j,i+l}=[e_{ii}-e_{i+l,i+l},e_{i,j+l}-e_{j,i+l}]$, $e_{ii}-e_{i+l,i+l}=[]$. NO SACO EL QUE FALTA
 
 \item Al estar trabajando con álgebras, tenemos que estas están contenidas en su normalizador. Tenemos que ver que el recíproco es cierto. En el caso de $\mathfrak{sl}(n)$ no es cierto porque dada cualesquiera matrices $A,B\in\mathfrak{gl}(n)$, tenemos que $tr([A,B])=0$, luego en particular, para cualquier $W\in \mathfrak{sl}(n)$, tenemos que $tr([W,A])=0$, es decir, $[W,A]\in\mathfrak{sl}(n)$ y $\mathcal{N}(\mathfrak{sl}(n))=\mathfrak{gl}(n)$. %Para el caso de $\mathfrak{sl}(n)$, sea $H \in \mathcal{N}(\mathfrak{sl}(n))$ tal que $tr(H)\neq 0$. En particular, $\exists i$ tal que $H_{ii}\neq 0$.
 
