@@ -51,26 +51,16 @@ E_{ij}-E_{l+j,l+i}=[E_{i,l+i},E_{l+i,j}+E_{l+j,i}] \quad i \leq i \neq j \leq r\
 E_{i,l+j}+E_{j,l+i}=[E_{ii}-E_{l+i,l+i},E_{i,l+j}+E_{j,l+i}]\quad i \leq i < j \leq l
 \end{gather*}
 
-Para $\mathfrak{o}(n)$ tenemos que considerar dos casos en función de la paridad de $n$. Comenzamos con $n=2l+1$. En este caso una base está dada por la unión de los conjuntos
-\begin{gather*}
-\{E_{ii}-E_{l+i,l+i}\}_{2\leq i\leq l+1} \quad \{E_{1,i+l+1}-E_{i+1,1}, E_{1,i+1}-E_{i+l+1,1}\}_{1\leq i\leq l}\\
-\{E_{i+1,j+1}-E_{j+l+1,i+l+1}\}_{1\leq i\neq j\leq l}\\
-\{E_{i+1,j+l+1}-E_{j+1,i+l+1}, E_{i+l+1,j+1}-E_{j+l+1,i+1}\}_{1\leq j<i\leq l} 
-\end{gather*}
-Veamos que los elementos de la base están en el álgebra derivada.
-\begin{gather*}
-E_{i+1,j+l}-E_{j+l+1,i+l+1}=[E_{ii}-E_{l+i,l+i},E_{i+1,j+1}-E_{j+l+1,i+l+1}]**\\
-E_{i+1,j+l+1}-E_{j+1,i+l+1}=[E_{ii}-E_{i+l,i+l},E_{i+1,j+l+1}-E_{j+1,i+l+1}]
-\end{gather*}
-Tratamos ahora $n=2l$. Ahora tenemos la base
-\[
-\{e_{i+l,j}-e_{j+l,i}\}_{1\leq j<i\leq l}\cup\{e_{ii}-e_{i+l,i+l}\}_{1\leq i\leq l}\cup\{e_{ij}-e_{i+l,j+l}\}_{1\leq i\neq j\leq l}\cup\{e_{i,j+l}-e_{j,i+l}\}_{1\leq i<j\leq l}
-\]
-
-	Tenemos $e_{i+l,j}-e_{j+l,i}=[e_{i+l,j}-e_{j+l,i},e_{ii}-e_{i+l,i+l}]$, $e_{ij}-e_{i+l,j+l}=[e_{ii}-e_{i+l,i+l},e_{ij}-e_{i+l,j+l}]$ $e_{i,j+l}-e_{j,i+l}=[e_{ii}-e_{i+l,i+l},e_{i,j+l}-e_{j,i+l}]$, $e_{ii}-e_{i+l,i+l}=[]$. NO SACO EL QUE FALTA
+Para $\mathfrak{o}(n)$ vamos a utilizar otra estrategia. Tengamos en cuenta que si un álgebra $\mathfrak{g}$ es semisimple, entonces es suma directa de ideales $\mathfrak{g}_1,\dotsc,\mathfrak{g}_m$ simples. Tenemos, por tanto,
+$$
+[\mathfrak{g},\mathfrak{g}] = \left[\bigoplus_{i=1}^m \mathfrak{g}_i,\bigoplus_{i=1}^m \mathfrak{g}_i\right] = \bigoplus_{i=1}^m [\mathfrak{g}_i,\mathfrak{g}_i] =\bigoplus_{i=1}^m \mathfrak{g}_i = \mathfrak{g}
+$$
+Es decir, el álgebra coincide con su derivada. Vamos a probar que $\mathfrak{o}(n)$ es semisimple.
 
 \item Al estar trabajando con álgebras, tenemos que estas están contenidas en su normalizador. Tenemos que ver que el recíproco es cierto. En el caso de $\mathfrak{sl}(n)$ no es cierto porque dada cualesquiera matrices $A,B\in\mathfrak{gl}(n)$, tenemos que $tr([A,B])=0$, luego en particular, para cualquier $W\in \mathfrak{sl}(n)$, tenemos que $tr([W,A])=0$, es decir, $[W,A]\in\mathfrak{sl}(n)$ y $\mathcal{N}(\mathfrak{sl}(n))=\mathfrak{gl}(n)$. %Para el caso de $\mathfrak{sl}(n)$, sea $H \in \mathcal{N}(\mathfrak{sl}(n))$ tal que $tr(H)\neq 0$. En particular, $\exists i$ tal que $H_{ii}\neq 0$.
 
+m n a b     ma + nc  mb + 
+p q c d   =
 \item 
 Para el caso triangular superior, hagamos la siguiente consideración. Sea $D$ una matriz diagonal y $M$ una matriz cualquiera. Queremos ver que no puede ser que $[D,M] \in \mathcal{N}(t(n))$, para todo $D\in t(n)$, sin ser $M$ matriz diagonal. Tomando $D=E_{ii}$ es claro que $[D,M]$ es la matriz que tiene la fila $i$ de $M$, la columna $i$ de $M$ con signo opuesto, $0$ en la diagonal y el resto de elementos. Imponiendo que la zona triangular inferior sea nula, por inducción en $i$, llegamos  necesariamente los correspondientes elementos de $M$ son también nulos. Por tanto $M$ es triangular superior. Además, el mismo argumento imponiendo además que sea diagonal vale para $\delta(n)$.
 
