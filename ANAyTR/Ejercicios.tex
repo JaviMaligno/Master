@@ -14,9 +14,6 @@
 \begin{solucion}
 		Ya hemos probado en clase que $\mathcal{N}(W)$ es una subálgebra que contiene a $W$ como ideal, así que tenemos que probar que es la mayor cumpliendo estas propiedades. Sea $V$ una subálgebra que contiene a $\mathcal{N}(W)$ y que contiene a $W$ como ideal. Entonces, para cualquier $w\in W$ y cualquier $v\in V$ se tiene que $[w,v]\in V$ por ser $W$ un ideal de $V$, pero esta es justamente la condición que debe cumplir $v$ para estar en el normalizador de $W$, luego el resultado se tiene trivialmente. 
 	\end{solucion}
-
-
-
 \newpage
 
 \begin{ejercicio}{2}
@@ -40,7 +37,7 @@ Probar los siguientes enunciados.
 \item[]
 \item Sabemos que siempre se tiene una contención. Basta ver que todo elemento de una base de las álgebras, como espacios vectoriales, está en su derivada. Utilizaremos repetidamente la fórmula $[e_{ij},e_{kl}]=\delta_{jk}e_{il}-\delta_{li}e_{kj}$ para agilizar los cálculos.
 
-En $\mathfrak{sl}(n)$ tenemos la base $\{e_{ij}, h_i=e_{i,i}-e_{i+1,i+1}\}_{1\leq i\leq n-1, i\neq j}$. Es fácil comprobar que para $i\neq j$, $e_{ij}=[e_{ij},e_{jj}]$ y que $h_i=[e_{i,i+1},e_{i+1,i}]$, por lo que tenemos el resultado.
+En $\mathfrak{sl}(n)$ tenemos la base $\{e_{ij}, h_i=e_{i,i}-e_{i+1,i+1}\}_{1\leq i\leq n-1, i\neq j}$. Es fácil comprobar que para $k\neq i\neq j\neq k$, $e_{ij}=[e_{ik},e_{kj}]$ y que $h_i=[e_{i,i+1},e_{i+1,i}]$, por lo que tenemos el resultado. El primer resultado solo valdría para $n\geq 3$, pero para $n=1,2$ el resultado se verifica con un sencillo cálculo.
 %$[h_i,h_j]=0$ para todo $i,j$. 
 %$$[h_i,h_j]=[e_{i,i}-e_{i+1,i+1},e_{j,j}-e_{j+1,j+1}]=[e_{i,i}-e_{i+1,i+1},e_{j,j}]-[e_{i,i}-e_{i+1,i+1},e_{j+1,j+1}]=$$
 %$$ [e_{i,i},e_{j,j}]-[e_{i+1,i+1},e_{j,j}]-[e_{i,i},e_{j+1,j+1}]+[e_{i+1,i+1},e_{j+1,j+1}]=$$
