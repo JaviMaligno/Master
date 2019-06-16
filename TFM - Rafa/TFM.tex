@@ -1,4 +1,4 @@
-\documentclass[twoside,a4paper,openright,12pt,tikz]{book}
+\documentclass[twoside,a4paper,openright,12pt]{book}
 \usepackage[T1]{fontenc}
 \usepackage{amsfonts}
 \usepackage{mathtools,amscd,amsthm}
@@ -1740,66 +1740,74 @@ A continuación presentamos los resultados computacionales obtenidos. Utilizando
 \item Análogamente $T.GH$, $T.PE$ y $T.Match$ son los tiempos medios en los que cada método ha resuelto los correspondientes problemas.
 \item $Exp.B.B$ es el número de nodos de branch and cut explorados cuando utilizamos Programación Entera.
 \end{itemize} 
-Una vez que el tiempo medio necesario para resolver un problema es superior a 30 segundos, dejamos de utilizar dicho método y todos los valores pasan a ser $0$. Observamos que para grafos con 18 vértices ya comienza a ser costroso utilizar la formulación de Edmonds debido a que introducimos un número exponencial de restricciones.
+Una vez que el tiempo medio necesario para resolver el problema con la formulación de Edmonds es superior a loas cinco minutos, todos los valores pasan a ser $0$. Observamos que para grafos con 18 vértices ya comienza a ser costroso utilizar la formulación de Edmonds debido a que introducimos un número exponencial de restricciones.
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrrrrrrr}
   \hline
 N & I & Var & S.GH & S.PE & S.Match & T.PE & T.GH & T.Match & Exp.B.B \\ 
-  \hline
-10 & 10 & 21.40 & 4.90 & 5.60 & 8.50 &   0.01 & 0.02 & 0.04 & 0.10 \\ 
-16 & 10 & 59.40 & 8.90 & 13.90 & 17.80 & 0.01 & 0.03 & 3.34 & 0.00 \\ 
-18 &  5 & 75.60 & 13.40 & 17.60 & 20.20& 0.02 & 0.03 & 17.46 & 0.20 \\ 
- \hline
-40 & 10 & 389.00 & 36.50& 43.50 & 0.00 & 0.04 & 0.05 & 0.00 & 0.50 \\ 
-60 & 10 & 886.20 & 56.40& 62.00 & 0.00 & 0.10 & 0.11 & 0.00 & 0.40 \\ 
-100 & 10 & 2469.80 & 102.80 & 108.80 & 0.00 & 0.24 & 0.22 & 0.00 & 0.40 \\ 
-120 &   10 & 3551.80 & 109.20 & 113.60 & 0.00 & 0.33 & 0.32 & 0.00 & 0.00 \\ 
-150 &   10 & 5551.20 & 153.40 & 160.60 & 0.00 & 0.56 & 0.45 & 0.00 & 0.00 \\ 
-170 &   10 & 7164.60 & 167.80 & 174.40 & 0.00 & 0.83 & 0.60 & 0.00 & 0.20 \\ 
-200 &   10 & 10034.00 & 201.80 & 204.00 & 0.00 & 1.31 & 0.80 & 0.00 & 0.20 \\ 
+  \hline 10 &   5 & 24.00 & 5.00 & 8.20 & 10.80 & 0.00 & 0.02 & 0.05 & 0.20 \\ 
+   12 &   5 & 34.80 & 7.00 & 10.00 & 13.20 & 0.00 & 0.03 & 0.15 & 0.20 \\ 
+   14 &   5 & 46.40 & 8.80 & 13.00 & 15.40 & 0.00 & 0.03 & 0.70 & 0.00 \\ 
+   16 &   5 & 62.80 & 10.20 & 15.80 & 25.00 & 0.00 & 0.02 & 3.24 & 0.00 \\ 
+   18 &   5 & 81.00 & 11.60 & 15.60 & 19.80 & 0.00 & 0.03 & 16.54 & 0.40 \\ 
+   20 &   5 & 102.00 & 15.80 & 21.60 & 25.80 & 0.01 & 0.03 & 75.21 & 0.20 \\ 
+   40 &   5 & 388.00 & 37.40 & 41.60 & 0.00 & 0.03 & 0.05 & 0.00 & 0.20 \\ 
+   60 &   5 & 888.40 & 55.20 & 62.40 & 0.00 & 0.07 & 0.09 & 0.00 & 0.40 \\ 
+   80 &   5 & 1583.20 & 80.80 & 89.20 & 0.00 & 0.15 & 0.16 & 0.00 & 0.60 \\ 
+   90 &   5 & 2018.40 & 87.80 & 93.20 & 0.00 & 0.18 & 0.18 & 0.00 & 0.40 \\ 
+  100 &   5 & 2459.00 & 110.20 & 106.60 & 0.00 & 0.26 & 0.22 & 0.00 & 0.20 \\
   \hline
  \end{tabular}
  \end{table}
+ \newpage
 \begin{table}[h]
 \centering
 \begin{tabular}{rrrrrrrrrr}
   \hline
 N & I & Var & S.GH & S.PE & S.Match & T.PE & T.GH & T.Match & Exp.B.B \\ 
-  \hline 
-  220 &   5 & 12033.00 & 210.40 & 219.40 & 0.00 & 1.50 & 0.93 & 0.00 & 0.00 \\ 
-  250 &   5 & 15529.20 & 253.80 & 258.00 & 0.00 & 2.65 & 1.28 & 0.00 & 0.40 \\ 
-  270 &   5 & 18139.40 & 286.80 & 291.40 & 0.00 & 4.09 & 1.55 & 0.00 & 0.60 \\ 
-290 &     5 & 20955.60 & 290.00 & 300.20 & 0.00 & 4.67 & 1.73 & 0.00 & 0.60 \\ 
-  300 &   5 & 22416.80 & 298.00 & 306.80 & 0.00 & 4.75 & 1.78 & 0.00 & 0.40 \\ 
-320 &   5   & 25466.80 & 345.40 & 398.00 & 0.00 & 10.20 & 2.12 & 0.00 & 0.60\\
-  350 &   5 & 30601.80 & 385.80 & 390.80 & 0.00 & 10.84 & 2.51 & 0.00 & 0.60\\
-  370 &   5 & 34050.60 & 387.20 & 399.00 & 0.00 & 11.00 & 2.73 & 0.00 & 0.40\\
-  400 &   5 & 39902.80 & 426.60 & 432.00 & 0.00 & 17.09 & 3.44 & 0.00 & 0.60 \\ 
-   \hline
- 
-\end{tabular}
-\end{table}
-\newpage
+
+  140 &   5 & 4809.40 & 140.60 & 160.80 & 0.00 & 0.53 & 0.40 & 0.00 & 0.60 \\ 
+  180 &   5 & 8057.60 & 185.20 & 200.40 & 0.00 & 0.97 & 0.96 & 0.00 & 0.20 \\ 
+  200 &   5 & 10033.80 & 200.40 & 208.00 & 0.00 & 1.35 & 0.77 & 0.00 & 0.20 \\ 
+  240 &   5 & 14325.80 & 254.20 & 262.80 & 0.00 & 2.06 & 1.06 & 0.00 & 0.20 \\ 
+  280 &   5 & 19492.20 & 297.60 & 295.40 & 0.00 & 2.96 & 1.41 & 0.00 & 0.00 \\ 
+  300 &   5 & 22396.00 & 317.80 & 316.20 & 0.00 & 5.06 & 1.68 & 0.00 & 0.40 \\ 
+  340 &   5 & 28844.80 & 371.00 & 378.40 & 0.00 & 7.01 & 2.20 & 0.00 & 0.40 \\ 
+  380 &   5 & 36012.80 & 398.00 & 399.20 & 0.00 & 13.60 & 2.75 & 0.00 & 0.60 \\ 
+  400 &   5 & 39876.20 & 418.80 & 428.40 & 0.00 & 11.01 & 2.97 & 0.00 & 0.20 \\ 
+  440 &   5 & 48271.80 & 478.20 & 487.80 & 0.00 & 22.98 & 3.81 & 0.00 & 0.60 \\ 
+  440 &   5 & 48310.80 & 463.60 & 464.20 & 0.00 & 25.31 & 4.00 & 0.00 & 0.80 \\ 
+  460 &   5 & 52719.00 & 475.80 & 483.80 & 0.00 & 65.58 & 8.18 & 0.00 & 1.00 \\ 
+  480 &   5 & 57436.80 & 506.40 & 540.40 & 0.00 & 69.62 & 7.05 & 0.00 & 0.80 \\ 
+  \hline
+ \end{tabular}
+ \end{table}
 A continuación, presentamos algunas gráficas de los resultados anteriores.
+
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.75]{plot1}
+\includegraphics[scale=0.6]{plot1}
 \caption{Aristas frente Nodos}
 \end{figure}
 
 En la primera gráfica tratamos de representar la cantidad de aristas frente a los nodos. Dado que como parámetro del grafo de Erdös-Rényi hemos tomado $p=0.5$ y el número posible de aristas es $N(N-1)/2$, hemos dibujado por debajo los puntos de $N(N-1)/4$, es decir, el número de puntos esperados. Como vemos, la gráfica se superpone.
 
 A continuación comparamos el número de iteraciones del método del simplex y el tiempo de computación frente al número de nodos en para el algortimo de Grötschel-Holland y para los métodos de Gurobi para resolver Programación Entera.
+\newpage
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.65]{plot2}
+\caption{Iteraciones del Simplex frente a Nodos}
+\end{figure}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.75]{plot2}
-\caption{Iteraciones del Simplex frente a Nodos}
-\includegraphics[scale=0.75]{plot3}
+\includegraphics[scale=0.65]{plot3}
 \caption{Tiempo de computación en segundos frente a Nodos}
 \end{figure}
 
+\newpage
 \section{Reoptimización}
 Al desactivar el pre-solve, nos aseguramos que tras cambiar la función objetivo se parte de la misma base óptima. Ya explicamos anteriormente cómo conseguimos la variación del parámetro y la solución. Veamos un ejemplo.
 \begin{figure}[h!]

@@ -6,13 +6,57 @@ library(tidyr)
 xs = read.csv("datos.csv")
 xs = xs[,-1]
 
-print(xtable(xs), include.rownames = F)
 
-N = c(10,16,18,24,30,40,60,70,80,100,120,150,170,200,220,250,270,290,300,320,350,370,400)
+x1 = read.csv("datos1.csv")
+x1 = x1[,-1]
+x2 = read.csv("datos2.csv")
+x2 = x2[,-1]
+x3 = read.csv("datos3.csv")
+x3 = x3[,-1]
+x4 = read.csv("datos4.csv")
+x4 = x4[,-1]
+x5 = read.csv("datos5.csv")
+x5 = x5[,-1]
+x6 = read.csv("datos6.csv")
+x6 = x6[,-1]
+x7 = read.csv("datos7.csv")
+x7 = x7[,-1]
+x8 = read.csv("datos8.csv")
+x8 = x8[,-1]
+x9 = c(500,
+        5,
+        62317.0,
+        541.2,
+        545.6,
+        0.0,
+        49.72127842903137,
+        5.776909828186035,
+        0.0,
+        0.6)
 
-Var=c(21.40,59.40,76.00,139.00 ,225.00,389.00 ,886.20,1193.00,1587.00,2469.80,
-      3551.80,5551.20,7164.60,10034.00,12033.00,15529.20,18139.40,
-      20955.60,22416.80,25466.80,30601.80,34050.60,39902.80)
+
+print(xtable(df), include.rownames = F)
+
+df = data.frame(rbind(x1,xs,x2,x3,x4,x5,x6,x7,x8))
+
+colnames(df) <- c("Nodos","I","Var","S.GH", "S.PE","S.Match","T.GH","T.PE","T.Match","Exp.B.B")
+df
+
+df0 = gather(cbind(df[,c(1,3)],Teoría = bino(df[,1])), key = "Leyenda", value = "Variables",-Nodos)
+pdf("plot1.pdf", height=5, width=7)
+ggplot(df0,aes(x=Nodos,y=Variables,color=Leyenda)) + geom_point() + geom_line()
+dev.off()
+
+df1 = gather(df[,c(1,4,5)] , key = "Método", value = "Iteraciones",-Nodos)
+pdf("plot2.pdf", height=5, width=7)
+ggplot(df1,aes(x=Nodos,y=Iteraciones,color=Método)) + geom_point() + geom_line()
+dev.off()
+
+df2 = gather(df[,c(1,7,8)] , key = "Método", value = "Tiempo",-Nodos)
+pdf("plot3.pdf", height=5, width=7)
+ggplot(df2,aes(x=Nodos,y=Tiempo,color=Método)) + geom_point()+geom_line()
+dev.off()
+
 
 bino = function(x){
   a = x*(x-1)/4
@@ -32,14 +76,6 @@ pdf("plot1.pdf", height=5, width=7)
 ggplot(frame2,aes(x=Nodos,y=Aristas, color=Tipo )) + geom_point(color = "black") + 
   geom_line()
 dev.off()
-
-sgh = c(4.90,8.90,11.50,20.00,19.00,36.50,56.40,67.00,77.40,102.80,109.20,153.40,
-        167.80,201.80, 210.40,253.80,286.80,290.00,298.00,345.40,385.80,387.20,426.60)
-spe = c(5.60,13.90,16, 25.52, 6.50, 43.50,62.00,72.60,83.80 ,108.80,113.60,160.60,174.40, 
-        204.00,219.40,258.00,291.40,300.20,306.80,398.00,390.80,399.00,432.00)
-
-df1 = data.frame(Nodos = N, S.GH = sgh, S.PE = spe)
-df2 = gather(df1, key = "Método", value = "Iteraciones",-Nodos)
 
 pdf("plot2.pdf", height=5, width=7)
 ggplot(df2,aes(x=Nodos,y=Iteraciones,color=Método)) + geom_point() + geom_line()

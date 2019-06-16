@@ -59,5 +59,5 @@ def analisis(N, I, par1 = 0, par2 = 0, lamb = 0):
     return([N, I, aristas/I, iter0/I,  iter1/I, iter2/I,  
             t0/I, t1/I, t2/I, bcut/I])
       
-df = pd.DataFrame.from_records([analisis(N,5,1,0,0) for N in range(100,201,20)])
-df.to_csv("datos.csv")
+df = pd.DataFrame.from_records([analisis(N,5,1,0,0) for N in range(440,500,20)])
+df.to_csv("datos9.csv")
