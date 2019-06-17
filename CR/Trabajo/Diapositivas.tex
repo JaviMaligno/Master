@@ -292,10 +292,17 @@ Supongamos que Alice quiere pedirle a Bob que realice un trabajo computacional e
 	\end{block}\pause
 
 \begin{block}{fee}
-	Las transacciones incluyen también una comisión máxima que sirve de incentivo para que los mineros las incluyan la transacción en sus bloques. La transacción efectiva depende de la diferencia entre la suma de los inputs y los outputs.
+	Las transacciones incluyen también una comisión máxima que sirve de incentivo para que los mineros las incluyan la transacción en sus bloques. La comisión efectiva depende de la diferencia entre la suma de los inputs y la de los outputs.
 \end{block}
-
 \end{frame}
+
+\begin{frame}
+	\begin{itemize}
+		\item<1-> Cuando una transacción se usa como input, esta debe gastarse por completo.
+		\item<2-> Si un input es mayor que la cantidad a pagar se genera otra transacción del pagador a sí mismo a modo de vuelta.
+	\end{itemize}
+\end{frame}
+
 \begin{frame}
 	\href{https://api.blockcypher.com/v1/btc/main/txs/0142f951d09eb4df18eeff1879d548974f3afd6b94443dff5b2aba4ce5d5a403?limit=50&includeHex=true}{Ejemplo de transacción real} 
 	
@@ -391,14 +398,10 @@ Tienen la misma estructura que las transacciones regulares pero con ligeras modi
 \begin{frame}
 	Existe una cota superior para este valor, que se usó para minar el primer bloque (\emph{bloque génesis}), pero no una inferior. 
 	
-	Para asegurar un ritmo constante de 1 bloque minado cada 10 minutos, $T$ se recalcula cada 2016 bloques mediante la siguiente fórmula, donde $t_{sum}$ es el tiempo que se necistó para minar los 2015 bloques anteriores
+	Para asegurar un ritmo constante de 1 bloque minado cada 10 minutos, $T$ se recalcula cada 2016 bloques mediante la siguiente fórmula, donde $t_{sum}$ es el tiempo que se necesitó para minar los 2015 bloques anteriores
 	$$ T' =	\frac{t_{sum}}{14\cdot 24\cdot 60\cdot 60s}T$$
 \end{frame}
-\begin{frame}
-	\begin{alertblock}{}
-		En un bloque no se puede incluir dos veces la misma transacción ni transacciones que usen un mismo input, y tampoco se puede incluir una transacción que ya haya sido gastada en un bloque anterior (hay un orden cronológico), lo cual impide el doble gasto.
-	\end{alertblock}
-\end{frame}
+
 
 
 \subsection{Minería}
@@ -415,7 +418,7 @@ Este registro adopta forma de cadena gracias a las referencias de cada bloque al
 \begin{frame}
 	\frametitle{Minería}
 	\begin{defi}
-		El proceso de encontrar un bloque válido y colocarlo en la blockchain se denomina \textbf{minería} y los nodos que lo llevan a cabo se llaman \textbf{mineros}. Los nodos que pueden realizar esta tarea se denominan \textbf{nodos completos}, es decir, nodos que tienen descargada toda la blockchain (en oposición a los \emph{nodos ligeros}, que veremos más adelante).
+		El proceso de construir un bloque válido y colocarlo en la blockchain se denomina \textbf{minería} y los nodos que lo llevan a cabo se llaman \textbf{mineros}. Los nodos que pueden realizar esta tarea se denominan \textbf{nodos completos}, es decir, nodos que tienen descargada toda la blockchain (en oposición a los \emph{nodos ligeros}, que veremos más adelante).
 	\end{defi}
 \end{frame}
 
@@ -424,7 +427,7 @@ Este registro adopta forma de cadena gracias a las referencias de cada bloque al
 	\begin{itemize}
 		\item<2-> Recolectar las transacciones que cumplan los requisitos especificados por el minero (comisión recibida). Suelen recolectarse varios cientos de transacciones.
 		\item<3-> Verificar las transacciones que se van a incluir en el bloque (verificar firma del pagador y prueba de conocimiento del receptor) y comprobar que sus inputs no han sido gastados previamente.
-		\item<4-> Seleccionar el bloque más reciente en la blockchain (como veremos luego, puede ser necesario elegir entre varios) e insertar el hash del encabezado de ese bloque bloque en un nuevo bloque.
+		\item<4-> Seleccionar el bloque más reciente en la blockchain (como veremos luego, puede ser necesario elegir entre varios) e insertar el hash del encabezado de ese bloque en un nuevo bloque.
 		\item<5-> Realizar la prueba de trabajo y publicarla para que pueda ser verificada.  %la red puede rechazarlo
 	\end{itemize}
 \end{frame}
@@ -473,7 +476,13 @@ Este registro adopta forma de cadena gracias a las referencias de cada bloque al
 \end{frame}
 
 \begin{frame}
-	Por este motivo se recomienda esperar hasta 6 bloques antes de aceptar una rama como rama principal. Después de esto, solo los mineros que tengan sus bloques en la rama principal reciben sus recompensas. Las transacciones de las otras ramas vuelven a quedar en espera para ser incluidas en otro bloque.
+	Por este motivo se recomienda esperar hasta 6 bloques antes de aceptar una rama como rama principal. Después de esto, solo los mineros que tengan sus bloques en la rama principal reciben sus recompensas. Las transacciones de las otras ramas vuelven a quedar en espera para ser incluidas en otro bloque.\pause
+	
+	%\begin{frame}
+		\begin{alertblock}{}
+			En un bloque no se puede incluir dos veces la misma transacción ni transacciones que usen un mismo input, y tampoco se puede incluir una transacción que ya haya sido gastada en un bloque anterior (hay un orden cronológico), lo cual impide el doble gasto.
+		\end{alertblock}
+%	\end{frame}
 \end{frame}
 
 \begin{frame}
