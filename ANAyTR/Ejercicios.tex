@@ -42,7 +42,7 @@ En $\mathfrak{sl}(n)$ tenemos la base $\{E_{ij}, h_i=E_{i,i}-E_{i+1,i+1}\}_{1\le
 En el caso de $\mathfrak{sp}(2l)$ tenemos la base dada por la unión de los conjuntos
 \begin{gather*}
 \{E_{ii}-E_{l+i,l+i}, E_{i,l+i}\}_{1\leq i \leq l} \\
-\{E_{ij}-E_{l+j,l+i}\}_{1\leq i\neq j\leq r} \qquad \{E_{i,l+j}+E_{j,l+i}\}_{i\leq i<j\leq l}
+\{E_{ij}-E_{l+j,l+i}\}_{1\leq i\neq j\leq l} \qquad \{E_{i,l+j}+E_{j,l+i}\}_{i\leq i<j\leq l}
 \end{gather*}
 Veamos que todos los elementos de la base están también en el álgebra derivada. Utilizaremos que $E_{l+i,i} \in \mathfrak{sp}(2l)$ $1\leq i \leq l$, $E_{l+i,j}+E_{l+j,i} \in \mathfrak{sp}(2l)$ $i \leq i\neq j \leq l$.
 \begin{gather*}
@@ -51,14 +51,36 @@ E_{ij}-E_{l+j,l+i}=[E_{i,l+i},E_{l+i,j}+E_{l+j,i}] \quad i \leq i \neq j \leq r\
 E_{i,l+j}+E_{j,l+i}=[E_{ii}-E_{l+i,l+i},E_{i,l+j}+E_{j,l+i}]\quad i \leq i < j \leq l
 \end{gather*}
 
-Para $\mathfrak{o}(n)$ vamos a utilizar otra estrategia. Sabemos que si $\mathfrak{g}$ es un subálgebra simple, entonces $[\mathfrak{g},\mathfrak{g}] = g$, pues se da la contención como ideal y el $[\mathfrak{g},\mathfrak{g}]$ es no vacío, luego la simplicidad implica la igualdad.  Además, si un álgebra $\mathfrak{g}$ es semisimple, entonces es suma directa de ideales $\mathfrak{g}_1,\dotsc,\mathfrak{g}_m$ simples. Tenemos, por tanto,
+Para $\mathfrak{o}(n)$ vamos a utilizar otra estrategia. Sabemos que si $\mathfrak{g}$ es un subálgebra simple, entonces $[\mathfrak{g},\mathfrak{g}] = \mathfrak{g}$, pues se da la contención como ideal y el $[\mathfrak{g},\mathfrak{g}]$ es no vacío, luego la simplicidad implica la igualdad.  Además, si un álgebra $\mathfrak{g}$ es semisimple, entonces es suma directa de ideales $\mathfrak{g}_1,\dotsc,\mathfrak{g}_m$ simples. Tenemos, por tanto,
 $$
 [\mathfrak{g},\mathfrak{g}] = \left[\bigoplus_{i=1}^m \mathfrak{g}_i,\bigoplus_{i=1}^m \mathfrak{g}_i\right] = \bigoplus_{i=1}^m [\mathfrak{g}_i,\mathfrak{g}_i] =\bigoplus_{i=1}^m \mathfrak{g}_i = \mathfrak{g}
 $$
-Es decir, el álgebra coincide con su derivada. Basta utilizar que para todo $n$ $\mathfrak{o}(n)$ es semisimple.
+En la segunda igualdad hemos usado que los $g_i$ son ideales en suma directa, de modo que $[\mathfrak{g}_i,\mathfrak{g}_j]\subseteq \mathfrak{g}_i\cap\mathfrak{g}_j=0$. Es decir, el álgebra coincide con su derivada. Basta utilizar que $\mathfrak{o}(n)$ es semisimple  para todo $n$.
 
 \item Al estar trabajando con álgebras, tenemos que estas están contenidas en su normalizador. Tenemos que ver que el recíproco es cierto. En el caso de $\mathfrak{sl}(n)$ no es cierto porque dada cualesquiera matrices $A,B\in\mathfrak{gl}(n)$, tenemos que $tr([A,B])=0$, luego en particular, para cualquier $W\in \mathfrak{sl}(n)$, tenemos que $tr([W,A])=0$, es decir, $[W,A]\in\mathfrak{sl}(n)$ y $\mathcal{N}(\mathfrak{sl}(n))=\mathfrak{gl}(n)$. %Para el caso de $\mathfrak{sl}(n)$, sea $H \in \mathcal{N}(\mathfrak{sl}(n))$ tal que $tr(H)\neq 0$. En particular, $\exists i$ tal que $H_{ii}\neq 0$.
 
+Vamos con $\mathfrak{sp}(2l)$. Dada una matriz cuadrada de tamaño $2l$ escrita en bloques como $$A=\begin{pmatrix}
+m & n\\
+p & q
+\end{pmatrix}$$ imponemos que $[A,E]\in\mathfrak{sp}(2l)$ para toda matriz $E$ de la base. Denotamos $e_{ij}$ a la matriz construida como $E_{ij}$ pero de tamaño $l$. 
+
+\[
+\left[\begin{pmatrix}
+m & n\\
+p & q
+\end{pmatrix}, E_{i,i+l}\right]=\begin{pmatrix}
+0 & me_{ii} \\
+0 & ne_{ii}
+\end{pmatrix}- \begin{pmatrix}
+e_{ii}p & e_{ii}q\\
+0 & 0
+\end{pmatrix}=\begin{pmatrix}
+p_{i\cdot} & m_{\cdot i}-q_{i\cdot}\\
+0 & p_{\cdot i}
+\end{pmatrix}
+\]
+Imponiendo que esta matriz esté en $\mathfrak{sp}(2l)$ tendríamos que $p_{i\cdot}=-p_{\cdot i}^t=-p_{i\cdot}$, luego $p=0$ (en particular $p^t=p$). Imponiendo $m_{\cdot i}-q_{i\cdot}=(m_{\cdot i}-q_{i\cdot})^t$ deducimos $$m_{\cdot i}-q_{i\cdot}=m_{i\cdot}-q_{\cdot i}$$ 
+de donde $-q_{i\cdot}=m_{i\cdot}$, luego $q=-m^t$ (salvo quizá en la diagonal). Continuando con los demás elementos de la base terminaríamos de obtener las condiciones buscadas. La misma estrategia es válida para $\mathfrak{o}(n)$. 
 
 
 \item 
