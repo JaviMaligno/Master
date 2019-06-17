@@ -1,0 +1,58 @@
+	\documentclass[twoside]{article}
+\usepackage{../../estilo-ejercicios}
+%\renewcommand{\baselinestretch}{1,3}
+%--------------------------------------------------------
+\begin{document}
+
+\title{Ejercicios sobre Bitcoin (Solución)}
+\author{Javier Aguilar Martín y Jesús López}
+\maketitle
+
+
+\begin{ejercicio}{1}
+Comprueba que la verificación de la firma digital sobre curvas elípticas es correcta. 
+
+%\begin{nota}
+%Se recuerda que el algoritmo de firma digital consistía en lo siguiente:
+%\begin{enumerate}
+%	\item Calcular $e=h(m)$.
+%	\item Sea $z$ el conjunto de $l$ dígitos más a la izquierda de $e$, donde $l$ es la longitud en bits de $N$.
+%	\item Elegir un número entero aleatorio $k\in\{1,\dots,N-1\}$.
+%	\item Calcular el punto $(a,b)=kP$ usando la multiplicación por escalar de la curva elíptica. 
+%	\item Encontrar $r\equiv a\mod N$. Si $r=0$, vuelta al paso 3.
+%	\item Encontrar $s\equiv (z+rx)k^{-1}\mod N$. Si $s=0$, vuelta al paso 1. 
+%	\item La firma es el par $(r,s)$. 
+%\end{enumerate}
+%Y la verificación consistía en:
+%\begin{enumerate}
+%	\item Verificar que $1\leq r,s\leq N-1$. En caso contrario la firma no es válida.
+%	\item Calcular $e=h(m)$ con la misma función hash de antes.
+%	\item Tomar $z$ como los $l$ bits más a la izquierda de $e$ del mismo modo que antes.
+%	\item Calcular $w\equiv s^{-1}\mod N$.
+%	\item Calcular $u\equiv zw\mod N$ y $v\equiv rw\mod N$. 
+%	\item Calcular el punto $(a,b)=uP+vY$.
+%	\item Verificar que $r\equiv a\mod N$. La firma es inválida en caso contrario.
+%\end{enumerate}
+%\end{nota}
+\end{ejercicio}
+\begin{solucion}
+	 Denotemos $C=uP+vY$. Como $Y=xP$ obtenemos $$C=(u+vx)P.$$ Sustituyendo los valores de $u$ y $v$, y luego el de $w$: $$ C=(zw+rwx)P= (z+rx)s^{-1}P.$$ Introducimos ahora la definición de $s$: $$C=(z+rx)(z+rx)^{-1}(k^{-1})^{-1}P=kP.$$ Por la definiciíon de $r$ esto constituye la verificación.
+	\end{solucion}
+
+\newpage
+
+\begin{ejercicio}{2}
+	Contesta a las siguientes preguntas.
+	\begin{enumerate}
+		\item ¿En qué consiste una prueba de trabajo?
+	\item  ¿Cómo evita Bitcoin el doble gasto?
+\end{enumerate}
+\end{ejercicio}
+\begin{solucion}\
+	\begin{enumerate}
+		\item 	Una prueba de trabajo es un reto criptográfico para asegurar que una parte ha realizado una determinada cantidad de trabajo computacional. La verificación de la prueba debe poder realizarse de forma eficiente.
+		\item En un bloque no se puede incluir dos veces la misma transacción ni transacciones que usen un mismo input, y tampoco se puede incluir una transacción que ya haya sido gastada en un bloque anterior (hay un orden cronológico), lo cual impide el doble gasto.
+	\end{enumerate}
+\end{solucion}
+
+\end{document}
