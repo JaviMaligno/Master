@@ -51,25 +51,20 @@ E_{ij}-E_{l+j,l+i}=[E_{i,l+i},E_{l+i,j}+E_{l+j,i}] \quad i \leq i \neq j \leq r\
 E_{i,l+j}+E_{j,l+i}=[E_{ii}-E_{l+i,l+i},E_{i,l+j}+E_{j,l+i}]\quad i \leq i < j \leq l
 \end{gather*}
 
-Para $\mathfrak{o}(n)$ vamos a utilizar otra estrategia. Sabemos que si $\mathfrak{g}$ es un subálgebra simple, entonces $[\mathfrak{g},\mathfrak{g}] = g$, pues se da la contención como ideal y el $[\mathfrak{g},\mathfrak{g}]$ es no vacío, luego la simplicidad implica la igualdad. Si $n=2l$, vamos a ver que $\mathfrak{o}(2l)$ es un álgebra simple.
-
-
-
-
-Tengamos en cuenta que si un álgebra $\mathfrak{g}$ es semisimple, entonces es suma directa de ideales $\mathfrak{g}_1,\dotsc,\mathfrak{g}_m$ simples. Tenemos, por tanto,
+Para $\mathfrak{o}(n)$ vamos a utilizar otra estrategia. Sabemos que si $\mathfrak{g}$ es un subálgebra simple, entonces $[\mathfrak{g},\mathfrak{g}] = g$, pues se da la contención como ideal y el $[\mathfrak{g},\mathfrak{g}]$ es no vacío, luego la simplicidad implica la igualdad.  Además, si un álgebra $\mathfrak{g}$ es semisimple, entonces es suma directa de ideales $\mathfrak{g}_1,\dotsc,\mathfrak{g}_m$ simples. Tenemos, por tanto,
 $$
 [\mathfrak{g},\mathfrak{g}] = \left[\bigoplus_{i=1}^m \mathfrak{g}_i,\bigoplus_{i=1}^m \mathfrak{g}_i\right] = \bigoplus_{i=1}^m [\mathfrak{g}_i,\mathfrak{g}_i] =\bigoplus_{i=1}^m \mathfrak{g}_i = \mathfrak{g}
 $$
-Es decir, el álgebra coincide con su derivada. Vamos a probar que $\mathfrak{o}(n)$ es semisimple.
+Es decir, el álgebra coincide con su derivada. Basta utilizar que para todo $n$ $\mathfrak{o}(n)$ es semisimple.
 
 \item Al estar trabajando con álgebras, tenemos que estas están contenidas en su normalizador. Tenemos que ver que el recíproco es cierto. En el caso de $\mathfrak{sl}(n)$ no es cierto porque dada cualesquiera matrices $A,B\in\mathfrak{gl}(n)$, tenemos que $tr([A,B])=0$, luego en particular, para cualquier $W\in \mathfrak{sl}(n)$, tenemos que $tr([W,A])=0$, es decir, $[W,A]\in\mathfrak{sl}(n)$ y $\mathcal{N}(\mathfrak{sl}(n))=\mathfrak{gl}(n)$. %Para el caso de $\mathfrak{sl}(n)$, sea $H \in \mathcal{N}(\mathfrak{sl}(n))$ tal que $tr(H)\neq 0$. En particular, $\exists i$ tal que $H_{ii}\neq 0$.
 
-m n a b     ma + nc  mb + 
-p q c d   =
+
+
 \item 
 Para el caso triangular superior, hagamos la siguiente consideración. Sea $D$ una matriz diagonal y $M$ una matriz cualquiera. Queremos ver que no puede ser que $[D,M] \in \mathcal{N}(t(n))$, para todo $D\in t(n)$, sin ser $M$ matriz diagonal. Tomando $D=E_{ii}$ es claro que $[D,M]$ es la matriz que tiene la fila $i$ de $M$, la columna $i$ de $M$ con signo opuesto, $0$ en la diagonal y el resto de elementos. Imponiendo que la zona triangular inferior sea nula, por inducción en $i$, llegamos  necesariamente los correspondientes elementos de $M$ son también nulos. Por tanto $M$ es triangular superior. Además, el mismo argumento imponiendo además que sea diagonal vale para $\delta(n)$.
 
-\item Se deduce de las siguientes consideraciones. Si $T$ y $H$ son matrices triangulares superiores, entonces su productos y sus diferencias también, luego $[T,H]$ también lo será. Además, como $TH$ y $HT$ tienen la misma traza, $[T,H]$ es estrictamente triangular superior aunque $T$ y $H$ sean solo triangulares superiores. Por tanto, $t(n) \subset \mathcal{N}(\eta(n))$, pero $t(n)$ es autonormalizado, luego es el mayor ideal que se contiene a sí mismo, por lo que debe darse la igualdad. 
+\item Se deduce de las siguientes consideraciones. Si $T$ y $H$ son matrices triangulares superiores, entonces su productos y sus diferencias también, luego $[T,H]$ también lo será. Además, como $TH$ y $HT$ tienen la misma traza, $[T,H]$ es estrictamente triangular superior aunque $T$ y $H$ sean solo triangulares superiores. Por tanto, $t(n) \subset \mathcal{N}(\eta(n))$, pero $t(n)$ es autonormalizado, luego es el mayor subálgebra que se contiene a sí mismo como ideal, por lo que debe darse la igualdad. 
 \end{enumerate}
 \end{solucion}
 \end{document}
