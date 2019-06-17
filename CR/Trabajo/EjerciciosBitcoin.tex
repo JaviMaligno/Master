@@ -10,20 +10,38 @@
 
 
 \begin{ejercicio}{1}
-	Responde a las siguientes preguntas.
-\begin{enumerate}
-\item ¿En qué consiste una prueba de trabajo?
+Comprueba que la verificación de la firma digital sobre curvas elípticas es correcta. 
 
-\item Señala algunas diferencias entre una transacción regular y una transacción coinbase.
-\end{enumerate}
+%\begin{nota}
+%Se recuerda que el algoritmo de firma digital consistía en lo siguiente:
+%\begin{enumerate}
+%	\item Calcular $e=h(m)$.
+%	\item Sea $z$ el conjunto de $l$ dígitos más a la izquierda de $e$, donde $l$ es la longitud en bits de $N$.
+%	\item Elegir un número entero aleatorio $k\in\{1,\dots,N-1\}$.
+%	\item Calcular el punto $(a,b)=kP$ usando la multiplicación por escalar de la curva elíptica. 
+%	\item Encontrar $r\equiv a\mod N$. Si $r=0$, vuelta al paso 3.
+%	\item Encontrar $s\equiv (z+rx)k^{-1}\mod N$. Si $s=0$, vuelta al paso 1. 
+%	\item La firma es el par $(r,s)$. 
+%\end{enumerate}
+%Y la verificación consistía en:
+%\begin{enumerate}
+%	\item Verificar que $1\leq r,s\leq N-1$. En caso contrario la firma no es válida.
+%	\item Calcular $e=h(m)$ con la misma función hash de antes.
+%	\item Tomar $z$ como los $l$ bits más a la izquierda de $e$ del mismo modo que antes.
+%	\item Calcular $w\equiv s^{-1}\mod N$.
+%	\item Calcular $u\equiv zw\mod N$ y $v\equiv rw\mod N$. 
+%	\item Calcular el punto $(a,b)=uP+vY$.
+%	\item Verificar que $r\equiv a\mod N$. La firma es inválida en caso contrario.
+%\end{enumerate}
+%\end{nota}
 \end{ejercicio}
 
 
 \begin{ejercicio}{2}
-	Contesta a las siguientes cuestiones.
+	Contesta a las siguientes preguntas.
 	\begin{enumerate}
-	\item  ¿Qué ocurre si dos bloques se minan a la vez?
-	\item Describe los pasos de la prueba de trabajo de Bitcoin.
+		\item ¿En qué consiste una prueba de trabajo?
+	\item  ¿Cómo evita Bitcoin el doble gasto?
 \end{enumerate}
 \end{ejercicio}
 \end{document}
