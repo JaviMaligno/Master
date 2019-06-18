@@ -3,30 +3,30 @@
 \begin{document}
 
 %\hyphenation{equi-va-len-cia}\hyphenation{pro-pie-dad}\hyphenation{res-pec-ti-va-men-te}\hyphenation{sub-es-pa-cio}
-\chapter{Hochschild cohomology of a ring}
+\chapter{Hochschild cohomology of an algebra}
 
-In this chapter we're introducing the cohomology of a ring and showing that it has a \emph{Gerstenhaber algebra} structure, which we shall first define. The reader is referred to \cite{Gerstenhaber} for more details. This algebraic structure turns out to be equivelent to the notion of an algebra over the \emph{operad of little disks}, which is the main object of our study, whence its importance. In addition, Hochschild cohomology is a very relevant tool in algebraic deformation theory \cite{deformation}.
+In this chapter we introduce the cohomology of an algebra and showing that it has a \emph{Gerstenhaber algebra} structure, which we shall first define. The reader is referred to \cite{Gerstenhaber} for more details. This algebraic structure turns out to be equivelent to the notion of an algebra over the \emph{operad of little disks}, which is the main object of our study, whence its importance. In addition, Hochschild cohomology is a very relevant tool in algebraic deformation theory \cite{deformation}.
 
 
 \section{Gerstenhaber algebras}
 
-We begin reminding that a \emph{graded algebra} is a graded $S$-module (for some ring $S$) which is also a graded ring with the same gradation. We shall denote a graded algebra $A=\sum_\lambda A_\lambda$, indexed by some additive group, generally the integers. We denote the degree of an element $a\in A$ by $|a|$. %By $A[1]$ we will denote the shift of gradation, i.e., the graded algebra where $A[1]_\lambda=A_{\lambda+1}$. 
+Let $k$ be some fixed commutative ring which will understood if not mentioned explicitly. We begin reminding that a \emph{graded algebra} is a graded $k$-module  $A=\sum_\lambda A_\lambda$, indexed by some additive group --here always the integers-- which is also a ring with respect to some (associative) product $\cdot$ such that $A_p\cdot A_q\subseteq A_{p+q}$. We denote the degree of an element $a\in A$ by $|a|$. %By $A[1]$ we will denote the shift of gradation, i.e., the graded algebra where $A[1]_\lambda=A_{\lambda+1}$. 
 
 
 \begin{defi}\label{defi1}
 A graded algebra $A$ is a \emph{Gerstenhaber algebra} if one has:
 \begin{enumerate}
-\item[(1)] An associative, graded commutative multiplication:
+\item[(1)] The product $\cdot$ is a graded commutative multiplication:
 \[
-\cdot: A\times A\to A.
+\cdot: A\times A\to A,
 \]
-For every $a,b\in A$ one has $a\cdot b=(-1)^{|a||b|}b\cdot a$.
+such or every $a,b\in A$ one has $a\cdot b=(-1)^{|a||b|}b\cdot a$.
 
 \item[(2)] A graded Lie bracket 
 \[
 [,]:A\times A\to A.
 \]
-So one has, for every $a,b,c\in A$:
+such that, for every $a,b,c\in A$:
 \begin{itemize}
 \item $|[a,b]|=|a|+|b|-1$
 \item $[b,a]=-(-1)^{(|a|-1)(|b|-1)}[a,b]$ (graded antisymmetry)
@@ -41,9 +41,9 @@ So one has, for every $a,b,c\in A$:
 \end{defi}
 
 
-\section{Cohomology of a ring and Gerstenhaber structure}
+\section{Cohomology of an algebra and Gerstenhaber structure}
 
-\begin{defi}Let $A$ be a ring and $P$ a two-sided $A$-module. We define a \emph{Hochschild $m$-cochain} $f^m$ of $A$ with coefficients in $P$ to be an $S$-module homormorphism $f^m: A^{\otimes m}\to P$. The module $\Hom_S(A^{\otimes m}, P)$ or all such $f^m$ will be denoted by $C^m(A,P)$, $S$ being understood. We indetify $C^0(A,P)$ with $P$.
+\begin{defi}Let $A$ be an algebra and $P$ a two-sided $A$-module. We define a \emph{Hochschild $m$-cochain} $f^m$ of $A$ with coefficients in $P$ to be a $k$-module homormorphism $f^m: A^{\otimes m}\to P$. The module $\Hom_k(A^{\otimes m}, P)$ or all such $f^m$ will be denoted by $C^m(A,P)$. We indetify $C^0(A,P)$ with $P$.
 \end{defi}
 
 For every $m$ there is a homomorphism $\delta_m: C^m(A,P)\to C^{m+1}(A,P)$ defined by setting
@@ -59,20 +59,21 @@ If $P$ is further an associative ring, then the multiplication in $P$ induces, f
 f\smile g(a_1\otimes\cdots\otimes a_m\otimes b_1\otimes\cdots\otimes b_n)=f(a_1\otimes\cdots\otimes a_m)g(b_1\otimes\cdots\otimes b_n).
 \]
 
-Under this multiplication $C^*(A,P)$ becomes an associative ring graded by the integers.
+Under this multiplication $C^*(A,P)$ becomes a differential graded algebra, since we have the Leibniz rule
+\[\delta (f^m\smile g^n)=\delta f^m\smile g^n+(-1)^m f^m\smile \delta g^n.\]
 
 \begin{thm}\cite[Corollary 1 of \textsection 7]{Gerstenhaber}
-If $A$ is a ring, then the ring $\{H^*(A,A),\smile\}$ is a graded commutative ring, with grading given by dimension, i.e., if $\eta\in H^m(A,A)$ and $\xi\in H^n(A,A)$, then $\eta\smile \xi =(-1)^{mn}\xi\smile \eta$.
+If $A$ is an algebra, then the ring $\{H^*(A,A),\smile\}$ is a graded commutative ring, with grading given by dimension, i.e., if $\eta\in H^m(A,A)$ and $\xi\in H^n(A,A)$, then $\eta\smile \xi =(-1)^{mn}\xi\smile \eta$.
 \end{thm} 
 
-The cup product induces a module structure on $C^*(A,P)$ over $C^*(A,A)$ that induces a module structre on $H^*(A,P)$ over $H^*(A,A)$. Using Theorem 3 of \cite{Gerstenhaber} we get the following result.
-
-\begin{thm}\cite[Corollary 2 of \textsection 7]{Gerstenhaber}
-Let $A$ a ring and $P$ a two-sided $A$-module. If either $\eta\in H^n(A,A)$ and $\xi\in H^m(A,P)$ or $\eta\in H^n(A,P)$ and $\xi\in H^m(A,A)$, then
-\[
-\eta\smile\xi=(-1)^{mn}\xi\smile \eta.
-\]
-\end{thm}
+%The cup product induces a module structure on $C^*(A,P)$ over $C^*(A,A)$ that induces a module structre on $H^*(A,P)$ over $H^*(A,A)$. Using Theorem 3 of \cite{Gerstenhaber} we get the following result.
+%
+%\begin{thm}\cite[Corollary 2 of \textsection 7]{Gerstenhaber}
+%Let $A$ a ring and $P$ a two-sided $A$-module. If either $\eta\in H^n(A,A)$ and $\xi\in H^m(A,P)$ or $\eta\in H^n(A,P)$ and $\xi\in H^m(A,A)$, then
+%\[
+%\eta\smile\xi=(-1)^{mn}\xi\smile \eta.
+%\]
+%\end{thm}
 
 According to \cite[Theorem 4 of \textsection 8]{Gerstenhaber} we can define a Lie bracket on $C^*(A,A)$ in such a way that $H^*(A,P)$ becomes a two sided module over $\{H^*(A,A),[,]\}$. This bracket is defined in several steps. First, for $f\in C^m(A;A)$ and $g\in C^n(A;A)$ set
 \begin{gather*}
@@ -83,17 +84,24 @@ for $i=0,\dots, m-1$. Note that $f\circ_i g\in C^{n+m-1}(A;A)$. More generally, 
 \[
 f\circ g=\sum_{i=0}^m (-1)^{ni}f\circ_i g.
 \]
-Then the bracket is defined by $[f,g]=f\circ g-(-1)^{(n-1)(m-1)}g\circ f$. Gerstenhaber shows that this bracket induces a well defined Lie bracket of degree 1 on cohomology. Finally, we have
+Then the bracket is defined by $[f,g]=f\circ g-(-1)^{(n-1)(m-1)}g\circ f$. The bracket also satisfies the corresponding Leibniz rule
+\[\delta[f^m,g^n]=(-1)^{n-1}[\delta f^m,g^n]+[f^m,\delta g^n].\] This shows that this bracket induces a well defined Lie bracket of degree 1 on cohomology. Finally, we have
 
 \begin{thm}\cite[Corollary 2 of \textsection 8]{Gerstenhaber}
-Let $A$ be a ring and $\xi$, $\eta$ and $\zeta$ elements of $H^m(A,A)$, $H^n(A,A)$ and $H^p(A,A)$, respectively. Then
+Let $A$ be an algebra and $\xi$, $\eta$ and $\zeta$ elements of $H^m(A,A)$, $H^n(A,A)$ and $H^p(A,A)$, respectively. Then
 \[
 [\eta\smile\xi, \zeta]=[\eta,\xi]\smile \zeta+(-1)^{m(p-1)}\eta\smile[\zeta,\xi].
 \]
 \end{thm}
 
 
-According to \ref{defi1}, we now have that the Hochschild cohomology $H^*(A,A)$ is a Gerstenhaber algebra. We will be particulary interested in the case where $A$ is an associative $k$-algebra for $k$ an field of characteristic 0.
+According to definition \ref{defi1}, we have the following theorem.
+
+\begin{thm}
+	The Hochschild cohomology $H^*(A,A)$ is a Gerstenhaber algebra.\qed
+	\end{thm} 
+
+We will be particulary interested in the case where $k$ is a field of characteristic 0.
 
 
 

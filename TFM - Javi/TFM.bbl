@@ -114,6 +114,10 @@ James~P. May, \emph{The geometry of iterated loop spaces}, 1. ed., 2. print
   ed., Lecture notes in mathematics, no. 271, Springer, Berlin, 1989 (en),
   OCLC: 258500276.
 
+\bibitem[May92]{simplicial}
+\bysame, \emph{Simplicial {Objects} in {Algebraic} {Topology}}, Bibliovault OAI
+  Repository, the University of Chicago Press (1992).
+
 \bibitem[ML98]{working}
 Saunders Mac~Lane, \emph{Categories for the working mathematician. 2nd ed},
   January 1998.
@@ -132,10 +136,6 @@ Howard Osborn, \emph{Vector {Bundles}. {Volume} 1: {Foundations} and
 Diego Pedraza~L{\'o}pez, \emph{Teor{\'i}a de categor{\'i}as y programaci{\'o}n
   funcional} (spa), Available at
   \url{https://idus.us.es/xmlui/handle/11441/77572}.
-
-\bibitem[PM92]{simplicial}
-J~P.~May, \emph{Simplicial {Objects} in {Algebraic} {Topology}}, Bibliovault
-  OAI Repository, the University of Chicago Press (1992).
 
 \bibitem[Tam98]{tk}
 Dmitry Tamarkin, \emph{Another proof of {M}. {Kontsevich} formality theorem}.

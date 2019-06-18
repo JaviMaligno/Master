@@ -8,7 +8,7 @@
 
 %Se usan también en tqft, y sirven para construir muchos tipos de álgebras (por ejemplo Lie en característica no 2 por lo de la simetría, asociativas, commutativas, aunque no fields o grupos intuitivamente por la inversa)
 
-In this chapter we define the main object of our study: operads. This an object that has been gaining importance in mathematics thanks to its ability to encode many kinds of algebras (associative, commutative, Lie...). We begin with the topological version of operads and construct the operad of little disks, which plays the main role in the Deligne conjecture. Topological operads give rise to operads in other categories by taking singular chains or homology. Therefore, we also introduce the concept of operad in a symmetric monoidal category. Finally, we motivate the study of operads and the origin of the Deligne conjecture. 
+In this chapter we define the main object of our study: operads. This object that been gaining importance in mathematics thanks to its ability to encode many kinds of algebras (associative, commutative, Lie...). We begin with the topological version of operads and construct the operad of little disks, which plays the main role in the Deligne conjecture. Topological operads give rise to operads in other categories by taking singular chains or homology. Therefore, we also introduce the concept of operad in a symmetric monoidal category. Finally, we motivate the study of operads and the origin of the Deligne conjecture. 
 
 All maps between topological spaces are required to be continuous. We can restrict ourselves to compactly generated Hausdorff spaces when necessary. 
 
@@ -21,27 +21,29 @@ All maps between topological spaces are required to be continuous. We can restri
 %\url{https://ncatlab.org/nlab/show/operad}
 %
 %NO PARECE QUE ESTA DEFINICIÓN CAPTURE LA COMPOSICIÓN DEL LITTLE DISKS OPERAD, PERO EN VERDAD SÍ, LO QUE FALTA ES RELLENA CON LA IDENTIDAD HASTA COMPLETAR LA ARIDAD DEL PRIMERO
-In the spirit of \cite{May}, an operad is a collection of suitably interrelated spaces $\CC(j)$, the points of which are to
+In the spirit of \cite{May}, an operad is a collection of suitably interrelated spaces $\CC(j)$, whose points are to
 be thought of as $j$-adic operations $X^j \to X$ for some topological space $X$. Precisely, we have the following definition.
 
 \begin{defi}\label{operadtop}
-An \emph{operad} (also \emph{symmetric operad}) $\CC$ consists of topological spaces $\CC(j)$ for $j\geq 0$, with $\CC(0)$ a single point $*$, together with the following data:
+An \emph{operad} (also kwown as \emph{symmetric operad}) $\CC$ consists of topological spaces $\CC(j)$ for $j\geq 0$, %with $\CC(0)$ a single point $*$, 
+together with the following data:
 \begin{enumerate}[(1)]
-\item Continuous functions $\gamma : \CC(k) × \CC(j_1) × \cdots × \CC(j_k) \to \CC(j)$, $j =\sum_s j_s$, such that the
+\item Continuous functions $\gamma : \CC(k) × \CC(j_1) × \cdots × \CC(j_k) \to \CC(\sum_s j_s)$ such that the
 following associativity formula is satisfied for all $c\in \CC(k)$, $d_s \in \CC(j_s)$, and $e_t \in \CC(i_t)$:
 
 \[\gamma(
 \gamma(c; d_1, \dots , d_k); e_1, \dots , e_j) = 
 \gamma(c; f_1, \dots , f_k),
 \]
-where $f_s = \gamma(d_s; e_{j_1+\cdots+j_{s−1}+1}, \dots , e_{j_1+\cdots+j_s} )$, and $f_s = *$ if $j_s = 0$. These functions are usually called \emph{structure maps}.
+where $$f_s = \gamma(d_s; e_{j_1+\cdots+j_{s−1}+1}, \dots , e_{j_1+\cdots+j_s} )$$.%, and $f_s = *$ if $j_s = 0$ 
+These maps are usually called \emph{structure maps}.
 
 \item An identity element $1 \in \CC(1)$ such that 
 $\gamma(1; d) = d$ for $d \in \CC(j)$ and 
-$\gamma(c; 1^k) = c$ for
-$c \in \CC(k)$, $1^k = (1, \dots , 1) \in \CC(1)^k$.
+$\gamma(c; 1,\dots,1) = c$ for
+$c \in \CC(k)$.
 
-\item A right operation of the symmetric group $\Sigma_j$ on $\CC(j)$ such that the following equivariance
+\item A right action of the symmetric group $\Sigma_j$ on $\CC(j)$ such that the following equivariance
 formulas are satisfied for all $c\in \CC(k)$, $d_s \in \CC(j_s)$, $\sigma\in\Sigma_k$, and $\tau_s\in\Sigma_{j_s}$:
 \[
 \gamma(c\sigma; d_1, \dots , d_k) = 
@@ -53,7 +55,7 @@ and
 \] 
 where $\sigma(j_1, \dots , j_k)$ denotes the
 permutation of $j$ letters which permutes the $k$ blocks of letters determined by the given
-partition of $j$ (a first block of $j_1$, a second one of $j_2$ letters and so on), and $\tau_1\oplus\cdots\oplus\tau_k$ denotes the image of $(\tau_1, \dots , \tau_k)$ under the evident inclusion of $\tau_{j_1} × \cdots × \tau_{j_k}$ in $\Sigma_j$.
+partition of $j$ (a first block of $j_1$, a second one of $j_2$ letters and so on), and $\tau_1\oplus\cdots\oplus\tau_k$ denotes the image of $(\tau_1, \dots , \tau_k)$ under the evident inclusion of $\Sigma_{j_1} × \cdots × \Sigma_{j_k}$ in $\Sigma_j$ (whose image is the corresponding Young subgroup).
 %{1,2,...,j} se divide en bloques y se permuta ese conjunto 
 \end{enumerate}
 \end{defi}

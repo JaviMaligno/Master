@@ -20,7 +20,7 @@ In this chapter we introduce an ubiquitous subject in topology which are simplic
 
 \section{Simplicial Sets}
 
-Let $\mathbf{\Delta}$ denote the \emph{simplex category}, whose objects are ordered sets of the form $[n]=\{0<1<\dots< n\}$ and whose morphisms are monotonic functions. 
+Let $\mathbf{\Delta}$ denote the \emph{simplex category}, whose objects are ordered sets of the form $[n]=\{0<1<\dots< n\}$ and whose morphisms are non-decreasing functions. 
 
 \begin{defi}
 A \emph{simplicial set} $X$ is a functor $X:\mathbf{\Delta}^{op}\to\Set$ from the opposite category of $\mathbf{\Delta}$ to the category of sets. The category of such functors is usually denoted $\SSet$. 
@@ -39,8 +39,8 @@ Id & \text{if } i=j\text{ or }i=j+1\\
 Here, by abuse of notation, we're identifying $\delta_i$ with any map $[n]\to[m]$ that is equal to $\delta_i$ on the subset $[n-1]\subseteq [m]$ and the identity on the rest, and similarly with $\sigma_i$. Hence, we can define a simplicial set $X$ by giving the following data:
 \begin{enumerate}
 \item for each $n\in\N$, a set $X_n$ called the set of \emph{$n$-simplices};
-\item for each $\delta_i:[n-1]\to[n]$ a map $d_i:X_n\to X_{n-1}$ called the \emph{$i$-th face map};
-\item for each $\sigma_i:[n]\to[n-1]$ a map $s_i:X_n\to X_{n+1}$ called the \emph{$i$-th degeneracy map}.
+\item for each $\delta_i:[n-1]\to[n]$ ($0\leq i\leq n$) a map $d_i:X_n\to X_{n-1}$ called the \emph{$i$-th face map};
+\item for each $\sigma_i:[n]\to[n-1]$ ($0\leq i\leq n$) a map $s_i:X_n\to X_{n+1}$ called the \emph{$i$-th degeneracy map}.
 \end{enumerate} 
 These maps are required to satisfy the following equations:
 \begin{itemize}
@@ -61,7 +61,7 @@ Again, we can express this concept in terms of the families $X_n$ and $Y_n$. A s
 More generally, one can also define a \emph{simplicial object} in a category $\CC$ as a functor $X:\mathbf{\Delta}^{op}\to\CC$. The category of simplicial objects in $\CC$ is denoted by $\SCC$. 
 %QUEDA MUY BIEN EL CASO DE AB DE MAY. AÑADIR MAY A LA BIBLIOGRAFÍA
 \begin{ex}[Nerve of a Category]
-Let $\CC$ be a small category. We're going to build a simplicial object in the category of morphisms in $C$ (which is a set, and therefore the simplicial object is actually a simplicial set), called the \emph{nerve} of $\CC$ and written $N(\CC)$. Its $n$-simplices for $n>0$ are the strings $X_0→X_1→\cdots →X_n$ of morphisms in $\CC$. For $n=0$ there is a $0$-simplex for each object of $\CC$. The faces $d_i:N(\CC)_n\to N(\CC)_{n-1}$ of a $n$-simplex are obtained by deleting $X_i$, and then composing the two adjacent morphisms if $i ≠ 0,n$. Thus when $n = 2$ the three faces of
+Let $\CC$ be a small category. We are going to build a simplicial set from the category of morphisms in $C$, called the \emph{nerve} of $\CC$ and written $N(\CC)$. Its $n$-simplices for $n>0$ are the strings $X_0→X_1→\cdots →X_n$ of morphisms in $\CC$. For $n=0$ there is a $0$-simplex for each object of $\CC$. The faces $d_i:N(\CC)_n\to N(\CC)_{n-1}$ of a $n$-simplex are obtained by deleting $X_i$, and then composing the two adjacent morphisms if $i ≠ 0,n$. Thus when $n = 2$ the three faces of
 $X_0→X_1→X_2$ are $X_0→X_1$, $X_1→X_2$, and the composed morphism $X_0→X_2$. When $i\in \{0,n\}$, the face maps consist of removing $X_0$ or $X_n$.
 The degenerancy maps $s_i:N(\CC)_{n-1}\to N(\CC)_n$ are given by inserting an identity morphism at the object $X_i$. 
 
@@ -78,10 +78,10 @@ As in \cite[Chapter III]{simplicial}, denote by $\Delta_n$ the topological $n$-s
 \]
 \[\sigma_i(t_0,\dots, t_{n+1})=(t_0,\dots, t_{i-1},t_i+t_{i+1},t_{i+2},\dots, t_{n+1}).\]
 
-Let $X$ be a simplicial set. Give $X$ the discrete topology and form the disjoint union $\overline{X}=\coprod_{n\geq 0}(X_n\times\Delta_n)$. Define an equivalence relation $\sim$ in $\overline{X}$ by
+Let $X$ be a simplicial set. Give each $X_n$ the discrete topology and form the disjoint union $\overline{X}=\coprod_{n\geq 0}(X_n\times\Delta_n)$. Define an equivalence relation $\sim$ in $\overline{X}$ by
 \[(d_ix_n,u_{n-1})\sim(x_n,\delta_i u_{n-1}),\ x_n\in X_n, u_{n-1}\in\Delta_{n-1},\]
 \[(s_ix_n,u_{n+1})\sim(x_n,\sigma_iu_{n+1}),\ x_n\in X_n, u_{n+1}\in\Delta_{n+1}.\]
-The identification space $T(X)=\overline{X}/\sim$ is called the \emph{geometric realization} of $X$. Geometrically, there is one $n$-simplex for each $X_n$ and we identify the face and degeneracy maps of the simplicial set with the usual geometric face and degeneracy maps of simplicial complexes. 
+The quotient space $|X|=\overline{X}/\sim$ is called the \emph{geometric realization} of $X$. %Geometrically, there is one $n$-simplex for each $X_n$ and we identify the face and degeneracy maps of the simplicial set with the usual geometric face and degeneracy maps of simplicial complexes. 
 
 
 
@@ -91,13 +91,13 @@ space} of $\CC$, which is the geometric realization of its nerve. In
 case $\CC$ has a single object and the morphisms of $\CC$ form a group $G$, then $B\CC$ is a $K(G, 1)$ space \cite[Section \textsection 2.3]{Hatcher}.
 
 If we start with a
-simplicial topological space $X$ (for example a simplicial complex) and regard its set of simplices as a partially ordered set $C(X)$ under
-the relation of inclusion of faces, then $BC(X)$ is the barycentric subdivision of $X$.
+simplicial complex $X$ and regard its set of simplices as a partially ordered set $C(X)$ under
+the relation of inclusion of faces (which, as every poset, becomes a category whose objects are the elements of the set and whose arrows are ``less than or equal'' relations), then $BC(X)$ is the barycentric subdivision of $X$.
 
 A functor $F :\CC→\DD$ induces a map $B\CC→B\DD$. This is the simplicial map that sends an
 $n$-simplex $X_0→X_1→\cdots →X_n$ to the $n$-simplex $F(X_0)→F(X_1)→\cdots →F(X_n)$.
 A natural transformation from a functor $F$ to a functor $G$ induces a homotopy
-between the induced maps of classifying spaces in the following way. Let $H:F\to G$ a natural transformation. $H$ can be regarded as a functor $\CC\times \{0,1\}\to \DD$, where $\{0,1\}$ is regarded as an ordered set and therefore a category. So $H$ induces a map $B(\CC\times\{0,1\})\to B\DD$. But $B(\CC\times\{0,1\})=B\CC\times B\{0,1\}$ by the theorem below. Since $B\{0,1\}\cong [0,1]$, the induced map is a homotopy. %aparece en Hatcher propuesto como ejercicio pero no de los listados como ejercicio
+between the induced maps of classifying spaces in the following way. Let $H:F\to G$ a natural transformation. $H$ can be regarded as a functor $\CC\times \{0<1\}\to \DD$ such that the restrictions to $\CC \times \{0\}$ and $\mathcal{C} \times \{1\}$ are $F$ and $G$, respectively. Here $\{0<1\}$ is just $\{0,1\}$ regarded as an ordered set and therefore a category. So $H$ induces a map $B(\CC\times\{0,1\})\to B\DD$. But $B(\CC\times\{0,1\})=B\CC\times B\{0,1\}$ by the theorem below. Since $B\{0,1\}\cong [0,1]$, the induced map is a homotopy. %aparece en Hatcher propuesto como ejercicio pero no de los listados como ejercicio
 \end{ex}
 
 \begin{thm}\cite[Theorem 14.3]{simplicial}
