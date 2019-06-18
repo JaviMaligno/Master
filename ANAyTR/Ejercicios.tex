@@ -59,28 +59,30 @@ En la segunda igualdad hemos usado que los $g_i$ son ideales en suma directa, de
 
 \item Al estar trabajando con álgebras, tenemos que estas están contenidas en su normalizador. Tenemos que ver que el recíproco es cierto. En el caso de $\mathfrak{sl}(n)$ no es cierto porque dada cualesquiera matrices $A,B\in\mathfrak{gl}(n)$, tenemos que $tr([A,B])=0$, luego en particular, para cualquier $W\in \mathfrak{sl}(n)$, tenemos que $tr([W,A])=0$, es decir, $[W,A]\in\mathfrak{sl}(n)$ y $\mathcal{N}(\mathfrak{sl}(n))=\mathfrak{gl}(n)$. %Para el caso de $\mathfrak{sl}(n)$, sea $H \in \mathcal{N}(\mathfrak{sl}(n))$ tal que $tr(H)\neq 0$. En particular, $\exists i$ tal que $H_{ii}\neq 0$.
 
-Vamos con $\mathfrak{sp}(2l)$. Dada una matriz cuadrada de tamaño $2l$ escrita en bloques como $$A=\begin{pmatrix}
-m & n\\
-p & q
-\end{pmatrix}$$ imponemos que $[A,E]\in\mathfrak{sp}(2l)$ para toda matriz $E$ de la base. Denotamos $e_{ij}$ a la matriz construida como $E_{ij}$ pero de tamaño $l$. 
+Las otras dos álgebras tampoco son autonormalizadas. La matriz identidad (de la dimensión que corresponda) está siempre en el normalizador porque $[A,I]=0$ para toda $A\in\mathfrak{gl}(n)$, y $0$ debe ser un elemento de cualquiera de las álgebra de Lie en cuestión por ser subespacios vectoriales de $\mathfrak{gl}(n)$. Sin embargo, la matriz identidad claramente no pertenece ni al álgebra $\mathfrak{sp}(2l)$ ni a $\mathfrak{o}(n)$ independientemente de la paridad de $n$.
 
-\[
-\left[\begin{pmatrix}
-m & n\\
-p & q
-\end{pmatrix}, E_{i,i+l}\right]=\begin{pmatrix}
-0 & me_{ii} \\
-0 & ne_{ii}
-\end{pmatrix}- \begin{pmatrix}
-e_{ii}p & e_{ii}q\\
-0 & 0
-\end{pmatrix}=\begin{pmatrix}
-p_{i\cdot} & m_{\cdot i}-q_{i\cdot}\\
-0 & p_{\cdot i}
-\end{pmatrix}
-\]
-Imponiendo que esta matriz esté en $\mathfrak{sp}(2l)$ tendríamos que $p_{i\cdot}=-p_{\cdot i}^t=-p_{i\cdot}$, luego $p=0$ (en particular $p^t=p$). Imponiendo $m_{\cdot i}-q_{i\cdot}=(m_{\cdot i}-q_{i\cdot})^t$ deducimos $$m_{\cdot i}-q_{i\cdot}=m_{i\cdot}-q_{\cdot i}$$ 
-de donde $-q_{i\cdot}=m_{i\cdot}$, luego $q=-m^t$ (salvo quizá en la diagonal). Continuando con los demás elementos de la base terminaríamos de obtener las condiciones buscadas. La misma estrategia es válida para $\mathfrak{o}(n)$. 
+%Vamos con $\mathfrak{sp}(2l)$. Dada una matriz cuadrada de tamaño $2l$ escrita en bloques como $$A=\begin{pmatrix}
+%m & n\\
+%p & q
+%\end{pmatrix}$$ imponemos que $[A,E]\in\mathfrak{sp}(2l)$ para toda matriz $E$ de la base. Denotamos $e_{ij}$ a la matriz construida como $E_{ij}$ pero de tamaño $l$. 
+%
+%\[
+%\left[\begin{pmatrix}
+%m & n\\
+%p & q
+%\end{pmatrix}, E_{i,i+l}\right]=\begin{pmatrix}
+%0 & me_{ii} \\
+%0 & ne_{ii}
+%\end{pmatrix}- \begin{pmatrix}
+%e_{ii}p & e_{ii}q\\
+%0 & 0
+%\end{pmatrix}=\begin{pmatrix}
+%p_{i\cdot} & m_{\cdot i}-q_{i\cdot}\\
+%0 & p_{\cdot i}
+%\end{pmatrix}
+%\]
+%Imponiendo que esta matriz esté en $\mathfrak{sp}(2l)$ tendríamos que $p_{i\cdot}=-p_{\cdot i}^t=-p_{i\cdot}$, luego $p=0$ (en particular $p^t=p$). Imponiendo $m_{\cdot i}-q_{i\cdot}=(m_{\cdot i}-q_{i\cdot})^t$ deducimos $$m_{\cdot i}-q_{i\cdot}=m_{i\cdot}-q_{\cdot i}$$ 
+%de donde $-q_{i\cdot}=m_{i\cdot}$, luego $q=-m^t$ (salvo quizá en la diagonal). Continuando con los demás elementos de la base terminaríamos de obtener las condiciones buscadas. La misma estrategia es válida para $\mathfrak{o}(n)$. 
 
 
 \item 
