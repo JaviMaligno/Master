@@ -265,23 +265,25 @@ Sevilla, Junio 2019\\
 \addcontentsline{toc}{chapter}{Abstract}
 The minimum (maximum) matching problem is a fundamental problem in combinatorial optimization. The special structure of matching found by Edmonds allows to use different approximations. The idea of this work is to present a general insight of the matching problem, different sorts of algorithms for solving its original and the bi-objective formulations and a computational approach. 
 
-In section 1 we describe the problem, its applications and the Grötschel-Holland algorithm (for solving using linear programming). In section 2 we introduce the theoretical background necessary for understanding the SAP algorithm and the sensitive analysis. In section 3 we implement some methods in Python 3.7 with Gurobi to study their computational properties and sensitive analysis.
+In section 1 we describe the problem, its applications and the Grötschel-Holland algorithm (for solving using linear programming). In section 2 we introduce the theoretical background necessary for understanding the SAP algorithm and the sensitive analysis. In section 3 we implement some methods in Python 3.7 with Gurobi to study their computational properties and sensitive analysis. In section 4 we present our conclusions.
 \newpage
 \thispagestyle{empty}
 
 \chapter*{Introducci\'on}\label{cap.introduccion}
 \addcontentsline{toc}{chapter}{Introducción}
-El problema del emparejamiento es uno de las cuestiones clásicas de la Programación Matemática. En este trabajo desarrollamos un extenso análisis sobre el trasfondo teórico de ciertos métodos para resolverlo, tanto en su formulación original, como en la formulación biobjetivo.
+El problema del emparejamiento es una de las cuestiones clásicas de la Programación Matemática. En este trabajo desarrollamos un extenso análisis sobre el trasfondo teórico de ciertos métodos para resolverlo, tanto en su formulación original, como en la formulación biobjetivo.
 
 Tras una presentación inicial del problema, presentamos una primera aproximación a la resolución del problema mediante la Programación Lineal conocida como el algoritmo de Grötschel-Holland. Seguidamente, veremos numerosas aplicaciones que motivan el interés del problema.
 
 En el segundo capítulo nos centramos en los conceptos y la estructura intrínseca del problema del emparejamiento, la cuál nos permite finalmente detallar el algoritmo del SAP. Además, presentamos el método de reoptimización propuesto por Derigs para este algoritmo.
 
-Finalmente, dedicamos un epígrafe a realizar un análisis computacional. Implementamos en Python 3.7 distintos métodos de resolución del problema del emparejamiento con el fin de reportar una comparativa entre ellos. Finalmente, llevamos a cabo un análisis de sensibilidad del problema original y la versión biobjetivo.
+El tercer epígrame lo dedicamos a realizar un análisis computacional. Implementamos en Python 3.7 distintos métodos de resolución del problema del emparejamiento con el fin de reportar una comparativa entre ellos. Finalmente, llevamos a cabo un análisis de sensibilidad del problema original y la versión biobjetivo.
+
+Finalmente, en el cuarto capítulo presentamos las conclusiones.
 \newpage
 \thispagestyle{empty}
 \chapter{El problema del emparejamiento}
-El problema del emparejamiento es uno de los problemas clásicos de la optimización combinatoria. Representa uno de los momentos célebres en la historia de la optimización por ser el primer problema de Programación Entera, descontando aquellos que se resuelven usando la relajación lineal, en ser resuelto en tiempo polinomial. El caso bipartito puede verse como un problema de asginación y fue resuelto en tiempo polinómico por Harowld W. Kuhn con su famoso algoritmo húngaro en 1955 \cite{kuhn}, predecesor de los algoritmos dual-primal. Sin embargo, hubo que esperar hasta 1961 para que Jack Edmonds descubriera la solución del caso general. En su trabajo original (publicado en 1965 \cite{edmond}) no solamente caracterizó linealmente el poliedro del matching -abriendo el camino para métodos basados en el simplex- sino que utilizando estructura especial del problema construyó un algoritmo iterativo denominado \textit{algoritmo de blossom} que resuelve el problema polinomialmente.
+El problema del emparejamiento es uno de los problemas clásicos de la optimización combinatoria. Su solución debido a Edmonds representa uno de los momentos célebres en la historia de la optimización por ser el primer problema de Programación Entera, descontando aquellos que se resuelven usando la relajación lineal, en ser resuelto en tiempo polinomial. El caso bipartito puede verse como un problema de asginación y fue resuelto en tiempo polinómico por Harowld W. Kuhn con su famoso algoritmo húngaro en 1955 \cite{kuhn}, predecesor de los algoritmos dual-primal. Sin embargo, hubo que esperar hasta 1961 para que Jack Edmonds descubriera la solución del caso general. En su trabajo original (publicado en 1965 \cite{edmond}) no solamente caracterizó linealmente el poliedro del matching -abriendo el camino para métodos basados en el simplex- sino que utilizando la estructura especial del problema construyó un algoritmo iterativo denominado \textit{algoritmo de blossom} que resuelve el problema polinomialmente.
 
 \section{El problema del $b$-emparejamiento}
 Dado que nuestro objetivo es el estudio paramétrico del problema del emparejamiento y la versión multiobjetivo del mismo, comenzamos este trabajo exponiendo en qué consiste el problema del ejemparejamiento o problema del \textit{matching}. Para ello, comenzamos definiendo algunos conceptos básicos en el marco de la teoría de grafos.
@@ -448,7 +450,7 @@ Notemos que el algoritmo de Padberg y Rao que utilizan los autores para encontra
 \end{itemize}
 Los detalles nuestra implementación pueden verse comentados en el código presente en la tercera parte de este trabajo.
 \section{El problema de separación del matching}
-Para aprovechar el potencial del software expresamente diseñados para resolver problemas de programación lineal, nosotros implementaremos el algoritmo de Padberg-Rao, a pesar de que para el análisis de sensibilidad vendrá dado por el algoritmo del SAP. Esto está justificado, pues consideramos más interesante intentar utilizar la estructura combinatoria propia del problema para dicho análisis, frente a la aproximación clásica cuyos resultados son conocidos y difícilmente interpretables.
+Para aprovechar el potencial del software expresamente diseñado para resolver problemas de programación lineal, nosotros implementaremos el algoritmo de Padberg-Rao, a pesar de que para el análisis de sensibilidad vendrá dado por el algoritmo del SAP. Esto está justificado, pues consideramos más interesante intentar utilizar la estructura combinatoria propia del problema para dicho análisis, frente a la aproximación clásica cuyos resultados son conocidos y difícilmente interpretables.
 
 Para entender mejor cómo funciona el algoritmo anterior y en qué se basa el procedimiento de Padberg-Rao, así como qué relación guarda con el problema del $b$-emparejamiento, discutimos una serie de conceptos y problemas en esta sección.
 
@@ -1077,7 +1079,7 @@ Los conjuntos $W$ que verifican que $\delta(W)\cup\gamma(W)=E$ se denominan \tex
 
 \subsection{Problema biobjetivo}
 En el matching paramétrico, tal y como vimos en la Subsección 1.1.1, la función de coste es $c_{uv}(\lambda) = c^1_{uv} + \lambda c^2_{uv}$. Por tanto, para aplicar el procedimiento anterior, tenemos que considerar $c_{uv}^{new} = c^1_{uv} + (\lambda + \Delta) c^2_{uv}= c_{uv}(\lambda+\Delta)$. Notemos que $\Delta$ no tendría por qué ser un parámetro real, sino que podríamos considerar $\Delta \in \R^{|E|}$. En ese caso, $c_{uv}^{new} = c^1_{uv} + (\lambda + \Delta_{uv}) c^2_{uv}$ 
-\section{Mantenimiento de la optimalidad}
+\section{Manteniendo optimalidad}
 Estamos especialmente interesados en el caso del matching biobjetivo en saber cuánto puede variar $\Delta$ de manera que la base óptima que representa a nuestro matching $M$ continúe siendo óptima. Recordemos que aunque la base deje de ser óptima, en principio la solución podría seguir siéndolo, pues una solución puede estar representada por más de una base. Para realizar este análisis, consideremos el problema de Programación Lineal:
 \begin{align*}
 \min_x & \sum_{(u,v) \in E}x_{uv}(c^1_{uv} + \lambda c^2_{uv})\\
@@ -1477,7 +1479,7 @@ def integer(G, c1, c2, lamb = 0):
     # Resolvemos el prolbema.
     m.optimize()
     
-    # Guardamos el numero de iteraciones y de exploraciones de branch and cut
+    # Guardamos el numero de iteraciones y de exploraciones de branch and bound
     itera = m.IterCount
     bac = m.NodeCount
     
@@ -1664,7 +1666,7 @@ networx.draw_kamada_kawai(G)
 
 \newpage
 \subsection{SCIP y soluciones no soportadas}
-En un problema de Programación Lineal las soluciones proporcionadas por el método del simplex, en caso de existir, han de situarse en los vértices de la envolvente convexa de nuestro conjunto factible. Cuando trabajamos con problemas multiobjetivo no tiene por qué existir una solución que minimice simultáneamente todas las funciones objetivo. En este sentido, tenemos las denominadas soluciones de Pareto, es decir, aquellas que no pueden ser mejorada en alguna de sus funciones componentes sin empeorar otra. El conjunto de soluciones de Pareto, o vectores Pareto eficientes, se conoce como frontera de Pareto. Este tipo de soluciones se pueden conseguir, en el caso biobjetivo, tal y como hemos planteado en la sección 3.1.6. Sin embargo, aunque las funciones objetivo y resticciones sean lineales pueden existir soluciones de Pareto que no estén en la frontera de la envolvente convexa de nuestro conjunto factible. Estas soluciones se conocen como no soportadas.
+En un problema de Programación Lineal las soluciones proporcionadas por el método del simplex, en caso de existir, han de situarse en los vértices de la envolvente convexa de nuestro conjunto factible. Cuando trabajamos con problemas multiobjetivo no tiene por qué existir una solución que minimice simultáneamente todas las funciones objetivo. En este sentido, tenemos las denominadas soluciones de Pareto, es decir, aquellas que no pueden ser mejorada en alguna de sus funciones componentes sin empeorar otra. El conjunto de soluciones de Pareto, o vectores Pareto eficientes, se conoce como frontera de Pareto. Este tipo de soluciones se pueden conseguir, en el caso biobjetivo, tal y como hemos planteado en la sección 3.1.6. Sin embargo, aunque las funciones objetivo y resticciones sean lineales pueden existir, si trabajamos con soluciones enteras, soluciones de Pareto que no estén en la frontera de la envolvente convexa de nuestro conjunto factible. Estas soluciones se conocen como no soportadas.
 
 Con el software Gurobi no podemos encontrar las soluciones no soportadas, por lo que tendermos que utilizar el software SCIP, y en particular una de sus aplicaciones, PolySCIP. Este solver solo acepta un tipo determinado de extensión denominada .mop. Nosotros adjuntamos el siguiente código en el que, dado un grafo $G$ y funciones de costo $c_1$ y $c_2$, se genera el archivo .mop del problema de matching asociado escrito con la formulación de Programación Entera.
 
@@ -1738,9 +1740,9 @@ A continuación presentamos los resultados computacionales obtenidos. Utilizando
 \item $Var$ es el número medio de aristas que tienen los grafos considerados y, por tanto, el número medio de variables que tienen los problemas.
 \item $S.GH$, $S.PE$ y $S.Match$ es el número medio de iteraciones del simplex que se utilizan respectivamente durante el método de Grötschel-Holland, usando Programación Entera y usando el simplex sobre la formulación del poliedro del matching.
 \item Análogamente $T.GH$, $T.PE$ y $T.Match$ son los tiempos medios en los que cada método ha resuelto los correspondientes problemas.
-\item $Exp.B.B$ es el número de nodos de branch and cut explorados cuando utilizamos Programación Entera.
+\item $Exp.B.B$ es el número de nodos de branch and bound explorados cuando utilizamos Programación Entera.
 \end{itemize} 
-Una vez que el tiempo medio necesario para resolver el problema con la formulación de Edmonds es superior a loas cinco minutos, todos los valores pasan a ser $0$. Observamos que para grafos con 18 vértices ya comienza a ser costroso utilizar la formulación de Edmonds debido a que introducimos un número exponencial de restricciones.
+Una vez que el tiempo medio necesario para resolver el problema con la formulación de Edmonds es superior a los cinco minutos, todos los valores pasan a ser $0$. Observamos que para grafos con 18 vértices ya comienza a ser costroso utilizar la formulación de Edmonds debido a que introducimos un número exponencial de restricciones.
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrrrrrrr}
@@ -1793,7 +1795,7 @@ A continuación, presentamos algunas gráficas de los resultados anteriores.
 
 En la primera gráfica tratamos de representar la cantidad de aristas frente a los nodos. Dado que como parámetro del grafo de Erdös-Rényi hemos tomado $p=0.5$ y el número posible de aristas es $N(N-1)/2$, hemos dibujado por debajo los puntos de $N(N-1)/4$, es decir, el número de puntos esperados. Como vemos, la gráfica se superpone.
 
-A continuación comparamos el número de iteraciones del método del simplex y el tiempo de computación frente al número de nodos en para el algortimo de Grötschel-Holland y para los métodos de Gurobi para resolver Programación Entera.
+A continuación comparamos el número de iteraciones del método del simplex y el tiempo de computación frente al número de nodos para el algortimo de Grötschel-Holland y para los métodos de Gurobi para resolver Programación Entera.
 \newpage
 \begin{figure}[h!]
 \centering
@@ -1889,7 +1891,7 @@ Adjuntamos además algunas gráficas de la tabla anterior.
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.7]{plot10}
-\caption{Número medio de solucones frente a nodos}
+\caption{Número medio de soluciones frente a nodos}
 \end{figure}
 
 
@@ -1898,6 +1900,13 @@ Adjuntamos además algunas gráficas de la tabla anterior.
 \includegraphics[scale=0.7]{plot11}
 \caption{Media de porcentajes frente a nodos}
 \end{figure}
+
+\chapter{Conclusiones}
+A lo largo de este trabajo hemos analizado ampliamente el problema del emparejamiento, tanto en su formulación usual como en su formulación biobjetivo. De esta forma, hemos comprobado su versatilidad y utilidad tanto en el marco de otros problemas matemáticos como en insertados dentro de aplicaciones prácticas, destacando el problema de la asignación.
+
+En nuestra descripción del algoritmo del SAP hemos analizado conceptos teóricos que desarrollan la estructura intrínseca del emparejamiento en grafos, gracias a la cual se vertebra dicho método. Este es especialmente interesante porque permite realizar un proceso de reoptimización arista a arista invocando al oráculo de la optimización.
+
+Finalmente, al decidirnos establecer una primera aproximación a una implementación computacional del algoritmo de Grötschel-Holland, programamos distintos algoritmos en un entorno de Python. Nos ha servido para explorar las características de algunas librerías de Teoría de Grafos como networkx, comprender la generación de planos de corte gracias la cuál se resuelve el problema de separación mediante el algoritmo de Padberg-Rao o acercarnos a la distribución, y por tanto al comportamiento, de las soluciones soportadas y no soportadas en el poliedro entero del matching para el caso biobjetivo. 
 \begin{thebibliography}{9}
 \bibitem{edmond} 
 Edmonds, J. (1965). Maximum matching and a polyhedron with 0, 1-vertices. Journal of Research of the National Bureau of Standards B, 69, 125--130. 
