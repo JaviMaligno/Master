@@ -32,11 +32,14 @@ such that, for every $a,b,c\in A$:
 \item $[b,a]=-(-1)^{(|a|-1)(|b|-1)}[a,b]$ (graded antisymmetry)
 \item $(-1)^{(|a|-1)(|c|-1)}[[a,b],c]+(-1)^{(|b|-1)(|a|-1)}[[b,c],a]+(-1)^{(|c|-1)(|b|-1)}[[c,a],b]=0$ (graded Jacobi identity). 
 \end{itemize}
-\item[(3)]  $[,c]$ is a left derivation of $\cdot$ of degree $|c|-1$: %LO QUE PRUEBA GERSTENHABER ES CON EL PRODUCTO EN EL LADO IZQUIERDO PERO SUPONGO QUE POR LA CONMUTATIVIDAD Y ANTISIMETRÍA
-\[
-[a\cdot b,c]=[a,c]\cdot b+(-1)^{|a|(|c|-1)}a\cdot [b,c]
-\]
+\item[(3)]  $[a,]$ is a right derivation of $\cdot$ of degree $|a|-1$:%$[,c]$ is a left derivation of $\cdot$ of degree $|c|-1$: %LO QUE PRUEBA GERSTENHABER ES CON EL PRODUCTO EN EL LADO IZQUIERDO PERO SUPONGO QUE POR LA CONMUTATIVIDAD Y ANTISIMETRÍA
+%\[
+%[a\cdot b,c]=[a,c]\cdot b+(-1)^{|a|(|c|-1)}a\cdot [b,c]
+%\]
 %¿ES ESTO EQUIVALENTE A SI LO QUE FIJO ES EL PRIMER ARGUMENTO?
+\[
+[a,b\cdot c] = [a,b]c+(-1)^{|a|(|b|-1)}b[a,c]
+\]
 \end{enumerate}
 \end{defi}
 
