@@ -77,16 +77,26 @@
 \end{figure}
 \end{frame}
 
+\begin{frame}{Añadiendo costes}
+\begin{itemize}
+\item Dada una arista $(u,v)$ podemos considerar un coste $c_{uv}$ asociado. 
+\item Estos costes pueden ser números enteros, reales, reales positivos, etc.
+\item Sea $M$ un conjunto de aristas, podemos definir
+\end{itemize}
+$$
+c(M) = \sum_{(u,v)\in M} c_{uv}
+$$
+
+\end{frame}
 \begin{frame}{Problema de optimización}
 Sea $G=(V,E)$ un grafo. Entonces podemos considerar:
 \begin{align*}
 \max_{x} &\; \sum_{(u,v)\in E} x_{uv}c_{uv}  \nonumber\\ 
-s.a.\;  &  Ax\leq b \\
+s.a.\;  &  Ax\leq 1_n \\
 & x\in\{0,1\}^n\nonumber
 \end{align*}
 donde $c$ es el vector de pesos, $A$ es la matriz de incidencia del grafo, $|E|=n$ y la variable $x_{uv}=1$ si la arista $(u,v)$ está en el emparejamiento y $0$ en caso contrario.
 \end{frame}
-
 \begin{frame}{Definiciones previas}
 \begin{defi}
 Sea $G=(V,E)$ y $W\subset V$. Entonces 
@@ -121,12 +131,11 @@ s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} = 1, \quad \forall u \in V\\
 \end{align*}
 \end{frame}
 \begin{frame}{Problema paramétrico}\begin{align*}
-\min_x & \sum_{(u,v) \in E}x_{uv} (c_{uv} + \lambda d_{uv})\\
+\min_x & \sum_{(u,v) \in E}x_{uv} (c^1_{uv} + \lambda c^2_{uv})\\
 s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} \leq 1, \quad \forall u \in V\\
 &\sum_{(u,v)\in \gamma(S)} x_{uv} \leq \frac{1}{2}(|S|-1)\quad \forall S \in B	\\
 &x_{uv} \geq 0 \qquad \forall(u,v)\in E
 \end{align*}
-donde $d_{uv} = I_R((u,v))$.
 \end{frame}
 \begin{frame}{Problema biobjetivo}
 \begin{align*}
@@ -147,14 +156,43 @@ s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} \leq 1, \quad \forall u \in V\\
 
 \begin{frame}{Algoritmo de Grötschel-Holland}
 \begin{enumerate}
-\item Determinamos $NN$ y $E'\subset E$.
-\item Resolvemos el problema
+\item[1] Determinamos $E'\subset E$ de ejes canditados. Para cada nodo escogemos $NN$ ejes de menor coste. 
+\item[2] Utilizamos un algoritmo voraz para encontrar un matching perfecto inicial. En caso de no haberlo, añadimos aristas para garantizar que exista.
+\item[3] Consideramos el problema
 \begin{align*}
 \min_x & \sum_{(u,v) \in E'}x_{uv}c_{uv}\\
 s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} = 1, \quad \forall u \in V\\
 &x_{uv} \geq 0 \qquad \forall(u,v)\in E'
 \end{align*}
 \end{enumerate}
+\end{frame}
 
+\begin{frame}{Algoritmo de Grötschel-Holland}
+\begin{enumerate}
+\item[4] Resolvemos el problema considerado. 
+\item [5] Sea $x^*$ la solución obtenida y $E_{x^*} = \{(u,v)\in E' \mid x^*_{uv}>0\}$. Consideramos  $G_{x*} = (V,E_{x^*})$.
+\item[6] Si $x^*$ es entero, induce un matching. En este caso comprobamos la optimalidad calculando los costes reducidos de los ejes de $E\setminus E'$. Si no es óptimo, añadimos las aristas pertinentes a $E'$ volvemos a optimizar.
+\item[7] Si $x^*$ no es entero, planteamos dos heurísticas para encontrar planos de corte. En caso de no conseguirlos, utilizamos el procedimiento de Padberg-Rao.
+\item[8] Añadimos los planos de corte encontrados al problema y volvemos la Paso 4.
+\end{enumerate}
+\end{frame}
+\subsection{Aplicaciones}
+\begin{frame}{Problema de asignación}
+\begin{itemize}
+\item Supongamos que tenemos un conjunto de recursos y un conjunto de tareas.
+\item Cada recurso realiza una tarea y cada tarea solo puede ser realizada por un recurso.
+\item Ejemplos típicos: Empleados y puestos de trabajo, compañeros de habitación, etc.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Problema del orden de inventario}
+\begin{itemize}
+\item Supongamos que tenemos una pila de $p$ objetos que ganan o pierden valor en el tiempo. Por simplificar, todos del mismo tipo.  
+\item Sea $v(t)$ la función que nos da la utilidad esperada de un objeto en el tiempo $t$  y sea $a_i$ la edad del objeto $i$.
+\item Supongamos que sabemos los tiempos $t_i$ en los que necesitaremos sacar un objeto de la pila. 
+\end{itemize}
+$$
+c_{ij} = v(a_i+t_j)
+$$
 \end{frame}
 \end{document}
