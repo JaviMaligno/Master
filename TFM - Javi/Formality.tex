@@ -104,7 +104,7 @@ structure map and symmetric group actions on $E_2$. Let $p:\widetilde{E}_2\to E_
 \draw (1.9,2.353333333333338) node[anchor=north west] {$\cdots$};
 \end{tikzpicture}
 
-ordered from left to right as shown. Note that the little squares are homotopy equivalent to the little disks. Choose the non-$\Sigma$ version of $E_1$ as ``base contractible space'' (as in \ref{contractible}) and call it again $E_1$. By lemma \ref{contractible} and the fact that $E_1$ is contractible (see Section \ref{intervals}, Proposition \ref{E1}) we have that $p^{-1}(E_1(n))\subseteq\widetilde{E}_2(n)$ is a disjoint union of components, each homeomorphic to $E_1(n)$ via $p$. For each $n$, arbitrarily choose one these components and call it $\widetilde{C}_1(n)$. 
+ordered from left to right as shown. Note that the little squares are homotopy equivalent to the little disks. Choose the non-$\Sigma$ version of $E_1$ as ``base contractible space'' (as in \ref{contractible}) and call it again $E_1$. By lemma \ref{contractible} and the fact that $E_1$ is contractible (see Section \ref{intervals}, Proposition \ref{E1}) we have that $p^{-1}(E_1(n))\subseteq\widetilde{E}_2(n)$ is a disjoint union of components, each homeomorphic to $E_1(n)$ via $p$. For each $n$, arbitrarily choose one these components and call it $\widetilde{E}_1(n)$. 
 
 Now define the structure map $\widetilde{\gamma}$ for $\widetilde{E}_2$ to be the unique lifting 
 \[
@@ -315,7 +315,7 @@ of pictures
 \end{tikzpicture}
 }\\
 
-Let $\widetilde{\alpha}$ denote the lift which starts in $\widetilde{C}_1(n)$. Let $\widetilde{x}=\widetilde{\alpha}(0)$ and $\widetilde{y}=\widetilde{\alpha}(1)$, then specify $\widetilde{x}\widetilde{\sigma}=\widetilde{y}$. %COMPROBAR QUE ESTO DA LA ESTRUCTURA DE $B_\infty$ (ADEMÁS DE LAS PROPIEDADES DE OPERAD, LA ACCIÓN TIENE QUE SER LIBRE, PERO TENGO DUDA PARA EL CASO DE LAS TRENZAS PURAS) Y QUE EL COCIENTE POR LA ACCIÓN DE LAS TRENZAS PURAS ES $E_2$ (QUIZÁ ESTO SEA PORQUE PRECISAMENTE ES EL GRUPO FUNDAMENTAL, PERO TENGO QUE REVISAR SI ES LA MISMA ACCIÓN QUE LA DEL GRUPO FUNDAMENTAL)
+Let $\widetilde{\alpha}$ denote the lift which starts in $\widetilde{E}_1(n)$. Let $\widetilde{x}=\widetilde{\alpha}(0)$ and $\widetilde{y}=\widetilde{\alpha}(1)$, then specify $\widetilde{x}\widetilde{\sigma}=\widetilde{y}$. %COMPROBAR QUE ESTO DA LA ESTRUCTURA DE $B_\infty$ (ADEMÁS DE LAS PROPIEDADES DE OPERAD, LA ACCIÓN TIENE QUE SER LIBRE, PERO TENGO DUDA PARA EL CASO DE LAS TRENZAS PURAS) Y QUE EL COCIENTE POR LA ACCIÓN DE LAS TRENZAS PURAS ES $E_2$ (QUIZÁ ESTO SEA PORQUE PRECISAMENTE ES EL GRUPO FUNDAMENTAL, PERO TENGO QUE REVISAR SI ES LA MISMA ACCIÓN QUE LA DEL GRUPO FUNDAMENTAL)
 This data specifies a $B_\infty$-operad structure on $\widetilde{E}_2$. The fact that it is an group action follows from uniqueness of the lift $\widetilde{\gamma}$. It is left to show that the covering spaces are contractible and that this action is indeed free. %Yo creo que es porque el grupo de puras actúa transitivamente al ser el grupo fundamental del de abajo, entonces basta ver que diferentes permutaciones no actúan igual, pero eso es evidente. También se puede ver como que con sigma_i no caes en la misma componente de C_1
 %EL EJEMPLO DE FIEDEROWICZ CON LA PRUEBA DEL EJERCICO QUE ME PUSO MURO (A infinito significa que los espacios del operad son contráctiles, esto para el caso sin acción del grupo simétrico, que es el que usa Fiedorowicz. Con acción significa que cada componente conexa es contráctil, pero en cualquier caso C1 es contráctil \url{https://en.wikipedia.org/wiki/A\%E2\%88\%9E-operad}) 
 \end{proof}
@@ -410,7 +410,10 @@ obtained from $B$ by removing its $i$-th strand (counting at the top):
 
 We have the functor of taking the nerve $N:\Cat\to\SSet$ and the functor of topological realization $|\ |:\SSet\to \CW$. One can easily check that the nerve functor behaves well with respect to the symmetric monoidal structure. Since the nerve of $PaB_n$ is countable, the realization also behaves well with its symmetric monoidal structure by \ref{countable}. Therefore the collection of cellular complexes $X_n=|N(PaB_n)|$ forms a cellular operad. 
 
-Let us check that this operad is a little disks operad. Let $PaB_n'$ be the category whose objects are pairs $(x,y)$, where $x$ belongs to the braid group $B_n$ and $y$ is a parenthesizing of the non-associative product of $n$ elements, and there is a unique morphism between any two objects. We have a free right action of $B_n$ on $PaB_n':(x,y)\to (xg,y)$ and a braided operad structre on $PaB_*'$ (the structre maps are defined similarly to $PaB_n$). We have to show that the corresponding operad of classifying spaces is a topological $B_\infty$-operad and that the corresponding little disks operad is isomorphic to $X_*$. The action of $B_n$ on $PaB_n'$ induces an action on the vertices (0-simplices) of $|N(PaB_n')|$ and can be extended linearly to the whole complex, and therefore it is automatically free. Then, the quotient $|N(PaB_n')|/PB_n$ is equivalent to $X_n$ since the morphisms $(\sigma_1,\pi_1)\to(\sigma_2,\pi_2)$ in $PaB_n$ can be obtained by choosing one element in $p^{-1}(\sigma_2^{-1}\sigma_1)$ and multiplying it by the elements of $PB_n$. Finally, we have to show that $|PaB_n'|$ is contractible for every $n$. This follows from the following proposition, since every object in $PaB_n'$ is simultaneously initial and terminal. %NO ESTOY SEGURO DE QUE ESTÉ BIEN ESTO QUE HE DICHO.
+Let us check that this operad is a little disks operad. Let $PaB_n'$ be the category whose objects are pairs $(x,y)$, where $x$ belongs to the braid group $B_n$ and $y$ is a parenthesizing of the non-associative product of $n$ elements, and there is a unique morphism between any two objects. We have a free right action of $B_n$ on $PaB_n':(x,y)\to (xg,y)$ and a braided operad structre on $PaB_*'$ (the structre maps are defined similarly to $PaB_n$). %la acción esta en morfismos entiendo que debe llevarte un morfismo al morfismo entre los dos objetos que te salen
+We have to show that the corresponding operad of classifying spaces is a topological $B_\infty$-operad and that the corresponding little disks operad is isomorphic to $X_*$. The action of $B_n$ on $PaB_n'$ induces an action on $|N(PaB_n')|$ which is also free.  %libre en categoría implica libre en 
+ Then, the quotient $|N(PaB_n')|/PB_n$ is equivalent to $X_n$ since $|N(PaB_n')|/PB_n\cong |N(PaB_n'/PB_n)|\cong |N(PaB_n)|$. %since the morphisms $(\sigma_1,\pi_1)\to(\sigma_2,\pi_2)$ in $PaB_n$ can be obtained by choosing one element in $p^{-1}(\sigma_2^{-1}\sigma_1)$ and multiplying it by the elements of $PB_n$. 
+ Finally, we have to show that $|PaB_n'|$ is contractible for every $n$. This follows from the following proposition, since every object in $PaB_n'$ is simultaneously initial and terminal. %NO ESTOY SEGURO DE QUE ESTÉ BIEN ESTO QUE HE DICHO.
 \begin{prop}
 	If $X$ is a category that has either an initial object or a terminal object, then $|N(X)|$ is contractible.
 \end{prop}
@@ -446,7 +449,9 @@ t_{\phi(p)\phi(q)}, &p,q\neq i;\\
 \end{align*}
 One can verify that this map satisfies the expected properties of the operadic composition. %DEBERÍA 
 
-Any algebra with unit over $\Q$, say $A$, gives rise to a $\Q$-additive category $C_A$ with one object, i.e. a category in which each hom-set is a $\Q$-vector space. Denote by $\Q\Cat$ the category of all small $\Q$-additive categories, and by $\Q\Cat'=\Q\Cat/C_\Q$ the slice category of $\Q\Cat$ over $C_\Q$. The objects of $\Q\Cat'$ are the elements of $\Hom(x, C_\Q)$ for each $x\in \Q\Cat'$. A morphism between $\varphi:x\to C_\Q$ and $\psi:y\to C_\Q$ is a morphism $\eta: x\to y$ in $\Q\Cat$ such that $\eta\psi=\varphi$.  This category has symmetric monoidal structure obtained with the pullback over $C_\Q$. We have the functor of nerve
+Any algebra with unit over $\Q$, say $A$, gives rise to a $\Q$-additive category $C_A$ with one object, i.e. a category in which each hom-set is a $\Q$-vector space. Denote by $\Q\Cat$ the category of all small $\Q$-additive categories, and by $\Q\Cat'=\Q\Cat/C_\Q$ the slice category of $\Q\Cat$ over $C_\Q$. The objects of $\Q\Cat'$ are the elements of $\Hom(x, C_\Q)$ for each $x\in \Q\Cat'$. A morphism between $\varphi:x\to C_\Q$ and $\psi:y\to C_\Q$ is a morphism $\eta: x\to y$ in $\Q\Cat$ such that $\eta\psi=\varphi$.  This category has symmetric monoidal structure obtained with the pullback over $C_\Q$ \cite[\textsection 2.5]{handbook}. In general, the pullback of two categories over $C$ $A\xrightarrow{F}C$ and $B\xrightarrow{G}C$ is explicitly defined as the category $A\times_C B$ whose objects are pairs $(a,b)$ such that $F(a)=G(b)$ and arrows are pairs $(f,g)$ such that $F(f)=G(f)$.
+
+ We have the functor of nerve
 $N^{\Q}: \Q\Cat'\to \SVect$, which is analogue to nerve of an arbitrary
 category (but with slight nuances that we will detail soon), and the functor $C_*: \SVect \to\Ch$ of chain complexes over $\Q$. Both of these functors are lax monoidal (on the latter functor it is defined via the Eilenberg–Zilber map), therefore we have a functor $\Q\Cat'\to\Ch$ and the induced functor $C_*^{\Q}:\Q\Cat'$-Operads $\to$ dg-Operads. 
 %CREO QUE DEBO PREGUNTAR CÓMO SE DEFINE EL COMPLEJO DE CADENAS DE UN OBJETO SIMPLICIAL \url{https://ncatlab.org/nlab/show/Dold-Kan+correspondence} SEGURAMENTE ES PONER CADA NIVEL COMO COMPONENTE Y HACER LA TÍPICA SUMA ALTERNADA CON LAS CARAS PARA LA DIFERENCIAL
@@ -486,7 +491,7 @@ It is generated by two binary operations: the commutative associative multiplica
 
 These operations satisfy the Leibniz identity
 \[
-[ab, c]= a[b, c]+(-1)^{|b|(|c|+1)}[a,c]b
+[a, bc]= [a, b]c+(-1)^{|a|(|b|-1)}b[a,c]
 \]
 and the Jacoby identity
 \[
@@ -514,7 +519,7 @@ so $l=l(12)$. Now, let us transcript the Leibniz identity into the operadic lang
 %(-1)^{|a|+|b|}l(\mu(a,b),c)=\mu((-1)^{|a|+|b|}\mu(a,(-1)^{|b|}l(b,c))+(-1)^{|b|(|c|+1)}\mu((-1)^{|a|}l(a,c),b)
 %\]
 \[
-(-1)^{|a|}l(a,\mu(b,c))=(-1)^{|a|}\mu(l(a,b),,c)+(-1)^{|a|(|b|-1)}\mu(b,l(a,c))
+(-1)^{|a|}l(a,\mu(b,c))=(-1)^{|a|}\mu(l(a,b),c)+(-1)^{|a|(|b|-1)}\mu(b,l(a,c))
 \]
 which rewrites in terms of operadic composition, using that $|l|=1$ for the signs, as %la a salta sobre l y por eso sale el signo |a|*1, no salta sin embargo sobre (b,c), es decir, tienes l b c y saltas solo l, por eso el signo no es a(b+c-1)
 %\[
@@ -525,7 +530,7 @@ which rewrites in terms of operadic composition, using that $|l|=1$ for the sign
 \]
 The signs cancel, so we can simplify this as
 \[
-l\circ_1\mu =\mu\circ_2 l +\mu(23)\circ_1 l.
+l\circ_1\mu =\mu\circ_2 l +\mu(12)\circ_1 l.
 \]
 
 Finally, let us rewrite the Jacobi identity. Recall that $|[a,b]|=|a|+|b|-1$, so the Jacobi identity is
@@ -671,8 +676,28 @@ between these two objects correspond to the non-pure braids. Let $x\in B_2$
 be the generator. We define $\phi(x^{\pm 1})=\exp(\pm t_{12}/2)$. Take the two objects $(x_1x_2)x_3$ and
 $x_1(x_2x_3)$ of $PaB_3$ corresponding to the identity permutation $e \in \Sigma_3$, and the morphism
 $i$ between them, corresponding to the identity braid $e_b\in B_3$. Define $\phi(i^{\pm 1})=\Phi^{\pm 1}$.
-Note that the operad $PaB_*$ is generated by $x$, $i$ and their various images by repeated applications
-of the $d_i$'s (becasuse every Artin generator of the braid group can be expressed in those terms). Hence, these conditions define $\phi$ uniquely. %CREO QUE LO GENERAN PORQUE SE ENTIENDE $X$ COMO PERMUTAR DOS CUALESQUIERA, Y A PARTIR DE ESO PUEDES HACER CUALQUIER MORFISMO TAMBIÉN, PORQUE FIJADA UNA PERMUTACIÓN, LAS DEMÁS ES MULTIPLICAR POR TRENZAS PURAS, QUE ES HACER ESA PERMUTACIÓN UN NÚMERO PAR DE VECES. 
+Note that the operad $PaB_*$ is generated by $x$ and $i$ %and their various images by repeated applications of the $d_i$'s (becasuse every Artin generator of the braid group can be expressed in those terms). 
+%> Página 37 sobre los generadores: puse esas operaciones porque no
+%> tenía muy claro como generar la trenza de 3 cuerdas en la que solo
+%> hay un cruce de dos cuerdas -por ejemplo las de la izquierda.
+%> Necesitaría insertar x en la trenza identidad de B_2 -que supongo que
+%> se puede decir que se genera con x insertada 0 veces. Por eso además
+%> indiqué después que d_i iba a d^i. 
+%
+%Creo recordar que hicimos algún dibujo de esto.
+%
+%x: x_1x_2 -> x_2x_1 es el generador de B_2
+%
+%i: (x_1x_2)x_3 -> x_1(x_2x_3) es la identidad
+%
+%El objeto x_1x_2, por ser la partida de x, también está incluido como
+%generador, pero puedes incluirlo explícitamente para una mejor
+%comprensión. La llegada de x es (x_1x_2)·(1 2), la partida de i es
+%x_1x_2 \circ_1 x_1x_2 y su llegada es x_1x_2 \circ_2 x_1x_2. El
+%morfismo que tú sugieres sería id_{x_1x_2} \circ_1 x.
+
+
+Hence, these conditions define $\phi$ uniquely. %CREO QUE LO GENERAN PORQUE SE ENTIENDE $X$ COMO PERMUTAR DOS CUALESQUIERA, Y A PARTIR DE ESO PUEDES HACER CUALQUIER MORFISMO TAMBIÉN, PORQUE FIJADA UNA PERMUTACIÓN, LAS DEMÁS ES MULTIPLICAR POR TRENZAS PURAS, QUE ES HACER ESA PERMUTACIÓN UN NÚMERO PAR DE VECES. 
 The definition of the associator is equivalent to the fact that $\phi$ is well-defined. One can check this by finding the relations between morphisms in $PaB_n$. Of course, some of these relations come from the presentation of the braid groups. An exhaustive list of relations is contained in the proof of  \cite[Proposition 3.4]{1deTamarkin}. For the sake of clarity, let us describe one of the most intuitive relations and how it is preserved by $\phi$. Consider the following morphism
 
 \begin{figure}[h!]

@@ -32,7 +32,7 @@ such that, for every $a,b,c\in A$:
 \item $[b,a]=-(-1)^{(|a|-1)(|b|-1)}[a,b]$ (graded antisymmetry)
 \item $(-1)^{(|a|-1)(|c|-1)}[[a,b],c]+(-1)^{(|b|-1)(|a|-1)}[[b,c],a]+(-1)^{(|c|-1)(|b|-1)}[[c,a],b]=0$ (graded Jacobi identity). 
 \end{itemize}
-\item[(3)]  $[a,]$ is a right derivation of $\cdot$ of degree $|a|-1$:%$[,c]$ is a left derivation of $\cdot$ of degree $|c|-1$: %LO QUE PRUEBA GERSTENHABER ES CON EL PRODUCTO EN EL LADO IZQUIERDO PERO SUPONGO QUE POR LA CONMUTATIVIDAD Y ANTISIMETRÍA
+\item[(3)]  $[a,]$ is a right derivation of $\cdot$ of degree $-1$:%$[,c]$ is a left derivation of $\cdot$ of degree $|c|-1$: %LO QUE PRUEBA GERSTENHABER ES CON EL PRODUCTO EN EL LADO IZQUIERDO PERO SUPONGO QUE POR LA CONMUTATIVIDAD Y ANTISIMETRÍA
 %\[
 %[a\cdot b,c]=[a,c]\cdot b+(-1)^{|a|(|c|-1)}a\cdot [b,c]
 %\]
@@ -93,12 +93,11 @@ Then the bracket is defined by $[f,g]=f\circ g-(-1)^{(n-1)(m-1)}g\circ f$. The b
 \begin{thm}\cite[Corollary 2 of \textsection 8]{Gerstenhaber}
 Let $A$ be an algebra and $\xi$, $\eta$ and $\zeta$ elements of $H^m(A,A)$, $H^n(A,A)$ and $H^p(A,A)$, respectively. Then
 \[
-[\eta\smile\xi, \zeta]=[\eta,\xi]\smile \zeta+(-1)^{m(p-1)}\eta\smile[\zeta,\xi].
+[\eta, \xi\smile \zeta]=[\eta,\xi]\smile \zeta+(-1)^{m(n-1)}\eta\smile[\xi,\zeta].
 \]
 \end{thm}
 
-
-According to definition \ref{defi1}, we have the following theorem.
+Actually, Gerstenhaber proves that the bracket is a left derivation, but with an analogous proof one can obtain the previous result. Therefore, according to definition \ref{defi1}, we have the following theorem.
 
 \begin{thm}
 	The Hochschild cohomology $H^*(A,A)$ is a Gerstenhaber algebra.\qed

@@ -8,7 +8,7 @@
 
 %Se usan también en tqft, y sirven para construir muchos tipos de álgebras (por ejemplo Lie en característica no 2 por lo de la simetría, asociativas, commutativas, aunque no fields o grupos intuitivamente por la inversa)
 
-In this chapter we define the main object of our study: operads. This object that been gaining importance in mathematics thanks to its ability to encode many kinds of algebras (associative, commutative, Lie...). We begin with the topological version of operads and construct the operad of little disks, which plays the main role in the Deligne conjecture. Topological operads give rise to operads in other categories by taking singular chains or homology. Therefore, we also introduce the concept of operad in a symmetric monoidal category. Finally, we motivate the study of operads and the origin of the Deligne conjecture. We can restrict ourselves to compactly generated Hausdorff spaces when necessary. 
+In this chapter we define the main object of our study: operads. This object has been gaining importance in mathematics thanks to its ability to encode many kinds of algebras (associative, commutative, Lie...). We begin with the topological version of operads and construct the operad of little disks, which plays the main role in the Deligne conjecture. Topological operads give rise to operads in other categories by taking singular chains or homology. Therefore, we also introduce the concept of operad in a symmetric monoidal category. Finally, we motivate the study of operads and the origin of the Deligne conjecture. We can restrict ourselves to compactly generated Hausdorff spaces when necessary. 
 
 
 
@@ -409,7 +409,7 @@ For an arbitrary symmetric monoidal category $\mathscr{M}$ we obtain the followi
 Let $\mathscr{M}$ be a symmetric monoidal category. A (\emph{symmetric}) \emph{operad} in $\mathscr{M}$ consists of objects $\OO(n)$ of $\mathscr{M}$ indexed over the natural numbers equipped with the following extra structure: 
 
 \begin{enumerate}
-\item Right actions of opposite symmetric groups $ρ_n^{op}:\Sigma_n^{op}→\Hom(\OO(n),\OO(n))$.
+\item Left actions of opposite symmetric groups $ρ_n^{op}:\Sigma_n^{op}→\Hom(\OO(n),\OO(n))$.
 \item A \emph{unit} $e:I→\OO(1)$ (which we think of as picking out the identity). %Right del opposite es lo mismo que left del normal https://en.wikipedia.org/wiki/Opposite_group el motivo es que ya había puesto que fueran a la derecha y habría tenido que cambiar mucho
 \item Composition operations
 \[
@@ -467,7 +467,7 @@ where for $\sigma\in\Sigma_k$, $\tau_s\in\Sigma_{n_s}$, then $\sigma(n_1,\dots, 
 
 \end{defi}
 
-A non-symmetric (or non-$\Sigma$) version is obtained by dropping out the right action of the symmetric group, or equivalently%, by declaring it to be trivial. 
+A non-symmetric (or non-$\Sigma$) version is obtained by dropping out the right action of the symmetric group. %or equivalently%, by declaring it to be trivial. 
 If we furthermore insist that $\OO(0)=I$, then the operad is called \emph{unital}. In most cases we won't need to use the categorical definition since normaly one can just mimic the definition \ref{operadtop}.
 
 
@@ -476,7 +476,7 @@ Let $\OO$ and $\mathcal{P}$ be operads in $\mathscr{M}$. A map of operads $f:\OO
 \begin{enumerate}
 \item Compatibility with units:  $f\circ e_\OO=e_\mathcal{P}$, where $e_\OO$ and $e_\mathcal{P}$ are the units.
 \item Compatibility with operad compositions: $f\circ \gamma_\OO=\gamma_\mathcal{P}\circ (f\otimes\cdots\otimes f)$ where $\gamma_\OO$ and $\gamma_\mathcal{P}$ are the structure maps and the tensor product $f\otimes\cdots\otimes f$ is taken as many times as the number of arguments of $\gamma_\mathcal{P}$. 
-\item  Compatibility with the action of the symmetric groups: $f\circ \rho_\OO(\sigma)=\rho_\mathcal{P}(\sigma)\circ f$ for every and $\sigma\in\Sigma_n$ and for all $n$, where $\rho_\OO$ and $\rho_\mathcal{P}$ are the actions of $\Sigma_n$ on $\OO$ and $\mathcal{P}$, respectively.
+\item  Compatibility with the action of the symmetric groups: $f\circ \rho_\OO(\sigma)=\rho_\mathcal{P}(\sigma)\circ f$ for every and $\sigma\in\Sigma_n$ and for all $n$, where $\rho_\OO$ and $\rho_\mathcal{P}$ are the actions of $\Sigma_n^{op}$ on $\OO$ and $\mathcal{P}$, respectively.
 \end{enumerate}
 \end{defi}
 
@@ -502,15 +502,15 @@ Note that a map of operads $\OO\to \OO'$ endows an $\OO'$-algebra with a canonic
 
  %el converse puede ser que el functor de p-algebras a p'-algebras admite left adjoint que es pag 140 de AlgebraicOperads %The converse is also obviously true: in order to define a map of operads it is enough to endow any $\OO'$-algebra with a canonical $\OO$-algebra structure. 
 
-For a functor $F:\mathscr{M}\to\mathscr{N}$ between monoidal categories, we would like $F$ to preserve the tensor structures so that we can send operads to operads. In most cases, it will be enough to have  morphisms $1_{\mathscr{M}}\to F(1_\mathscr{N})$ and $F(A\otimes_{\mathscr{M}}B)\to F(A)\otimes_{\mathscr{N}} F(B)$ satisfying some natural the associativity and unitality properties (see \cite[Definition 6.4.1]{handbook}). Functors fulfilling that last property are called \emph{lax monoidal}. We give an example of a lax monoidal functor in the next section. When the morphisms before are isomorphisms, and hence $F$ preserves the monoidal structure, then $F$ is simply called \emph{monoidal}.
+For a functor $F:\mathscr{M}\to\mathscr{N}$ between monoidal categories, we would like $F$ to preserve the tensor structures so that we can send operads to operads. In most cases, it will be enough to have  morphisms $1_{\mathscr{M}}\to F(1_\mathscr{N})$ and $F(A\otimes_{\mathscr{M}}B)\to F(A)\otimes_{\mathscr{N}} F(B)$ satisfying some natural associativity and unitality properties (see \cite[Definition 6.4.1]{handbook}). Functors fulfilling that last property are called \emph{lax monoidal}. We give an example of a lax monoidal functor in the next section. When the morphisms before are isomorphisms, and hence $F$ preserves the monoidal structure, then $F$ is simply called \emph{monoidal}.
 
 \subsection{Connection between $E_2$ and Gerstenhaber algebras}\label{zilber}
 
-Now that we've defined operads in a more general context, we're ready to draw the connection between the $E_2$ operad and the Gerstenhaber algebras. Since $E_2=\{E_2(n)\}_{n\geq 0}$ is a collection of topological spaces, one can consider the collection of singular chain complexes $C_*(E_2)=\{C_*(E_2(n))\}_{n\geq 0}$ over a fixed ring $k$ (for our purposes $k=\Q$). This family is an operad of chain complexes making use of the \emph{Eilenber-Zilber map} \cite{EZ} $C_*(X)\otimes C_*(Y)\to C_*(X\times Y)$ for arbitrary topological spaces $X$ and $Y$. 
+Now that we've defined operads in a more general context, we're ready to draw the connection between the $E_2$ operad and the Gerstenhaber algebras. Since $E_2=\{E_2(n)\}_{n\geq 0}$ is a collection of topological spaces, one can consider the collection of singular chain complexes $C_*(E_2)=\{C_*(E_2(n))\}_{n\geq 0}$ over the fixed ring $k$ (for our purposes $k=\Q$). This family is an operad of chain complexes making use of the \emph{Eilenber-Zilber map} \cite{EZ} $C_*(X)\otimes C_*(Y)\to C_*(X\times Y)$ for arbitrary topological spaces $X$ and $Y$. 
 
 In first place, note that an action of the symmetric group $\rho:X\times\Sigma_n\to X$ can be seen as a family of continuous maps $\rho_\sigma:X\to X$ for each $\sigma\in\Sigma_n$, so they induce an action $\rho_*: C_*(X)\times\Sigma_n\to C_*(X)$. %también hay una acción natural reordenando los vértices del símplice o del cubo 
 
-Next, in order to properly define the Eilenberg-Zilber map explicitly, we have to construct the singular chain complex in two steps. First, consider the simplicial set $S^{sing}(X)$ whose $n$-simplices are just $n$-singular simplices $\sigma:\Delta^n\to X$. The face and degenerancy maps $d_i$ and $s_i$ are obtained from the corresponding $d^i:\Delta^{n-1}\to \Delta^{n}$ and $s^i:\Delta^n\to\Delta^{n-1}$ by composition i.e. $d_i(\sigma)=\sigma\circ d^i$ and $s_i(\sigma)=\sigma\circ s^i$. Then, one defines $C_*(X)=C(S^{sing}(X))$, the chain complex of vector spaces, where the degree $n$-component is generated by the $n$-simplices and the differentials are the usual alternate sums $d=\sum_{i=0}^{n-1}(-1)^id_i$. This definition of $C(\cdot)$ actually admits any simplicial set.
+Next, in order to properly define the Eilenberg-Zilber map explicitly, we have to construct the singular chain complex in two steps. First, consider the simplicial set $S^{sing}(X)$ whose $n$-simplices are just $n$-singular simplices $\sigma:\Delta^n\to X$. The face and degenerancy maps $d_i$ and $s_i$ are obtained from the corresponding $d^i:\Delta^{n-1}\to \Delta^{n}$ and $s^i:\Delta^n\to\Delta^{n-1}$ by composition i.e. $d_i(\sigma)=\sigma\circ d^i$ and $s_i(\sigma)=\sigma\circ s^i$. Then, one defines $C_*(X)=C(S^{sing}(X))$, the chain complex of vector spaces, where the degree $n$-component is generated by the $n$-simplices and the differentials are the usual alternate sums $d=\sum_{i=0}^{n-1}(-1)^id_i$. This definition of $C(\cdot)$ actually admits any simplicial set. Note that this functor factors through another functor which transforms $S^{sing}(X)$ into a simplicial abelian group or a simplicial vector space.
 
 Recall that the product $\Delta^p\times\Delta^q$ can be triangulated in such a way that $\Delta^{p+q}\subset \Delta^p\times\Delta^q$ \cite[Proof of Theorem 2.10]{Hatcher} (to avoid choosing a particular inclusion, one can instead consider singular cubes $f:[0,1]^p\to X$, for which we have $[0,1]^p\times [0,1]^q=[0,1]^{p+q}$). Therefore, one can take two singular simplices $f:\Delta^p\to X$ and $g:\Delta^q\to X$ and define their product $f\otimes g$ as the restriction of $f\times g$ to $\Delta^{p+q}$. Now we give the following definition:
 
@@ -603,7 +603,7 @@ An important corollary of this construction is that $H_*(\Omega X)$ is a Gerster
 
 The equivalence between Gersternhaber algebras and $E_2$-algebras is the origin of the Deligne conjecture, namely, the Hochschild cohomology of an associative algebra $A$, $H^*(A;A)$, has a Gersternhaber algebra structure, and therefore there is an action of $H_*(E_2)$ on it. It is then natural to wonder whether this action comes from an action of $C_*(E_2)$ on $C^*(A;A)$. 
 
-Cohen, May et al. also show in \cite{cuentas} that the homology operad $e_2=H_*(E_2)$ is generated as an operad by two operations $\mu\in H_0(E_2(2))$ and $l\in H_1(E_2(2))$, meaning that any other operation is generated by operadic composition of $\mu$ and $l$. Geometrically, the class of $\mu$ is represented by a point, in particular the point having one little disk on the left side of the unit disk numbered by 1 and another little disk on the right side numbered by 2 (which can be interpreted as the position where arguments are introduced). The class of $l$ is represented by a closed path based at the point representing $\mu$. More precisely, this path has the shape of the generator of the pure braid group $PB_2$ as shown below.
+Cohen, May et al. also show in \cite{cuentas} that the homology operad $e_2=H_*(E_2)$ is generated as an operad by two operations $\mu\in H_0(E_2(2))$ and $l\in H_1(E_2(2))$, meaning that any other operation is generated by operadic composition of $\mu$ and $l$. Geometrically, the class of $\mu$ is represented by a point, in particular the point having one little disk on the left side of the unit disk numbered by 1 and another little disk on the right side numbered by 2 (which can be interpreted as the positions where arguments are introduced). The class of $l$ is represented by a closed path based at the point representing $\mu$. More precisely, this path has the shape of the generator of the pure braid group $PB_2$ as shown below.
 
 \begin{figure}[h!]
 	\centering
