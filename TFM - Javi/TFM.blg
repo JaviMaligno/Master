@@ -1,7 +1,7 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: TFM.aux
 The style file: amsalpha.bst
 Database file #1: biblioc.bib
-I was expecting a `,' or a `}'---line 366 of file biblioc.bib
+I was expecting a `,' or a `}'---line 387 of file biblioc.bib
  :  
  :  file = {Christensen y Wahl - Equivalenace of The Little Disk and Cacti operads.pdf:C\:\\Users\\Javi\\Zotero\\storage\\MVVGVMTV\\Christensen y Wahl - Equivalenace of The Little Disk and Cacti operads.pdf:application/pdf}
 (Error may have been on previous line)
@@ -18,12 +18,14 @@ Warning--missing journal, volume, and year in McClure
 Warning--missing pages in McClure
 Warning--missing journal name in bar
 Warning--missing journal, volume, and year in bar
+Warning--missing journal name in teich
+Warning--missing journal, volume, and year in teich
 Warning--missing pages in GJ
 Warning--missing pages in Meneses
-Warning--missing publisher in Madsen
-Warning--missing year in Madsen
 Warning--missing pages in simplicial
 Warning--missing publisher in working
+Warning--missing publisher in Madsen
+Warning--missing year in Madsen
 Warning--missing journal name in Diego
 Warning--missing journal, volume, and year in Diego
 Warning--missing pages in Diego

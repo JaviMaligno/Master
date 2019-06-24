@@ -8,7 +8,7 @@
 
 %Se usan también en tqft, y sirven para construir muchos tipos de álgebras (por ejemplo Lie en característica no 2 por lo de la simetría, asociativas, commutativas, aunque no fields o grupos intuitivamente por la inversa)
 
-In this chapter we define the main object of our study: operads. This object that been gaining importance in mathematics thanks to its ability to encode many kinds of algebras (associative, commutative, Lie...). We begin with the topological version of operads and construct the operad of little disks, which plays the main role in the Deligne conjecture. Topological operads give rise to operads in other categories by taking singular chains or homology. Therefore, we also introduce the concept of operad in a symmetric monoidal category. Finally, we motivate the study of operads and the origin of the Deligne conjecture. We can restrict ourselves to compactly generated Hausdorff spaces when necessary. 
+In this chapter we define the main object of our study: operads. This object has been gaining importance in mathematics thanks to its ability to encode many kinds of algebras (associative, commutative, Lie...). We begin with the topological version of operads and construct the operad of little disks, which plays the main role in the Deligne conjecture. Topological operads give rise to operads in other categories by taking singular chains or homology. Therefore, we also introduce the concept of operad in a symmetric monoidal category. Finally, we motivate the study of operads and the origin of the Deligne conjecture. We can restrict ourselves to compactly generated Hausdorff spaces when necessary. 
 
 
 
@@ -33,7 +33,7 @@ following associativity formula is satisfied for all $c\in \CC(k)$, $d_s \in \CC
 \gamma(c; d_1, \dots , d_k); e_1, \dots , e_j) = 
 \gamma(c; f_1, \dots , f_k),
 \]
-where $$f_s = \gamma(d_s; e_{j_1+\cdots+j_{s−1}+1}, \dots , e_{j_1+\cdots+j_s} )$$.%, and $f_s = *$ if $j_s = 0$ 
+where $$f_s = \gamma(d_s; e_{j_1+\cdots+j_{s−1}+1}, \dots , e_{j_1+\cdots+j_s} ).$$%, and $f_s = *$ if $j_s = 0$ 
 These maps are usually called \emph{structure maps}.
 
 \item An identity element $1 \in \CC(1)$ such that 
@@ -87,11 +87,11 @@ There is a very visual way to understand operads using trees. Consider a star-sh
 \draw [line width=2.pt] (2.,1.)-- (1.,3.);
 \draw [line width=2.pt] (2.,1.)-- (1.7,3.);
 \draw [line width=2.pt] (2.,1.)-- (3.,3.);
-\draw (0.24666666666666592,3.493333333333331) node[anchor=north west] {$1$};
-\draw (0.8733333333333326,3.52) node[anchor=north west] {$2$};
-\draw (1.606666666666666,3.493333333333331) node[anchor=north west] {$3$};
-\draw (2.9933333333333327,3.453333333333331) node[anchor=north west] {$n$};
-\draw (2.153333333333333,3.453333333333331) node[anchor=north west] {$\cdots$};
+\draw (0.1,3.493333333333331) node[anchor=north west] {$1$};
+\draw (0.8,3.52) node[anchor=north west] {$2$};
+\draw (1.5,3.493333333333331) node[anchor=north west] {$3$};
+\draw (2.8,3.453333333333331) node[anchor=north west] {$n$};
+\draw (2.1,3.453333333333331) node[anchor=north west] {$\cdots$};
 \end{tikzpicture}
 
 These trees are going to be our bricks. Let us call the upward leaves \emph{inputs} and the downward leave \emph{output}. One can interpret a $n$-ary operation as a tree having precisely $n$ inputs and one output. In addition, we can build trees having any number of inputs by grafting the output of a tree into an output of another tree, as in the picture below.
@@ -320,7 +320,15 @@ A \emph{symmetric monoidal category} is a category $\mathscr{M}$ equipped with:
 \item Natural isomorphism $a_{x,y,z} : (x \otimes y) \otimes z \to x \otimes (y \otimes z)$ (called the \emph{associator}), $\lambda_x : I \otimes x \to x$ (\emph{left unitor}), $\rho_x : x \otimes I \to x$ (\emph{right unitor}) and $B_{x,y}: x\otimes y\to y\otimes x$ (\emph{braiding}).
 \end{enumerate}
 
-We then demand that the associator and unitors obey the triangle identity, which says this diagram commutes:
+We demand the following that the following diagram of unit coherence commutes:
+\[
+\begin{tikzcd}
+x\otimes I\arrow[r, "B_{x,I}"]\arrow[d, "\rho_x"']& I\otimes x\arrow[dl, "\lambda_x"]\\
+x & 
+\end{tikzcd}
+\]
+
+We also demand that the associator and unitors obey the triangle identity, which says this diagram commutes:
 \[
 \begin{tikzcd}
 (x\otimes I)\otimes y \arrow[rr, "{a_{x,I,y}}"] \arrow[rd, "\rho_x\otimes 1_y"'] &            & x\otimes (I\otimes y) \arrow[ld, "1_x\otimes\lambda_y"] \\
@@ -350,7 +358,7 @@ We demand that the braiding and associator obey the hexagon identity:
 And lastly, we demand that $B_{y,x}B_{x,y}=1_{x\otimes y}$.
 \end{defi}
 
-If we drop the braiding from the definition above we obtain what is simply called a \emph{monoidal category}. If we omit the constrain $B_{y,x}B_{x,y}=1_{x\otimes y}$, then we can get a \emph{braided monoidal category}. In that case we have to add the following diagram, which is deduced from the hexagon identity and the equality $B_{y,x}B_{x,y}=1_{x\otimes y}$ in the case of symmetric monoidal categories:
+If we drop the braiding from the definition above we obtain what is simply called a \emph{monoidal category}. If we omit the constraint $B_{y,x}B_{x,y}=1_{x\otimes y}$, then we can get a \emph{braided monoidal category}. In that case we have to add the following diagram, which is deduced from the hexagon identity and the equality $B_{y,x}B_{x,y}=1_{x\otimes y}$ in the case of symmetric monoidal categories:
 \[
 \begin{tikzcd}
 	x\otimes (y\otimes z) \arrow[r, "{a^{-1}_{x,y,z}}"] \arrow[d, "{1_x\otimes B_{y,z}}"'] & (x\otimes y)\otimes z \arrow[r, "{B_{x\otimes y, z}}"]   & (y\otimes z)\otimes x \arrow[d, "{a^{-1}_{z,x,y}}"] \\
@@ -359,15 +367,17 @@ If we drop the braiding from the definition above we obtain what is simply calle
 \]
 \begin{ex}\
 \begin{enumerate}
-\item The categories $\Set$ and $\Top$ are symmetric monoidal categories with the cartesian product as tensor product and a singleton as unit. 
-\item For a fixed field $k$, the category $\Vect_k$ of $k$-vector spaces carries the standard structure of a monoidal category coming from the tensor product (over $k$) of vector spaces. The standard braiding that identifies $V\otimes W$ with $W\otimes V$ by mapping elements $v\otimes w$ to $w\otimes v$ obviously makes $\Vect_k$ into a symmetric monoidal category. This is also true for the category $\Vectgr_k$ of graded vector spaces over $k$, though it is more common to introduce the Koszul sign convention in the braiding. 
+\item The categories $\Set$ and $\Top$ are symmetric monoidal categories with the cartesian product as tensor product and a singleton as unit.
 
-\item For a commutative ring $k$, the category of $R$-modules and the category of $k$-algebras have obvious tensor structures that can be used in the graded case too (again, with the sign convention). %, but this tensor structure is not symmetric in general. Some cases where it is symmetric are $k=\Z_m$ and $k=\Q$. %en la tabla de caracteres de Z_2xZ_2 se ve que TRIVxAlT tiene que ser distinta a ALTxTRIV, como las representaciones son A-modulos para A el álgebra del grupo, se tiene lo que he dicho
+\item The category of $k$-modules and the category of $k$-algebras have obvious tensor structures that can be used in the graded case too, though it is more common to introduce the Koszul sign convention in the braiding.  
+\item If $k$ is a field, the category $\Vect_k$ of $k$-vector spaces carries the standard structure of a monoidal category coming from the tensor product (over $k$) of vector spaces. The standard braiding that identifies $V\otimes W$ with $W\otimes V$ by mapping elements $v\otimes w$ to $w\otimes v$ obviously makes $\Vect_k$ into a symmetric monoidal category. This is also true for the category $\Vectgr_k$ of graded vector spaces over $k$ (again, with the sign convention).
 
-\item The category $\Cat$ of small categories (the collection of objects and the collection of morphisms are both sets) is symmetric monoidal with the product of categories and the category with one object and only the identity morphism as unit.
+ %, but this tensor structure is not symmetric in general. Some cases where it is symmetric are $k=\Z_m$ and $k=\Q$. %en la tabla de caracteres de Z_2xZ_2 se ve que TRIVxAlT tiene que ser distinta a ALTxTRIV, como las representaciones son A-modulos para A el álgebra del grupo, se tiene lo que he dicho
 
 
-\item The category of chain complexes of $k$-modules over a commutative ring $k$, $\Ch(k\Mod)$, can be endowed with a structure of symmetric monoidal category defining the following thensor structure. For chain complexes $X,Y\in\Ch(k\Mod)$ write $X\otimes Y$ for the chain complex whose component of degree $n$ is given by the direct sum
+
+
+\item The category of chain complexes of $k$-modules, $\Ch(k\Mod)$, can be endowed with a structure of symmetric monoidal category defining the following thensor structure. For chain complexes $X,Y\in\Ch(k\Mod)$ write $X\otimes Y$ for the chain complex whose component of degree $n$ is given by the direct sum
 \[
 (X \otimes Y)_n := \bigoplus_{i + j = n} X_i \otimes_R Y_j
 \]
@@ -377,9 +387,13 @@ and whose differential is given on elements $x\otimes y$ of homogeneous degree b
   (-1)^{\deg(x)} x\otimes\partial^Y y
   \,.
 \]
-The unit object is the chain complex concentrated in degree 0 on the tensor unit $R$ of $R\Mod$. Operads in this category are usually called \emph{$dg$-operads} (differential graded operads). 
+The unit object is the chain complex concentrated in degree 0 on the tensor unit $k$ of $k\Mod$. Operads in this category are usually called \emph{$dg$-operads} (differential graded operads). 
 
 \item The category $\SSet$ of simplicial sets has a very simple monoidal structure. Given two simplicial sets $S$ and $T$ regarded as functors $\mathbf{\Delta}^{op}\to\Set$, we can define $S\otimes T=S\times T$, meaning that $S\otimes T:[n]\mapsto S_n\times T_n$ and send the morphisms to the obvious ones. The unit in this category is the simplicial set $X_n=\{*\}$ for all $n$ and identities as face and degeneracy maps. 
+
+\item The category $\Cat$ of small categories (the collection of objects and the collection of morphisms are both sets) is symmetric monoidal with the product of categories and the category with one object and only the identity morphism as unit. %el objeto terminal es el producto vacío
+
+\item  More generally, any category with finite categorical products is symmetric monoidal with its product as tensor product and the terminal object as unit. This monoidal structures are called \emph{cartesian} structures.
 \end{enumerate}
 
 
@@ -395,7 +409,7 @@ For an arbitrary symmetric monoidal category $\mathscr{M}$ we obtain the followi
 Let $\mathscr{M}$ be a symmetric monoidal category. A (\emph{symmetric}) \emph{operad} in $\mathscr{M}$ consists of objects $\OO(n)$ of $\mathscr{M}$ indexed over the natural numbers equipped with the following extra structure: 
 
 \begin{enumerate}
-\item Right actions of opposite symmetric groups $ρ_n^{op}:\Sigma_n^{op}→\Hom(\OO(n),\OO(n))$.
+\item Left actions of opposite symmetric groups $ρ_n^{op}:\Sigma_n^{op}→\Hom(\OO(n),\OO(n))$.
 \item A \emph{unit} $e:I→\OO(1)$ (which we think of as picking out the identity). %Right del opposite es lo mismo que left del normal https://en.wikipedia.org/wiki/Opposite_group el motivo es que ya había puesto que fueran a la derecha y habría tenido que cambiar mucho
 \item Composition operations
 \[
@@ -406,7 +420,7 @@ These data are subject to following axioms that can be found in \cite{Yau} and \
 \item For $n=\sum_{i=1}^k n_i$, $j=\sum_{i=1}^n j_i$, $g_s=\sum_{i=1}^sn_i$ and $h_s=j_{g_s-1}+\cdots j_{g_s}$ ($1\leq s\leq k$), the following diagram of associativity commutes %el 1 es la identidad
 \[
 \begin{tikzcd}
-\OO(k)\otimes\left(\bigotimes_{i=1}^k\OO(n_i)\right)\otimes\left(\bigotimes_{r=1}^n\OO(j_r)\right)\arrow[dd, "\text{permute with the symmetry constrain}"']\arrow[r, "\gamma\otimes 1^j"] & 
+\OO(k)\otimes\left(\bigotimes_{i=1}^k\OO(n_i)\right)\otimes\left(\bigotimes_{r=1}^n\OO(j_r)\right)\arrow[dd, "\text{permute with the symmetry constraint}"']\arrow[r, "\gamma\otimes 1^j"] & 
 \OO(n)\otimes \left(\bigotimes_{i=1}^n\OO(j_i)\right)\arrow[d, "\gamma"]\\
 & \OO(j)\\
 \OO(k)\otimes \bigotimes_{s=1}^k\left[\OO(n_s)\otimes\left(\bigotimes_{q=1}^{n_s}\OO(j_{g_{s-1+q}})\right)\right]\arrow[r, "1\otimes \gamma^n"] & 
@@ -453,7 +467,7 @@ where for $\sigma\in\Sigma_k$, $\tau_s\in\Sigma_{n_s}$, then $\sigma(n_1,\dots, 
 
 \end{defi}
 
-A non-symmetric (or non-$\Sigma$) version is obtained by dropping out the right action of the symmetric group, or equivalently%, by declaring it to be trivial. 
+A non-symmetric (or non-$\Sigma$) version is obtained by dropping out the right action of the symmetric group. %or equivalently%, by declaring it to be trivial. 
 If we furthermore insist that $\OO(0)=I$, then the operad is called \emph{unital}. In most cases we won't need to use the categorical definition since normaly one can just mimic the definition \ref{operadtop}.
 
 
@@ -462,7 +476,7 @@ Let $\OO$ and $\mathcal{P}$ be operads in $\mathscr{M}$. A map of operads $f:\OO
 \begin{enumerate}
 \item Compatibility with units:  $f\circ e_\OO=e_\mathcal{P}$, where $e_\OO$ and $e_\mathcal{P}$ are the units.
 \item Compatibility with operad compositions: $f\circ \gamma_\OO=\gamma_\mathcal{P}\circ (f\otimes\cdots\otimes f)$ where $\gamma_\OO$ and $\gamma_\mathcal{P}$ are the structure maps and the tensor product $f\otimes\cdots\otimes f$ is taken as many times as the number of arguments of $\gamma_\mathcal{P}$. 
-\item  Compatibility with the action of the symmetric groups: $f\circ \rho_\OO(\sigma)=\rho_\mathcal{P}(\sigma)\circ f$ for every and $\sigma\in\Sigma_n$ and for all $n$, where $\rho_\OO$ and $\rho_\mathcal{P}$ are the actions of $\Sigma_n$ on $\OO$ and $\mathcal{P}$, respectively.
+\item  Compatibility with the action of the symmetric groups: $f\circ \rho_\OO(\sigma)=\rho_\mathcal{P}(\sigma)\circ f$ for every and $\sigma\in\Sigma_n$ and for all $n$, where $\rho_\OO$ and $\rho_\mathcal{P}$ are the actions of $\Sigma_n^{op}$ on $\OO$ and $\mathcal{P}$, respectively.
 \end{enumerate}
 \end{defi}
 
@@ -472,21 +486,33 @@ If we work in a symmetric monoidal closed category (a closed category is, roughl
 \[
 \OO(j) \otimes X^{\otimes j} \to X
 \]
-which specifies an action of $\OO$ via finitary operations on $X$, with compatibility conditions between the operad multiplication and the structure of plugging in $j$ finitary operations on $X$ into a $j$-ary operation (and compatibility with actions by permutations). This alternative definition is possible due to the well-known tensor-hom adjuntion, i.e., the isomorphism $\Hom(X\otimes Y,Z)\cong \Hom(X,\Hom(Y,Z))$ \cite{tensor-hom}.
+which specifies an action of $\OO$ via finitary operations on $X$, with compatibility conditions between the operad multiplication and the structure of plugging in $j$ finitary operations on $X$ into a $j$-ary operation (and compatibility with actions by permutations). This alternative definition is possible due to the well-known tensor-hom adjuntion, i.e., the isomorphism $\Hom(X\otimes Y,Z)\cong \Hom(X,\Hom(Y,Z))$ \cite{tensor-hom}. 
 
-Note that a map of operads $\OO\to \OO'$ endows an $\OO'$-algebra with a canonical $\OO$-algebra structure. %The converse is also obviously true: in order to define a map of operads it is enough to endow any $\OO'$-algebra with a canonical $\OO$-algebra structure. 
+Note that a map of operads $\OO\to \OO'$ endows an $\OO'$-algebra with a canonical $\OO$-algebra structure.
 
-For a functor $F:\mathscr{M}\to\mathscr{N}$ between monoidal categories, we would like $F$ to preserve the tensor structures so that we can send operads to operads. In most cases, it will be enough to have  morphisms $1_{\mathscr{M}}\to F(1_\mathscr{N})$ and $F(A\otimes_{\mathscr{M}}B)\to F(A)\otimes_{\mathscr{N}} F(B)$ satisfying some natural the associativity and unitality properties (see \cite[Definition 6.4.1]{handbook}). Functors fulfilling that last property are called \emph{lax monoidal}. We give an example of a lax monoidal functor in the next section. When the morphisms before are isomorphisms, and hence $F$ preserves the monoidal structure, then $F$ is simply called \emph{monoidal}.
+\begin{defi}
+	A \emph{morphism} of $\OO$-algebras $X$ and $Y$ is a family of morphisms $f:X\to Y$ compatible with the action of $\OO$ in the sense that the following diagram commutes for all $j$
+	\[
+	\begin{tikzcd}
+	\OO(j)\otimes X^{\otimes j}\arrow[r, "Id\otimes f^{\otimes j}"]\arrow[d] & 	\OO(j)\otimes Y^{\otimes j}\arrow[d]\\
+	X\arrow[r, "f"] & Y
+	\end{tikzcd}
+	\]
+	\end{defi}
+
+ %el converse puede ser que el functor de p-algebras a p'-algebras admite left adjoint que es pag 140 de AlgebraicOperads %The converse is also obviously true: in order to define a map of operads it is enough to endow any $\OO'$-algebra with a canonical $\OO$-algebra structure. 
+
+For a functor $F:\mathscr{M}\to\mathscr{N}$ between monoidal categories, we would like $F$ to preserve the tensor structures so that we can send operads to operads. In most cases, it will be enough to have  morphisms $1_{\mathscr{M}}\to F(1_\mathscr{N})$ and $F(A\otimes_{\mathscr{M}}B)\to F(A)\otimes_{\mathscr{N}} F(B)$ satisfying some natural associativity and unitality properties (see \cite[Definition 6.4.1]{handbook}). Functors fulfilling that last property are called \emph{lax monoidal}. We give an example of a lax monoidal functor in the next section. When the morphisms before are isomorphisms, and hence $F$ preserves the monoidal structure, then $F$ is simply called \emph{monoidal}.
 
 \subsection{Connection between $E_2$ and Gerstenhaber algebras}\label{zilber}
 
-Now that we've defined operads in a more general context, we're ready to draw the connection between the $E_2$ operad and the Gerstenhaber algebras. Since $E_2=\{E_2(n)\}_{n\geq 0}$ is a collection of topological spaces, one can consider the collection of singular chain complexes $C_*(E_2)=\{C_*(E_2(n))\}_{n\geq 0}$ over a fixed ring $k$ (for our purposes $k=\Q$). This family is an operad of chain complexes making use of the \emph{Eilenber-Zilber map} \cite{EZ} $C_*(X)\otimes C_*(Y)\to C_*(X\times Y)$ for arbitrary topological spaces $X$ and $Y$. 
+Now that we've defined operads in a more general context, we're ready to draw the connection between the $E_2$ operad and the Gerstenhaber algebras. Since $E_2=\{E_2(n)\}_{n\geq 0}$ is a collection of topological spaces, one can consider the collection of singular chain complexes $C_*(E_2)=\{C_*(E_2(n))\}_{n\geq 0}$ over the fixed ring $k$ (for our purposes $k=\Q$). This family is an operad of chain complexes making use of the \emph{Eilenber-Zilber map} \cite{EZ} $C_*(X)\otimes C_*(Y)\to C_*(X\times Y)$ for arbitrary topological spaces $X$ and $Y$. 
 
 In first place, note that an action of the symmetric group $\rho:X\times\Sigma_n\to X$ can be seen as a family of continuous maps $\rho_\sigma:X\to X$ for each $\sigma\in\Sigma_n$, so they induce an action $\rho_*: C_*(X)\times\Sigma_n\to C_*(X)$. %también hay una acción natural reordenando los vértices del símplice o del cubo 
 
-Next, in order to properly define the Eilenberg-Zilber map explicitly, we have to construct the singular chain complex in two steps. First, consider the simplicial set $S^{sing}(X)$ whose $n$-simplices are just $n$-singular simplices $\sigma:\Delta^n\to X$. The face and degenerancy maps $d_i$ and $s_i$ are obtained from the corresponding $d^i:\Delta^{n-1}\to \Delta^{n}$ and $s^i:\Delta^n\to\Delta^{n-1}$ by composition i.e. $d_i(\sigma)=\sigma\circ d^i$ and $s_i(\sigma)=\sigma\circ s^i$. Then, one defines $C_*(X)=C(S^{sing}(X))$, the chain complex of vector spaces, where the degree $n$-component is generated by the $n$-simplices and the differentials are the usual alternate sums $d=\sum_{i=0}^{n-1}(-1)^id_i$. This definition of $C(\cdot)$ actually admits any simplicial set.
+Next, in order to properly define the Eilenberg-Zilber map explicitly, we have to construct the singular chain complex in two steps. First, consider the simplicial set $S^{sing}(X)$ whose $n$-simplices are just $n$-singular simplices $\sigma:\Delta^n\to X$. The face and degenerancy maps $d_i$ and $s_i$ are obtained from the corresponding $d^i:\Delta^{n-1}\to \Delta^{n}$ and $s^i:\Delta^n\to\Delta^{n-1}$ by composition i.e. $d_i(\sigma)=\sigma\circ d^i$ and $s_i(\sigma)=\sigma\circ s^i$. Then, one defines $C_*(X)=C(S^{sing}(X))$, the chain complex of vector spaces, where the degree $n$-component is generated by the $n$-simplices and the differentials are the usual alternate sums $d=\sum_{i=0}^{n-1}(-1)^id_i$. This definition of $C(\cdot)$ actually admits any simplicial set. Note that this functor factors through another functor which transforms $S^{sing}(X)$ into a simplicial abelian group or a simplicial vector space.
 
-Recall that the product $\Delta^p\times\Delta^q$ can be triangulated in such a way that $\Delta^{p+q}\subset \Delta^p\times\Delta^q$ \cite{Hatcher} (to avoid choosing a particular inclusion, one can instead consider singular cubes $f:[0,1]^p\to X$, for which we have $[0,1]^p\times [0,1]^q=[0,1]^{p+q}$). Therefore, one can take two singular simplices $f:\Delta^p\to X$ and $g:\Delta^q\to X$ and define their product $f\otimes g$ as the restriction of $f\times g$ to $\Delta^{p+q}$. Now we give the following definition:
+Recall that the product $\Delta^p\times\Delta^q$ can be triangulated in such a way that $\Delta^{p+q}\subset \Delta^p\times\Delta^q$ \cite[Proof of Theorem 2.10]{Hatcher} (to avoid choosing a particular inclusion, one can instead consider singular cubes $f:[0,1]^p\to X$, for which we have $[0,1]^p\times [0,1]^q=[0,1]^{p+q}$). Therefore, one can take two singular simplices $f:\Delta^p\to X$ and $g:\Delta^q\to X$ and define their product $f\otimes g$ as the restriction of $f\times g$ to $\Delta^{p+q}$. Now we give the following definition:
 
 \begin{defi}
 The \emph{Eilenberg-Zilber map} is the natural transformation on chain complexes
@@ -577,7 +603,7 @@ An important corollary of this construction is that $H_*(\Omega X)$ is a Gerster
 
 The equivalence between Gersternhaber algebras and $E_2$-algebras is the origin of the Deligne conjecture, namely, the Hochschild cohomology of an associative algebra $A$, $H^*(A;A)$, has a Gersternhaber algebra structure, and therefore there is an action of $H_*(E_2)$ on it. It is then natural to wonder whether this action comes from an action of $C_*(E_2)$ on $C^*(A;A)$. 
 
-Cohen, May et al. also show in \cite{cuentas} that the homology operad $e_2=H_*(E_2)$ is generated as an operad by two operations $\mu\in H_0(E_2(2))$ and $l\in H_1(E_2(2))$, meaning that any other operation is generated by operadic composition of $\mu$ and $l$. Geometrically, the class of $\mu$ is represented by a point, in particular the point having one little disk on the left side of the unit disk numbered by 1 and another little disk on the right side numbered by 2 (which can be interpreted as the position where arguments are introduced). The class of $l$ is represented by a closed path based at the point representing $\mu$. More precisely, this path has the shape of the generator of the pure braid group $PB_2$ as shown below.
+Cohen, May et al. also show in \cite{cuentas} that the homology operad $e_2=H_*(E_2)$ is generated as an operad by two operations $\mu\in H_0(E_2(2))$ and $l\in H_1(E_2(2))$, meaning that any other operation is generated by operadic composition of $\mu$ and $l$. Geometrically, the class of $\mu$ is represented by a point, in particular the point having one little disk on the left side of the unit disk numbered by 1 and another little disk on the right side numbered by 2 (which can be interpreted as the positions where arguments are introduced). The class of $l$ is represented by a closed path based at the point representing $\mu$. More precisely, this path has the shape of the generator of the pure braid group $PB_2$ as shown below.
 
 \begin{figure}[h!]
 	\centering

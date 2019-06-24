@@ -16,6 +16,10 @@ Javier Aguilar~Mart{\'i}n, \emph{El problema de la palabra en los grupos de
 Dror Bar-Natan, \emph{On {Associators} and the {Grothendieck}-{Teichmuller}
   {Group} {I}}, arXiv:q-alg/9606021 (1996) (en), arXiv: q-alg/9606021.
 
+\bibitem[Bor94]{handbook}
+Francis Borceux, \emph{Handbook of {Categorical} {Algebra}: {Volume} 1, {Basic}
+  {Category} {Theory}}, Cambridge University Press, August 1994 (en).
+
 \bibitem[CLM76]{cuentas}
 Frederick~R. Cohen, Thomas~J. Lada, and J.~Peter May, \emph{The {Homology} of
   {Iterated} {Loop} {Spaces}}, Lecture {Notes} in {Mathematics}, vol. 533,
@@ -46,11 +50,15 @@ James E.~McClure and Jeffrey H.~Smith, \emph{A solution of {Deligne}'s
   conjecture}.
 
 \bibitem[Fie]{bar}
-Z~Fiedorowicz, \emph{{THE} {SYMMETRIC} {BAR} {CONSTRUCTION}}, 19.
+Z~Fiedorowicz, \emph{{The} {symmetric} {bar} {construction}}, 19.
 
 \bibitem[FN62]{fox}
 R.~Fox and L.~Neuwirth, \emph{The {Braid} {Groups}.}, 1 \textbf{10} (1962),
   119--126 (en).
+
+\bibitem[Fre]{teich}
+Benoit Fresse, \emph{Homotopy of {Operads} \& {Grothendieck}-{Teichm{\"u}ller}
+  {Groups}}, 576 (en).
 
 \bibitem[Ger63]{Gerstenhaber}
 Murray Gerstenhaber, \emph{The {Cohomology} {Structure} of an {Associative}
@@ -75,11 +83,6 @@ Chad Giusti and Dev Sinha, \emph{Fox-{Neuwirth} cell structures and the
   F.~Cohen, C.~De~Concini, C.~Procesi, and M.~Salvetti, eds.), Scuola Normale
   Superiore, Pisa, 2012, pp.~273--298 (en).
 
-\bibitem[Gur17]{Yau}
-Nick Gurski, \emph{Donald {Yau}: {\textquotedblleft}{Colored}
-  {Operads}{\textquotedblright}}, Jahresber. Dtsch. Math. Ver. \textbf{119}
-  (2017), no.~3, 213--218 (en).
-
 \bibitem[GV95]{VGH}
 Murray Gerstenhaber and Alexander~A. Voronov, \emph{Homotopy
   \textit{{G}}-algebras and moduli space operad}, Internat. Math. Res. Notices
@@ -92,11 +95,6 @@ Murray Gerstenhaber and Alexander~A. Voronov, \emph{Homotopy
 \bibitem[Hin03]{Hinich}
 V.~Hinich, \emph{Tamarkin's proof of {Kontsevich} formality theorem}, Forum
   Math. \textbf{15} (2003), no.~4, 591--614.
-
-\bibitem[IM]{Madsen}
-J{\o}rgen~Tornehave Ib~Madsen, \emph{Madsen, {I}. {H}.; {Tornehave}, {J}.
-  {From} {Calculus} {To} {Cohomology} {De} {Rham} {Cohomology} {And}
-  {Characteristic} {Classes} 1996} (English).
 
 \bibitem[Kon99]{Kontsevich}
 Maxim Kontsevich, \emph{Operads and {Motives} in {Deformation} {Quantization}},
@@ -127,6 +125,10 @@ J.~May and J.~Sigurdsson, \emph{Parametrized {Homotopy} {Theory}}, Mathematical
   {Surveys} and {Monographs}, vol. 132, American Mathematical Society,
   Providence, Rhode Island, December 2006 (en).
 
+\bibitem[MT]{Madsen}
+I.~Madsen and J.~T{\o}rnehave, \emph{{From} {Calculus} {To} {Cohomology} {De}
+  {Rham} {Cohomology} {And} {Characteristic} {Classes} 1996} (English).
+
 \bibitem[Osb83]{bundle}
 Howard Osborn, \emph{Vector {Bundles}. {Volume} 1: {Foundations} and
   {Stiefel}-{Whitney} {Classes}}, Academic Press, New York, January 1983
@@ -152,5 +154,10 @@ A.~A. Voronov and M.~Gerstenhaber, \emph{Higher operations on the {Hochschild}
 \bibitem[Vor99]{VO}
 Alexander~A. Voronov, \emph{Homotopy {Gerstenhaber} algebras},
   arXiv:math/9908040 (1999) (en), arXiv: math/9908040.
+
+\bibitem[YG17]{Yau}
+Donald Yau and Nick Gurski, \emph{{\textquotedblleft}{Colored}
+  {Operads}{\textquotedblright}}, Jahresber. Dtsch. Math. Ver. \textbf{119}
+  (2017), no.~3, 213--218 (en).
 
 \end{thebibliography}
