@@ -1,0 +1,208 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usetheme{Copenhagen}
+\usepackage[spanish]{babel}
+\usepackage{multirow}
+%\usepackage{estilo-apuntes}
+\usepackage{braids}
+\usepackage[]{graphicx}
+\usepackage{rotating}
+\usepackage{pgf,tikz}
+\usepackage{pgfplots}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows}
+\usetikzlibrary{cd}
+\usetikzlibrary{babel}
+\pgfplotsset{compat=1.13}
+\usetikzlibrary{decorations.shapes}
+\pgfkeyssetvalue{/tikz/braid height}{1cm} %no parece hacer nada
+\pgfkeyssetvalue{/tikz/braid width}{1cm}
+\pgfkeyssetvalue{/tikz/braid start}{(0,0)}
+\pgfkeyssetvalue{/tikz/braid colour}{black}
+
+\theoremstyle{definition}
+
+\newtheorem{teorema}{Teorema}
+\newtheorem{defi}{Definición}
+\newtheorem{prop}[teorema]{Proposición}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\providecommand{\gene}[1]{\langle{#1}\rangle}
+
+
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    %\insertframenumber/\inserttotalframenumber
+}
+\setbeamercolor{footline}{fg=black}
+\setbeamerfont{footline}{series=\bfseries}
+
+%-----------------------------------------------------------
+
+\title{The Deligne Conjecture}
+\author{Javier Aguilar Martín}
+\institute{Universidad de Sevilla}
+\date{}
+ 
+\begin{document}
+\frame{\titlepage}
+%\begin{frame}
+%
+%c¡
+%\title[About Beamer] %optional
+%{About the Beamer class in presentation making}
+% 
+%\subtitle{A short story}
+% 
+%\author[Arthur, Doe] % (optional, for multiple authors)
+%{A.~B.~Arthur\inst{1} \and J.~Doe\inst{2}}
+% 
+%\institute[VFU] % (optional)
+%{
+%  \inst{1}%
+%  Faculty of Physics\\
+%  Very Famous University
+%  \and
+%  \inst{2}%
+%  Faculty of Chemistry\\
+%  Very Famous University
+%}
+
+% 
+%\date[VLC 2013] % (optional)
+%{Very Large Conference, April 2013}
+
+
+%\end{frame}
+\setbeamercovered{highly dynamic}
+
+\newcounter{saveenumi}
+\newcommand{\seti}{\setcounter{saveenumi}{\value{enumi}}}
+\newcommand{\conti}{\setcounter{enumi}{\value{saveenumi}}}
+
+\resetcounteronoverlays{saveenumi}
+%\AtBeginSection[]{
+%\begin{frame}
+%\frametitle{Tabla de contenidos}
+%\tableofcontents
+%\end{frame}
+%}
+
+%\begin{frame}
+%	%AÑADIR ESTAS URL AL FINAL POR SI ME DA TIEMPO ENSEÑAR ESTAS COSAS 
+%	%\url{https://www.blockchain.com/btc/blocks}
+%	%\url{https://coin.dance/blocks}
+%	%\url{https://www.blockchain.com/btc/unconfirmed-transactions}
+%	
+%%	ESTE TENGO PRIMERO QUE MIRARLO PARA HACERLO YO
+%%	\url{https://anders.com/blockchain/}
+%
+%\end{frame}
+\section{The Conjecture}
+\begin{frame}
+	\frametitle{Deligne Conjecture}
+	\begin{block}{The conjecture}
+	The action of the homology operad of little disks on the Hochschild cohomology of an associative algebra inducing its Gerstenhaber algebra structure lifts to an action of the chain operad of little disks on the Hochschild complex.
+	\end{block}
+	
+\end{frame}
+
+\begin{frame}
+		\frametitle{Deligne Conjecture}
+	\begin{block}{The conjecture}
+	The action of the homology \textcolor{red}{operad} of little disks on the Hochschild cohomology of an associative algebra inducing its Gerstenhaber algebra structure lifts to an action of the chain operad of little disks on the Hochschild complex.
+\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Deligne Conjecture}
+	\begin{block}{The conjecture}
+		The action of the \textcolor{red}{homology operad} of little disks on the Hochschild cohomology of an associative algebra inducing its Gerstenhaber algebra structure lifts to an action of the chain operad of little disks on the Hochschild complex.
+	\end{block}
+\end{frame}
+
+\begin{frame}
+		\frametitle{Deligne Conjecture}
+	\begin{block}{The conjecture}
+	The action of the \textcolor{red}{homology operad} of \textcolor{red}{little disks} on the Hochschild cohomology of an associative algebra inducing its Gerstenhaber algebra structure lifts to an action of the chain operad of little disks on the Hochschild complex.
+\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Deligne Conjecture}
+	\begin{block}{The conjecture}
+		The action of the \textcolor{red}{homology operad} of \textcolor{red}{little disks} on the \textcolor{red}{Hochschild cohomology} of an associative algebra inducing its Gerstenhaber algebra structure lifts to an action of the chain operad of little disks on the Hochschild complex.
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Deligne Conjecture}
+	\begin{block}{The conjecture}
+		The action of the \textcolor{red}{homology operad} of \textcolor{red}{little disks} on the \textcolor{red}{Hochschild cohomology} of an associative algebra inducing its \textcolor{red}{Gerstenhaber algebra} structure lifts to an action of the \textcolor{green}{chain operad} of little disks on the Hochschild complex.
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Deligne Conjecture}
+	\begin{block}{The conjecture}
+		The action of the \textcolor{red}{homology operad} of \textcolor{red}{little disks} on the \textcolor{red}{Hochschild cohomology} of an associative algebra inducing its \textcolor{red}{Gerstenhaber algebra} structure lifts to an action of the \textcolor{green}{chain operad} of little disks on the \textcolor{green}{Hochschild complex}.
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Deligne Conjecture}
+	\begin{block}{The conjecture}
+		The \textcolor{green}{action} of the \textcolor{red}{homology operad} of \textcolor{red}{little disks} on the \textcolor{red}{Hochschild cohomology} of an associative algebra inducing its \textcolor{red}{Gerstenhaber algebra} structure lifts to an action of the \textcolor{green}{chain operad} of little disks on the \textcolor{green}{Hochschild complex}.
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\begin{itemize}
+		\item Operads
+		\begin{itemize}
+			\item action of an operad (algebra over an operad)
+			\item little disks operad
+			\item chain/homology operad			
+		\end{itemize}
+	\item Gerstenhaber algebras
+	\item Hochschild cohomology of an associative algebra
+	\end{itemize}
+\end{frame}
+
+\section{Operads}
+
+\begin{frame}
+	Cada vez que explique una cosa ponerle un check a lo de antes \url{https://tex.stackexchange.com/questions/132783/how-to-write-checkmark-in-latex} (quizá en operads ponerlo al final al grande y ya)
+\end{frame}
+
+\begin{frame}
+	Definición de operad y explicación dibujitos (más de los que he hecho en el trabajo)
+	
+	Operad de endomorfismos y álgebra sobre un operad
+	
+	Definición de operad en symmetric monoidal categories para que tenga sentido
+	
+	Comentar gracias al EZ map se hereda la operadición y de ahí a homología
+	
+	Las operaciones de la homología con los dos dibujitos (en el trabajo solo he metido uno)
+	
+	Gerstenhaber algebra definición del tirón (en la presentación comentar los criterios de derivación)
+	
+	Describir el complejo de cadenas sin detallar mucho en que es un complejo de cadenas e ir a su homología con sus propiedades de álgebra de Gerstenhaber (esto ya me relaciona con el último punto)
+	
+	Recuperar el homology operad y describir la acción sobre un álgebra asociativa
+\end{frame}
+
+\begin{frame}
+	Retomar la conjetura de Deligne para recordarla y ver que está todo, seguido de un diagrama con las acciones y la que se pregunta si existe poniéndola dashed y con una interrogación de label
+	
+	Esquema de la prueba (destacar de algún modo las partes en las que me centro)
+	
+	Pensar qué meto de cada parte
+\end{frame}
+
+\end{document}
