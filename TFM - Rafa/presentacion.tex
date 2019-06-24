@@ -9,12 +9,20 @@
 \definecolor{ocreclaro}{RGB}{251, 249, 217}
 \mode<presentation>
 {
-  \usetheme{Rochester}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usetheme{Berlin}      % or try Darmstadt, Madrid, Warsaw, ...
   \usecolortheme[named=kugreen]{structure} % or try albatross, beaver, crane, ...
   \usefonttheme{structureitalicserif}  % or try serif, structurebold, ...
 \setbeamertemplate{navigation symbols}{}
   \setbeamertemplate{caption}[numbered]
 } 
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+\setbeamercolor{footline}{fg=black}
+\setbeamerfont{footline}{series=\bfseries}
 
 \usepackage[english]{babel}
 \usepackage[utf8x]{inputenc}
@@ -23,6 +31,7 @@
 \usepackage[]{color}
 \usepackage{geometry}
 \usepackage{multimedia}
+
 
 
 
@@ -61,7 +70,6 @@
 
 
 \section{Introducción}
-\subsection{Problema de emparejamiento}
 
 \begin{frame}{¿Qué es un emparejamiento en un grafo?}
 \begin{figure}[h!]
@@ -106,7 +114,7 @@ Sea $G=(V,E)$ y $W\subset V$. Entonces
 \end{gather*}
 \end{defi}
 \end{frame}
-\begin{frame}{Teorema de Edmonds}
+\begin{frame}
 \begin{thm}
 Sea $G=(V,E)$ un grafo. Sea $B$ el conjunto
 $$
@@ -120,8 +128,6 @@ x_{uv} &\geq 0\\
 \end{align*}
 \end{thm}
 \end{frame}
-
-\subsection{Problemas estudiados}
 \begin{frame}{Emparejamiento perfecto de mínimo peso}
 \begin{align*}
 \min_x & \sum_{(u,v) \in E}x_{uv}c_{uv}\\
@@ -170,8 +176,8 @@ s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} = 1, \quad \forall u \in V\\
 \begin{frame}{Algoritmo de Grötschel-Holland}
 \begin{enumerate}
 \item[4] Resolvemos el problema considerado. 
-\item [5] Sea $x^*$ la solución obtenida y $E_{x^*} = \{(u,v)\in E' \mid x^*_{uv}>0\}$. Consideramos  $G_{x*} = (V,E_{x^*})$.
-\item[6] Si $x^*$ es entero, induce un matching. En este caso comprobamos la optimalidad calculando los costes reducidos de los ejes de $E\setminus E'$. Si no es óptimo, añadimos las aristas pertinentes a $E'$ volvemos a optimizar.
+\item [5] Sea $x^*$ la solución obtenida.
+\item[6] Si $x^*$ es entero, induce un matching. En este caso comprobamos la optimalidad. En otro caso, añadimos aristas.
 \item[7] Si $x^*$ no es entero, planteamos dos heurísticas para encontrar planos de corte. En caso de no conseguirlos, utilizamos el procedimiento de Padberg-Rao.
 \item[8] Añadimos los planos de corte encontrados al problema y volvemos la Paso 4.
 \end{enumerate}
@@ -194,5 +200,128 @@ s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} = 1, \quad \forall u \in V\\
 $$
 c_{ij} = v(a_i+t_j)
 $$
+\end{frame}
+\section{Algoritmo del SAP}
+\subsection{Fundamentos}
+\begin{frame}
+
+\end{frame}
+
+\section{Análisis computacional}
+\subsection{Comparando métodos}
+\begin{frame}{Tiempo medio de ejecución}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.45]{bebesota}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Tiempo medio de ejecución}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.45]{plot3}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Media de llamadas al simplex}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.45]{plot2}
+\end{figure}
+\end{frame}
+
+\subsection{Reoptimización}
+
+\begin{frame}{Frontera de Pareto}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.33]{Front_pareto}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Escalarización lineal}
+\begin{align*}
+\min_x & \sum_{(u,v) \in E}x_{uv}((1-\lambda)c^1_{uv}+\lambda c^2_{uv})\\
+s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} \leq 1, \quad \forall u \in V\\
+&\sum_{(u,v)\in \gamma(S)} x_{uv} \leq \frac{1}{2}(|S|-1)\quad \forall S \in B	\\
+&x_{uv} \geq 0 \qquad \forall(u,v)\in E
+\end{align*}
+\end{frame}
+
+%\begin{frame}{Reoptimización en Gurobi}
+%\begin{align*}
+%\max&\, \lambda\\
+%s.a.&\,  l \leq (1-\lambda) c^1 + \lambda c^2\\
+%& u \geq (1-\lambda) c^1 + \lambda c^2 \\
+%& \lambda\geq \lambda^* 
+%\end{align*}
+%\end{frame}
+
+\begin{frame}{Ejemplo}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.5]{opt}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.5]{opt2}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.5]{opt3}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.5]{opt4}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{Media de soluciones encontradas}
+\begin{table}[ht]
+\centering
+\begin{tabular}{rr}
+  \hline
+  Nodos & Sols \\ 
+  \hline
+20 & 10.00 \\ 
+40 & 19.80 \\ 
+60 & 31.00 \\ 
+80 & 45.60 \\ 
+100 & 51.60 \\ 
+120 & 63.80 \\ 
+140 & 68.00 \\ 
+   \hline
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}{Número total de soluciones}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.47]{plot10}
+\end{figure}
+\end{frame}
+\begin{frame}{Porcentaje de soluciones no soportadas}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.47]{plot11}
+\end{figure}
+\end{frame}
+
+\section{Conclusiones}
+\begin{frame}
+\begin{center}
+\huge{¡Gracias por su atención!}
+\end{center} 
 \end{frame}
 \end{document}

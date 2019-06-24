@@ -39,7 +39,7 @@ print(xtable(df), include.rownames = F)
 
 df = data.frame(rbind(x1,xs,x2,x3,x4,x5,x6,x7,x8))
 
-colnames(df) <- c("Nodos","I","Var","S.GH", "S.PE","S.Match","T.GH","T.PE","T.Match","Exp.B.B")
+colnames(x1) <- c("Nodos","I","Var","S.GH", "S.PE","S.Match","T.GH","T.PE","T.Match","Exp.B.B")
 df
 
 df0 = gather(cbind(df[,c(1,3)],Teoría = bino(df[,1])), key = "Leyenda", value = "Variables",-Nodos)
@@ -57,8 +57,13 @@ pdf("plot3.pdf", height=5, width=7)
 ggplot(df2,aes(x=Nodos,y=Tiempo,color=Método)) + geom_point()+geom_line()
 dev.off()
 
+mx = gather(x1[,c(1,7,8,9)],key="Método", value ="Tiempo",-Nodos)
+pdf("bebesota.pdf", height=5, width=7)
+ggplot(mx,aes(x=Nodos,y=Tiempo,color=Método)) + geom_point()+geom_line() + 
+  scale_x_continuous(breaks=c(10,12,14,16,18,20))
+dev.off()
 
-bino = function(x){
+  bino = function(x){
   a = x*(x-1)/4
   return(a)
 }
