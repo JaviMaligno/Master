@@ -31,7 +31,7 @@
 \usepackage[]{color}
 \usepackage{geometry}
 \usepackage{multimedia}
-
+\usepackage{tikz}
 
 
 
@@ -203,10 +203,103 @@ $$
 \end{frame}
 \section{Algoritmo del SAP}
 \subsection{Fundamentos}
-\begin{frame}
+\begin{frame}{Definiciones}
+\begin{itemize}
+\item Vértice expuesto
+\item Camino alternante
+\item Camino de aumento
+\item Operación $\oplus$
+\end{itemize}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[scale=.8,auto=left,every node/.style={circle,fill=blue!10}]
+	\node (nA) at (1,10) {};
+	\node (nB) at (3,10) {};
+	\node (nC) at (5,10) {};
+	\node (nD) at (7,10) {};
+	\node (nE) at (9,10) {};
+
+  \path[every node/.style={sloped,anchor=south,auto=false}]
+        (nA) edge              node {\scriptsize $e\in M$} (nB)            
+        (nB) edge              node {\scriptsize  $e\in E\setminus M$} (nC)
+        (nC) edge              node {\scriptsize $e\in M$} (nD)
+        (nD) edge              node {\scriptsize $e\in E\setminus M$} (nE);     
+\end{tikzpicture}
+\caption{Camino alternante}
+\end{figure}
 
 \end{frame}
 
+\begin{frame}
+\begin{defi}
+Sea $M$ un matching y $P$ un camino o cilclo alternante. La longitud de $P$ con respecto a $M$ es
+$$
+l(P) = c(P\setminus M) - c(P\cap M)
+$$
+\end{defi}
+\end{frame}
+
+\begin{frame}{Resultados}
+
+
+\begin{theorem}
+Un emparejamiento perfecto es de coste mínimo si y solo si no existe un ciclo alternante de longitud negativa con respecto a él.
+\end{theorem}
+
+
+\begin{theorem}
+Sea $M$ un emparejamiento extremo y $P$ un camino de aumento de longitud mínima con respecto a $M$. Entonces $P\oplus M$ es un emparejamiento extremo.
+\end{theorem}
+\end{frame}
+
+\begin{frame}
+\begin{defi}
+Sea $G=(V,E)$ un grafo y $S\subset V$ con $|S|\geq 3$. Entonces $S$ es contractible si $\forall i \in S$ $\exists M_i$ matching tal que 
+$$
+|M_i\cap \gamma(S)| = \frac{1}{2}(|S|-1)
+$$
+Denotamos por $\mathcal{A}(G)$ el conjunto de todos los conjuntos contractibles de $G$.
+\end{defi}
+\end{frame}
+
+\begin{frame}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.3]{Factor_critical}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+Dado un vector $y$ factible para el problema dual
+$$
+c'_{uv}(y) = c_{uv}- y_u-y_v - \sum_{S\mid (u,v)\in \delta(S)} y_S
+$$
+Un par $(M,y)$ es compatible si 
+\begin{itemize}
+\item $(u,v)\in M \Rightarrow c_{uv}(y) = 0$
+\item $y_S >0  \Rightarrow |M\cap \gamma(S)| =1$
+\item $y_S > 0 \Rightarrow S$ es contractible en $G(y)$, donde
+$$ G(y) = (V,\{(u,v)\in E \mid c'_{uv}=0\})$$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{theorem}
+$M$ es extremo si y solo si existe un par compatible $(M,y)$.
+\end{theorem}
+Nuestro algoritmo se inicializa con un par $(M,y)$ y encuentra un camino de aumento y un vector $y'$ tal que $(M\oplus P,y')$ es un par compatible.
+\end{frame}
+\subsection{Reoptimización}
+\begin{frame}
+\begin{itemize}
+\item Supongamos que tenemos un par compatible óptimo $(M,y)$. 
+\item Supongamos que todas las aristas a las que queremos alterar los costes $c^n$ pertenecen a $ \delta(u)$ para algún $u \in V$.
+\item Consideramos $(u,v) \in M$ y el matching $\bar{M} = M\setminus\{(u,v)\}$
+\item $\delta  = \min\{c'^n_{uv} \mid (u,v) \in \delta (u)\}$, $c_{uv} = c^n_{uv}$ y $y_v=y_v + \delta$.
+\item Aplicamos el algoritmo a $(\bar{M},y)$.
+\end{itemize}
+\end{frame}
 \section{Análisis computacional}
 \subsection{Comparando métodos}
 \begin{frame}{Tiempo medio de ejecución}
@@ -319,6 +412,15 @@ s.a.&\;\sum_{(u,v)\in\delta(u)} x_{uv} \leq 1, \quad \forall u \in V\\
 \end{frame}
 
 \section{Conclusiones}
+
+\begin{frame}
+\begin{itemize}
+\item Análisis del problema
+\item Aplicaciones
+\item Estructura y algoritmos
+\item Análisis computacional
+\end{itemize}
+\end{frame}
 \begin{frame}
 \begin{center}
 \huge{¡Gracias por su atención!}
