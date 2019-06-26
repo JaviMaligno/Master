@@ -20,13 +20,13 @@ In this chapter we define the main object of our study: operads. This object has
 %
 %NO PARECE QUE ESTA DEFINICIÓN CAPTURE LA COMPOSICIÓN DEL LITTLE DISKS OPERAD, PERO EN VERDAD SÍ, LO QUE FALTA ES RELLENA CON LA IDENTIDAD HASTA COMPLETAR LA ARIDAD DEL PRIMERO
 In the spirit of \cite{May}, an operad is a collection of suitably interrelated spaces $\CC(j)$, whose points are to
-be thought of as $j$-adic operations $X^j \to X$ for some topological space $X$. Precisely, we have the following definition.
+be thought of as $j$-ary operations $X^j \to X$ for some topological space $X$. Precisely, we have the following definition.
 
 \begin{defi}\label{operadtop}
 An \emph{operad} (also kwown as \emph{symmetric operad}) $\CC$ consists of topological spaces $\CC(j)$ for $j\geq 0$, %with $\CC(0)$ a single point $*$, 
 together with the following data:
 \begin{enumerate}[(1)]
-\item Continuous functions $\gamma : \CC(k) × \CC(j_1) × \cdots × \CC(j_k) \to \CC(\sum_s j_s)$ such that the
+\item Continuous maps $\gamma : \CC(k) × \CC(j_1) × \cdots × \CC(j_k) \to \CC(\sum_s j_s)$ such that the
 following associativity formula is satisfied for all $c\in \CC(k)$, $d_s \in \CC(j_s)$, and $e_t \in \CC(i_t)$:
 
 \[\gamma(
@@ -217,7 +217,7 @@ In fact, defining $\circ_i$ via equation \ref{circ} one can deduce the propertie
  \begin{figure}[h!]
   \centering
 \includegraphics[scale=0.3]{Imagenes/insertion}
-\caption{An insertion $\circ_2:E_2(2)\times E_2(3)\to E_2(4)$.}
+\caption{An insertion $\circ_2:E_2(3)\times E_2(3)\to E_2(5)$.}
  \end{figure}
  %\newpage
 
@@ -472,7 +472,7 @@ If we furthermore insist that $\OO(0)=I$, then the operad is called \emph{unital
 
 
 \begin{defi}
-Let $\OO$ and $\mathcal{P}$ be operads in $\mathscr{M}$. A map of operads $f:\OO\to \mathcal{P}$ is a collection of maps $\OO(n)\to \mathcal{P}(n)$ such that the two following conditions hold:
+Let $\OO$ and $\mathcal{P}$ be operads in $\mathscr{M}$. A map of operads $f:\OO\to \mathcal{P}$ is a collection of maps $\OO(n)\to \mathcal{P}(n)$ such that the following conditions hold:
 \begin{enumerate}
 \item Compatibility with units:  $f\circ e_\OO=e_\mathcal{P}$, where $e_\OO$ and $e_\mathcal{P}$ are the units.
 \item Compatibility with operad compositions: $f\circ \gamma_\OO=\gamma_\mathcal{P}\circ (f\otimes\cdots\otimes f)$ where $\gamma_\OO$ and $\gamma_\mathcal{P}$ are the structure maps and the tensor product $f\otimes\cdots\otimes f$ is taken as many times as the number of arguments of $\gamma_\mathcal{P}$. 
@@ -483,6 +483,7 @@ Let $\OO$ and $\mathcal{P}$ be operads in $\mathscr{M}$. A map of operads $f:\OO
 
 
 If we work in a symmetric monoidal closed category (a closed category is, roughly speaking, a category where each hom-set can be regarded as an object of the category, see \cite[\textsection 6.1]{handbook}) there is also an \emph{endomorphism operad} $\xi_X$ for each $X$ in the symmetric monoidal category $\mathscr{M}$ with unit $I$. The $j$-th component $\xi_X(j)$ is just $\Hom(X^{\otimes j},X)$ and the identity of the operad is the map $1_x:I\to \Hom(X,X)$ that sends $I$ to the identity on $X$. The composition map and the action of the symmetric group is defined analogously to the definition \ref{endomorphism}. Therefore, one can define the notion of \emph{algebra over an operad} $\OO$ as an object $X$ equipped with an operad map $\xi:\OO\to\xi_X$. Alternatively, the data of an $\OO$-algebra is given by a sequence of maps
+%la categoría Top no es cartesian closed (así que esta noción de operad de endomorfismos realmente no es la de arriba), pero sí los compactly generated Hausdorff. Las otras categoráis que uso son monoidal closed
 \[
 \OO(j) \otimes X^{\otimes j} \to X
 \]
