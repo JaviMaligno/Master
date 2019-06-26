@@ -32,6 +32,8 @@
 \newcommand{\D}{\mathbb{D}}
 \providecommand{\gene}[1]{\langle{#1}\rangle}
 
+\DeclareMathOperator{\im}{im}
+
 
 \addtobeamertemplate{navigation symbols}{}{%
     \usebeamerfont{footline}%
@@ -223,16 +225,54 @@
 \end{frame}
 
 \begin{frame}
-	DIBUJOS DE LOS AXIOMAS ESCRIBIENDO LA NOTACIÓN QUE SE USA 
+	\begin{itemize}
+		\item There are \textbf{composition maps} $\gamma : \CC(k) \times \CC(j_1) \times \cdots \times \CC(j_k) \to \CC(\sum_s j_s)$
+		
+		DIBUJO DE LA COMPOSICIÓN PEGANDO $n$ ARBOLITOS  $g_i$ A UNO $f$ Y PONIENDO $\gamma(f;g_1,\dots, g_n)$
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{itemize}
+		\item Composition is associative: DIBUJO DE COMPOSICIÓN EN DOS PASOS CON UNA IGUALDAD A CADA LADO SEÑALAR EL ORDEN DE ALGÚN MODO
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{itemize}
+		\item<1-> Identity element: UN ÁRBOL AL QUE SE LE METEN PALITOS CON 1 Y OTRO METIÉNDOSE EN EL 1 Y AL FINAL IGUAL AL ARBOL EN CUESTION 
+		\item<2-> A right action of the symmetric group thouht as reordering the inputs which is coherent with composition.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	Associativity and the existence of unit allows to understand compositions in terms of insertions $$f\circ_i g=\gamma(f;1,\dots, 1,\underbrace{g}_{i},1,\dots, 1)$$ \pause
 	
-	MENCIONAR LAS INSERCIONES DEFINIDAS COMO PONER MUCHOS 1 EN EL GAMMA
-	
-	TENGO QUE DECIR QUE HAY MORFISMOS DE OPERADS AUNQUE SEA SIMPLEMENTE DECIR QUE RESPETAN LA ESTRUCTURA
+	Composition of insertions is thought as grafting one tree at a time.
 \end{frame}
 \begin{frame}
-	COMENTAR QUE ESTA DEFINICIÓN SE PUEDE HACER EN CUALQUIER CATEGORÍA MONOIDAL SIMÉTRICA, DICIENDO LOS COMPONENTES DE LA DEFINICIÓN Y QUIZÁ DESTACANDO ALGÚN AXIOMA
+	\begin{defi}
+	 A map of operads $f:\mathcal{C}\to \mathcal{C}'$ is a collection of maps $\mathcal{C}(n)\to \mathcal{C}'(n)$ such that:
+		\begin{itemize}
+			\item<1->   $f\circ 1_\mathcal{C}=1_{\mathcal{C}'}$.
+			\item<2->  $f\circ \gamma_\mathcal{C}=\gamma_{\mathcal{C}'}\circ (f\times\cdots\times f)$.
+			\item<3->   $f(x\sigma)=f(x)\sigma$ for $x\in\CC(n)$
+		\end{itemize}
+	\end{defi}
 	
-   PONER EJEMPLOS
+	
+\end{frame}
+\begin{frame}
+	\frametitle{Symmetric monoidal  categories}
+	\begin{itemize}
+		\item<1-> A category where there is a notion of tensor product $\otimes $ of objects.
+		\item<2-> There exists an object $I$ such that $I\otimes A\cong A\cong A\otimes I$ for all object $A$.
+		\item<3-> The product is associative: $(A\otimes B)\otimes C\cong A\otimes (B\otimes C)$ for all objects.
+		\item<4-> Other coherence axioms.
+	\end{itemize}
+%	COMENTAR QUE ESTA DEFINICIÓN SE PUEDE HACER EN CUALQUIER CATEGORÍA MONOIDAL SIMÉTRICA, DICIENDO LOS COMPONENTES DE LA DEFINICIÓN Y QUIZÁ DESTACANDO ALGÚN AXIOMA
+	
+   %PONER EJEMPLOS
 \end{frame}
 \subsection{Algebras over an operad}
 \begin{frame}
@@ -247,7 +287,7 @@
 			\item<3-> identity $\eta: k \to \xi_V(1)$, $1 \mapsto \operatorname{Id}_V$,
 			\item<4->  symmetric group action $\gamma (f; g_1, \dots, g_n) \cdot \sigma = f (g_{\sigma^{-1}(1)} \otimes \dots \otimes g_{\sigma^{-1}(n)})$,  $\sigma \in \Sigma_n$.
 		\end{itemize}\pause
-\only<5>{	If $\mathcal{C}$ is another operad, each operad morphism $\mathcal{C} \to \xi_V$ is called an \textbf{algebra over} $\mathcal{C}$.}
+\only<5>{	If $\mathcal{C}$ is another operad, each operad morphism $\mathcal{C} \to \xi_V$ is called an \textbf{algebra over} $\mathcal{C}$. Equivalently, a $\mathcal{C}$-algebra is given by a sequence of maps $\CC(k)\otimes X^{\otimes n}\to X$.}
 		 %(notice this is analogous to the fact that each ''R''-module structure on an abelian group ''M'' amounts to a ring homomorphism <math>R \to \operatorname{End}(M)</math>.)
 	\end{defi}
 \end{frame}
@@ -312,7 +352,14 @@ $$
 
 \begin{frame}
 	\frametitle{Operad of little disks}
-	IDENTIDAD: UN CÍRCULO CON EL 1 DENTRO
+	\begin{figure}
+		\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+	\clip(-5.2,-1.5) rectangle (6.92,1.5);
+	\draw [line width=2.pt] (0.,0.) circle (1.42cm);
+	\draw (-0.2,0.2) node[anchor=north west] {$1$};
+	\end{tikzpicture}
+	\caption{Identity element $1\in E_2(1)$.}
+\end{figure}
 \end{frame}
 \begin{frame}
 	\frametitle{Operad of little disks}
@@ -327,10 +374,101 @@ $$
 
 \begin{frame}
 	\frametitle{Gerstenhaber algebras}
+	\begin{defi}
+		Let $k$ be a field of characteristic 0 and $G$ an associative graded $k$-algebra with product $\cdot$. Let $|a|$ denote the degree of an element $a\in G$. Then $G$ is said to be a \textbf{Gerstenhaber algebra} if:
+		\begin{itemize}
+			\item<2-> The product $\cdot$ is a graded commutative: for every $a,b\in A$ one has $a\cdot b=(-1)^{|a||b|}b\cdot a$
+			\item<3-> There is a graded Lie bracked $[,]:G\times G\to G$ such that:
+			\begin{itemize}
+				\item<4-> $|[a,b]|=|a|+|b|-1$.
+				\item<5-> $[b,a]=-(-1)^{(|a|-1)(|b|-1)}[a,b]$ (graded antisymmetry).
+				\item<6-> (graded Jacobi identity) $$(-1)^{(|a|-1)(|c|-1)}[[a,b],c]+(-1)^{(|b|-1)(|a|-1)}[[b,c],a]+$$ $$+(-1)^{(|c|-1)(|b|-1)}[[c,a],b]=0$$ 
+			\end{itemize}
+		\end{itemize}
+	\end{defi}
+	
 \end{frame}
 
 
+
+
 \section{Hochschild cohomology of an associative algebra}
+\begin{frame}
+	\frametitle{Hochschild complex}
+	\begin{defi}
+	 We define a \textbf{Hochschild $m$-cochain} $f^m$ of $A$ to be a $k$-module homormorphism $f^m: A^{\otimes m}\to A$. The \textbf{Hochschild complex} is given by the modules $C^m(A;A)=\hom_k(A^{\otimes m}, A)$, where $C^0(A;A)=A$ and the differential
+	 \begin{align*}
+	 \delta_m f(a_1\otimes\cdots\otimes a_{m+1})&=a_1f(a_2\otimes\cdots\otimes a_{m+1})\\
+	  +\sum_{i=1}^m(-1)^if(a_1\otimes\cdots&\otimes a_{i-1}\otimes a_ia_{i+1}\otimes a_{i+1}\otimes\cdots a_{m+1})\\
+	 & +(-1)^{m+1}f(a_1\otimes\cdots\otimes a_m)a_{m+1},
+	 \end{align*}
+	 %extensión lineal de esto
+	 \end{defi}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hochschild cohomology and cup product}
+	\begin{defi}
+		The $m$-th \textbf{Hochschild cohomology} of $A$ is defined to be $H^m(A;A)=\ker\delta_m/\im\delta_{m-1}$.
+		\end{defi}\pause
+	
+	\begin{teorema}
+		The ring $\{H^*(A,A),\smile\}$ is a graded commutative ring, with grading given by dimension, i.e., if $\eta\in H^m(A,A)$ and $\xi\in H^n(A,A)$, then $\eta\smile \xi =(-1)^{mn}\xi\smile \eta$.
+	\end{teorema} 
+\end{frame}
+
+%\begin{frame}
+%	\frametitle{Cup product}
+%	\begin{defi}
+%	 For $f\in C^m(A;A)$ and $g\in C^n(A;A)$ define their \textbf{cup product} $f\smile g\in C^{n+m}(A;A)$ by
+%	\[
+%	f\smile g(a_1\otimes\cdots\otimes a_m\otimes b_1\otimes\cdots\otimes b_n)=f(a_1\otimes\cdots\otimes a_m)g(b_1\otimes\cdots\otimes b_n).
+%	\]
+%	\end{defi}\pause
+%The cup product satisfies the Leibniz rule
+%$$\delta (f^m\smile g^n)=\delta f^m\smile g^n+(-1)^m f^m\smile \delta g^n$$\pause
+%SI ME QUEDA LARGO QUITAR LAS DEFINICIONES %Con lo cual induce un producto en cohomología
+%
+%
+%\end{frame}
+
+\begin{frame}
+	\frametitle{The Hochschild cohomology is a Gerstenhaber algebra}
+	
+	\begin{teorema}
+		Let $A$ be an algebra and $\xi$, $\eta$ and $\zeta$ elements of $H^m(A;A)$, $H^n(A;A)$ and $H^p(A;A)$, respectively. Then there exists a Lie bracket $[,]$ of degree $-1$ such that
+		\[
+		[\eta, \xi\smile \zeta]=[\eta,\xi]\smile \zeta+(-1)^{m(n-1)}\eta\smile[\xi,\zeta].
+		\]
+	\end{teorema}\pause
+	\begin{teorema}
+	The Hochschild cohomology $H^*(A;A)$ is a Gerstenhaber algebra.
+\end{teorema} 
+\end{frame}
+%\begin{frame}
+%	\frametitle{Lie Bracket}
+%	For $f\in C^m(A;A)$ and $g\in C^n(A;A)$ set
+%	\begin{gather*}
+%	f\circ_i g(a_0\otimes\cdots\otimes a_{i-1}\otimes b_0\otimes\cdots\otimes b_{n-1}\otimes a_{i+1}\otimes\cdots \otimes a_{m-1})\\
+%	=f(a_0\otimes \cdots a_{i-1}\otimes g(b_0\otimes\cdots\otimes b_{n-1})\otimes a_{i+1}\otimes\cdots\otimes a_{m-1})
+%	\end{gather*}
+%	for $i=0,\dots, m-1$. Note that $f\circ_i g\in C^{n+m-1}(A;A)$.\pause
+%	
+%	Now set
+%	\[
+%	f\circ g=\sum_{i=0}^m (-1)^{ni}f\circ_i g.
+%	\]
+%\end{frame}
+%\begin{frame}
+%	\frametitle{Lie Bracket}
+%	\begin{defi}
+%		The bracket is defined by $[f,g]=f\circ g-(-1)^{(n-1)(m-1)}g\circ f$.
+%	\end{defi}\pause 
+%The bracket also satisfies the corresponding Leibniz rule
+%\[\delta[f^m,g^n]=(-1)^{n-1}[\delta f^m,g^n]+[f^m,\delta g^n].\]\pause 
+%
+%\end{frame}
+
 
 %\begin{frame}
 %	\begin{block}{}
@@ -357,6 +495,66 @@ $$
 %\end{block}
 %
 %\end{frame}
+
+\begin{frame}
+	\frametitle{Action of the homology operad of litle disks on the Hochschild cohomology}
+	
+	\begin{teorema}
+		Gerstenhaber algebras and $H_*(E_2)$-algebras are the same thing.
+	\end{teorema}\pause 
+The commutative product is given by 
+\[
+G^{\otimes 2}\cong k\otimes G^{\otimes 2}\cong H_0(E_2(2))\otimes G^{\otimes 2}\to G
+\]
+\pause
+and the Lie bracket of degree by the
+\[
+G^{\otimes 2}\cong k\otimes G^{\otimes 2}\cong H_1(E_2(2))\otimes G^{\otimes 2}\to G
+\]
+	\end{frame}
+
+\begin{frame}
+\begin{figure}
+	\includegraphics[width=0.3\textwidth]{Imagenes/genera}
+	%\hfill
+	\includegraphics[width=0.3\textwidth]{Imagenes/generador}
+	\caption{A generator of $H_0(E_2(2))$ on the left and a generator of $H_1(E_2(2))$ on the right.}
+\end{figure}
+\end{frame}
+
+\section{Back to the Deligne conjecture}
+
+\begin{frame}
+	\frametitle{Back to the Deligne conjecture}
+	\begin{block}{The conjecture}
+		The action of the homology operad of little disks on the Hochschild cohomology of an associative algebra inducing its Gerstenhaber algebra structure lifts to an action of the chain operad of little disks on the Hochschild complex.
+	\end{block}
+	\end{frame}
+
+\begin{frame}[fragile]
+	\begin{center}
+		
+	
+	\begin{tikzcd}[column sep=60, row sep=30]
+	H_*(E_2)\arrow[r,"\text{Gerstenhaber}"] & H^*(A;A)\\
+	C_*(E_2)\arrow[u, "q"]\arrow[r, dashed, "?"] & C^*(A;A)\arrow[u, "q"]
+	\end{tikzcd}
+\end{center}
+\end{frame}
+\begin{frame}[fragile]
+	\begin{center}
+		
+		
+		\begin{tikzcd}[column sep=60, row sep=30]
+		H_*(E_2)\arrow[r,"\text{Gerstenhaber}"] & H^*(A;A)\\
+		C_*(E_2)\simeq \mathcal{O}?\arrow[u, "q"]\arrow[r, dashed, "?"] & C^*(A;A)\arrow[u, "q"]
+		\end{tikzcd}
+		%equivalentes en el sentido de que tengan la misma homología
+	\end{center}
+\end{frame}
+
+
+\section{Proof of the conjecture}
 
 
 \begin{frame}
