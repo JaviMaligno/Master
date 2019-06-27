@@ -10,6 +10,10 @@
 \usepackage{pgf,tikz}
 \usepackage{pgfplots}
 \usepackage{tikz-cd}
+%\usepackage{empheq}
+%\usepackage[dvipsnames]{xcolor}
+\usepackage{xcolor}
+
 \usetikzlibrary{arrows}
 \usetikzlibrary{cd}
 \usetikzlibrary{babel}
@@ -43,6 +47,10 @@
 }
 \setbeamercolor{footline}{fg=black}
 \setbeamerfont{footline}{series=\bfseries}
+
+\newcommand{\highlight}[1]{%
+	\colorbox{red!50}{$\displaystyle#1$}}
+
 
 %-----------------------------------------------------------
 
@@ -226,22 +234,119 @@
 
 \begin{frame}
 	\begin{itemize}
-		\item There are \textbf{composition maps} $\gamma : \CC(k) \times \CC(j_1) \times \cdots \times \CC(j_k) \to \CC(\sum_s j_s)$
+		\item There are \textbf{composition maps} $\gamma : \CC(n) \times \CC(j_1) \times \cdots \times \CC(j_n) \to \CC(\sum_s j_s)$
 		
-		DIBUJO DE LA COMPOSICIÓN PEGANDO $n$ ARBOLITOS  $g_i$ A UNO $f$ Y PONIENDO $\gamma(f;g_1,\dots, g_n)$
+		\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+		\clip(-0.7355555555555552,-0.3222222222222197) rectangle (9.486666666666668,4.);
+		\draw [line width=1.2pt] (3.,0.)-- (3.,1.);
+		\draw [line width=1.2pt] (3.,1.)-- (1.,2.);
+		\draw [line width=1.2pt] (3.,1.)-- (5.,2.);
+		\draw [line width=1.2pt] (3.,1.)-- (2.,2.);
+		\draw [line width=1.2pt] (3.,1.)-- (4.,2.);
+		\draw [line width=1.2pt] (1.,2.)-- (1.0066666666666673,2.593333333333333);
+		\draw [line width=1.2pt] (1.0066666666666673,2.593333333333333)-- (0.5,3.5);
+		\draw [line width=1.2pt] (1.0066666666666673,2.593333333333333)-- (1.,3.5);
+		\draw [line width=1.2pt] (1.0066666666666673,2.593333333333333)-- (1.362222222222223,3.4822222222222172);
+		\draw [line width=1.2pt] (2.,2.)-- (1.9933333333333343,2.6555555555555532);
+		\draw [line width=1.2pt] (1.9933333333333343,2.6555555555555532)-- (1.6555555555555563,3.491111111111106);
+		\draw [line width=1.2pt] (1.9933333333333343,2.6555555555555532)-- (2.,3.5);
+		\draw [line width=1.2pt] (1.9933333333333343,2.6555555555555532)-- (2.3222222222222233,3.4733333333333287);
+		\draw [line width=1.2pt] (5.,2.)-- (4.997777777777778,2.691111111111109);
+		\draw [line width=1.2pt] (4.997777777777778,2.691111111111109)-- (4.633333333333335,3.491111111111106);
+		\draw [line width=1.2pt] (4.997777777777778,2.691111111111109)-- (5.,3.5);
+		\draw [line width=1.2pt] (4.997777777777778,2.691111111111109)-- (5.362222222222223,3.5);
+		\draw [line width=1.2pt] (4.,2.)-- (4.0022222222222235,2.60222222222222);
+		\draw [line width=1.2pt] (4.0022222222222235,2.60222222222222)-- (3.691111111111112,3.5);
+		\draw [line width=1.2pt] (4.0022222222222235,2.60222222222222)-- (4.,3.5);
+		\draw [line width=1.2pt] (4.0022222222222235,2.60222222222222)-- (4.2955555555555565,3.4644444444444398);
+		\draw (2.4,0.9933333333333338) node[anchor=north west] {$f$};
+		\draw (0.6,4) node[anchor=north west] {$g_1$};
+		\draw (1.6,4) node[anchor=north west] {$g_2$};
+		\draw (4.7,4) node[anchor=north west] {$g_n$};
+		\draw (3.6222222222222234,4) node[anchor=north west] {$g_{n-1}$};
+		\draw [line width=1.2pt,dash pattern=on 2pt off 2pt] (1.,2.) circle (0.2951626461026548cm);
+		\draw [line width=1.2pt,dash pattern=on 2pt off 2pt] (2.,2.) circle (0.2953633460212008cm);
+		\draw [line width=1.2pt,dash pattern=on 2pt off 2pt] (4.,2.) circle (0.27550178686879956cm);
+		\draw [line width=1.2pt,dash pattern=on 2pt off 2pt] (5.,2.) circle (0.2752866071013681cm);
+		\draw (2.5,2.22) node[anchor=north west] {$\cdots$};
+		\draw (5.8066666666666675,2.5933333333333315) node[anchor=north west] {$=\gamma(f;g_1,\dots, g_n)$};
+		\end{tikzpicture}
+		
+		%DIBUJO DE LA COMPOSICIÓN PEGANDO $n$ ARBOLITOS  $g_i$ A UNO $f$ Y PONIENDO $\gamma(f;g_1,\dots, g_n)$
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
 	\begin{itemize}
-		\item Composition is associative: DIBUJO DE COMPOSICIÓN EN DOS PASOS CON UNA IGUALDAD A CADA LADO SEÑALAR EL ORDEN DE ALGÚN MODO
+		\item Composition is associative:
+		 %DIBUJO DE COMPOSICIÓN EN DOS PASOS CON UNA IGUALDAD A CADA LADO SEÑALAR EL ORDEN DE ALGÚN MODO
+		\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+		\clip(0.7133333333333343,-0.1) rectangle (11.62,6);
+		\draw [line width=1.2pt,] (3.,0.)-- (3.0066666666666677,1.2333333333333327);
+		\draw [line width=1.2pt,] (3.0066666666666677,1.2333333333333327)-- (1.98,2.18);
+		\draw [line width=1.2pt,] (3.0066666666666677,1.2333333333333327)-- (4.006666666666668,2.1533333333333315);
+		\draw [line width=1.2pt,] (1.98,2.18)-- (2.,3.);
+		\draw [line width=1.2pt,] (2.,3.)-- (1.353333333333334,3.94);
+		\draw [line width=1.2pt,] (2.,3.)-- (2.6466666666666674,3.9133333333333296);
+		\draw [line width=1.2pt,] (4.006666666666668,2.1533333333333315)-- (4.,3.);
+		\draw [line width=1.2pt,] (4.,3.)-- (3.446666666666667,3.9933333333333296);
+		\draw [line width=1.2pt,] (4.,3.)-- (4.74,3.9133333333333296);
+		\draw [line width=1.2pt,] (1.353333333333334,3.94)-- (1.353333333333334,4.62);
+		\draw [line width=1.2pt,] (1.353333333333334,4.62)-- (0.8066666666666672,5.46);
+		\draw [line width=1.2pt,] (1.353333333333334,4.62)-- (1.3666666666666674,5.446666666666661);
+		\draw [line width=1.2pt,] (1.353333333333334,4.62)-- (1.8733333333333342,5.473333333333328);
+		\draw [line width=1.2pt,] (2.6466666666666674,3.9133333333333296)-- (2.66,4.686666666666662);
+		\draw [line width=1.2pt,] (2.66,4.686666666666662)-- (2.3666666666666676,5.473333333333328);
+		\draw [line width=1.2pt,] (2.66,4.686666666666662)-- (2.9266666666666676,5.526666666666661);
+		\draw [line width=1.2pt,] (3.446666666666667,3.9933333333333296)-- (3.446666666666667,4.62);
+		\draw [line width=1.2pt,] (3.446666666666667,4.62)-- (3.3266666666666675,5.526666666666661);
+		\draw [line width=1.2pt,] (3.446666666666667,4.62)-- (3.8066666666666675,5.5);
+		\draw [line width=1.2pt,] (4.74,3.9133333333333296)-- (4.78,4.566666666666662);
+		\draw [line width=1.2pt,] (4.78,4.566666666666662)-- (4.366666666666667,5.486666666666661);
+		\draw [line width=1.2pt,] (4.78,4.566666666666662)-- (4.82,5.5);
+		\draw [line width=1.2pt,] (4.78,4.566666666666662)-- (5.326666666666668,5.486666666666661);
+		\draw (2.4866666666666672,1.18) node[anchor=north west] {$f$};
+		\draw (1.3,3.) node[anchor=north west] {$g_1$};
+		\draw (3.3,3.) node[anchor=north west] {$g_2$};
+		\draw (0.67,4.6) node[anchor=north west] {$h_1$};
+		\draw (2,4.6) node[anchor=north west] {$h_2$};
+		\draw (2.9,4.6) node[anchor=north west] {$h_3$};
+		\draw (4.1,4.6) node[anchor=north west] {$h_4$};
+		\draw (4.956666666666667,3.3) node[anchor=north west] {$=\gamma(\gamma(f;g_1,g_2),h_1,h_2,h_3,h_4)$};
+		\draw (4.953333333333334,2.3) node[anchor=north west] {$=\gamma(f;\gamma(g_1;h_1,h_2), \gamma(g_2;h_3,h_4))$};
+		\end{tikzpicture}
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
 	\begin{itemize}
-		\item<1-> Identity element: UN ÁRBOL AL QUE SE LE METEN PALITOS CON 1 Y OTRO METIÉNDOSE EN EL 1 Y AL FINAL IGUAL AL ARBOL EN CUESTION 
-		\item<2-> A right action of the symmetric group thouht as reordering the inputs which is coherent with composition.
+		\item<1-> Identity element: 
+	%UN ÁRBOL AL QUE SE LE METEN PALITOS CON 1 Y OTRO METIÉNDOSE EN EL 1 Y AL FINAL IGUAL AL ARBOL EN CUESTION
+		
+		\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+		\clip(-2.2333333333333334,-1.) rectangle (13.1,3.35);
+		\draw [line width=1.2pt] (2.,0.)-- (2.,1.);
+		\draw [line width=1.2pt] (2.,1.)-- (1.,2.);
+		\draw [line width=1.2pt] (2.,1.)-- (1.6866666666666674,2.0066666666666664);
+		\draw [line width=1.2pt] (2.,1.)-- (2.42,1.98);
+		\draw [line width=1.2pt] (2.,1.)-- (3.,2.);
+		\draw [line width=1.2pt] (2.,0.)-- (2.,-1.);
+		\draw [line width=1.2pt] (1.,2.)-- (1.,3.);
+		\draw [line width=1.2pt] (1.6866666666666674,2.0066666666666664)-- (1.6866666666666674,2.9933333333333327);
+		\draw [line width=1.2pt] (2.42,1.98)-- (2.433333333333334,2.98);
+		\draw [line width=1.2pt] (3.,2.)-- (3.,3.);
+		\draw (1.4066666666666674,1.06) node[anchor=north west] {$f$};
+		\draw (0.8,3.42) node[anchor=north west] {$1$};
+		\draw (1.45,3.42) node[anchor=north west] {$1$};
+		\draw (2.2,3.42) node[anchor=north west] {$1$};
+		\draw (2.8,3.42) node[anchor=north west] {$1$};
+		\draw (1.593333333333334,-0.23333333333333328) node[anchor=north west] {$1$};
+		\draw (3.22,1.0866666666666664) node[anchor=north west] {$=f$};
+		\begin{scriptsize}
+		\draw [fill=black] (2.,0.) circle (1.5pt);
+		\end{scriptsize}
+		\end{tikzpicture} %añadir un palo no cambia la forma delárbol
+		\item<2-> A right action of the symmetric group thought as reordering the inputs which is coherent with composition. %reordenas los inputs de f y metes los g_i como si nada. Eso es lo mismo que dejar f quieta, cambiar el orden de los g_i y consecuentemente en la composición los argumentos de arriba entran en otro orden. La otra es similar pero haciendo actuar permutaciones sobre los g_i, y luego la forma en la que esos g_i entran en f se reordena consecuentemente
 	\end{itemize}
 \end{frame}
 
@@ -256,7 +361,7 @@
 		\begin{itemize}
 			\item<1->   $f\circ 1_\mathcal{C}=1_{\mathcal{C}'}$.
 			\item<2->  $f\circ \gamma_\mathcal{C}=\gamma_{\mathcal{C}'}\circ (f\times\cdots\times f)$.
-			\item<3->   $f(x\sigma)=f(x)\sigma$ for $x\in\CC(n)$
+			\item<3->   $f(x\sigma)=f(x)\sigma$ for $x\in\CC(n)$ and $\sigma\in\Sigma_n$.
 		\end{itemize}
 	\end{defi}
 	
@@ -336,13 +441,12 @@
 	
 	 We define for all positive integers $p$ and $q$ and  each $1\leq i\leq p$ the insertion maps 
 $$	
-\begin{tikzcd}[row sep=10]
+\begin{tikzcd}[row sep=5]
 E_2(p)\times E_2(q)\arrow[r, "\circ_i"] & E_2(p+q-1)\\
 (c_1,c_2)\arrow[r, mapsto, shorten <= 1em, shorten >= 1em] & c_1\circ_i c_2
 \end{tikzcd}
 $$
-
- \begin{figure}[h!]
+\begin{figure}
 	\centering
 	\includegraphics[scale=0.2]{Imagenes/insertion}
 	\caption{An insertion $\circ_2:E_2(3)\times E_2(3)\to E_2(5)$.}
@@ -369,20 +473,45 @@ $$
 	\end{figure}
 \end{frame}
 
+\subsection{Chain operad and Homology operad}
+\begin{frame}
+	\frametitle{Chain operad and homology operad of little disks}
+	\begin{itemize}
+		\item<1-> The collection of chain complexes $C_*(E_2)=\{C_*(E_2(n))\}_{n\geq 0}$ forms an operad thanks to the Eilenberg-Zilber map $\nabla: C_*(A)\otimes C_*(B)\to C_*(A\times B)$.
+		\item<2-> This induces an operad structure on the collection $H_*(E_2)=\{H_*(E_2(n))\}_{n\geq 0}$. 
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{itemize}
+		\item Operads \checkmark
+		\begin{itemize}
+			\item action of an operad (algebra over an operad) \checkmark
+			\item little disks operad \checkmark
+			\item chain/homology operad	\checkmark		
+		\end{itemize}
+		\item Gerstenhaber algebras
+		\item Hochschild cohomology of an associative algebra
+	\end{itemize}
+\end{frame}
+
+
 
 \section{Gerstenhaber algebras}
 
 \begin{frame}
 	\frametitle{Gerstenhaber algebras}
 	\begin{defi}
-		Let $k$ be a field of characteristic 0 and $G$ an associative graded $k$-algebra with product $\cdot$. Let $|a|$ denote the degree of an element $a\in G$. Then $G$ is said to be a \textbf{Gerstenhaber algebra} if:
+		Let $G$ an associative graded $k$-algebra. Then $G$ is said to be a \textbf{Gerstenhaber algebra} if:
 		\begin{itemize}
-			\item<2-> The product $\cdot$ is a graded commutative: for every $a,b\in A$ one has $a\cdot b=(-1)^{|a||b|}b\cdot a$
-			\item<3-> There is a graded Lie bracked $[,]:G\times G\to G$ such that:
+			\item<2-> For every $a,b\in A$ one has $a\cdot b=(-1)^{|a||b|}b\cdot a$
+			\item<3-> There is a graded Lie bracket $[,]:G\times G\to G$ of degree $-1$ such that:
 			\begin{itemize}
-				\item<4-> $|[a,b]|=|a|+|b|-1$.
-				\item<5-> $[b,a]=-(-1)^{(|a|-1)(|b|-1)}[a,b]$ (graded antisymmetry).
-				\item<6-> (graded Jacobi identity) $$(-1)^{(|a|-1)(|c|-1)}[[a,b],c]+(-1)^{(|b|-1)(|a|-1)}[[b,c],a]+$$ $$+(-1)^{(|c|-1)(|b|-1)}[[c,a],b]=0$$ 
+				%\item<4-> $|[a,b]|=|a|+|b|-1$.
+				\item<4-> $[b,a]=-(-1)^{(|a|-1)(|b|-1)}[a,b]$ (graded antisymmetry).
+				\item<5->   $(-1)^{(|a|-1)(|c|-1)}[[a,b],c]+(-1)^{(|b|-1)(|a|-1)}[[b,c],a]+$ $$+(-1)^{(|c|-1)(|b|-1)}[[c,a],b]=0 \text{ (graded Jacobi identity)}$$ 
+				\item<6-> $[a,]$ is a right derivation: $[a,b\cdot c] = [a,b]c+(-1)^{|a|(|b|-1)}b[a,c]$ %comentar los criterios de derivación
+			
 			\end{itemize}
 		\end{itemize}
 	\end{defi}
@@ -391,6 +520,44 @@ $$
 
 
 
+\begin{frame}
+	\frametitle{Homology operad of little disks and Gerstenhaber algebras}
+	
+	\begin{teorema}
+		Gerstenhaber algebras and $H_*(E_2)$-algebras are the same thing.
+	\end{teorema}\pause 
+	The commutative product is given by 
+	\[
+	G^{\otimes 2}\cong k\otimes G^{\otimes 2}\cong H_0(E_2(2))\otimes G^{\otimes 2}\to G
+	\]
+	\pause
+	and the Lie bracket of degree by the
+	\[
+	G^{\otimes 2}\cong k\otimes G^{\otimes 2}\cong H_1(E_2(2))\otimes G^{\otimes 2}\to G
+	\]
+\end{frame}
+
+\begin{frame}
+	\begin{figure}
+		\includegraphics[width=0.3\textwidth]{Imagenes/genera}
+		%\hfill
+		\includegraphics[width=0.3\textwidth]{Imagenes/generador}
+		\caption{A generator of $H_0(E_2(2))$ on the left and a generator of $H_1(E_2(2))$ on the right.}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\begin{itemize}
+		\item Operads \checkmark
+		\begin{itemize}
+			\item action of an operad (algebra over an operad) \checkmark
+			\item little disks operad \checkmark
+			\item chain/homology operad	\checkmark		
+		\end{itemize}
+		\item Gerstenhaber algebras \checkmark
+		\item Hochschild cohomology of an associative algebra
+	\end{itemize}
+\end{frame}
 
 \section{Hochschild cohomology of an associative algebra}
 \begin{frame}
@@ -445,6 +612,19 @@ $$
 	The Hochschild cohomology $H^*(A;A)$ is a Gerstenhaber algebra.
 \end{teorema} 
 \end{frame}
+
+\begin{frame}
+	\begin{itemize}
+		\item Operads \checkmark
+		\begin{itemize}
+			\item action of an operad (algebra over an operad) \checkmark
+			\item little disks operad \checkmark
+			\item chain/homology operad	\checkmark		
+		\end{itemize}
+		\item Gerstenhaber algebras \checkmark
+		\item Hochschild cohomology of an associative algebra \checkmark
+	\end{itemize}
+\end{frame}
 %\begin{frame}
 %	\frametitle{Lie Bracket}
 %	For $f\in C^m(A;A)$ and $g\in C^n(A;A)$ set
@@ -496,31 +676,7 @@ $$
 %
 %\end{frame}
 
-\begin{frame}
-	\frametitle{Action of the homology operad of litle disks on the Hochschild cohomology}
-	
-	\begin{teorema}
-		Gerstenhaber algebras and $H_*(E_2)$-algebras are the same thing.
-	\end{teorema}\pause 
-The commutative product is given by 
-\[
-G^{\otimes 2}\cong k\otimes G^{\otimes 2}\cong H_0(E_2(2))\otimes G^{\otimes 2}\to G
-\]
-\pause
-and the Lie bracket of degree by the
-\[
-G^{\otimes 2}\cong k\otimes G^{\otimes 2}\cong H_1(E_2(2))\otimes G^{\otimes 2}\to G
-\]
-	\end{frame}
 
-\begin{frame}
-\begin{figure}
-	\includegraphics[width=0.3\textwidth]{Imagenes/genera}
-	%\hfill
-	\includegraphics[width=0.3\textwidth]{Imagenes/generador}
-	\caption{A generator of $H_0(E_2(2))$ on the left and a generator of $H_1(E_2(2))$ on the right.}
-\end{figure}
-\end{frame}
 
 \section{Back to the Deligne conjecture}
 
@@ -548,7 +704,14 @@ G^{\otimes 2}\cong k\otimes G^{\otimes 2}\cong H_1(E_2(2))\otimes G^{\otimes 2}\
 		\begin{tikzcd}[column sep=60, row sep=30]
 		H_*(E_2)\arrow[r,"\text{Gerstenhaber}"] & H^*(A;A)\\
 		C_*(E_2)\simeq \mathcal{O}?\arrow[u, "q"]\arrow[r, dashed, "?"] & C^*(A;A)\arrow[u, "q"]
-		\end{tikzcd}
+		\end{tikzcd}\pause
+		
+		\begin{defi}
+			Two chain operads $\mathcal{O}$ and $\mathcal{O}'$ are \textbf{equivalent} if there exists a chain of quasi-isomorphisms
+			\[
+			\mathcal{O}= \mathcal{O}_1\to\mathcal{O}_2\leftarrow\mathcal{O}_3\to\cdots\leftarrow\mathcal{O}_{2k+1} = \mathcal{O}'
+			\]
+		\end{defi}
 		%equivalentes en el sentido de que tengan la misma homología
 	\end{center}
 \end{frame}
@@ -556,28 +719,60 @@ G^{\otimes 2}\cong k\otimes G^{\otimes 2}\cong H_1(E_2(2))\otimes G^{\otimes 2}\
 
 \section{Proof of the conjecture}
 
-
-\begin{frame}
-	Cada vez que explique una cosa ponerle un check a lo de antes \url{https://tex.stackexchange.com/questions/132783/how-to-write-checkmark-in-latex} (quizá en operads ponerlo al final al grande y ya)
+\begin{frame}[fragile]
+	\frametitle{Proof of the conjecture}
+%	$$
+%	\begin{tikzcd}
+%	C_*(E_2)\arrow[r, "e.h."] & C_*(|N(PaB)|) \arrow[r] & O_A & \arrow[l] H_*(E_2) & \arrow[l] G_\infty \arrow[r] & B
+%	\end{tikzcd}
+%	$$
+	$C_*(E_2)\xrightarrow{h. e.} C_*(|N(PaB)|)\to O_A\leftarrow H_*(E_2) \leftarrow G_\infty \to \widetilde{\mathcal{B}}\xrightarrow{\cong}\mathcal{B}$\pause %el último no es quasi-iso, es solo map pero nos sirve
+	\vspace{1cm}
+	
+	Finaly $\mathcal{B}$ acts on $C^*(A;A)$ inducing on $H^*(A;A)$ the Gersternhaber algebra structure.
 \end{frame}
 
 \begin{frame}
-	Definición de operad y explicación dibujitos (más de los que he hecho en el trabajo)
-	
-	Operad de endomorfismos y álgebra sobre un operad
-	
-	Definición de operad en symmetric monoidal categories para que tenga sentido
-	
-	Comentar gracias al EZ map se hereda la operadición y de ahí a homología
-	
-	Las operaciones de la homología con los dos dibujitos (en el trabajo solo he metido uno)
-	
-	Gerstenhaber algebra definición del tirón (en la presentación comentar los criterios de derivación)
-	
-	Describir el complejo de cadenas sin detallar mucho en que es un complejo de cadenas e ir a su homología con sus propiedades de álgebra de Gerstenhaber (esto ya me relaciona con el último punto)
-	
-	Recuperar el homology operad y describir la acción sobre un álgebra asociativa
+	\frametitle{Proof of the conjecture}
+	$\highlight{C_*(E_2)\xrightarrow{h. e.} C_*(|N(PaB)|)\to O_A\leftarrow H_*(E_2)} \leftarrow G_\infty \to \widetilde{\mathcal{B}}\xrightarrow{\cong}\mathcal{B}$
+\vspace{1cm}
+
+Finaly $\mathcal{B}$ acts on $C^*(A;A)$ inducing on $H^*(A;A)$ the Gersternhaber algebra structure.
 \end{frame}
+
+\begin{frame}
+	\frametitle{Proof of the conjecture}
+	$\highlight{C_*(E_2)\xrightarrow{h. e.} C_*(|N(PaB)|)\to O_A\leftarrow H_*(E_2)} \leftarrow G_\infty \to \widetilde{\mathcal{B}}\xrightarrow{\cong}\mathcal{B}$
+	\vspace{1cm}
+	
+	Finaly \underline{$\mathcal{B}$ acts on $C^*(A;A)$ inducing on $H^*(A;A)$ the Gersternhaber} \underline{algebra structure}.
+\end{frame}
+
+ 
+ 
+
+
+%\begin{frame}
+%	Cada vez que explique una cosa ponerle un check a lo de antes \url{https://tex.stackexchange.com/questions/132783/how-to-write-checkmark-in-latex} (quizá en operads ponerlo al final al grande y ya)
+%\end{frame}
+
+%\begin{frame}
+%	Definición de operad y explicación dibujitos (más de los que he hecho en el trabajo)
+%	
+%	Operad de endomorfismos y álgebra sobre un operad
+%	
+%	Definición de operad en symmetric monoidal categories para que tenga sentido
+%	
+%	Comentar gracias al EZ map se hereda la operadición y de ahí a homología
+%	
+%	Las operaciones de la homología con los dos dibujitos (en el trabajo solo he metido uno)
+%	
+%	Gerstenhaber algebra definición del tirón (en la presentación comentar los criterios de derivación)
+%	
+%	Describir el complejo de cadenas sin detallar mucho en que es un complejo de cadenas e ir a su homología con sus propiedades de álgebra de Gerstenhaber (esto ya me relaciona con el último punto)
+%	
+%	Recuperar el homology operad y describir la acción sobre un álgebra asociativa
+%\end{frame}
 
 \begin{frame}
 	Retomar la conjetura de Deligne para recordarla y ver que está todo, seguido de un diagrama con las acciones y la que se pregunta si existe poniéndola dashed y con una interrogación de label
@@ -585,6 +780,10 @@ G^{\otimes 2}\cong k\otimes G^{\otimes 2}\cong H_1(E_2(2))\otimes G^{\otimes 2}\
 	Esquema de la prueba (destacar de algún modo las partes en las que me centro)
 	
 	Pensar qué meto de cada parte
+\end{frame}
+
+\begin{frame}
+
 \end{frame}
 
 \end{document}
