@@ -1,7 +1,7 @@
 \documentclass{beamer}
 \usepackage[utf8]{inputenc}
 \usetheme{Copenhagen}
-\usepackage[spanish]{babel}
+%\usepackage[spanish]{babel}
 \usepackage{multirow}
 %\usepackage{estilo-apuntes}
 \usepackage{braids}
@@ -52,11 +52,18 @@
 \newcommand{\highlight}[1]{%
 	\colorbox{red!50}{$\displaystyle#1$}}
 
+\makeatletter
+\newcommand*{\encircled}[1]{\relax\ifmmode\mathpalette\@encircled@math{#1}\else\@encircled{#1}\fi}
+\newcommand*{\@encircled@math}[2]{\@encircled{$\m@th#1#2$}}
+\newcommand*{\@encircled}[1]{%
+	\tikz[baseline,anchor=base]{\node[draw,circle,outer sep=0pt,inner sep=.2ex] {#1};}}
+\makeatother
+
 
 %-----------------------------------------------------------
 
 \title{The Deligne Conjecture}
-\author{Javier Aguilar Martín}
+\author{Javier Aguilar Mart\'in}
 \institute{Universidad de Sevilla}
 \date{}
  
@@ -95,6 +102,10 @@
 \newcounter{saveenumi}
 \newcommand{\seti}{\setcounter{saveenumi}{\value{enumi}}}
 \newcommand{\conti}{\setcounter{enumi}{\value{saveenumi}}}
+
+\makeatletter
+\newcommand{\xRightarrow}[2][]{\ext@arrow 0359\Rightarrowfill@{#1}{#2}}
+\makeatother
 
 \resetcounteronoverlays{saveenumi}
 %\AtBeginSection[]{
@@ -373,8 +384,9 @@
 	\begin{itemize}
 		\item<1-> A category where there is a notion of tensor product $\otimes $ of objects.
 		\item<2-> There exists an object $I$ such that $I\otimes A\cong A\cong A\otimes I$ for all object $A$.
-		\item<3-> The product is associative: $(A\otimes B)\otimes C\cong A\otimes (B\otimes C)$ for all objects.
-		\item<4-> Other coherence axioms.
+		\item<3-> The product is commutative: $A\otimes B\cong B\otimes A$.
+		\item<4-> The product is associative: $(A\otimes B)\otimes C\cong A\otimes (B\otimes C)$ for all objects.
+		\item<5-> Other coherence axioms.
 	\end{itemize}
 %	COMENTAR QUE ESTA DEFINICIÓN SE PUEDE HACER EN CUALQUIER CATEGORÍA MONOIDAL SIMÉTRICA, DICIENDO LOS COMPONENTES DE LA DEFINICIÓN Y QUIZÁ DESTACANDO ALGÚN AXIOMA
 	
@@ -393,7 +405,7 @@
 			\item<3-> identity $\eta: k \to \xi_V(1)$, $1 \mapsto \operatorname{Id}_V$,
 			\item<4->  symmetric group action $\gamma (f; g_1, \dots, g_n) \cdot \sigma = f (g_{\sigma^{-1}(1)} \otimes \dots \otimes g_{\sigma^{-1}(n)})$,  $\sigma \in \Sigma_n$.
 		\end{itemize}\pause
-\only<5>{	If $\mathcal{C}$ is another operad, each operad morphism $\mathcal{C} \to \xi_V$ is called an \textbf{algebra over} $\mathcal{C}$. Equivalently, a $\mathcal{C}$-algebra is given by a sequence of maps $\CC(k)\otimes V^{\otimes n}\to V$.}
+\only<5>{	If $\mathcal{C}$ is another operad, each operad morphism $\mathcal{C} \to \xi_V$ is called an \textbf{algebra over} $\mathcal{C}$. Equivalently, a $\mathcal{C}$-algebra is given by a sequence of maps $\CC(n)\otimes V^{\otimes n}\to V$.}
 		 %(notice this is analogous to the fact that each ''R''-module structure on an abelian group ''M'' amounts to a ring homomorphism <math>R \to \operatorname{End}(M)</math>.)
 	\end{defi}
 \end{frame}
@@ -728,15 +740,16 @@ $$
 %	C_*(E_2)\arrow[r, "e.h."] & C_*(|N(PaB)|) \arrow[r] & O_A & \arrow[l] H_*(E_2) & \arrow[l] G_\infty \arrow[r] & B
 %	\end{tikzcd}
 %	$$
-	$C_*(E_2)\xrightarrow{h. e.} C_*(|N(PaB)|)\to O_A\leftarrow H_*(E_2) \leftarrow G_\infty \to \widetilde{\mathcal{B}}\xrightarrow{\cong}\mathcal{B}$\pause %el último no es quasi-iso, es solo map pero nos sirve
+	\scalebox{1}{$C_*(E_2)\xrightarrow{h. e.} C_*(|N(PaB)|)\to C_*(O_A)\leftarrow H_*(E_2) \leftarrow \encircled{G_\infty} \to \widetilde{\mathcal{B}}\xrightarrow{\cong}\mathcal{B}$}\pause %el último no es quasi-iso, es solo map pero nos sirve
 	\vspace{1cm}
+	
 	
 	Finally $\mathcal{B}$ acts on $C^*(A;A)$ inducing on $H^*(A;A)$ the Gersternhaber algebra structure.
 \end{frame}
 
 \begin{frame}
 	\frametitle{Proof of the conjecture}
-	$\highlight{C_*(E_2)\xrightarrow{h. e.} C_*(|N(PaB)|)\to O_A\leftarrow H_*(E_2)} \leftarrow G_\infty \to \widetilde{\mathcal{B}}\xrightarrow{\cong}\mathcal{B}$
+	\scalebox{1}{$\highlight{C_*(E_2)\xrightarrow{h.e.} C_*(|N(PaB)|)\to C_*(O_A)\leftarrow H_*(E_2)} \leftarrow G_\infty \to \widetilde{\mathcal{B}}\xrightarrow{\cong}\mathcal{B}$}
 \vspace{1cm}
 
 Finally $\mathcal{B}$ acts on $C^*(A;A)$ inducing on $H^*(A;A)$ the Gersternhaber algebra structure.
@@ -744,7 +757,7 @@ Finally $\mathcal{B}$ acts on $C^*(A;A)$ inducing on $H^*(A;A)$ the Gersternhabe
 
 \begin{frame}
 	\frametitle{Proof of the conjecture}
-	$\highlight{C_*(E_2)\xrightarrow{h. e.} C_*(|N(PaB)|)\to O_A\leftarrow H_*(E_2)} \leftarrow G_\infty \to \widetilde{\mathcal{B}}\xrightarrow{\cong}\mathcal{B}$
+	\scalebox{1}{$\highlight{C_*(E_2)\xrightarrow{h. e.} C_*(|N(PaB)|)\to C_*(O_A)\leftarrow H_*(E_2)} \leftarrow G_\infty \to \widetilde{\mathcal{B}}\xrightarrow{\cong}\mathcal{B}$}
 	\vspace{1cm}
 	
 	Finally \underline{$\mathcal{B}$ acts on $C^*(A;A)$ inducing on $H^*(A;A)$ the} \underline{Gersternhaber algebra structure}.
@@ -756,7 +769,7 @@ Finally $\mathcal{B}$ acts on $C^*(A;A)$ inducing on $H^*(A;A)$ the Gersternhabe
 	\begin{itemize}
 		\item<1-> We prove $C_*(E_2)\simeq H_*(E_2)$.
 		\item<2-> We define an operad of categories $PaB$ such that $|N(PaB)|\simeq E_2$. 
-		\item<3-> We find another operad $O_A$ and quasi-isomorphisms $C_*(|N(PaB)|)\to C_*(O_A)\leftarrow H_*(E_2)$. 
+		\item<3-> We find another chain operad $C_*(O_A)$ and quasi-isomorphisms $C_*(|N(PaB)|)\to C_*(O_A)\leftarrow H_*(E_2)$. 
 	\end{itemize}%QPaB y PaB son equivalentes como categoráis no enriquecidas porque los morfismos están en biyección (infinito numerable) y los objetos son los mismos. Como al nervio no le afecta lo de aditividad pues yastá
 \end{frame}
 
@@ -774,7 +787,71 @@ Finally $\mathcal{B}$ acts on $C^*(A;A)$ inducing on $H^*(A;A)$ the Gersternhabe
  
  \only<5->{\begin{prop}
  		$E_2$ is the little disks operad of a $B_\infty$-operad, more precisely, of its universal covering. %decir que esto es de lo que más he hecho, aunque me faltó completar algunos detalles
+ 		
  \end{prop}}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\begin{proof}[Idea of the proof]
+		The idea is to lift the operad structure of $E_2$ to a braided operad structure on $\widetilde{E}_2$ using the uniqueness of the lifting 
+		\[
+		\begin{tikzcd}
+		\widetilde{E}_2(k)\times\widetilde{E}_2(j_1)\times\cdots\widetilde{E}_2(j_k) \arrow[r, "\widetilde{\gamma}", dashed] \arrow[d, "p"] & \widetilde{E}_2(j_1+\cdots+j_k) \arrow[d, "p"] \arrow[d] \\
+		E_2(k)\times E_2(j_1)\times\cdots\times E_2(j_1+\cdots+j_k) \arrow[r, "\gamma"]                                                                      & E_2(j_1+\cdots+j_k)                                     
+		\end{tikzcd}
+		\]
+		up to a choice of base point. But instead of a base point, we use a contractible subspace $E_1$, which has a homotopy discrete fiber. This subspace $E_1$ is an embedding of the \textbf{little intervals} operad, which is analogue to the little disks operad. 
+	\end{proof}
+\end{frame}
+
+\begin{frame}
+	
+	\begin{figure}
+	\definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1.}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+	\clip(-3.5,-0.4666666666666) rectangle (11.293333333333335,4.5);
+	\fill[line width=2.pt,color=xdxdff,fill=xdxdff,fill opacity=0.10000000149011612] (0.41333333333333344,4.) -- (0.4,0.) -- (0.7733333333333334,0.) -- (0.7866666666666668,4.) -- cycle;
+	\fill[line width=2.pt,color=xdxdff,fill=xdxdff,fill opacity=0.10000000149011612] (1.2,4.) -- (1.2133333333333338,0.) -- (1.586666666666667,0.) -- (1.586666666666667,4.) -- cycle;
+	\fill[line width=2.pt,color=xdxdff,fill=xdxdff,fill opacity=0.10000000149011612] (3.,4.) -- (3.,0.) -- (3.386666666666667,0.) -- (3.4,4.) -- cycle;
+	\draw[line width=2.pt] (0.41333333333333344,4.) -- (0.4,0.) -- (0.7733333333333334,0.) -- (0.7866666666666668,4.) -- cycle;
+	\draw[line width=2.pt] (1.2,4.) -- (1.2133333333333338,0.) -- (1.586666666666667,0.) -- (1.586666666666667,4.) -- cycle;
+	\draw[line width=2.pt] (3.,4.) -- (3.,0.) -- (3.386666666666667,0.) -- (3.4,4.) -- cycle;
+	\draw [line width=2.pt] (0.,0.)-- (0.,4.);
+	\draw [line width=2.pt] (0.,4.)-- (4.,4.);
+	\draw [line width=2.pt] (4.,4.)-- (4.,0.);
+	\draw [line width=2.pt] (4.,0.)-- (0.,0.);
+	\draw [line width=2.pt,color=xdxdff] (0.41333333333333344,4.)-- (0.4,0.);
+	\draw [line width=2.pt,color=xdxdff] (0.4,0.)-- (0.7733333333333334,0.);
+	\draw [line width=2.pt,color=xdxdff] (0.7733333333333334,0.)-- (0.7866666666666668,4.);
+	\draw [line width=2.pt,color=xdxdff] (0.7866666666666668,4.)-- (0.41333333333333344,4.);
+	\draw [line width=2.pt,color=xdxdff] (1.2,4.)-- (1.2133333333333338,0.);
+	\draw [line width=2.pt,color=xdxdff] (1.2133333333333338,0.)-- (1.586666666666667,0.);
+	\draw [line width=2.pt,color=xdxdff] (1.586666666666667,0.)-- (1.586666666666667,4.);
+	\draw [line width=2.pt,color=xdxdff] (1.586666666666667,4.)-- (1.2,4.);
+	\draw [line width=2.pt,color=xdxdff] (3.,4.)-- (3.,0.);
+	\draw [line width=2.pt,color=xdxdff] (3.,0.)-- (3.386666666666667,0.);
+	\draw [line width=2.pt,color=xdxdff] (3.386666666666667,0.)-- (3.4,4.);
+	\draw [line width=2.pt,color=xdxdff] (3.4,4.)-- (3.,4.);
+	\draw [line width=2.pt] (0.41333333333333344,4.)-- (0.4,0.);
+	\draw [line width=2.pt] (0.4,0.)-- (0.7733333333333334,0.);
+	\draw [line width=2.pt] (0.7733333333333334,0.)-- (0.7866666666666668,4.);
+	\draw [line width=2.pt] (0.7866666666666668,4.)-- (0.41333333333333344,4.);
+	\draw [line width=2.pt] (1.2,4.)-- (1.2133333333333338,0.);
+	\draw [line width=2.pt] (1.2133333333333338,0.)-- (1.586666666666667,0.);
+	\draw [line width=2.pt] (1.586666666666667,0.)-- (1.586666666666667,4.);
+	\draw [line width=2.pt] (1.586666666666667,4.)-- (1.2,4.);
+	\draw [line width=2.pt] (3.,4.)-- (3.,0.);
+	\draw [line width=2.pt] (3.,0.)-- (3.386666666666667,0.);
+	\draw [line width=2.pt] (3.386666666666667,0.)-- (3.4,4.);
+	\draw [line width=2.pt] (3.4,4.)-- (3.,4.);
+	\draw (0.35,2.38) node[anchor=north west] {$1$};
+	\draw (1.15,2.38) node[anchor=north west] {$2$};
+	\draw (2.95,2.38) node[anchor=north west] {$n$};
+	\draw (1.9,2.353333333333338) node[anchor=north west] {$\cdots$};
+	\end{tikzpicture}
+	\caption{Embedding of a point of $E_1$ into $E_2$.}
+\end{figure}
 \end{frame}
 
 \begin{frame}
@@ -807,35 +884,202 @@ Finally $\mathcal{B}$ acts on $C^*(A;A)$ inducing on $H^*(A;A)$ the Gersternhabe
 \begin{frame}
  We can take the nerve $N(PaB(n))$ and the geometric realization $|N(PaB(n))|$ to obtain a topological operad.\pause
  \begin{prop}
- 	$|N(PaB(n))|$ is a little disks operad. The $B_\infty$-operad is obtained from an operad of categories that has the same objects as $PaB$ and only one morphism between any two objects.
+ 	$|N(PaB(n))|$ is a little disks operad. The $B_\infty$-operad is obtained from an operad of categories whose objects are pairs $(x,y)$, where $x\in B_n$ and $y$ is a parenthesizing of a product of $n$ elements, and there is only one morphism between any two objects.
  \end{prop}
 \end{frame}
+
+\begin{frame} 
+\frametitle{$C_*(E_2)\simeq H_*(E_2)$}
+	\begin{itemize}
+	\item Define an operad of categories $PaB$ s. t. $|N(PaB)|\simeq E_2$. \checkmark
+	\item Find another chain operad $C_*(O_A)$ and quasi-isomorphisms $C_*(|N(PaB)|)\to C_*(O_A)\leftarrow H_*(E_2)$. 
+\end{itemize}%QPaB y PaB son equivalentes como categoráis no enriquecidas porque los morfismos están en biyección (infinito numerable) y los objetos son los mismos. Como al nervio no le afecta lo de aditividad pues yastá
+\end{frame}
+
  
 \begin{frame}
-	\frametitle{Operad $O_A$}
+	\frametitle{Operad $C_*(O_A)$}
 	\begin{itemize}
 		\item<1-> Let $A_n$ be the algebra over $\Q$ of power series in the noncommutative variables $t_{ij}$, where $i\geq 1$, $j\leq n$, $i\neq j$, with relations $t_{ij}=t_{ji}$ and $[t_{ij}+t_{ik},t_{kj}]=0$
 		\item<2-> The collection $\{A_n\}$ forms an operad. 
 		\item<3-> Let $I_n=\gene{t_{ij}}$ and consider the projection $\pi:A_n/I_n\to\Q$. 
-		\item<4-> Regard $A_n$ as a $\Q$-additive category $C_{A_n}$. Then $\pi$ defines an object in the slice category of $\Q$-additive categories over $C_\Q$. This object is $O_A(n)$. 
+		%\item<4-> Regard $A_n$ as a $\Q$-additive category $C_{A_n}$. Then $\pi$ defines an object in the slice category of $\Q$-additive categories over $C_\Q$. This object is $O_A(n)$. 
 	\end{itemize}
 \end{frame}
 \begin{frame}
 	\begin{itemize}
-		\item<1-> Taking a $\Q$-linear version of the nerve and constructing the associated chain complex we obtain a chain operad $C_*(O_A)$ where $C_k(O_A(n))=A_n^{\otimes k}$ and
+		\item<1-> %Taking a $\Q$-linear version of the nerve and constructing the associated chain complex we obtain 
+		Define the chain operad $C_*(O_A)$ where $C_k(O_A(n))=A_n^{\otimes k}$ and
 		$$
-		d(a_1\otimes\cdots\otimes a_n)=\pi(a_1)a_2\otimes\cdots\otimes a_n-a_1a_2\otimes \cdots\otimes a_n+\cdots$$ $$\cdots+(-1)^{n}a_1\otimes\cdots\otimes a_{n-1}\pi(a_n).$$
+		d(a_1\otimes\cdots\otimes a_n)=\pi(a_1)a_2\otimes\cdots\otimes a_n-a_1a_2\otimes \cdots\otimes a_n+\cdots$$ $$\cdots+(-1)^{n}a_1\otimes\cdots\otimes a_{n-1}\pi(a_n).$$ %comentar que a esto se llega en varios pasos previos, tal como comento en el trabajo
 		
 		\item<2-> The quasi-ismorphism $h:H_*(E_2)\to C_*(O_A)$ is defined by $h(\mu)=1\in C_0(O_A)$ and $h(l)=t_{12}\in C_1(O_A)$. %decir que para ver que está bien definido hay que meterse en las relaciones de álgebra de gerstenhaber, que es algo que hago en el trabajo
-		\item<3-> The quasi-isomorphism $\phi:C_*(|N(PaB)|)\to C_*(O_A)$ is produced by the morphism $\Q(PaB)\to O_A$ whic is trivial on objects and on morphisms is defined by $\phi(x)=\exp(t_{12}/2)$ and $\phi(i)=\Phi\in A_3$ is a \textbf{Drinfeld associator}. 
+		\item<3-> The quasi-isomorphism $\phi:C_*(|N(PaB)|)\to C_*(O_A)$ is produced by the morphism $\Q(PaB)\to O_A$ which is trivial on objects and on morphisms is defined by $\phi(x)=\exp(t_{12}/2)$ and $\phi(i)=\Phi\in A_3$ is a \textbf{Drinfeld associator}.  %decir que O_A es esencialmente A vista como categoría Q-aditiva, es decir, los morfismos forman un Q-e.v.
 		\item<4-> An associator is an element $\Phi\in A_3$ which is interpreted as the isomorphism $(A\otimes B)\otimes C\xrightarrow{\Phi} A\otimes (B\otimes C)$ and therefore satisfies some axioms related to this isomorphism. %comentar que son referidos a qué ocurre cuando cambia el orden de los objetos y a las formas de asociar 4 objetos.
-		 
+		 %SI ME DA TIEMPO HABLAR MÁS DE ESTO
 	\end{itemize}
 \end{frame}
+
+\begin{frame}
+\frametitle{$C_*(E_2)\simeq H_*(E_2)$}
+\begin{itemize}
+	\item Define an operad of categories $PaB$ s. t. $|N(PaB)|\simeq E_2$. \checkmark
+	\item Find another chain operad $C_*(O_A)$ and quasi-isomorphisms $C_*(|N(PaB)|)\to C_*(O_A)\leftarrow H_*(E_2)$. \checkmark
+\end{itemize}
+\end{frame}
+\subsection{Operad $\mathcal{B}$}
+
+\begin{frame}
+\frametitle{Tensor coalgebra}
+
+	For a finite dimensional graded $k$-vector space $V$ let $TV=\bigoplus_{n\geq 0} V^{\otimes n}$. \pause
 	
+	\begin{defi}
+		A \textbf{coalgebra} structure on $TV$ is given by a comultiplication $\Delta:TV\to TV\otimes TV$. 
+	\end{defi}\pause
+
+\begin{example}
+	The \textbf{cofree conilpotent} coalgebra $TV$ is given by the comultiplication
+	\[
+	\Delta(w_0\otimes\cdots\otimes w_n)=\sum_{p=0}^n(w_0\otimes\cdots \otimes w_p)\otimes (w_{p+1}\otimes\cdots\otimes w_n).
+	\]
+\end{example}
+
+\end{frame}
+
+\begin{frame}
+\begin{defi}
+	A \textbf{bialgebra} structure on $TV$ is given by both an algebra structure and a coalgebra structure, which satisfy some compatibility axioms.
+\end{defi}\pause
+
+\begin{defi}
+	A $\mathcal{B}$-algebra structure on $V$  is given by an structure of differential graded bialgebra on $TV[1]=\bigoplus_{n\geq 0} V[1]^{\otimes n}$ such that the coalgebra structure is the cofree conilpotent one.
+\end{defi}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Operad $\mathcal{B}$}
+	A $\mathcal{B}$-algebra structure on $V$ is given by:
+	\begin{itemize}
+			\item<2-> A differential $D:TV[1]\to TV[1]$ \only<3->{$\xRightarrow{decomposes} V[1]^{\otimes n}\to V[1]^{\otimes r}$ of degree 1} \only<4->{$\xRightarrow{r=1} m_n:V[1]^{\otimes n}\to V[2]$} \only<5->{$\Rightarrow \boxed{m_n:V^{\otimes n}\to V[2-n]}$.}
+		\item<6-> A multiplication $M:TV[1]\otimes TV[1]\to TV[1]$ \only<7->{$\xRightarrow{decomposes} V[1]^{\otimes p}\otimes V[1]^{\otimes q}\to V[1]^{\otimes r}$ of degree 0} \only<8->{$\xRightarrow{r=1} m_{pq}:V^{\otimes p}[1]\otimes V^{\otimes q}[1]\to V[1]$} \only<9->{$\Rightarrow	\boxed{m_{pq}:V^{\otimes p}\otimes V^{\otimes q}\to V[1-p-q]}$.}
+	
+		
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Operad $\mathcal{B}$}
+	\begin{defi}
+		The operad $\mathcal{B}$ is defined to be the operad of graded vector spaces generated by operations $m_n\in\mathcal{B}(n)_{2-n}$ and $m_{pq}\in\mathcal{B}(p+q)_{1-p-q}$ subject to some relations. 
+	\end{defi}
+\end{frame}
+	
+	\subsection{Action on $\mathcal{B}$ on $C^*(A;A)$}
+\begin{frame}
+	\frametitle{Brace algebra on $C^*(A;A)$}
+	
+\begin{itemize}
+	\item<1-> Recall that an element $f\in C^n(A;A)$ is a map $f:A^{\otimes n}\to A$, so we represent it as
+	 
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+	\clip(-2.8466666666666676,-1) rectangle (11.486666666666668,3);
+	\draw[line width=1.pt] (0.,0.) -- (0.,1.38) -- (2.406666666666667,1.38) -- (2.406666666666667,0.) -- cycle;
+	\draw [line width=1.pt] (0.,0.)-- (0.,1.38);
+	\draw [line width=1.pt] (0.,1.38)-- (2.406666666666667,1.38);
+	\draw [line width=1.pt] (2.406666666666667,1.38)-- (2.406666666666667,0.);
+	\draw [line width=1.pt] (2.406666666666667,0.)-- (0.,0.);
+	\draw [line width=.pt] (1.2033333333333336,0.)-- (1.2033333333333336,-0.606666666666666);
+	\draw [line width=1.pt] (1.2033333333333336,1.38)-- (1.2033333333333336,2.3933333333333344);
+	\draw [line width=1.pt] (0.7666666666666668,2.3933333333333344)-- (0.7666666666666668,1.38);
+	\draw [line width=1.pt] (0.3933333333333334,2.3933333333333344)-- (0.38,1.38);
+	\draw [line width=1.pt] (1.606666666666667,2.3933333333333344)-- (1.606666666666667,1.38);
+	\draw [line width=1.pt] (1.9933333333333336,2.3933333333333344)-- (1.9933333333333336,1.38);
+	\draw (1.,0.9933333333333343) node[anchor=north west] {$f$};
+	\end{tikzpicture}
+\end{itemize}
+	
+\end{frame}
 
 
+\begin{frame}
+	\frametitle{Brace algebra on $C^*(A;A)$}
+	
+	\begin{itemize}
+		\item Let $f,g_1,\dots, g_n\in C^*(A;A)$. The the \textbf{brace} $f\{g_1,\dots, g_n\}$ is given by
+		
+		\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+		\clip(-2.8466666666666676,-1) rectangle (11.486666666666668,3);
+		\draw[line width=1.pt] (2.833333333333334,0.) -- (2.833333333333334,0.5666666666666675) -- (7.006666666666668,0.5666666666666675) -- (7.,0.) -- cycle;
+		\draw[line width=1.pt] (3.193333333333334,1.) -- (4.,1.) -- (4.006666666666668,1.58) -- (3.193333333333334,1.58) -- cycle;
+		\draw[line width=1.pt] (6.,1.) -- (6.38,1.) -- (6.38,1.58) -- (5.593333333333335,1.5933333333333344) -- (5.606666666666667,1.) -- cycle;
+		\draw (-2.9,0.6) node[anchor=north west] {$f\{g_1,\dots, g_n\}=\displaystyle{\sum_{\text{all possible insertions}}}$};
+		\draw [line width=1.pt] (2.833333333333334,0.)-- (2.833333333333334,0.5666666666666675);
+		\draw [line width=1.pt] (2.833333333333334,0.5666666666666675)-- (7.006666666666668,0.5666666666666675);
+		\draw [line width=1.pt] (7.006666666666668,0.5666666666666675)-- (7.,0.);
+		\draw [line width=1.pt] (7.,0.)-- (2.833333333333334,0.);
+		\draw [line width=1.pt] (4.92,0.)-- (4.92,-0.36666666666666614);
+		\draw [line width=1.pt] (2.993333333333334,0.5666666666666675)-- (3.,2.);
+		\draw [line width=1.pt] (3.553333333333334,0.5666666666666675)-- (3.553333333333334,1.);
+		\draw [line width=1.pt] (4.273333333333334,0.5666666666666675)-- (4.273333333333334,1.9933333333333345);
+		\draw [line width=1.pt] (4.54,0.5666666666666675)-- (4.54,1.9933333333333345);
+		\draw [line width=1.pt] (5.993333333333334,0.5666666666666675)-- (6.,1.);
+		\draw [line width=1.pt] (6.62,0.5666666666666675)-- (6.62,1.9933333333333345);
+		\draw [line width=1.pt] (6.833333333333335,0.5666666666666675)-- (6.833333333333335,1.98);
+		\draw [line width=1.pt] (3.193333333333334,1.)-- (4.,1.);
+		\draw [line width=1.pt] (4.,1.)-- (4.006666666666668,1.58);
+		\draw [line width=1.pt] (4.006666666666668,1.58)-- (3.193333333333334,1.58);
+		\draw [line width=1.pt] (3.193333333333334,1.58)-- (3.193333333333334,1.);
+		\draw [line width=1.pt] (6.,1.)-- (6.38,1.);
+		\draw [line width=1.pt] (6.38,1.)-- (6.38,1.58);
+		\draw [line width=1.pt] (6.38,1.58)-- (5.593333333333335,1.5933333333333344);
+		\draw [line width=1.pt] (5.593333333333335,1.5933333333333344)-- (5.606666666666667,1.);
+		\draw [line width=1.pt] (5.606666666666667,1.)-- (6.,1.);
+		\draw [line width=1.pt] (3.5666666666666673,1.58)-- (3.58,2.);
+		\draw [line width=1.pt] (6.007451656136321,1.586314378709553)-- (6.,2.);
+		\draw [line width=1.pt] (5.4,0.5666666666666675)-- (5.4,2.);
+		\draw (3.3,1.5666666666666678) node[anchor=north west] {$g_1$};
+		\draw (5.65,1.58) node[anchor=north west] {$g_n$};
+		\draw (4.7,0.5666666666666675) node[anchor=north west] {$f$};
+		\draw (4.59,1.5533333333333343) node[anchor=north west] {$\cdots$};
+		\end{tikzpicture}
+		\item<2-> $f\{\}=f$.
+	\end{itemize}
+\end{frame}
 
+\begin{frame}
+%	\begin{itemize}
+%		\item Notation: $f\{\}=f$ and $[f,g]=f\{g\}-(-1)^{(|f|-1)(|g|-1)}g\{g\}$.
+%	\end{itemize}
+\frametitle{Action of $\mathcal{B}$ on $C^*(A;A)$}
+We have to define the action of the operations $m_n$ and $m_{pq}$ on $C^*(A;A)$:
+
+\begin{itemize}
+	\item<2-> $m_0=0$.
+	\item<3->  $m_1$ is the differential in $C^*(A;A)$.
+	\item<4-> $m_2$ is the cup product.
+	\item<5-> $m_n=0$ for all $n>2$. 
+	\item<6-> $m_{0,1}=m_{1,0}=Id$.
+	\item<7-> $m_{0,q}=m_{q,0}=0$.
+	\item<8-> $m_{1q}(f\otimes g_1\otimes\cdots\otimes g_q)=f\{g_1,\dots, g_q\}$.
+	\item<9-> $m_{pq}=0$ for $p>1$.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\begin{teorema}
+		The action of $\mathcal{B}$ on $C^*(A;A)$ is well defined and induces the Gerstenhaber algebra structure on $H^*(A;A)$. 
+	\end{teorema}\pause
+
+\textcolor{red}{The conjecture is finally proven!}
+\end{frame}
+
+\begin{frame}
+	\begin{center}
+	\Huge{Thank you very much!}
+\end{center}
+\end{frame}
 %\begin{frame}
 %	Cada vez que explique una cosa ponerle un check a lo de antes \url{https://tex.stackexchange.com/questions/132783/how-to-write-checkmark-in-latex} (quizá en operads ponerlo al final al grande y ya)
 %\end{frame}
@@ -866,8 +1110,8 @@ Finally $\mathcal{B}$ acts on $C^*(A;A)$ inducing on $H^*(A;A)$ the Gersternhabe
 %	Pensar qué meto de cada parte
 %\end{frame}
 
-\begin{frame}
-
-\end{frame}
+%\begin{frame}
+%
+%\end{frame}
 
 \end{document}

@@ -19,7 +19,7 @@ In this chapter we review and explain the heart of the proof of the Deligne Conj
 
  First, we define an operad which is homotopy equivalent to the little disks operad from an operad of categories $PaB_*$. Then, we take the $\Q$-linear span of $PaB_*$ and find an operad $O_A(*)$ together with a quasi-isomorphism from the homology operad of little disks. Finally, we give a quasi-isomorphism between the span $\Q(PaB_*)$ and $O_A(*)$, which completes the proof. 
 
- Here wea re going to implicitly make use of the theory of covering spaces, in particular the lifting properties of the universal cover (see Section 1.3 of \cite{Hatcher} for a complete treatment of the subject). Also recall that the product of covering spaces is a covering space of the product (Exercise 2 from page 79 of \cite{Hatcher}).
+ Here we are going to implicitly make use of the theory of covering spaces, in particular the lifting properties of the universal cover (see Section 1.3 of \cite{Hatcher} for a complete treatment of the subject). Also recall that the product of covering spaces is a covering space of the product (Exercise 2 from page 79 of \cite{Hatcher}).
 
 
 \section{Braided operads and little disks operads}
@@ -110,7 +110,7 @@ Now define the structure map $\widetilde{\gamma}$ for $\widetilde{E}_2$ to be th
 \[
 \begin{tikzcd}
 \widetilde{E}_2(k)\times\widetilde{E}_2(j_1)\times\cdots\widetilde{E}_2(j_k) \arrow[r, "\widetilde{\gamma}", dashed] \arrow[d, "p"] & \widetilde{E}_2(j_1+\cdots+j_k) \arrow[d, "p"] \arrow[d] \\
-E_2(k)\times E_2(j_1)\times\cdots E_2(j_1+\cdots+j_k) \arrow[r, "\gamma"]                                                                      & E_2(j_1+\cdots+j_k)                                     
+E_2(k)\times E_2(j_1)\times\cdots\times E_2(j_1+\cdots+j_k) \arrow[r, "\gamma"]                                                                      & E_2(j_1+\cdots+j_k)                                     
 \end{tikzcd}
 \]
 which takes $\widetilde{E}_1(k)\times\widetilde{E}_1(j_1)\times\cdots\widetilde{E}_1(j_k)$ to $\widetilde{E}_1(j_1+\cdots+j_k)$. The existence and uniqueness of this map is guaranteed by lemma \ref{lift} since $\gamma$ clearly takes the embedding $E_1(k)\times E_1(j_1)\times\cdots  \times E_1(j_k)$ to the embedding of $E_1(j_1+\cdots+j_k)$.
