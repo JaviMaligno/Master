@@ -516,7 +516,7 @@ $$
 \begin{frame}
 	\frametitle{Gerstenhaber algebras}
 	\begin{defi}
-		Let $G$ an associative graded $k$-algebra. Then $G$ is said to be a \textbf{Gerstenhaber algebra} if:
+		Let $G$ be an associative graded $k$-algebra. Then $G$ is said to be a \textbf{Gerstenhaber algebra} if:
 		\begin{itemize}
 			\item<2-> For every $a,b\in A$ one has $a\cdot b=(-1)^{|a||b|}b\cdot a$
 			\item<3-> There is a graded Lie bracket $[,]:G\times G\to G$ of degree $-1$ such that:
@@ -911,7 +911,7 @@ Finally $\mathcal{B}$ acts on $C^*(A;A)$ inducing on $H^*(A;A)$ the Gersternhabe
 		\item<1-> %Taking a $\Q$-linear version of the nerve and constructing the associated chain complex we obtain 
 		Define the chain operad $C_*(O_A)$ where $C_k(O_A(n))=A_n^{\otimes k}$ and
 		$$
-		d(a_1\otimes\cdots\otimes a_n)=\pi(a_1)a_2\otimes\cdots\otimes a_n-a_1a_2\otimes \cdots\otimes a_n+\cdots$$ $$\cdots+(-1)^{n}a_1\otimes\cdots\otimes a_{n-1}\pi(a_n).$$ %comentar que a esto se llega en varios pasos previos, tal como comento en el trabajo
+		d(a_1\otimes\cdots\otimes a_k)=\pi(a_1)a_2\otimes\cdots\otimes a_n-a_1a_2\otimes \cdots\otimes a_n+\cdots$$ $$\cdots+(-1)^{k}a_1\otimes\cdots\otimes a_{n-1}\pi(a_k).$$ %comentar que a esto se llega en varios pasos previos, tal como comento en el trabajo
 		
 		\item<2-> The quasi-ismorphism $h:H_*(E_2)\to C_*(O_A)$ is defined by $h(\mu)=1\in C_0(O_A)$ and $h(l)=t_{12}\in C_1(O_A)$. %decir que para ver que está bien definido hay que meterse en las relaciones de álgebra de gerstenhaber, que es algo que hago en el trabajo
 		\item<3-> The quasi-isomorphism $\phi:C_*(|N(PaB)|)\to C_*(O_A)$ is produced by the morphism $\Q(PaB)\to O_A$ which is trivial on objects and on morphisms is defined by $\phi(x)=\exp(t_{12}/2)$ and $\phi(i)=\Phi\in A_3$ is a \textbf{Drinfeld associator}.  %decir que O_A es esencialmente A vista como categoría Q-aditiva, es decir, los morfismos forman un Q-e.v.
@@ -941,8 +941,8 @@ Finally $\mathcal{B}$ acts on $C^*(A;A)$ inducing on $H^*(A;A)$ the Gersternhabe
 \begin{example}
 	The \textbf{cofree conilpotent} coalgebra $TV$ is given by the comultiplication
 	\[
-	\Delta(w_0\otimes\cdots\otimes w_n)=\sum_{p=0}^n(w_0\otimes\cdots \otimes w_p)\otimes (w_{p+1}\otimes\cdots\otimes w_n).
-	\]
+\Delta(w_1\otimes \ldots \otimes w_n) = \sum_{p=1}^{n-1} (w_1\otimes \ldots \otimes w_p)\otimes(w_{p+1}\otimes \ldots \otimes w_n).
+\]
 \end{example}
 
 \end{frame}

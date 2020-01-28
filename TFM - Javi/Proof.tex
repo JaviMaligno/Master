@@ -66,7 +66,7 @@ V\otimes V \arrow[r, "\Delta\otimes Id"]   & V\otimes V\otimes V                
 \begin{ex}\label{cofree}
 Maybe the most canonical example of coalgebra is the coalgebra structre on the tensor algebra $TW=\bigoplus_{n=0}^\infty W^{\otimes n}$ for a vector space $W$. The map $\varepsilon$ is just the projection onto the first coordinate. The comultiplication (or coproduct) $\Delta$ is defined on homogeneous elements as
 \[
-\Delta(w_1\otimes\cdots\otimes w_n)=\sum_{p=0}^n(w_0\otimes\cdots \otimes w_p)\otimes (w_{p+1}\otimes\cdots\otimes w_n).
+\Delta(w_1\otimes \ldots \otimes w_n) = \sum_{p=1}^{n-1} (w_1\otimes \ldots \otimes w_p)\otimes(w_{p+1}\otimes \ldots \otimes w_n).
 \]
 Note that $$\Delta(w_1\otimes\cdots\otimes w_n)\in\bigoplus_n\bigoplus_{p+q=n}W^{\otimes^n}=\bigoplus_{p,q}\left(W^{\otimes p}\otimes W^{\otimes q}\right)=\left(\bigoplus_p W^{\otimes p}\right)\otimes \left(\bigoplus_q W^{\otimes q}\right).$$ 
 
@@ -511,7 +511,7 @@ $m_n$ (\ref{mn}) and $m_{pq}$ (\ref{mpq}) on $C^*(A;A)$ and to check the compati
 \begin{itemize}
 \item $m_0=0$.
 \item $m_1$ is the differential $d$ in $\CC$. 
-\item $m_2$ is the multiplication $m:\CC\otimes\CC\to\CC$ defined by the formula $m(x\otimes y)=x\smile y$, where $\smile$ is the usual cup product $(x\smile y)(a_1,\dots, a_{k+l})=x(a_1,\dots, k)y(a_{k+1},\dots, a_{k+l})$ for $x\in C^k(A;A)$, $y\in C^l(A;A)$ and $a_i\in A$. It will also be written just as $x\cdot y$ or $xy$ when there is no confusion.
+\item $m_2$ is the multiplication $m:\CC\otimes\CC\to\CC$ defined by the formula $m(x\otimes y)=x\smile y$, where $\smile$ is the usual cup product $(x\smile y)(a_1,\dots, a_{k+l})=x(a_1,\dots, a_k)y(a_{k+1},\dots, a_{k+l})$ for $x\in C^k(A;A)$, $y\in C^l(A;A)$ and $a_i\in A$. It will also be written just as $x\cdot y$ or $xy$ when there is no confusion.
 \item $m_n=0$ for all $n>2$. 
 \item $m_{0,1}=m_{1,0}=Id$.
 \item $m_{0,q}=m_{q,0}=0$.

@@ -141,7 +141,7 @@ The axiom of the unit is the fact that grafting just a stick does not change the
 
 Operads can also be described by \emph{insertions} (also called \emph{partial compositions} \cite{das})
 \[
-\circ_i:\CC(p)\otimes\CC(q)\to \CC(p+q-1),\ 1\leq i\leq p
+\circ_i:\CC(p)\times\CC(q)\to \CC(p+q-1),\ 1\leq i\leq p
 \]
 satisfying 
 \[
@@ -150,7 +150,7 @@ f\circ_i(g\circ_j h)=(f\circ_i g)\circ_{i+j-1} h & 1\leq i\leq p, 1\leq j\leq q\
 (f\circ_j h)\circ_i g=(f\circ_i g)\circ_{j+q-1}h & 1\leq i<j\leq m,
 \end{cases}
 \]
-for $f\in\CC(p)$, $g\in\CC(q)$, $h\in\CC(r)$, and an identity element $1\in\CC(1)$ satisfying $f\circ_i 1=1\circ_1 f$ for all $f\in\CC(p)$ and $1\leq i\leq m$. We must also require the equivariance property expressed by the commutativy of the following diagram
+for $f\in\CC(p)$, $g\in\CC(q)$, $h\in\CC(r)$, and an identity element $1\in\CC(1)$ satisfying $f\circ_i 1=1\circ_1 f=f$ for all $f\in\CC(p)$ and $1\leq i\leq m$. We must also require the equivariance property expressed by the commutativy of the following diagram
 \[
 \begin{tikzcd}
 \CC(p)\times \CC(q)\arrow[r, "\circ_i"]\arrow[d, "\sigma\times\tau"] & \CC(p+q-1)\arrow[d, "\sigma\circ_{\Sigma(i)}\tau"]\\
@@ -158,14 +158,15 @@ for $f\in\CC(p)$, $g\in\CC(q)$, $h\in\CC(r)$, and an identity element $1\in\CC(1
 \end{tikzcd}
 \]
 
-for all $\sigma\in\Sigma_p$, $\tau\in\Sigma_q$, and where $\sigma\circ_{\Sigma(i)}\tau\in\Sigma_{p+q-1}$ consist of inserting the permutation $\tau$ of the set $\{1,\dots, q\}$ elements in the place where $\sigma(i)$ is after applying $\sigma$ to the set $\{1,\dots, p\}$, renumbering appropriately. A more detailed explanation of this will be made on section 4.2 chapter 3. The two definitions of operad are related by
+for all $\sigma\in\Sigma_p$, $\tau\in\Sigma_q$, and where $\sigma\circ_{\Sigma(i)}\tau\in\Sigma_{p+q-1}$ consist of inserting the permutation $\tau$ of the set $\{1,\dots, q\}$ in the place where $\sigma(i)$ is after applying $\sigma$ to the set $\{1,\dots, p\}$, renumbering appropriately. A more detailed explanation of this will be made on section 4.2 chapter 3. The two definitions of operad are related by
 \begin{equation}\label{circ}
-f\circ_i g=\gamma(g;1,\dots, 1,\underbrace{g}_{i-th},1,\dots, 1)
+f\circ_i g=\gamma(f;1,\dots, 1,\underbrace{g}_{i-th},1,\dots, 1)
 \end{equation}
 and
 \[
-\gamma(f;g_1,\dots, g_p)= (\cdots((f\circ_1 g_1)\circ_{2} g_{2})\cdots)\circ_p g_p.
+\gamma(f;g_1,\dots, g_p)= (\cdots((f\circ_1 g_{1})\circ_{k_2} g_{2})\cdots)\circ_{k_p} g_p.
 \]
+where $g_i\in\CC(n_i)$ and $k_i=1+\sum_{j=1}^{i-1}n_j$.
 
 In fact, defining $\circ_i$ via equation \ref{circ} one can deduce the properties of $\circ_i$ explained before \cite[Chapter 2]{teich}. Therefore, it is more convenient to use the insertion version when possible, as we will do in the next section. 
 
@@ -503,7 +504,7 @@ Note that a map of operads $\OO\to \OO'$ endows an $\OO'$-algebra with a canonic
 
  %el converse puede ser que el functor de p-algebras a p'-algebras admite left adjoint que es pag 140 de AlgebraicOperads %The converse is also obviously true: in order to define a map of operads it is enough to endow any $\OO'$-algebra with a canonical $\OO$-algebra structure. 
 
-For a functor $F:\mathscr{M}\to\mathscr{N}$ between monoidal categories, we would like $F$ to preserve the tensor structures so that we can send operads to operads. In most cases, it will be enough to have  morphisms $1_{\mathscr{M}}\to F(1_\mathscr{N})$ and $F(A\otimes_{\mathscr{M}}B)\to F(A)\otimes_{\mathscr{N}} F(B)$ satisfying some natural associativity and unitality properties (see \cite[Definition 6.4.1]{handbook}). Functors fulfilling that last property are called \emph{lax monoidal}. We give an example of a lax monoidal functor in the next section. When the morphisms before are isomorphisms, and hence $F$ preserves the monoidal structure, then $F$ is simply called \emph{monoidal}.
+For a functor $F:\mathscr{M}\to\mathscr{N}$ between monoidal categories, we would like $F$ to preserve the tensor structures so that we can send operads to operads. In most cases, it will be enough to have  morphisms $1_{\mathscr{N}}\to F(1_\mathscr{M})$ and $F(A\otimes_{\mathscr{M}}B)\to F(A)\otimes_{\mathscr{N}} F(B)$ satisfying some natural associativity and unitality properties (see \cite[Definition 6.4.1]{handbook}). Functors fulfilling that last property are called \emph{lax monoidal}. We give an example of a lax monoidal functor in the next section. When the morphisms before are isomorphisms, and hence $F$ preserves the monoidal structure, then $F$ is simply called \emph{monoidal}.
 
 \subsection{Connection between $E_2$ and Gerstenhaber algebras}\label{zilber}
 
@@ -600,7 +601,7 @@ A^{\otimes 2}\cong k\otimes A^{\otimes 2}\cong H_1(E_2(2))\otimes A^{\otimes 2}\
 
 The reverse process of obtaining an operad from an algebraic structure is very natural and standard. We will do it explicitly for the case of Gerstenhaber algebras later when we need it, but to give a feel of how this works, one can describe --for instance-- a commutative product as an operation $\mu\in H_0(E_2(2))$ (degree 0 and arity 2) satisfying $\mu=\mu(12)$, where $(12)\in\Sigma_2$ acts by rearranging the arguments. 
 
-An important corollary of this construction is that $H_*(\Omega X)$ is a Gersternhaber algebra for any space $X$. This leads to the recognition principle of loop spaces \cite{May}.
+An important corollary of this construction is that $H_*(\Omega^2 X)$ is a Gersternhaber algebra for any space $X$. This leads to the recognition principle of loop spaces \cite{May}.
 
 The equivalence between Gersternhaber algebras and $E_2$-algebras is the origin of the Deligne conjecture, namely, the Hochschild cohomology of an associative algebra $A$, $H^*(A;A)$, has a Gersternhaber algebra structure, and therefore there is an action of $H_*(E_2)$ on it. It is then natural to wonder whether this action comes from an action of $C_*(E_2)$ on $C^*(A;A)$. 
 
