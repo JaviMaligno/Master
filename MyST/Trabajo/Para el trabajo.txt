@@ -1,0 +1,9 @@
+Método:
+-Datos de entrada
+-Modelo
+-Complejo simplicial
+-Filtración
+-Entropía/función
+-Estabilidad (particularizar los parámetros del teorema 2.1 al caso del artículo)
+
+Motores y sentimientos
