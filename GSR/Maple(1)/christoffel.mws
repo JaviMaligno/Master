@@ -1,0 +1,83 @@
+{VERSION 4 0 "IBM INTEL NT" "4.0" }
+{USTYLETAB {CSTYLE "Maple Input" -1 0 "Courier" 0 1 255 0 0 1 0 1 0 0 
+1 0 0 0 0 1 }{CSTYLE "2D Math" -1 2 "Times" 0 1 0 0 0 0 0 0 2 0 0 0 0 
+0 0 1 }{CSTYLE "2D Output" 2 20 "" 0 1 0 0 255 1 0 0 0 0 0 0 0 0 0 1 }
+{PSTYLE "Normal" -1 0 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 
+2 2 1 1 1 1 }1 1 0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Maple Output" -1 
+11 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 1 1 1 }3 3 0 
+0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Maple Output" -1 12 1 {CSTYLE "" -1 
+-1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 1 1 1 }1 3 0 0 0 0 1 0 1 0 2 2 
+0 1 }}
+{SECT 0 {EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 15 "with( tensor ):" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 158 "coord := [x,y]:\ng_compts :
+= array(symmetric,sparse, 1..2, 1..2):\ng_compts[1,1] := 1/(1+x^2): g_
+compts[2,2]:= 1/(1+x^2):\ng := create( [-1,-1], eval(g_compts));" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "6#>%\"gG-%&TABLEG6#7$/%'comptsG-%'matrix
+G6#7$7$*&\"\"\"F1,&F1F1*$)%\"xG\"\"#F1F1!\"\"\"\"!7$F8F0/%+index_charG
+7$F7F7" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 111 "ginv:= invert (g
+, 'detg'):\nD1g:= d1metric (g, coord):\nCf1:= Christoffel1 (D1g): Cf2:
+= Christoffel2 (ginv, Cf1);" }}{PARA 12 "" 1 "" {XPPMATH 20 "6#>%$Cf2G
+-%&TABLEG6#7$/%'comptsG-%&ARRAYG6%%$cf2G7%;\"\"\"\"\"#F0F07*/6%F1F1F1,
+$*&%\"xGF1,&F1F1*$)F8F2F1F1!\"\"F</6%F1F1F2\"\"!/6%F1F2F1F?/6%F1F2F2F7
+/6%F2F1F1F?/6%F2F1F2F6/6%F2F2F1F6/6%F2F2F2F?/%+index_charG7%F1F<F<" }}
+}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 152 "coord := [u,v]:\ng_compts \+
+:= array(symmetric,sparse, 1..2, 1..2):\ng_compts[1,1] := (sinh(v))^2:
+ g_compts[2,2]:= 1:\ng := create( [-1,-1], eval(g_compts));" }}{PARA 
+11 "" 1 "" {XPPMATH 20 "6#>%\"gG-%&TABLEG6#7$/%'comptsG-%'matrixG6#7$7
+$*$)-%%sinhG6#%\"vG\"\"#\"\"\"\"\"!7$F8F7/%+index_charG7$!\"\"F=" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 111 "ginv:= invert (g, 'detg'):
+\nD1g:= d1metric (g, coord):\nCf1:= Christoffel1 (D1g): Cf2:= Christof
+fel2 (ginv, Cf1);" }}{PARA 12 "" 1 "" {XPPMATH 20 "6#>%$Cf2G-%&TABLEG6
+#7$/%'comptsG-%&ARRAYG6%%$cf2G7%;\"\"\"\"\"#F0F07*/6%F1F1F1\"\"!/6%F1F
+1F2*&-%%coshG6#%\"vGF1-%%sinhGF<!\"\"/6%F1F2F1F9/6%F1F2F2F6/6%F2F1F1,$
+*&F>F1F:F1F@/6%F2F1F2F6/6%F2F2F1F6/6%F2F2F2F6/%+index_charG7%F1F@F@" }
+}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 151 "coord := [u,v]:\ng_compts
+ := array(symmetric,sparse, 1..2, 1..2):\ng_compts[1,1] := 1: g_compts
+[2,2]:= (cos(u)^2):\ng := create( [-1,-1], eval(g_compts));" }}{PARA 
+11 "" 1 "" {XPPMATH 20 "6#>%\"gG-%&TABLEG6#7$/%'comptsG-%'matrixG6#7$7
+$\"\"\"\"\"!7$F1*$)-%$cosG6#%\"uG\"\"#F0/%+index_charG7$!\"\"F=" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 111 "ginv:= invert (g, 'detg'):
+\nD1g:= d1metric (g, coord):\nCf1:= Christoffel1 (D1g): Cf2:= Christof
+fel2 (ginv, Cf1);" }}{PARA 12 "" 1 "" {XPPMATH 20 "6#>%$Cf2G-%&TABLEG6
+#7$/%'comptsG-%&ARRAYG6%%$cf2G7%;\"\"\"\"\"#F0F07*/6%F1F1F1\"\"!/6%F1F
+1F2F6/6%F1F2F1F6/6%F1F2F2*&-%$cosG6#%\"uGF1-%$sinGF@F1/6%F2F1F1F6/6%F2
+F1F2,$*&FBF1F>!\"\"FJ/6%F2F2F1FH/6%F2F2F2F6/%+index_charG7%F1FJFJ" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 150 "coord := [u,v]:\ng_compts :
+= array(symmetric,sparse, 1..2, 1..2):\ng_compts[1,1] := 1/v^2: g_comp
+ts[2,2]:= 1/v^2:\ng := create( [-1,-1], eval(g_compts));" }}{PARA 11 "
+" 1 "" {XPPMATH 20 "6#>%\"gG-%&TABLEG6#7$/%'comptsG-%'matrixG6#7$7$*&
+\"\"\"F1*$)%\"vG\"\"#F1!\"\"\"\"!7$F7F0/%+index_charG7$F6F6" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 111 "ginv:= invert (g, 'detg'):
+\nD1g:= d1metric (g, coord):\nCf1:= Christoffel1 (D1g): Cf2:= Christof
+fel2 (ginv, Cf1);" }}{PARA 12 "" 1 "" {XPPMATH 20 "6#>%$Cf2G-%&TABLEG6
+#7$/%'comptsG-%&ARRAYG6%%$cf2G7%;\"\"\"\"\"#F0F07*/6%F1F1F1\"\"!/6%F1F
+1F2,$*&F1F1%\"vG!\"\"F</6%F1F2F1F9/6%F1F2F2F6/6%F2F1F1F:/6%F2F1F2F6/6%
+F2F2F1F6/6%F2F2F2F9/%+index_charG7%F1F<F<" }}}{EXCHG {PARA 0 "> " 0 "
+" {MPLTEXT 1 0 170 "coord := [u,v]:\ng_compts := array(symmetric,spars
+e, 1..2, 1..2):\ng_compts[1,1] := 4/(1-u^2-v^2)^2: g_compts[2,2]:= 4/(
+1-u^2-v^2)^2:\ng := create( [-1,-1], eval(g_compts));" }}{PARA 11 "" 
+1 "" {XPPMATH 20 "6#>%\"gG-%&TABLEG6#7$/%'comptsG-%'matrixG6#7$7$,$*&
+\"\"\"F2*$),(F2F2*$)%\"uG\"\"#F2!\"\"*$)%\"vGF9F2F:F9F2F:\"\"%\"\"!7$F
+?F0/%+index_charG7$F:F:" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 111 
+"ginv:= invert (g, 'detg'):\nD1g:= d1metric (g, coord):\nCf1:= Christo
+ffel1 (D1g): Cf2:= Christoffel2 (ginv, Cf1);" }}{PARA 12 "" 1 "" 
+{XPPMATH 20 "6#>%$Cf2G-%&TABLEG6#7$/%'comptsG-%&ARRAYG6%%$cf2G7%;\"\"
+\"\"\"#F0F07*/6%F1F1F1,$*&%\"uGF1,(!\"\"F1*$)F8F2F1F1*$)%\"vGF2F1F1F:!
+\"#/6%F1F1F2,$*&F?F1F9F:F@/6%F1F2F1FC/6%F1F2F2,$F7F2/6%F2F1F1,$FDF2/6%
+F2F1F2F6/6%F2F2F1F6/6%F2F2F2FC/%+index_charG7%F1F:F:" }}}{EXCHG {PARA 
+0 "> " 0 "" {MPLTEXT 1 0 212 "coord := [u,v]:\ng_compts := array(symme
+tric,sparse, 1..2, 1..2):\ng_compts[1,1] := (1+v^2)/(1+u^2+v^2): g_com
+pts[2,2]:= (1+u^2)/(1+u^2+v^2): g_compts[1,2]:= -u*v/(1+u^2+v^2):\ng :
+= create( [-1,-1], eval(g_compts));" }}{PARA 11 "" 1 "" {XPPMATH 20 "6
+#>%\"gG-%&TABLEG6#7$/%'comptsG-%'matrixG6#7$7$*&,&\"\"\"F2*$)%\"vG\"\"
+#F2F2F2,(F2F2*$)%\"uGF6F2F2F3F2!\"\",$*&*&F:F2F5F2F2F7F;F;7$F<*&,&F2F2
+F8F2F2F7F;/%+index_charG7$F;F;" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 
+1 0 111 "ginv:= invert (g, 'detg'): D1g:= d1metric (g, coord):\nCf1:= \+
+Christoffel1 (D1g): Cf2:= Christoffel2 (ginv, Cf1);" }}{PARA 12 "" 1 "
+" {XPPMATH 20 "6#>%$Cf2G-%&TABLEG6#7$/%'comptsG-%&ARRAYG6%%$cf2G7%;\"
+\"\"\"\"#F0F07*/6%F1F1F1,$*&*&,&F1F1*$)%\"vGF2F1F1F1%\"uGF1F1,(F1F1*$)
+F=F2F1F1F:F1!\"\"FA/6%F1F1F2*&*&F<F1F@F1F1F>FA/6%F1F2F1FD/6%F1F2F2,$*&
+*&,&F1F1F?F1F1F=F1F1F>FAFA/6%F2F1F1,$*&*&F9F1F<F1F1F>FAFA/6%F2F1F2*&*&
+F=F1F;F1F1F>FA/6%F2F2F1FU/6%F2F2F2,$*&*&FMF1F<F1F1F>FAFA/%+index_charG
+7%F1FAFA" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" }}}}{MARK "12 \+
+1" 0 }{VIEWOPTS 1 1 0 1 1 1803 1 1 1 1 }{PAGENUMBERS 0 1 2 33 1 1 }

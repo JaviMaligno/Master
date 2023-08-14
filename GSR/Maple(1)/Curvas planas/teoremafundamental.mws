@@ -1,0 +1,36 @@
+{VERSION 4 0 "IBM INTEL NT" "4.0" }
+{USTYLETAB {CSTYLE "Maple Input" -1 0 "Courier" 0 1 255 0 0 1 0 1 0 0 
+1 0 0 0 0 1 }{CSTYLE "" -1 256 "" 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 }
+{PSTYLE "Normal" -1 0 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 
+2 2 1 1 1 1 }1 1 0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Normal" -1 256 1 
+{CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 1 1 1 }3 1 0 0 0 
+0 1 0 1 0 2 2 0 1 }}
+{SECT 0 {PARA 0 "" 0 "" {TEXT -1 0 "" }}{PARA 256 "" 0 "" {TEXT -1 0 "
+" }{TEXT 256 36 "TEOREMA FUNDAMENTAL DE CURVAS PLANAS" }}{PARA 0 "" 0 
+"" {TEXT -1 0 "" }}{PARA 0 "" 0 "" {TEXT -1 34 "Comenzamos reiniciando
+ el sistema:" }}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 8 "restart:" }}}
+{PARA 0 "" 0 "" {TEXT -1 0 "" }}{PARA 0 "" 0 "" {TEXT -1 129 "Aplicamo
+s la construcci\363n del Teorema Fundamental de curvas planas, para de
+terminar una curva alpha conocida su curvatura lambda." }}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 13 "lambda:=t->t;" }}}{EXCHG {PARA 0 ">
+ " 0 "" {MPLTEXT 1 0 10 "lambda(t);" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 32 "theta:=u->int(lambda(t),t=0..u);" }}}{EXCHG {PARA 0 "
+> " 0 "" {MPLTEXT 1 0 9 "theta(u);" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 37 "alpha1:=s->int(cos(theta(u)),u=0..s);" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 10 "alpha1(s);" }}}{EXCHG {PARA 0 "> " 
+0 "" {MPLTEXT 1 0 37 "alpha2:=s->int(sin(theta(u)),u=0..s);" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 10 "alpha2(s);" }}}{EXCHG {PARA 
+0 "> " 0 "" {MPLTEXT 1 0 55 "plot([alpha1(s),alpha2(s),s=0..2],scaling
+=constrained);" }}}{PARA 0 "" 0 "" {TEXT -1 0 "" }}{PARA 0 "" 0 "" 
+{TEXT -1 159 "El siguiente programa tambi\351n permite dibujar una cur
+va plana conocida su curvatura en funci\363n del par\341metro t. Previ
+amente, debemos cargar el paquete DEtools:" }}{EXCHG {PARA 0 "> " 0 "
+" {MPLTEXT 1 0 14 "with(DEtools):" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 273 "traza2d:=proc(curv)\n    local intk, var;\n         \+
+ intk:=int(curv,u=-Pi..t):\n          DEplot([D(x)(t)=cos(intk),D(y)(t
+)=sin(intk)],\n                 [x(t),y(t)], t=-3*Pi..3*Pi,\n         \+
+        [[x(0)=0,y(0)=0]], stepsize=0.01,\n                 scene=[x(t
+),y(t)])\n    end:" }}}{PARA 0 "" 0 "" {TEXT -1 0 "" }}{PARA 0 "" 0 "
+" {TEXT -1 9 "Ejemplos:" }}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 11 "t
+raza2d(1);" }{TEXT -1 0 "" }}}}{MARK "0 0" 0 }{VIEWOPTS 1 1 0 1 1 
+1803 1 1 1 1 }{PAGENUMBERS 0 1 2 33 1 1 }

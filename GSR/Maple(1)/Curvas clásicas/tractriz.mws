@@ -1,0 +1,34 @@
+{VERSION 4 0 "IBM INTEL NT" "4.0" }
+{USTYLETAB {CSTYLE "Maple Input" -1 0 "Courier" 0 1 255 0 0 1 0 1 0 0 
+1 0 0 0 0 1 }{CSTYLE "" -1 256 "" 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 }
+{PSTYLE "Normal" -1 0 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 
+2 2 1 1 1 1 }1 1 0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Normal" -1 256 1 
+{CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 1 1 1 }3 1 0 0 0 
+0 1 0 1 0 2 2 0 1 }}
+{SECT 0 {PARA 0 "" 0 "" {TEXT -1 0 "" }}{PARA 256 "" 0 "" {TEXT -1 0 "
+" }{TEXT 256 11 "LA TRACTRIZ" }}{PARA 0 "" 0 "" {TEXT -1 0 "" }}{PARA 
+0 "" 0 "" {TEXT -1 62 "Comenzamos reiniciando el sistema y cargando el
+ paquete plots:" }}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 8 "restart:" 
+}}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 12 "with(plots):" }}}{PARA 0 
+"" 0 "" {TEXT -1 0 "" }}{PARA 0 "" 0 "" {TEXT -1 101 "Introducimos las
+ ecuaciones de la tractriz alpha, en funci\363n de la constante a, y d
+ibujamos la curva:" }}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 39 "alpha1
+:=(t,a)->a*(ln(tan(t/2))+cos(t));" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 24 "alpha2:=(t,a)->a*sin(t);" }}}{EXCHG {PARA 0 "> " 0 "
+" {MPLTEXT 1 0 60 "plot([alpha1(t,2),alpha2(t,2),t=0..Pi],scaling=cons
+trained);" }}}{PARA 0 "" 0 "" {TEXT -1 0 "" }}{PARA 0 "" 0 "" {TEXT 
+-1 52 "Construimos la pseudoesfera a partir de la tractriz:" }}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 62 "plot([alpha1(t,2),alpha2(t,2),t=0..
+Pi/2],scaling=constrained);" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 
+62 "plot([alpha2(t,2),alpha1(t,2),t=0..Pi/2],scaling=constrained);" }}
+}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 100 "plot3d([cos(u)*alpha2(t,2)
+,sin(u)*alpha2(t,2),alpha1(t,2)],u=0..2*Pi,t=0..Pi/2,scaling=constrain
+ed);" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 121 "A:=animate3d([cos(
+Pi*u/8)*alpha2(t,2),sin(Pi*u/8)*alpha2(t,2),alpha1(t,2)],t=0..Pi/2,v=0
+..1,u=0..16,scaling=constrained):" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 103 "B:=plot3d([cos(u)*alpha2(t,2),sin(u)*alpha2(t,2),alp
+ha1(t,2)],u=0..2*Pi,t=0..Pi/2,scaling=constrained):" }}}{EXCHG {PARA 
+0 "> " 0 "" {MPLTEXT 1 0 15 "display([A,B]);" }}}{EXCHG {PARA 0 "> " 
+0 "" {MPLTEXT 1 0 98 "plot3d([cos(u)*alpha2(t,2),sin(u)*alpha2(t,2),al
+pha1(t,2)],u=0..2*Pi,t=0..Pi,scaling=constrained);" }}}}{MARK "0 0" 0 
+}{VIEWOPTS 1 1 0 1 1 1803 1 1 1 1 }{PAGENUMBERS 0 1 2 33 1 1 }

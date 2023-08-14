@@ -1,0 +1,92 @@
+{VERSION 4 0 "IBM INTEL NT" "4.0" }
+{USTYLETAB {CSTYLE "Maple Input" -1 0 "Courier" 0 1 255 0 0 1 0 1 0 0 
+1 0 0 0 0 1 }{CSTYLE "2D Math" -1 2 "Times" 0 1 0 0 0 0 0 0 2 0 0 0 0 
+0 0 1 }{CSTYLE "2D Output" 2 20 "" 0 1 0 0 255 1 0 0 0 0 0 0 0 0 0 1 }
+{CSTYLE "" -1 256 "" 0 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 }{CSTYLE "" -1 
+257 "" 0 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 }{CSTYLE "" -1 258 "" 0 1 0 0 
+0 0 1 1 0 0 0 0 0 0 0 0 }{CSTYLE "" -1 259 "" 0 1 0 0 0 0 1 1 0 0 0 0 
+0 0 0 0 }{CSTYLE "" -1 260 "" 0 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 }
+{CSTYLE "" -1 261 "" 0 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 }{PSTYLE "Normal
+" -1 0 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 1 1 1 }1 
+1 0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Warning" -1 7 1 {CSTYLE "" -1 -1 "
+Courier" 1 10 0 0 255 1 2 2 2 2 2 1 1 1 3 1 }1 1 0 0 0 0 1 0 1 0 2 2 
+0 1 }{PSTYLE "Maple Output" -1 11 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 
+0 1 2 2 2 2 2 2 1 1 1 1 }3 3 0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Maple O
+utput" -1 12 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 1 
+1 1 }1 3 0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Maple Plot" -1 13 1 
+{CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 1 1 1 }3 1 0 0 0 
+0 1 0 1 0 2 2 0 1 }}
+{SECT 0 {EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 8 "restart;" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 12 "with(plots);" }}{PARA 7 "" 1 "" 
+{TEXT -1 50 "Warning, the name changecoords has been redefined\n" }}
+{PARA 12 "" 1 "" {XPPMATH 20 "6#7U%(animateG%*animate3dG%-animatecurve
+G%-changecoordsG%,complexplotG%.complexplot3dG%*conformalG%,contourplo
+tG%.contourplot3dG%*coordplotG%,coordplot3dG%-cylinderplotG%,densitypl
+otG%(displayG%*display3dG%*fieldplotG%,fieldplot3dG%)gradplotG%+gradpl
+ot3dG%-implicitplotG%/implicitplot3dG%(inequalG%-listcontplotG%/listco
+ntplot3dG%0listdensityplotG%)listplotG%+listplot3dG%+loglogplotG%(logp
+lotG%+matrixplotG%(odeplotG%'paretoG%*pointplotG%,pointplot3dG%*polarp
+lotG%,polygonplotG%.polygonplot3dG%4polyhedra_supportedG%.polyhedraplo
+tG%'replotG%*rootlocusG%,semilogplotG%+setoptionsG%-setoptions3dG%+spa
+cecurveG%1sparsematrixplotG%+sphereplotG%)surfdataG%)textplotG%+textpl
+ot3dG%)tubeplotG" }}}{EXCHG {PARA 0 "" 0 "" {TEXT -1 0 "" }}{PARA 0 "
+" 0 "" {TEXT -1 152 "Sabemos que los puntos de la Bruja de Agnesi son \+
+de la forma  (2at , 2a/(1+t^2)), por lo que definimos dos funciones qu
+e nos determinan  dichos puntos: " }}{PARA 0 "" 0 "" {TEXT -1 0 "" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 21 "alpha1:=(t,a)->2*a*t;" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "6#>%'alpha1GR6$%\"tG%\"aG6\"6$%)operator
+G%&arrowGF),$*&9%\"\"\"9$F0\"\"#F)F)F)" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 30 "alpha2:=(t,a)->(2*a)/(1+t**2);" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "6#>%'alpha2GR6$%\"tG%\"aG6\"6$%)operatorG%&arrowGF),$*&9%
+\"\"\",&F0F0*$)9$\"\"#F0F0!\"\"F5F)F)F)" }}}{EXCHG {PARA 0 "" 0 "" 
+{TEXT -1 175 "Para dibujar la gr\341fica de la Bruja de Agnesis necesi
+tamos darle un valor determinado a \"a\", pero siempre teniendo en cue
+nta que debe ser positiva. Tomamos, por ejemplo, a=1.\n" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 62 "plot([alpha1(t,1),alpha2(t,1),t=-Pi
+..Pi],scaling=constrained);" }}{PARA 13 "" 1 "" {TEXT -1 0 "" }}}
+{EXCHG {PARA 0 "" 0 "" {TEXT -1 0 "" }}{PARA 0 "" 0 "" {TEXT -1 61 "  \+
+   A continuaci\363n, vamos a ver la construcci\363n de la curva." }}
+{PARA 0 "" 0 "" {TEXT -1 113 "     Para ello, vamos a describir cada u
+na de las funciones que intervienen en el proceso descrito anteriormen
+te." }}{PARA 0 "" 0 "" {TEXT -1 5 "     " }}{PARA 0 "" 0 "" {TEXT -1 
+19 "                   " }{TEXT 256 15 "circunferencia " }{TEXT -1 45 
+" =  circunferencia de radio a y centro (0,a)." }}{PARA 0 "" 0 "" 
+{TEXT -1 19 "                   " }{TEXT 257 14 "diagonal_movil" }
+{TEXT -1 30 "  =  rectas de la forma  x=ty." }}{PARA 0 "" 0 "" {TEXT 
+-1 19 "                   " }{TEXT 258 16 "horizontal_fija " }{TEXT 
+-1 16 " =  recta  y=2a." }}{PARA 0 "" 0 "" {TEXT -1 19 "              \+
+     " }{TEXT 259 9 "vertical " }{TEXT -1 164 " =  recta vertical que \+
+pasa por los puntos Q determinados por la intersecci\363n de las recta
+s  x=ty            (diagonal_movil)  y  la recta  y=2a  (horizontal_fi
+ja)." }}{PARA 0 "" 0 "" {TEXT -1 18 "                  " }{TEXT 260 
+11 " horizontal" }{TEXT -1 145 "  =  recta horizontal que pasa por los
+ puntos P resultantes de la intersecci\363n de las rectas x=ty        \+
+   (diagonal_movil) y la circunferencia." }}{PARA 0 "" 0 "" {TEXT -1 
+17 "                 " }{TEXT 261 10 " circulito" }{TEXT -1 89 "  =  m
+arca los puntos R resultantes de la intersecci\363n de la recta horizo
+ntal y vertical." }}{PARA 0 "" 0 "" {TEXT -1 4 "    " }}{PARA 0 "" 0 "
+" {TEXT -1 0 "" }}{PARA 0 "" 0 "" {TEXT -1 43 "     Veamos el procedim
+iento en movimiento." }}{PARA 0 "" 0 "" {TEXT -1 0 "" }}}{EXCHG {PARA 
+0 "> " 0 "" {MPLTEXT 1 0 69 "horizontal_fija:=plot([t,2,t=-8..8],scali
+ng=constrained,color=black):" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 
+0 87 "circunferencia_fija:=plot([sin(t),cos(t)+1,t=-Pi..Pi],scaling=co
+nstrained,color=green):" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 115 
+"bruja:=animate([alpha1(-Pi+(t+Pi)*u/8,1),alpha2(-Pi+(t+Pi)*u/8,1),t=-
+Pi..Pi],u=0..8,scaling=constrained,color=red):" }}}{EXCHG {PARA 0 "> \+
+" 0 "" {MPLTEXT 1 0 77 "Q:=animate([t*(-Pi+Pi*u/4),t,t=-3..3],u=0..8,s
+caling=constrained,color=blue):" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 
+1 0 135 "circulito:=animate([0.1*cos(t)+alpha1(-Pi+Pi*u/4,1),0.1*sin(t
+)+alpha2(-Pi+Pi*u/4,1),t=0..2*Pi],u=0..8,scaling=constrained,color=bla
+ck):" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 91 "vertical:=animate([
+alpha1(-Pi+Pi*u/4,1),t,t=-4..4],u=0..8,scaling=constrained,color=brown
+):" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 92 "horizontal:=animate([
+t,alpha2(-Pi+Pi*u/4,1),t=-7..7],u=0..8,scaling=constrained,color=grey)
+:" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 85 "display([horizontal_fi
+ja,circunferencia_fija,bruja,Q,circulito,vertical,horizontal]);" }}
+{PARA 13 "" 1 "" {TEXT -1 0 "" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 
+0 0 "" }}}{PARA 0 "" 0 "" {TEXT -1 1 " " }}{PARA 0 "" 0 "" {TEXT -1 0 
+"" }}{PARA 0 "" 0 "" {TEXT -1 35 "Basado en el trabajo realizado por:
+" }}{PARA 0 "" 0 "" {TEXT -1 0 "" }}{PARA 0 "" 0 "" {TEXT -1 78 "MAR
+\315A DEL MAR JIM\311NEZ CRESPO\nJAVIER RICO OREA\nMAR\315A DEL CARMEN
+ ROSA HERN\301NDEZ\n" }}}{MARK "0 0 0" 2 }{VIEWOPTS 1 1 0 1 1 1803 1 
+1 1 1 }{PAGENUMBERS 0 1 2 33 1 1 }

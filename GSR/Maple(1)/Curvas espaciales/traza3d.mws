@@ -1,0 +1,23 @@
+{VERSION 3 0 "IBM INTEL NT" "3.0" }
+{USTYLETAB {CSTYLE "Maple Input" -1 0 "Courier" 0 1 255 0 0 1 0 1 0 0 
+1 0 0 0 0 }{PSTYLE "Normal" -1 0 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 
+0 1 2 2 2 2 2 2 1 1 1 }1 1 0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Maple Plo
+t" 0 13 1 {CSTYLE "" -1 -1 "" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 }3 0 0 -1 
+-1 -1 0 0 0 0 0 0 -1 0 }}
+{SECT 0 {EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 22 "restart:with(DEtools
+):" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 864 "traza3d:=proc(curv,t
+or,a,b)\nlocal curvatura,torsion,ecuaciones,conds,i:\ncurvatura:=curv:
+\ntorsion:=tor:\necuaciones:=diff(x(t),t$2)=curvatura*chi4(t),\ndiff(y
+(t),t$2)=curvatura*chi5(t),\ndiff(z(t),t$2)=curvatura*chi6(t),\ndiff(c
+hi4(t),t)=-curvatura*diff(x(t),t)+torsion*chi7(t),\ndiff(chi5(t),t)=-c
+urvatura*diff(y(t),t)+torsion*chi8(t),\ndiff(chi6(t),t)=-curvatura*dif
+f(z(t),t)+torsion*chi9(t),\ndiff(chi7(t),t)=-torsion*chi4(t),\ndiff(ch
+i8(t),t)=-torsion*chi5(t),\ndiff(chi9(t),t)=-torsion*chi6(t):\nconds:=
+x((a+b)/2)=0,y((a+b)/2)=0,z((a+b)/2)=0,D(x)((a+b)/2)=1,D(y)((a+b)/2)=0
+,D(z)((a+b)/2)=0,\nchi4((a+b)/2)=0,chi5((a+b)/2)=1,chi6((a+b)/2)=0,chi
+7((a+b)/2)=0,chi8((a+b)/2)=0,chi9((a+b)/2)=1:\n       DEplot3d(\{ecuac
+iones\},\{x(t),y(t),z(t),chi4(t),chi5(t),\nchi6(t),chi7(t),chi8(t),chi
+9(t)\},t=a..b,\n[[conds]],scene=[x(t),y(t),z(t)],\nseq(eval(parse(args
+[i])),i=5..nargs));\nend:  " }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 
+37 "traza3d(t,2*t,-5,5,\"stepsize=0.007\");" }}{PARA 13 "" 1 "" {TEXT 
+-1 0 "" }}}}{MARK "0 0 0" 0 }{VIEWOPTS 1 1 0 1 1 1803 }

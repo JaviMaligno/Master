@@ -1,0 +1,578 @@
+{VERSION 4 0 "IBM INTEL NT" "4.0" }
+{USTYLETAB {CSTYLE "Maple Input" -1 0 "Courier" 0 1 255 0 0 1 0 1 0 0 
+1 0 0 0 0 1 }{CSTYLE "2D Math" -1 2 "Times" 0 1 0 0 0 0 0 0 2 0 0 0 0 
+0 0 1 }{CSTYLE "2D Comment" 2 18 "" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 }
+{CSTYLE "" -1 256 "Comic Sans MS" 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 }
+{CSTYLE "" -1 257 "Comic Sans MS" 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 }
+{CSTYLE "" -1 258 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }
+{CSTYLE "" -1 259 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }
+{CSTYLE "" -1 260 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }
+{CSTYLE "" -1 261 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }
+{CSTYLE "" -1 262 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }
+{CSTYLE "" -1 263 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }
+{CSTYLE "" -1 264 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }
+{CSTYLE "" -1 265 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }
+{CSTYLE "" -1 266 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }
+{CSTYLE "" -1 267 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }
+{CSTYLE "" -1 268 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }
+{CSTYLE "" -1 269 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }
+{CSTYLE "" -1 270 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }
+{CSTYLE "" -1 271 "Comic Sans MS" 1 9 0 0 0 0 0 1 0 0 0 0 0 0 0 0 }
+{CSTYLE "" -1 272 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }
+{CSTYLE "" -1 273 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }
+{CSTYLE "" -1 274 "" 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 }{CSTYLE "" -1 
+275 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }{CSTYLE "" -1 
+276 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }{CSTYLE "" -1 
+277 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }{CSTYLE "" -1 
+278 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }{CSTYLE "" -1 
+279 "" 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 }{CSTYLE "" -1 280 "Comic Sans \+
+MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }{CSTYLE "" -1 281 "Comic Sans MS
+" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }{CSTYLE "" -1 282 "Comic Sans MS" 
+0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }{CSTYLE "" -1 283 "Comic Sans MS" 0 
+1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }{CSTYLE "" -1 284 "" 0 1 0 0 0 0 0 1 0 
+0 0 0 0 0 0 0 }{CSTYLE "" -1 285 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 }{CSTYLE "" -1 286 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 }{CSTYLE "" -1 287 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 }{CSTYLE "" -1 288 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 }{CSTYLE "" -1 289 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 }{CSTYLE "" -1 290 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 }{CSTYLE "" -1 291 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }
+{CSTYLE "" -1 292 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }
+{CSTYLE "" -1 293 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }
+{CSTYLE "" -1 294 "" 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 }{CSTYLE "" -1 
+295 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }{CSTYLE "" -1 
+296 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }{CSTYLE "" -1 
+297 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }{CSTYLE "" -1 
+298 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }{CSTYLE "" -1 
+299 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }{CSTYLE "" -1 
+300 "Comic Sans MS" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }{PSTYLE "Normal" 
+-1 0 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 1 1 1 }1 1 
+0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Maple Output" -1 11 1 {CSTYLE "" -1 
+-1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 1 1 1 }3 3 0 0 0 0 1 0 1 0 2 2 
+0 1 }{PSTYLE "Maple Plot" -1 13 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 
+1 2 2 2 2 2 2 1 1 1 1 }3 1 0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Normal" 
+-1 256 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 1 1 1 }3 
+1 0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Normal" -1 257 1 {CSTYLE "" -1 -1 
+"Comic Sans MS" 1 12 0 0 0 1 2 2 2 2 2 2 1 1 1 1 }1 1 0 0 0 0 1 0 1 0 
+2 2 0 1 }{PSTYLE "Normal" -1 258 1 {CSTYLE "" -1 -1 "Comic Sans MS" 1 
+12 0 0 0 1 2 2 2 2 2 2 1 1 1 1 }3 1 0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "
+Maple Output" -1 259 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 
+2 2 1 1 1 1 }1 3 0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Maple Output" -1 
+260 1 {CSTYLE "" -1 -1 "Comic Sans MS" 1 12 0 0 0 1 2 2 2 2 2 2 1 1 1 
+1 }1 3 0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Normal" -1 261 1 {CSTYLE "" 
+-1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 1 1 1 }1 1 0 0 0 0 1 0 1 0 2 
+2 0 1 }{PSTYLE "" 0 262 1 {CSTYLE "" -1 -1 "Comic Sans MS" 0 1 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 }0 0 0 -1 -1 -1 0 0 0 0 0 0 -1 0 }}
+{SECT 0 {EXCHG {PARA 256 "" 0 "" {TEXT 256 23 "1.-LUGARES GEOM\311TRIC
+OS." }{TEXT 271 0 "" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 12 "with
+(plots):" }}}{EXCHG {PARA 257 "" 0 "" {TEXT 258 14 "1.1.-Cicloide:" }}
+{PARA 257 "" 0 "" {TEXT 290 26 "Ecuaciones de la cicloide " }{OLE 1 
+2604 1 "[xm]Br=WfoRrB:::wk;nyyI;G:;:j::>:B>N:F:nyyyyy]::yyyyyy::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::fyyyyyq
+yyyY:vY:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::NDYmq^H;C:ELq^H_mvJ::::::::gj<vyyuyj;J;tV;B:;JZC:bK
+B::>^LV\\UvebXr;V:>Z<>Z:B:fB]mtFFcmnvGWMJnC==nHE=;:::::JJN:yyyxI:;Z:::
+::::^?>:F:YLpfF>:::::::::J?N:ry:>:<::::::=J:^<>:N:Y<>D_mlVH[KR<:;B::::
+:::JFNZ;NZ:B:=:yayA:<::::::?J:>i;Z:JyKyk;J<j<>Z:n:v:nYvY::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::JHJ;v
+fTA<<Jj<uhDRxdprQp`PnaXo:>:AR:=r:dj:DJ<Au;>:;::::=Z<B:<::::::::::yayY:
+^:F:<jysy?:;:IW:^j;JY@:=j>r:y>?jEJ:f:F[<Z:^:NZ;F:E:=b:yyyyI:C:WS:kj<jR
+Dj:B:E:Qb:B:E:Sb:;U:;V:_:Gc;YJGvyyuy;B:[B:<JZyyyg>>b;j<A:QB:n>^;UTRcET
+cTX[US<JR><;B:qi:;fyB:>L=J:DJ:DZJVdsgg\\wgfK<>:US:>;N`DR:oZ:B:=mEJMJLf
+c[;PpdPOFVZ;F:d:J:<j^^;MLxqjfN;;JMJ?vYxy:J:><<jw_<MJ:<J:^q<Z:F:?bBaTXa
+EWEUUtP<jPF:C:[Y:VZ:J:::::::::::::1:" }{TEXT 276 33 ", en funci\363n d
+e los radios a y b." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 64 "alph
+a[1]:=(t,a,b)->a*t-b*sin(t); \nalpha[2]:=(t,a,b)->a-b*cos(t);" }}
+{PARA 11 "" 1 "" {TEXT -1 0 "" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 259 27 
+"Cicloide ordinaria: a=b=2: " }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 
+0 82 "plot([alpha[1](t,2,2),alpha[2](t,2,2),t=0..5*Pi],scaling=constra
+ined,color=black);" }{TEXT -1 0 "" }}{PARA 0 "" 0 "" {TEXT -1 0 "" }}}
+{EXCHG {PARA 0 "" 0 "" {TEXT 260 36 "Cicloide alargada: a<b con a=2, b
+=3." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 82 "plot([alpha[1](t,2,3
+),alpha[2](t,2,3),t=0..5*Pi],scaling=constrained,color=black);" }}
+{PARA 13 "" 1 "" {TEXT -1 0 "" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 261 36 
+"Cicloide reducida: a>b con a=3, b=2:" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 82 "plot([alpha[1](t,3,2),alpha[2](t,3,2),t=0..5*Pi],scal
+ing=constrained,color=black);" }}{PARA 13 "" 1 "" {TEXT -1 0 "" }}}
+{EXCHG {PARA 0 "" 0 "" {TEXT -1 0 "" }}}{EXCHG {PARA 261 "" 0 "" 
+{TEXT 257 0 "" }{TEXT 291 32 "1.2.-Epicicloide e Hipococloide:" }}}
+{EXCHG {PARA 257 "" 0 "" {TEXT -1 29 "Ecuaciones de la epicicloide " }
+{OLE 1 2604 1 "[xm]Br=WfoRrB:::wk;nyyI;G:;:j::>:B>N:F:nyyyyy]::yyyyyy:
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+fyyyyyqyyyY:vY::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::NDYmq^H;C:ELq^H_mvJ::::::::gj<vyyuyj;J;tV;B:
+;JZC:bKB::>^LV\\UvebXr;V:>Z<>Z:B:fB]mtFFcmnvGWMJnC==nHE=;:::::JJN:yyyx
+I:;Z:::::::^?>:F:YLpfF>:::::::::J?N:ry:>:<::::::=J:^<>:N:Y<>D_mlVH[KR<
+:;B:::::::JFNZ;NZ:B:=:yayA:<::::::?J:>h;Z:JyKyk;J<j<>Z:n:v:;Jyky;:::::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::s:?jmdWBB:ShlydZseT]YSUTKYtO=J:VZ;FZ=b<=b:CffAZiywi]::::=Z<B:<::::
+::::::yqyyy;B:C:=Z:vYxY;J:jMA:cc:n`;B:=j>r:q>?jC>:;j<j>D:;B:C:?R:=j<j:
+Djyyyy=J<JQ@JFf:F`<F:<j<j?D:<j<J@DZ<>j;N<n^@v;ojyyiyAZ:>\\:B:;xyyq\\yy
+yyYZ@:EX:V[:JMJ@fc[_hb_ds?h_C:[LB>Z:Vy<>jx]:JBAj:>Z<>Z<>ZJVdsgg\\wgfK<
+jP@:K:_c<;U:El:B:?mCB:G;sj`:PpdPOBVZ;F:d:ZrGCOJ::Ojysy=:;JBB:qQDF;;B:;
+JXEZ:B:=b:?bBaTXaEWEUUtP<jPF:C:[Y:VZ:B:;:::::::::::::5:" }{TEXT -1 38 
+", en funci\363n de los radios a y b con a" }{OLE 1 2644 1 "[xm]Br=Wfo
+RrB:::wk;nyyI;G:;:j::>:B>N:F:nyyyyy]::yyyyyy::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::fyyyyyqyyyY:vY:::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:NDYmq^H;C:ELq^H_mvJ::::::::gj<vyyuyj;J;tV;B:;JZC:bKB::>^LV\\UvebXr;V:
+>Z<>Z:B:fB]mtFFcmnvGWMJnC==nHE=;:::::JJN:yyyxI:;Z:::::::^?>:F:YLpfF>::
+:::::::J?N:ry:>:<::::::=J:^<>:N:Y<>D_mlVH[KR<:;B:::::::JFNZ;NZ:B:=:yay
+A:<::::::?J:>h;Z:JyKyk;J<j<>Z:n:v:;Jyky;::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::s:?J;mWBB:kGaUeZseT]Y
+SUTKYtO=J:VZ;FZ=b<=b:GVS?K:xxqyH<:::F:DZ:>Z::::::::::jywyyY:^:F:<jysy?
+:;:;U:vn;JU@Z:F:MZ=VMN:aJ:>:E:Mb:B:C:?R:=j<j:Djyyyy=J<JQ@JFf:F`<F:<j<j
+?D:<j<J@DJ:AJZ@JCJMTjAN=yyyxY:<JB<Z:>ryyYEyyyyy;R:ff;j?<:G;Sj`@Pt\\Pd`
+QrPP:<JJ<JB>Z:Vy<>jx]:JBA:DJ:DZJVdsgg\\wgfK<jP@:K:_c<;T:gk:B:aoCJMJHfC
+Z_gdO?<AR:=ZD:r<mL?>:J?vYxy:J:><<jw_<MJ:<J:^q<J:<j:NZ\\VdsWhngfgcUC:Uk
+:^:>x;j;<:;::::::::::<d:BbB:<Z:::::::::3:" }{TEXT -1 7 "b, b>0." }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 105 "beta[1]:=(t,a,b)->(a+b)*cos
+(t)+b*(cos(((a+b)/b)*t));\nbeta[2]:=(t,a,b)->(a+b)*sin(t)+b*(sin(((a+b
+)/b)*t));" }}}{EXCHG {PARA 11 "" 1 "" {TEXT -1 0 "" }}}{EXCHG {PARA 0 
+"" 0 "" {TEXT 262 33 "Epicicloide cerrada para a=5, b=4" }{TEXT -1 1 "
+." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 80 "plot([beta[1](t,5,4),b
+eta[2](t,5,4),t=0..8*Pi],scaling=constrained,color=black);" }{TEXT -1 
+0 "" }}{PARA 13 "" 1 "" {TEXT -1 0 "" }}}{EXCHG {PARA 257 "" 0 "" 
+{TEXT -1 28 "Nefroide: a=2b con a=8, b=4." }}}{EXCHG {PARA 0 "> " 0 "
+" {MPLTEXT 1 0 80 "plot([beta[1](t,8,4),beta[2](t,8,4),t=0..2*Pi],scal
+ing=constrained,color=black);" }}{PARA 13 "" 1 "" {TEXT -1 0 "" }}}
+{PARA 0 "" 0 "" {TEXT -1 0 "" }}{EXCHG {PARA 0 "" 0 "" {TEXT 263 40 "E
+picicloide abierta para a=5, b=sqrt(2)." }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 92 "plot([beta[1](t,5,sqrt(2)),beta[2](t,5,sqrt(2)),t=0..
+2*Pi],scaling=constrained,color=black);" }}{PARA 13 "" 1 "" {TEXT -1 
+0 "" }}}{EXCHG {PARA 257 "" 0 "" {TEXT -1 30 "Ecuaciones de la hipocic
+loide " }{OLE 1 2604 1 "[xm]Br=WfoRrB:::wk;nyyI;G:;:j::>:B>N:F:nyyyyy]
+::yyyyyy::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::fyyyyyqyyyY:vY:::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::NDYmq^H;C:ELq^H_mvJ::::::::gj<vyyuy
+j;J;tV;B:;JZC:bKB::>^LV\\UvebXr;V:>Z<>Z:B:fB]mtFFcmnvGWMJnC==nHE=;::::
+:JJN:yyyxI:;Z:::::::^?>:F:YLpfF>:::::::::J?N:ry:>:<::::::=J:^<>:N:Y<>D
+_mlVH[KR<:;B:::::::JFNZ;NZ:B:=:yayA:<::::::?J:>h;Z:JyKyk;J<j<>Z:n:v:;J
+yky;::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::s:?jmdWBB:KRN;eZseT]YSUTKYtO=J:VZ;FZ=b<=b:CFgAZiywi]::::=
+Z<B:<::::::::::yqyyy;B:C:=Z:vYxY;J:J<A:UY:n`;B:=j>r:q>?jC>:;j<j>D:<J<J
+;@j:f:FZ<vyyyy:^:n_;>=E:]c:=Z:f:V[<Z:f:^[<>r;>f;N<n^@v;ojyyiyAZ:>\\:B:
+;xyyq\\yyyyYJ@:EV:V[:JMJ@fc[_hb_ds?h_C:[KB>Z:Vy<>jx]:JBAj:>Z<>Z<B>aTXU
+eRYEU^:f_;J><:_c<;U:wB:=B:<JlV<<JMJHfCZ_gdO?<AR:=ZD:BjYxyO:J?vYxy:>:;J
+BB:qQDF;;B:;JXE:<j:DJ;Dlc`qsLqlp`h_:f?=J<JrA:AB:<J::::::::::::::3:" }
+{TEXT -1 38 ", en funci\363n de los radios a y b con a" }{OLE 1 2648 
+1 "[xm]Br=WfoRrB:::wk;nyyI;G:;:j::>:B>N:F:nyyyyy]::yyyyyy:::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::fyyyyyqyyyY:
+vY::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::NDYmq^H;C:ELq^H_mvJ::::::::gj<vyyuyj;J;tV;B:;JZC:bKB::>^
+LV\\UvebXr;V:>Z<>Z:B:fB]mtFFcmnvGWMJnC==nHE=;:::::JJN:yyyxI:;Z:::::::^
+?>:F:YLpfF>:::::::::J?N:ry:>:<::::::=J:^<>:N:Y<>D_mlVH[KR<:;B:::::::JF
+NZ;NZ:B:=:yayA:<::::::?J:>h;Z:JyKyk;J<j<>Z:n:v:;Jyky;:::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::s:?J;mWB
+B:kGaUeZseT]YSUTKYtO=J:VZ;FZ=b<=b:GVS?K:xxqyH<:::F:DZ:>Z::::::::::jywy
+yY:^:F:<jysy?:;:;U:vn;JU@Z:F:MZ=VMN:aJ:>:E:Mb:B:C:?R:=j<j:Djyyyy=J<JQ@
+JFf:F`<F:<j<j?D:<j<J@DJ:AJZ@JCJMTjAN=yyyxY:<JB<Z:>ryyYEyyyyy;R:ff;j?<:
+G;Sj`@Pt\\Pd`QrPP:<JJ<JB>Z:Vy<>jx]:JBA:DJ:DZJVdsgg\\wgfK<jP@:K:_c<;T:g
+k:B:aoCJMJHfCZ_gdO?<AR:=ZD:r<mL?>:J?vYxy:J:><<jw_<MJ:<J:^q<J:<j:NZ\\Vd
+sWhngfgcUC:Uk:^:>x;j;<:;::::::::::Zj]:B:;B:::::::::5:" }{TEXT -1 7 "b,
+ b<0." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 107 "delta[1]:=(t,a,b)
+->(a+b)*cos(t)+b*(cos(((a+b)/b)*t));\ndelta[2]:=(t,a,b)->(a+b)*sin(t)+
+b*(sin(((a+b)/b)*t));" }}{PARA 11 "" 1 "" {TEXT -1 0 "" }}}{EXCHG 
+{PARA 11 "" 1 "" {TEXT -1 0 "" }}}{EXCHG {PARA 13 "" 1 "" {TEXT -1 0 "
+" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 273 26 "Astroide: a=4b, a=8, b=-2." 
+}}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 84 "plot([delta[1](t,8,-2),de
+lta[2](t,8,-2),t=0..4*Pi],scaling=constrained,color=black);" }}{PARA 
+13 "" 1 "" {TEXT -1 0 "" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 272 53 "Delto
+ide o hipocicloide de Steiner: a=-3b, a=6, b=-2." }}}{EXCHG {PARA 0 ">
+ " 0 "" {MPLTEXT 1 0 84 "plot([delta[1](t,6,-2),delta[2](t,6,-2),t=0..
+2*Pi],scaling=constrained,color=black);" }}{PARA 13 "" 1 "" {TEXT -1 
+0 "" }}}{EXCHG {PARA 261 "" 0 "" {TEXT 264 17 "1.3.-La Concoide:" }}
+{PARA 0 "" 0 "" {TEXT 265 50 "Concoide de Nicomedes: la curva dada es \+
+una recta." }{TEXT -1 0 "" }}}{EXCHG {PARA 257 "" 0 "" {TEXT -1 37 "Ec
+uaci\363n de la concoide de Nicomedes " }{OLE 1 2604 1 "[xm]Br=WfoRrB:
+::wk;nyyI;G:;:j::>:B>N:F:nyyyyy]::yyyyyy::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::fyyyyyqyyyY:vY:::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::NDY
+mq^H;C:ELq^H_mvJ::::::::gj<vyyuyj;J;tV;B:;JZC:bKB::>vs^]UvebXr;V:>Z<>:
+<:ElrfH=MtFGYMq>>Wlj:gmlJ::::::>>?jyyiy=J:B:::::::S;;:=ja^GE=;::::::::
+:N;?:xI:;Z::::::j:>:c:;:?ja:[LsfFaMR>`:J:<:::::::>=?R:?Z:F:vYxY:B:::::
+:N:;Jr@:<:wAwAA:C:EJ:<J=j=>:wAyA::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::^=N:Iep[Z:^fjQf<`idGx_gc?wcQG
+:;j;@j:HZDFZ<^juX:xxqyH<:::F:DZ:B::::::::::vYyyyAZ:^:F:<jysy?:;:CV:fw;
+JU@Z:F:MZ=VMN:aJ:>:E:Mb:B:C:?R:=j<j:Djyyyy=J<JQ@JFf:F`<F:<j<j?D:<j<J@D
+JZAJj@JCJMTjAN=yyyxY:<JB<Z:>ryyYExyyyy;S:fj;j?<:G;Sj`@Pt\\Pd`QrP`:>@[J
+:<jwEJ:uI<:[V:=J:DJ:DZJVdsgg\\wgfK<jP@:K:_c<;U:gk:B:SmCB:G;sj`:PpdPOBV
+Z;F:d::;J?>:G;Ojysy=J:>:[Z:VYcj>>Z:>:sg:B:=b:?bBaTXaEWEUUtP<jPF:C:[Y:V
+Z:J::::::::::::::3:" }{TEXT -1 22 ", en funci\363n de a y b." }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 47 "lambda:=(x,y,b,a)->(x-b)^2*(
+x^2+y^2)-a^2*x^2=0;" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 98 "impl
+icitplot(lambda(x,y,2,6),x=-10..10,y=-10..10,scaling=constrained,color
+=black,numpoints=10000);" }}{PARA 13 "" 1 "" {TEXT -1 0 "" }}}{EXCHG 
+{PARA 0 "" 0 "" {TEXT 266 53 "Caso particular: la curva dada es una ci
+rcunferencia." }}{PARA 0 "" 0 "" {TEXT 270 39 "Ecuaciones param\351tri
+cas de la concoide " }{OLE 1 2604 1 "[xm]Br=WfoRrB:::wk;nyyI;G:;:j::>:
+B>N:F:nyyyyy]::yyyyyy:::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::fyyyyyqyyyY:vY::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::NDYmq^H;C:ELq^H_mvJ:::
+:::::gj<vyyuyj;J;tV;B:;JZC:bKB::>vs^]UvebXr;V:>Z<>:<:ElrfH=MtFGYMq>>Wl
+j:gmlJ::::::>>?jyyiy=J:B:::::::S;;:=ja^GE=;:::::::::N;?:xI:;Z::::::j:>
+:c:;:?ja:[LsfFaMR>`:J:<:::::::>=?R:?Z:F:vYxY:B::::::N:;Jx@:<:wAwAA:C:E
+J:<J=j=Jyky;::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::s:?jmdWBB:;gWAeZseT]YSUTKYtO=J:VZ;FZ=b<=b:CfhAZiy
+wi]::::=Z<B:<::::::::::yqyyy;B:C:=Z:vYxY;J:J<A:;U:Nb;j:F;HjJC:?jFB:;j<
+j>D:<J<J;@j:f:FZ<vyyyy:^:n_;>=E:]c:=:E:Qb:B:E:Sb:;T:;U:_:Gc;YJGvyyuy;B
+:[B:<JZyyyg>>^;jl@:QB:n>^;UTRcETcTX[US;B:;C:[J:<jwEJ:uI<:[V:=J:DJ:DZJV
+dsgg\\wgfK<jP@:K:_c<@JI<j:B:QmFJMJNfc[;PpdPOHVZ;F::BjYxy;J:<JYJXLr^N;;
+JMJ?vYxy:J:><<jw_<MJ:>:sg:>Z:F:?bBaTXaEWEUUtP<jPF:C:[Y:VZ:>Z:>::::::::
+::::1:" }{TEXT 277 26 ", en funci\363n de a y r son:" }}}{EXCHG {PARA 
+0 "> " 0 "" {MPLTEXT 1 0 90 "kappa[1]:=(t,a,r)->a*cos(t)+2*r*(cos(t))^
+2;\nkappa[2]:=(t,a,r)->a*sin(t)+2*r*sin(t)*cos(t);" }}{PARA 11 "" 1 "
+" {TEXT -1 0 "" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 269 25 "Cardioide: a=2
+r, a=4, r=2" }{TEXT -1 1 "." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 
+82 "plot([kappa[1](t,4,2),kappa[2](t,4,2),t=0..2*Pi],scaling=constrain
+ed,color=black);" }}{PARA 13 "" 1 "" {TEXT -1 0 "" }}}{EXCHG {PARA 0 "
+" 0 "" {TEXT 268 45 "Caracol de Pascal hiperb\363lico: a<2r, a=2, r=2
+" }{TEXT -1 1 "." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 82 "plot([k
+appa[1](t,2,2),kappa[2](t,2,2),t=0..2*Pi],scaling=constrained,color=bl
+ack);" }}{PARA 13 "" 1 "" {TEXT -1 0 "" }}}{EXCHG {PARA 0 "" 0 "" 
+{TEXT 267 43 "Caracol de Pascal el\355ptico: a>2r, a=8, r=3." }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 82 "plot([kappa[1](t,8,3),kappa[
+2](t,8,3),t=0..2*Pi],scaling=constrained,color=black);" }}{PARA 13 "" 
+1 "" {TEXT -1 0 "" }}}{EXCHG {PARA 258 "" 0 "" {TEXT -1 0 "" }}{PARA 
+258 "" 0 "" {TEXT 284 10 "2.-C\323NICAS" }}}{EXCHG {PARA 257 "" 0 "" 
+{TEXT -1 12 "2.1.-Elipse:" }}{PARA 0 "" 0 "" {TEXT 282 37 "Ecuaciones \+
+param\351tricas de la elipse " }{OLE 1 2604 1 "[xm]Br=WfoRrB:::wk;nyyI
+;G:;:j::>:B>N:F:nyyyyy]::yyyyyy:::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::fyyyyyqyyyY:vY::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::NDYmq^H;C:EL
+q^H_mvJ::::::::gj<vyyuyj;J;tV;B:;JZC:bKB::>vs^]UvebXr;V:>Z<>:<:ElrfH=M
+tFGYMq>>Wlj:gmlJ::::::>>?jyyiy=J:B:::::::S;;:=ja^GE=;:::::::::N;?:xI:;
+Z::::::j:>:c:;:?ja:[LsfFaMR>`:J:<:::::::>=?R:?Z:F:vYxY:B::::::N:;Jr@:<
+:wAwAA:C:EJ:<J=j=>:wAyA:::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::^=N:Iep[Z:^uvYf<`idGx_gc?wcQG:;j;@j:HZ
+DFZ<^j=Y:xxqyH<:::F:DZ:B::::::::::vYyyyAZ:^:F:<jysy?:;:IW:^j;JU@Z:F:MZ
+=VMN:aJ:>:E:Mb:B:C:?R:=j<j:Djyyyy=J<JQ@JFf:F`<F:<j<j?D:<j<J@DJj@J:AJCJ
+MTjAN=yyyxY:<JB<Z:>ryyYE;;T:fj;j?<:G;Sj`@Pt\\Pd`QrP`:>@[J:<jwEJ:uI<:[n
+:>Z<>Z<B>aTXUeRYEU^:;jP@:K:_c<@JGB:<jsV<<JMJHfCZ_gdO?<AR:=ZD:BjYxyO:J?
+vYxy:J:><<jw_<MJ:<J:^q<Z:F:?bBaTXaEWEUUtP<jPF:C:[Y:VZ:B:;::::::::::<I<
+Z:>Z:::3:" }{TEXT 283 22 ", en funci\363n de a y b:" }}}{EXCHG {PARA 
+0 "> " 0 "" {MPLTEXT 1 0 58 "sigma[1]:=(t,a,b)->a*cos(t); \nsigma[2]:=
+(t,a,b)->b*sin(t);" }}{PARA 11 "" 1 "" {TEXT -1 0 "" }}}{EXCHG {PARA 
+0 "> " 0 "" {MPLTEXT 1 0 82 "plot([sigma[1](t,4,3),sigma[2](t,4,3),t=0
+..2*Pi],scaling=constrained,color=black);" }}{PARA 13 "" 1 "" {TEXT 
+-1 0 "" }}}{EXCHG {PARA 260 "" 1 "" {TEXT -1 15 "2.2.-Hip\351rbola:" }
+}{PARA 257 "" 0 "" {TEXT -1 40 "Ecuaciones param\351tricas de la hip
+\351rbola " }{OLE 1 2604 1 "[xm]Br=WfoRrB:::wk;nyyI;G:;:j::>:B>N:F:nyy
+yyy]::yyyyyy::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::fyyyyyqyyyY:vY:::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::NDYmq^H;C:ELq^H_mvJ::::::::gj<v
+yyuyj;J;tV;B:;JZC:bKB::>vs^]UvebXr;V:>Z<>:<:ElrfH=MtFGYMq>>Wlj:gmlJ:::
+:::>>?jyyiy=J:B:::::::S;;:=ja^GE=;:::::::::N;?:xI:;Z::::::j:>:c:;:?ja:
+[LsfFaMR>`:J:<:::::::>=?R:?Z:F:vYxY:B::::::N:;Jr@:<:wAwAA:C:EJ:<J=j=>:
+wAyA::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::^=N:Iep[Z:>]=`f<`idGx_gc?wcQG:;j;@j:HZDFZ<^jrX:xxqyH<:::F
+:DZ:B::::::::::vYyyyAZ:^:F:<jysy?:;:CV:fw;JU@Z:F:MZ=VMN:aJ:>:E:Mb:B:C:
+?R:=j<j:Djyyyy=J<JQ@JFf:F`<F:<j<j?D:<j<J@DJZAJj@JCJMTjAN=yyyxY:<JB<Z:>
+ryyYExyyyy;S:fj;j?<:G;Sj`@Pt\\Pd`QrP`:>@[J:<jwEJ:uI<:[V:=J:DJ:DZJVdsgg
+\\wgfK<jP@:K:_c<;U:ej:B:]mCB:G;sj`:PpdPOBVZ;F:d::;J?>:G;Ojysy=J:>:[Z:V
+Ycj>>Z:>:sg:B:=b:?bBaTXaEWEUUtP<jPF:C:[Y:VZ:J::::::::::::::3:" }{TEXT 
+-1 22 ", en funci\363n de a y b:" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 57 "theta[1]:=(t,a,b)->a/cos(t);\ntheta[2]:=(t,a,b)->b*ta
+n(t);" }}{PARA 11 "" 1 "" {TEXT -1 0 "" }}}{EXCHG {PARA 0 "" 0 "" 
+{TEXT 293 9 "a=2, b=3." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 93 "A
+:=plot([theta[1](t,2,3),theta[2](t,2,3),t=-Pi/2.1..Pi/2.1],scaling=con
+strained,color=black):" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 94 "B
+:=plot([-theta[1](t,2,3),theta[2](t,2,3),t=-Pi/2.1..Pi/2.1],scaling=co
+nstrained,color=black):" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 15 "
+display([A,B]);" }}{PARA 13 "" 1 "" {TEXT -1 0 "" }}}{EXCHG {PARA 257 
+"" 0 "" {TEXT -1 14 "2.3.-Par\341bola:" }}{PARA 257 "" 0 "" {TEXT -1 
+38 "Ecuaciones param\351tricas de la par\341bola" }{OLE 1 2604 1 "[xm]
+Br=WfoRrB:::wk;nyyI;G:;:j::>:B>N:F:nyyyyy]::yyyyyy::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::fyyyyyqyyyY:vY:::::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::NDYmq^H;C:ELq^H_mvJ::::::::gj<vyyuyj;J;tV;B:;JZC:bKB::>vs^]Uveb
+Xr;V:>Z<>:<:ElrfH=MtFGYMq>>Wlj:gmlJ::::::>>?jyyiy=J:B:::::::S;;:=ja^GE
+=;:::::::::N;?:xI:;Z::::::j:>:c:;:?ja:[LsfFaMR>`:J:<:::::::>=?R:?Z:F:v
+YxY:B::::::N:;Jr@:<:wAwAA:C:EJ:<J=j=>:wAyA::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::^=N:Iep[Z:^w@ff<`id
+Gx_gc?wcQG:;j;@j:HZDFZ<^j@Y:xxqyH<:::F:DZ:B::::::::::vYyyyAZ:^:F:<jysy
+?:;:;U:^`<JU@Z:F:MZ=VMN:aJ:>:E:Mb:>Z:^:NZ;F:E:=b:yyyyI:C:WS:kj<jRDj:B:
+E:Qb:B:E:Sb:DJZN<n^@v;ojyyiyAZ:>\\:B:;xyyq\\yyyyY:@:EX:V[:JMJ@fc[_hb_d
+s?h_C:[LB>Z:Vy<>jx]:JBAj:>Z<>Z<>ZJVdsgg\\wgfK<jP@:K:_c<;U:oj:B:GmCB:G;
+sj`:PpdPOBVZ;F:d::;J?>:G;Ojysy=:;JBB:qQDF;;B:;JXEZ:B:=b:?bBaTXaEWEUUtP
+<jPF:C:[Y:VZ:J::::::::::::::3:" }{TEXT -1 22 ", en funci\363n de a y b
+:" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 45 "phi[1]:=(t,a,b)->a*t;
+\nphi[2]:=(t,a,b)->b*t^2;" }}{PARA 11 "" 1 "" {TEXT -1 0 "" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 181 "A:=plot([phi[1](t,8,2),phi[2](t,8,
+2),t=0..2*Pi],scaling=constrained,color=black):\nB:=plot([-phi[1](t,8,
+2),phi[2](t,8,2),t=0..2*Pi],scaling=constrained,color=black):\ndisplay
+([A,B]);\n" }}{PARA 13 "" 1 "" {TEXT -1 0 "" }}}{EXCHG {PARA 258 "" 0 
+"" {TEXT -1 0 "" }{TEXT 274 10 "3.-C\332BICAS" }}}{EXCHG {PARA 0 "" 0 
+"" {TEXT 275 44 "3.1.-Par\341bola semic\372bica o par\341bola de Neil:
+" }}{PARA 257 "" 0 "" {TEXT -1 46 "Ecuaci\363n impl\355cita de la par
+\341bola semic\372bica, " }{OLE 1 2604 1 "[xm]Br=WfoRrB:::wk;nyyI;G:;:
+j::>:B>N:F:nyyyyy]::yyyyyy::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::fyyyyyqyyyY:vY:::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::NDYmq^H;C:ELq^H_m
+vJ::::::::gj<vyyuyj;J;tV;B:;JZC:bKB::>vs^]UvebXr;V:>Z<>:<:ElrfH=MtFGYM
+q>>Wlj:gmlJ::::::>>?jyyiy=J:B:::::::S;;:=ja^GE=;:::::::::N;?:xI:;Z::::
+::j:>:c:;:?ja:[LsfFaMR>`:J:<:::::::>=?R:?Z:F:vYxY:B::::::N:;Jr@:<:wAwA
+A:C:EJ:<J=j=>:wAyA::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::^=N:Iep[Z:^mone<`idGx_gc?wcQG:;j;@j:HZDFZ<^
+j;Y:;ruYyuB:::j:b:<Z::::::::::jywyyY:<J<j:B:yayQ:>:vn;J_A:gS:<j:F;HjGK
+;V<>:E:Mb:B:C:?R:=j<j:Djyyyy=J<JQ@JFf:F`<F:<j<j?D:<j<J@DJJAJ:AJCJMTjAN
+=yyyxY:<JB<Z:>ryyYE;;T:fr;j?<:G;Sj`@Pt\\Pd`QrP`:>D[J:<jwEJ:uI<:[n:>Z<>
+Z<B>aTXUeRYEU^:;jP@:K:_c<@J_FZ:B:_mCJMJHfCZ_gdO?<AR:=ZD:>:;J?>:G;Ojysy
+=:;JBB:qQDF;;B:;JXE:<j:NZ\\VdsWhngfgcUC:Uk:^:>x;j;<:;:::::::::::::5:" 
+}{TEXT -1 17 " en funci\363n de a:" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 24 "rho:=(x,y,a)->y^3=a*x^2;" }}{PARA 11 "" 1 "" {TEXT 
+-1 0 "" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 292 4 "a=3." }}}{EXCHG {PARA 
+0 "> " 0 "" {MPLTEXT 1 0 91 "implicitplot((rho(x,y,3),x=-5..5,y=-5..5)
+,scaling=constrained,color=black,numpoints=10000);" }}{PARA 13 "" 1 "
+" {TEXT -1 0 "" }}}{EXCHG {PARA 257 "" 0 "" {TEXT -1 24 "3.2.-Cisoide \+
+de Diocles:" }}{PARA 257 "" 0 "" {TEXT -1 49 "Ecuaciones par\341metric
+as de la cisoide de Diocles " }{OLE 1 2604 1 "[xm]Br=WfoRrB:::wk;nyyI;
+G:;:j::>:B>N:F:nyyyyy]::yyyyyy::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::fyyyyyqyyyY:vY:::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::NDYmq^H;C:ELq
+^H_mvJ::::::::gj<vyyuyj;J;tV;B:;JZC:bKB::>vs^]UvebXr;V:>Z<>:<:ElrfH=Mt
+FGYMq>>Wlj:gmlJ::::::>>?jyyiy=J:B:::::::S;;:=ja^GE=;:::::::::N;?:xI:;Z
+::::::j:>:c:;:?ja:[LsfFaMR>`:J:<:::::::>=?R:?Z:F:vYxY:B::::::N:;Jr@:<:
+wAwAA:C:EJ:<J=j=>:wAyA::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::^=N:Iep[Z:^vupe<`idGx_gc?wcQG:;j;@j:HZD
+FZ<^j>Y:xxqyH<:::F:DZ:B::::::::::vYyyyAZ:^:F:<jysy?:;:;U:^j;JU@Z:F:MZ=
+VMN:aJ:>:E:Mb:B:C:?R:=j<j:Djyyyy=J<JQ@JFf:F`<F:<j<j?D:<j<J@DJj@JZ@JCJM
+TjAN=yyyxY:<JB<Z:>ryyYE;;R:;j<A:QB:n>^;UTRcETcTX[US<JR><;B:qi:;fyB:>l;
+F:;b:;b:<kc`qpDpql@C:US:>;N`DR:[B:=Z:^HaZ:n>^=U<RSeTO[j;@j:b<:>:OJ:n>N
+;yayI:>:[Z:VYcj>>Z:>:sg:>Z:FZ<NZ\\VdsWhngfgcUC:Uk:^:>x;j;<:;::::::::::
+:::5:" }{TEXT -1 18 ", en funci\363n de a:" }}}{EXCHG {PARA 0 "> " 0 "
+" {MPLTEXT 1 0 84 "tau[1]:=(t,a)->2*a*sin(t)^2;\ntau[2]:=(t,a)->2*a*si
+n(t)^2*tan(t);\n                   " }{TEXT -1 0 "" }}}{EXCHG {PARA 0 
+"" 0 "" {TEXT 278 4 "a=6." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 
+78 "plot([tau[1](t,6),tau[2](t,6),t=-Pi/3..Pi/3],color=black,scaling=c
+onstrained);" }}{PARA 13 "" 1 "" {TEXT -1 0 "" }}}{EXCHG {PARA 257 "" 
+0 "" {TEXT -1 25 "3.3.-Folium de Descartes:" }}{PARA 257 "" 0 "" 
+{TEXT -1 50 "Ecuaciones param\351tricas de la folium de Descartes " }
+{OLE 1 2604 1 "[xm]Br=WfoRrB:::wk;nyyI;G:;:j::>:B>N:F:nyyyyy]::yyyyyy:
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+fyyyyyqyyyY:vY::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::NDYmq^H;C:ELq^H_mvJ::::::::gj<vyyuyj;J;tV;B:
+;JZC:bKB::>vs^]UvebXr;V:>Z<>:<:ElrfH=MtFGYMq>>Wlj:gmlJ::::::>>?jyyiy=J
+:B:::::::S;;:=ja^GE=;:::::::::N;?:xI:;Z::::::j:>:c:;:?ja:[LsfFaMR>`:J:
+<:::::::>=?R:?Z:F:vYxY:B::::::N:;Jx@:<:wAwAA:C:EJ:<J=j=Jyky;::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::s
+:?jmdWBB:ScJydZseT]YSUTKYtO=J:VZ;FZ=b<=b:CVgAZiywi]::::=Z<B:<:::::::::
+:yqyyy;B:C:=Z:vYxY;J:Jj@:CV:Nb;j:F;HjJC:?jFB:;j<j>D:<J<J;@j:f:FZ<vyyyy
+:^:n_;>=E:]c:=:E:Qb:B:E:Sb:;U:;T:_:Gc;YJGvyyuy;B:[B:<JZyyyg>>Z;>:EV:V[
+:JMJ@fc[_hb_ds?h_C:[KB>Z:Vy<>jx]:JBAj:>Z<>Z<B>aTXUeRYEU^:f_;J>JSdZ;V>=
+Z:fFm:G;Kk`@@RSeTOsj;@j::Z:>:YyuxX:>Z:^h:HCOJ:n>N;yqyyy:J:><<jw_<MJ:>:
+sg:B:=b:?bBaTXaEWEUUtP<jPF:C:[Y:VZ:J::::::::Zj]:B:<::5:" }{TEXT -1 18 
+", en funci\363n de a:" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 70 "e
+psilon[1]:=(t,a)->3*t*a/(1+t^3);\nepsilon[2]:=(t,a)->3*t^2*a/(1+t^3);
+\n" }{TEXT -1 0 "" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 218 "A:=pl
+ot([epsilon[1](t,8),epsilon[2](t,8),t=-0.8..50],color=black,scaling=co
+nstrained,numpoints=100):\nB:=plot([epsilon[1](t,8),epsilon[2](t,8),t=
+-1.2..-50],color=black,scaling=constrained,numpoints=100):\ndisplay([A
+,B]);" }}{PARA 13 "" 1 "" {TEXT -1 0 "" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 0 "" }}}{EXCHG {PARA 257 "" 0 "" {TEXT -1 28 "3.4.-Trisec
+triz de McLaurin:" }}{PARA 257 "" 0 "" {TEXT -1 53 "Ecuaciones par\341
+metricas de la trisectriz de McLaurin " }{OLE 1 2576 1 "[xm]Br=WfoRrB:
+::wk;nyyI;G:;:j::>:B>N:F:nyyyyy]::yyyyyy::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::fyyyyyqyyyY:vY:::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::NDY
+mq^H;C:ELq^H_mvJ::::::::gj<vyyuyj;J;tV;B:;JZC:bKB::>vs^]UvebXr;V:>Z<>:
+<:ElrfH=MtFGYMq>>Wlj:gmlJ::::::>>?jyyiy=J:B:::::::S;;:=ja^GE=;::::::::
+:N;?:xI:;Z::::::j:>:c:;:?ja:[LsfFaMR>`:J:<:::::::>=?R:?Z:F:vYxY:B:::::
+:N:;Jv@:<:wAwAA:C:EJ:<J=j=Jyky;:::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::s:?JQeWBB:SEG_eZseT]YSUTKYtO=J
+:VZ;FZ=b<=b:EVdA:;::::=Z<B:<::::::::::yayY:^:F:<jysy?:;:OX:NSna;j:F;Hj
+IK;v<>:E:Mb:B:C:?R:=j<j:Djyyyy=J<JQ@JFf:F`<F:<j<j?D:<j<J@DJJAJJAJCJMTj
+AN=yyyxY:<JB<Z:>ryyYExyyyy;U:ff;j?<J:n>^;UTRcETcTX[US;B:;C:[J:<jwEJ:uI
+<:[V:b:;b:<kc`qpDpql@C:US:>;N`D>f;N@=Z:vDi:G;Ck`@@RSeTOkj;@j::Z:>:SB:M
+LxqjfN;;JMJ?vYxy:J:><<jw_<MJ:<J:^q<J:<j:DJ;Dlc`qsLqlp`h_:f?=J<JrA:AB:>
+::::::::1:" }{TEXT -1 2 ": " }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 
+67 "Omega[1]:=(t)->(t^2-3)/(t^2+1);\nOmega[2]:=(t)->t*((t^2-3)/(t^2+1)
+);" }}{PARA 11 "" 1 "" {TEXT -1 0 "" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 86 "plot([Omega[1](t),Omega[2](t),t=-5..5],color=black,sc
+aling=constrained,numpoints=100);" }}{PARA 13 "" 1 "" {TEXT -1 0 "" }}
+}{EXCHG {PARA 258 "" 0 "" {TEXT -1 0 "" }}{PARA 258 "" 0 "" {TEXT -1 
+3 "4.-" }{TEXT 279 9 "CU\301RTICAS" }}}{EXCHG {PARA 257 "" 0 "" {TEXT 
+-1 23 "4.1.-\323valos de Cassini:" }}{PARA 257 "" 0 "" {TEXT -1 43 "Ec
+uaci\363n impl\355cita de los \363valos de Cassini" }{OLE 1 2576 1 "[x
+m]Br=WfoRrB:::wk;nyyI;G:;:j::>:B>N:F:nyyyyy]::yyyyyy::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::fyyyyyqyyyY:vY:::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::NDYmq^H;C:ELq^H_mvJ::::::::gj<vyyuyj;J;tV;B:;JZC:bKB::>vs^]Uv
+ebXr;V:>Z<>:<:ElrfH=MtFGYMq>>Wlj:gmlJ::::::>>?jyyiy=J:B:::::::S;;:=ja^
+GE=;:::::::::N;?:xI:;Z::::::j:>:c:;:?ja:[LsfFaMR>`:J:<:::::::>=?R:?Z:F
+:vYxY:B::::::N:;Jr@:<:wAwAA:C:EJ:<J=j=>:wAyA::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::^=N:Wgp[Z:Bi_eZse
+T]YSUTKYtO=J:VZ;FZ=b<=b:EF_AZZvfl[::::=Z<B:<::::::::::yayY:<J<j:B:yayQ
+:>:vn;J_A:gS:<j:F;HjGK;V<;J:f:F[<Z:^:NZ;F:E:=b:yyyyI:C:WS:kj<jRDj:B:E:
+Qb:B:E:Sb:;W:;V:_:Gc;YJGvyyuy;B:[B:<JZyyygryyyyAb;jl@:QB:n>^;UTRcETcTX
+[US;B:;C:[J:<jwEJ:uI<:[N:b:;b:<kc`qpDpql@C:US:>;N`D>f;VA=Z:^BaZ:n>^=U<
+RSeTO[j;@j:b<:\\q^N;;:N;yayI:>:[Z:VYcj>>Z:>:sg:>Z:FZ<NZ\\VdsWhngfgcUC:
+Uk:^:>x;j;<Z:>:::::::::3:" }{TEXT -1 22 ", en funci\363n de a y b:" }}
+}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 55 "Delta:=(x,y,c,k)->y^2=-(x^2
++c^2)+sqrt(4*c^2*x^2 + k^4);" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 280 17 "
+c>k con c=8, k=7." }{TEXT -1 1 " " }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 95 "implicitplot(Delta(x,y,8,7),x=-15..15,y=-7..7,\ncolor
+=black,scaling=constrained,numpoints=1000);" }}{PARA 13 "" 1 "" {TEXT 
+-1 0 "" }}}{EXCHG {PARA 257 "" 0 "" {TEXT -1 17 "c<k con c=7, k=8." }}
+}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 95 "implicitplot(Delta(x,y,7,8)
+,x=-15..15,y=-5..5,\ncolor=black,scaling=constrained,numpoints=1000);
+" }}{PARA 13 "" 1 "" {TEXT -1 0 "" }}}{EXCHG {PARA 257 "" 0 "" {TEXT 
+-1 37 "Lemniscata de Bernouilli: c=k, c=k=7." }}}{EXCHG {PARA 0 "> " 
+0 "" {MPLTEXT 1 0 96 "implicitplot(Delta(x,y,7,7),x=-15..15,y=-5..5,\n
+color=black,scaling=constrained,numpoints=10000);" }}{PARA 0 "> " 0 "
+" {MPLTEXT 1 0 0 "" }}{PARA 13 "" 1 "" {TEXT -1 0 "" }}}{EXCHG {PARA 
+0 "" 0 "" {TEXT 281 33 "4.2.-Kappa o curva de Gutschoven:" }}}{EXCHG 
+{PARA 262 "" 0 "" {TEXT -1 42 "Ecuaciones param\351tricas de la curva \+
+kappa " }{XPPEDIT 18 0 "Kappa;" "6#%&KappaG" }{TEXT -1 18 ", en funci
+\363n de a:" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 38 "Kappa:=(x,y,
+a)->x^2*(x^2+y^2)=a^2*y^2;" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 
+95 "implicitplot(Kappa(x,y,6),x=-15..15, y=-15..15,color=black,scaling
+=constrained,numpoints=1000);" }}{PARA 13 "" 1 "" {TEXT -1 0 "" }}}
+{EXCHG {PARA 257 "" 0 "" {TEXT -1 0 "" }{TEXT 285 12 "4.3.-Folium:" }}
+{PARA 257 "" 0 "" {TEXT -1 38 "Ecuaci\363n impl\355cita de la curva Fo
+lium " }{OLE 1 2576 1 "[xm]Br=WfoRrB:::wk;nyyI;G:;:j::>:B>N:F:nyyyyy]:
+:yyyyyy:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::fyyyyyqyyyY:vY::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::NDYmq^H;C:ELq^H_mvJ::::::::gj<vyyuyj
+;J;tV;B:;JZC:bKB::rpAs@yDdAX:A:;b:;Z:j\\FHemj^HMmqnG;KaFFJufF>::::::;K
+;vyyuy:>:<::::::JPJ:j:vCSmlJ::::::::::OJ;Zy=J:B::::::F:;JDJ:J;vCJbNHEm
+s>@[C:>Z::::::::kJ;@J;B:=:yayA:<::::::?J:>i;Z:JyKyk;J<j<>Z:n:v:nYvY:::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::JHJ;noTA<<JXDnsDRxdprQp`PnaXo:>:AR:=r:dj:Dj<us;BBIeVB:::j:b:<Z::
+::::::::jysyAZ:^:F:<jysy?:;:IW:vNna;j:F;HjIK;v<>:E:Mb:B:C:?R:=j<j:Djyy
+yy=J<JQ@JFf:F`<F:<j<j?D:<j<J@DJ:AJ:AJCJMTjAN=yyyxY:<JB<Z:>ryyYEyyyyy;T
+:ff;j?<:G;Sj`@Pt\\Pd`QrPP:<JJ<JB>Z:Vy<>jx]:JB?:DJ:DZJVdsgg\\wgfK<jP@:K
+:_c<;T:_k:B:klEJMJLfc[;PpdPOFVZ;F::J:vwiywiA]yGCOJ:n>N;yqyyy:J:><<jw_<
+MJ:<J:^q<J:<j:NZ\\VdsWhngfgcUC:Uk:^:>x;j;<:;:::::::5:" }{TEXT -1 22 ",
+ en funci\363n de a y b:" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 49 
+"Xi:=(x,y,a,b)->(x^2+y^2)*(y^2+x*(x+b))=4*a*x*y^2;" }}{PARA 11 "" 1 "
+" {TEXT -1 0 "" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 286 18 "b=4a con a=5, \+
+b=20" }{TEXT -1 1 "." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 95 "imp
+licitplot(Xi(x,y,5,20),x=-20..15,y=-15..15,color=black,scaling=constra
+ined,numpoints=10000);" }}{PARA 13 "" 1 "" {TEXT -1 0 "" }}}{EXCHG 
+{PARA 257 "" 0 "" {TEXT -1 9 "b=0, a=5." }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 94 "implicitplot(Xi(x,y,5,0),x=-20..15,y=-15..15,color=bl
+ack,scaling=constrained,numpoints=10000);" }}{PARA 13 "" 1 "" {TEXT 
+-1 0 "" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 287 16 "b=a, con a,b=10." }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 97 "implicitplot(Xi(x,y,10,10),x
+=-20..15,y=-15..15,color=black,scaling=constrained,numpoints=10000);\n
+" }}{PARA 13 "" 1 "" {TEXT -1 0 "" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 0 "" }}}{EXCHG {PARA 257 "" 0 "" {TEXT -1 13 "4.4.-Bicorn
+io" }}{PARA 257 "" 0 "" {TEXT -1 39 "Ecuaciones param\351tricas de la \+
+Bicornio " }{OLE 1 2576 1 "[xm]Br=WfoRrB:::wk;nyyI;G:;:j::>:B>N:F:nyyy
+yy]::yyyyyy:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::fyyyyyqyyyY:vY::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::NDYmq^H;C:ELq^H_mvJ::::::::gj<vy
+yuyj;J;tV;B:;JZC:bKB::rpAs@yDdAX:A:;b:;Z:j\\FHemj^HMmqnG;KaFFJufF>::::
+::;K;vyyuy:>:<::::::JPJ:j:vCSmlJ::::::::::OJ;Zy=J:B::::::F:;JDJ:J;vCJb
+NHEms>@[C:>Z::::::::kJ;@J;B:=:yayA:<::::::?J:>h;Z:JyKyk;J<j<>Z:n:v:;Jy
+ky;:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::s:?JQeWBB:kElaeZseT]YSUTKYtO=J:VZ;FZ=b<=b:Ev`AZZvfl[::::=Z
+<B:<::::::::::yayY:<J<j:B:yayQ:>:Ns;J_KU@Z:F:MZ=VMN:aJ:>:E:Mb:B:C:?R:=
+j<j:Djyyyy=J<JQ@JFf:F`<F:<j<j?D:<j<J@DJJAJJAJCJMTjAN=yyyxY:<JB<Z:>ryyY
+Exyyyy;U:ff;j?<J:n>^;UTRcETcTX[US;B:;C:[J:<jwEJ:uI<:[V:b:;b:<kc`qpDpql
+@C:US:>;N`D>f;VA=B:<J`V<<JMJHfCZ_gdO?<AR:=ZD:RfYxyO:J?vYxy:J:><<jw_<MJ
+:<J:^q<J:<j:DJ;Dlc`qsLqlp`h_:f?=J<JrA:AB:<J:::::::::5:" }{TEXT -1 18 "
+, en funci\363n de a:" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 63 "La
+mbda[1]:=(t,a)->sqrt(a^2-t^2);\nLambda[2]:=(t,a)->t^2/(2*a-t);" }}
+{PARA 11 "" 1 "" {TEXT -1 0 "" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 
+0 180 "A:=plot([Lambda[1](t,4),Lambda[2](t,4),t=-4..4],color=black,sca
+ling=constrained):\nB:=plot([-Lambda[1](t,4),Lambda[2](t,4),t=-4..4],c
+olor=black,scaling=constrained):\ndisplay([A,B]);" }}{PARA 13 "" 1 "" 
+{TEXT -1 0 "" }}}{EXCHG {PARA 258 "" 0 "" {TEXT -1 0 "" }}{PARA 258 "
+" 0 "" {TEXT 294 16 "5.-OTRAS CURVAS." }}{PARA 257 "" 0 "" {TEXT -1 
+13 "5.1.-Espiral:" }}{PARA 257 "" 0 "" {TEXT -1 38 "Ecuaciones param
+\351tricas de la espiral " }{OLE 1 2576 1 "[xm]Br=WfoRrB:::wk;nyyI;G:;
+:j::>:B>N:F:nyyyyy]::yyyyyy:::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::fyyyyyqyyyY:vY::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::NDYmq^H;C:ELq^H_
+mvJ::::::::gj<vyyuyj;J;tV;B:;JZC:bKB::rpAs@yDdAX:A:;b:;Z:j\\FHemj^HMmq
+nG;KaFFJufF>::::::;K;vyyuy:>:<::::::JPJ:j:vCSmlJ::::::::::OJ;Zy=J:B:::
+:::F:;JDJ:J;vCJbNHEms>@[C:>Z::::::::kJ;@J;B:=:yayA:<::::::?J:>h;Z:JyKy
+k;J<j<>Z:n:v:;Jyky;:::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::s:?JQeWBB:Sux_eZseT]YSUTKYtO=J:VZ;FZ=b<=b:
+EvbAZZvfl[::::=Z<B:<::::::::::yayY:<J<j:B:yayQ:>:^j;jMA:gS:<j:F;HjGK;V
+<;J:f:F[<Z:^:NZ;F:E:=b:yyyyI:C:WS:kj<jRDj:B:E:Qb:B:E:Sb:;V:;U:_:Gc;YJG
+vyyuy;B:[B:<JZyyygvyyyyA^;jl@:QB:n>^;UTRcETcTX[US;B:;C:[J:<jwEJ:uI<:[V
+:b:;b:<kc`qpDpql@C:US:>;N`D>b;N@=Z:VDa:G;sj`:PpdPOBVZ;F:d:ZsGCOJ::Ojys
+y=J:>:[Z:VYcj>>Z:>:sg:>Z:F:?bBaTXaEWEUUtP<jPF:C:[Y:VZ:B:;:::::::::1:" 
+}{TEXT -1 18 ", en funci\363n de r:" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 75 "Sigma[1]:=(r,t)->r*(cos(t)+t*sin(t));\nSigma[2]:=(r,t
+)->r*(sin(t)-t*cos(t));" }}{PARA 11 "" 1 "" {TEXT -1 0 "" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 77 "plot([Sigma[1](1,t),Sigma[2](1,t), \+
+t=0..30],color=black,scaling=constrained);" }}{PARA 13 "" 1 "" {TEXT 
+-1 0 "" }}}{EXCHG {PARA 257 "" 0 "" {TEXT -1 27 "5.2.-Curvas espirogr
+\341ficas:" }}{PARA 257 "" 0 "" {TEXT -1 50 "Ecuaciones par\341metrica
+s de la curva espirogr\341fica " }{OLE 1 2576 1 "[xm]Br=WfoRrB:::wk;ny
+yI;G:;:j::>:B>N:F:nyyyyy]::yyyyyy:::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::fyyyyyqyyyY:vY::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::NDYmq^H;C:
+ELq^H_mvJ::::::::gj<vyyuyj;J;tV;B:;JZC:bKB::rpAs@yDdAX:A:;b:;Z:j\\FHem
+j^HMmqnG;KaFFJufF>::::::;K;vyyuy:>:<::::::JPJ:j:vCSmlJ::::::::::OJ;Zy=
+J:B::::::F:;JDJ:J;vCJbNHEms>@[C:>Z::::::::kJ;@J;B:=:yayA:<::::::?J:^i;
+Z:JyKyk;J<j<>Z:n:v:nYvY:::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::JHJ;noTA<<Jb\\QsDRxdprQp`PnaXo:>:AR:=r
+:dj:Dj<As;>ZZvfl[::::=Z<B:<::::::::::yayY:<J<j:B:yayQ:>:Ns;J_K[@:=j>r:
+=_:N:mZ:>:EJ:F[<Z:^:NZ;F:E:=b:yyyyI:C:WS:kj<jRDj:j<j?D:<j<J@DJJAJJAJCJ
+MTjAN=yyyxY:<JB<Z:>ryyYExyyyy;U:ff;j?<J:n>^;UTRcETcTX[US;B:;C:[J:<jwEJ
+:uI<:[V:b:;b:<kc`qpDpql@C:US:>;N`D>f;>B=B:<jZF=n>>?UTRZ_gdO_=AR:=ZD:>Z
+:>:YyuYyu;J:<JnLr^N;;JMJ?vYyyy=:;JBB:qQDF;;J:^q<J:<j:DJ;Dlc`qsLqlp`h_:
+f?=J<JrA:AB:>:::::::3:" }{TEXT -1 25 ", en funci\363n de r, R y d:" }}
+}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 95 "Alpha[1]:=(r,R,d,t)->(R-r)*
+cos(t)+d*cos(r*t/R);\nAlpha[2]:=(r,R,d,t)->(R-r)*sin(t)-d*sin(r*t/R);
+" }}{PARA 11 "" 1 "" {TEXT -1 0 "" }}}{EXCHG {PARA 257 "" 0 "" {TEXT 
+-1 15 "r=2, R=5 y d=1." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 85 "p
+lot([Alpha[1](2,5,1,t),Alpha[2](2,5,1,t), t=0..50],color=black,scaling
+=constrained);" }}{PARA 13 "" 0 "" {TEXT -1 0 "" }}{PARA 13 "" 1 "" 
+{TEXT -1 0 "" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 295 21 "5.3.-Bruja de Ag
+nesi:" }}{PARA 0 "" 0 "" {TEXT -1 0 "" }{TEXT 296 46 "Ecuaciones param
+\351tricas de la Bruja de Agnesi " }{OLE 1 2576 1 "[xm]Br=WfoRrB:::wk;
+nyyI;G:;:j::>:B>N:F:nyyyyy]::yyyyyy:::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::fyyyyyqyyyY:vY::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::NDYmq^H;
+C:ELq^H_mvJ::::::::gj<vyyuyj;J;tV;B:;JZC:bKB::rpAs@yDdAX:A:;b:;Z:j\\FH
+emj^HMmqnG;KaFFJufF>::::::;K;vyyuy:>:<::::::JPJ:j:vCSmlJ::::::::::OJ;Z
+y=J:B::::::F:;JDJ:J;vCJbNHEms>@[C:>Z::::::::kJ;@J;B:=:yayA:<::::::?J:>
+h;Z:JyKyk;J<j<>Z:n:v:;Jyky;:::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::s:?JQeWBB:[T<ceZseT]YSUTKYtO=J:VZ;
+FZ=b<=b:Ev^AZZvfl[::::=Z<B:<::::::::::yayY:<J<j:B:yayQ:>:^j;jMA:gS:<j:
+F;HjGK;V<;J:f:;j>D:<J<J;@j:f:FZ<vyyyy:^:n_;>=E:]c:=Z:f:V[<Z:f:^[<>j;>f
+;N<n^@v;ojyyiyAZ:>\\:B:;xyyqlyyyyYJ@:EU:V[:JMJ@fc[_hb_ds?h_?Z:>^:><;B:
+qi:;fyB:>l;Z<>Z<B>aTXUeRYEU^:f_;J>JSdJZ@jWF:<j]V<n>^=U<RSeTO[j;@j:b<:>
+:OJ:n>N;yayI:;J:><<jw_<MJ:<J:^q<J:<j:NZ\\VdsWhngfgcUC:Uk:^Z:JrA:AB:>::
+:::::::3:" }{TEXT 297 18 ", en funci\363n de a:" }}}{EXCHG {PARA 0 "> \+
+" 0 "" {MPLTEXT 1 0 49 "Gamma[1]:=(t,a)->a*t;\nGamma[2]:=(t,a)->a/(1+t
+^2);" }}{PARA 11 "" 1 "" {TEXT -1 0 "" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 77 "plot([Gamma[1](t,3),Gamma[2](t,3), t=-3..3],color=bla
+ck,scaling=constrained);" }}{PARA 13 "" 1 "" {TEXT -1 0 "" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" }}}{EXCHG {PARA 257 "" 0 "" {TEXT 
+-1 24 "5.4.-Curva de Lissajous:" }}{PARA 257 "" 0 "" {TEXT -1 76 "Ecua
+ciones param\351tricas de la curva de Lissajous en funci\363n de a, k,
+ b y l: " }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 65 "Tau[1]:=(a,k,b,
+l,t)->a*sin(k*t);\nTau[2]:=(a,k,b,l,t)->b*sin(l*t);" }}{PARA 11 "" 1 "
+" {TEXT -1 0 "" }}}{EXCHG {PARA 0 "" 0 "" {TEXT -1 0 "" }{TEXT 300 20 
+"a=1, k=5, b=1 y l=2." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 85 "pl
+ot([Tau[1](1,5,1,2,t),Tau[2](1,5,1,2,t), t=-5..5],color=black,scaling=
+constrained);" }}{PARA 13 "" 0 "" {TEXT -1 0 "" }}}{EXCHG {PARA 0 "" 
+0 "" {TEXT 298 20 "5.5.-Curva de Euler:" }}{PARA 257 "" 0 "" {TEXT -1 
+46 "Ecuaciones param\351tricas de la curva de Euler  " }{XPPEDIT 18 0 
+"Epsilon;" "6#%(EpsilonG" }{TEXT -1 18 ", en funci\363n de n:" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 100 "Epsilon[1]:=(n,t)->(2/n^2)*
+(cos(n*t)/(cos(t))^2);\nEpsilon[2]:=(n,t)->(2/n^2)*(sin(n*t)/(cos(t))^
+2);\n" }{TEXT -1 0 "" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 94 "A:=
+plot([Epsilon[1](5,t),Epsilon[2](5,t), t=-Pi/2.4..Pi/2.4],color=black,
+scaling=constrained):" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 95 "B:
+=plot([-Epsilon[1](5,t),Epsilon[2](5,t), t=-Pi/2.4..Pi/2.4],color=blac
+k,scaling=constrained):" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 15 "
+display([A,B]);" }}{PARA 13 "" 1 "" {TEXT -1 0 "" }}}{EXCHG {PARA 0 "
+" 0 "" {TEXT 288 14 "5.6.-Mariposa:" }}{PARA 0 "" 0 "" {TEXT 289 39 "E
+cuaciones param\351tricas de la mariposa " }{XPPEDIT 18 0 "Omega;" "6#
+%&OmegaG" }{TEXT 299 1 ":" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 
+61 "Omega[1]:=t->sin(5*t)*cos(t);\nOmega[2]:=t->sin(5*t)*sin(4*t);" }}
+{PARA 11 "" 1 "" {TEXT -1 0 "" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 
+0 74 "plot([Omega[1](t),Omega[2](t),t=-Pi..Pi],color=black,scaling=con
+strained);" }}{PARA 13 "" 1 "" {TEXT -1 0 "" }}}{EXCHG {PARA 0 "> " 0 
+"" {MPLTEXT 1 0 0 "" }}}{EXCHG {PARA 0 "" 0 "" {TEXT -1 72 "Trabajo re
+alizado por Encarnaci\363n Rodr\355guez G\363mez y Daniel Vasco Cabrer
+a" }}}}{MARK "120 0 0" 72 }{VIEWOPTS 1 1 0 1 1 1803 1 1 1 1 }
+{PAGENUMBERS 0 1 2 33 1 1 }

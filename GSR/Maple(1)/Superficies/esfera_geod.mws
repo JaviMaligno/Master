@@ -1,0 +1,46 @@
+{VERSION 4 0 "IBM INTEL NT" "4.0" }
+{USTYLETAB {CSTYLE "Maple Input" -1 0 "Courier" 0 1 255 0 0 1 0 1 0 0 
+1 0 0 0 0 1 }{CSTYLE "2D Math" -1 2 "Times" 0 1 0 0 0 0 0 0 2 0 0 0 0 
+0 0 1 }{CSTYLE "2D Output" 2 20 "" 0 1 0 0 255 1 0 0 0 0 0 0 0 0 0 1 }
+{PSTYLE "Normal" -1 0 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 
+2 2 1 1 1 1 }1 1 0 0 0 0 1 0 1 0 2 2 0 1 }{PSTYLE "Text Output" -1 2 
+1 {CSTYLE "" -1 -1 "Courier" 1 10 0 0 255 1 0 0 0 0 0 1 3 0 3 0 }1 0 
+0 -1 -1 -1 0 0 0 0 0 0 -1 0 }{PSTYLE "Warning" 2 7 1 {CSTYLE "" -1 -1 
+"" 0 1 0 0 255 1 0 0 0 0 0 0 1 0 0 0 }0 0 0 -1 -1 -1 0 0 0 0 0 0 -1 0 
+}{PSTYLE "Maple Output" 0 11 1 {CSTYLE "" -1 -1 "" 0 1 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 }3 3 0 -1 -1 -1 0 0 0 0 0 0 -1 0 }{PSTYLE "Maple Plot" 
+0 13 1 {CSTYLE "" -1 -1 "" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 }3 0 0 -1 
+-1 -1 0 0 0 0 0 0 -1 0 }}
+{SECT 0 {EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 8 "restart:" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 12 "with(plots):" }}{PARA 7 "" 1 "" 
+{TEXT -1 50 "Warning, the name changecoords has been redefined\n" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 5 "a:=1;" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "6#>%\"aG\"\"\"" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 
+5 "b:=2;" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%\"bG\"\"#" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 5 "c:=1;" }{TEXT -1 0 "" }}{PARA 11 "" 
+1 "" {XPPMATH 20 "6#>%\"cG\"\"\"" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 37 "d:=sqrt(a^2*(a^2+b^2+c^2)/(a^2+b^2)):" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 108 "A:=plot3d([cos(u)*cos(v),cos(u)*si
+n(v),sin(u)],u=-Pi/2..Pi/2,v=0..2*Pi,scaling=constrained,style=wirefra
+me):" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 120 "B:=implicitplot3d(
+a*x+b*y+c*z=0,x=-1.5..1.5,y=-1.5..1.5,z=-1.5..1.5,color=yellow,scaling
+=constrained,style=patchnogrid):" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 161 "C:=spacecurve([-b*cos(t)/sqrt(a^2+b^2)-a^2*c*sin(t)/
+(d*(a^2+b^2)),a*cos(t)/sqrt(a^2+b^2)-a*b*c*sin(t)/(d*(a^2+b^2)),a*sin(
+t)/d],t=0..2*Pi,thickness=3,color=red):" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 17 "display([A,B,C]);" }{TEXT -1 0 "" }}{PARA 13 "" 1 "" 
+{TEXT -1 0 "" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 5 "a:=1;" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "6#>%\"aG\"\"\"" }}}{EXCHG {PARA 0 "> " 
+0 "" {MPLTEXT 1 0 5 "b:=0;" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%\"bG\"
+\"!" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 5 "c:=1;" }{TEXT -1 0 "
+" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>%\"cG\"\"\"" }}}{EXCHG {PARA 0 ">
+ " 0 "" {MPLTEXT 1 0 37 "d:=sqrt(a^2*(a^2+b^2+c^2)/(a^2+b^2)):" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 120 "B1:=implicitplot3d(a*x+b*y+
+c*z=0,x=-1.5..1.5,y=-1.5..1.5,z=-1.5..1.5,color=green,scaling=constrai
+ned,style=patchnogrid):" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 163 
+"C1:=spacecurve([-b*cos(t)/sqrt(a^2+b^2)-a^2*c*sin(t)/(d*(a^2+b^2)),a*
+cos(t)/sqrt(a^2+b^2)-a*b*c*sin(t)/(d*(a^2+b^2)),a*sin(t)/d],t=0..2*Pi,
+thickness=3,color=blue):" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 23 
+"display([A,B,C,B1,C1]);" }{TEXT -1 0 "" }}{PARA 13 "" 1 "" {TEXT -1 
+0 "" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" }}}}{MARK "18" 0 }
+{VIEWOPTS 1 1 0 1 1 1803 1 1 1 1 }{PAGENUMBERS 0 1 2 33 1 1 }
